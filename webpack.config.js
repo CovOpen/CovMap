@@ -115,6 +115,7 @@ module.exports = function(env) {
       }),
       new CopyWebpackPlugin([
         { from: "static", to: "." },
+        { from: path.resolve(__dirname, 'data'), to: "./data" },
       ]),
       new webpack.DefinePlugin({
         COMMIT_HASH: JSON.stringify(commitHash),

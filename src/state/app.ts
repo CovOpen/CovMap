@@ -1,5 +1,6 @@
 import { Reducer } from "./reduxHelper";
 import { Viewport } from "react-leaflet";
+import { GeoJSON } from "geojson";
 
 export enum Step {
     Welcome,
@@ -7,13 +8,18 @@ export enum Step {
     About,
     Imprint,
 }
-export const backend_url = "/api";
+export const backendUrl = "/api";
 
 export interface MapArea {
     celat: number;
     celng: number;
     nelat: number;
     nelng: number;
+}
+
+export type MapData = {
+  types: Record<string, string>;
+  data: Array<Record<string, Record<string, number>>>;
 }
 
 export interface AppState {
@@ -23,7 +29,8 @@ export interface AppState {
     userAllowedLocation: boolean;
     currentArea: MapArea | null;
     history: Step[];
-    collapseSideBar: boolean;
+    postCodeAreas: GeoJSON | null;
+    currentDataset: MapData | null;
 }
 
 export const defaultAppState: AppState = {
@@ -36,7 +43,8 @@ export const defaultAppState: AppState = {
   },
   currentArea: null,
   history: [],
-  collapseSideBar: true,
+  postCodeAreas: null,
+  currentDataset: null,
 };
 
 class AppReducer extends Reducer<AppState> {
@@ -60,11 +68,11 @@ class AppReducer extends Reducer<AppState> {
   public setCurrentArea(area: MapArea) {
     this.state.currentArea = area;
   }
-  public setSideBarCollapsed(collapsed: boolean) {
-    this.state.collapseSideBar = collapsed;
+  public setPostCodeAreas(areas: GeoJSON) {
+    this.state.postCodeAreas = areas;
   }
-  public toggleSideBar() {
-    this.state.collapseSideBar = !this.state.collapseSideBar;
+  public setCurrentDataset(data: MapData) {
+    this.state.currentDataset = data;
   }
 }
 

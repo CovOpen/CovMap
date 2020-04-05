@@ -6,9 +6,11 @@ import { State } from "../state";
 import { AppApi, MapArea } from "../state/app";
 import { useThunkDispatch } from "../useThunkDispatch";
 import L from "leaflet";
-import { Map, TileLayer, Marker, CircleMarker, Viewport, FeatureGroup, Popup } from "react-leaflet";
+import { Map, Marker, CircleMarker, Viewport, FeatureGroup, Popup } from "react-leaflet";
 import { hasGeolocation, getCurrentPosition } from "../geolocation";
 import { states as geoCountryStates, FederalState } from "../data/geo_de";
+import { PostCodeAreas } from './PostCodeAreas';
+import MapboxGLLayer from './MapboxGLLayer';
 
 function areaQueryFromBounds(bounds): MapArea {
   const center = bounds.getCenter();
@@ -83,8 +85,6 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
   const onViewportChanged = async (viewport: Viewport) => {
     const map = mapRef.current;
         
-    dispatch(AppApi.setViewport(viewport));
-        
     if (map) {
       const bounds = map.leafletElement.getBounds();
       dispatch(AppApi.setCurrentArea(areaQueryFromBounds(bounds)));
@@ -137,16 +137,20 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
           maxBounds={maxBounds}
           onZoomEnd={onZoomEnd}
         >
-          <TileLayer
+          {/* <TileLayer
             attribution='&copy; <a href="https://www.maptiler.com/copyright/" target="_blank">MapTiler</a> | &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
             id="mapbox/light-v9"
             maxZoom="20"
+          /> */}
+          <MapboxGLLayer
+            accessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
+            style="mapbox://styles/mapbox/light-v9"
           />
+          <PostCodeAreas />
           <UserPosition center={position} />
           <FeatureGroup>
-            {/* TODO: Show postCodeArea polygons */}
-            <StateMarkers states={geoCountryStates} />
+            {/* <StateMarkers states={geoCountryStates} /> */}
           </FeatureGroup>
         </Map>
       </main>
