@@ -1,4 +1,5 @@
 import "./app.css";
+import "mapbox-gl/dist/mapbox-gl.css"
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { extendLeaflet } from "./lib/leaflet-mapbox-gl";
