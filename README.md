@@ -9,15 +9,6 @@ It is not necessarily needed, on unix like systems you can use _yarn_ scripts di
 
 ### Docker for Unix like systems
 
-#### Linux
-
-```bash
-cd ./CovMapper
-yarn install
-docker-compose -up -d
-```
-#### macOS
-
 ```bash
 cd ./CovMapper
 yarn install
