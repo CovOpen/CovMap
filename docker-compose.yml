@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  frontend:
+    build:
+      context: ./
+      dockerfile: Dockerfile 
+    ports: 
+      - 8080:8080
+    volumes:
+      - "./static:/app/static:rw"
+      - "./src:/app/src:rw"
+      - "./webpack.config.js:/app/webpack.config.js:ro"
+      - "./tsconfig.json:/app/tsconfig.json:ro"
+      - "./.babelrc:/app/.babelrc:ro"
+      - "./package.json:/app/package.json:ro"

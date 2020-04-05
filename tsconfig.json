@@ -1,0 +1,54 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "incremental": true,
+    "target": "es2015",
+    "module": "es2015",
+    "lib": [
+        "dom",
+        "esnext"
+    ],
+    "allowJs": false,
+    "checkJs": false,
+    "downlevelIteration": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "inlineSources": true,
+    "sourceRoot": "/",
+    "outDir": "./build/",
+    "rootDir": "./src/",
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "baseUrl": "./src/",
+    // "types": ["node"],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "./node_modules",
+    "./build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest"
+  ],
+  "include": [
+    "custom.d.ts",
+    "./src"
+  ]
+}

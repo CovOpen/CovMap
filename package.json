@@ -1,0 +1,127 @@
+{
+  "name": "covmapper",
+  "version": "0.1.0",
+  "description": "A web service to display large-scale epidemiological data and forecasts of the SARS-CoV-2 pandemic.",
+  "repository": "git@github.com:alexanderthieme/CovMapper.git",
+  "license": "Apache2",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext ts,tsx ./src/",
+    "build": "webpack --config ./webpack.config.js",
+    "build:prod": "webpack --config ./webpack.config.js --env prod",
+    "dev": "webpack-dev-server --env dev --hot --host=0.0.0.0 --port=8080",
+    "dev:ssl": "webpack-dev-server --env dev --hot --host=0.0.0.0 --port=8080 --https --cert=cert.pem --key=key.pem",
+    "refresh": "sudo docker-compose build frontend && sudo docker-compose up -d frontend",
+    "restart": "sudo docker-compose restart frontend",
+    "test": "jest --env=jsdom",
+    "coverage": "jest --env=jsdom --coverage"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.8.7",
+    "@material-ui/core": "^4.9.9",
+    "@material-ui/icons": "^4.9.1",
+    "file-loader": "^6.0.0",
+    "immer": "^6.0.2",
+    "leaflet": "^1.6.0",
+    "notistack": "^0.9.9",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-leaflet": "^2.6.3",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.1",
+    "@types/enzyme": "^3.10.5",
+    "@types/jest": "^25.1.4",
+    "@types/jsonwebtoken": "^8.3.8",
+    "@types/react": "^16.9.25",
+    "@types/react-dom": "^16.9.5",
+    "@types/react-redux": "^7.1.7",
+    "@types/redux-persist": "^4.3.1",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
+    "babel-jest": "^25.1.0",
+    "babel-loader": "^8.1.0",
+    "brfs": "^2.0.2",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-loader": "^3.4.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^25.1.0",
+    "react-hot-loader": "^4.12.20",
+    "react-test-renderer": "^16.13.1",
+    "style-loader": "^1.1.3",
+    "transform-loader": "^0.2.4",
+    "ts-jest": "^25.2.1",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.0",
+    "webpack-bundle-analyzer": "^3.6.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/jest/polyfills.js"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/config/jest/setupTests.js"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.ts?(x)",
+      "<rootDir>/src/**/?(*.)(spec|test).ts?(x)"
+    ],
+    "testEnvironment": "node",
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest",
+      "^.+\\.jsx?$": "babel-jest",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "globals": {
+      "ts-jest": {
+        "babelConfig": true,
+        "tsConfig": "<rootDir>/tsconfig.test.json"
+      }
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$"
+    ],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "jsx",
+      "mjs",
+      "node",
+      "ts",
+      "tsx",
+      "web.js",
+      "web.jsx",
+      "web.ts",
+      "web.tsx"
+    ],
+    "moduleDirectories": [
+      "src",
+      "node_modules"
+    ],
+    "preset": "ts-jest"
+  }
+}
