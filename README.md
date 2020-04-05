@@ -21,7 +21,7 @@ MUST:
 - Show map of Germany with colored postal code areas
 - Timeline bar: Selection of day and automatic update of map
 - Selection for type of displayed data (e.g. confirmed cases, deaths)
-- does not reply on 3rd party maps, e.g. MapBox
+- does not rely on 3rd party maps, e.g. MapBox
 - uses efficient encoding of zip code areas, e.g. TopoJSON
 
 IMPORTANT:
