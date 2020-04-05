@@ -46,7 +46,7 @@ export const App = () => {
     <SnackbarProvider maxSnack={3}>
       <>
         <NavBar />
-        <Container style={{height: '100%', paddingLeft: 0 , paddingRight: 0}}>
+        <Container style={{height: '100%', paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
           {renderContent()}
         </Container>
       </>
