@@ -7,12 +7,22 @@ A web service to display large-scale epidemiological data and forecasts of the S
 We use Docker currently only to develop on different operating systems.
 It is not necessarily needed, on unix like systems you can use _yarn_ scripts directly, like `yarn dev`
 
+### Docker for Unix like systems
+
 ```bash
+cd ./CovMapper
 yarn install
-docker-compose up -d
+docker-compose up
 ```
 
-Goto `https://localhost:8080`
+### Yarn for Unix like systems
+
+```bash
+cd ./CovMapper
+yarn dev
+```
+
+Then go to `https://localhost:8080` in your browser (if you are using docker you have to allow self-signed certificates in order to work)
 
 ## Requirements for v1.0
 
