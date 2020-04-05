@@ -9,7 +9,7 @@ It is not necessarily needed, on unix like systems you can use _yarn_ scripts di
 
 ```bash
 yarn install
-docker-compose -up -d
+docker-compose up -d
 ```
 
 Goto `https://localhost:8080`

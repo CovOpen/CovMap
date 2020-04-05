@@ -1,11 +1,11 @@
 import { ReduxDispatch } from "../../useThunkDispatch";
 import { AppApi } from "../app";
 
-export function fetchPostCodeAreas() {
+export function fetchDataset() {
   return async (dispatch: ReduxDispatch) => {
-    const res = await fetch('/data/plz_small2.geojson');
+    const res = await fetch('/data/plz_small2.generated.json');
     const json = await res.json();
         
-    dispatch(AppApi.setPostCodeAreas(json));
+    dispatch(AppApi.setCurrentDataset(json));
   };
 }

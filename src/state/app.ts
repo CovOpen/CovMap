@@ -17,6 +17,11 @@ export interface MapArea {
     nelng: number;
 }
 
+export type MapData = {
+  types: Record<string, string>;
+  data: Array<Record<string, Record<string, number>>>;
+}
+
 export interface AppState {
     activeStep: Step;
     viewport: Viewport;
@@ -25,6 +30,7 @@ export interface AppState {
     currentArea: MapArea | null;
     history: Step[];
     postCodeAreas: GeoJSON | null;
+    currentDataset: MapData | null;
 }
 
 export const defaultAppState: AppState = {
@@ -38,6 +44,7 @@ export const defaultAppState: AppState = {
   currentArea: null,
   history: [],
   postCodeAreas: null,
+  currentDataset: null,
 };
 
 class AppReducer extends Reducer<AppState> {
@@ -63,6 +70,9 @@ class AppReducer extends Reducer<AppState> {
   }
   public setPostCodeAreas(areas: GeoJSON) {
     this.state.postCodeAreas = areas;
+  }
+  public setCurrentDataset(data: MapData) {
+    this.state.currentDataset = data;
   }
 }
 

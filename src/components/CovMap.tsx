@@ -9,7 +9,6 @@ import L from "leaflet";
 import { Map, Marker, CircleMarker, Viewport, FeatureGroup, Popup } from "react-leaflet";
 import { hasGeolocation, getCurrentPosition } from "../geolocation";
 import { states as geoCountryStates, FederalState } from "../data/geo_de";
-import { fetchPostCodeAreas } from '../state/thunks/fetchPostCodeAreas';
 import { PostCodeAreas } from './PostCodeAreas';
 import MapboxGLLayer from './MapboxGLLayer';
 
@@ -32,7 +31,6 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
   const position = useSelector((state: State) => state.app.currentPosition);
   const stateViewport = useSelector((state: State) => state.app.viewport);
   const allowedLocation = useSelector((state: State) => state.app.userAllowedLocation);
-  const postCodeAreas = useSelector((state: State) => state.app.postCodeAreas);
   const mapRef = createRef<Map>();
   
   // Bound to germany for the time being
@@ -45,10 +43,6 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
     map.leafletElement.setMinZoom(6);
     const bounds = map.leafletElement.getBounds();
     dispatch(AppApi.setCurrentArea(areaQueryFromBounds(bounds)));
-
-    if (!postCodeAreas) {
-      dispatch(fetchPostCodeAreas())
-    }
         
     // TODO: Does CovMapper even need the current location?
     if (hasGeolocation && allowedLocation && !hasInitialPosition) {
@@ -153,11 +147,10 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
             accessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
             style="mapbox://styles/mapbox/light-v9"
           />
-          <PostCodeAreas data={postCodeAreas} />
+          <PostCodeAreas />
           <UserPosition center={position} />
           <FeatureGroup>
-            {/* TODO: Show postCodeArea polygons */}
-            <StateMarkers states={geoCountryStates} />
+            {/* <StateMarkers states={geoCountryStates} /> */}
           </FeatureGroup>
         </Map>
       </main>
