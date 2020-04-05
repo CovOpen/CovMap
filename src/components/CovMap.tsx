@@ -6,10 +6,11 @@ import { State } from "../state";
 import { AppApi, MapArea } from "../state/app";
 import { useThunkDispatch } from "../useThunkDispatch";
 import L from "leaflet";
-import { Map, TileLayer, Marker, CircleMarker, Viewport, FeatureGroup, Popup, GeoJSON } from "react-leaflet";
+import { Map, TileLayer, Marker, CircleMarker, Viewport, FeatureGroup, Popup } from "react-leaflet";
 import { hasGeolocation, getCurrentPosition } from "../geolocation";
 import { states as geoCountryStates, FederalState } from "../data/geo_de";
 import { fetchPostCodeAreas } from '../state/thunks/fetchPostCodeAreas';
+import { PostCodeAreas } from './PostCodeAreas';
 
 function areaQueryFromBounds(bounds): MapArea {
   const center = bounds.getCenter();
@@ -149,7 +150,7 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
             id="mapbox/light-v9"
             maxZoom="20"
           />
-          <GeoJSON data={postCodeAreas} />
+          <PostCodeAreas data={postCodeAreas} />
           <UserPosition center={position} />
           <FeatureGroup>
             {/* TODO: Show postCodeArea polygons */}

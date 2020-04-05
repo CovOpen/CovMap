@@ -8,7 +8,7 @@ export enum Step {
     About,
     Imprint,
 }
-export const backend_url = "/api";
+export const backendUrl = "/api";
 
 export interface MapArea {
     celat: number;
