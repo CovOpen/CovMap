@@ -1,6 +1,8 @@
 import "./app.css";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import { extendLeaflet } from "./lib/leaflet-mapbox-gl";
+extendLeaflet(L);
 
 // https://github.com/PaulLeCam/react-leaflet/issues/453
 delete L.Icon.Default.prototype._getIconUrl;

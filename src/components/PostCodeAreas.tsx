@@ -11,8 +11,8 @@ export function PostCodeAreas ({ data }: { data: GeoJSONType | null }) {
     <GeoJSON 
       data={data}
       style={(feature) => ({
-        color: '#3b7cd6',
-        weight: 2,
+        color: '#adc9ff',
+        weight: 1,
         dashArray: '0',
       })}
       onEachFeature={onEachFeature}
@@ -31,7 +31,7 @@ function highlightFeature(e) {
   const layer = e.target;
 
   layer.setStyle({
-    weight: 5,
+    weight: 3,
     color: '#003f97',
     dashArray: '',
   });
@@ -39,8 +39,8 @@ function highlightFeature(e) {
 
 function resetHighlight(e, feature, layer) {
   layer.setStyle({
-    color: '#3b7cd6',
-    weight: 2,
+    color: '#adc9ff',
+    weight: 1,
     dashArray: '0',
   });
 }

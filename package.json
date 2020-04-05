@@ -59,6 +59,8 @@
     "eslint-plugin-react": "^7.19.0",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^25.1.0",
+    "mapbox-gl": "^1.9.1",
+    "mapbox-gl-leaflet": "^0.0.12",
     "react-hot-loader": "^4.12.20",
     "react-test-renderer": "^16.13.1",
     "style-loader": "^1.1.3",
