@@ -139,7 +139,8 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
         >
           <TileLayer
             attribution='&copy; <a href="https://www.maptiler.com/copyright/" target="_blank">MapTiler</a> | &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://api.maptiler.com/maps/bright/{z}/{x}/{y}.png?key=joXtRquTCPnw5ntPeKaS"
+            url="https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
+            id="mapbox/light-v9"
             maxZoom="20"
           />
           <UserPosition center={position} />
