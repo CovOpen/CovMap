@@ -91,8 +91,6 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
   const onViewportChanged = async (viewport: Viewport) => {
     const map = mapRef.current;
         
-    dispatch(AppApi.setViewport(viewport));
-        
     if (map) {
       const bounds = map.leafletElement.getBounds();
       dispatch(AppApi.setCurrentArea(areaQueryFromBounds(bounds)));
