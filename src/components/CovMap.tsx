@@ -6,9 +6,10 @@ import { State } from "../state";
 import { AppApi, MapArea } from "../state/app";
 import { useThunkDispatch } from "../useThunkDispatch";
 import L from "leaflet";
-import { Map, TileLayer, Marker, CircleMarker, Viewport, FeatureGroup, Popup } from "react-leaflet";
+import { Map, TileLayer, Marker, CircleMarker, Viewport, FeatureGroup, Popup, GeoJSON } from "react-leaflet";
 import { hasGeolocation, getCurrentPosition } from "../geolocation";
 import { states as geoCountryStates, FederalState } from "../data/geo_de";
+import { fetchPostCodeAreas } from '../state/thunks/fetchPostCodeAreas';
 
 function areaQueryFromBounds(bounds): MapArea {
   const center = bounds.getCenter();
@@ -29,6 +30,7 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
   const position = useSelector((state: State) => state.app.currentPosition);
   const stateViewport = useSelector((state: State) => state.app.viewport);
   const allowedLocation = useSelector((state: State) => state.app.userAllowedLocation);
+  const postCodeAreas = useSelector((state: State) => state.app.postCodeAreas);
   const mapRef = createRef<Map>();
   
   // Bound to germany for the time being
@@ -41,6 +43,10 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
     map.leafletElement.setMinZoom(6);
     const bounds = map.leafletElement.getBounds();
     dispatch(AppApi.setCurrentArea(areaQueryFromBounds(bounds)));
+
+    if (!postCodeAreas) {
+      dispatch(fetchPostCodeAreas())
+    }
         
     // TODO: Does CovMapper even need the current location?
     if (hasGeolocation && allowedLocation && !hasInitialPosition) {
@@ -143,6 +149,7 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
             id="mapbox/light-v9"
             maxZoom="20"
           />
+          <GeoJSON data={postCodeAreas} />
           <UserPosition center={position} />
           <FeatureGroup>
             {/* TODO: Show postCodeArea polygons */}

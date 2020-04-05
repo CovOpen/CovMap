@@ -1,5 +1,6 @@
 import { Reducer } from "./reduxHelper";
 import { Viewport } from "react-leaflet";
+import { GeoJSON } from "geojson";
 
 export enum Step {
     Welcome,
@@ -23,7 +24,7 @@ export interface AppState {
     userAllowedLocation: boolean;
     currentArea: MapArea | null;
     history: Step[];
-    collapseSideBar: boolean;
+    postCodeAreas: GeoJSON | null;
 }
 
 export const defaultAppState: AppState = {
@@ -36,7 +37,7 @@ export const defaultAppState: AppState = {
   },
   currentArea: null,
   history: [],
-  collapseSideBar: true,
+  postCodeAreas: null,
 };
 
 class AppReducer extends Reducer<AppState> {
@@ -60,11 +61,8 @@ class AppReducer extends Reducer<AppState> {
   public setCurrentArea(area: MapArea) {
     this.state.currentArea = area;
   }
-  public setSideBarCollapsed(collapsed: boolean) {
-    this.state.collapseSideBar = collapsed;
-  }
-  public toggleSideBar() {
-    this.state.collapseSideBar = !this.state.collapseSideBar;
+  public setPostCodeAreas(areas: GeoJSON) {
+    this.state.postCodeAreas = areas;
   }
 }
 
