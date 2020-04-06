@@ -38,7 +38,7 @@ export const defaultAppState: AppState = {
   userAllowedLocation: true,
   currentPosition: null,
   viewport: {
-    center: [10.129394531250002, 51.65892664880053], // Germany as start position
+    center: [51.65892664880053, 10.129394531250002], // Germany as start position
     zoom: 5,
   },
   currentArea: null,
