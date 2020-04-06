@@ -7,8 +7,12 @@ import { State } from "../state";
 import { AppApi } from "../state/app";
 import { useThunkDispatch } from "../useThunkDispatch";
 import { hasGeolocation, getCurrentPosition } from "../geolocation";
+import { fetchDataset } from "../state/thunks/fetchDataset"
+import { fetchPostCodeAreas } from "../state/thunks/fetchPostCodeAreas"
+import { fetchPostCodePoints } from "../state/thunks/fetchPostCodePoints"
 
 import { PostCodeAreas } from './PostCodeAreas'
+import { Heatmap } from './Heatmap'
 
 let hasInitialPosition = false;
 
@@ -19,6 +23,7 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
   const allowedLocation = useSelector((state: State) => state.app.userAllowedLocation);
   const currentDataset = useSelector((state: State) => state.app.currentDataset); // TODO
   const postCodeAreas = useSelector((state: State) => state.app.postCodeAreas);
+  const postCodePoints = useSelector((state: State) => state.app.postCodePoints);
   
   // Bound to germany for the time being
   // TODO: Use mapbox helpers
@@ -27,6 +32,15 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
   // const maxBounds = L.latLngBounds(southWest, northEast); 
   
   useEffect(() => {
+    if (!postCodePoints) {
+      dispatch(fetchPostCodePoints());
+    }
+    if (!postCodeAreas) {
+      dispatch(fetchPostCodeAreas());
+    }
+    if (!currentDataset) {
+      dispatch(fetchDataset());
+    }
     // TODO: Does CovMapper even need the current location?
     // -> Possibly, because a user wants to know the situation around him
     if (hasGeolocation && allowedLocation && !hasInitialPosition) {
@@ -88,6 +102,7 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
           mapboxApiAccessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
         >
           <PostCodeAreas currentDataset={currentDataset} postCodeAreas={postCodeAreas} />
+          {/* <Heatmap currentDataset={currentDataset} postCodePoints={postCodePoints} /> */}
         </ReactMapGL>
       </main>
     </>
