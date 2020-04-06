@@ -1,83 +1,66 @@
-import React, { useEffect } from "react";
-import { GeoJSON } from "react-leaflet";
-import { useSelector } from "react-redux";
-import { useThunkDispatch } from "../useThunkDispatch";
+import React from "react";
+import {Source, Layer} from 'react-map-gl';
 
-import { State } from "../state";
-import { fetchPostCodeAreas } from '../state/thunks/fetchPostCodeAreas';
-import { fetchDataset } from '../state/thunks/fetchDataset';
+export type Props = {
+  postCodeAreas: any; 
+  currentDataset: any;
+}
 
-export function PostCodeAreas () {
-  const dispatch = useThunkDispatch();
-  const postCodeAreas = useSelector((state: State) => state.app.postCodeAreas);
-  const currentDataset = useSelector((state: State) => state.app.currentDataset);
-  
-  useEffect(() => {
-    if (!postCodeAreas) {
-      dispatch(fetchPostCodeAreas())
-    }
-    if (!currentDataset) {
-      dispatch(fetchDataset())
-    }
-  });
-
-  if (!postCodeAreas || !currentDataset) {
-    return null;
-  }
-
+export class PostCodeAreas extends React.Component<Props> { // TODO: use geojson type
+  mergedGeoJSON = null;
   // TODO: GUI to choose which key should be displayed (from currentDataset.types)
-  const dataField = 'coughs';
-
-  function getColor(d) {
-    return d > 70 ? '#800026' :
-      d > 60  ? '#BD0026' :
-        d > 50  ? '#E31A1C' :
-          d > 40  ? '#FC4E2A' :
-            d > 30   ? '#FD8D3C' :
-              d > 20   ? '#FEB24C' :
-                d > 10   ? '#FED976' :
-                  '#FFEDA0';
+  dataField = 'coughs';
+  
+  constructor(props) {
+    super(props)
+    this.mergeDataWithGeoFeatures()
   }
 
-  const onEachFeature = (feature, layer) => {
-    layer.on({
-      mouseover: highlightFeature,
-      mouseout: (e) => resetHighlight(e, feature, layer),
-    });
+  mergeDataWithGeoFeatures() {
+    const { postCodeAreas, currentDataset } = this.props
+    console.log(typeof currentDataset, typeof postCodeAreas, {currentDataset, postCodeAreas})
+    if (!postCodeAreas || !currentDataset) {
+      return;
+    }
+
+    this.mergedGeoJSON = Object.assign({}, postCodeAreas, {
+      features: postCodeAreas.features.map(feature => ({
+        ...feature,
+        properties: {
+          ...feature.properties,
+          ...currentDataset.data[feature.properties.PLZ99]
+        }
+      }))
+    })
   }
-  
-  const highlightFeature = (e) => {
-    const layer = e.target;
-    layer.bringToFront();
-    layer.setStyle({
-      weight: 3,
-      // color: getColor(currentDataset.data[feature.properties.PLZ99][dataField]),
-      dashArray: '',
-    });
+
+  render() {
+    if (!this.mergedGeoJSON) {
+      return null;
+    }
+
+    return (
+      <Source id="postCodeAreas" type="geojson" data={this.mergedGeoJSON}>
+        <Layer
+          id="data"
+          type="fill"
+          paint={{
+            'fill-color': {
+              property: this.dataField,
+              stops: [
+                [0, '#FFEDA0'],
+                [10, '#FED976'],
+                [20, '#FEB24C'],
+                [30, '#FD8D3C'],
+                [40, '#FC4E2A'],
+                [50, '#E31A1C'],
+                [60, '#BD0026'],
+                [70, '#800026'],
+              ]
+            },
+            'fill-opacity': 0.8
+          }} />
+      </Source>
+    )
   }
-  
-  const resetHighlight = (e, feature, layer) => {
-    layer.setStyle({
-      // color: getColor(currentDataset.data[feature.properties.PLZ99][dataField]),
-      weight: 1,
-      dashArray: '0',
-    });
-  }
-  
-  return (
-    <GeoJSON 
-      data={postCodeAreas}
-      style={(feature) => {
-        const color = getColor(currentDataset.data[feature.properties.PLZ99][dataField]);
-        return ({
-          color,
-          weight: 1,
-          dashArray: '0',
-          fillOpacity: 0.7,
-          fillColor: color,
-        });
-      }}
-      onEachFeature={onEachFeature}
-    />
-  )
 }

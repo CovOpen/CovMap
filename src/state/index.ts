@@ -19,7 +19,7 @@ function persist(reducer: any, key: string, whitelist?: string[], blacklist?: st
 }
 
 export const rootReducer = combineReducers({
-  app: persist(AppReduxReducer, "app"),
+  app: persist(AppReduxReducer, "app", undefined, ['currentDataset', 'postCodeAreas', 'postCodePoints']),
 });
 
 // tslint:disable-next-line: no-empty-interface
