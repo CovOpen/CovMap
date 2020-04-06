@@ -7,7 +7,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { State } from "../state";
 import { AppApi, VisualType } from "../state/app";
 import { useThunkDispatch } from "../useThunkDispatch";
-import { hasGeolocation, getCurrentPosition } from "../geolocation";
 import { fetchDataset } from "../state/thunks/fetchDataset"
 import { fetchPostCodeAreas } from "../state/thunks/fetchPostCodeAreas"
 import { fetchPostCodePoints } from "../state/thunks/fetchPostCodePoints"
@@ -15,8 +14,6 @@ import { Settings } from './Settings';
 
 import { PostCodeAreas } from './PostCodeAreas'
 import { Heatmap } from './Heatmap'
-
-let hasInitialPosition = false;
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -29,7 +26,6 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
   const dispatch = useThunkDispatch();
   // const position = useSelector((state: State) => state.app.currentPosition); // TODO
   const stateViewport = useSelector((state: State) => state.app.viewport);
-  const allowedLocation = useSelector((state: State) => state.app.userAllowedLocation);
   const currentDataset = useSelector((state: State) => state.app.currentDataset); // TODO
   const postCodeAreas = useSelector((state: State) => state.app.postCodeAreas);
   const postCodePoints = useSelector((state: State) => state.app.postCodePoints);
@@ -51,45 +47,11 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
     if (!currentDataset) {
       dispatch(fetchDataset());
     }
-    // TODO: Does CovMapper even need the current location?
-    // -> Possibly, because a user wants to know the situation around him
-    // if (hasGeolocation && allowedLocation && !hasInitialPosition) {
-    //   hasInitialPosition = true;
-    //   const positionPendingSnackbar = enqueueSnackbar("Versuche deine momentane Position zu finden...", {
-    //     persist: true,
-    //     variant: "info",
-    //   });
-
-    //   getCurrentPosition(
-    //     async (pos) => {
-    //       closeSnackbar(positionPendingSnackbar);
-    //       enqueueSnackbar("Position gefunden!", {
-    //         variant: "success",
-    //         autoHideDuration: 3000,
-    //       });
-    //       const crd = pos.coords;
-    //       dispatch(AppApi.setCurrentPosition([crd.latitude, crd.longitude]));
-    //     },
-    //     (err) => {
-    //       closeSnackbar(positionPendingSnackbar);
-    //       enqueueSnackbar(`Position Fehler: ${err.message} (${err.code})`, {
-    //         variant: "error",
-    //         autoHideDuration: 7000,
-    //       });
-
-    //       if (err.code === 1) {
-    //         dispatch(AppApi.setUserAllowedLocation(false));
-    //       }
-    //     },
-    //   );
-    // } 
 
     return () => {
       // componendWillUnmount
     }
   }, []);
-
-  // const UserPosition = ({ center }: { center: Array<number> | null }) => (center ? <CircleMarker center={center}></CircleMarker> : null);
 
   const onViewportChange = ({ latitude, longitude, zoom }) => {
     dispatch(AppApi.setViewport({
