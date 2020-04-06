@@ -68,7 +68,7 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
           width="100%"
           height="100%"
           maxZoom={10}
-          minZoom={5}
+          minZoom={4}
           latitude={stateViewport.center[0]}
           longitude={stateViewport.center[1]}
           zoom={stateViewport.zoom}
