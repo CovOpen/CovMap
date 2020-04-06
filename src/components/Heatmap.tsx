@@ -52,10 +52,6 @@ export class Heatmap extends React.Component<Props> { // TODO: use geojson type
   postCodePoints = null;
   currentDataset = null;
 
-  constructor(props) {
-    super(props)
-  }
-
   shouldComponentUpdate({ postCodePoints, currentDataset }) {
     if (postCodePoints !== this.postCodePoints || currentDataset !== this.currentDataset) {
       this.postCodePoints = postCodePoints;

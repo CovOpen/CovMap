@@ -10,15 +10,21 @@ export class PostCodeAreas extends React.Component<Props> { // TODO: use geojson
   mergedGeoJSON = null;
   // TODO: GUI to choose which key should be displayed (from currentDataset.types)
   dataField = 'coughs';
-  
-  constructor(props) {
-    super(props)
-    this.mergeDataWithGeoFeatures()
+  postCodeAreas = null;
+  currentDataset = null;
+
+  shouldComponentUpdate({ postCodeAreas, currentDataset }) {
+    if (postCodeAreas !== this.postCodeAreas || currentDataset !== this.currentDataset) {
+      this.postCodeAreas = postCodeAreas;
+      this.currentDataset = currentDataset;
+      this.mergeDataWithGeoFeatures({ postCodeAreas, currentDataset });
+      console.log('UPDATIGN')
+      return true;
+    }
+    return false;
   }
 
-  mergeDataWithGeoFeatures() {
-    const { postCodeAreas, currentDataset } = this.props
-    console.log(typeof currentDataset, typeof postCodeAreas, {currentDataset, postCodeAreas})
+  mergeDataWithGeoFeatures({ postCodeAreas, currentDataset }) {
     if (!postCodeAreas || !currentDataset) {
       return;
     }
