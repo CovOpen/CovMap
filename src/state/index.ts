@@ -1,4 +1,4 @@
-import { setAutoFreeze } from "immer";
+import { setAutoFreeze, enableMapSet } from "immer";
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
@@ -6,6 +6,7 @@ import storage from "redux-persist/lib/storage";
 
 import { AppReduxReducer, AppState } from "./app";
 
+enableMapSet()
 setAutoFreeze(false);
 
 function persist(reducer: any, key: string, whitelist?: string[], blacklist?: string[]) {
@@ -19,7 +20,7 @@ function persist(reducer: any, key: string, whitelist?: string[], blacklist?: st
 }
 
 export const rootReducer = combineReducers({
-  app: persist(AppReduxReducer, "app", undefined, ['currentDataset', 'postCodeAreas', 'postCodePoints']),
+  app: persist(AppReduxReducer, "app", undefined, ['currentDataset', 'postCodeAreas', 'postCodePoints', 'loading']),
 });
 
 // tslint:disable-next-line: no-empty-interface

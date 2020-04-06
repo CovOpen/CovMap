@@ -14,6 +14,7 @@ import { Imprint } from "./components/Imprint";
 import { CovMap } from "./components/CovMap";
 import { Welcome } from "./components/Welcome";
 import { State } from "./state";
+import { IntermediateProgress } from "./components/IntermediateProgress";
 
 export const App = () => {
   const activeStep = useSelector((state: State) => state.app.activeStep);
@@ -40,6 +41,7 @@ export const App = () => {
         <Container style={{height: '100%', paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
           {renderContent()}
         </Container>
+        <IntermediateProgress />
       </>
     </SnackbarProvider>
   </>

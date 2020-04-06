@@ -38,6 +38,7 @@ export interface AppState {
   postCodePoints: GeoJSON | null;
   currentDataset: MapData | null;
   visualType: VisualType;
+  loading: Map<string, string>;
 }
 
 export const defaultAppState: AppState = {
@@ -54,6 +55,7 @@ export const defaultAppState: AppState = {
   postCodePoints: null,
   currentDataset: null,
   visualType: VisualType.POSTCODE,
+  loading: new Map(),
 };
 
 class AppReducer extends Reducer<AppState> {
@@ -88,6 +90,12 @@ class AppReducer extends Reducer<AppState> {
   }
   public setVisualType(type: VisualType) {
     this.state.visualType = type;
+  }
+  public pushLoading(id: string, message: string) {
+    this.state.loading.set(id, message)
+  }
+  public popLoading(id: string) {
+    this.state.loading.delete(id)
   }
 }
 
