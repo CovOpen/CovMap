@@ -6,6 +6,10 @@ export type Props = {
   currentDataset: any;
 }
 
+export type State = {
+  mergedGeoJSON: any; // TODO: user geojson type
+}
+
 const MAX_ZOOM_LEVEL = 14;
 
 const heatmapLayer = {
@@ -45,31 +49,35 @@ const heatmapLayer = {
   }
 };
 
-export class Heatmap extends React.Component<Props> { // TODO: use geojson type
-  mergedGeoJSON = null;
-  // TODO: GUI to choose which key should be displayed (from currentDataset.types)
+export class Heatmap extends React.Component<Props, State> { // TODO: use geojson type
+  state = {
+    mergedGeoJSON: null,
+  };
   dataField = 'coughs';
   postCodePoints = null;
   currentDataset = null;
 
-  shouldComponentUpdate({ postCodePoints, currentDataset }) {
-    if (postCodePoints !== this.postCodePoints || currentDataset !== this.currentDataset) {
+  shouldComponentUpdate({ postCodePoints, currentDataset }, ...args) {
+    if ((postCodePoints !== null && postCodePoints !== this.postCodePoints) 
+      || (currentDataset !== null && currentDataset !== this.currentDataset)) {
       this.postCodePoints = postCodePoints;
       this.currentDataset = currentDataset;
       this.mergeDataWithGeoFeatures({ postCodePoints, currentDataset });
-      console.log('UPDATIGN')
-      return true;
     }
-    return false;
+    return true;
+  }
+
+  componentDidMount() {
+    this.mergeDataWithGeoFeatures(this.props)
+    this.render()
   }
 
   mergeDataWithGeoFeatures({ postCodePoints, currentDataset }) {
-    console.log(typeof currentDataset, typeof postCodePoints, {currentDataset, postCodePoints})
     if (!postCodePoints || !currentDataset) {
       return;
     }
-
-    this.mergedGeoJSON = Object.assign({}, postCodePoints, {
+    
+    const mergedGeoJSON = Object.assign({}, postCodePoints, {
       features: postCodePoints.features.map(feature => ({
         ...feature,
         properties: {
@@ -78,17 +86,19 @@ export class Heatmap extends React.Component<Props> { // TODO: use geojson type
         }
       }))
     })
+
+    this.setState({ mergedGeoJSON });
   }
 
   render() {
-    if (!this.mergedGeoJSON) {
+    if (!this.state.mergedGeoJSON) {
       return null;
     }
 
     heatmapLayer.paint['heatmap-weight'] = ['interpolate', ['linear'], ['get', this.dataField], 0, 0, 6, 1];
   
     return (
-      <Source id="postCodePoints" type="geojson" data={this.mergedGeoJSON}>
+      <Source id="postCodePoints" type="geojson" data={this.state.mergedGeoJSON}>
         <Layer {...heatmapLayer} />
       </Source>
     )

@@ -6,30 +6,38 @@ export type Props = {
   currentDataset: any;
 }
 
-export class PostCodeAreas extends React.Component<Props> { // TODO: use geojson type
-  mergedGeoJSON = null;
-  // TODO: GUI to choose which key should be displayed (from currentDataset.types)
+export type State = {
+  mergedGeoJSON: any; // TODO: user geojson type
+}
+
+export class PostCodeAreas extends React.Component<Props, State> { // TODO: use geojson type
+  state = {
+    mergedGeoJSON: null,
+  };
   dataField = 'coughs';
   postCodeAreas = null;
   currentDataset = null;
 
   shouldComponentUpdate({ postCodeAreas, currentDataset }) {
-    if (postCodeAreas !== this.postCodeAreas || currentDataset !== this.currentDataset) {
+    if ((postCodeAreas !== null && postCodeAreas !== this.postCodeAreas) 
+      || (currentDataset !== null && currentDataset !== this.currentDataset)) {
       this.postCodeAreas = postCodeAreas;
       this.currentDataset = currentDataset;
       this.mergeDataWithGeoFeatures({ postCodeAreas, currentDataset });
-      console.log('UPDATIGN')
-      return true;
     }
-    return false;
+    return true;
+  }
+
+  componentDidMount() {
+    this.mergeDataWithGeoFeatures(this.props)
   }
 
   mergeDataWithGeoFeatures({ postCodeAreas, currentDataset }) {
     if (!postCodeAreas || !currentDataset) {
       return;
     }
-
-    this.mergedGeoJSON = Object.assign({}, postCodeAreas, {
+    
+    const mergedGeoJSON = Object.assign({}, postCodeAreas, {
       features: postCodeAreas.features.map(feature => ({
         ...feature,
         properties: {
@@ -38,15 +46,16 @@ export class PostCodeAreas extends React.Component<Props> { // TODO: use geojson
         }
       }))
     })
+    this.setState({ mergedGeoJSON });
   }
 
   render() {
-    if (!this.mergedGeoJSON) {
+    if (!this.state.mergedGeoJSON) {
       return null;
     }
 
     return (
-      <Source id="postCodeAreas" type="geojson" data={this.mergedGeoJSON}>
+      <Source id="postCodeAreas" type="geojson" data={this.state.mergedGeoJSON}>
         <Layer
           id="data"
           type="fill"

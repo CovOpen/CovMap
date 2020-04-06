@@ -3,18 +3,18 @@ import { Viewport } from "react-leaflet";
 import { GeoJSON } from "geojson";
 
 export enum Step {
-    Welcome,
-    Map,
-    About,
-    Imprint,
+  Welcome,
+  Map,
+  About,
+  Imprint,
 }
 export const backendUrl = "/api";
 
 export interface MapArea {
-    celat: number;
-    celng: number;
-    nelat: number;
-    nelng: number;
+  celat: number;
+  celng: number;
+  nelat: number;
+  nelng: number;
 }
 
 export type MapData = {
@@ -22,20 +22,26 @@ export type MapData = {
   data: Array<Record<string, Record<string, number>>>;
 }
 
+export enum VisualType {
+  POSTCODE,
+  HEATMAP
+}
+
 export interface AppState {
-    activeStep: Step;
-    viewport: Viewport;
-    currentPosition: Array<number> | null;
-    userAllowedLocation: boolean;
-    currentArea: MapArea | null;
-    history: Step[];
-    postCodeAreas: GeoJSON | null;
-    postCodePoints: GeoJSON | null;
-    currentDataset: MapData | null;
+  activeStep: Step;
+  viewport: Viewport;
+  currentPosition: Array<number> | null;
+  userAllowedLocation: boolean;
+  currentArea: MapArea | null;
+  history: Step[];
+  postCodeAreas: GeoJSON | null;
+  postCodePoints: GeoJSON | null;
+  currentDataset: MapData | null;
+  visualType: VisualType;
 }
 
 export const defaultAppState: AppState = {
-  activeStep: Step.Welcome,
+  activeStep: Step.Map,
   userAllowedLocation: true,
   currentPosition: null,
   viewport: {
@@ -47,6 +53,7 @@ export const defaultAppState: AppState = {
   postCodeAreas: null,
   postCodePoints: null,
   currentDataset: null,
+  visualType: VisualType.POSTCODE,
 };
 
 class AppReducer extends Reducer<AppState> {
@@ -78,6 +85,9 @@ class AppReducer extends Reducer<AppState> {
   }
   public setCurrentDataset(data: MapData) {
     this.state.currentDataset = data;
+  }
+  public setVisualType(type: VisualType) {
+    this.state.visualType = type;
   }
 }
 
