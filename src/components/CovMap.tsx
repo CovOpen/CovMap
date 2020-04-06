@@ -53,36 +53,36 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
     }
     // TODO: Does CovMapper even need the current location?
     // -> Possibly, because a user wants to know the situation around him
-    if (hasGeolocation && allowedLocation && !hasInitialPosition) {
-      hasInitialPosition = true;
-      const positionPendingSnackbar = enqueueSnackbar("Versuche deine momentane Position zu finden...", {
-        persist: true,
-        variant: "info",
-      });
+    // if (hasGeolocation && allowedLocation && !hasInitialPosition) {
+    //   hasInitialPosition = true;
+    //   const positionPendingSnackbar = enqueueSnackbar("Versuche deine momentane Position zu finden...", {
+    //     persist: true,
+    //     variant: "info",
+    //   });
 
-      getCurrentPosition(
-        async (pos) => {
-          closeSnackbar(positionPendingSnackbar);
-          enqueueSnackbar("Position gefunden!", {
-            variant: "success",
-            autoHideDuration: 3000,
-          });
-          const crd = pos.coords;
-          dispatch(AppApi.setCurrentPosition([crd.latitude, crd.longitude]));
-        },
-        (err) => {
-          closeSnackbar(positionPendingSnackbar);
-          enqueueSnackbar(`Position Fehler: ${err.message} (${err.code})`, {
-            variant: "error",
-            autoHideDuration: 7000,
-          });
+    //   getCurrentPosition(
+    //     async (pos) => {
+    //       closeSnackbar(positionPendingSnackbar);
+    //       enqueueSnackbar("Position gefunden!", {
+    //         variant: "success",
+    //         autoHideDuration: 3000,
+    //       });
+    //       const crd = pos.coords;
+    //       dispatch(AppApi.setCurrentPosition([crd.latitude, crd.longitude]));
+    //     },
+    //     (err) => {
+    //       closeSnackbar(positionPendingSnackbar);
+    //       enqueueSnackbar(`Position Fehler: ${err.message} (${err.code})`, {
+    //         variant: "error",
+    //         autoHideDuration: 7000,
+    //       });
 
-          if (err.code === 1) {
-            dispatch(AppApi.setUserAllowedLocation(false));
-          }
-        },
-      );
-    } 
+    //       if (err.code === 1) {
+    //         dispatch(AppApi.setUserAllowedLocation(false));
+    //       }
+    //     },
+    //   );
+    // } 
 
     return () => {
       // componendWillUnmount
@@ -91,7 +91,6 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
 
   // const UserPosition = ({ center }: { center: Array<number> | null }) => (center ? <CircleMarker center={center}></CircleMarker> : null);
 
-  // TODO: How to store the viewport state without constantly rerendering all map components?
   const onViewportChange = ({ latitude, longitude, zoom }) => {
     dispatch(AppApi.setViewport({
       zoom,
