@@ -1,17 +1,5 @@
 import "./app.css";
 import "mapbox-gl/dist/mapbox-gl.css"
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import { extendLeaflet } from "./lib/leaflet-mapbox-gl";
-extendLeaflet(L);
-
-// https://github.com/PaulLeCam/react-leaflet/issues/453
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png').default,
-  iconUrl: require('leaflet/dist/images/marker-icon.png').default,
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png').default
-});
 
 import React from "react";
 import { hot } from "react-hot-loader";
