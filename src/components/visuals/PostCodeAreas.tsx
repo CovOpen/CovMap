@@ -1,7 +1,7 @@
 import React from "react";
 import {Source, Layer} from 'react-map-gl';
 
-import { VisualProps } from '../types';
+import { VisualProps, FeatureInfoProps } from '../types';
 
 export type State = {
   mergedGeoJSON: any; // TODO: user geojson type
@@ -15,7 +15,7 @@ export class PostCodeAreas extends React.Component<VisualProps, State> { // TODO
   postCodeAreas = null;
   currentDataset = null;
 
-  shouldComponentUpdate({ postCodeAreas, currentDataset }) {
+  shouldComponentUpdate({ postCodeAreas, currentDataset }: VisualProps) {
     if ((postCodeAreas !== null && postCodeAreas !== this.postCodeAreas) 
       || (currentDataset !== null && currentDataset !== this.currentDataset)) {
       this.postCodeAreas = postCodeAreas;
@@ -75,4 +75,13 @@ export class PostCodeAreas extends React.Component<VisualProps, State> { // TODO
       </Source>
     )
   }
+}
+
+export const FeatureInfo = ({ feature, dataField }: FeatureInfoProps) => {
+  return (
+    <div>
+      <div>PLZ: {feature.properties.PLZ99}</div>
+      <div>Value: {feature.properties[dataField]}</div>
+    </div>
+  )
 }

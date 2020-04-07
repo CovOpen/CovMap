@@ -2,7 +2,7 @@ import React from "react";
 import {Source, Layer} from 'react-map-gl';
 
 import { MAX_ZOOM_LEVEL } from '../../constants';
-import { VisualProps } from '../types';
+import { VisualProps, FeatureInfoProps } from '../types';
 
 export type State = {
   mergedGeoJSON: any; // TODO: user geojson type
@@ -59,11 +59,10 @@ export class Heatmap extends React.Component<VisualProps, State> { // TODO: use 
   state = {
     mergedGeoJSON: null,
   };
-  dataField = 'coughs';
   postCodePoints = null;
   currentDataset = null;
 
-  shouldComponentUpdate({ postCodePoints, currentDataset }, ...args) {
+  shouldComponentUpdate({ postCodePoints, currentDataset }: VisualProps) {
     if ((postCodePoints !== null && postCodePoints !== this.postCodePoints) 
       || (currentDataset !== null && currentDataset !== this.currentDataset)) {
       this.postCodePoints = postCodePoints;
@@ -100,10 +99,11 @@ export class Heatmap extends React.Component<VisualProps, State> { // TODO: use 
     if (!this.state.mergedGeoJSON) {
       return null;
     }
+    const { dataField } = this.props;
 
-    heatmapLayer.paint['heatmap-weight'] = ['interpolate', ['linear'], ['get', this.dataField], 0, 0, 6, 1];
+    heatmapLayer.paint['heatmap-weight'] = ['interpolate', ['linear'], ['get', dataField], 0, 0, 6, 1];
     heatmapLayerDetail.paint['circle-radius'] = {
-      property: this.dataField,
+      property: dataField,
       type: 'exponential',
       stops: [
         [{ zoom: MAX_ZOOM_LEVEL - 4, value: 1 }, 5],
@@ -113,7 +113,7 @@ export class Heatmap extends React.Component<VisualProps, State> { // TODO: use 
       ]
     };
     heatmapLayerDetail.paint['circle-color'] = {
-      property: this.dataField,
+      property: dataField,
       type: 'exponential',
       stops: [
         [0, 'rgba(236,222,239,0)'],
@@ -133,4 +133,13 @@ export class Heatmap extends React.Component<VisualProps, State> { // TODO: use 
       </Source>
     )
   }
+}
+
+export const FeatureInfo = ({ feature, dataField }: FeatureInfoProps) => {
+  return (
+    <div>
+      <div>PLZ: {feature.properties['plz2.data.PLZ99']}</div>
+      <div>Value: {feature.properties[dataField]}</div>
+    </div>
+  )
 }

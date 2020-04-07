@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { withSnackbar } from "notistack";
 import { useSelector } from "react-redux";
 import ReactMapGL from 'react-map-gl';
@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Paper from '@material-ui/core/Paper';
 
 import { State } from "../state";
 import { AppApi, VisualType } from "../state/app";
@@ -17,19 +18,25 @@ import { fetchPostCodePoints } from "../state/thunks/fetchPostCodePoints"
 import { Settings } from './Settings';
 import { MAX_ZOOM_LEVEL } from '../constants';
 
-import { VisualProps } from './types'; // eslint-disable-line
-import { PostCodeAreas } from './visuals/PostCodeAreas'
-import { Heatmap } from './visuals/Heatmap'
+import { VisualProps, FeatureInfoProps } from './types'; // eslint-disable-line
+import { PostCodeAreas, FeatureInfo as AreaFeatureInfo } from './visuals/PostCodeAreas'
+import { Heatmap, FeatureInfo as HeatmapFeatureInfo } from './visuals/Heatmap'
 
-const typeToComponentMap = {
+const typeToVisualComponentMap = {
   [VisualType.POSTCODE]: PostCodeAreas,
   [VisualType.HEATMAP]: Heatmap
+};
+
+const typeToFeatureInfoComponentMap = {
+  [VisualType.POSTCODE]: AreaFeatureInfo,
+  [VisualType.HEATMAP]: HeatmapFeatureInfo
 };
 
 declare global {
   namespace JSX {
     interface IntrinsicElements {
       VisualComponent: VisualProps;
+      FeatureInfoComponent: FeatureInfoProps;
     }
   }
 }
@@ -49,6 +56,13 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 1200,
     width: 'calc(100% - 64px)'
   },
+  featureInfo: {
+    position: "absolute",
+    top: theme.spacing(2),
+    right: theme.spacing(2),
+    zIndex: 1100,
+    padding: theme.spacing(2),
+  },
 }));
 
 export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
@@ -61,7 +75,7 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
   const postCodePoints = useSelector((state: State) => state.app.postCodePoints);
   const visualType = useSelector((state: State) => state.app.visualType);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
-  // const [currentFeature, setCurrenFeature] = useState(null)
+  const [currentFeature, setCurrenFeature] = useState(null)
   
   // Bound to germany for the time being
   // TODO: Use mapbox helpers
@@ -105,15 +119,18 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
     }, 400);
   }
 
-  const VisualComponent = typeToComponentMap[visualType]
+  const VisualComponent = typeToVisualComponentMap[visualType];
+  const FeatureInfoComponent = typeToFeatureInfoComponentMap[visualType];
 
   const handleMapClick = (pointerEvent) => {
     const { features } = pointerEvent;
     if (features.length > 0) {
-      features[0].state.hover = true;
-      // setCurrenFeature(features[0]);
+      features[0].state.active = true;
+      setCurrenFeature(features[0]);
     }
   }
+
+  const dataField = 'coughs';
 
   return (
     <>
@@ -132,11 +149,18 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
           mapboxApiAccessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
         >
           <VisualComponent 
+            dataField={dataField}
             currentDataset={currentDataset} 
             postCodeAreas={postCodeAreas}
             postCodePoints={postCodePoints}
           />
         </ReactMapGL>
+        {currentFeature && <Paper elevation={3} className={classes.featureInfo}>
+          <FeatureInfoComponent
+            dataField={dataField}
+            feature={currentFeature}
+          />
+        </Paper>}
         <Slider
           className={classes.slider}
           defaultValue={0}
