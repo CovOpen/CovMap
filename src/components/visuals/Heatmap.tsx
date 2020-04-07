@@ -1,12 +1,8 @@
 import React from "react";
 import {Source, Layer} from 'react-map-gl';
 
-import { MAX_ZOOM_LEVEL } from '../constants';
-
-export type Props = {
-  postCodePoints: any; 
-  currentDataset: any;
-}
+import { MAX_ZOOM_LEVEL } from '../../constants';
+import { VisualProps } from '../types';
 
 export type State = {
   mergedGeoJSON: any; // TODO: user geojson type
@@ -59,7 +55,7 @@ const heatmapLayer = {
   }
 };
 
-export class Heatmap extends React.Component<Props, State> { // TODO: use geojson type
+export class Heatmap extends React.Component<VisualProps, State> { // TODO: use geojson type
   state = {
     mergedGeoJSON: null,
   };
@@ -78,7 +74,7 @@ export class Heatmap extends React.Component<Props, State> { // TODO: use geojso
   }
 
   componentDidMount() {
-    this.mergeDataWithGeoFeatures(this.props)
+    this.mergeDataWithGeoFeatures(this.props as any)
     this.render()
   }
 

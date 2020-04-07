@@ -1,16 +1,13 @@
 import React from "react";
 import {Source, Layer} from 'react-map-gl';
 
-export type Props = {
-  postCodeAreas: any; 
-  currentDataset: any;
-}
+import { VisualProps } from '../types';
 
 export type State = {
   mergedGeoJSON: any; // TODO: user geojson type
 }
 
-export class PostCodeAreas extends React.Component<Props, State> { // TODO: use geojson type
+export class PostCodeAreas extends React.Component<VisualProps, State> { // TODO: use geojson type
   state = {
     mergedGeoJSON: null,
   };
@@ -29,7 +26,7 @@ export class PostCodeAreas extends React.Component<Props, State> { // TODO: use 
   }
 
   componentDidMount() {
-    this.mergeDataWithGeoFeatures(this.props)
+    this.mergeDataWithGeoFeatures(this.props as any) // TODO: Dammit fix those lazy anytypeeees
   }
 
   mergeDataWithGeoFeatures({ postCodeAreas, currentDataset }) {

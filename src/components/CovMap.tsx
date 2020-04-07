@@ -17,8 +17,22 @@ import { fetchPostCodePoints } from "../state/thunks/fetchPostCodePoints"
 import { Settings } from './Settings';
 import { MAX_ZOOM_LEVEL } from '../constants';
 
-import { PostCodeAreas } from './PostCodeAreas'
-import { Heatmap } from './Heatmap'
+import { VisualProps } from './types'; // eslint-disable-line
+import { PostCodeAreas } from './visuals/PostCodeAreas'
+import { Heatmap } from './visuals/Heatmap'
+
+const typeToComponentMap = {
+  [VisualType.POSTCODE]: PostCodeAreas,
+  [VisualType.HEATMAP]: Heatmap
+};
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      VisualComponent: VisualProps;
+    }
+  }
+}
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -47,6 +61,7 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
   const postCodePoints = useSelector((state: State) => state.app.postCodePoints);
   const visualType = useSelector((state: State) => state.app.visualType);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
+  // const [currentFeature, setCurrenFeature] = useState(null)
   
   // Bound to germany for the time being
   // TODO: Use mapbox helpers
@@ -90,6 +105,16 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
     }, 400);
   }
 
+  const VisualComponent = typeToComponentMap[visualType]
+
+  const handleMapClick = (pointerEvent) => {
+    const { features } = pointerEvent;
+    if (features.length > 0) {
+      features[0].state.hover = true;
+      // setCurrenFeature(features[0]);
+    }
+  }
+
   return (
     <>
       <main className={classes.main}>
@@ -102,17 +127,15 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
           latitude={stateViewport.center[0]}
           longitude={stateViewport.center[1]}
           zoom={stateViewport.zoom}
+          onClick={handleMapClick}
           onViewportChange={onViewportChange}
           mapboxApiAccessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
         >
-          {(() => {
-            switch(visualType) {
-              case VisualType.POSTCODE:
-                return <PostCodeAreas currentDataset={currentDataset} postCodeAreas={postCodeAreas} />
-              case VisualType.HEATMAP:
-                return <Heatmap currentDataset={currentDataset} postCodePoints={postCodePoints} />
-            }
-          })()}
+          <VisualComponent 
+            currentDataset={currentDataset} 
+            postCodeAreas={postCodeAreas}
+            postCodePoints={postCodePoints}
+          />
         </ReactMapGL>
         <Slider
           className={classes.slider}
