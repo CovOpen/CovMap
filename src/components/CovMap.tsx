@@ -53,7 +53,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(4),
     marginRight: theme.spacing(4),
     zIndex: 1200,
-    width: 'calc(100% - 64px)'
+    width: 'calc(100% - 64px)',
+    touchAction: 'none',
   },
   featureInfo: {
     position: "absolute",
@@ -61,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
     right: theme.spacing(2),
     zIndex: 1100,
     padding: theme.spacing(2),
+    touchAction: 'none',
   },
 }));
 
@@ -170,7 +172,10 @@ export const CovMap = () => {
             postCodePoints={postCodePoints}
           />
         </ReactMapGL>
-        {currentFeature && <Paper elevation={3} className={classes.featureInfo}>
+        {currentFeature && <Paper
+          elevation={3} 
+          className={classes.featureInfo}
+        >
           <FeatureInfoComponent
             dataField={dataField}
             feature={currentFeature}
@@ -192,10 +197,13 @@ export const CovMap = () => {
           aria-labelledby="simple-dialog-title" 
           open={!datasetFound}
           style={{
-            zIndex: 1190
+            zIndex: 1190,
+            touchAction: 'none'
           }}
         >
-          <DialogTitle id="simple-dialog-title">
+          <DialogTitle id="simple-dialog-title" style={{
+            touchAction: 'none'
+          }}>
             Keine Daten für den ausgewählten Zeitraum.
           </DialogTitle>
         </Dialog>
