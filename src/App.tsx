@@ -6,9 +6,8 @@ import { hot } from "react-hot-loader";
 import { useSelector } from "react-redux";
 import { SnackbarProvider } from 'notistack';
 import Container from "@material-ui/core/Container";
-import Backdrop from '@material-ui/core/Backdrop';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
+import { getFallbackComponent } from './components/getFallback';
 import { Step } from "state/app";
 import { About } from "components/About";
 import { NavBar } from "components/NavBar";
@@ -18,13 +17,7 @@ import { Welcome } from "./components/Welcome";
 import { State } from "./state";
 import { IntermediateProgress } from "./components/IntermediateProgress";
 
-const fallbackComponent = () => {
-  return (
-    <Backdrop open={true}>
-      <CircularProgress></CircularProgress>
-    </Backdrop>
-  )
-}
+
 
 export const App = () => {
   const activeStep = useSelector((state: State) => state.app.activeStep);
@@ -64,7 +57,7 @@ export const App = () => {
         <NavBar />
         <Container style={{ position: 'relative', height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
           <IntermediateProgress />
-          <Suspense fallback={fallbackComponent()}>
+          <Suspense fallback={getFallbackComponent()}>
             {renderContent()}
           </Suspense>
         </Container>
