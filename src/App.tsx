@@ -34,17 +34,17 @@ export const App = () => {
     }
   }
 
-  return <>
+  return (
     <SnackbarProvider maxSnack={3}>
-      <>
+      <Container style={{ height: window.innerHeight, padding: 0, maxWidth: 'none' }}>
         <NavBar />
-        <Container style={{height: 'calc(100% - 60px)', paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
+        <Container style={{ height: window.innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
           {renderContent()}
         </Container>
         <IntermediateProgress />
-      </>
+      </Container>
     </SnackbarProvider>
-  </>
+  )
 };
 
 // TODO: Hot only in dev?
