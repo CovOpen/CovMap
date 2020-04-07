@@ -13,6 +13,7 @@ import { fetchDataset } from "../state/thunks/fetchDataset"
 import { fetchPostCodeAreas } from "../state/thunks/fetchPostCodeAreas"
 import { fetchPostCodePoints } from "../state/thunks/fetchPostCodePoints"
 import { Settings } from './Settings';
+import { MAX_ZOOM_LEVEL } from '../constants';
 
 import { PostCodeAreas } from './PostCodeAreas'
 import { Heatmap } from './Heatmap'
@@ -90,7 +91,7 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
         <ReactMapGL
           width="100%"
           height="100%"
-          maxZoom={10}
+          maxZoom={MAX_ZOOM_LEVEL}
           minZoom={4}
           latitude={stateViewport.center[0]}
           longitude={stateViewport.center[1]}
