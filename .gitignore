@@ -3,3 +3,4 @@ dist
 bundle-report.html
 *.generated*
 .now
+.DS_Store

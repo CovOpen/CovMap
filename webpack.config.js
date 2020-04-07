@@ -48,7 +48,7 @@ module.exports = function(env) {
       path: path.join(__dirname, "dist"),
       filename: "[name].js",
       globalObject: "this",
-      chunkFilename: "[chunkhash].js",
+      chunkFilename: "[chunkhash].chunk.js",
       publicPath: "/"
     },
     module: {

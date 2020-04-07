@@ -1,11 +1,13 @@
 import "./app.css";
 import "mapbox-gl/dist/mapbox-gl.css"
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { hot } from "react-hot-loader";
 import { useSelector } from "react-redux";
 import { SnackbarProvider } from 'notistack';
 import Container from "@material-ui/core/Container";
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { Step } from "state/app";
 import { About } from "components/About";
@@ -15,6 +17,14 @@ import { CovMap } from "./components/CovMap";
 import { Welcome } from "./components/Welcome";
 import { State } from "./state";
 import { IntermediateProgress } from "./components/IntermediateProgress";
+
+const fallbackComponent = () => {
+  return (
+    <Backdrop open={true}>
+      <CircularProgress></CircularProgress>
+    </Backdrop>
+  )
+}
 
 export const App = () => {
   const activeStep = useSelector((state: State) => state.app.activeStep);
@@ -54,7 +64,9 @@ export const App = () => {
         <NavBar />
         <Container style={{ position: 'relative', height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
           <IntermediateProgress />
-          {renderContent()}
+          <Suspense fallback={fallbackComponent()}>
+            {renderContent()}
+          </Suspense>
         </Container>
       </Container>
     </SnackbarProvider>

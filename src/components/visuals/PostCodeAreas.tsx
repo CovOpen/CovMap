@@ -1,6 +1,6 @@
 import React from "react";
-import {Source, Layer} from 'react-map-gl';
-
+const Source = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/esm/components/source'));
+const Layer = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/esm/components/layer'));
 import { VisualProps, FeatureInfoProps } from '../types';
 
 export type State = {

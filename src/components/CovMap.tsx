@@ -1,12 +1,11 @@
 import React, { useEffect, useState, createRef } from "react";
-import { withSnackbar } from "notistack";
 import { useSelector } from "react-redux";
-import ReactMapGL from 'react-map-gl';
 import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Paper from '@material-ui/core/Paper';
+const ReactMapGL = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/esm/components/interactive-map'));
 
 import { State } from "../state";
 import { AppApi, VisualType } from "../state/app";
@@ -65,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
+export const CovMap = () => {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
   // const position = useSelector((state: State) => state.app.currentPosition); // TODO
@@ -203,4 +202,4 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
       </main>
     </>
   );
-});
+};

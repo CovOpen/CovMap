@@ -1763,6 +1763,10 @@ babel-plugin-jest-hoist@^25.2.6:
   dependencies:
     "@types/babel__traverse" "^7.0.6"
 
+babel-plugin-syntax-dynamic-import@^6.18.0:
+  version "6.18.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-syntax-dynamic-import/-/babel-plugin-syntax-dynamic-import-6.18.0.tgz#8d6a26229c83745a9982a441051572caa179b1da"
+
 babel-preset-jest@^25.2.6:
   version "25.2.6"
   resolved "https://registry.yarnpkg.com/babel-preset-jest/-/babel-preset-jest-25.2.6.tgz#5d3f7c99e2a8508d61775c9d68506d143b7f71b5"

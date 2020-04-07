@@ -1,5 +1,6 @@
 import React from "react";
-import {Source, Layer} from 'react-map-gl';
+const Source = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/esm/components/source'));
+const Layer = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/esm/components/layer'));
 
 import { MAX_ZOOM_LEVEL } from '../../constants';
 import { VisualProps, FeatureInfoProps } from '../types';
@@ -127,7 +128,7 @@ export class Heatmap extends React.Component<VisualProps, State> { // TODO: use 
     };
     
     return (
-      <Source id="postCodePoints" type="geojson" data={this.state.mergedGeoJSON}>
+      <Source id="postCodePoints" type="geojson" data={this.state.mergedGeoJSON as any}>
         <Layer {...heatmapLayer} />
         <Layer {...heatmapLayerDetail} />
       </Source>
