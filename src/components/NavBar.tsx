@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  menuItem: {
+    touchAction: 'none'
+  }
 }));
 
 export const NavBar = () => {
@@ -53,6 +56,7 @@ export const NavBar = () => {
             <MenuIcon />
           </IconButton>
           <Menu
+            style={{ touchAction: 'none' }}
             id="menu-appbar"
             anchorEl={anchorEl}
             anchorOrigin={{
@@ -67,10 +71,10 @@ export const NavBar = () => {
             open={open}
             onClose={handleClose}
           >
-            <MenuItem onClick={() => dispatch(AppApi.gotoStep(Step.Welcome))}>Start</MenuItem>
-            <MenuItem onClick={() => dispatch(AppApi.gotoStep(Step.Map))}>Karte</MenuItem>
-            <MenuItem onClick={() => dispatch(AppApi.gotoStep(Step.About))}>About</MenuItem>
-            <MenuItem onClick={() => dispatch(AppApi.gotoStep(Step.Imprint))}>Impressum</MenuItem>
+            <MenuItem className={classes.menuItem} onClick={() => dispatch(AppApi.gotoStep(Step.Welcome))}>Start</MenuItem>
+            <MenuItem className={classes.menuItem} onClick={() => dispatch(AppApi.gotoStep(Step.Map))}>Karte</MenuItem>
+            <MenuItem className={classes.menuItem} onClick={() => dispatch(AppApi.gotoStep(Step.About))}>About</MenuItem>
+            <MenuItem className={classes.menuItem} onClick={() => dispatch(AppApi.gotoStep(Step.Imprint))}>Impressum</MenuItem>
           </Menu>
         </div>
       </Toolbar>
