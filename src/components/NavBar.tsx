@@ -37,7 +37,7 @@ export const NavBar = () => {
   };
 
   return (
-    <AppBar position="static" style={{ backgroundColor: '#003f97' }}>
+    <AppBar position="static" style={{ position: 'relative', zIndex: 1200 }}>
       <Toolbar style={{ height: 64 }}>
         <Typography variant="h6" className={classes.title}>
           CovMapper

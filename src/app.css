@@ -107,19 +107,6 @@ body {
 }
 
 
-/* Search */
-#search {
-  height: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-#search .leaflet-container {
-  width: 100%;
-  flex-grow: 1;
-}
-
 /* About */
 
 .sections h1 {

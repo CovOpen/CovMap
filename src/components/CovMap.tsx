@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import ReactMapGL from 'react-map-gl';
 import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 import { State } from "../state";
 import { AppApi, VisualType } from "../state/app";
@@ -20,7 +22,10 @@ import { Heatmap } from './Heatmap'
 
 const useStyles = makeStyles((theme) => ({
   main: {
+    height: '100%',
     position: 'relative',
+    display: 'flex',
+    'flex-direction': 'column',
   },
   slider: {
     position: "absolute",
@@ -29,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(4),
     zIndex: 1200,
     width: 'calc(100% - 64px)'
-  }
+  },
 }));
 
 export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
@@ -41,6 +46,7 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
   const postCodeAreas = useSelector((state: State) => state.app.postCodeAreas);
   const postCodePoints = useSelector((state: State) => state.app.postCodePoints);
   const visualType = useSelector((state: State) => state.app.visualType);
+  const datasetFound = useSelector((state: State) => state.app.datasetFound);
   
   // Bound to germany for the time being
   // TODO: Use mapbox helpers
@@ -86,7 +92,7 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
 
   return (
     <>
-      <main id="search" className={classes.main}>
+      <main className={classes.main}>
         <Settings />
         <ReactMapGL
           width="100%"
@@ -120,6 +126,18 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
           max={0}
           valueLabelDisplay="auto"
         />
+        <Dialog 
+          // onClose={handleNoDataDialogClose} 
+          aria-labelledby="simple-dialog-title" 
+          open={!datasetFound}
+          style={{
+            zIndex: 1190
+          }}
+        >
+          <DialogTitle id="simple-dialog-title">
+            Keine Daten für den ausgewählten Zeitraum.
+          </DialogTitle>
+        </Dialog>
       </main>
     </>
   );
