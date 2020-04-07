@@ -14,8 +14,9 @@ const heatmapLayerDetail = {
   minzoom: MAX_ZOOM_LEVEL,
   type: 'circle',
   paint: {
+    /*
     "circle-radius": {
-      "property": "dbh",
+      "property": "interpolate",
       "type": "exponential",
       stops: [
         [{ zoom: 15, value: 1 }, 5],
@@ -23,10 +24,11 @@ const heatmapLayerDetail = {
         [{ zoom: 22, value: 1 }, 20],
         [{ zoom: 22, value: 62 }, 50],
       ]
-  },
+  },*/
     'circle-color': [
-      'dbh',
-      ['exponential'],
+      'interpolate',
+      ['linear'],
+      ['heatmap-density'],
       0,
       'rgba(33,102,172,0)',
       10,
@@ -61,11 +63,11 @@ const heatmapLayer = {
 
     // : property, type, zoom and stops: from 1 to 0 between zoom levels MAX_ZOOM_LEVEL and 3
     // can be exponential or linear
-    'heatmap-weight': ['interpolate', ['linear'], ['zoom'], 0, 1, MAX_ZOOM_LEVEL, 1],
+    //'heatmap-weight': ['interpolate', ['linear'], ['zoom'], 0, 1, MAX_ZOOM_LEVEL, 1],
     // Increase the heatmap weight based on frequency and property magnitude
     // Increase the heatmap color weight weight by zoom level
     // heatmap-intensity is a multiplier on top of heatmap-weight
-    //'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 0, 1, MAX_ZOOM_LEVEL, 3],
+    'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 0, 1, MAX_ZOOM_LEVEL, 3],
     // Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
     // Begin color ramp at 0-stop with a 0-transparancy color
     // to create a blur-like effect.
@@ -138,7 +140,7 @@ export class Heatmap extends React.Component<Props> { // TODO: use geojson type
     }
 
     heatmapLayer.paint['heatmap-weight'] = ['interpolate', ['linear'], ['get', this.dataField], 0, 0, 6, 1];
-    heatmapLayerDetail.paint['heatmap-weight'] = ['interpolate', ['linear'], ['get', this.dataField], 0, 1, 14, 1];
+    heatmapLayerDetail.paint['circle-radius'] = ['interpolate', ['linear'], ['get', this.dataField], 0, 15, 14, 1];
     
   
     return (
