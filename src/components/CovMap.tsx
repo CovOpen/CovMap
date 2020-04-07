@@ -3,10 +3,12 @@ import { withSnackbar } from "notistack";
 import { useSelector } from "react-redux";
 import ReactMapGL from 'react-map-gl';
 import { makeStyles } from '@material-ui/core/styles';
+import Slider from '@material-ui/core/Slider';
 
 import { State } from "../state";
 import { AppApi, VisualType } from "../state/app";
 import { useThunkDispatch } from "../useThunkDispatch";
+import { formatNowMinusDays } from '../lib/formatUTCDate.js';
 import { fetchDataset } from "../state/thunks/fetchDataset"
 import { fetchPostCodeAreas } from "../state/thunks/fetchPostCodeAreas"
 import { fetchPostCodePoints } from "../state/thunks/fetchPostCodePoints"
@@ -19,6 +21,14 @@ const useStyles = makeStyles((theme) => ({
   main: {
     position: 'relative',
   },
+  slider: {
+    position: "absolute",
+    bottom: theme.spacing(4),
+    marginLeft: theme.spacing(4),
+    marginRight: theme.spacing(4),
+    zIndex: 1200,
+    width: 'calc(100% - 64px)'
+  }
 }));
 
 export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
@@ -60,6 +70,19 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
     }))
   }
 
+  function valuetext(value) {
+    return formatNowMinusDays(value);
+  }
+  
+  let timeout: any = 0;
+  function onDayChange(event, value) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      const dateString = formatNowMinusDays(value);
+      dispatch(fetchDataset(dateString));
+    }, 400);
+  }
+
   return (
     <>
       <main id="search" className={classes.main}>
@@ -84,6 +107,18 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
             }
           })()}
         </ReactMapGL>
+        <Slider
+          className={classes.slider}
+          defaultValue={0}
+          getAriaValueText={valuetext}
+          onChange={onDayChange}
+          aria-labelledby="discrete-slider-small-steps"
+          step={1}
+          marks
+          min={-30}
+          max={0}
+          valueLabelDisplay="auto"
+        />
       </main>
     </>
   );

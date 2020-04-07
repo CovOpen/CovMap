@@ -38,7 +38,7 @@ export const App = () => {
     <SnackbarProvider maxSnack={3}>
       <>
         <NavBar />
-        <Container style={{height: '100%', paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
+        <Container style={{height: 'calc(100% - 60px)', paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
           {renderContent()}
         </Container>
         <IntermediateProgress />
