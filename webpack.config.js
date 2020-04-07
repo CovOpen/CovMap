@@ -8,6 +8,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const packageJson = require("./package.json");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const babelLoader = {
   loader: "babel-loader",
@@ -99,6 +100,7 @@ module.exports = function(env) {
       // `namedModules` defaults to `mode == "development"`. So webpack uses nice names in development.
     },
     plugins: [
+      new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'src/index.ejs'),
         title: "CovMapper",

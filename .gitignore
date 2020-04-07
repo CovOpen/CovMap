@@ -2,3 +2,4 @@ node_modules
 dist
 bundle-report.html
 *.generated*
+.now

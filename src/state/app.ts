@@ -1,5 +1,4 @@
 import { Reducer } from "./reduxHelper";
-import { Viewport } from "react-leaflet";
 import { GeoJSON } from "geojson";
 
 export enum Step {
@@ -27,6 +26,10 @@ export enum VisualType {
   HEATMAP
 }
 
+export type Viewport = {
+  center: Array<number>;
+  zoom: number;
+}
 export interface AppState {
   activeStep: Step;
   viewport: Viewport;
