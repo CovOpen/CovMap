@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createRef } from "react";
 import { withSnackbar } from "notistack";
 import { useSelector } from "react-redux";
 import ReactMapGL from 'react-map-gl';
@@ -76,7 +76,8 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
   const visualType = useSelector((state: State) => state.app.visualType);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
   const [currentFeature, setCurrenFeature] = useState(null)
-  
+  const mapRef = createRef<any>();
+
   // Bound to germany for the time being
   // TODO: Use mapbox helpers
   // const southWest = L.latLng(43.27103747280261, 2.3730468750000004);
@@ -125,7 +126,21 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
   const handleMapClick = (pointerEvent) => {
     const { features } = pointerEvent;
     if (features.length > 0) {
-      features[0].state.active = true;
+      if (mapRef.current) {
+        const map = mapRef.current.getMap();
+        
+        if (currentFeature) {
+          map.setFeatureState(
+            { source: (currentFeature as any).source, id: (currentFeature as any).id },
+            { hover: false }
+          );
+        }
+        
+        map.setFeatureState(
+          { source: (features[0] as any).source, id: (features[0] as any).id },
+          { hover: true }
+        );
+      }
       setCurrenFeature(features[0]);
     }
   }
@@ -137,6 +152,7 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
       <main className={classes.main}>
         <Settings />
         <ReactMapGL
+          ref={mapRef}
           width="100%"
           height="100%"
           maxZoom={MAX_ZOOM_LEVEL}
@@ -174,7 +190,6 @@ export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
           valueLabelDisplay="auto"
         />
         <Dialog 
-          // onClose={handleNoDataDialogClose} 
           aria-labelledby="simple-dialog-title" 
           open={!datasetFound}
           style={{

@@ -54,7 +54,7 @@ export class PostCodeAreas extends React.Component<VisualProps, State> { // TODO
     return (
       <Source id="postCodeAreas" type="geojson" data={this.state.mergedGeoJSON}>
         <Layer
-          id="data"
+          id="areas-fill"
           type="fill"
           paint={{
             'fill-color': {
@@ -70,7 +70,19 @@ export class PostCodeAreas extends React.Component<VisualProps, State> { // TODO
                 [70, '#800026'],
               ]
             },
-            'fill-opacity': 0.8
+            'fill-opacity': 0.8,
+          }} />
+        <Layer
+          id="areas-borders"
+          type="line"
+          paint={{
+            'line-color': '#627BC1',
+            'line-width': [
+              'case',
+              ['boolean', ['feature-state', 'hover'], false],
+              4,
+              0
+            ]
           }} />
       </Source>
     )
