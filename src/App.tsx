@@ -19,7 +19,7 @@ import { IntermediateProgress } from "./components/IntermediateProgress";
 export const App = () => {
   const activeStep = useSelector((state: State) => state.app.activeStep);
   const [innerHeight, setInnerHeight] = useState(window.innerHeight)
-  const timeout:any = null;
+  const timeout: any = null;
   const resizeListener = () => {
     clearTimeout(timeout);
     setTimeout(() => setInnerHeight(window.innerHeight), 100)
@@ -50,12 +50,12 @@ export const App = () => {
 
   return (
     <SnackbarProvider maxSnack={3}>
-      <Container style={{ height: innerHeight, padding: 0, maxWidth: 'none' }}>
+      <Container style={{  height: innerHeight, padding: 0, maxWidth: 'none' }}>
         <NavBar />
-        <Container style={{ height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
+        <Container style={{ position: 'relative', height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
+          <IntermediateProgress />
           {renderContent()}
         </Container>
-        <IntermediateProgress />
       </Container>
     </SnackbarProvider>
   )

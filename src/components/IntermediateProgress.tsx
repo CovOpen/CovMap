@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   progress: {
     width: '100%',
     position: 'absolute',
-    bottom: 0,
+    top: 0,
     left: 0,
     zIndex: 1200
   },
