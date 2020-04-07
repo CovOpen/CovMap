@@ -1,7 +1,7 @@
 import "./app.css";
 import "mapbox-gl/dist/mapbox-gl.css"
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { hot } from "react-hot-loader";
 import { useSelector } from "react-redux";
 import { SnackbarProvider } from 'notistack';
@@ -18,6 +18,20 @@ import { IntermediateProgress } from "./components/IntermediateProgress";
 
 export const App = () => {
   const activeStep = useSelector((state: State) => state.app.activeStep);
+  const [innerHeight, setInnerHeight] = useState(window.innerHeight)
+  const timeout:any = null;
+  const resizeListener = () => {
+    clearTimeout(timeout);
+    setTimeout(() => setInnerHeight(window.innerHeight), 100)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', resizeListener);
+
+    return () => {
+      window.removeEventListener('resize', resizeListener);
+    }
+  });
 
   function renderContent() {
     switch (activeStep) {
@@ -36,9 +50,9 @@ export const App = () => {
 
   return (
     <SnackbarProvider maxSnack={3}>
-      <Container style={{ height: window.innerHeight, padding: 0, maxWidth: 'none' }}>
+      <Container style={{ height: innerHeight, padding: 0, maxWidth: 'none' }}>
         <NavBar />
-        <Container style={{ height: window.innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
+        <Container style={{ height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
           {renderContent()}
         </Container>
         <IntermediateProgress />
