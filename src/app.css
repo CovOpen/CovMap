@@ -78,6 +78,9 @@ body {
     justify-content: space-evenly;
 }
 
+#settings-popover div, #visual-type-select div, .MuiPopover-root div {
+    touch-action: none;
+}
 
 /* Pages */
 

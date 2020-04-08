@@ -25,7 +25,7 @@ export const App = () => {
   const timeout: any = null;
   const resizeListener = () => {
     clearTimeout(timeout);
-    setTimeout(() => setInnerHeight(window.innerHeight), 100)
+    setTimeout(() => setInnerHeight(window.innerHeight), 350)
   }
 
   useEffect(() => {

@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   popoverContent: {
     padding: theme.spacing(2),
+    touchAction: 'none',
   }
 }));
 
@@ -45,7 +46,9 @@ export function Settings () {
     <Fab className={classes.fab} color="primary" aria-label="settings" onClick={handleSettingsClick}>
       {settingsOpen ? <LayersClearIcon /> : <LayersIcon />}
     </Fab>
-    <Popover 
+    <Popover
+      id="settings-popover"
+      style={{ touchAction: 'none' }} 
       open={settingsOpen}
       onClose={handleSettingsClose}
       anchorEl={settingsAnchorEl}
@@ -60,15 +63,16 @@ export function Settings () {
     >
       <div className={classes.popoverContent}>
         <FormControl>
-          <InputLabel id="demo-simple-select-label">Visual Type</InputLabel>
+          <InputLabel id="visual-type-label">Visual Type</InputLabel>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            style={{ touchAction: 'none' }}
+            labelId="visual-type-label"
+            id="visual-type-select"
             value={visualType}
             onChange={(event) => dispatch(AppApi.setVisualType(event.target.value as VisualType))}
           >
-            <MenuItem value={VisualType.POSTCODE}>Post Code Areas</MenuItem>
-            <MenuItem value={VisualType.HEATMAP}>Heatmap</MenuItem>
+            <MenuItem style={{ touchAction: 'none' }} value={VisualType.POSTCODE}>Post Code Areas</MenuItem>
+            <MenuItem style={{ touchAction: 'none' }} value={VisualType.HEATMAP}>Heatmap</MenuItem>
           </Select>
         </FormControl>
       </div>
