@@ -6,6 +6,10 @@ import { useThunkDispatch } from "../useThunkDispatch";
 import { formatNowMinusDays } from '../lib/formatUTCDate.js';
 import { fetchDataset } from "../state/thunks/fetchDataset"
 
+export type Props = {
+  onChange: Function | null;
+}
+
 const useStyles = makeStyles((theme) => ({
   slider: {
     position: "absolute",
@@ -19,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function TimeRangeSlider () {
+export function TimeRangeSlider ({ onChange = () => {} }: Props) {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
   
@@ -33,6 +37,7 @@ export function TimeRangeSlider () {
     timeout = setTimeout(() => {
       const dateString = formatNowMinusDays(value);
       dispatch(fetchDataset(dateString));
+      (onChange as Function)(dateString);
     }, 400);
   }
 

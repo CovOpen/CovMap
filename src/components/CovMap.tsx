@@ -96,6 +96,15 @@ export const CovMap = () => {
   const VisualComponent = typeToVisualComponentMap[visualType];
   const FeatureInfoComponent = typeToFeatureInfoComponentMap[visualType];
 
+  const resetCurrentFeature = () => {
+    if (currentFeature && mapRef.current) {
+      const map = mapRef.current.getMap();
+      map.setFeatureState(
+        { source: (currentFeature as any).feature.source, id: (currentFeature as any).feature.id },
+        { hover: false }
+      );
+    }
+  }
   const handleMapClick = (pointerEvent) => {
     const { features } = pointerEvent;
     if (features.length > 0) {
@@ -106,12 +115,7 @@ export const CovMap = () => {
         if (features[0].source !== 'postCodeAreas' && features[0].source !== 'postCodePoints') {
           return;
         }
-        if (currentFeature) {
-          map.setFeatureState(
-            { source: (currentFeature as any).feature.source, id: (currentFeature as any).feature.id },
-            { hover: false }
-          );
-        }
+        resetCurrentFeature()
         
         map.setFeatureState(
           { source: (features[0] as any).source, id: (features[0] as any).id },
@@ -163,7 +167,10 @@ export const CovMap = () => {
             />
           </Popup>}
         </ReactMapGL>
-        <TimeRangeSlider />
+        <TimeRangeSlider onChange={() => {
+          resetCurrentFeature();
+          setCurrenFeature(null)
+        }} />
         <Dialog 
           aria-labelledby="simple-dialog-title" 
           open={!datasetFound}
