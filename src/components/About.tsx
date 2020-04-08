@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import React from "react";
 
 import { AppApi, Step } from "../state/app";
@@ -11,23 +11,23 @@ export const About = () => {
     <>
       <main className="sections">
         <section>
-          <h1 className="uppercase">About CovMapper</h1>
+          <Typography variant="h1">About CovMapper</Typography>
         </section>
         <section>
-          <h2>About this Mapper app...</h2>
-          <p>
+          <Typography variant="h2">About this Mapper app...</Typography>
+          <Typography variant="body1">
                         Some Paragraph
-          </p>
-          <p>
+          </Typography>
+          <Typography variant="body1">
                         yes yes, another paragraph
-          </p>
+          </Typography>
         </section>
         <section>
-          <h2>Was passiert mit den Daten?</h2>
-          <p>
+          <Typography variant="h2">Was passiert mit den Daten?</Typography>
+          <Typography variant="body1">
                         All deine Daten werden nur anonymisiert weiterverarbeitet.
                         Wir erheben keine Bewegungsdaten.
-          </p>
+          </Typography>
           <div className="btn-group">
             <Button
               variant="contained"

@@ -1,7 +1,6 @@
 import React, { useEffect, useState, createRef } from "react";
 import { useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
-import Slider from '@material-ui/core/Slider';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Paper from '@material-ui/core/Paper';
@@ -10,12 +9,12 @@ const ReactMapGL = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'reac
 import { State } from "../state";
 import { AppApi, VisualType } from "../state/app";
 import { useThunkDispatch } from "../useThunkDispatch";
-import { formatNowMinusDays } from '../lib/formatUTCDate.js';
 import { fetchDataset } from "../state/thunks/fetchDataset"
 import { fetchPostCodeAreas } from "../state/thunks/fetchPostCodeAreas"
 import { fetchPostCodePoints } from "../state/thunks/fetchPostCodePoints"
 import { Settings } from './Settings';
 import { MAX_ZOOM_LEVEL } from '../constants';
+import { TimeRangeSlider } from './TimeRangeSlider';
 
 import { VisualProps, FeatureInfoProps } from './types'; // eslint-disable-line
 import { PostCodeAreas, FeatureInfo as AreaFeatureInfo } from './visuals/PostCodeAreas'
@@ -49,15 +48,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     display: 'flex',
     'flex-direction': 'column',
-  },
-  slider: {
-    position: "absolute",
-    bottom: theme.spacing(4),
-    marginLeft: theme.spacing(4),
-    marginRight: theme.spacing(4),
-    zIndex: 1200,
-    width: 'calc(100% - 64px)',
-    touchAction: 'none',
   },
   featureInfo: {
     position: "absolute",
@@ -109,19 +99,6 @@ export const CovMap = () => {
       zoom,
       center: [latitude, longitude]
     }))
-  }
-
-  function valuetext(value) {
-    return formatNowMinusDays(value);
-  }
-  
-  let timeout: any = 0;
-  function onDayChange(event, value) {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      const dateString = formatNowMinusDays(value);
-      dispatch(fetchDataset(dateString));
-    }, 400);
   }
 
   const VisualComponent = typeToVisualComponentMap[visualType];
@@ -184,18 +161,7 @@ export const CovMap = () => {
             feature={currentFeature}
           />
         </Paper>}
-        <Slider
-          className={classes.slider}
-          defaultValue={0}
-          getAriaValueText={valuetext}
-          onChange={onDayChange}
-          aria-labelledby="discrete-slider-small-steps"
-          step={1}
-          marks
-          min={-30}
-          max={0}
-          valueLabelDisplay="auto"
-        />
+        <TimeRangeSlider />
         <Dialog 
           aria-labelledby="simple-dialog-title" 
           open={!datasetFound}

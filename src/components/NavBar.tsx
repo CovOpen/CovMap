@@ -22,6 +22,17 @@ const useStyles = makeStyles((theme) => ({
   },
   menuItem: {
     touchAction: 'none'
+  },
+  menu: {
+    touchAction: 'none',
+  },
+  menuContent: {
+    backgroundColor: theme.palette.primary.light
+  },
+  logo: {
+    height: '32px', 
+    width: 'auto', 
+    marginTop: '9px'
   }
 }));
 
@@ -39,11 +50,12 @@ export const NavBar = () => {
     setAnchorEl(null);
   };
 
+  
   return (
     <AppBar position="static" style={{ position: 'relative', zIndex: 1200, touchAction: 'none' }}>
       <Toolbar style={{ height: 64 }}>
         <Typography variant="h6" className={classes.title}>
-          CovMapper
+          <img src="/logo.svg" className={classes.logo} />
         </Typography>
         <div>
           <IconButton
@@ -56,7 +68,7 @@ export const NavBar = () => {
             <MenuIcon />
           </IconButton>
           <Menu
-            style={{ touchAction: 'none' }}
+            className={classes.menu}
             id="menu-appbar"
             anchorEl={anchorEl}
             anchorOrigin={{
@@ -71,10 +83,12 @@ export const NavBar = () => {
             open={open}
             onClose={handleClose}
           >
-            <MenuItem className={classes.menuItem} onClick={() => dispatch(AppApi.gotoStep(Step.Welcome))}>Start</MenuItem>
-            <MenuItem className={classes.menuItem} onClick={() => dispatch(AppApi.gotoStep(Step.Map))}>Karte</MenuItem>
-            <MenuItem className={classes.menuItem} onClick={() => dispatch(AppApi.gotoStep(Step.About))}>About</MenuItem>
-            <MenuItem className={classes.menuItem} onClick={() => dispatch(AppApi.gotoStep(Step.Imprint))}>Impressum</MenuItem>
+            <div className={classes.menuContent}>
+              <MenuItem className={classes.menuItem} onClick={() => dispatch(AppApi.gotoStep(Step.Welcome))}>Start</MenuItem>
+              <MenuItem className={classes.menuItem} onClick={() => dispatch(AppApi.gotoStep(Step.Map))}>Karte</MenuItem>
+              <MenuItem className={classes.menuItem} onClick={() => dispatch(AppApi.gotoStep(Step.About))}>About</MenuItem>
+              <MenuItem className={classes.menuItem} onClick={() => dispatch(AppApi.gotoStep(Step.Imprint))}>Impressum</MenuItem>
+            </div>
           </Menu>
         </div>
       </Toolbar>

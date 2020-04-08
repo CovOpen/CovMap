@@ -1,17 +1,16 @@
 import React from "react";
+import { Typography } from "@material-ui/core";
 
 export const Imprint = () => {
   return (
     <>
       <main className="sections">
         <section>
-          <h1 className="uppercase">Impressum</h1>
+          <Typography variant="h1">Impressum</Typography>
         </section>
         <section>
-          <h2>Who this Mapper app...</h2>
-          <p>
-            Some Paragraph
-          </p>
+          <Typography variant="h2">Who this Mapper app...</Typography>
+          <Typography variant="body1">Some Paragraph.</Typography>
         </section>
       </main>
     </>

@@ -4,8 +4,8 @@ import "mapbox-gl/dist/mapbox-gl.css"
 import React, { useState, useEffect, Suspense } from "react";
 import { hot } from "react-hot-loader";
 import { useSelector } from "react-redux";
-import { SnackbarProvider } from 'notistack';
 import Container from "@material-ui/core/Container";
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import { getFallbackComponent } from './components/getFallback';
 import { Step } from "state/app";
@@ -17,7 +17,29 @@ import { Welcome } from "./components/Welcome";
 import { State } from "./state";
 import { IntermediateProgress } from "./components/IntermediateProgress";
 
-
+const theme = createMuiTheme({
+  palette: {
+    secondary: {
+      main: '#002E62',
+      contrastText: '#E3E9F3'
+    },
+    primary: {
+      main: '#E3E9F3',
+      contrastText: '#002E62'
+    },
+    text: {
+      primary: '#002E62'
+    }
+  },
+  typography: {
+    h1: {
+      fontSize: '24px'
+    },
+    h2: {
+      fontSize: '20px'
+    }
+  }
+});
 
 export const App = () => {
   const activeStep = useSelector((state: State) => state.app.activeStep);
@@ -52,7 +74,7 @@ export const App = () => {
   }
 
   return (
-    <SnackbarProvider maxSnack={3}>
+    <ThemeProvider theme={theme}>
       <Container style={{  height: innerHeight, padding: 0, maxWidth: 'none' }}>
         <NavBar />
         <Container style={{ position: 'relative', height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
@@ -62,7 +84,7 @@ export const App = () => {
           </Suspense>
         </Container>
       </Container>
-    </SnackbarProvider>
+    </ThemeProvider>
   )
 };
 

@@ -17,7 +17,7 @@ import { useThunkDispatch } from "../useThunkDispatch";
 const useStyles = makeStyles((theme) => ({
   fab: {
     position: 'absolute',
-    top: theme.spacing(2),
+    bottom: theme.spacing(4),
     left: theme.spacing(2),
     zIndex: 1100
   },
