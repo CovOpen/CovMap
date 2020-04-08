@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Paper from '@material-ui/core/Paper';
 const ReactMapGL = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/esm/components/interactive-map'));
+const Popup = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/esm/components/popup'));
 
 import { State } from "../state";
 import { AppApi, VisualType } from "../state/app";
@@ -48,14 +48,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     display: 'flex',
     'flex-direction': 'column',
-  },
-  featureInfo: {
-    position: "absolute",
-    top: theme.spacing(2),
-    right: theme.spacing(2),
-    zIndex: 1100,
-    padding: theme.spacing(2),
-    touchAction: 'none',
   },
 }));
 
@@ -109,20 +101,25 @@ export const CovMap = () => {
     if (features.length > 0) {
       if (mapRef.current) {
         const map = mapRef.current.getMap();
-        
+
+        // TODO: When app is setup by config lookup a match from configured layers
+        if (features[0].source !== 'postCodeAreas' && features[0].source !== 'postCodePoints') {
+          return;
+        }
         if (currentFeature) {
           map.setFeatureState(
-            { source: (currentFeature as any).source, id: (currentFeature as any).id },
+            { source: (currentFeature as any).feature.source, id: (currentFeature as any).feature.id },
             { hover: false }
           );
         }
-        
+        console.log('CURRENT FEATURE', pointerEvent, features[0])
         map.setFeatureState(
           { source: (features[0] as any).source, id: (features[0] as any).id },
           { hover: true }
         );
       }
-      setCurrenFeature(features[0]);
+      console.log('SET CURR', pointerEvent.lngLat)
+      setCurrenFeature({ feature: features[0], lngLat: pointerEvent.lngLat } as any);
     }
   }
 
@@ -151,16 +148,21 @@ export const CovMap = () => {
             postCodeAreas={postCodeAreas}
             postCodePoints={postCodePoints}
           />
+          {currentFeature && <Popup
+            latitude={(currentFeature as any).lngLat[1]}
+            longitude={(currentFeature as any).lngLat[0]}
+            closeButton={false}
+            closeOnClick={true}
+            // onClose={() => setCurrenFeature(null)}
+            anchor="top"
+            style={{ zIndex: 1100 }}
+          >
+            <FeatureInfoComponent
+              dataField={dataField}
+              feature={(currentFeature as any).feature}
+            />
+          </Popup>}
         </ReactMapGL>
-        {currentFeature && <Paper
-          elevation={3} 
-          className={classes.featureInfo}
-        >
-          <FeatureInfoComponent
-            dataField={dataField}
-            feature={currentFeature}
-          />
-        </Paper>}
         <TimeRangeSlider />
         <Dialog 
           aria-labelledby="simple-dialog-title" 
