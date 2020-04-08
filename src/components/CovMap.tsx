@@ -112,13 +112,13 @@ export const CovMap = () => {
             { hover: false }
           );
         }
-        console.log('CURRENT FEATURE', pointerEvent, features[0])
+        
         map.setFeatureState(
           { source: (features[0] as any).source, id: (features[0] as any).id },
           { hover: true }
         );
       }
-      console.log('SET CURR', pointerEvent.lngLat)
+      
       setCurrenFeature({ feature: features[0], lngLat: pointerEvent.lngLat } as any);
     }
   }
@@ -135,6 +135,7 @@ export const CovMap = () => {
           height="100%"
           maxZoom={MAX_ZOOM_LEVEL}
           minZoom={4}
+          mapStyle="mapbox://styles/mapbox/dark-v10"
           latitude={stateViewport.center[0]}
           longitude={stateViewport.center[1]}
           zoom={stateViewport.zoom}
@@ -153,7 +154,6 @@ export const CovMap = () => {
             longitude={(currentFeature as any).lngLat[0]}
             closeButton={false}
             closeOnClick={true}
-            // onClose={() => setCurrenFeature(null)}
             anchor="top"
             style={{ zIndex: 1100 }}
           >
