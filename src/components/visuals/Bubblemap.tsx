@@ -11,53 +11,19 @@ export type State = {
 }
 
 //This layer will show the data points as circles when zoomed in completely
-const heatmapLayerDetail = {
-  minzoom: MAX_ZOOM_LEVEL - 4,
+const bubblemapLayer = {
+  minzoom: 1,
   type: 'circle',
   paint: {
     'circle-stroke-color': 'white',
-    'circle-stroke-width': 2,
+    'circle-stroke-width': 0.5,
+    'circle-opacity': ['interpolate', ['linear'], ['zoom'], 1, 0, 14, 1]
   }
 };
 
-const heatmapLayer = {
-  maxzoom: MAX_ZOOM_LEVEL,
-  type: 'heatmap',
-  paint: {
-    // Increase the heatmap weight based on frequency and property magnitude
-    // Increase the heatmap color weight weight by zoom level
-    // heatmap-intensity is a multiplier on top of heatmap-weight
-    'heatmap-intensity': ['interpolate', ['exponential', 0.8], ['zoom'], 0, 1, MAX_ZOOM_LEVEL, 0],
-    // Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
-    // Begin color ramp at 0-stop with a 0-transparancy color
-    // to create a blur-like effect.
-    'heatmap-color': [
-      'interpolate',
-      ['linear'],
-      ['heatmap-density'],
-      0,
-      'rgba(33,102,172,0)',
-      0.2,
-      'rgb(103,169,207)',
-      0.4,
-      'rgb(209,229,240)',
-      0.6,
-      'rgb(253,219,199)',
-      0.7,
-      'rgb(239,138,98)',
-      0.8,
-      'rgb(239,201,101)',
-      0.9,
-      'rgb(239,25,25)'
-    ],
-    // Adjust the heatmap radius by zoom level
-    'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 0, 10, MAX_ZOOM_LEVEL, 12],
-    // Transition from heatmap to circle layer by zoom level
-    'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 12, 1, 13, 0]
-  }
-};
 
-export class Heatmap extends React.Component<VisualProps, State> { // TODO: use geojson type
+
+export class Bubblemap extends React.Component<VisualProps, State> { // TODO: use geojson type
   state = {
     mergedGeoJSON: null,
   };
@@ -103,18 +69,19 @@ export class Heatmap extends React.Component<VisualProps, State> { // TODO: use 
     }
     const { dataField } = this.props;
 
-    heatmapLayer.paint['heatmap-weight'] = ['interpolate', ['linear'], ['get', dataField], 0, 1, 6, 1];
-    heatmapLayerDetail.paint['circle-radius'] = {
+    
+    bubblemapLayer.paint['circle-radius'] = {
       property: dataField,
       type: 'exponential',
       stops: [
-        [{ zoom: MAX_ZOOM_LEVEL - 4, value: 1 }, 2],
-        [{ zoom: MAX_ZOOM_LEVEL - 4, value: 62 }, 5],
-        [{ zoom: MAX_ZOOM_LEVEL, value: 1 }, 10],
-        [{ zoom: MAX_ZOOM_LEVEL, value: 62 }, 15],
+        [{ zoom: 1, value: 1 }, 2],
+        [{ zoom: 1, value: 62 }, 2],
+        [{ zoom: MAX_ZOOM_LEVEL, value: 1 }, 3],
+        [{ zoom: MAX_ZOOM_LEVEL, value: 62 }, 3],
       ]
     };
-    heatmapLayerDetail.paint['circle-color'] = {
+    
+    bubblemapLayer.paint['circle-color'] = {
       property: dataField,
       type: 'exponential',
       stops: [
@@ -127,12 +94,13 @@ export class Heatmap extends React.Component<VisualProps, State> { // TODO: use 
         [60, 'rgb(1,108,89)']
       ]
     };
+
+
     
     return (
       <Suspense fallback={getFallbackComponent()}>    
         <Source id="postCodePoints" type="geojson" data={this.state.mergedGeoJSON as any}>
-          <Layer {...heatmapLayer} />
-          <Layer {...heatmapLayerDetail} />
+          <Layer {...bubblemapLayer} />
         </Source>
       </Suspense>
     )

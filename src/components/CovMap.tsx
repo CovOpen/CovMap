@@ -20,15 +20,18 @@ import { MAX_ZOOM_LEVEL } from '../constants';
 import { VisualProps, FeatureInfoProps } from './types'; // eslint-disable-line
 import { PostCodeAreas, FeatureInfo as AreaFeatureInfo } from './visuals/PostCodeAreas'
 import { Heatmap, FeatureInfo as HeatmapFeatureInfo } from './visuals/Heatmap'
+import { Bubblemap, FeatureInfo as BubblemapFeatureInfo } from './visuals/Bubblemap'
 
 const typeToVisualComponentMap = {
   [VisualType.POSTCODE]: PostCodeAreas,
-  [VisualType.HEATMAP]: Heatmap
+  [VisualType.HEATMAP]: Heatmap,
+  [VisualType.BUBBLEMAP]: Bubblemap
 };
 
 const typeToFeatureInfoComponentMap = {
   [VisualType.POSTCODE]: AreaFeatureInfo,
-  [VisualType.HEATMAP]: HeatmapFeatureInfo
+  [VisualType.HEATMAP]: HeatmapFeatureInfo,
+  [VisualType.BUBBLEMAP]: BubblemapFeatureInfo,
 };
 
 declare global {
