@@ -11,6 +11,7 @@ import { useThunkDispatch } from "useThunkDispatch";
 import SearchIcon from '@material-ui/icons/Search';
 import { fade} from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
+import { switchViewport } from "../state/thunks/handleSearchQuery";
 
 import { AnimatedLogo } from "./AnimatedLogo";
 import { Typography } from "@material-ui/core";
@@ -96,7 +97,7 @@ export const NavBar = () => {
   return (
     <AppBar position="static" style={{ position: 'relative', zIndex: 1200, touchAction: 'none' }}>
       <Toolbar style={{ height: 64 }}>
-        <AnimatedLogo />
+        {/*<AnimatedLogo />*/}
         <Typography variant="h6" className={classes.title}>
           <img src="/logo.svg" className={classes.logo} />
         </Typography>
@@ -112,6 +113,7 @@ export const NavBar = () => {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              //onChange = {switchViewport(value)}
             />
         </div>
 
