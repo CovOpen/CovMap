@@ -34,6 +34,7 @@
     "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.1",
+    "@svgr/webpack": "^5.3.1",
     "@types/enzyme": "^3.10.5",
     "@types/geojson": "^7946.0.7",
     "@types/jest": "^25.1.4",

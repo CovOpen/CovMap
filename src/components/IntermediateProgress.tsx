@@ -11,7 +11,8 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: 0,
     left: 0,
-    zIndex: 1200
+    zIndex: 1200,
+    height: '5px'
   },
 }));
 
@@ -23,5 +24,5 @@ export function IntermediateProgress () {
     return null;
   }
 
-  return (<LinearProgress className={classes.progress} />);
+  return (<LinearProgress color="secondary" className={classes.progress} />);
 }

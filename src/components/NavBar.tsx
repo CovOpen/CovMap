@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -10,15 +9,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AppApi, Step } from "state/app";
 import { useThunkDispatch } from "useThunkDispatch";
 
+import { AnimatedLogo } from "./AnimatedLogo";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   menuButton: {
     marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
   },
   menuItem: {
     touchAction: 'none'
@@ -29,11 +27,6 @@ const useStyles = makeStyles((theme) => ({
   menuContent: {
     backgroundColor: theme.palette.primary.light
   },
-  logo: {
-    height: '32px', 
-    width: 'auto', 
-    marginTop: '9px'
-  }
 }));
 
 export const NavBar = () => {
@@ -54,9 +47,7 @@ export const NavBar = () => {
   return (
     <AppBar position="static" style={{ position: 'relative', zIndex: 1200, touchAction: 'none' }}>
       <Toolbar style={{ height: 64 }}>
-        <Typography variant="h6" className={classes.title}>
-          <img src="/logo.svg" className={classes.logo} />
-        </Typography>
+        <AnimatedLogo />
         <div>
           <IconButton
             aria-label="account of current user"
