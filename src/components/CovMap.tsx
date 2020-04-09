@@ -22,17 +22,20 @@ import { VisualProps, FeatureInfoProps } from './types'; // eslint-disable-line
 import { PostCodeAreas, FeatureInfo as AreaFeatureInfo } from './visuals/PostCodeAreas'
 import { Heatmap, FeatureInfo as HeatmapFeatureInfo } from './visuals/Heatmap'
 import { Bubblemap, FeatureInfo as BubblemapFeatureInfo } from './visuals/Bubblemap'
+import { Districtsmap, FeatureInfo as DistrictsmapFeatureInfo } from './visuals/Districtsmap'
 
 const typeToVisualComponentMap = {
   [VisualType.POSTCODE]: PostCodeAreas,
   [VisualType.HEATMAP]: Heatmap,
-  [VisualType.BUBBLEMAP]: Bubblemap
+  [VisualType.BUBBLEMAP]: Bubblemap,
+  [VisualType.DISTRICTS]: Districtsmap
 };
 
 const typeToFeatureInfoComponentMap = {
   [VisualType.POSTCODE]: AreaFeatureInfo,
   [VisualType.HEATMAP]: HeatmapFeatureInfo,
   [VisualType.BUBBLEMAP]: BubblemapFeatureInfo,
+  [VisualType.DISTRICTS]: DistrictsmapFeatureInfo
 };
 
 declare global {

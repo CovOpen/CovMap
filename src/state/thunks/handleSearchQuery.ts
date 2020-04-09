@@ -25,7 +25,9 @@ export function switchViewToPlace(inputPlace) {
             const viewport = {
                 ...state.viewport,
                 center: [lat, long],
-                zoom: 10
+                zoom: 10,
+                transitionDuration: 5000,
+                transitionInterpolator: new FlyToInterpolator()
               };
             dispatch(AppApi.setViewport(viewport));
             console.log(features[i]);

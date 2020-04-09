@@ -24,7 +24,8 @@ export type MapData = {
 export enum VisualType {
   POSTCODE,
   HEATMAP,
-  BUBBLEMAP
+  BUBBLEMAP,
+  DISTRICTS
 }
 
 export type Viewport = {
