@@ -6,14 +6,23 @@ export function zoomIn() {
     const state = getState().app;
      
     const viewport = {
-        ...state.viewport,
-        longitude: state.viewport.longitude,
-        latitude: state.viewport.latitude,
-        zoom: state.viewport.zoom + 1,
+      ...state.viewport,
+      zoom: state.viewport.zoom + 1,
     };
        
-    AppApi.setViewport(viewport);
-    };
-
+    dispatch(AppApi.setViewport(viewport));
+  };
 }
 
+export function zoomOut() {
+  return async (dispatch: ReduxDispatch, getState) => {    
+    const state = getState().app;
+     
+    const viewport = {
+      ...state.viewport,
+      zoom: state.viewport.zoom - 1,
+    };
+       
+    dispatch(AppApi.setViewport(viewport));
+  };
+}

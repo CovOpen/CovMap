@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     // marginLeft: theme.spacing(4),
     top: theme.spacing(4),
     zIndex: 1200,
-    height: 'calc(100% - 100px) !important',
+    height: 'calc(100% - 180px) !important',
     touchAction: 'none',
   },
 }));
