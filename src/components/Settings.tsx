@@ -72,8 +72,8 @@ export function Settings () {
             onChange={(event) => dispatch(AppApi.setVisualType(event.target.value as VisualType))}
           >
             <MenuItem style={{ touchAction: 'none' }} value={VisualType.POSTCODE}>Post Code Areas</MenuItem>
-            <MenuItem style={{ touchAction: 'none' }} value={VisualType.HEATMAP}>Heatmap</MenuItem>
-            <MenuItem style={{ touchAction: 'none' }} value={VisualType.BUBBLEMAP}>Bubblemap</MenuItem>
+            {/*<MenuItem style={{ touchAction: 'none' }} value={VisualType.HEATMAP}>Heatmap</MenuItem>
+            <MenuItem style={{ touchAction: 'none' }} value={VisualType.BUBBLEMAP}>Bubblemap</MenuItem>*/}
           </Select>
         </FormControl>
       </div>

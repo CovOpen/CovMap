@@ -13,6 +13,7 @@ import { fetchDataset } from "../state/thunks/fetchDataset"
 import { fetchPostCodeAreas } from "../state/thunks/fetchPostCodeAreas"
 import { fetchPostCodePoints } from "../state/thunks/fetchPostCodePoints"
 import { Settings } from './Settings';
+import { Zoom } from './Zoom';
 import { MAX_ZOOM_LEVEL } from '../constants';
 import { TimeRangeSlider } from './TimeRangeSlider';
 import { getFallbackComponent } from './getFallback';
@@ -134,6 +135,7 @@ export const CovMap = () => {
     <>
       <main className={classes.main}>
         <Settings />
+        <Zoom />
         <ReactMapGL
           ref={mapRef}
           width="100%"
