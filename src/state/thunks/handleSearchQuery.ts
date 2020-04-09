@@ -2,27 +2,34 @@ import { ReduxDispatch } from "../../useThunkDispatch";
 import { AppApi } from "../app";
 import ReactMapGL, {FlyToInterpolator} from 'react-map-gl';
 
-export function switchViewport(inputPlace) {
+
+export function switchViewToPlace(inputPlace) {
   return async (dispatch: ReduxDispatch, getState) => {    
     const state = getState().app;
 
 
-    //TODO find input in list
-    const res = await fetch('/data/plz_points.geojson');
+    const res = await fetch('/data/plz_points_area.geojson');
     const json = await res.json();
+    //TODO find input in list
+    const features = json.features;
 
-    for (var i = 0; i < json.length; i++){
-        if (json[i].properties.plz == inputPlace || json[i].properties.name == inputPlace ){
+    //TODO Javascript array.find, nimmt callback, wenn true gibt Eintrag im Array zurück
+    //json.features.find -> Ergebnis ist Eintrag im Array
+
+    for (var i = 0; i < features.length; i++){
+        //TODO throw error when not found
+        //TODO Umlaute are not working and should look for lowercase, currently only UpperCase
+        if (features[i].properties.plz == inputPlace|| features[i].properties.name.includes(inputPlace)){
+            const lat = features[i].geometry.coordinates[1]
+            const long = features[i].geometry.coordinates[0]
             const viewport = {
                 ...state.viewport,
-                latitude : json[i].geometry.coordinates[0],
-                longitude : json[i].geometry.coordinates[1],
-                zoom: 10,
-                transitionDuration: 5000,
-                transitionInterpolator: new FlyToInterpolator()
+                center: [lat, long],
+                zoom: 10
               };
-          dispatch(AppApi.setViewport(viewport));
-          break;
+            dispatch(AppApi.setViewport(viewport));
+            console.log(features[i]);
+            break;
         } else {
             //Todo error message to user that location is not found
         }
