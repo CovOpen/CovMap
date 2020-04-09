@@ -1,11 +1,23 @@
-import React from 'react';
-import Backdrop from '@material-ui/core/Backdrop';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import React, { useEffect } from 'react';
 
-export const getFallbackComponent = () => {
-  return (
-    <Backdrop open={true}>
-      <CircularProgress></CircularProgress>
-    </Backdrop>
-  )
+import { AppApi } from "../state/app";
+import { useThunkDispatch } from "../useThunkDispatch";
+
+let counter = 0;
+
+const Fallback = () => {
+  const dispatch = useThunkDispatch();
+  useEffect(() => {
+    const key = `LazyComponent${counter++}`;
+
+    dispatch(AppApi.pushLoading(key, 'Loading the post code areas...'))
+
+    return () => {
+      dispatch(AppApi.popLoading(key))
+    }
+  });
+
+  return null;
 }
+
+export const getFallbackComponent = () => <Fallback />

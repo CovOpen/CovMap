@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createRef } from "react";
+import React, { useEffect, useState, createRef, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
@@ -15,6 +15,7 @@ import { fetchPostCodePoints } from "../state/thunks/fetchPostCodePoints"
 import { Settings } from './Settings';
 import { MAX_ZOOM_LEVEL } from '../constants';
 import { TimeRangeSlider } from './TimeRangeSlider';
+import { getFallbackComponent } from './getFallback';
 
 import { VisualProps, FeatureInfoProps } from './types'; // eslint-disable-line
 import { PostCodeAreas, FeatureInfo as AreaFeatureInfo } from './visuals/PostCodeAreas'
@@ -153,19 +154,21 @@ export const CovMap = () => {
             postCodeAreas={postCodeAreas}
             postCodePoints={postCodePoints}
           />
-          {currentFeature && <Popup
-            latitude={(currentFeature as any).lngLat[1]}
-            longitude={(currentFeature as any).lngLat[0]}
-            closeButton={false}
-            closeOnClick={true}
-            anchor="top"
-            style={{ zIndex: 1100 }}
-          >
-            <FeatureInfoComponent
-              dataField={dataField}
-              feature={(currentFeature as any).feature}
-            />
-          </Popup>}
+          {currentFeature && <Suspense fallback={getFallbackComponent()}>
+            <Popup
+              latitude={(currentFeature as any).lngLat[1]}
+              longitude={(currentFeature as any).lngLat[0]}
+              closeButton={false}
+              closeOnClick={true}
+              anchor="top"
+              style={{ zIndex: 1100 }}
+            >
+              <FeatureInfoComponent
+                dataField={dataField}
+                feature={(currentFeature as any).feature}
+              />
+            </Popup>
+          </Suspense>}
         </ReactMapGL>
         <TimeRangeSlider onChange={() => {
           resetCurrentFeature();
