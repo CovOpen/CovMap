@@ -123,7 +123,8 @@ export const CovMap = () => {
   const onViewportChange = ({ latitude, longitude, zoom }) => {
     dispatch(AppApi.setViewport({
       zoom,
-      center: [latitude, longitude]
+      latitude,
+      longitude,
     }))
   }
 
@@ -176,9 +177,7 @@ export const CovMap = () => {
           maxZoom={MAX_ZOOM_LEVEL}
           minZoom={4}
           mapStyle="mapbox://styles/mapbox/dark-v10"
-          latitude={stateViewport.center[0]}
-          longitude={stateViewport.center[1]}
-          zoom={stateViewport.zoom}
+          {...stateViewport}
           onClick={handleMapClick}
           onViewportChange={onViewportChange}
           mapboxApiAccessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"

@@ -1,13 +1,10 @@
 import { ReduxDispatch } from "../../useThunkDispatch";
 import { AppApi } from "../app";
-import ReactMapGL, {FlyToInterpolator} from 'react-map-gl';
-
+import { FlyToInterpolator } from 'react-map-gl';
 
 export function switchViewToPlace(inputPlace) {
   return async (dispatch: ReduxDispatch, getState) => {    
     const state = getState().app;
-
-
     const res = await fetch('/data/plz_points_area.geojson');
     const json = await res.json();
     //TODO find input in list
@@ -20,13 +17,14 @@ export function switchViewToPlace(inputPlace) {
       //TODO throw error when not found
       //TODO Umlaute are not working and should look for lowercase, currently only UpperCase
       if (features[i].properties.plz == inputPlace || features[i].properties.name.includes(inputPlace)){
-        const lat = features[i].geometry.coordinates[1]
-        const long = features[i].geometry.coordinates[0]
+        const latitude = features[i].geometry.coordinates[1]
+        const longitude = features[i].geometry.coordinates[0]
         const viewport = {
           ...state.viewport,
-          center: [lat, long],
+          latitude, 
+          longitude,
           zoom: 10,
-          transitionDuration: 5000,
+          transitionDuration: 2500,
           transitionInterpolator: new FlyToInterpolator()
         };
         dispatch(AppApi.setViewport(viewport));

@@ -29,7 +29,8 @@ export enum VisualType {
 }
 
 export type Viewport = {
-  center: Array<number>;
+  latitude: number;
+  longitude: number;
   zoom: number;
 }
 export interface AppState {
@@ -52,7 +53,8 @@ export const defaultAppState: AppState = {
   userAllowedLocation: true,
   currentPosition: null,
   viewport: {
-    center: [51.65892664880053, 10.129394531250002], // Germany as start position
+    latitude: 51.65892664880053,
+    longitude: 10.129394531250002,
     zoom: 5,
   },
   currentArea: null,
