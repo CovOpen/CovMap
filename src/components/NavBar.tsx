@@ -9,12 +9,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AppApi, Step } from "state/app";
 import { useThunkDispatch } from "useThunkDispatch";
 import SearchIcon from '@material-ui/icons/Search';
-import { fade} from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import { switchViewToPlace } from "../state/thunks/handleSearchQuery";
 
 import { AnimatedLogo } from "./AnimatedLogo";
-import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -98,6 +97,10 @@ export const NavBar = () => {
     dispatch(switchViewToPlace(location));
   }
 
+  const selectStep = (step) => {
+    dispatch(AppApi.gotoStep(step))
+    handleClose()
+  }
   
   return (
     <AppBar position="static" style={{ position: 'relative', zIndex: 1200, touchAction: 'none' }}>
@@ -151,10 +154,10 @@ export const NavBar = () => {
             onClose={handleClose}
           >
             <div className={classes.menuContent}>
-              <MenuItem className={classes.menuItem} onClick={() => dispatch(AppApi.gotoStep(Step.Welcome))}>Start</MenuItem>
-              <MenuItem className={classes.menuItem} onClick={() => dispatch(AppApi.gotoStep(Step.Map))}>Karte</MenuItem>
-              <MenuItem className={classes.menuItem} onClick={() => dispatch(AppApi.gotoStep(Step.About))}>About</MenuItem>
-              <MenuItem className={classes.menuItem} onClick={() => dispatch(AppApi.gotoStep(Step.Imprint))}>Impressum</MenuItem>
+              <MenuItem className={classes.menuItem} onClick={() => selectStep(Step.Welcome)}>Start</MenuItem>
+              <MenuItem className={classes.menuItem} onClick={() => selectStep(Step.Map)}>Karte</MenuItem>
+              <MenuItem className={classes.menuItem} onClick={() => selectStep(Step.About)}>About</MenuItem>
+              <MenuItem className={classes.menuItem} onClick={() => selectStep(Step.Imprint)}>Impressum</MenuItem>
             </div>
           </Menu>
         </div>
