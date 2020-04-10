@@ -1,6 +1,7 @@
 export type VisualProps = {
-  postCodeAreas?: any; 
-  postCodePoints?: any; 
+  districtAreas?: any;
+  postCodeAreas?: any;
+  postCodePoints?: any;
   currentDataset: any;
   dataField: string;
 }

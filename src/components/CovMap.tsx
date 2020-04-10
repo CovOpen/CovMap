@@ -12,6 +12,7 @@ import { useThunkDispatch } from "../useThunkDispatch";
 import { fetchDataset } from "../state/thunks/fetchDataset"
 import { fetchPostCodeAreas } from "../state/thunks/fetchPostCodeAreas"
 import { fetchPostCodePoints } from "../state/thunks/fetchPostCodePoints"
+import { fetchDistrictAreas } from "../state/thunks/fetchDistrictAreas"
 import { Settings } from './Settings';
 import { Zoom } from './Zoom';
 import { MAX_ZOOM_LEVEL } from '../constants';
@@ -20,23 +21,23 @@ import { getFallbackComponent } from './getFallback';
 import { formatNowMinusDays } from '../lib/formatUTCDate.js';
 
 import { VisualProps, FeatureInfoProps } from './types'; // eslint-disable-line
-import { PostCodeAreas, FeatureInfo as AreaFeatureInfo } from './visuals/PostCodeAreas'
+import { PostCodeAreas, FeatureInfo as PostCodeAreaFeatureInfo } from './visuals/PostCodeAreas'
+import { DistrictAreas, FeatureInfo as DistrictAreaFeatureInfo } from './visuals/DistrictAreas'
 import { Heatmap, FeatureInfo as HeatmapFeatureInfo } from './visuals/Heatmap'
 import { Bubblemap, FeatureInfo as BubblemapFeatureInfo } from './visuals/Bubblemap'
-import { Districtsmap, FeatureInfo as DistrictsmapFeatureInfo } from './visuals/Districtsmap'
 
 const typeToVisualComponentMap = {
   [VisualType.POSTCODE]: PostCodeAreas,
   [VisualType.HEATMAP]: Heatmap,
   [VisualType.BUBBLEMAP]: Bubblemap,
-  [VisualType.DISTRICTS]: Districtsmap
+  [VisualType.DISTRICTS]: DistrictAreas
 };
 
 const typeToFeatureInfoComponentMap = {
-  [VisualType.POSTCODE]: AreaFeatureInfo,
+  [VisualType.POSTCODE]: PostCodeAreaFeatureInfo,
   [VisualType.HEATMAP]: HeatmapFeatureInfo,
   [VisualType.BUBBLEMAP]: BubblemapFeatureInfo,
-  [VisualType.DISTRICTS]: DistrictsmapFeatureInfo
+  [VisualType.DISTRICTS]: DistrictAreaFeatureInfo
 };
 
 declare global {
@@ -68,6 +69,7 @@ export const CovMap = () => {
   const currentDataset = useSelector((state: State) => state.app.currentDataset); // TODO
   const postCodeAreas = useSelector((state: State) => state.app.postCodeAreas);
   const postCodePoints = useSelector((state: State) => state.app.postCodePoints);
+  const districtAreas = useSelector((state: State) => state.app.districtAreas);
   const visualType = useSelector((state: State) => state.app.visualType);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
   const [currentFeature, setCurrenFeature] = useState(null)
@@ -77,8 +79,8 @@ export const CovMap = () => {
   // TODO: Use mapbox helpers
   // const southWest = L.latLng(43.27103747280261, 2.3730468750000004);
   // const northEast = L.latLng(56.47462805805594, 17.885742187500004);
-  // const maxBounds = L.latLngBounds(southWest, northEast); 
-  
+  // const maxBounds = L.latLngBounds(southWest, northEast);
+
   const handleMapBusy = (evt) => {
     dispatch(AppApi.pushLoading('map-busy', 'Map is rendering stuff...'))
   }
@@ -94,13 +96,16 @@ export const CovMap = () => {
     if (!postCodeAreas) {
       dispatch(fetchPostCodeAreas());
     }
+    if (!districtAreas) {
+      dispatch(fetchDistrictAreas());
+    }
     if (!currentDataset) {
       dispatch(fetchDataset(formatNowMinusDays(0)));
-    }    
+    }
   }, []);
 
   // Note: This is to ensure the event listeners are attached only once,
-  // because react useEffect fires multiple times, even though mapRef.current did not change 
+  // because react useEffect fires multiple times, even though mapRef.current did not change
   const changedMapRef = previousMapRef !== mapRef.current;
   useEffect(() => {
     previousMapRef = mapRef.current;
@@ -152,13 +157,13 @@ export const CovMap = () => {
           return;
         }
         resetCurrentFeature()
-        
+
         map.setFeatureState(
           { source: (features[0] as any).source, id: (features[0] as any).id },
           { hover: true }
         );
       }
-      
+
       setCurrenFeature({ feature: features[0], lngLat: pointerEvent.lngLat } as any);
     }
   }
@@ -183,11 +188,12 @@ export const CovMap = () => {
           onViewportChange={onViewportChange}
           mapboxApiAccessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
         >
-          <VisualComponent 
+          <VisualComponent
             dataField={dataField}
-            currentDataset={currentDataset} 
+            currentDataset={currentDataset}
             postCodeAreas={postCodeAreas}
             postCodePoints={postCodePoints}
+            districtAreas={districtAreas}
           />
           {currentFeature && <Suspense fallback={getFallbackComponent()}>
             <Popup
@@ -209,8 +215,8 @@ export const CovMap = () => {
           resetCurrentFeature();
           setCurrenFeature(null)
         }} />
-        <Dialog 
-          aria-labelledby="simple-dialog-title" 
+        <Dialog
+          aria-labelledby="simple-dialog-title"
           open={!datasetFound}
           style={{
             zIndex: 1190,
