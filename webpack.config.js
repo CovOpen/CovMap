@@ -1,7 +1,5 @@
 "use strict";
 
-const fs = require("fs");
-const execSync = require("child_process").execSync;
 const webpack = require("webpack");
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -9,6 +7,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const packageJson = require("./package.json");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const os = require('os')
+const HtmlPwaPlugin = require('./config/webpack/HtmlPwaPlugin/index.js');
+const BundleServiceWorkerPlugin = require('./config/webpack/BundleServiceWorkerPlugin/index.js');
+const { DefinePlugin } = require('webpack')
+const CompressionPlugin = require('compression-webpack-plugin')
 
 const babelLoader = {
   loader: "babel-loader",
@@ -17,6 +20,9 @@ const babelLoader = {
     babelrc: true,
   }
 };
+
+const outputDir = path.join(__dirname, "dist");
+const swDest = 'sw.js';
 
 module.exports = function(env) {
   let commitHash = "dev";
@@ -45,7 +51,7 @@ module.exports = function(env) {
       app: "./src/index.tsx",
     },
     output: {
-      path: path.join(__dirname, "dist"),
+      path: outputDir,
       filename: "[name].js",
       globalObject: "this",
       chunkFilename: "[chunkhash].chunk.js",
@@ -119,10 +125,59 @@ module.exports = function(env) {
           viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
         },
       }),
+      
       new CopyWebpackPlugin([
         { from: "static", to: "." },
         { from: path.resolve(__dirname, 'data'), to: "./data" },
       ]),
+      new BundleServiceWorkerPlugin({
+        buildOptions: {
+          swSrc: path.resolve(__dirname, 'src/sw/sw.js'),
+          swDest,
+          targetDir: path.join(os.tmpdir(), 'bundle-service-worker'),
+          context: process.cwd(),
+          swWebpackConfig: {
+            devtool: 'source-map',
+            plugins: [
+              new CompressionPlugin({
+                test: /\.(js|css|png|svg|html|json|gif|xml|map)(\?.*)?$/i,
+                minRatio: 0.9
+              }),
+              new DefinePlugin({
+                'process.env.SW_ENV': JSON.stringify(process.env.SW_ENV),
+                'process.env.SW_LOG_ENV': JSON.stringify(process.env.SW_LOG_ENV),
+                'process.env.SW_DEFAULT': JSON.stringify(process.env.SW_DEFAULT),
+                'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+              })
+            ]
+          },
+          workBoxConfig: {
+            exclude: [
+              /\.map$/,
+              /manifest\.json$/,
+            ],
+            swDest,
+            importWorkboxFrom: 'disabled',
+            swSrc: 'non-existent-dummy-path',
+          }
+        }
+      }),
+      new HtmlPwaPlugin({
+        name: 'CovMapper',
+        themeColor: '#003f97', // The Vue color
+        msTileColor: '#ffffff',
+        appleMobileWebAppCapable: 'no',
+        appleMobileWebAppStatusBarStyle: 'default',
+        assetsVersion: '',
+        manifestPath: 'manifest.json',
+        iconPaths: {
+          favicon32: 'favicon-32x32.png',
+          favicon16: 'favicon-16x16.png',
+          appleTouchIcon: 'apple-touch-icon.png',
+          maskIcon: 'safari-pinned-tab.svg',
+          msTileImage: 'mstile-144x144.png'
+        },
+      }),
       new webpack.DefinePlugin({
         COMMIT_HASH: JSON.stringify(commitHash),
         COMMIT_HASH_LONG: JSON.stringify(commitHashLong),

@@ -20,6 +20,10 @@
     "@babel/polyfill": "^7.8.7",
     "@material-ui/core": "^4.9.9",
     "@material-ui/icons": "^4.9.1",
+    "clerk-plugin-idb": "^0.5.0-alpha.11",
+    "clerk-plugin-maintenance": "^0.5.0-alpha.11",
+    "clerk-sw": "^0.5.0-alpha.11",
+    "compression-webpack-plugin": "^3.1.0",
     "file-loader": "^6.0.0",
     "immer": "^6.0.2",
     "notistack": "^0.9.9",
@@ -27,7 +31,9 @@
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "webpack-merge": "^4.2.2",
+    "workbox-webpack-plugin": "3.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

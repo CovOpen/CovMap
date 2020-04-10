@@ -1,9 +1,12 @@
 {
-  "theme_color": "#2196f3",
-  "background_color": "#2196f3",
-  "display": "browser",
-  "Scope": "/",
+  "name": "CovMapper",
+  "short_name": "CovMapper",
+  "theme_color": "#002E62",
+  "background_color": "#E3E9F3",
+  "display": "standalone",
+  "scope": "/",
   "start_url": "/",
+  "orientation": "any",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
@@ -45,6 +48,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "splash_pages": null
+  ]
 }

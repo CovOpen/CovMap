@@ -16,6 +16,7 @@ import { CovMap } from "./components/CovMap";
 import { Welcome } from "./components/Welcome";
 import { State } from "./state";
 import { IntermediateProgress } from "./components/IntermediateProgress";
+import { ServiceWorker } from './components/ServiceWorker';
 
 const theme = createMuiTheme({
   palette: {
@@ -75,6 +76,7 @@ export const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <ServiceWorker />
       <Container style={{  height: innerHeight, padding: 0, maxWidth: 'none' }}>
         <NavBar />
         <Container style={{ position: 'relative', height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>

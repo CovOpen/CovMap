@@ -15,6 +15,7 @@ RUN openssl req -newkey rsa:2048 -new -nodes -x509 -subj "/C=DE/ST=Denial/L=Spri
 COPY src ./src/
 COPY static ./static/
 COPY data ./data
+COPY config ./config
 COPY .babelrc webpack.config.js ./
 COPY tsconfig.json ./tsconfig.json
 

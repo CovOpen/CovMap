@@ -43,6 +43,7 @@
     "./node_modules",
     "./build",
     "./dev",
+    "./config",
     "scripts",
     "acceptance-tests",
     "webpack",
@@ -50,6 +51,6 @@
   ],
   "include": [
     "custom.d.ts",
-    "./src"
+    "./src",
   ]
 }
