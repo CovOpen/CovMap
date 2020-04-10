@@ -10,7 +10,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const os = require('os')
 const HtmlPwaPlugin = require('./config/webpack/HtmlPwaPlugin/index.js');
 const BundleServiceWorkerPlugin = require('./config/webpack/BundleServiceWorkerPlugin/index.js');
-const { DefinePlugin } = require('webpack')
+const { DefinePlugin, SplitChunksPlugin } = require('webpack')
 const CompressionPlugin = require('compression-webpack-plugin')
 
 const babelLoader = {
@@ -105,6 +105,12 @@ module.exports = function(env) {
       modules: [path.resolve(__dirname, "src"), "node_modules"],
     },
     optimization: {
+      splitChunks: {
+        // include all types of chunks
+        chunks: 'all',
+        maxAsyncRequests: 8,
+        maxInitialRequests: 8,
+      },
       // `nodeEnv` defaults to `mode`, which sets NODE_ENV to "production" in production.
       // `minimize` defaults to `mode == "production"`, which enables uglifyjs for production.
       // `namedModules` defaults to `mode == "development"`. So webpack uses nice names in development.

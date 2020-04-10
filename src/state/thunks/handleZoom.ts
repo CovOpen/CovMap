@@ -3,7 +3,7 @@ import { AppApi } from "../app";
 
 export function zoomIn() {
   return async (dispatch: ReduxDispatch, getState) => { 
-    const { default: FlyToInterpolator } = await import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/esm/utils/transition/viewport-fly-to-interpolator')
+    const { default: FlyToInterpolator } = await import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/utils/transition/viewport-fly-to-interpolator')
     const state = getState().app;
      
     const viewport = {
@@ -19,7 +19,7 @@ export function zoomIn() {
 
 export function zoomOut() {
   return async (dispatch: ReduxDispatch, getState) => {    
-    const { default: FlyToInterpolator } = await import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/esm/utils/transition/viewport-fly-to-interpolator')
+    const { default: FlyToInterpolator } = await import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/utils/transition/viewport-fly-to-interpolator')
     const state = getState().app;
      
     const viewport = {
