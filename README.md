@@ -1,11 +1,11 @@
 # CovMapper
 
-A web service to display large-scale epidemiological data and forecasts of the SARS-CoV-2 pandemic.
+A web app to display large-scale epidemiological data and forecasts of the SARS-CoV-2 pandemic.
 
 ## Development
 
 We use Docker currently only to develop on different operating systems.
-It is not necessarily needed, on unix like systems you can use _yarn_ scripts directly, like `yarn dev`
+It is not necessarily needed, on unix like systems you can use _yarn_ scripts directly, like `yarn dev`.
 
 ### Docker for Unix like systems
 
@@ -23,6 +23,18 @@ yarn dev
 ```
 
 Then go to `https://localhost:8080` in your browser (if you are using docker you have to allow self-signed certificates in order to work)
+
+### Test Data
+
+To generate test data for GeoJSONs you want to map your data on (like in _/data_), use the script at `dev/generate-random-data-for-geojson.js`.
+
+```bash
+node dev/generate-random-data-for-geojson --help
+```
+
+## Contributing
+
+For fast _Hackathon like_ sprints, we use the shared `develop` branch. Add your changes locally, use `git add X && git commit` __then__ use `git pull --rebase` __before you push__ and resolve possible conflicts locally, then `git push`.
 
 ## Requirements for v1.0
 
