@@ -20,12 +20,14 @@ module.exports = class BundleServiceWorkerPlugin {
 
       try {
         const { targetDir, swDest, context } = this.buildOptions
-        const fileDependencies = await buildSW({
+        const { fileDependencies, assets, assetsInfo } = await buildSW({
           ...this.buildOptions,
         })
         fileDependencies.forEach((file) => {
           compilation.fileDependencies.add(path.resolve(context, file))
         })
+        compilation.assetsInfo = new Map([...compilation.assetsInfo, ...assetsInfo]);
+        compilation.assets = { ...compilation.assets, ...assets };
 
         const buildSWPath = path.resolve(targetDir, swDest)
         const readFile = (_, callback) => fs.readFile(buildSWPath, callback)
