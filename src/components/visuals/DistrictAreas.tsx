@@ -9,20 +9,20 @@ export type State = {
   mergedGeoJSON: any; // TODO: user geojson type
 }
 
-export class Districtsmap extends React.Component<VisualProps, State> { // TODO: use geojson type
+export class DistrictAreas extends React.Component<VisualProps, State> { // TODO: use geojson type
   state = {
     mergedGeoJSON: null,
   };
   dataField = 'coughs';
-  postCodeAreas = null;
+  districtAreas = null;
   currentDataset = null;
 
-  shouldComponentUpdate({ postCodeAreas, currentDataset }: VisualProps) {
-    if ((postCodeAreas !== null && postCodeAreas !== this.postCodeAreas) 
+  shouldComponentUpdate({ districtAreas, currentDataset }: VisualProps) {
+    if ((districtAreas !== null && districtAreas !== this.districtAreas)
       || (currentDataset !== null && currentDataset !== this.currentDataset)) {
-      this.postCodeAreas = postCodeAreas;
+      this.districtAreas = districtAreas;
       this.currentDataset = currentDataset;
-      this.mergeDataWithGeoFeatures({ postCodeAreas, currentDataset });
+      this.mergeDataWithGeoFeatures({ districtAreas, currentDataset });
     }
     return true;
   }
@@ -31,17 +31,18 @@ export class Districtsmap extends React.Component<VisualProps, State> { // TODO:
     this.mergeDataWithGeoFeatures(this.props as any) // TODO: Dammit fix those lazy anytypeeees
   }
 
-  mergeDataWithGeoFeatures({ postCodeAreas, currentDataset }) {
-    if (!postCodeAreas || !currentDataset) {
+  mergeDataWithGeoFeatures({ districtAreas, currentDataset }) {
+    if (!districtAreas || !currentDataset) {
       return;
     }
-    
-    const mergedGeoJSON = Object.assign({}, postCodeAreas, {
-      features: postCodeAreas.features.map(feature => ({
+
+    const mergedGeoJSON = Object.assign({}, districtAreas, {
+      features: districtAreas.features.map(feature => ({
         ...feature,
         properties: {
           ...feature.properties,
-          ...currentDataset.data[feature.properties.PLZ99]
+          "coughs": Math.round(Math.random()*100) //TODO replace
+          //...currentDataset.data[feature.properties.name_2]
         }
       }))
     })
@@ -54,8 +55,8 @@ export class Districtsmap extends React.Component<VisualProps, State> { // TODO:
     }
 
     return (
-      <Suspense fallback={getFallbackComponent()}>    
-        <Source id="postCodeAreas" type="geojson" data={this.state.mergedGeoJSON}>
+      <Suspense fallback={getFallbackComponent()}>
+        <Source id="districtAreas" type="geojson" data={this.state.mergedGeoJSON}>
           <Layer
             id="areas-fill"
             type="fill"
@@ -96,7 +97,7 @@ export class Districtsmap extends React.Component<VisualProps, State> { // TODO:
 export const FeatureInfo = ({ feature, dataField }: FeatureInfoProps) => {
   return (
     <div>
-      <div>PLZ: {feature.properties.PLZ99}</div>
+      <div>PLZ: {feature.properties.name_2}</div>
       <div>Value: {feature.properties[dataField]}</div>
     </div>
   )

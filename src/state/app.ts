@@ -41,6 +41,7 @@ export interface AppState {
   history: Step[];
   postCodeAreas: GeoJSON | null;
   postCodePoints: GeoJSON | null;
+  districtAreas: GeoJSON | null;
   currentDataset: MapData | null;
   datasetFound: boolean;
   visualType: VisualType;
@@ -59,6 +60,7 @@ export const defaultAppState: AppState = {
   history: [],
   postCodeAreas: null,
   postCodePoints: null,
+  districtAreas: null,
   currentDataset: null,
   datasetFound: true,
   visualType: VisualType.POSTCODE,
@@ -91,6 +93,9 @@ class AppReducer extends Reducer<AppState> {
   }
   public setPostCodePoints(points: GeoJSON) {
     this.state.postCodePoints = points;
+  }
+  public setDistrictAreas(areas: GeoJSON) {
+    this.state.districtAreas = areas;
   }
   public setCurrentDataset(data: MapData | null) {
     this.state.currentDataset = data;
