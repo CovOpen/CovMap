@@ -8,7 +8,7 @@ export type ServiceWorkerProps = {
 
 export const ServiceWorker = ({ 
   swPath = '/sw.js',
-  prefix = 'vue-plugin-clerk',
+  prefix = 'react-plugin-clerk',
 }: ServiceWorkerProps) => {
   useEffect(() => {
     const client = createClient({

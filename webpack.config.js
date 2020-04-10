@@ -164,7 +164,7 @@ module.exports = function(env) {
       }),
       new HtmlPwaPlugin({
         name: 'CovMapper',
-        themeColor: '#003f97', // The Vue color
+        themeColor: '#003f97',
         msTileColor: '#ffffff',
         appleMobileWebAppCapable: 'no',
         appleMobileWebAppStatusBarStyle: 'default',
