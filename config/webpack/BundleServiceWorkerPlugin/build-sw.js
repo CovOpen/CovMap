@@ -33,7 +33,7 @@ module.exports = ({ silent, targetDir, swSrc, swDest, swWebpackConfig = {} }) =>
           colors: true,
         }))
       }
-      console.log('STATS', stats.compilation)
+
       resolve({
         fileDependencies: Array.from(stats.compilation.fileDependencies),
         assets: stats.compilation.assets,
