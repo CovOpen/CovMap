@@ -18,6 +18,10 @@
       }, 2500)
     </script>
     <style>
+      body {
+        margin: 0;
+      }
+
       @font-face {
         font-family: 'Dosis';
         font-weight: 600;
@@ -33,9 +37,12 @@
   </head>
   <body>
     <div id="app">
-      <div style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column;">
+      <div style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; background-color: #E3E9F3;">
         <img src="/logo.svg" alt="fancy logo with lots of blue dots" style="height: 5rem;">
         <div id="slow-connection-caption" style="opacity: 0; margin-top: 1rem; font-family: Dosis, sans-serif; color: #002E62;">Lade Daten - das kann eine Weile dauern.</div>
+        <noscript style="display: flex;  justify-content: center; align-items: center; flex-direction: column;">
+          <div id="noscript-caption" style="font-family: Dosis, sans-serif; font-weight: 600; color: #FEAE00;">CovMapper funktioniert nicht ohne Javascript.</div>
+        </noscript>
       </div>
     </div>
   </body>
