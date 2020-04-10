@@ -1,9 +1,9 @@
 import { ReduxDispatch } from "../../useThunkDispatch";
 import { AppApi } from "../app";
-import { FlyToInterpolator } from 'react-map-gl';
 
 export function switchViewToPlace(inputPlace) {
-  return async (dispatch: ReduxDispatch, getState) => {    
+  return async (dispatch: ReduxDispatch, getState) => {
+    const { default: FlyToInterpolator } = await import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/esm/utils/transition/viewport-fly-to-interpolator')
     const state = getState().app;
     const res = await fetch('/data/plz_points_area.geojson');
     const json = await res.json();

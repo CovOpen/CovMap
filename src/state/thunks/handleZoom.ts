@@ -1,9 +1,9 @@
 import { ReduxDispatch } from "../../useThunkDispatch";
 import { AppApi } from "../app";
-import { FlyToInterpolator } from 'react-map-gl';
 
 export function zoomIn() {
-  return async (dispatch: ReduxDispatch, getState) => {    
+  return async (dispatch: ReduxDispatch, getState) => { 
+    const { default: FlyToInterpolator } = await import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/esm/utils/transition/viewport-fly-to-interpolator')
     const state = getState().app;
      
     const viewport = {
@@ -19,6 +19,7 @@ export function zoomIn() {
 
 export function zoomOut() {
   return async (dispatch: ReduxDispatch, getState) => {    
+    const { default: FlyToInterpolator } = await import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/esm/utils/transition/viewport-fly-to-interpolator')
     const state = getState().app;
      
     const viewport = {
