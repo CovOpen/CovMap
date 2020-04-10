@@ -158,7 +158,7 @@ module.exports = function(env) {
             ],
             swDest,
             importWorkboxFrom: 'disabled',
-            swSrc: 'non-existent-dummy-path',
+            exclude: [/data\//]
           }
         }
       }),

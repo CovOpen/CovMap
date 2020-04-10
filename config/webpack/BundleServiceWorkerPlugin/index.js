@@ -8,6 +8,7 @@ const ID = 'vue-cli:bundle-service-worker-plugin'
 module.exports = class BundleServiceWorkerPlugin {
   constructor ({ buildOptions }) {
     this.buildOptions = buildOptions
+    buildOptions.workBoxConfig.swSrc = 'non-existent-dummy-path'
     this.workboxInject = new InjectManifest(buildOptions.workBoxConfig)
   }
 
