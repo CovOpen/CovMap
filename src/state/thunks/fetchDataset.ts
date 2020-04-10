@@ -7,11 +7,8 @@ export function fetchDataset(dateString?: string | undefined) {
     
     const { datasetFound } = getState().app;
 
-    let url = '/data/plz_small2.generated.json';
-    if (dateString) {
-      url = `/data/plz_small2.generated.${dateString}.json`;
-    }
-
+    const url = `/data/plz_small2.generated.${dateString}.json`;
+    
     try {
       const res = await fetch(url);
       

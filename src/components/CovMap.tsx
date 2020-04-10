@@ -17,6 +17,7 @@ import { Zoom } from './Zoom';
 import { MAX_ZOOM_LEVEL } from '../constants';
 import { TimeRangeSlider } from './TimeRangeSlider';
 import { getFallbackComponent } from './getFallback';
+import { formatNowMinusDays } from '../lib/formatUTCDate.js';
 
 import { VisualProps, FeatureInfoProps } from './types'; // eslint-disable-line
 import { PostCodeAreas, FeatureInfo as AreaFeatureInfo } from './visuals/PostCodeAreas'
@@ -94,7 +95,7 @@ export const CovMap = () => {
       dispatch(fetchPostCodeAreas());
     }
     if (!currentDataset) {
-      dispatch(fetchDataset());
+      dispatch(fetchDataset(formatNowMinusDays(0)));
     }    
   }, []);
 
