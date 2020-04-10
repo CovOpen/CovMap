@@ -56,6 +56,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Note: React hooks ref diffing workaround
+let previousMapRef = null;
+
 export const CovMap = () => {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
@@ -75,6 +78,14 @@ export const CovMap = () => {
   // const northEast = L.latLng(56.47462805805594, 17.885742187500004);
   // const maxBounds = L.latLngBounds(southWest, northEast); 
   
+  const handleMapBusy = (evt) => {
+    dispatch(AppApi.pushLoading('map-busy', 'Map is rendering stuff...'))
+  }
+
+  const handleMapIdle = (evt) => {
+    dispatch(AppApi.popLoading('map-busy'))
+  }
+
   useEffect(() => {
     if (!postCodePoints) {
       dispatch(fetchPostCodePoints());
@@ -84,12 +95,30 @@ export const CovMap = () => {
     }
     if (!currentDataset) {
       dispatch(fetchDataset());
+    }    
+  }, []);
+
+  // Note: This is to ensure the event listeners are attached only once,
+  // because react useEffect fires multiple times, even though mapRef.current did not change 
+  const changedMapRef = previousMapRef !== mapRef.current;
+  useEffect(() => {
+    previousMapRef = mapRef.current;
+  }, [mapRef])
+  useEffect(function () {
+    if (mapRef.current) {
+      const map = mapRef.current.getMap();
+      map.on('dataloading', handleMapBusy)
+      map.on('idle', handleMapIdle)
     }
 
     return () => {
-      // componendWillUnmount
+      if (mapRef.current) {
+        const map = mapRef.current.getMap();
+        map.off('dataloading', handleMapBusy)
+        map.off('idle', handleMapIdle)
+      }
     }
-  }, []);
+  }, [changedMapRef])
 
   const onViewportChange = ({ latitude, longitude, zoom }) => {
     dispatch(AppApi.setViewport({
@@ -140,6 +169,7 @@ export const CovMap = () => {
         <Settings />
         <Zoom />
         <ReactMapGL
+          // reuseMaps={true} // - experimental, consider using when remounting the map component often
           ref={mapRef}
           width="100%"
           height="100%"

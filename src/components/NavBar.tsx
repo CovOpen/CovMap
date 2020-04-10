@@ -103,28 +103,24 @@ export const NavBar = () => {
     <AppBar position="static" style={{ position: 'relative', zIndex: 1200, touchAction: 'none' }}>
       <Toolbar style={{ height: 64 }}>
         <AnimatedLogo />
-        <Typography variant="h6" className={classes.title}>
-          <img src="/logo.svg" className={classes.logo} />
-        </Typography>
-
         <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              onKeyPress = {(e) => {
-                if (e.key === 'Enter') {
-                  {handleSearch(e)};
-                  }
-                }}
-              type = 'text'
-              placeholder="PLZ oder Wohnort..."
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
+          <div className={classes.searchIcon}>
+            <SearchIcon />
+          </div>
+          <InputBase
+            onKeyPress = {(e) => {
+              if (e.key === 'Enter') {
+                {handleSearch(e)};
+              }
+            }}
+            type = 'text'
+            placeholder="PLZ oder Wohnort..."
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+            inputProps={{ 'aria-label': 'search' }}
+          />
         </div>
 
         <div>

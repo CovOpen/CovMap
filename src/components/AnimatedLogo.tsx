@@ -1,4 +1,4 @@
-import React, { createRef, useLayoutEffect } from "react";
+import React, { createRef, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from "react-redux";
 
@@ -26,7 +26,7 @@ export function AnimatedLogo () {
   const loading = useSelector((state: State) => state.app.loading);
   const logoRef = createRef<any>();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (logoRef.current) {
       if (loading.size === 0) {
         const svg = logoRef.current.children[0];
@@ -36,7 +36,7 @@ export function AnimatedLogo () {
         svg.classList.remove(classes.paused)
       }
     }
-  });
+  }, [loading]);
 
   return (
     <div ref={logoRef} className={classes.logo}>

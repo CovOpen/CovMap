@@ -102,7 +102,9 @@ class AppReducer extends Reducer<AppState> {
     this.state.visualType = type;
   }
   public pushLoading(id: string, message: string) {
-    this.state.loading.set(id, message)
+    if (!this.state.loading.has(id)) {
+      this.state.loading.set(id, message)
+    }
   }
   public popLoading(id: string) {
     this.state.loading.delete(id)

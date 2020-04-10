@@ -1,9 +1,8 @@
-import React, { Suspense } from "react";
+import React from "react";
 const Source = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/esm/components/source'));
 const Layer = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/esm/components/layer'));
 
 import { VisualProps, FeatureInfoProps } from '../types';
-import { getFallbackComponent } from '../getFallback';
 
 export type State = {
   mergedGeoJSON: any; // TODO: user geojson type
@@ -54,41 +53,39 @@ export class Districtsmap extends React.Component<VisualProps, State> { // TODO:
     }
 
     return (
-      <Suspense fallback={getFallbackComponent()}>    
-        <Source id="postCodeAreas" type="geojson" data={this.state.mergedGeoJSON}>
-          <Layer
-            id="areas-fill"
-            type="fill"
-            paint={{
-              'fill-color': {
-                property: this.dataField,
-                stops: [
-                  [0, '#FFFFFF'],
-                  [10, '#FED976'],
-                  [20, '#FEB24C'],
-                  [30, '#FFFFFF'],
-                  [40, '#FC4E00'],
-                  [50, '#E31A00'],
-                  [60, '#BD0000'],
-                  [70, '#800000'],
-                ]
-              },
-              'fill-opacity': 0.8,
-            }} />
-          <Layer
-            id="areas-borders"
-            type="line"
-            paint={{
-              'line-color': '#627BC1',
-              'line-width': [
-                'case',
-                ['boolean', ['feature-state', 'hover'], false],
-                4,
-                0
+      <Source id="postCodeAreas" type="geojson" data={this.state.mergedGeoJSON}>
+        <Layer
+          id="areas-fill"
+          type="fill"
+          paint={{
+            'fill-color': {
+              property: this.dataField,
+              stops: [
+                [0, '#FFFFFF'],
+                [10, '#FED976'],
+                [20, '#FEB24C'],
+                [30, '#FFFFFF'],
+                [40, '#FC4E00'],
+                [50, '#E31A00'],
+                [60, '#BD0000'],
+                [70, '#800000'],
               ]
-            }} />
-        </Source>
-      </Suspense>
+            },
+            'fill-opacity': 0.8,
+          }} />
+        <Layer
+          id="areas-borders"
+          type="line"
+          paint={{
+            'line-color': '#627BC1',
+            'line-width': [
+              'case',
+              ['boolean', ['feature-state', 'hover'], false],
+              4,
+              0
+            ]
+          }} />
+      </Source>
     )
   }
 }

@@ -1,8 +1,7 @@
-import React, { Suspense } from "react";
+import React from "react";
 const Source = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/esm/components/source'));
 const Layer = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/esm/components/layer'));
 
-import { getFallbackComponent } from '../getFallback';
 import { MAX_ZOOM_LEVEL } from '../../constants';
 import { VisualProps, FeatureInfoProps } from '../types';
 
@@ -98,11 +97,9 @@ export class Bubblemap extends React.Component<VisualProps, State> { // TODO: us
 
     
     return (
-      <Suspense fallback={getFallbackComponent()}>    
-        <Source id="postCodePoints" type="geojson" data={this.state.mergedGeoJSON as any}>
-          <Layer {...bubblemapLayer} />
-        </Source>
-      </Suspense>
+      <Source id="postCodePoints" type="geojson" data={this.state.mergedGeoJSON as any}>
+        <Layer {...bubblemapLayer} />
+      </Source>
     )
   }
 }
