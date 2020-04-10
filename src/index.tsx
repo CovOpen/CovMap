@@ -10,8 +10,7 @@ import App from "./App";
 import { rootReducer } from "./state";
 import { AppApi, Step } from "./state/app";
 
-const root = document.createElement("div");
-document.body.appendChild(root);
+const root = document.getElementById("app");
 
 const store = createStore(
   rootReducer,

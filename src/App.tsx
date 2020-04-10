@@ -33,6 +33,7 @@ const theme = createMuiTheme({
     }
   },
   typography: {
+    fontFamily: 'Dosis',
     h1: {
       fontSize: '24px'
     },

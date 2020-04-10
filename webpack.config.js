@@ -135,6 +135,7 @@ module.exports = function(env) {
       new CopyWebpackPlugin([
         { from: "static", to: "." },
         { from: path.resolve(__dirname, 'data'), to: "./data" },
+        { from: path.resolve(__dirname, 'src/images/logo.svg'), to: "./logo.svg" },
       ]),
       new BundleServiceWorkerPlugin({
         buildOptions: {

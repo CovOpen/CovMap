@@ -9,7 +9,34 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#E3E9F3">
     <link rel="apple-touch-icon" sizes="192x192" href="/images/icons/icon-192x192.png">
+    <script>
+      setTimeout(() => {
+        const slowCaption = document.getElementById('slow-connection-caption')
+        if (slowCaption) {
+          slowCaption.style.opacity = 1;
+        } 
+      }, 2500)
+    </script>
+    <style>
+      @font-face {
+        font-family: 'Dosis';
+        font-weight: 600;
+        src: url('/Dosis-SemiBold.ttf') format('truetype');
+      }
+
+      @font-face {
+        font-family: 'Dosis';
+        font-weight: 300;
+        src: url('/Dosis-Light.ttf') format('truetype');
+      }
+    </style>
   </head>
   <body>
+    <div id="app">
+      <div style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column;">
+        <img src="/logo.svg" alt="fancy logo with lots of blue dots" style="height: 5rem;">
+        <div id="slow-connection-caption" style="opacity: 0; margin-top: 1rem; font-family: Dosis, sans-serif; color: #002E62;">Lade Daten - das kann eine Weile dauern.</div>
+      </div>
+    </div>
   </body>
 </html>
