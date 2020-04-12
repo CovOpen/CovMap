@@ -9,8 +9,7 @@ const typeToDataUrl = {
   [VisualType.RKI_DISTRICTS]: (dateString) => `https://warte.app/api/rki/rki-district-case-numbers?fields=BL,RS,EWZ,cases,deaths,cases_per_100k,cases_per_population,cases7_per_100k,death_rate&limit=0&date=${dateString}`,
 };
 
-let count = 0
-let latestFetch = 0
+let fetchCount = 0
 
 export function fetchDataset(dateString?: string | undefined) {
   return async (dispatch: ReduxDispatch, getState) => {
@@ -25,10 +24,13 @@ export function fetchDataset(dateString?: string | undefined) {
     }
 
     try {
-      count += 1
-      const thisFetch = count
+      fetchCount += 1
+      const thisFetch = fetchCount
       const res = await fetch(url);
-      if(thisFetch !== count) {
+      if(thisFetch !== fetchCount) {
+        // Drop fetch result when it was not latest
+        // AbortController was lately introduced, but not there yet:
+        // https://davidwalsh.name/cancel-fetch
         return
       }
 

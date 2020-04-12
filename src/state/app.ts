@@ -68,7 +68,7 @@ export const defaultAppState: AppState = {
   currentDataset: null,
   currentDay: 0,
   datasetFound: true,
-  visualType: VisualType.POSTCODE,
+  visualType: VisualType.RKI_DISTRICTS,
   loading: new Map(),
 };
 

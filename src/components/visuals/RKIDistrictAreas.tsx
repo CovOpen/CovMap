@@ -62,14 +62,15 @@ export class RKIDistrictAreas extends React.Component<VisualProps, State> { // T
               'fill-color': {
                 property: this.dataField,
                 stops: [
-                  [0, '#FFFFFF'],
-                  [0.1, '#FED976'],
-                  [0.2, '#FEB24C'],
-                  [0.4, '#FFFFFF'],
-                  [0.75, '#FC4E00'],
-                  [1, '#E31A00'],
-                  [1.2, '#BD0000'],
-                  [1.4, '#800000'],
+                  [0, '#f8fbff'],
+                  [0.05, '#e1ebf5'],
+                  [0.1, '#cadbed'],
+                  [0.3, '#a6c9df'],
+                  [0.5, '#79add2'],
+                  [0.8, '#5591c3'],
+                  [1, '#3771b0'],
+                  [1.2, '#205297'],
+                  [1.4, '#113068'],
                 ]
               },
               'fill-opacity': 0.8,
