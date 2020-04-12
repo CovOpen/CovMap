@@ -142,7 +142,7 @@ export const CovMap = () => {
     }
   }, [changedMapRef])
 
-  const clamp = (num, min = -Infinity, max = Infinity) => Math.min(Math.max(num, min), max)
+  const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
 
   const onViewportChange = ({ latitude, longitude, zoom }) => {
     viewPortEventCounter += 1
