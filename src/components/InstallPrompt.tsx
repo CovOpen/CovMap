@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
-
+  
 const useStyles = makeStyles((theme) => ({
   root: {
     position: 'fixed',
@@ -20,11 +20,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+type InstallPromptProps = {
+  shouldShow: boolean;
+}
 type InstallPromptState = Function | null;
 
-export const InstallPrompt = () => {
+export const InstallPrompt = ({ shouldShow }: InstallPromptProps) => {
   const [prompt, setPrompt] = useState<InstallPromptState>(() => null)
   const [isInstalled, setIsInstalled] = useState<boolean>(false)
+  const [noThanks, setNoThanks] = useState<boolean>(false)
   
   const triggerInstallPrompt = () => {
     setPrompt(() => null)
@@ -32,6 +36,10 @@ export const InstallPrompt = () => {
       prompt().then(result => true)
       setIsInstalled(true)
     }
+  }
+
+  const cancelInstallPrompt = () => {
+    setNoThanks(true)
   }
   
   const classes = useStyles()
@@ -50,9 +58,10 @@ export const InstallPrompt = () => {
     <p className={classes.item}>Diese App kann auf deinem Geraet installiert werden.</p>
     <p>Tappe den Button unten um dich zu entscheiden!</p>
     <Button className={classes.item} variant="contained" color="primary" onClick={triggerInstallPrompt}>Alles klar!</Button>
+    <Button className={classes.item} variant="contained" color="primary" onClick={cancelInstallPrompt}>Nee danke.</Button>
   </div>);
 
-  return prompt && !isInstalled
+  return !noThanks && shouldShow && prompt && !isInstalled
     ? dialog
     : null
 }

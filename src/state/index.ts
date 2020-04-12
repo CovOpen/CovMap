@@ -21,7 +21,7 @@ function persist(reducer: any, key: string, whitelist?: string[], blacklist?: st
 
 export const rootReducer = combineReducers({
   app: persist(AppReduxReducer, "app", undefined, [
-    'currentDataset', 'postCodeAreas', 'postCodePoints', 'loading', 'datasetFound'
+    'currentDataset', 'postCodeAreas', 'postCodePoints', 'loading', 'datasetFound', 'viewPortEventsCount'
   ]),
 });
 

@@ -61,6 +61,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+let viewPortEventCounter = 0
+
 // Note: React hooks ref diffing workaround
 let previousMapRef = null;
 
@@ -102,10 +104,16 @@ export const CovMap = () => {
     if (!districtAreas) {
       dispatch(fetchDistrictAreas());
     }
+    const interval = setInterval(() => {
+      if (viewPortEventCounter > 1000) {
+        clearInterval(interval)
+      }
+      
+      dispatch(AppApi.setViewportEventCount(viewPortEventCounter))
+    }, 10000)
   }, []);
 
   useEffect(() => {
-    console.log('CHANGED Visual');
     dispatch(AppApi.setCurrentDataset(null))
     dispatch(fetchDataset(formatNowMinusDays(0)));
   }, [visualType])
@@ -133,6 +141,7 @@ export const CovMap = () => {
   }, [changedMapRef])
 
   const onViewportChange = ({ latitude, longitude, zoom }) => {
+    viewPortEventCounter += 1
     dispatch(AppApi.setViewport({
       zoom,
       latitude,

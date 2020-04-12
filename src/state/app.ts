@@ -49,6 +49,7 @@ export interface AppState {
   datasetFound: boolean;
   visualType: VisualType; // TODO: Rename to currentVisual (when moving to app-config driven build)
   loading: Map<string, string>;
+  viewPortEventsCount: number;
 }
 
 export const defaultAppState: AppState = {
@@ -70,6 +71,7 @@ export const defaultAppState: AppState = {
   datasetFound: true,
   visualType: VisualType.RKI_DISTRICTS,
   loading: new Map(),
+  viewPortEventsCount: 0,
 };
 
 class AppReducer extends Reducer<AppState> {
@@ -113,6 +115,9 @@ class AppReducer extends Reducer<AppState> {
   }
   public setVisualType(type: VisualType) {
     this.state.visualType = type;
+  }
+  public setViewportEventCount(count: number) {
+    this.state.viewPortEventsCount = count;
   }
   public pushLoading(id: string, message: string) {
     if (!this.state.loading.has(id)) {

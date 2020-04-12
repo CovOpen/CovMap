@@ -46,6 +46,7 @@ const theme = createMuiTheme({
 
 export const App = () => {
   const activeStep = useSelector((state: State) => state.app.activeStep);
+  const viewportEventsCount = useSelector((state: State) => state.app.viewPortEventsCount);
   const [innerHeight, setInnerHeight] = useState(window.innerHeight)
   const timeout: any = null;
   const resizeListener = () => {
@@ -75,11 +76,11 @@ export const App = () => {
         return <div>Page not found {Step[activeStep]}</div>;
     }
   }
-
+  
   return (
     <ThemeProvider theme={theme}>
       <ServiceWorker />
-      <InstallPrompt />
+      <InstallPrompt shouldShow={viewportEventsCount > 1000} />
       <Container style={{  height: innerHeight, padding: 0, maxWidth: 'none' }}>
         <NavBar />
         <Container style={{ position: 'relative', height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
