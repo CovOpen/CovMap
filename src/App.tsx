@@ -8,16 +8,16 @@ import Container from "@material-ui/core/Container";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import { getFallbackComponent } from './components/getFallback';
-import { Step } from "state/app";
-import { About } from "components/About";
+import { InternalPages } from "state/app";
 import { NavBar } from "components/NavBar";
-import { Imprint } from "./components/Imprint";
 import { CovMap } from "./components/CovMap";
-import { Welcome } from "./components/Welcome";
 import { State } from "./state";
 import { IntermediateProgress } from "./components/IntermediateProgress";
 import { ServiceWorker } from './components/ServiceWorker';
 import { InstallPrompt } from './components/InstallPrompt';
+import { AppPage } from './app-config.types'
+
+import { config } from '../app-config/index'
 
 const theme = createMuiTheme({
   palette: {
@@ -44,8 +44,12 @@ const theme = createMuiTheme({
   }
 });
 
+const pagesById: Record<string, AppPage> = config.content?.pages.reduce((acc, page) => Object.assign(acc, {
+  [page.id]: page
+}), {}) || {}
+
 export const App = () => {
-  const activeStep = useSelector((state: State) => state.app.activeStep);
+  const activePage = useSelector((state: State) => state.app.activePage);
   const viewportEventsCount = useSelector((state: State) => state.app.viewPortEventsCount);
   const [innerHeight, setInnerHeight] = useState(window.innerHeight)
   const timeout: any = null;
@@ -63,17 +67,17 @@ export const App = () => {
   });
 
   function renderContent() {
-    switch (activeStep) {
-      case Step.Welcome:
-        return <Welcome />;
-      case Step.Map:
+    switch (activePage) {
+      case InternalPages.MAP: {
         return <CovMap />;
-      case Step.Imprint:
-        return <Imprint />
-      case Step.About:
-        return <About />;
-      default:
-        return <div>Page not found {Step[activeStep]}</div>;
+      }
+      default: {
+        const PageComponent = pagesById[activePage].Component
+        if (!PageComponent) {
+          return <div>Page not found &quot;{activePage}&quot;</div>;
+        }
+        return <PageComponent />
+      }
     }
   }
   

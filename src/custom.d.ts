@@ -10,6 +10,11 @@ declare module "*.svg" {
   export default content;
 }
 
+declare module "*build.json" {
+  const content: Record<string, any>;
+  export default content;
+}
+
 /**
  * The BeforeInstallPromptEvent is fired at the Window.onbeforeinstallprompt handler
  * before a user is prompted to "install" a web site to a home screen on mobile.

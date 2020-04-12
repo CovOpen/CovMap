@@ -131,6 +131,7 @@ module.exports = function(env) {
           minifyURLs: true,
         } : false,
         meta: {
+          // TODO: double trouble - is in the template index.ejs and here
           viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
         },
       }),
@@ -172,8 +173,9 @@ module.exports = function(env) {
           }
         }
       }),
+      // TODO: @patrick - does this event work?
       new HtmlPwaPlugin({
-        name: 'CovMapper',
+        name: buildConfig.meta.title,
         themeColor: '#003f97',
         msTileColor: '#ffffff',
         appleMobileWebAppCapable: 'no',
@@ -187,6 +189,7 @@ module.exports = function(env) {
           maskIcon: 'safari-pinned-tab.svg',
           msTileImage: 'mstile-144x144.png'
         },
+        ...(buildConfig.pwaOptions || {})
       }),
       new webpack.DefinePlugin({
         COMMIT_HASH: JSON.stringify(commitHash),

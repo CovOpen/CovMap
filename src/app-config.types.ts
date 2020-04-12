@@ -1,12 +1,23 @@
-import { FunctionComponent } from 'react'
+import { ComponentType } from 'react'
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 
 export type AppConfig = {
     ui: AppUI;
+    content?: AppContent;
     buildJSON: BuildJSON;
 }
 
-type BuildJSON = {
+export type AppContent = {
+    pages: Array<AppPage>;
+}
+
+export type AppPage = {
+    id: string;
+    title: string;
+    Component: ComponentType;
+}
+
+export type BuildJSON = {
     /**
      * Absolute URL path to an image to be used in the loading/splash screen
      * Example:
@@ -14,9 +25,9 @@ type BuildJSON = {
      * -> www.domain.com/logo.svg
      * -> logoSrc: "/logo.svg"
      */
-    splashLogo: string;
-    logoSrc?: string;
     meta: AppMeta;
+    logoSrc: string;
+    pwaOptions?: PWAOptions;
 }
 
 export type AppMeta = {
@@ -27,6 +38,32 @@ export type AppMeta = {
 }
 
 export type AppUI = {
-    Logo?: FunctionComponent<any>;
+    Logo?: ComponentType;
     theme?: Theme;
+}
+
+export type Color = string;
+export enum AppleMobileWebAppCapable {
+    YES = 'yes',
+    NO = 'no'
+}
+export enum AppleMobileWebAppStatusBarStyle {
+    DEFAULT = 'default',
+}
+
+export type PWAOptions = {
+    name?: string;
+    themeColor?: Color;
+    msTileColor?: Color;
+    appleMobileWebAppCapable?: AppleMobileWebAppCapable;
+    appleMobileWebAppStatusBarStyle?: AppleMobileWebAppStatusBarStyle;
+    assetsVersion?: string;
+    manifestPath?: string;
+    iconPaths?: {
+        favicon32?: string;
+        favicon16?: string;
+        appleTouchIcon?: string;
+        maskIcon?: string;
+        msTileImage?: string;
+    };
 }

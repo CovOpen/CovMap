@@ -1,12 +1,6 @@
 import { Reducer } from "./reduxHelper";
 import { GeoJSON } from "geojson";
 
-export enum Step {
-  Welcome,
-  Map,
-  About,
-  Imprint,
-}
 export const backendUrl = "/api";
 
 export interface MapArea {
@@ -14,6 +8,10 @@ export interface MapArea {
   celng: number;
   nelat: number;
   nelng: number;
+}
+
+export enum InternalPages {
+  MAP = 'internal--gl--map'
 }
 
 export type MapData = {
@@ -35,12 +33,12 @@ export type Viewport = {
   zoom: number;
 }
 export interface AppState {
-  activeStep: Step;
+  activePage: string;
   viewport: Viewport;
   currentPosition: Array<number> | null;
   userAllowedLocation: boolean;
   currentArea: MapArea | null;
-  history: Step[];
+  history: string[];
   postCodeAreas: GeoJSON | null;
   postCodePoints: GeoJSON | null;
   districtAreas: GeoJSON | null;
@@ -53,7 +51,7 @@ export interface AppState {
 }
 
 export const defaultAppState: AppState = {
-  activeStep: Step.Map,
+  activePage: InternalPages.MAP,
   userAllowedLocation: true,
   currentPosition: null,
   viewport: {
@@ -78,10 +76,10 @@ class AppReducer extends Reducer<AppState> {
   constructor() {
     super(defaultAppState);
   }
-  public gotoStep(step: Step) {
-    window.history.pushState({ step: step}, Step[step]);
-    this.state.history.push(this.state.activeStep);
-    this.state.activeStep = step;
+  public gotoPage(pageId: string) {
+    window.history.pushState({ page: pageId }, pageId);
+    this.state.history.push(this.state.activePage);
+    this.state.activePage = pageId;
   }
   public setUserAllowedLocation(allowed: boolean) {
     this.state.userAllowedLocation = allowed;

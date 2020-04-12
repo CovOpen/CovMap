@@ -2,5 +2,5 @@
     "meta": {
         "title": "CovMapper"
     },
-    "splashLogo": "/images/logo.svg"
+    "logoSrc": "/images/logo.svg"
 }

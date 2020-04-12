@@ -6,7 +6,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppApi, Step } from "state/app";
+import { AppApi, InternalPages } from "state/app";
 import { useThunkDispatch } from "useThunkDispatch";
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles';
@@ -98,9 +98,21 @@ export const NavBar = () => {
     dispatch(switchViewToPlace(location));
   }
 
-  const selectStep = (step) => {
-    dispatch(AppApi.gotoStep(step))
+  const selectPage = (pageId: string) => {
+    dispatch(AppApi.gotoPage(pageId))
     handleClose()
+  }
+
+  const MenuEntries = () => {
+    if (!config.content?.pages) {
+      return null
+    }
+
+    return <>
+      {config.content?.pages.map((page, key) => (
+        <MenuItem key={key} className={classes.menuItem} onClick={() => selectPage(page.id)}>{page.title}</MenuItem>
+      ))}
+    </>
   }
   
   return (
@@ -155,10 +167,8 @@ export const NavBar = () => {
             onClose={handleClose}
           >
             <div className={classes.menuContent}>
-              <MenuItem className={classes.menuItem} onClick={() => selectStep(Step.Welcome)}>Start</MenuItem>
-              <MenuItem className={classes.menuItem} onClick={() => selectStep(Step.Map)}>Karte</MenuItem>
-              <MenuItem className={classes.menuItem} onClick={() => selectStep(Step.About)}>About</MenuItem>
-              <MenuItem className={classes.menuItem} onClick={() => selectStep(Step.Imprint)}>Impressum</MenuItem>
+              <MenuItem className={classes.menuItem} onClick={() => selectPage(InternalPages.MAP)}>Karte</MenuItem>
+              <MenuEntries />
             </div>
           </Menu>
         </div>

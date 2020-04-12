@@ -1,5 +1,5 @@
 import { ReduxDispatch } from "../../useThunkDispatch";
-// import { AppApi, Step } from "../app";
+// import { AppApi, Page } from "../app";
 // import { backendUrl } from "../app";
 
 export function example() {
@@ -12,6 +12,6 @@ export function example() {
         
     // Then update state
     // dispatch(someStateUpdate(res.data))
-    // dispatch(AppApi.gotoStep(Step.Home))
+    // dispatch(AppApi.gotoPage(Page.Home))
   };
 }

@@ -86,11 +86,11 @@ export const CovMap = () => {
   // const northEast = L.latLng(56.47462805805594, 17.885742187500004);
   // const maxBounds = L.latLngBounds(southWest, northEast);
 
-  const handleMapBusy = (evt) => {
+  const handleMapBusy = () => {
     dispatch(AppApi.pushLoading('map-busy', 'Map is rendering stuff...'))
   }
 
-  const handleMapIdle = (evt) => {
+  const handleMapIdleOrRemoved = () => {
     dispatch(AppApi.popLoading('map-busy'))
   }
 
@@ -128,14 +128,15 @@ export const CovMap = () => {
     if (mapRef.current) {
       const map = mapRef.current.getMap();
       map.on('dataloading', handleMapBusy)
-      map.on('idle', handleMapIdle)
+      map.on('idle', handleMapIdleOrRemoved)
+      map.once('remove', handleMapIdleOrRemoved)
     }
 
     return () => {
       if (mapRef.current) {
         const map = mapRef.current.getMap();
         map.off('dataloading', handleMapBusy)
-        map.off('idle', handleMapIdle)
+        map.off('idle', handleMapIdleOrRemoved)
       }
     }
   }, [changedMapRef])

@@ -15,7 +15,7 @@ const Fallback = () => {
     return () => {
       dispatch(AppApi.popLoading(key))
     }
-  });
+  }, []);
 
   return null;
 }
