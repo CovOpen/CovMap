@@ -24,5 +24,8 @@ export const config: AppConfig = {
       Component: Imprint
     }]
   },
-  buildJSON
+  buildJSON,
+  mapSettings: {
+    constraints: [[55, 6], [47, 15]]
+  }
 }

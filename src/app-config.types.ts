@@ -2,9 +2,10 @@ import { ComponentType } from 'react'
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 
 export type AppConfig = {
-    ui: AppUI;
-    content?: AppContent;
-    buildJSON: BuildJSON;
+  ui: AppUI;
+  content?: AppContent;
+  buildJSON: BuildJSON;
+  mapSettings?: MapSettings;
 }
 
 export type AppContent = {
@@ -28,6 +29,16 @@ export type BuildJSON = {
     meta: AppMeta;
     logoSrc: string;
     pwaOptions?: PWAOptions;
+}
+
+type Latitude = number
+type Longitude = number
+type LatLang = [Latitude, Longitude]
+type NorthWest = LatLang
+type SouthEast = LatLang
+
+export type MapSettings = {
+  constraints: [NorthWest, SouthEast];
 }
 
 export type AppMeta = {

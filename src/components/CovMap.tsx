@@ -19,7 +19,8 @@ import { MAX_ZOOM_LEVEL } from '../constants';
 import { TimeRangeSlider } from './TimeRangeSlider';
 import { getFallbackComponent } from './getFallback';
 import { formatNowMinusDays } from '../lib/formatUTCDate.js';
-
+import { config } from '../../app-config/index'
+ 
 import { VisualProps, FeatureInfoProps } from './types'; // eslint-disable-line
 import { PostCodeAreas, FeatureInfo as PostCodeAreaFeatureInfo } from './visuals/PostCodeAreas'
 import { DistrictAreas, FeatureInfo as DistrictAreaFeatureInfo } from './visuals/DistrictAreas'
@@ -141,13 +142,23 @@ export const CovMap = () => {
     }
   }, [changedMapRef])
 
+  const clamp = (num, min = -Infinity, max = Infinity) => Math.min(Math.max(num, min), max)
+
   const onViewportChange = ({ latitude, longitude, zoom }) => {
     viewPortEventCounter += 1
-    dispatch(AppApi.setViewport({
+    const newViewPort = {
       zoom,
       latitude,
       longitude,
-    }))
+    }
+
+    if (config.mapSettings?.constraints) {
+      const constraints = config.mapSettings?.constraints
+      newViewPort.latitude = clamp(latitude, constraints[1][0], constraints[0][0])
+      newViewPort.longitude = clamp(longitude, constraints[0][1], constraints[1][1])
+    }
+    
+    dispatch(AppApi.setViewport(newViewPort))
   }
 
   const VisualComponent = typeToVisualComponentMap[visualType];
