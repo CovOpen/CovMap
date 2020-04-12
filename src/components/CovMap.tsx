@@ -81,12 +81,6 @@ export const CovMap = () => {
   const [currentFeature, setCurrenFeature] = useState(null)
   const mapRef = createRef<any>();
 
-  // Bound to germany for the time being
-  // TODO: Use mapbox helpers
-  // const southWest = L.latLng(43.27103747280261, 2.3730468750000004);
-  // const northEast = L.latLng(56.47462805805594, 17.885742187500004);
-  // const maxBounds = L.latLngBounds(southWest, northEast);
-
   const handleMapBusy = () => {
     dispatch(AppApi.pushLoading('map-busy', 'Map is rendering stuff...'))
   }
