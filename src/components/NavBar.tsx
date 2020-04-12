@@ -13,7 +13,8 @@ import { fade } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import { switchViewToPlace } from "../state/thunks/handleSearchQuery";
 
-import { AnimatedLogo } from "./AnimatedLogo";
+import { config } from "../../app-config/index"
+const Logo = config.ui?.Logo
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -105,7 +106,7 @@ export const NavBar = () => {
   return (
     <AppBar position="static" style={{ position: 'relative', zIndex: 1200, touchAction: 'none' }}>
       <Toolbar style={{ height: 64 }}>
-        <AnimatedLogo />
+        {(Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} /> }
         <div className={classes.search}>
           <div className={classes.searchIcon}>
             <SearchIcon />

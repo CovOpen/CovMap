@@ -16,7 +16,7 @@
     "inlineSources": true,
     "sourceRoot": "/",
     "outDir": "./build/",
-    "rootDir": "./src/",
+    "rootDir": "./",
     "removeComments": true,
     "resolveJsonModule": true,
     "strict": true,
@@ -46,11 +46,11 @@
     "./config",
     "scripts",
     "acceptance-tests",
-    "webpack",
     "jest"
   ],
   "include": [
-    "custom.d.ts",
+    "./src/custom.d.ts",
     "./src",
+    "./app-config"
   ]
 }

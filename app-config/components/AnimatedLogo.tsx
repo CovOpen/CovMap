@@ -2,8 +2,8 @@ import React, { createRef, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from "react-redux";
 
-import { State } from "../state";
-import Logo from '../images/logo.svg'
+import { State } from "../../src/state";
+import Logo from '../static/images/logo.svg'
 
 const useStyles = makeStyles((theme) => ({
   logo: {

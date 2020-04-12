@@ -13,6 +13,8 @@ const BundleServiceWorkerPlugin = require('./config/webpack/BundleServiceWorkerP
 const { DefinePlugin, SplitChunksPlugin } = require('webpack')
 const CompressionPlugin = require('compression-webpack-plugin')
 
+const buildConfig = require('./app-config/build.json')
+
 const babelLoader = {
   loader: "babel-loader",
   options: {
@@ -25,8 +27,8 @@ const outputDir = path.join(__dirname, "dist");
 const swDest = 'sw.js';
 
 module.exports = function(env) {
-  let commitHash = "dev";
-  let commitHashLong = "dev";
+  const commitHash = "dev";
+  const commitHashLong = "dev";
   
   if (!env) {
     console.log("No env specified. Use `--env {dev|prod}`. Using `--env dev`");
@@ -52,7 +54,7 @@ module.exports = function(env) {
     },
     output: {
       path: outputDir,
-      filename: "[name].js",
+      filename: "[name].[hash].js",
       globalObject: "this",
       chunkFilename: "[chunkhash].chunk.js",
       publicPath: "/"
@@ -119,8 +121,9 @@ module.exports = function(env) {
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'src/index.ejs'),
-        title: "CovMapper",
+        title: buildConfig.meta.title,
         // favicon: "path/to/favicon",  // TODO you can set a favicon here
+        variables: buildConfig,
         minify: env == "prod" ? {
           collapseWhitespace: true,
           removeComments: true,
@@ -135,7 +138,7 @@ module.exports = function(env) {
       new CopyWebpackPlugin([
         { from: "static", to: "." },
         { from: path.resolve(__dirname, 'data'), to: "./data" },
-        { from: path.resolve(__dirname, 'src/images/logo.svg'), to: "./logo.svg" },
+        { from: path.resolve(__dirname, 'app-config/static'), to: "./" },
       ]),
       new BundleServiceWorkerPlugin({
         buildOptions: {
@@ -162,10 +165,10 @@ module.exports = function(env) {
             exclude: [
               /\.map$/,
               /manifest\.json$/,
+              /data\//
             ],
             swDest,
             importWorkboxFrom: 'disabled',
-            exclude: [/data\//]
           }
         }
       }),
@@ -198,11 +201,9 @@ module.exports = function(env) {
   if (env === "dev") {
     config.mode = "development";
     config.devtool = "inline-source-map";
-    config.resolve.modules = config.resolve.modules || ["node_modules"];
   } else if (env === "prod") {
     config.mode = "production";
     config.devtool = "source-map";
-    config.output.filename = "[name].[hash].js";
     config.plugins.push(new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false,
@@ -214,5 +215,4 @@ module.exports = function(env) {
   }
 
   return config;
-
 };
