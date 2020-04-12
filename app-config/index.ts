@@ -26,6 +26,6 @@ export const config: AppConfig = {
   },
   buildJSON,
   mapSettings: {
-    constraints: [[55, 6], [47, 15]]
+    constraints: [[56.47462805805594,  2.3730468750000004], [43.27103747280261, 17.885742187500004]]
   }
 }
