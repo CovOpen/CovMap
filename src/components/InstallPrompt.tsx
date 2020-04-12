@@ -48,7 +48,7 @@ export const InstallPrompt = () => {
 
   const dialog = (<div className={classes.root}>
     <p className={classes.item}>Diese App kann auf deinem Geraet installiert werden.</p>
-    yarn bduyarb<p>Tappe den Button unten um dich zu entscheiden!</p>
+    <p>Tappe den Button unten um dich zu entscheiden!</p>
     <Button className={classes.item} variant="contained" color="primary" onClick={triggerInstallPrompt}>Alles klar!</Button>
   </div>);
 
