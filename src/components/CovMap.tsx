@@ -23,6 +23,7 @@ import { formatNowMinusDays } from '../lib/formatUTCDate.js';
 import { VisualProps, FeatureInfoProps } from './types'; // eslint-disable-line
 import { PostCodeAreas, FeatureInfo as PostCodeAreaFeatureInfo } from './visuals/PostCodeAreas'
 import { DistrictAreas, FeatureInfo as DistrictAreaFeatureInfo } from './visuals/DistrictAreas'
+import { RKIDistrictAreas, FeatureInfo as RKIDistrictAreaFeatureInfo } from './visuals/RKIDistrictAreas'
 import { Heatmap, FeatureInfo as HeatmapFeatureInfo } from './visuals/Heatmap'
 import { Bubblemap, FeatureInfo as BubblemapFeatureInfo } from './visuals/Bubblemap'
 
@@ -30,14 +31,16 @@ const typeToVisualComponentMap = {
   [VisualType.POSTCODE]: PostCodeAreas,
   [VisualType.HEATMAP]: Heatmap,
   [VisualType.BUBBLEMAP]: Bubblemap,
-  [VisualType.DISTRICTS]: DistrictAreas
+  [VisualType.DISTRICTS]: DistrictAreas,
+  [VisualType.RKI_DISTRICTS]: RKIDistrictAreas
 };
 
 const typeToFeatureInfoComponentMap = {
   [VisualType.POSTCODE]: PostCodeAreaFeatureInfo,
   [VisualType.HEATMAP]: HeatmapFeatureInfo,
   [VisualType.BUBBLEMAP]: BubblemapFeatureInfo,
-  [VisualType.DISTRICTS]: DistrictAreaFeatureInfo
+  [VisualType.DISTRICTS]: DistrictAreaFeatureInfo,
+  [VisualType.RKI_DISTRICTS]: RKIDistrictAreaFeatureInfo
 };
 
 declare global {
@@ -99,10 +102,13 @@ export const CovMap = () => {
     if (!districtAreas) {
       dispatch(fetchDistrictAreas());
     }
-    if (!currentDataset) {
-      dispatch(fetchDataset(formatNowMinusDays(0)));
-    }
   }, []);
+
+  useEffect(() => {
+    console.log('CHANGED Visual');
+    dispatch(AppApi.setCurrentDataset(null))
+    dispatch(fetchDataset(formatNowMinusDays(0)));
+  }, [visualType])
 
   // Note: This is to ensure the event listeners are attached only once,
   // because react useEffect fires multiple times, even though mapRef.current did not change

@@ -73,6 +73,7 @@ export function Settings () {
           >
             <MenuItem style={{ touchAction: 'none' }} value={VisualType.POSTCODE}>Post Code Areas</MenuItem>
             <MenuItem style={{ touchAction: 'none' }} value={VisualType.DISTRICTS}>Rural Districts</MenuItem>
+            <MenuItem style={{ touchAction: 'none' }} value={VisualType.RKI_DISTRICTS}>RKI - Landkreis Fallzahlen</MenuItem>
             {/*<MenuItem style={{ touchAction: 'none' }} value={VisualType.HEATMAP}>Heatmap</MenuItem>
             <MenuItem style={{ touchAction: 'none' }} value={VisualType.BUBBLEMAP}>Bubblemap</MenuItem>*/}
           </Select>

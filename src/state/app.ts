@@ -17,7 +17,7 @@ export interface MapArea {
 }
 
 export type MapData = {
-  types: Record<string, string>;
+  types?: Record<string, string>;
   data: Array<Record<string, Record<string, number>>>;
 }
 
@@ -25,7 +25,8 @@ export enum VisualType {
   POSTCODE,
   HEATMAP,
   BUBBLEMAP,
-  DISTRICTS
+  DISTRICTS,
+  RKI_DISTRICTS
 }
 
 export type Viewport = {
@@ -44,8 +45,9 @@ export interface AppState {
   postCodePoints: GeoJSON | null;
   districtAreas: GeoJSON | null;
   currentDataset: MapData | null;
+  currentDay: number; 
   datasetFound: boolean;
-  visualType: VisualType;
+  visualType: VisualType; // TODO: Rename to currentVisual (when moving to app-config driven build)
   loading: Map<string, string>;
 }
 
@@ -64,6 +66,7 @@ export const defaultAppState: AppState = {
   postCodePoints: null,
   districtAreas: null,
   currentDataset: null,
+  currentDay: 0,
   datasetFound: true,
   visualType: VisualType.POSTCODE,
   loading: new Map(),
@@ -101,6 +104,9 @@ class AppReducer extends Reducer<AppState> {
   }
   public setCurrentDataset(data: MapData | null) {
     this.state.currentDataset = data;
+  }
+  public setCurrentDay(day: number) {
+    this.state.currentDay = day;
   }
   public setDatasetFound(found: boolean) {
     this.state.datasetFound = found;
