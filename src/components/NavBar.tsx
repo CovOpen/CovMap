@@ -12,6 +12,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import { switchViewToPlace } from "../state/thunks/handleSearchQuery";
+import Snackbar from '@material-ui/core/Snackbar';
+import { useSelector } from "react-redux";
+import { State } from "../state";
 
 import { config } from "../../app-config/index"
 const Logo = config.ui?.Logo
@@ -93,9 +96,49 @@ export const NavBar = () => {
     setAnchorEl(null);
   };
 
+
+  const Search = () => {
+    return <>
+      <div className={classes.search}>
+      <div className={classes.searchIcon}>
+      <SearchIcon />
+      </div>
+        <InputBase
+          onKeyPress = {(e) => {
+            if (e.key === 'Enter') {
+              {handleSearch(e)};
+            }
+          }}
+          type = 'text'
+          placeholder="PLZ oder Wohnort..."
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
+          inputProps={{ 'aria-label': 'search' }}
+        />
+      </div>
+      <div>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+          open={true}
+          autoHideDuration={6000}
+          message="Bitte die Eingabe überprüfen. Ortschaft konnte nicht gefunden werden."
+        />
+      </div>
+    </>
+  }
+
   const handleSearch = (event) => {
-    const location  = event.target.value;
-    dispatch(switchViewToPlace(location));
+    const location  = event.target.value; 
+    dispatch(switchViewToPlace(location, () => {
+      console.log("the location wasnt found")
+      // -> SET STATE HERE? 
+    }));
+    //const stateViewport = useSelector((state: State) => state.app.searchResult);
   }
 
   const selectPage = (pageId: string) => {
@@ -119,26 +162,7 @@ export const NavBar = () => {
     <AppBar position="static" style={{ position: 'relative', zIndex: 1200, touchAction: 'none' }}>
       <Toolbar style={{ height: 64 }}>
         {(Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} /> }
-        <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
-          </div>
-          <InputBase
-            onKeyPress = {(e) => {
-              if (e.key === 'Enter') {
-                {handleSearch(e)};
-              }
-            }}
-            type = 'text'
-            placeholder="PLZ oder Wohnort..."
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ 'aria-label': 'search' }}
-          />
-        </div>
-
+      < Search />     
         <div>
           <IconButton
             aria-label="account of current user"
