@@ -73,8 +73,8 @@ export function TimeRangeSlider ({ onChange = () => {} }: Props) {
     }
       
     timeout = setTimeout(() => {
-      dispatch(AppApi.setCurrentDate(newDate));
       (onChange as Function)(newDate);
+      dispatch(AppApi.setCurrentDate(newDate));
     }, 400);
   }
 

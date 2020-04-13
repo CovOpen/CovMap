@@ -1,10 +1,9 @@
-import React, { useEffect, useState, createRef, Suspense } from "react";
+import React, { useEffect, useState, createRef } from "react";
 import { useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 const ReactMapGL = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/interactive-map'));
-const Popup = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/popup'));
 
 import { State } from "../state";
 import { AppApi } from "../state/app";
@@ -13,8 +12,8 @@ import { Settings } from './Settings';
 import { Zoom } from './Zoom';
 import { MAX_ZOOM_LEVEL } from '../constants';
 import { TimeRangeSlider } from './TimeRangeSlider';
-import { getFallbackComponent } from './getFallback';
-import { Visual, FeatureInfo } from './Visual';
+import { Visual } from './Visual';
+import { FeatureInfo } from './FeatureInfo';
 import { config } from '../../app-config/index'
  
 const useStyles = makeStyles((theme) => ({
@@ -35,10 +34,12 @@ export const CovMap = () => {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
   // const position = useSelector((state: State) => state.app.currentPosition); // TODO
+  const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const stateViewport = useSelector((state: State) => state.app.viewport);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
   const [currentFeature, setCurrenFeature] = useState(null)
   const mapRef = createRef<any>();
+  const visual = config.visuals[currentVisual]
 
   const handleMapBusy = () => {
     dispatch(AppApi.pushLoading('map-busy', 'Map is rendering stuff...'))
@@ -109,6 +110,8 @@ export const CovMap = () => {
       );
     }
   }
+
+  const mappingLayers = Object.keys(visual.mappings);
   const handleMapClick = (pointerEvent) => {
     const { features } = pointerEvent;
     if (features.length > 0) {
@@ -116,7 +119,7 @@ export const CovMap = () => {
         const map = mapRef.current.getMap();
 
         // TODO: When app is setup by config lookup a match from configured layers
-        if (features[0].source !== 'postCodeAreas' && features[0].source !== 'postCodePoints') {
+        if (!mappingLayers.includes(features[0].source)) {
           return;
         }
         resetCurrentFeature()
@@ -154,21 +157,10 @@ export const CovMap = () => {
           <Visual
             dataField={dataField}
           />
-          {currentFeature && <Suspense fallback={getFallbackComponent()}>
-            <Popup
-              latitude={(currentFeature as any).lngLat[1]}
-              longitude={(currentFeature as any).lngLat[0]}
-              closeButton={false}
-              closeOnClick={true}
-              anchor="top"
-              style={{ zIndex: 1100 }}
-            >
-              <FeatureInfo
-                dataField={dataField}
-                feature={(currentFeature as any).feature}
-              />
-            </Popup>
-          </Suspense>}
+          <FeatureInfo
+            dataField={dataField}
+            feature={currentFeature}
+          />
         </ReactMapGL>
         <TimeRangeSlider onChange={() => {
           resetCurrentFeature();

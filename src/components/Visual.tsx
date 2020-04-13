@@ -15,17 +15,13 @@ export type VisualProps = {
   dataField: string;
 }
 
-export type FeatureInfoProps = {
-  feature: any; // TODO: use mapbox-gl feature type
-  dataField: string;
-}
-
 export const Visual = ({ dataField }: VisualProps) => {
   const dispatch = useThunkDispatch();
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const mappedSets = useSelector((state: State) => state.app.mappedSets);
   const currentDate = useSelector((state: State) => state.app.currentDate);
   const visual = config.visuals[currentVisual]
+  // TODO: handle multiple mappings (map and merge data on same geojson, layer decides what to render)
   const mappingId = visual.defaultMapping
   const mapset = mappedSets.get(currentVisual)
   const timeKey = formatUTCDate(currentDate)
@@ -52,14 +48,5 @@ export const Visual = ({ dataField }: VisualProps) => {
         {visualLayers.map(layer => <Layer key={layer.id} {...layer} />)}
       </Source>
     </Suspense>
-  )
-}
-
-export const FeatureInfo = ({ feature, dataField }: FeatureInfoProps) => {
-  return (
-    <div>
-      <div>PLZ: {feature.properties.name_2}</div>
-      <div>Value: {feature.properties[dataField]}</div>
-    </div>
   )
 }

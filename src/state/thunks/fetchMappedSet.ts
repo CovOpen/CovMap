@@ -52,8 +52,9 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Date
           if (datasets.has(datasetKey)) {
             return datasets.get(datasetKey)
           }
-
-          return fetchAndTransform(datasource.url, timeKey, date, dataProperty, transformData)
+          const dataset = await fetchAndTransform(datasource.url, timeKey, date, dataProperty, transformData)
+          dispatch(AppApi.addDataset(datasetKey, dataset))          
+          return dataset
         }),
         Promise.resolve().then(async (): Promise<GeoJSON | undefined> => {
           const geoKey = `${geoId}`
@@ -84,8 +85,9 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Date
         timeKeys: mapset.timeKeys.concat(timeKey),
         geo: {
           ...mapset.geo,
-          features: (mapset.geo as FeatureCollection).features.map(feature => ({
+          features: (mapset.geo as FeatureCollection).features.map((feature, id) => ({
             ...feature,
+            id,
             properties: {
               ...feature.properties,
               [timeKey]: data.data[(feature.properties || {})[geoProperty]],

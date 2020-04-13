@@ -4,6 +4,7 @@ import buildJSON from "./build.json"
 import { Welcome } from "./components/pages/Welcome"
 import { About } from "./components/pages/About"
 import { Imprint } from "./components/pages/Imprint"
+import { RKIFeatureInfo } from "./components/RKIFeatureInfo"
 
 export const config: AppConfig = {
   ui: {
@@ -45,6 +46,7 @@ export const config: AppConfig = {
           geoId: 'districts-city-details',
           geoProperty: 'cca_2',
           dataProperty: 'RS',
+          FeatureInfo: RKIFeatureInfo,
           transformData: (json) => {
             if (!json.result.length) {
               return null

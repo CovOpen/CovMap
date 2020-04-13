@@ -44,11 +44,19 @@ export type AppVisualLayer = {
     paint: Record<string, any>;
 }
 
+export type FeatureInfoProps = {
+    feature: any; // TODO: use GeoJSON feature type
+    dataField: string;
+    timeKey: string;
+    rawData: any;
+}
+
 export type AppVisualMapping = {
     geoId: string;
     datasourceId: string;
     geoProperty: string;
     dataProperty: string;
+    FeatureInfo: ComponentType<FeatureInfoProps>;
     transformData?: Function;
     transformGeo?: Function;
 }
