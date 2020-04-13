@@ -109,7 +109,8 @@ export const config: AppConfig = {
           getCoordinates: (feature) => {
             return feature.properties.geo_point_2d
           }
-        }]
+        }],
+        notFoundMessage: 'Leider keinen Landkreis gefunden.'
       }
     },
   },

@@ -34,6 +34,7 @@ export type AppVisual = {
 export type AppSearch = {
     placeholder: string;
     inMappings: Array<AppSearchWhere>;
+    notFoundMessage: string;
 }
 
 export type AppSearchWhere = {

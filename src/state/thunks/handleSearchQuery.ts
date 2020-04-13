@@ -20,7 +20,7 @@ const locationFound = (inputPlace, data, properties) => {
   }) 
 }
 
-export function switchViewToPlace(inputPlace, onErrorCallback) {
+export function switchViewToPlace(inputPlace, onFoundCallback, onErrorCallback) {
   return async (dispatch: ReduxDispatch, getState: () => State) => {
     const { default: FlyToInterpolator } = await import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/utils/transition/viewport-fly-to-interpolator')
     const { viewport, currentVisual, mappedSets } = getState().app;
@@ -69,6 +69,7 @@ export function switchViewToPlace(inputPlace, onErrorCallback) {
       };
       dispatch(AppApi.setViewport(newViewport));
       dispatch(AppApi.setCurrentFeature(foundResults[0], [longitude, latitude]));
+      onFoundCallback()
     } else if (foundResults.length === 0) {
       onErrorCallback() 
       dispatch(AppApi.setErrorStateSearch(true))

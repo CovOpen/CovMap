@@ -2,13 +2,11 @@ import React from 'react'
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import { switchViewToPlace } from "../state/thunks/handleSearchQuery";
-import Snackbar from '@material-ui/core/Snackbar';
 import { useSelector } from "react-redux";
 import { useThunkDispatch } from "useThunkDispatch";
 import { fade } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { AppApi } from "../state/app";
 import { State } from "../state";
 import { config } from "../../app-config/index"
 
@@ -54,14 +52,16 @@ const useStyles = makeStyles((theme) => ({
 export const Search = () => {
   const dispatch = useThunkDispatch();
   const classes = useStyles();
-  const hasSearchError = (useSelector((state: State) => state.app.hasSearchError))
   const currentVisual = (useSelector((state: State) => state.app.currentVisual))
   const visual = config.visuals[currentVisual]
   const placeholder = visual.search?.placeholder
-
+  
   const handleSearch = (event) => {
-    const location = event.target.value; 
+    event.persist()
+    const location = event.target.value;
     dispatch(switchViewToPlace(location, () => {
+      event.target.blur()
+    }, () => {
       console.log("the location wasnt found");
       //dispatch(AppApi.setErrorStateSearch(false));
     }));
@@ -85,20 +85,6 @@ export const Search = () => {
           input: classes.inputInput,
         }}
         inputProps={{ 'aria-label': 'search' }}
-      />
-    </div>
-    <div>
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-        open={hasSearchError}
-        autoHideDuration={6000}
-        message="Bitte die Eingabe überprüfen. <br /> Ortschaft konnte nicht gefunden werden."
-        onClose = {() => {
-          dispatch(AppApi.setErrorStateSearch(false))
-        }}
       />
     </div>
   </>

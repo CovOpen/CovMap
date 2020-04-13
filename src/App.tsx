@@ -6,6 +6,9 @@ import { hot } from "react-hot-loader";
 import { useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import Snackbar from '@material-ui/core/Snackbar';
+import { useThunkDispatch } from "useThunkDispatch";
+import MuiAlert from '@material-ui/lab/Alert';
 
 import { getFallbackComponent } from './components/getFallback';
 import { InternalPages } from "state/app";
@@ -16,8 +19,13 @@ import { IntermediateProgress } from "./components/IntermediateProgress";
 import { ServiceWorker } from './components/ServiceWorker';
 import { InstallPrompt } from './components/InstallPrompt';
 import { AppPage } from './app-config.types'
+import { AppApi } from "./state/app";
 
 import { config } from '../app-config/index'
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const theme = createMuiTheme({
   palette: {
@@ -49,11 +57,15 @@ const pagesById: Record<string, AppPage> = config.content?.pages.reduce((acc, pa
 }), {}) || {}
 
 export const App = () => {
+  const dispatch = useThunkDispatch();
   const activePage = useSelector((state: State) => state.app.activePage);
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const viewportEventsCount = useSelector((state: State) => state.app.viewPortEventsCount);
+  const hasSearchError = (useSelector((state: State) => state.app.hasSearchError))
   const [innerHeight, setInnerHeight] = useState(window.innerHeight)
   const visual = config.visuals[currentVisual]
+  const notFoundMessage = visual.search?.notFoundMessage
+  
   const timeout: any = null;
   const resizeListener = () => {
     clearTimeout(timeout);
@@ -96,6 +108,20 @@ export const App = () => {
           </Suspense>
         </Container>
       </Container>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        open={hasSearchError}
+        autoHideDuration={6000}
+        message={notFoundMessage}
+        onClose = {() => {
+          dispatch(AppApi.setErrorStateSearch(false))
+        }}
+      >
+        <Alert severity="error">{notFoundMessage}</Alert>
+      </Snackbar>
     </ThemeProvider>
   )
 };
