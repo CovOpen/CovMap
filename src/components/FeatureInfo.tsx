@@ -18,13 +18,17 @@ export const FeatureInfo = ({ feature, dataField, onClose }: { feature: any; dat
   const timeKey = formatUTCDate(currentDate)
   const currentDataSet = datasets.get(`${timeKey}-${activeMapping.datasourceId}`)
   
+  if (!feature || !datasetFound) {
+    return null
+  }
+
   const InfoComponent = activeMapping.FeatureInfo
   let rawData: any = null
   if (currentDataSet) {
     rawData = currentDataSet.data[feature.feature.properties[activeMapping.geoProperty]]
   }
 
-  if (!feature || !datasetFound || !rawData) {
+  if (!rawData) {
     return null
   }
   
