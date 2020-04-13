@@ -42,14 +42,6 @@ export function Settings () {
     setSettingsAnchorEl(null);
   };
   const settingsOpen = Boolean(settingsAnchorEl);
-  
-  const SelectEntries = () => {   
-    return <>
-      {Object.keys(config.visuals).map(key => (
-        <MenuItem key={key} style={{ touchAction: 'none' }} value={key}>{config.visuals[key].name}</MenuItem>
-      ))}
-    </>
-  }
 
   return (<>
     <Fab className={classes.fab} color="primary" aria-label="settings" onClick={handleSettingsClick}>
@@ -80,12 +72,9 @@ export function Settings () {
             value={currentVisual}
             onChange={(event) => dispatch(AppApi.setCurrentVisual(event.target.value as VisualId))}
           >
-            <SelectEntries />
-            {/* <MenuItem style={{ touchAction: 'none' }} value={VisualType.POSTCODE}>Post Code Areas</MenuItem>
-            <MenuItem style={{ touchAction: 'none' }} value={VisualType.DISTRICTS}>Rural Districts</MenuItem>
-            <MenuItem style={{ touchAction: 'none' }} value={VisualType.RKI_DISTRICTS}>RKI - Landkreis Fallzahlen</MenuItem> */}
-            {/*<MenuItem style={{ touchAction: 'none' }} value={VisualType.HEATMAP}>Heatmap</MenuItem>
-            <MenuItem style={{ touchAction: 'none' }} value={VisualType.BUBBLEMAP}>Bubblemap</MenuItem>*/}
+            {Object.keys(config.visuals).map(key => (
+              <MenuItem key={key} style={{ touchAction: 'none' }} value={key}>{config.visuals[key].name}</MenuItem>
+            ))}
           </Select>
         </FormControl>
       </div>
