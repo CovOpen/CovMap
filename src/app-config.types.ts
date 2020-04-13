@@ -49,6 +49,7 @@ export type FeatureInfoProps = {
     dataField: string;
     timeKey: string;
     rawData: any;
+    onClose?: Function;
 }
 
 export type AppVisualMapping = {

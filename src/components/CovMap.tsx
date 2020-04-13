@@ -160,6 +160,10 @@ export const CovMap = () => {
           <FeatureInfo
             dataField={dataField}
             feature={currentFeature}
+            onClose={() => {
+              resetCurrentFeature()
+              setCurrenFeature(null)
+            }}
           />
         </ReactMapGL>
         <TimeRangeSlider />

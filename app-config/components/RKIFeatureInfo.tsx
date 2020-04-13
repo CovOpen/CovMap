@@ -1,8 +1,8 @@
 import React from 'react'
 import { FeatureInfoProps } from '../../src/app-config.types'
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 
-export const RKIFeatureInfo = ({ feature, dataField, timeKey, rawData }: FeatureInfoProps) => {
+export const RKIFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProps) => {
   return (
     <div>
       <Typography variant="h2">{feature.properties.name_2}</Typography>
@@ -13,6 +13,9 @@ export const RKIFeatureInfo = ({ feature, dataField, timeKey, rawData }: Feature
         <li>F&auml;lle per 100k: {Math.ceil(rawData['cases_per_100k'])}</li>
         <li>Sterberate: {Math.floor(rawData['death_rate'] * 100) / 100} %</li>
       </ul>
+      <Button size="small" onClick={onClose as any}>
+        Schließen
+      </Button>
     </div>
   )
 }
