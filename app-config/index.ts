@@ -1,4 +1,4 @@
-import { AppConfig } from "../src/app-config.types"
+import { AppConfig, LayerType } from "../src/app-config.types"
 import { AnimatedLogo } from "./components/AnimatedLogo"
 import buildJSON from "./build.json"
 import { Welcome } from "./components/pages/Welcome"
@@ -55,8 +55,46 @@ export const config: AppConfig = {
             };
           }
         }
-      }
-    }
+      },
+      layers: [
+        (dataField) => ({
+          id: "areas-fill",
+          sourceId: "cases-per-population",
+          type: LayerType.FILL,
+          paint: {
+            'fill-color': {
+              property: dataField,
+              stops: [
+                [0, '#f8fbff'],
+                [0.05, '#e1ebf5'],
+                [0.1, '#cadbed'],
+                [0.3, '#a6c9df'],
+                [0.5, '#79add2'],
+                [0.8, '#5591c3'],
+                [1, '#3771b0'],
+                [1.2, '#205297'],
+                [1.4, '#113068'],
+              ]
+            },
+            'fill-opacity': 0.8,
+          }
+        }),
+        () => ({
+          id: "areas-borders",
+          sourceId: "cases-per-population",
+          type: LayerType.LINE,
+          paint: {
+            'line-color': '#627BC1',
+            'line-width': [
+              'case',
+              ['boolean', ['feature-state', 'hover'], false],
+              4,
+              0
+            ]
+          }
+        })
+      ]
+    },
   },
   geos: {
     'districts-city-details': {

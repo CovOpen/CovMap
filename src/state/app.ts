@@ -1,6 +1,7 @@
 import { Reducer } from "./reduxHelper";
 import { GeoJSON } from "geojson";
 
+import { AppVisualLayer } from '../app-config.types'
 import { config } from '../../app-config/index'
 
 export const backendUrl = "/api";
@@ -38,6 +39,7 @@ export interface AppState {
   geos: Map<string, GeoJSON>;
   datasets: Map<string, MapData>;
   mappedSets: Map<VisualId, Map<string, GeoJSON>>;
+  layers: Map<VisualId, Array<AppVisualLayer>>;
   currentDate: Date; 
   datasetFound: boolean;
   currentVisual: VisualId; // TODO: Rename to currentVisual (when moving to app-config driven build)
@@ -59,6 +61,7 @@ export const defaultAppState: AppState = {
   geos: new Map<string, GeoJSON>(),
   datasets: new Map<string, MapData>(),
   mappedSets: new Map<VisualId, Map<string, GeoJSON>>(), 
+  layers: new Map<VisualId, Array<AppVisualLayer>>(), 
   currentDate: new Date(),
   datasetFound: true,
   currentVisual: config.defaultVisual,
@@ -98,6 +101,9 @@ class AppReducer extends Reducer<AppState> {
       this.state.mappedSets.set(visualId, new Map<string, GeoJSON>())
     }
     this.state.mappedSets.get(visualId)?.set(id, data);
+  }
+  public setLayers(visualId: VisualId, layers: Array<AppVisualLayer>) {
+    this.state.layers.set(visualId, layers)
   }
   public setCurrentDate(date: Date) {
     this.state.currentDate = date;

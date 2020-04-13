@@ -16,6 +16,7 @@ export type DatasourceId = string
 export type VisualId = string
 export type GeoId = string
 export type MappingId = string
+export type LayerId = string
 
 export type AppDatasource = {
     url: string | Function;
@@ -26,6 +27,21 @@ export type AppVisual = {
     description: string;
     defaultMapping: MappingId;
     mappings: Record<MappingId, AppVisualMapping>;
+    layers: Array<AppVisualLayer | AppVisualLayerFunction>;
+}
+
+export enum LayerType {
+    FILL = 'fill',
+    LINE = 'line'
+}
+
+export type AppVisualLayerFunction = (dataField?: string) => AppVisualLayer
+
+export type AppVisualLayer = {
+    id: LayerId;
+    sourceId: MappingId | GeoId; // TODO: currently only Mapping works as source
+    type: LayerType;
+    paint: Record<string, any>;
 }
 
 export type AppVisualMapping = {

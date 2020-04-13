@@ -1,9 +1,10 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 const Source = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/source'));
 const Layer = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/layer'));
 import { useSelector } from "react-redux";
 
 import { State } from "../state";
+import { AppApi } from "../state/app";
 import { getFallbackComponent } from './getFallback';
 import { config } from '../../app-config/index'
 import { useThunkDispatch } from "../useThunkDispatch";
@@ -24,51 +25,35 @@ export const Visual = ({ dataField }: VisualProps) => {
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const mappedSets = useSelector((state: State) => state.app.mappedSets);
   const currentDate = useSelector((state: State) => state.app.currentDate);
+  const layers = useSelector((state: State) => state.app.layers);
   const visual = config.visuals[currentVisual]
   const mappingId = visual.defaultMapping
   const mapsetKey = `${mappingId}-${formatUTCDate(currentDate)}`
   const mapset = mappedSets.get(currentVisual)?.get(mapsetKey)
 
+  useEffect(() => {
+    const executedLayers = visual.layers.map(layer => {
+      if (typeof layer === 'function') {
+        return layer(dataField)
+      }
+      return layer
+    })
+    dispatch(AppApi.setLayers(currentVisual, executedLayers))
+  }, [dataField])
+
   if (!mapset) {
     dispatch(fetchMappedSet(currentVisual, mappingId, currentDate))
+    return null
+  }
+  const visualLayers = layers.get(currentVisual)
+  if (!visualLayers) {
     return null
   }
   
   return (
     <Suspense fallback={getFallbackComponent()}>
       <Source id={mappingId} type="geojson" data={mapset}>
-        <Layer
-          id="areas-fill"
-          type="fill"
-          paint={{
-            'fill-color': {
-              property: dataField,
-              stops: [
-                [0, '#f8fbff'],
-                [0.05, '#e1ebf5'],
-                [0.1, '#cadbed'],
-                [0.3, '#a6c9df'],
-                [0.5, '#79add2'],
-                [0.8, '#5591c3'],
-                [1, '#3771b0'],
-                [1.2, '#205297'],
-                [1.4, '#113068'],
-              ]
-            },
-            'fill-opacity': 0.8,
-          }} />
-        <Layer
-          id="areas-borders"
-          type="line"
-          paint={{
-            'line-color': '#627BC1',
-            'line-width': [
-              'case',
-              ['boolean', ['feature-state', 'hover'], false],
-              4,
-              0
-            ]
-          }} />
+        {visualLayers.map(layer => <Layer key={layer.id} {...layer} />)}
       </Source>
     </Suspense>
   )
