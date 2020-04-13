@@ -8,15 +8,10 @@ import Menu from '@material-ui/core/Menu';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppApi, InternalPages } from "state/app";
 import { useThunkDispatch } from "useThunkDispatch";
-import SearchIcon from '@material-ui/icons/Search';
-import { fade } from '@material-ui/core/styles';
-import InputBase from '@material-ui/core/InputBase';
-import { switchViewToPlace } from "../state/thunks/handleSearchQuery";
-import Snackbar from '@material-ui/core/Snackbar';
-import { useSelector } from "react-redux";
-import { State } from "../state";
 
+import { Search } from './Search'
 import { config } from "../../app-config/index"
+
 const Logo = config.ui?.Logo
 
 const useStyles = makeStyles((theme) => ({
@@ -44,43 +39,8 @@ const useStyles = makeStyles((theme) => ({
     width: 'auto', 
     marginTop: '9px'
   },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.85),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.95),
-    },
-    marginLeft: theme.spacing(2),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputRoot: {
-    color: 'inherit',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
 }));
+
 
 export const NavBar = () => {
   const dispatch = useThunkDispatch();
@@ -96,52 +56,6 @@ export const NavBar = () => {
     setAnchorEl(null);
   };
 
-
-  const Search = () => {
-    return <>
-      <div className={classes.search}>
-      <div className={classes.searchIcon}>
-      <SearchIcon />
-      </div>
-        <InputBase
-          onKeyPress = {(e) => {
-            if (e.key === 'Enter') {
-              {handleSearch(e)};
-            }
-          }}
-          type = 'text'
-          placeholder="PLZ oder Wohnort..."
-          classes={{
-            root: classes.inputRoot,
-            input: classes.inputInput,
-          }}
-          inputProps={{ 'aria-label': 'search' }}
-        />
-      </div>
-      <div>
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-          }}
-          open={(useSelector((state: State) => state.app.searchResult))}
-          autoHideDuration={6000}
-          message="Bitte die Eingabe überprüfen. \n Ortschaft konnte nicht gefunden werden."
-          onClose = {() => {
-            dispatch(AppApi.setErrorStateSearch(false))
-          }}
-        />
-      </div>
-    </>
-  }
-
-  const handleSearch = (event) => {
-    const location  = event.target.value; 
-    dispatch(switchViewToPlace(location, () => {
-      console.log("the location wasnt found");
-      //dispatch(AppApi.setErrorStateSearch(false));
-    }));
-  }
 
   const selectPage = (pageId: string) => {
     dispatch(AppApi.gotoPage(pageId))
@@ -164,7 +78,7 @@ export const NavBar = () => {
     <AppBar position="static" style={{ position: 'relative', zIndex: 1200, touchAction: 'none' }}>
       <Toolbar style={{ height: 64 }}>
         {(Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} /> }
-      < Search />     
+        < Search />     
         <div>
           <IconButton
             aria-label="account of current user"

@@ -21,7 +21,8 @@ function persist(reducer: any, key: string, whitelist?: string[], blacklist?: st
 
 export const rootReducer = combineReducers({
   app: persist(AppReduxReducer, "app", undefined, [
-    'mappedSets', 'datasets', 'geos', 'loading', 'datasetFound', 'viewPortEventsCount', 'currentDate'
+    'mappedSets', 'datasets', 'geos', 'loading', 'datasetFound', 
+    'viewPortEventsCount', 'currentDate', 'hasSearchError'
   ]),
 });
 

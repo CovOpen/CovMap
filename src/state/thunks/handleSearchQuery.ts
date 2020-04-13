@@ -3,25 +3,17 @@ import { AppApi } from "../app";
 
 
 const locationFound = (inputPlace, data) => {
-  var query = inputPlace.toLowerCase();
-  if (query.includes('ö')) {
-    query = query.replace('ö', "oe");
-  }
-  if (query.includes('ä')) {
-    query = query.replace('ä', "ae");
-  }
-  if (query.includes('ü')) {
-    query = query.replace('ü', "ue");
-  }
-  if (query.includes('ß')) {
-    query = query.replace('ß', "ss");
-  }
+  const query = inputPlace.toLowerCase()
+    .replace('ö', "oe")
+    .replace('ä', "ae")
+    .replace('ü', "ue")
+    .replace('ß', "ss");
 
   if (data.properties.plz == query 
     || data.properties.name.toLowerCase() == query
     || data.properties.name.toLowerCase().includes(query)) {
-      return true;
-    }
+    return true;
+  }
   return false;
 }
 

@@ -49,6 +49,7 @@ export interface AppState {
   loading: Map<string, string>;
   viewPortEventsCount: number;
   searchResult: boolean;
+  hasSearchError: boolean;
 }
 
 export const defaultAppState: AppState = {
@@ -70,7 +71,8 @@ export const defaultAppState: AppState = {
   currentVisual: config.defaultVisual,
   loading: new Map(),
   viewPortEventsCount: 0,
-  searchResult: true,
+  searchResult: false,
+  hasSearchError: false
 };
 
 class AppReducer extends Reducer<AppState> {
@@ -123,8 +125,8 @@ class AppReducer extends Reducer<AppState> {
   public popLoading(id: string) {
     this.state.loading.delete(id)
   }
-  public setErrorStateSearch(found: boolean) {
-    this.state.searchResult = found
+  public setErrorStateSearch(has: boolean) {
+    this.state.hasSearchError = has
   }
 }
 
