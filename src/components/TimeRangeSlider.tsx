@@ -10,7 +10,7 @@ import { State } from "../state";
 import { AppApi } from "../state/app";
 
 export type Props = {
-  onChange: Function | null;
+  onChange?: Function | null;
 }
 
 const TouchSlider = withStyles({

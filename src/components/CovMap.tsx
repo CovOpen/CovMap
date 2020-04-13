@@ -162,10 +162,7 @@ export const CovMap = () => {
             feature={currentFeature}
           />
         </ReactMapGL>
-        <TimeRangeSlider onChange={() => {
-          resetCurrentFeature();
-          setCurrenFeature(null)
-        }} />
+        <TimeRangeSlider />
         <Dialog
           aria-labelledby="simple-dialog-title"
           open={!datasetFound}

@@ -11,18 +11,18 @@ export const FeatureInfo = ({ feature, dataField }: { feature: any; dataField: s
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const datasets = useSelector((state: State) => state.app.datasets);
   const currentDate = useSelector((state: State) => state.app.currentDate);
-
-  if (!feature) {
-    return null
-  }
-
+  const datasetFound = useSelector((state: State) => state.app.datasetFound);
   const visual = config.visuals[currentVisual]
   const mappingId = visual.defaultMapping
   const activeMapping = visual.mappings[mappingId]
-  const InfoComponent = activeMapping.FeatureInfo
   const timeKey = formatUTCDate(currentDate)
   const currentDataSet = datasets.get(`${timeKey}-${activeMapping.datasourceId}`)
   
+  if (!feature || !datasetFound || !currentDataSet) {
+    return null
+  }
+  
+  const InfoComponent = activeMapping.FeatureInfo
   let rawData: any = null
   if (currentDataSet) {
     rawData = currentDataSet.data[feature.feature.properties[activeMapping.geoProperty]]
