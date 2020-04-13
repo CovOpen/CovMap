@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Slider from '@material-ui/core/Slider';
 import ValueLabel from '@material-ui/core/Slider/ValueLabel';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -42,6 +42,7 @@ export function TimeRangeSlider ({ onChange = () => {} }: Props) {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
   const currentDay = useSelector((state: State) => state.app.currentDay);
+  const [value, setValue] = useState(() => currentDay)
   
   function valuetext(value) {
     return formatNowMinusDays(value);
@@ -49,11 +50,13 @@ export function TimeRangeSlider ({ onChange = () => {} }: Props) {
   
   let timeout: any = 0;
   function onDayChange(event, value) {
+    clearTimeout(timeout);
+    setValue(value)
+
     if (currentDay === value) {
       return
     }
       
-    clearTimeout(timeout);
     timeout = setTimeout(() => {
       const dateString = formatNowMinusDays(value);
       dispatch(AppApi.setCurrentDay(value));
@@ -65,7 +68,7 @@ export function TimeRangeSlider ({ onChange = () => {} }: Props) {
     <TouchSlider
       className={classes.slider}
       defaultValue={0}
-      value={currentDay}
+      value={value}
       getAriaValueText={valuetext}
       onChange={onDayChange}
       aria-labelledby="discrete-slider-small-steps"
