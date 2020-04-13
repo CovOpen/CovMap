@@ -1,10 +1,14 @@
 import { Reducer } from "./reduxHelper";
 import { GeoJSON } from "geojson";
 
-import { AppVisualLayer } from '../app-config.types'
 import { config } from '../../app-config/index'
 
 export const backendUrl = "/api";
+
+export type MapSet = {
+  geo: GeoJSON;
+  timeKeys: Array<string>;
+}
 
 export interface MapArea {
   celat: number;
@@ -38,8 +42,7 @@ export interface AppState {
   history: string[];
   geos: Map<string, GeoJSON>;
   datasets: Map<string, MapData>;
-  mappedSets: Map<VisualId, Map<string, GeoJSON>>;
-  layers: Map<VisualId, Array<AppVisualLayer>>;
+  mappedSets: Map<VisualId, MapSet>;
   currentDate: Date; 
   datasetFound: boolean;
   currentVisual: VisualId; // TODO: Rename to currentVisual (when moving to app-config driven build)
@@ -60,8 +63,7 @@ export const defaultAppState: AppState = {
   history: [],
   geos: new Map<string, GeoJSON>(),
   datasets: new Map<string, MapData>(),
-  mappedSets: new Map<VisualId, Map<string, GeoJSON>>(), 
-  layers: new Map<VisualId, Array<AppVisualLayer>>(), 
+  mappedSets: new Map<VisualId, MapSet>(), 
   currentDate: new Date(),
   datasetFound: true,
   currentVisual: config.defaultVisual,
@@ -96,14 +98,8 @@ class AppReducer extends Reducer<AppState> {
   public addDataset(id: string, data: MapData) {
     this.state.datasets.set(id, data);
   }
-  public addMappedSet(visualId: VisualId, id: string, data: GeoJSON) {
-    if (!this.state.mappedSets.has(visualId)) {
-      this.state.mappedSets.set(visualId, new Map<string, GeoJSON>())
-    }
-    this.state.mappedSets.get(visualId)?.set(id, data);
-  }
-  public setLayers(visualId: VisualId, layers: Array<AppVisualLayer>) {
-    this.state.layers.set(visualId, layers)
+  public addMappedSet(visualId: VisualId, data: MapSet) {
+    this.state.mappedSets.set(visualId, data);
   }
   public setCurrentDate(date: Date) {
     this.state.currentDate = date;

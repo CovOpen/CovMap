@@ -1,5 +1,7 @@
+import { GeoJSON, FeatureCollection } from "geojson";
+
 import { ReduxDispatch } from "../../useThunkDispatch";
-import { AppApi, VisualId } from "../app";
+import { AppApi, VisualId, MapSet } from "../app";
 import { State } from "../";
 
 import { config } from '../../../app-config/index'
@@ -28,6 +30,8 @@ const fetchAndTransform = async (
     
     return json
   }
+
+  return null
 }
 
 export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Date) {
@@ -37,10 +41,10 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Date
     try {
       const mapping = config.visuals[visualId].mappings[mappingId]
       const { datasourceId, geoId, transformData, transformGeo, geoProperty, dataProperty } = mapping
-      const { datasets, geos }  = getState().app
+      const { datasets, geos, mappedSets }  = getState().app
       const datasource = config.datasources[datasourceId]
       const geo = config.geos[geoId]
-      const formattedDate = formatUTCDate(date)
+      const timeKey = formatUTCDate(date)
 
       const [data, geojson] = await Promise.all([
         Promise.resolve().then(async () => {
@@ -49,42 +53,48 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Date
             return datasets.get(datasetKey)
           }
 
-          const json = await fetchAndTransform(datasource.url, formattedDate, date, dataProperty, transformData)
-
-          if (json.data.length !== 0) {
-            return json
-          }
+          return fetchAndTransform(datasource.url, timeKey, date, dataProperty, transformData)
         }),
-        Promise.resolve().then(async () => {
-          const geoKey = `${formatUTCDate(date)}-${geoId}`
+        Promise.resolve().then(async (): Promise<GeoJSON | undefined> => {
+          const geoKey = `${geoId}`
           if (geos.has(geoKey)) {
             return geos.get(geoKey)
           }
 
-          return fetchAndTransform(geo.url, formattedDate, date, geoProperty, transformGeo)
+          return fetchAndTransform(geo.url, timeKey, date, geoProperty, transformGeo)
         }),
       ])
 
-      if (!data) {
+      if (!data || !geojson) {
         dispatch(AppApi.popLoading('mappedSet'))
         dispatch(AppApi.setDatasetFound(false))
         return
       }
 
-      const mapset = Object.assign({}, geojson, {
-        features: geojson.features.map(feature => ({
-          ...feature,
-          properties: {
-            ...feature.properties,
-            ...data.data[feature.properties[geoProperty]]
-          }
-        }))
+      let mapset: MapSet | undefined = mappedSets.get(visualId)
+      if (!mapset) {
+        mapset = {
+          timeKeys: [],
+          geo: geojson
+        }
+      }
+
+      // TODO: Extend to make it work with differen GeoJSON types than FeatureCollection
+      Object.assign(mapset, {
+        timeKeys: mapset.timeKeys.concat(timeKey),
+        geo: {
+          ...mapset.geo,
+          features: (mapset.geo as FeatureCollection).features.map(feature => ({
+            ...feature,
+            properties: {
+              ...feature.properties,
+              [timeKey]: data.data[(feature.properties || {})[geoProperty]],
+            }
+          }))
+        }
       })
 
-      const mapsetKey = `${mappingId}-${formatUTCDate(date)}`
-
-      dispatch(AppApi.addMappedSet(visualId, mapsetKey, mapset));
-      dispatch(AppApi.setDatasetFound(true))
+      dispatch(AppApi.addMappedSet(visualId, mapset));
     } catch(err) {
       // TODO: error snackbar
       console.error(err)

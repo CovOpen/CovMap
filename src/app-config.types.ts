@@ -35,7 +35,7 @@ export enum LayerType {
     LINE = 'line'
 }
 
-export type AppVisualLayerFunction = (dataField?: string) => AppVisualLayer
+export type AppVisualLayerFunction = (dataField?: string, timeKey?: string) => AppVisualLayer
 
 export type AppVisualLayer = {
     id: LayerId;

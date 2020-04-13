@@ -1,10 +1,10 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense } from "react";
 const Source = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/source'));
 const Layer = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/layer'));
 import { useSelector } from "react-redux";
 
-import { State } from "../state";
 import { AppApi } from "../state/app";
+import { State } from "../state";
 import { getFallbackComponent } from './getFallback';
 import { config } from '../../app-config/index'
 import { useThunkDispatch } from "../useThunkDispatch";
@@ -25,34 +25,30 @@ export const Visual = ({ dataField }: VisualProps) => {
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const mappedSets = useSelector((state: State) => state.app.mappedSets);
   const currentDate = useSelector((state: State) => state.app.currentDate);
-  const layers = useSelector((state: State) => state.app.layers);
   const visual = config.visuals[currentVisual]
   const mappingId = visual.defaultMapping
-  const mapsetKey = `${mappingId}-${formatUTCDate(currentDate)}`
-  const mapset = mappedSets.get(currentVisual)?.get(mapsetKey)
+  const mapset = mappedSets.get(currentVisual)
+  const timeKey = formatUTCDate(currentDate)
 
-  useEffect(() => {
-    const executedLayers = visual.layers.map(layer => {
-      if (typeof layer === 'function') {
-        return layer(dataField)
-      }
-      return layer
-    })
-    dispatch(AppApi.setLayers(currentVisual, executedLayers))
-  }, [dataField])
-
-  if (!mapset) {
+  if (!mapset || !mapset.timeKeys.includes(timeKey)) {
     dispatch(fetchMappedSet(currentVisual, mappingId, currentDate))
     return null
   }
-  const visualLayers = layers.get(currentVisual)
-  if (!visualLayers) {
-    return null
-  }
+  
+  dispatch(AppApi.setDatasetFound(true))
+  
+  const visualLayers = visual.layers.map(layer => {
+    if (typeof layer === 'function') {
+      return layer(dataField, timeKey)
+    }
+    return layer
+  })
+
+  // TODO: Render function is called too often, seems unnecessary
   
   return (
     <Suspense fallback={getFallbackComponent()}>
-      <Source id={mappingId} type="geojson" data={mapset}>
+      <Source id={mappingId} type="geojson" data={mapset.geo}>
         {visualLayers.map(layer => <Layer key={layer.id} {...layer} />)}
       </Source>
     </Suspense>

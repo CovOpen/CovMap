@@ -46,6 +46,10 @@ export const config: AppConfig = {
           geoProperty: 'cca_2',
           dataProperty: 'RS',
           transformData: (json) => {
+            if (!json.result.length) {
+              return null
+            }
+
             const propertiesByCCA2 = json.result.reduce((acc, curr) => Object.assign(acc, {
               [curr.RS]: curr
             }), {})
@@ -57,25 +61,26 @@ export const config: AppConfig = {
         }
       },
       layers: [
-        (dataField) => ({
+        (dataField, timeKey) => ({
           id: "areas-fill",
           sourceId: "cases-per-population",
           type: LayerType.FILL,
           paint: {
-            'fill-color': {
-              property: dataField,
-              stops: [
-                [0, '#f8fbff'],
-                [0.05, '#e1ebf5'],
-                [0.1, '#cadbed'],
-                [0.3, '#a6c9df'],
-                [0.5, '#79add2'],
-                [0.8, '#5591c3'],
-                [1, '#3771b0'],
-                [1.2, '#205297'],
-                [1.4, '#113068'],
-              ]
-            },
+            'fill-color': [
+              'interpolate',
+              ['linear'],
+              ['get', dataField, ['get', timeKey]],
+              // ['get', dataField],
+              0, '#f8fbff',
+              0.05, '#e1ebf5',
+              0.1, '#cadbed',
+              0.3, '#a6c9df',
+              0.5, '#79add2',
+              0.8, '#5591c3',
+              1, '#3771b0',
+              1.2, '#205297',
+              1.4, '#113068',
+            ],
             'fill-opacity': 0.8,
           }
         }),

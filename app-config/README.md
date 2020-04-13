@@ -13,6 +13,6 @@ at `src/app-config.types.ts`.
 
 ### build.json
 
-Webpack uses a JSON customization file, which has to be at `app-config/build.json` 
+Webpack uses a JSON customization file, which has to be at `app-config/build.json`
 and it is expected to exposed from `app-config/index.ts` as well.
 
