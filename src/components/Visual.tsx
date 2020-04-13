@@ -8,7 +8,7 @@ import { getFallbackComponent } from './getFallback';
 import { config } from '../../app-config/index'
 import { useThunkDispatch } from "../useThunkDispatch";
 import { fetchMappedSet } from "../state/thunks/fetchMappedSet"
-import { plusDays, formatUTCDate } from '../lib/formatUTCDate.js'
+import { formatUTCDate } from '../lib/formatUTCDate.js'
 
 export type VisualProps = {
   dataField: string;
@@ -23,15 +23,14 @@ export const Visual = ({ dataField }: VisualProps) => {
   const dispatch = useThunkDispatch();
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const mappedSets = useSelector((state: State) => state.app.mappedSets);
-  const currentDay = useSelector((state: State) => state.app.currentDay);
-  const date = plusDays(currentDay)
+  const currentDate = useSelector((state: State) => state.app.currentDate);
   const visual = config.visuals[currentVisual]
   const mappingId = visual.defaultMapping
-  const mapsetKey = `${mappingId}-${formatUTCDate(date)}`
+  const mapsetKey = `${mappingId}-${formatUTCDate(currentDate)}`
   const mapset = mappedSets.get(currentVisual)?.get(mapsetKey)
 
   if (!mapset) {
-    dispatch(fetchMappedSet(currentVisual, mappingId, date))
+    dispatch(fetchMappedSet(currentVisual, mappingId, currentDate))
     return null
   }
   

@@ -5,7 +5,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { useSelector } from "react-redux";
 
 import { useThunkDispatch } from "../useThunkDispatch";
-import { formatNowMinusDays } from '../lib/formatUTCDate.js';
+import { formatNowMinusDays, plusDays } from '../lib/formatUTCDate.js';
 import { State } from "../state";
 import { AppApi } from "../state/app";
 
@@ -38,11 +38,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const MAX_SLIDER_VALUE = 0
+
+const diffDays = (date1: Date, date2: Date): number => {
+  const diffTime = Math.abs(date2.getTime() - date1.getTime());
+  return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+}
+
 export function TimeRangeSlider ({ onChange = () => {} }: Props) {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
-  const currentDay = useSelector((state: State) => state.app.currentDay);
-  const [value, setValue] = useState(() => currentDay)
+  const currentDate = useSelector((state: State) => state.app.currentDate);
+  const [value, setValue] = useState<number>(() => {
+    const today = new Date();
+    const diff =  diffDays(today, currentDate)
+
+    return Math.min(diff, MAX_SLIDER_VALUE)
+  })
   
   function valuetext(value) {
     return formatNowMinusDays(value);
@@ -53,14 +65,16 @@ export function TimeRangeSlider ({ onChange = () => {} }: Props) {
     clearTimeout(timeout);
     setValue(value)
 
-    if (currentDay === value) {
+    const newDate = plusDays(value)
+    const diff = diffDays(newDate, currentDate);
+
+    if (diff === 0) {
       return
     }
       
     timeout = setTimeout(() => {
-      const dateString = formatNowMinusDays(value);
-      dispatch(AppApi.setCurrentDay(value));
-      (onChange as Function)(dateString);
+      dispatch(AppApi.setCurrentDate(newDate));
+      (onChange as Function)(newDate);
     }, 400);
   }
 

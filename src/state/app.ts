@@ -38,7 +38,7 @@ export interface AppState {
   geos: Map<string, GeoJSON>;
   datasets: Map<string, MapData>;
   mappedSets: Map<VisualId, Map<string, GeoJSON>>;
-  currentDay: number; 
+  currentDate: Date; 
   datasetFound: boolean;
   currentVisual: VisualId; // TODO: Rename to currentVisual (when moving to app-config driven build)
   loading: Map<string, string>;
@@ -59,7 +59,7 @@ export const defaultAppState: AppState = {
   geos: new Map<string, GeoJSON>(),
   datasets: new Map<string, MapData>(),
   mappedSets: new Map<VisualId, Map<string, GeoJSON>>(), 
-  currentDay: 0,
+  currentDate: new Date(),
   datasetFound: true,
   currentVisual: config.defaultVisual,
   loading: new Map(),
@@ -99,8 +99,8 @@ class AppReducer extends Reducer<AppState> {
     }
     this.state.mappedSets.get(visualId)?.set(id, data);
   }
-  public setCurrentDay(day: number) {
-    this.state.currentDay = day;
+  public setCurrentDate(date: Date) {
+    this.state.currentDate = date;
   }
   public setDatasetFound(found: boolean) {
     this.state.datasetFound = found;
