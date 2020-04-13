@@ -7,52 +7,16 @@ const ReactMapGL = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'reac
 const Popup = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/popup'));
 
 import { State } from "../state";
-import { AppApi, VisualType } from "../state/app";
+import { AppApi } from "../state/app";
 import { useThunkDispatch } from "../useThunkDispatch";
-import { fetchDataset } from "../state/thunks/fetchDataset"
-import { fetchPostCodeAreas } from "../state/thunks/fetchPostCodeAreas"
-import { fetchPostCodePoints } from "../state/thunks/fetchPostCodePoints"
-import { fetchDistrictAreas } from "../state/thunks/fetchDistrictAreas"
 import { Settings } from './Settings';
 import { Zoom } from './Zoom';
 import { MAX_ZOOM_LEVEL } from '../constants';
 import { TimeRangeSlider } from './TimeRangeSlider';
 import { getFallbackComponent } from './getFallback';
-import { formatNowMinusDays } from '../lib/formatUTCDate.js';
+import { Visual, FeatureInfo } from './Visual';
 import { config } from '../../app-config/index'
  
-import { VisualProps, FeatureInfoProps } from './types'; // eslint-disable-line
-import { PostCodeAreas, FeatureInfo as PostCodeAreaFeatureInfo } from './visuals/PostCodeAreas'
-import { DistrictAreas, FeatureInfo as DistrictAreaFeatureInfo } from './visuals/DistrictAreas'
-import { RKIDistrictAreas, FeatureInfo as RKIDistrictAreaFeatureInfo } from './visuals/RKIDistrictAreas'
-import { Heatmap, FeatureInfo as HeatmapFeatureInfo } from './visuals/Heatmap'
-import { Bubblemap, FeatureInfo as BubblemapFeatureInfo } from './visuals/Bubblemap'
-
-const typeToVisualComponentMap = {
-  [VisualType.POSTCODE]: PostCodeAreas,
-  [VisualType.HEATMAP]: Heatmap,
-  [VisualType.BUBBLEMAP]: Bubblemap,
-  [VisualType.DISTRICTS]: DistrictAreas,
-  [VisualType.RKI_DISTRICTS]: RKIDistrictAreas
-};
-
-const typeToFeatureInfoComponentMap = {
-  [VisualType.POSTCODE]: PostCodeAreaFeatureInfo,
-  [VisualType.HEATMAP]: HeatmapFeatureInfo,
-  [VisualType.BUBBLEMAP]: BubblemapFeatureInfo,
-  [VisualType.DISTRICTS]: DistrictAreaFeatureInfo,
-  [VisualType.RKI_DISTRICTS]: RKIDistrictAreaFeatureInfo
-};
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      VisualComponent: VisualProps;
-      FeatureInfoComponent: FeatureInfoProps;
-    }
-  }
-}
-
 const useStyles = makeStyles((theme) => ({
   main: {
     height: '100%',
@@ -72,11 +36,6 @@ export const CovMap = () => {
   const dispatch = useThunkDispatch();
   // const position = useSelector((state: State) => state.app.currentPosition); // TODO
   const stateViewport = useSelector((state: State) => state.app.viewport);
-  const currentDataset = useSelector((state: State) => state.app.currentDataset); // TODO
-  const postCodeAreas = useSelector((state: State) => state.app.postCodeAreas);
-  const postCodePoints = useSelector((state: State) => state.app.postCodePoints);
-  const districtAreas = useSelector((state: State) => state.app.districtAreas);
-  const visualType = useSelector((state: State) => state.app.visualType);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
   const [currentFeature, setCurrenFeature] = useState(null)
   const mapRef = createRef<any>();
@@ -90,15 +49,6 @@ export const CovMap = () => {
   }
 
   useEffect(() => {
-    if (!postCodePoints) {
-      dispatch(fetchPostCodePoints());
-    }
-    if (!postCodeAreas) {
-      dispatch(fetchPostCodeAreas());
-    }
-    if (!districtAreas) {
-      dispatch(fetchDistrictAreas());
-    }
     const interval = setInterval(() => {
       if (viewPortEventCounter > 1000) {
         clearInterval(interval)
@@ -107,11 +57,6 @@ export const CovMap = () => {
       dispatch(AppApi.setViewportEventCount(viewPortEventCounter))
     }, 10000)
   }, []);
-
-  useEffect(() => {
-    dispatch(AppApi.setCurrentDataset(null))
-    dispatch(fetchDataset(formatNowMinusDays(0)));
-  }, [visualType])
 
   // Note: This is to ensure the event listeners are attached only once,
   // because react useEffect fires multiple times, even though mapRef.current did not change
@@ -155,9 +100,6 @@ export const CovMap = () => {
     dispatch(AppApi.setViewport(newViewPort))
   }
 
-  const VisualComponent = typeToVisualComponentMap[visualType];
-  const FeatureInfoComponent = typeToFeatureInfoComponentMap[visualType];
-
   const resetCurrentFeature = () => {
     if (currentFeature && mapRef.current) {
       const map = mapRef.current.getMap();
@@ -189,7 +131,7 @@ export const CovMap = () => {
     }
   }
 
-  const dataField = 'coughs';
+  const dataField = 'cases_per_population';
 
   return (
     <>
@@ -209,12 +151,8 @@ export const CovMap = () => {
           onViewportChange={onViewportChange}
           mapboxApiAccessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
         >
-          <VisualComponent
+          <Visual
             dataField={dataField}
-            currentDataset={currentDataset}
-            postCodeAreas={postCodeAreas}
-            postCodePoints={postCodePoints}
-            districtAreas={districtAreas}
           />
           {currentFeature && <Suspense fallback={getFallbackComponent()}>
             <Popup
@@ -225,7 +163,7 @@ export const CovMap = () => {
               anchor="top"
               style={{ zIndex: 1100 }}
             >
-              <FeatureInfoComponent
+              <FeatureInfo
                 dataField={dataField}
                 feature={(currentFeature as any).feature}
               />

@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 import { useThunkDispatch } from "../useThunkDispatch";
 import { formatNowMinusDays } from '../lib/formatUTCDate.js';
-import { fetchDataset } from "../state/thunks/fetchDataset"
 import { State } from "../state";
 import { AppApi } from "../state/app";
 
@@ -53,12 +52,11 @@ export function TimeRangeSlider ({ onChange = () => {} }: Props) {
     if (currentDay === value) {
       return
     }
-    dispatch(AppApi.setCurrentDay(value));
       
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       const dateString = formatNowMinusDays(value);
-      dispatch(fetchDataset(dateString));
+      dispatch(AppApi.setCurrentDay(value));
       (onChange as Function)(dateString);
     }, 400);
   }

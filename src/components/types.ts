@@ -1,3 +1,4 @@
+// TODO: Remove when all visuals are moved to app-config
 export type VisualProps = {
   districtAreas?: any;
   postCodeAreas?: any;

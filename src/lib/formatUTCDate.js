@@ -15,8 +15,11 @@ function formatUTCDate(date) {
 
 const oneDay = 1000 * 60 * 60 * 24;
 
-const formatNowMinusDays = (days) => formatUTCDate(new Date(Date.now() - oneDay * Math.abs(days)))
+const formatNowMinusDays = (days) => formatUTCDate(plusDays(days))
+const plusDays = (days) => new Date(Date.now() + oneDay * days)
 
 module.exports = {
-  formatNowMinusDays
+  formatNowMinusDays,
+  formatUTCDate,
+  plusDays
 }

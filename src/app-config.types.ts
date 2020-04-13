@@ -2,10 +2,43 @@ import { ComponentType } from 'react'
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 
 export type AppConfig = {
-  ui: AppUI;
-  content?: AppContent;
-  buildJSON: BuildJSON;
-  mapSettings?: MapSettings;
+    ui: AppUI;
+    content?: AppContent;
+    buildJSON: BuildJSON;
+    mapSettings?: MapSettings;
+    defaultVisual: string;
+    datasources: Record<DatasourceId, AppDatasource>;
+    visuals: Record<VisualId, AppVisual>;
+    geos: Record<GeoId, AppGeo>;
+}
+
+export type DatasourceId = string
+export type VisualId = string
+export type GeoId = string
+export type MappingId = string
+
+export type AppDatasource = {
+    url: string | Function;
+}
+
+export type AppVisual = {
+    name: string;
+    description: string;
+    defaultMapping: MappingId;
+    mappings: Record<MappingId, AppVisualMapping>;
+}
+
+export type AppVisualMapping = {
+    geoId: string;
+    datasourceId: string;
+    geoProperty: string;
+    dataProperty: string;
+    transformData?: Function;
+    transformGeo?: Function;
+}
+
+export type AppGeo = {
+    url: string | Function;
 }
 
 export type AppContent = {

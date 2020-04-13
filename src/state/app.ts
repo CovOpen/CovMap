@@ -1,6 +1,8 @@
 import { Reducer } from "./reduxHelper";
 import { GeoJSON } from "geojson";
 
+import { config } from '../../app-config/index'
+
 export const backendUrl = "/api";
 
 export interface MapArea {
@@ -19,13 +21,7 @@ export type MapData = {
   data: Array<Record<string, Record<string, number>>>;
 }
 
-export enum VisualType {
-  POSTCODE,
-  HEATMAP,
-  BUBBLEMAP,
-  DISTRICTS,
-  RKI_DISTRICTS
-}
+export type VisualId = string;
 
 export type Viewport = {
   latitude: number;
@@ -39,13 +35,12 @@ export interface AppState {
   userAllowedLocation: boolean;
   currentArea: MapArea | null;
   history: string[];
-  postCodeAreas: GeoJSON | null;
-  postCodePoints: GeoJSON | null;
-  districtAreas: GeoJSON | null;
-  currentDataset: MapData | null;
+  geos: Map<string, GeoJSON>;
+  datasets: Map<string, MapData>;
+  mappedSets: Map<VisualId, Map<string, GeoJSON>>;
   currentDay: number; 
   datasetFound: boolean;
-  visualType: VisualType; // TODO: Rename to currentVisual (when moving to app-config driven build)
+  currentVisual: VisualId; // TODO: Rename to currentVisual (when moving to app-config driven build)
   loading: Map<string, string>;
   viewPortEventsCount: number;
 }
@@ -61,13 +56,12 @@ export const defaultAppState: AppState = {
   },
   currentArea: null,
   history: [],
-  postCodeAreas: null,
-  postCodePoints: null,
-  districtAreas: null,
-  currentDataset: null,
+  geos: new Map<string, GeoJSON>(),
+  datasets: new Map<string, MapData>(),
+  mappedSets: new Map<VisualId, Map<string, GeoJSON>>(), 
   currentDay: 0,
   datasetFound: true,
-  visualType: VisualType.RKI_DISTRICTS,
+  currentVisual: config.defaultVisual,
   loading: new Map(),
   viewPortEventsCount: 0,
 };
@@ -93,17 +87,17 @@ class AppReducer extends Reducer<AppState> {
   public setCurrentArea(area: MapArea) {
     this.state.currentArea = area;
   }
-  public setPostCodeAreas(areas: GeoJSON) {
-    this.state.postCodeAreas = areas;
+  public addGeo(id: string, geo: GeoJSON) {
+    this.state.geos.set(id, geo);
   }
-  public setPostCodePoints(points: GeoJSON) {
-    this.state.postCodePoints = points;
+  public addDataset(id: string, data: MapData) {
+    this.state.datasets.set(id, data);
   }
-  public setDistrictAreas(areas: GeoJSON) {
-    this.state.districtAreas = areas;
-  }
-  public setCurrentDataset(data: MapData | null) {
-    this.state.currentDataset = data;
+  public addMappedSet(visualId: VisualId, id: string, data: GeoJSON) {
+    if (!this.state.mappedSets.has(visualId)) {
+      this.state.mappedSets.set(visualId, new Map<string, GeoJSON>())
+    }
+    this.state.mappedSets.get(visualId)?.set(id, data);
   }
   public setCurrentDay(day: number) {
     this.state.currentDay = day;
@@ -111,8 +105,8 @@ class AppReducer extends Reducer<AppState> {
   public setDatasetFound(found: boolean) {
     this.state.datasetFound = found;
   }
-  public setVisualType(type: VisualType) {
-    this.state.visualType = type;
+  public setCurrentVisual(id: VisualId) {
+    this.state.currentVisual = id;
   }
   public setViewportEventCount(count: number) {
     this.state.viewPortEventsCount = count;

@@ -11,8 +11,9 @@ import LayersClearIcon from '@material-ui/icons/LayersClear'
 import { makeStyles } from '@material-ui/core/styles';
 
 import { State } from "../state";
-import { VisualType, AppApi } from '../state/app';
+import { VisualId, AppApi } from '../state/app';
 import { useThunkDispatch } from "../useThunkDispatch";
+import { config } from "../../app-config/index"
 
 const useStyles = makeStyles((theme) => ({
   fab: {
@@ -31,7 +32,7 @@ export function Settings () {
   const dispatch = useThunkDispatch();
   const classes = useStyles();
   const [settingsAnchorEl, setSettingsAnchorEl] = useState(null);
-  const visualType = useSelector((state: State) => state.app.visualType); // TODO
+  const currentVisual = useSelector((state: State) => state.app.currentVisual); // TODO
   
   const handleSettingsClick = (event) => {
     setSettingsAnchorEl(event.currentTarget);
@@ -42,6 +43,14 @@ export function Settings () {
   };
   const settingsOpen = Boolean(settingsAnchorEl);
   
+  const SelectEntries = () => {   
+    return <>
+      {Object.keys(config.visuals).map(key => (
+        <MenuItem key={key} style={{ touchAction: 'none' }} value={key}>{config.visuals[key].name}</MenuItem>
+      ))}
+    </>
+  }
+
   return (<>
     <Fab className={classes.fab} color="primary" aria-label="settings" onClick={handleSettingsClick}>
       {settingsOpen ? <LayersClearIcon /> : <LayersIcon />}
@@ -68,12 +77,13 @@ export function Settings () {
             style={{ touchAction: 'none' }}
             labelId="visual-type-label"
             id="visual-type-select"
-            value={visualType}
-            onChange={(event) => dispatch(AppApi.setVisualType(event.target.value as VisualType))}
+            value={currentVisual}
+            onChange={(event) => dispatch(AppApi.setCurrentVisual(event.target.value as VisualId))}
           >
-            <MenuItem style={{ touchAction: 'none' }} value={VisualType.POSTCODE}>Post Code Areas</MenuItem>
+            <SelectEntries />
+            {/* <MenuItem style={{ touchAction: 'none' }} value={VisualType.POSTCODE}>Post Code Areas</MenuItem>
             <MenuItem style={{ touchAction: 'none' }} value={VisualType.DISTRICTS}>Rural Districts</MenuItem>
-            <MenuItem style={{ touchAction: 'none' }} value={VisualType.RKI_DISTRICTS}>RKI - Landkreis Fallzahlen</MenuItem>
+            <MenuItem style={{ touchAction: 'none' }} value={VisualType.RKI_DISTRICTS}>RKI - Landkreis Fallzahlen</MenuItem> */}
             {/*<MenuItem style={{ touchAction: 'none' }} value={VisualType.HEATMAP}>Heatmap</MenuItem>
             <MenuItem style={{ touchAction: 'none' }} value={VisualType.BUBBLEMAP}>Bubblemap</MenuItem>*/}
           </Select>

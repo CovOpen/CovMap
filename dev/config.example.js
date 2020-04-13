@@ -1,19 +1,10 @@
 // Purely declarative App customization
 module.exports = {
   meta: {
-    title: 'CovMapper',
     description: '...',
     keywords: '...'
   },
-  app: {
-    logo: './app-logo.svg',
-    colorPalette: {
-      primary: '...',
-      secondary: '...',
-    }
-  },
   map: {
-    accessToken: '...',
     style: '...'
   }
   datasources: [{
