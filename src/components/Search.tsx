@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { AppApi } from "../state/app";
 import { State } from "../state";
+import { config } from "../../app-config/index"
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -54,7 +55,10 @@ export const Search = () => {
   const dispatch = useThunkDispatch();
   const classes = useStyles();
   const hasSearchError = (useSelector((state: State) => state.app.hasSearchError))
-  
+  const currentVisual = (useSelector((state: State) => state.app.currentVisual))
+  const visual = config.visuals[currentVisual]
+  const placeholder = visual.search?.placeholder
+
   const handleSearch = (event) => {
     const location = event.target.value; 
     dispatch(switchViewToPlace(location, () => {
@@ -75,7 +79,7 @@ export const Search = () => {
           }
         }}
         type = 'text'
-        placeholder="PLZ oder Wohnort..."
+        placeholder={placeholder || 'Suche'}
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,

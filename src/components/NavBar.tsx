@@ -41,8 +41,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+export type NavBarProps = {
+  showSearch: boolean;
+}
 
-export const NavBar = () => {
+export const NavBar = ({ showSearch }: NavBarProps) => {
   const dispatch = useThunkDispatch();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -78,7 +81,7 @@ export const NavBar = () => {
     <AppBar position="static" style={{ position: 'relative', zIndex: 1200, touchAction: 'none' }}>
       <Toolbar style={{ height: 64 }}>
         {(Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} /> }
-        < Search />     
+        {showSearch && < Search />}
         <div>
           <IconButton
             aria-label="account of current user"

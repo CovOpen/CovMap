@@ -72,7 +72,7 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Date
         return
       }
 
-      let mapset: MapSet | undefined = mappedSets.get(visualId)
+      let mapset: MapSet | undefined = mappedSets.get(visualId)?.get(mappingId)
       if (!mapset) {
         mapset = {
           timeKeys: [],
@@ -96,7 +96,7 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Date
         }
       })
 
-      dispatch(AppApi.addMappedSet(visualId, mapset));
+      dispatch(AppApi.addMappedSet(visualId, mappingId, mapset));
     } catch(err) {
       // TODO: error snackbar
       console.error(err)

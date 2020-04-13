@@ -23,7 +23,7 @@ export const Visual = ({ dataField }: VisualProps) => {
   const visual = config.visuals[currentVisual]
   // TODO: handle multiple mappings (map and merge data on same geojson, layer decides what to render)
   const mappingId = visual.defaultMapping
-  const mapset = mappedSets.get(currentVisual)
+  const mapset = mappedSets.get(currentVisual)?.get(mappingId)
   const timeKey = formatUTCDate(currentDate)
 
   if (!mapset || !mapset.timeKeys.includes(timeKey)) {

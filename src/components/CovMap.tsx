@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createRef } from "react";
+import React, { useEffect, createRef } from "react";
 import { useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
@@ -37,7 +37,7 @@ export const CovMap = () => {
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const stateViewport = useSelector((state: State) => state.app.viewport);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
-  const [currentFeature, setCurrenFeature] = useState(null)
+  const currentFeature = useSelector((state: State) => state.app.currentFeature);
   const mapRef = createRef<any>();
   const visual = config.visuals[currentVisual]
 
@@ -82,6 +82,31 @@ export const CovMap = () => {
     }
   }, [changedMapRef])
 
+  const resetFeature = (feature) => {
+    if (mapRef.current) {
+      const map = mapRef.current.getMap();
+      map.setFeatureState(
+        { source: feature.source, id: feature.id },
+        { hover: false }
+      );
+    }
+  }
+
+  useEffect(() => {
+    if (currentFeature.previousFeature) {
+      resetFeature(currentFeature.previousFeature)
+    }
+    if (currentFeature.feature) {
+      if (mapRef.current) {
+        const map = mapRef.current.getMap();
+        map.setFeatureState(
+          { source: currentFeature.feature.source, id: currentFeature.feature.id },
+          { hover: true }
+        );
+      }
+    }
+  }, [currentFeature])
+
   const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
 
   const onViewportChange = ({ latitude, longitude, zoom }) => {
@@ -101,36 +126,18 @@ export const CovMap = () => {
     dispatch(AppApi.setViewport(newViewPort))
   }
 
-  const resetCurrentFeature = () => {
-    if (currentFeature && mapRef.current) {
-      const map = mapRef.current.getMap();
-      map.setFeatureState(
-        { source: (currentFeature as any).feature.source, id: (currentFeature as any).feature.id },
-        { hover: false }
-      );
-    }
-  }
-
   const mappingLayers = Object.keys(visual.mappings);
   const handleMapClick = (pointerEvent) => {
     const { features } = pointerEvent;
     if (features.length > 0) {
       if (mapRef.current) {
-        const map = mapRef.current.getMap();
-
         // TODO: When app is setup by config lookup a match from configured layers
         if (!mappingLayers.includes(features[0].source)) {
           return;
         }
-        resetCurrentFeature()
-
-        map.setFeatureState(
-          { source: (features[0] as any).source, id: (features[0] as any).id },
-          { hover: true }
-        );
       }
 
-      setCurrenFeature({ feature: features[0], lngLat: pointerEvent.lngLat } as any);
+      dispatch(AppApi.setCurrentFeature(features[0], pointerEvent.lngLat));
     }
   }
 
@@ -161,8 +168,7 @@ export const CovMap = () => {
             dataField={dataField}
             feature={currentFeature}
             onClose={() => {
-              resetCurrentFeature()
-              setCurrenFeature(null)
+              dispatch(AppApi.setCurrentFeature(null))
             }}
           />
         </ReactMapGL>

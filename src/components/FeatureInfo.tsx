@@ -18,7 +18,7 @@ export const FeatureInfo = ({ feature, dataField, onClose }: { feature: any; dat
   const timeKey = formatUTCDate(currentDate)
   const currentDataSet = datasets.get(`${timeKey}-${activeMapping.datasourceId}`)
   
-  if (!feature || !datasetFound) {
+  if (!feature.feature || !datasetFound) {
     return null
   }
 

@@ -33,6 +33,13 @@ export type Viewport = {
   longitude: number;
   zoom: number;
 }
+
+export type CurrentFeature = {
+  previousFeature?: any;
+  feature: any;
+  lngLat?: Array<number>;
+}
+
 export interface AppState {
   activePage: string;
   viewport: Viewport;
@@ -42,7 +49,7 @@ export interface AppState {
   history: string[];
   geos: Map<string, GeoJSON>;
   datasets: Map<string, MapData>;
-  mappedSets: Map<VisualId, MapSet>;
+  mappedSets: Map<VisualId, Map<string, MapSet>>;
   currentDate: Date; 
   datasetFound: boolean;
   currentVisual: VisualId; // TODO: Rename to currentVisual (when moving to app-config driven build)
@@ -50,6 +57,7 @@ export interface AppState {
   viewPortEventsCount: number;
   searchResult: boolean;
   hasSearchError: boolean;
+  currentFeature: CurrentFeature;
 }
 
 export const defaultAppState: AppState = {
@@ -65,14 +73,15 @@ export const defaultAppState: AppState = {
   history: [],
   geos: new Map<string, GeoJSON>(),
   datasets: new Map<string, MapData>(),
-  mappedSets: new Map<VisualId, MapSet>(), 
+  mappedSets: new Map<VisualId, Map<string, MapSet>>(), 
   currentDate: new Date(),
   datasetFound: true,
   currentVisual: config.defaultVisual,
   loading: new Map(),
   viewPortEventsCount: 0,
   searchResult: false,
-  hasSearchError: false
+  hasSearchError: false,
+  currentFeature: { feature: null },
 };
 
 class AppReducer extends Reducer<AppState> {
@@ -102,8 +111,11 @@ class AppReducer extends Reducer<AppState> {
   public addDataset(id: string, data: MapData) {
     this.state.datasets.set(id, data);
   }
-  public addMappedSet(visualId: VisualId, data: MapSet) {
-    this.state.mappedSets.set(visualId, data);
+  public addMappedSet(visualId: VisualId, mappingId: string, data: MapSet) {
+    if (!this.state.mappedSets.has(visualId)) {
+      this.state.mappedSets.set(visualId, new Map<string, MapSet>())
+    }
+    this.state.mappedSets.get(visualId)?.set(mappingId, data);
   }
   public setCurrentDate(date: Date) {
     this.state.currentDate = date;
@@ -127,6 +139,13 @@ class AppReducer extends Reducer<AppState> {
   }
   public setErrorStateSearch(has: boolean) {
     this.state.hasSearchError = has
+  }
+  public setCurrentFeature(feature: any, lngLat?: Array<number>) {
+    this.state.currentFeature = {
+      feature,
+      lngLat,
+      previousFeature: this.state.currentFeature?.feature
+    }
   }
 }
 

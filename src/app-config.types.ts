@@ -28,6 +28,18 @@ export type AppVisual = {
     defaultMapping: MappingId;
     mappings: Record<MappingId, AppVisualMapping>;
     layers: Array<AppVisualLayer | AppVisualLayerFunction>;
+    search?: AppSearch; 
+}
+
+export type AppSearch = {
+    placeholder: string;
+    inMappings: Array<AppSearchWhere>;
+}
+
+export type AppSearchWhere = {
+    id: MappingId;
+    properties: Array<string>;
+    getCoordinates(feature: any): Array<number>; 
 }
 
 export enum LayerType {

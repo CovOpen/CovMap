@@ -100,7 +100,17 @@ export const config: AppConfig = {
             ]
           }
         })
-      ]
+      ],
+      search: {
+        placeholder: 'Landkreis',
+        inMappings: [{
+          id: 'cases-per-population',
+          properties: ['name_2'],
+          getCoordinates: (feature) => {
+            return feature.properties.geo_point_2d
+          }
+        }]
+      }
     },
   },
   geos: {

@@ -50,8 +50,10 @@ const pagesById: Record<string, AppPage> = config.content?.pages.reduce((acc, pa
 
 export const App = () => {
   const activePage = useSelector((state: State) => state.app.activePage);
+  const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const viewportEventsCount = useSelector((state: State) => state.app.viewPortEventsCount);
   const [innerHeight, setInnerHeight] = useState(window.innerHeight)
+  const visual = config.visuals[currentVisual]
   const timeout: any = null;
   const resizeListener = () => {
     clearTimeout(timeout);
@@ -86,7 +88,7 @@ export const App = () => {
       <ServiceWorker />
       <InstallPrompt shouldShow={viewportEventsCount > 1000} />
       <Container style={{  height: innerHeight, padding: 0, maxWidth: 'none' }}>
-        <NavBar />
+        <NavBar showSearch={!!visual.search} />
         <Container style={{ position: 'relative', height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
           <IntermediateProgress />
           <Suspense fallback={getFallbackComponent()}>
