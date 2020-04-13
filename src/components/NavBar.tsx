@@ -124,9 +124,12 @@ export const NavBar = () => {
             vertical: 'top',
             horizontal: 'center',
           }}
-          open={true}
+          open={(useSelector((state: State) => state.app.searchResult))}
           autoHideDuration={6000}
-          message="Bitte die Eingabe überprüfen. Ortschaft konnte nicht gefunden werden."
+          message="Bitte die Eingabe überprüfen. \n Ortschaft konnte nicht gefunden werden."
+          onClose = {() => {
+            dispatch(AppApi.setErrorStateSearch(false))
+          }}
         />
       </div>
     </>
@@ -135,10 +138,9 @@ export const NavBar = () => {
   const handleSearch = (event) => {
     const location  = event.target.value; 
     dispatch(switchViewToPlace(location, () => {
-      console.log("the location wasnt found")
-      // -> SET STATE HERE? 
+      console.log("the location wasnt found");
+      //dispatch(AppApi.setErrorStateSearch(false));
     }));
-    //const stateViewport = useSelector((state: State) => state.app.searchResult);
   }
 
   const selectPage = (pageId: string) => {

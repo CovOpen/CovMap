@@ -48,6 +48,7 @@ export interface AppState {
   currentVisual: VisualId; // TODO: Rename to currentVisual (when moving to app-config driven build)
   loading: Map<string, string>;
   viewPortEventsCount: number;
+  searchResult: boolean;
 }
 
 export const defaultAppState: AppState = {
@@ -69,6 +70,7 @@ export const defaultAppState: AppState = {
   currentVisual: config.defaultVisual,
   loading: new Map(),
   viewPortEventsCount: 0,
+  searchResult: true,
 };
 
 class AppReducer extends Reducer<AppState> {
@@ -120,6 +122,9 @@ class AppReducer extends Reducer<AppState> {
   }
   public popLoading(id: string) {
     this.state.loading.delete(id)
+  }
+  public setErrorStateSearch(found: boolean) {
+    this.state.searchResult = found
   }
 }
 
