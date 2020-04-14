@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
   popoverContent: {
     padding: theme.spacing(2),
     touchAction: 'none',
+  },
+  menuItem: {
+    minWidth: 200
   }
 }));
 
@@ -72,6 +75,7 @@ export function Settings () {
           <FormControl>
             <InputLabel id="visual-type-label">Visual Type</InputLabel>
             <Select
+              className={classes.menuItem}
               style={{ touchAction: 'none' }}
               labelId="visual-type-label"
               id="visual-type-select"
@@ -88,6 +92,7 @@ export function Settings () {
           <FormControl>
             <InputLabel id="mappable-label">Karten Wert</InputLabel>
             <Select
+              className={classes.menuItem}
               style={{ touchAction: 'none' }}
               labelId="mappable-label"
               id="mappable-select"
@@ -107,6 +112,7 @@ export function Settings () {
             <FormControl>
               <InputLabel id="layer-group-label">Layer Group</InputLabel>
               <Select
+                className={classes.menuItem}
                 style={{ touchAction: 'none' }}
                 labelId="layer-group-label"
                 id="layer-group-select"
