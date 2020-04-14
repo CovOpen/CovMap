@@ -23,6 +23,7 @@
     "clerk-plugin-idb": "^0.5.0-alpha.11",
     "clerk-plugin-maintenance": "^0.5.0-alpha.11",
     "clerk-sw": "^0.5.0-alpha.11",
+    "clipboard-polyfill": "^2.8.6",
     "compression-webpack-plugin": "^3.1.0",
     "file-loader": "^6.0.0",
     "immer": "^6.0.2",

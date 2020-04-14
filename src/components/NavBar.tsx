@@ -13,6 +13,7 @@ import { useThunkDispatch } from "useThunkDispatch";
 import { useSelector } from "react-redux";
 import { State } from "../state";
 import { triggerInstallPrompt } from "../state/thunks/triggerInstallPrompt"
+import * as clipboard from "clipboard-polyfill"
 
 import { Search } from './Search'
 import { config } from "../../app-config/index"
@@ -79,12 +80,12 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
 
   const handleShare = async () => {
     try {
-      await (navigator as any).share({
+      await (window.navigator as any).share({
         title: 'CovMapper',
         url: 'https://' + window.location.hostname
       })
     } catch (err) {
-      navigator.clipboard.writeText('https://' + window.location.hostname)
+      clipboard.writeText('https://' + window.location.hostname)
       dispatch(AppApi.setSnackbarMessage({ text: 'Link in Zwischenablage kopiert', type: 'info' }))
     }
   }
