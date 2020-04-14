@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { LazyError } from './LazyError'
 const Source = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/source')
   .catch(() => ({ default: LazyError })));
@@ -30,12 +30,16 @@ export const Visual = ({ dataField }: VisualProps) => {
   const mapset = mappedSets.get(currentVisual)?.get(mappingId)
   const timeKey = formatUTCDate(currentDate)
 
+  useEffect(() => {
+    if (mapset && mapset.timeKeys.includes(timeKey)) {
+      dispatch(AppApi.setDatasetFound(true))
+    }
+  }, [mappedSets])
+
   if (!mapset || !mapset.timeKeys.includes(timeKey)) {
     dispatch(fetchMappedSet(currentVisual, mappingId, currentDate))
     return null
   }
-  
-  dispatch(AppApi.setDatasetFound(true))
 
   let visualLayers = visual.layers.map(layer => {
     if (typeof layer === 'function') {

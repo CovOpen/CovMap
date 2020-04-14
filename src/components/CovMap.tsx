@@ -130,10 +130,12 @@ export const CovMap = () => {
 
   const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
 
-  const onViewportChange = ({ latitude, longitude, zoom }) => {
+  const onViewportChange = ({ latitude, longitude, zoom, pitch, bearing }) => {
     viewPortEventCounter += 1
     const newViewPort = {
-      ...stateViewport,
+      // ...stateViewport,
+      pitch,
+      bearing,
       zoom,
       latitude,
       longitude,

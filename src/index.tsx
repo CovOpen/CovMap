@@ -25,7 +25,9 @@ store.subscribe(() => {
   (window as any).state = store.getState();
 });
 (window as any).go = (pageId: string) => store.dispatch(AppApi.gotoPage(pageId))
+
 const persistor = persistStore(store);
+
 render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>

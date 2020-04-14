@@ -3,11 +3,17 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
 import storage from "redux-persist/lib/storage";
+import { createBlacklistFilter } from 'redux-persist-transform-filter';
 
 import { AppReduxReducer, AppState } from "./app";
 
 enableMapSet()
 setAutoFreeze(false);
+
+const viewportSubsetFiler = createBlacklistFilter(
+  'viewport',
+  ['transitionInterpolator']
+);
 
 function persist(reducer: any, key: string, whitelist?: string[], blacklist?: string[]) {
   return persistReducer({
@@ -16,6 +22,7 @@ function persist(reducer: any, key: string, whitelist?: string[], blacklist?: st
     stateReconciler: autoMergeLevel2,  // alternatives: autoMigrateLevel1 (default), autoMigrateLevel2
     storage,
     whitelist,
+    transforms: [viewportSubsetFiler]
   }, reducer);
 }
 
