@@ -117,7 +117,7 @@ export const App = () => {
           horizontal: 'center',
         }}
         open={!snackbarMessage.done}
-        autoHideDuration={6000}
+        autoHideDuration={snackbarMessage.duration || 6000}
         onClose = {() => {
           dispatch(AppApi.setSnackbarMessage({
             ...snackbarMessage,

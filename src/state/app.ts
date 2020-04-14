@@ -56,7 +56,8 @@ export type CurrentFeature = {
 export type SnackbarMessage = {
   text: string;
   type: 'info' | 'error';
-  done: boolean;
+  done?: boolean;
+  duration?: number;
 }
 
 export interface AppState {
@@ -177,11 +178,11 @@ class AppReducer extends Reducer<AppState> {
   public popLoading(id: string) {
     this.state.loading.delete(id)
   }
-  public setSnackbarMessage({ done = false, type, text }) {
+  public setSnackbarMessage(message: SnackbarMessage) {
+    const { done = false } = message
     this.state.snackbarMessage = {
       done,
-      type,
-      text,
+      ...message
     }
   }
   public setCurrentFeature(feature: any, lngLat?: Array<number>) {

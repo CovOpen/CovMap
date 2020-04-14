@@ -1,6 +1,9 @@
 import React, { Suspense } from "react";
-const Source = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/source'));
-const Layer = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/layer'));
+import { LazyError } from './LazyError'
+const Source = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/source')
+  .catch(() => ({ default: LazyError })));
+const Layer = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/layer')
+  .catch(() => ({ default: LazyError })));
 import { useSelector } from "react-redux";
 
 import { AppApi } from "../state/app";

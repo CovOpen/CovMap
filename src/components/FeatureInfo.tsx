@@ -1,6 +1,8 @@
 import React, { Suspense } from 'react'
 import { useSelector } from "react-redux";
-const Popup = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/popup'));
+import { LazyError } from './LazyError'
+const Popup = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/popup')
+  .catch(() => ({ default: LazyError })));
 
 import { config } from '../../app-config/index'
 import { State } from "../state";
