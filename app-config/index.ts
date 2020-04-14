@@ -37,7 +37,7 @@ export const config: AppConfig = {
   },
   visuals: {
     'rki': {
-      name: 'RKI Betroffenenrate',
+      name: 'RKI Fallzahlen',
       description: 'Anteil der betroffenen pro Landkreis',
       defaultMapping: 'case-numbers-to-districts',
       mappings: {
