@@ -39,9 +39,9 @@ export const config: AppConfig = {
     'rki': {
       name: 'RKI Betroffenenrate',
       description: 'Anteil der betroffenen pro Landkreis',
-      defaultMapping: 'cases-per-population',
+      defaultMapping: 'case-numbers-to-districts',
       mappings: {
-        'cases-per-population': {
+        'case-numbers-to-districts': {
           datasourceId: 'rki-case-numbers',
           geoId: 'districts-city-details',
           geoProperty: 'cca_2',
@@ -65,7 +65,7 @@ export const config: AppConfig = {
       layers: [
         (dataField, timeKey) => ({
           id: "areas-fill",
-          sourceId: "cases-per-population",
+          sourceId: "case-numbers-to-districts",
           type: LayerType.FILL,
           paint: {
             'fill-color': [
@@ -88,7 +88,7 @@ export const config: AppConfig = {
         }),
         () => ({
           id: "areas-borders",
-          sourceId: "cases-per-population",
+          sourceId: "case-numbers-to-districts",
           type: LayerType.LINE,
           paint: {
             'line-color': '#627BC1',
@@ -104,7 +104,7 @@ export const config: AppConfig = {
       search: {
         placeholder: 'Landkreis',
         inMappings: [{
-          id: 'cases-per-population',
+          id: 'case-numbers-to-districts',
           properties: ['name_2'],
           getCoordinates: (feature) => {
             return feature.properties.geo_point_2d
