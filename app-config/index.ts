@@ -47,6 +47,23 @@ export const config: AppConfig = {
           geoProperty: 'cca_2',
           dataProperty: 'RS',
           FeatureInfo: RKIFeatureInfo,
+          mappables: [{
+            property: 'cases_per_population',
+            title: 'Betroffenenrate',
+            default: true
+          }, {
+            property: 'cases',
+            title: 'Fälle',
+          }, {
+            property: 'deaths',
+            title: 'Verstorbene',
+          }, {
+            property: 'cases_per_100k',
+            title: 'Fälle pro 100k Einwohner',
+          }, {
+            property: 'death_rate',
+            title: 'Sterberate',
+          }],
           transformData: (json) => {
             if (!json.result.length) {
               return null

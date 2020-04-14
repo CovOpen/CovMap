@@ -38,6 +38,7 @@ export const CovMap = () => {
   const stateViewport = useSelector((state: State) => state.app.viewport);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
   const currentFeature = useSelector((state: State) => state.app.currentFeature);
+  const currentMappable = useSelector((state: State) => state.app.currentMappable);
   const mapRef = createRef<any>();
   const visual = config.visuals[currentVisual]
 
@@ -141,7 +142,7 @@ export const CovMap = () => {
     }
   }
 
-  const dataField = 'cases_per_population';
+  const dataField = currentMappable.property;
 
   return (
     <>

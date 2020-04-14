@@ -70,9 +70,17 @@ export type AppVisualMapping = {
     datasourceId: string;
     geoProperty: string;
     dataProperty: string;
+    mappables: Array<Mappable>;
     FeatureInfo: ComponentType<FeatureInfoProps>;
     transformData?: Function;
     transformGeo?: Function;
+}
+
+export type Mappable = {
+    property: string;
+    title: string;
+    default?: boolean;
+    transform?: Function;
 }
 
 export type AppGeo = {

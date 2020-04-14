@@ -61,8 +61,9 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Date
           if (geos.has(geoKey)) {
             return geos.get(geoKey)
           }
-
-          return fetchAndTransform(geo.url, timeKey, date, geoProperty, transformGeo)
+          const geoset = await fetchAndTransform(geo.url, timeKey, date, geoProperty, transformGeo)
+          dispatch(AppApi.addGeo(geoKey, geoset)) 
+          return geoset
         }),
       ])
 

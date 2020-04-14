@@ -1,7 +1,12 @@
 import { Reducer } from "./reduxHelper";
 import { GeoJSON } from "geojson";
+import { Mappable } from '../app-config.types'
 
 import { config } from '../../app-config/index'
+
+const defaultVisual = config.visuals[config.defaultVisual]
+const defaultMapping = defaultVisual.mappings[defaultVisual.defaultMapping]
+const defaultMappable = defaultMapping.mappables.find(mappable => mappable.default) || defaultMapping.mappables[0]
 
 export const backendUrl = "/api";
 
@@ -51,6 +56,7 @@ export interface AppState {
   datasets: Map<string, MapData>;
   mappedSets: Map<VisualId, Map<string, MapSet>>;
   currentDate: Date; 
+  currentMappable: Mappable;
   datasetFound: boolean;
   currentVisual: VisualId; // TODO: Rename to currentVisual (when moving to app-config driven build)
   loading: Map<string, string>;
@@ -77,6 +83,7 @@ export const defaultAppState: AppState = {
   datasets: new Map<string, MapData>(),
   mappedSets: new Map<VisualId, Map<string, MapSet>>(), 
   currentDate: new Date(),
+  currentMappable: defaultMappable,
   datasetFound: true,
   currentVisual: config.defaultVisual,
   loading: new Map(),
@@ -123,6 +130,9 @@ class AppReducer extends Reducer<AppState> {
   }
   public setCurrentDate(date: Date) {
     this.state.currentDate = date;
+  }
+  public setCurrentMappable(mappable: Mappable) {
+    this.state.currentMappable = mappable;
   }
   public setDatasetFound(found: boolean) {
     this.state.datasetFound = found;

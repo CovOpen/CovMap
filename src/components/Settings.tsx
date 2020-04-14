@@ -14,6 +14,7 @@ import { State } from "../state";
 import { VisualId, AppApi } from '../state/app';
 import { useThunkDispatch } from "../useThunkDispatch";
 import { config } from "../../app-config/index"
+import { Mappable } from "app-config.types";
 
 const useStyles = makeStyles((theme) => ({
   fab: {
@@ -32,7 +33,10 @@ export function Settings () {
   const dispatch = useThunkDispatch();
   const classes = useStyles();
   const [settingsAnchorEl, setSettingsAnchorEl] = useState(null);
-  const currentVisual = useSelector((state: State) => state.app.currentVisual); // TODO
+  const currentVisual = useSelector((state: State) => state.app.currentVisual);
+  const currentMappable = useSelector((state: State) => state.app.currentMappable);
+  const visual = config.visuals[currentVisual]
+  const currentMapping = visual.mappings[visual.defaultMapping]
   
   const handleSettingsClick = (event) => {
     setSettingsAnchorEl(event.currentTarget);
@@ -63,20 +67,40 @@ export function Settings () {
       }}
     >
       <div className={classes.popoverContent}>
-        <FormControl>
-          <InputLabel id="visual-type-label">Visual Type</InputLabel>
-          <Select
-            style={{ touchAction: 'none' }}
-            labelId="visual-type-label"
-            id="visual-type-select"
-            value={currentVisual}
-            onChange={(event) => dispatch(AppApi.setCurrentVisual(event.target.value as VisualId))}
-          >
-            {Object.keys(config.visuals).map(key => (
-              <MenuItem key={key} style={{ touchAction: 'none' }} value={key}>{config.visuals[key].name}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        <div>
+          <FormControl>
+            <InputLabel id="visual-type-label">Visual Type</InputLabel>
+            <Select
+              style={{ touchAction: 'none' }}
+              labelId="visual-type-label"
+              id="visual-type-select"
+              value={currentVisual}
+              onChange={(event) => dispatch(AppApi.setCurrentVisual(event.target.value as VisualId))}
+            >
+              {Object.keys(config.visuals).map(key => (
+                <MenuItem key={key} style={{ touchAction: 'none' }} value={key}>{config.visuals[key].name}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+        <div style={{ marginTop: 16 }}>
+          <FormControl>
+            <InputLabel id="mappable-label">Karten Wert</InputLabel>
+            <Select
+              style={{ touchAction: 'none' }}
+              labelId="mappable-label"
+              id="mappable-select"
+              value={currentMappable.property}
+              onChange={(event) => dispatch(AppApi.setCurrentMappable(
+                currentMapping.mappables.find(mappable => (mappable.property === event.target.value)) as Mappable
+              ))}
+            >
+              {currentMapping.mappables.map(mappable => (
+                <MenuItem key={mappable.property} style={{ touchAction: 'none' }} value={mappable.property}>{mappable.title}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
       </div>
     </Popover>
   </>)
