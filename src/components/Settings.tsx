@@ -105,7 +105,7 @@ export function Settings () {
         {visual.layerGroups &&
           <div style={{ marginTop: 16 }}>
             <FormControl>
-              <InputLabel id="layer-group-label">Karten Wert</InputLabel>
+              <InputLabel id="layer-group-label">Layer Group</InputLabel>
               <Select
                 style={{ touchAction: 'none' }}
                 labelId="layer-group-label"
