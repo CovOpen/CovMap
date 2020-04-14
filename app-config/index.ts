@@ -203,7 +203,7 @@ export const config: AppConfig = {
         placeholder: 'Landkreis',
         inMappings: [{
           id: 'case-numbers-to-districts',
-          properties: ['name_2'],
+          properties: ['name'],
           getCoordinates: (feature) => {
             return feature.properties.geo_point_2d
           }
@@ -214,7 +214,7 @@ export const config: AppConfig = {
   },
   geos: {
     'districts-city-details': {
-      url: '/data/districts_small.geojson'
+      url: '/data/de_districts_all.geojson'
     }
   }
 }

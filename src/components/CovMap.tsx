@@ -132,8 +132,10 @@ export const CovMap = () => {
 
   const onViewportChange = ({ latitude, longitude, zoom, pitch, bearing }) => {
     viewPortEventCounter += 1
+
+    // Note: Explicitly not spreading stateViewport in here,
+    // because it blows up with the transition interpolators
     const newViewPort = {
-      // ...stateViewport,
       pitch,
       bearing,
       zoom,

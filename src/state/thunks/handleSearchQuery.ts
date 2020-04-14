@@ -5,21 +5,6 @@ import { FeatureCollection } from "geojson";
 
 import { config } from "../../../app-config/index"
 
-const locationFound = (inputPlace, data, properties) => {
-  const query = inputPlace.toLowerCase()
-    .replace('ö', "oe")
-    .replace('ä', "ae")
-    .replace('ü', "ue")
-    .replace('ß', "ss");
-
-  return properties.some(propName => {
-    if (data.properties[propName].toLowerCase().includes(query)) {
-      return true;
-    }
-    return false;
-  })
-}
-
 export function switchViewToPlace(inputPlace, onFoundCallback, onErrorCallback) {
   return async (dispatch: ReduxDispatch, getState: () => State) => {
     const { default: FlyToInterpolator } = await import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/utils/transition/viewport-fly-to-interpolator')
@@ -35,11 +20,34 @@ export function switchViewToPlace(inputPlace, onFoundCallback, onErrorCallback) 
       return
     }
     
+    const locationFound = (inputPlace, data, properties) => {
+      const query = inputPlace.toLowerCase()
+        .replace('ö', "oe")
+        .replace('ä', "ae")
+        .replace('ü', "ue")
+        .replace('ß', "ss");
+    
+      return properties.some(propName => {
+        if (!data.properties[propName]) {
+          dispatch(AppApi.setSnackbarMessage({ 
+            text: `Property "${propName}" not found in dataset, check your app-config search settings`, 
+            type: 'warning' 
+          }))
+          return false;
+        }
+        if (data.properties[propName].toLowerCase().includes(query)) {
+          return true;
+        }
+        return false;
+      })
+    }
+
     //TODO Javascript array.find, nimmt callback, wenn true gibt Eintrag im Array zurück
     //json.features.find -> Ergebnis ist Eintrag im Array
 
     let latitude = 0
     let longitude = 0
+    let coordinates: Array<number> | null = null
     const foundResults: any[] = [];
     
     for (let setNum = 0; setNum < mappedSetsToSearchIn.length; setNum++){
@@ -50,14 +58,22 @@ export function switchViewToPlace(inputPlace, onFoundCallback, onErrorCallback) 
         //TODO Umlaute are not working and should look for lowercase, currently only UpperCase
         if (locationFound(inputPlace, features[i], currentSet.properties)){
           foundResults.push({ ...features[i], source: currentSet.id });
-          const coordinates = currentSet.getCoordinates(features[i])
-          latitude = coordinates[0]
-          longitude = coordinates[1]
-          
+          coordinates = currentSet.getCoordinates(features[i])
           break;
         } 
       }
     }
+
+    if (!coordinates) {
+      dispatch(AppApi.setSnackbarMessage({ 
+        text: 'No coordinates found, check your app-config search settings and geo data', 
+        type: 'warning' 
+      }))
+      return
+    }
+
+    latitude = coordinates[1]
+    longitude = coordinates[0]
 
     if(foundResults.length === 1) {
       const newViewport = {

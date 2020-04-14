@@ -114,7 +114,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
         {showSearch && < Search />}
         <div>
           <IconButton
-            aria-label="account of current user"
+            aria-label="Main Menu"
             aria-controls="menu-appbar"
             aria-haspopup="true"
             onClick={handleMenu}

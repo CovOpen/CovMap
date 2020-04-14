@@ -55,7 +55,7 @@ export type CurrentFeature = {
 
 export type SnackbarMessage = {
   text: string;
-  type: 'info' | 'error';
+  type: 'info' | 'error' | 'warning';
   done?: boolean;
   duration?: number;
 }
