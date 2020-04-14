@@ -113,6 +113,7 @@ module.exports = function(env) {
         maxAsyncRequests: 8,
         maxInitialRequests: 8,
       },
+      // usedExports: true,
       // `nodeEnv` defaults to `mode`, which sets NODE_ENV to "production" in production.
       // `minimize` defaults to `mode == "production"`, which enables uglifyjs for production.
       // `namedModules` defaults to `mode == "development"`. So webpack uses nice names in development.

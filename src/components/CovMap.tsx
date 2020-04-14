@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { Typography } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 import { LazyError } from './LazyError'
 const ReactMapGL = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/interactive-map')
   .catch(() => ({ default: LazyError })));

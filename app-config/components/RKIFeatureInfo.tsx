@@ -1,6 +1,7 @@
 import React from 'react'
 import { FeatureInfoProps } from '../../src/app-config.types'
-import { Typography, Button } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 
 export const RKIFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProps) => {
   return (
