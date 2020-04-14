@@ -122,6 +122,7 @@ module.exports = function(env) {
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'src/index.ejs'),
         title: buildConfig.meta.title,
+        url: buildConfig.meta.url,
         // favicon: "path/to/favicon",  // TODO you can set a favicon here
         variables: buildConfig,
         minify: env == "prod" ? {

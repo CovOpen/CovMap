@@ -1,6 +1,7 @@
 {
     "meta": {
-        "title": "CovMapper"
+        "title": "CovMapper",
+        "url": "https://covmapper.now.sh"
     },
     "logoSrc": "/images/logo.svg"
 }
