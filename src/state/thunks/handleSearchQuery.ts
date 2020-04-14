@@ -107,14 +107,14 @@ export function switchViewToPlace(query, onFoundCallback, onErrorCallback) {
       dispatch(AppApi.setViewport(newViewport));
       // TODO: find feature by coordinates and select on map
       if (result.feature) {
-        dispatch(AppApi.setCurrentFeature(result.feature, [longitude, latitude]));
+        dispatch(AppApi.setCurrentFeature({ ...result.feature, source: result.source }, [longitude, latitude]));
       }
       onFoundCallback()
     } else if (searchResult.results.length === 0) {
       onErrorCallback() 
       dispatch(AppApi.setSnackbarMessage({ text: notFoundMessage || '', type: 'error' }))
     } else {
-      //Todo show multiple results
+      // TODO: show multiple results
     }
   };
 }
