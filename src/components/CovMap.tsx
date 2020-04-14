@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { Typography } from "@material-ui/core";
 const ReactMapGL = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/interactive-map'));
 
 import { State } from "../state";
@@ -23,6 +24,17 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     'flex-direction': 'column',
   },
+  currentInfo: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    margin: theme.spacing(2),
+    zIndex: 1100,
+    textShadow: '0px 0px 6px rgba(0,0,0,0.86)',
+    '& h2': {
+      // fontWeight: 600
+    }
+  }
 }));
 
 let viewPortEventCounter = 0
@@ -147,6 +159,10 @@ export const CovMap = () => {
   return (
     <>
       <main className={classes.main}>
+        <div className={classes.currentInfo}>
+          <Typography variant="h2" color="primary">{visual.name}</Typography>
+          <Typography variant="subtitle1" color="primary">{currentMappable.title}</Typography>
+        </div>
         <Settings />
         <Zoom />
         <ReactMapGL
