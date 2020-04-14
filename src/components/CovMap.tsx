@@ -41,6 +41,11 @@ let viewPortEventCounter = 0
 
 // Note: React hooks ref diffing workaround
 let previousMapRef = null;
+let FlyToInterpolator = null
+async function loadFlyTo() {
+  const { default: FlyTo } = await import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/utils/transition/viewport-fly-to-interpolator')
+  FlyToInterpolator = FlyTo
+}
 
 export const CovMap = () => {
   const classes = useStyles();
@@ -63,6 +68,7 @@ export const CovMap = () => {
   }
 
   useEffect(() => {
+    loadFlyTo()
     const interval = setInterval(() => {
       if (viewPortEventCounter > 1000) {
         clearInterval(interval)
@@ -144,13 +150,23 @@ export const CovMap = () => {
     const { features } = pointerEvent;
     if (features.length > 0) {
       if (mapRef.current) {
-        // TODO: When app is setup by config lookup a match from configured layers
         if (!mappingLayers.includes(features[0].source)) {
           return;
         }
       }
 
       dispatch(AppApi.setCurrentFeature(features[0], pointerEvent.lngLat));
+
+      if (stateViewport.zoom > 7) {
+        const newViewport = {
+          ...stateViewport,
+          latitude: pointerEvent.lngLat[1], 
+          longitude: pointerEvent.lngLat[0],
+          transitionDuration: 400,
+          transitionInterpolator: FlyToInterpolator ? new (FlyToInterpolator as any)({ curve: 1 }) : null
+        };
+        dispatch(AppApi.setViewport(newViewport));
+      }
     }
   }
 
