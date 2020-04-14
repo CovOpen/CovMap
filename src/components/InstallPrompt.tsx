@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
+import { AppApi } from "state/app";
+import { useThunkDispatch } from "useThunkDispatch";
+import { useSelector } from "react-redux";
+import { State } from "../state";
   
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,26 +31,31 @@ type InstallPromptState = Function | null;
 
 export const InstallPrompt = ({ shouldShow }: InstallPromptProps) => {
   const [prompt, setPrompt] = useState<InstallPromptState>(() => null)
-  const [isInstalled, setIsInstalled] = useState<boolean>(false)
-  const [noThanks, setNoThanks] = useState<boolean>(false)
-  
+
+  const classes = useStyles()
+  const dispatch = useThunkDispatch()
+
   const triggerInstallPrompt = () => {
     setPrompt(() => null)
+    dispatch(AppApi.setShowInstallPrompt(false))
     if (prompt) {
-      prompt().then(result => true)
-      setIsInstalled(true)
+      prompt().then(result => {
+        if (result.outcome === 'accepted') {
+          dispatch(AppApi.setHasInstallPrompt(false))
+        }
+      })
     }
   }
 
   const cancelInstallPrompt = () => {
-    setNoThanks(true)
+    dispatch(AppApi.setShowInstallPrompt(false))
   }
   
-  const classes = useStyles()
   useEffect(() => {
     const listener = event => {
       event.preventDefault()
       const boundPrompt = event.prompt.bind(event as any)
+      dispatch(AppApi.setHasInstallPrompt(true))
       setPrompt(() => boundPrompt)
     }
       
@@ -61,7 +70,7 @@ export const InstallPrompt = ({ shouldShow }: InstallPromptProps) => {
     <Button className={classes.item} variant="contained" color="primary" onClick={cancelInstallPrompt}>Nee danke.</Button>
   </div>);
 
-  return !noThanks && shouldShow && prompt && !isInstalled
+  return useSelector((state: State) => state.app.showInstallPrompt) && shouldShow && prompt
     ? dialog
     : null
 }

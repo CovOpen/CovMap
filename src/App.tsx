@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Snackbar from '@material-ui/core/Snackbar';
-import { useThunkDispatch } from "useThunkDispatch";
 import MuiAlert from '@material-ui/lab/Alert';
 
 import { getFallbackComponent } from './components/getFallback';
@@ -19,7 +18,8 @@ import { IntermediateProgress } from "./components/IntermediateProgress";
 import { ServiceWorker } from './components/ServiceWorker';
 import { InstallPrompt } from './components/InstallPrompt';
 import { AppPage } from './app-config.types'
-import { AppApi } from "./state/app";
+import { useThunkDispatch } from "useThunkDispatch";
+import { AppApi } from "state/app";
 
 import { config } from '../app-config/index'
 
@@ -62,6 +62,10 @@ export const App = () => {
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const viewportEventsCount = useSelector((state: State) => state.app.viewPortEventsCount);
   const hasSearchError = (useSelector((state: State) => state.app.hasSearchError))
+  if (viewportEventsCount > 1000) {
+    dispatch(AppApi.setShowInstallPrompt(true))
+  }
+  const showInstallPrompt = useSelector((state: State) => state.app.showInstallPrompt);
   const [innerHeight, setInnerHeight] = useState(window.innerHeight)
   const visual = config.visuals[currentVisual]
   const notFoundMessage = visual.search?.notFoundMessage
@@ -98,7 +102,7 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <ServiceWorker />
-      <InstallPrompt shouldShow={viewportEventsCount > 1000} />
+      <InstallPrompt shouldShow={showInstallPrompt} />
       <Container style={{  height: innerHeight, padding: 0, maxWidth: 'none' }}>
         <NavBar showSearch={!!visual.search} />
         <Container style={{ position: 'relative', height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>

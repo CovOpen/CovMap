@@ -8,6 +8,8 @@ import Menu from '@material-ui/core/Menu';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppApi, InternalPages } from "state/app";
 import { useThunkDispatch } from "useThunkDispatch";
+import { useSelector } from "react-redux";
+import { State } from "../state";
 
 import { Search } from './Search'
 import { config } from "../../app-config/index"
@@ -59,6 +61,10 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
     setAnchorEl(null);
   };
 
+  const handleInstall = () => {
+    dispatch(AppApi.setShowInstallPrompt(true))
+    handleClose()
+  }
 
   const selectPage = (pageId: string) => {
     dispatch(AppApi.gotoPage(pageId))
@@ -76,7 +82,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
       ))}
     </>
   }
-  
+
   return (
     <AppBar position="static" style={{ position: 'relative', zIndex: 1200, touchAction: 'none' }}>
       <Toolbar style={{ height: 64 }}>
@@ -112,6 +118,10 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
             <div className={classes.menuContent}>
               <MenuItem className={classes.menuItem} onClick={() => selectPage(InternalPages.MAP)}>Karte</MenuItem>
               <MenuEntries />
+              {
+                useSelector((state: State) => state.app.hasInstallPrompt) &&
+                <MenuItem className={classes.menuItem} onClick={handleInstall}>App Installieren</MenuItem>
+              }
             </div>
           </Menu>
         </div>
