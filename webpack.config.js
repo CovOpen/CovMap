@@ -123,6 +123,7 @@ module.exports = function(env) {
         template: path.resolve(__dirname, 'src/index.ejs'),
         title: buildConfig.meta.title,
         url: buildConfig.meta.url,
+        description: buildConfig.meta.description,
         // favicon: "path/to/favicon",  // TODO you can set a favicon here
         variables: buildConfig,
         minify: env == "prod" ? {

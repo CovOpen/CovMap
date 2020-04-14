@@ -1,7 +1,8 @@
 {
     "meta": {
         "title": "CovMapper",
-        "url": "https://covmapper.now.sh"
+        "url": "https://covmapper.now.sh",
+        "description": "Tool zur Visualisierung der Corona-Krise"
     },
     "logoSrc": "/images/logo.svg"
 }
