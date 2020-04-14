@@ -6,6 +6,30 @@ import { About } from "./components/pages/About"
 import { Imprint } from "./components/pages/Imprint"
 import { RKIFeatureInfo } from "./components/RKIFeatureInfo"
 
+function normalizeProperties(data, postfix, properties) {
+  const minMax = properties.reduce((acc, prop) => Object.assign(acc, {
+    [prop]: { min: Infinity, max: -Infinity, factor: 1 }
+  }), {})
+  for (const props of data) {
+    for(const prop of properties) {
+      const value = props[prop]
+      const mm = minMax[prop]
+      mm.min = Math.min(value, mm.min)
+      mm.max = Math.max(value, mm.max)
+    }
+  }
+  for(const prop of properties) {
+    const mm = minMax[prop]
+    mm.factor = 1 / (mm.max - mm.min)
+  }
+  for (const props of data) {
+    for(const prop of properties) {
+      props[`${prop}${postfix}`] = props[prop] * minMax[prop].factor
+    }
+  }
+  return data
+}
+
 export const config: AppConfig = {
   ui: {
     Logo: AnimatedLogo
@@ -48,20 +72,20 @@ export const config: AppConfig = {
           dataProperty: 'RS',
           FeatureInfo: RKIFeatureInfo,
           mappables: [{
-            property: 'cases_per_population',
+            property: 'cases_per_population_norm',
             title: 'Betroffenenrate',
             default: true
           }, {
-            property: 'cases',
+            property: 'cases_norm',
             title: 'Fälle',
           }, {
-            property: 'deaths',
+            property: 'deaths_norm',
             title: 'Verstorbene',
           }, {
-            property: 'cases_per_100k',
+            property: 'cases_per_100k_norm',
             title: 'Fälle pro 100k Einwohner',
           }, {
-            property: 'death_rate',
+            property: 'death_rate_norm',
             title: 'Sterberate',
           }],
           transformData: (json) => {
@@ -69,7 +93,15 @@ export const config: AppConfig = {
               return null
             }
 
-            const propertiesByCCA2 = json.result.reduce((acc, curr) => Object.assign(acc, {
+            const normalized = normalizeProperties(json.result, '_norm', [
+              'cases_per_population',
+              'cases',
+              'deaths',
+              'cases_per_100k',
+              'death_rate'
+            ])
+
+            const propertiesByCCA2 = normalized.reduce((acc, curr) => Object.assign(acc, {
               [curr.RS]: curr
             }), {})
 
@@ -91,14 +123,14 @@ export const config: AppConfig = {
               ['get', dataField, ['get', timeKey]],
               // ['get', dataField],
               0, '#f8fbff',
-              0.05, '#e1ebf5',
-              0.1, '#cadbed',
-              0.3, '#a6c9df',
-              0.5, '#79add2',
-              0.8, '#5591c3',
-              1, '#3771b0',
-              1.2, '#205297',
-              1.4, '#113068',
+              0.025, '#e1ebf5',
+              0.05, '#cadbed',
+              0.1, '#a6c9df',
+              0.2, '#79add2',
+              0.35, '#5591c3',
+              0.5, '#3771b0',
+              0.65, '#205297',
+              0.8, '#113068',
             ],
             'fill-opacity': 0.8,
           }
