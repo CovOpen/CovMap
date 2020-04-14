@@ -39,6 +39,18 @@ const theme = createMuiTheme({
     },
     text: {
       primary: '#002E62'
+    },
+    warning: {
+      main: '#FEAE00',
+      contrastText: '#E3E9F3',
+    },
+    error: {
+      main:'#ED4661',
+      contrastText: '#E3E9F3',
+    },
+    success: {
+      main: '#10B17E',
+      contrastText: '#E3E9F3',
     }
   },
   typography: {
