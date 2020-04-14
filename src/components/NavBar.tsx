@@ -10,6 +10,7 @@ import { AppApi, InternalPages } from "state/app";
 import { useThunkDispatch } from "useThunkDispatch";
 import { useSelector } from "react-redux";
 import { State } from "../state";
+import { triggerInstallPrompt } from "../state/thunks/triggerInstallPrompt"
 
 import { Search } from './Search'
 import { config } from "../../app-config/index"
@@ -62,7 +63,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
   };
 
   const handleInstall = () => {
-    dispatch(AppApi.setShowInstallPrompt(true))
+    dispatch(triggerInstallPrompt())
     handleClose()
   }
 
@@ -119,7 +120,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
               <MenuItem className={classes.menuItem} onClick={() => selectPage(InternalPages.MAP)}>Karte</MenuItem>
               <MenuEntries />
               {
-                useSelector((state: State) => state.app.hasInstallPrompt) &&
+                useSelector((state: State) => state.app.installPrompt) &&
                 <MenuItem className={classes.menuItem} onClick={handleInstall}>App Installieren</MenuItem>
               }
             </div>

@@ -64,8 +64,8 @@ export interface AppState {
   searchResult: boolean;
   hasSearchError: boolean;
   currentFeature: CurrentFeature;
-  hasInstallPrompt: boolean;
-  showInstallPrompt: boolean;
+  isInstalled: boolean;
+  installPrompt: Function | null;
 }
 
 export const defaultAppState: AppState = {
@@ -91,8 +91,8 @@ export const defaultAppState: AppState = {
   searchResult: false,
   hasSearchError: false,
   currentFeature: { feature: null },
-  hasInstallPrompt: false,
-  showInstallPrompt: false,
+  isInstalled: false,
+  installPrompt: null,
 };
 
 class AppReducer extends Reducer<AppState> {
@@ -161,11 +161,11 @@ class AppReducer extends Reducer<AppState> {
       previousFeature: this.state.currentFeature?.feature
     }
   }
-  public setHasInstallPrompt(hasPrompt: boolean) {
-    this.state.hasInstallPrompt = hasPrompt
+  public setIsInstalled(installed: boolean) {
+    this.state.isInstalled = installed
   }
-  public setShowInstallPrompt(show: boolean) {
-    this.state.showInstallPrompt = show
+  public setInstallPrompt(prompt: Function | null) {
+    this.state.installPrompt = prompt
   }
 }
 

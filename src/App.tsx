@@ -62,10 +62,10 @@ export const App = () => {
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const viewportEventsCount = useSelector((state: State) => state.app.viewPortEventsCount);
   const hasSearchError = (useSelector((state: State) => state.app.hasSearchError))
+  let showInstallPrompt = false
   if (viewportEventsCount > 1000) {
-    dispatch(AppApi.setShowInstallPrompt(true))
+    showInstallPrompt = true
   }
-  const showInstallPrompt = useSelector((state: State) => state.app.showInstallPrompt);
   const [innerHeight, setInnerHeight] = useState(window.innerHeight)
   const visual = config.visuals[currentVisual]
   const notFoundMessage = visual.search?.notFoundMessage
