@@ -60,6 +60,8 @@ export type SnackbarMessage = {
   duration?: number;
 }
 
+export type MapSetHolder = Map<VisualId, Map<string, MapSet>>
+
 export interface AppState {
   activePage: string;
   viewport: Viewport;
@@ -69,7 +71,7 @@ export interface AppState {
   history: string[];
   geos: Map<string, GeoJSON>;
   datasets: Map<string, MapData>;
-  mappedSets: Map<VisualId, Map<string, MapSet>>;
+  mappedSets: MapSetHolder;
   currentDate: Date; 
   currentMappable: Mappable;
   datasetFound: boolean;

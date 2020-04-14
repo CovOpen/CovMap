@@ -201,6 +201,7 @@ export const config: AppConfig = {
       ],
       search: {
         placeholder: 'Landkreis',
+        nameProp: 'name',
         inMappings: [{
           id: 'case-numbers-to-districts',
           properties: ['name'],

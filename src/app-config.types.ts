@@ -1,5 +1,6 @@
 import { ComponentType } from 'react'
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import { State }  from './state'
 
 export type AppConfig = {
     ui: AppUI;
@@ -29,7 +30,7 @@ export type AppVisual = {
     layerGroups?: Array<LayerGroup>;
     mappings: Record<MappingId, AppVisualMapping>;
     layers: Array<AppVisualLayer | AppVisualLayerFunction>;
-    search?: AppSearch; 
+    search?: DefaultSearchOptions | CustomSearchOptions; 
 }
 
 export type LayerGroup = {
@@ -40,10 +41,34 @@ export type LayerGroup = {
     bearing?: number;
 }
 
-export type AppSearch = {
+export type SearchResult = {
+    feature?: any; // GeoJSON Feature, if available to be marked when found
+    source?: string; // The datasource/mapping id the result was found in
+    name: string;
+    lng: number;
+    lat: number;
+}
+export type SearchResultList = {
+    results: Array<SearchResult>;
+}
+export type SearchMethod = (query: string, state: State) => SearchResultList
+
+export type DefaultSearchOptions = {
     placeholder: string;
     inMappings: Array<AppSearchWhere>;
+    nameProp: string;
     notFoundMessage: string;
+    /**
+     * Allows to transform a search term before it is queried for in the data
+     * @param query
+     */
+    transformQuery?(query: string): string;
+}
+
+export type CustomSearchOptions = {
+    placeholder: string;
+    notFoundMessage: string;
+    searchMethod?: SearchMethod;
 }
 
 export type AppSearchWhere = {
