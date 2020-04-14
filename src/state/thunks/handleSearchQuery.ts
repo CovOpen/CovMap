@@ -17,7 +17,7 @@ const locationFound = (inputPlace, data, properties) => {
       return true;
     }
     return false;
-  }) 
+  })
 }
 
 export function switchViewToPlace(inputPlace, onFoundCallback, onErrorCallback) {
@@ -25,6 +25,7 @@ export function switchViewToPlace(inputPlace, onFoundCallback, onErrorCallback) 
     const { default: FlyToInterpolator } = await import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/utils/transition/viewport-fly-to-interpolator')
     const { viewport, currentVisual, mappedSets } = getState().app;
     const visual = config.visuals[currentVisual]
+    const notFoundMessage = visual.search?.notFoundMessage
     const mappedSetsToSearchIn = visual.search?.inMappings.map(mapping => ({
       ...mapping,
       data: mappedSets.get(currentVisual)?.get(mapping.id)
@@ -72,7 +73,7 @@ export function switchViewToPlace(inputPlace, onFoundCallback, onErrorCallback) 
       onFoundCallback()
     } else if (foundResults.length === 0) {
       onErrorCallback() 
-      dispatch(AppApi.setErrorStateSearch(true))
+      dispatch(AppApi.setSnackbarMessage({ text: notFoundMessage || '', type: 'error' }))
     } else {
       //Todo show multiple results
     }

@@ -3,7 +3,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import ShareIcon from '@material-ui/icons/Share';
 import MenuItem from '@material-ui/core/MenuItem';
+import Divider from '@material-ui/core/Divider';
 import Menu from '@material-ui/core/Menu';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppApi, InternalPages } from "state/app";
@@ -29,13 +31,21 @@ const useStyles = makeStyles((theme) => ({
     flexShrink: 1
   },
   menuItem: {
-    touchAction: 'none'
+    touchAction: 'none',
+    paddingLeft: 0,
+  },
+  menuIcon: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    transform: 'scale(.9)'
   },
   menu: {
     touchAction: 'none',
   },
   menuContent: {
-    backgroundColor: theme.palette.primary.light
+    backgroundColor: theme.palette.primary.light,
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
   },
   logo: {
     height: '32px', 
@@ -65,6 +75,18 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
   const handleInstall = () => {
     dispatch(triggerInstallPrompt())
     handleClose()
+  }
+
+  const handleShare = async () => {
+    try {
+      await (navigator as any).share({
+        title: 'CovMapper',
+        url: 'https://' + window.location.hostname
+      })
+    } catch (err) {
+      navigator.clipboard.writeText('https://' + window.location.hostname)
+      dispatch(AppApi.setSnackbarMessage({ text: 'Link in Zwischenablage kopiert', type: 'info' }))
+    }
   }
 
   const selectPage = (pageId: string) => {
@@ -121,8 +143,14 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
               <MenuEntries />
               {
                 useSelector((state: State) => state.app.installPrompt) &&
-                <MenuItem className={classes.menuItem} onClick={handleInstall}>App Installieren</MenuItem>
+                <div>
+                  <Divider />
+                  <MenuItem className={classes.menuItem} onClick={handleInstall}>App Installieren</MenuItem>
+                </div>
               }
+              <Divider />
+              <MenuItem className={classes.menuItem} onClick={handleShare}>Share <ShareIcon className={classes.menuIcon}/></MenuItem>
+
             </div>
           </Menu>
         </div>

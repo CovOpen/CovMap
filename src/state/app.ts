@@ -45,6 +45,12 @@ export type CurrentFeature = {
   lngLat?: Array<number>;
 }
 
+export type SnackbarMessage = {
+  text: string;
+  type: 'info' | 'error';
+  done: boolean;
+}
+
 export interface AppState {
   activePage: string;
   viewport: Viewport;
@@ -62,7 +68,7 @@ export interface AppState {
   loading: Map<string, string>;
   viewPortEventsCount: number;
   searchResult: boolean;
-  hasSearchError: boolean;
+  snackbarMessage: SnackbarMessage;
   currentFeature: CurrentFeature;
   isInstalled: boolean;
   installPrompt: Function | null;
@@ -89,7 +95,11 @@ export const defaultAppState: AppState = {
   loading: new Map(),
   viewPortEventsCount: 0,
   searchResult: false,
-  hasSearchError: false,
+  snackbarMessage: {
+    text: '',
+    type: 'info',
+    done: true
+  },
   currentFeature: { feature: null },
   isInstalled: false,
   installPrompt: null,
@@ -151,8 +161,12 @@ class AppReducer extends Reducer<AppState> {
   public popLoading(id: string) {
     this.state.loading.delete(id)
   }
-  public setErrorStateSearch(has: boolean) {
-    this.state.hasSearchError = has
+  public setSnackbarMessage({ done = false, type, text }) {
+    this.state.snackbarMessage = {
+      done,
+      type,
+      text,
+    }
   }
   public setCurrentFeature(feature: any, lngLat?: Array<number>) {
     this.state.currentFeature = {

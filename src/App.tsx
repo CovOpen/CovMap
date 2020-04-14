@@ -61,14 +61,13 @@ export const App = () => {
   const activePage = useSelector((state: State) => state.app.activePage);
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const viewportEventsCount = useSelector((state: State) => state.app.viewPortEventsCount);
-  const hasSearchError = (useSelector((state: State) => state.app.hasSearchError))
+  const snackbarMessage = (useSelector((state: State) => state.app.snackbarMessage))
   let showInstallPrompt = false
   if (viewportEventsCount > 1000) {
     showInstallPrompt = true
   }
   const [innerHeight, setInnerHeight] = useState(window.innerHeight)
   const visual = config.visuals[currentVisual]
-  const notFoundMessage = visual.search?.notFoundMessage
   
   const timeout: any = null;
   const resizeListener = () => {
@@ -117,14 +116,16 @@ export const App = () => {
           vertical: 'bottom',
           horizontal: 'center',
         }}
-        open={hasSearchError}
+        open={!snackbarMessage.done}
         autoHideDuration={6000}
-        message={notFoundMessage}
         onClose = {() => {
-          dispatch(AppApi.setErrorStateSearch(false))
+          dispatch(AppApi.setSnackbarMessage({
+            ...snackbarMessage,
+            done: true
+          }))
         }}
       >
-        <Alert severity="error">{notFoundMessage}</Alert>
+        <Alert severity={snackbarMessage.type}>{snackbarMessage.text}</Alert>
       </Snackbar>
     </ThemeProvider>
   )
