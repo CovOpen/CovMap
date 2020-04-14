@@ -13,6 +13,7 @@ import { AppApi } from "../state/app";
 import { useThunkDispatch } from "../useThunkDispatch";
 import { Settings } from './Settings';
 import { Zoom } from './Zoom';
+import { OfflineIndicator } from './OfflineIndicator';
 import { MAX_ZOOM_LEVEL } from '../constants';
 import { TimeRangeSlider } from './TimeRangeSlider';
 import { Visual } from './Visual';
@@ -188,6 +189,7 @@ export const CovMap = () => {
         </div>
         <Settings />
         <Zoom />
+        <OfflineIndicator />
         <ReactMapGL
           // reuseMaps={true} // - experimental, consider using when remounting the map component often
           ref={mapRef}
