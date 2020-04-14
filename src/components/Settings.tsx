@@ -14,7 +14,7 @@ import { State } from "../state";
 import { VisualId, AppApi } from '../state/app';
 import { useThunkDispatch } from "../useThunkDispatch";
 import { config } from "../../app-config/index"
-import { Mappable } from "app-config.types";
+import { Mappable, LayerGroup } from "app-config.types";
 
 const useStyles = makeStyles((theme) => ({
   fab: {
@@ -35,6 +35,7 @@ export function Settings () {
   const [settingsAnchorEl, setSettingsAnchorEl] = useState(null);
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const currentMappable = useSelector((state: State) => state.app.currentMappable);
+  const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
   const visual = config.visuals[currentVisual]
   const currentMapping = visual.mappings[visual.defaultMapping]
   
@@ -101,6 +102,31 @@ export function Settings () {
             </Select>
           </FormControl>
         </div>
+        {visual.layerGroups &&
+          <div style={{ marginTop: 16 }}>
+            <FormControl>
+              <InputLabel id="layer-group-label">Karten Wert</InputLabel>
+              <Select
+                style={{ touchAction: 'none' }}
+                labelId="layer-group-label"
+                id="layer-group-select"
+                value={currentLayerGroup.title}
+                onChange={(event) => {
+                  const group = visual.layerGroups?.find(group => (group.title === event.target.value)) as LayerGroup
+                  dispatch(AppApi.setLayerGroup(group))
+                  dispatch(AppApi.mergeViewport({
+                    pitch: group.pitch || 0,
+                    bearing: group.bearing || 0
+                  }))
+                }}
+              >
+                {visual.layerGroups?.map(group => (
+                  <MenuItem key={group.title} style={{ touchAction: 'none' }} value={group.title}>{group.title}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
+        }
       </div>
     </Popover>
   </>)

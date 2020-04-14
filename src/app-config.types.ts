@@ -26,9 +26,18 @@ export type AppVisual = {
     name: string;
     description: string;
     defaultMapping: MappingId;
+    layerGroups?: Array<LayerGroup>;
     mappings: Record<MappingId, AppVisualMapping>;
     layers: Array<AppVisualLayer | AppVisualLayerFunction>;
     search?: AppSearch; 
+}
+
+export type LayerGroup = {
+    title: string;
+    default?: boolean;
+    layers: Array<LayerId>;
+    pitch?: number;
+    bearing?: number;
 }
 
 export type AppSearch = {
@@ -45,7 +54,9 @@ export type AppSearchWhere = {
 
 export enum LayerType {
     FILL = 'fill',
-    LINE = 'line'
+    LINE = 'line',
+    CIRCLE = 'circle',
+    FILL_EXTRUSION = 'fill-extrusion'
 }
 
 export type AppVisualLayerFunction = (dataField?: string, timeKey?: string) => AppVisualLayer

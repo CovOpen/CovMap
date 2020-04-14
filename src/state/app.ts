@@ -1,12 +1,18 @@
 import { Reducer } from "./reduxHelper";
 import { GeoJSON } from "geojson";
-import { Mappable } from '../app-config.types'
+import { Mappable, LayerGroup } from '../app-config.types'
 
 import { config } from '../../app-config/index'
 
 const defaultVisual = config.visuals[config.defaultVisual]
 const defaultMapping = defaultVisual.mappings[defaultVisual.defaultMapping]
 const defaultMappable = defaultMapping.mappables.find(mappable => mappable.default) || defaultMapping.mappables[0]
+let defaultLayerGroup: any = null
+if (defaultVisual.layerGroups) {
+  // Default Layers with special ids, always added
+  // defaultVisual.layerGroups.forEach(group => group.layers.push('hover'))
+  defaultLayerGroup = defaultVisual.layerGroups.find(group => group.default)
+}
 
 export const backendUrl = "/api";
 
@@ -37,6 +43,8 @@ export type Viewport = {
   latitude: number;
   longitude: number;
   zoom: number;
+  pitch?: number;
+  bearing?: number;
 }
 
 export type CurrentFeature = {
@@ -72,6 +80,7 @@ export interface AppState {
   currentFeature: CurrentFeature;
   isInstalled: boolean;
   installPrompt: Function | null;
+  currentLayerGroup: LayerGroup;
 }
 
 export const defaultAppState: AppState = {
@@ -103,6 +112,7 @@ export const defaultAppState: AppState = {
   currentFeature: { feature: null },
   isInstalled: false,
   installPrompt: null,
+  currentLayerGroup: defaultLayerGroup
 };
 
 class AppReducer extends Reducer<AppState> {
@@ -122,6 +132,12 @@ class AppReducer extends Reducer<AppState> {
   }
   public setViewport(viewport: Viewport) {
     this.state.viewport = viewport;
+  }
+  public mergeViewport(partialViewport: Record<string, number>) {
+    this.state.viewport = {
+      ...this.state.viewport,
+      ...partialViewport
+    };
   }
   public setCurrentArea(area: MapArea) {
     this.state.currentArea = area;
@@ -180,6 +196,9 @@ class AppReducer extends Reducer<AppState> {
   }
   public setInstallPrompt(prompt: Function | null) {
     this.state.installPrompt = prompt
+  }
+  public setLayerGroup(group: LayerGroup) {
+    this.state.currentLayerGroup = group
   }
 }
 

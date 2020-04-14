@@ -131,6 +131,7 @@ export const CovMap = () => {
   const onViewportChange = ({ latitude, longitude, zoom }) => {
     viewPortEventCounter += 1
     const newViewPort = {
+      ...stateViewport,
       zoom,
       latitude,
       longitude,

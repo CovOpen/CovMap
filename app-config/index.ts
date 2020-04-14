@@ -111,7 +111,19 @@ export const config: AppConfig = {
           }
         }
       },
+      layerGroups: [{
+        title: 'Flächen',
+        layers: ['areas-fill'],
+        default: true
+      }, {
+        title: 'Balken',
+        layers: ['extrusion'],
+        pitch: 40,
+        bearing: 20,
+      }],
       layers: [
+        // See the Mapbox Style Specification for details on data expressions.
+        // https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions
         (dataField, timeKey) => ({
           id: "areas-fill",
           sourceId: "case-numbers-to-districts",
@@ -135,8 +147,45 @@ export const config: AppConfig = {
             'fill-opacity': 0.8,
           }
         }),
+        (dataField, timeKey) => ({
+          id: "extrusion",
+          sourceId: "case-numbers-to-districts",
+          type: LayerType.FILL_EXTRUSION,
+          'paint': { 
+            'fill-extrusion-color': [
+              'interpolate',
+              ['linear'],
+              ['get', dataField, ['get', timeKey]],
+              0, '#f8fbff',
+              0.025, '#e1ebf5',
+              0.05, '#cadbed',
+              0.1, '#a6c9df',
+              0.2, '#79add2',
+              0.35, '#5591c3',
+              0.5, '#3771b0',
+              0.65, '#205297',
+              0.8, '#113068',
+            ],
+            'fill-extrusion-height': [
+              'interpolate',
+              ['linear'],
+              ['get', dataField, ['get', timeKey]],
+              0, 1000,
+              0.025, 2500,
+              0.05, 5000,
+              0.1, 10000,
+              0.2, 20000,
+              0.35, 40000,
+              0.5, 60000,
+              0.65, 100000,
+              0.8, 160000,
+            ],
+            'fill-extrusion-base': 1,
+            'fill-extrusion-opacity': 0.5
+          }
+        }),
         () => ({
-          id: "areas-borders",
+          id: "hover",
           sourceId: "case-numbers-to-districts",
           type: LayerType.LINE,
           paint: {

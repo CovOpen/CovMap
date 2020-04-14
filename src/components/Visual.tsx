@@ -20,6 +20,7 @@ export const Visual = ({ dataField }: VisualProps) => {
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const mappedSets = useSelector((state: State) => state.app.mappedSets);
   const currentDate = useSelector((state: State) => state.app.currentDate);
+  const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
   const visual = config.visuals[currentVisual]
   // TODO: handle multiple mappings (map and merge data on same geojson, layer decides what to render)
   const mappingId = visual.defaultMapping
@@ -32,13 +33,17 @@ export const Visual = ({ dataField }: VisualProps) => {
   }
   
   dispatch(AppApi.setDatasetFound(true))
-  
-  const visualLayers = visual.layers.map(layer => {
+
+  let visualLayers = visual.layers.map(layer => {
     if (typeof layer === 'function') {
       return layer(dataField, timeKey)
     }
     return layer
   })
+
+  if (currentLayerGroup) {
+    visualLayers = visualLayers.filter(layer => ['hover'].includes(layer.id) || currentLayerGroup.layers.includes(layer.id))
+  }
 
   // TODO: Render function is called too often, seems unnecessary
   
