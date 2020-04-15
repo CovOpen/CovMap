@@ -39,10 +39,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MAX_SLIDER_VALUE = 0
+let timeout: any = 0;
 
 const diffDays = (date1: Date, date2: Date): number => {
   const diffTime = Math.abs(date2.getTime() - date1.getTime());
-  return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  return Math.round(diffTime / (1000 * 60 * 60 * 24));
 }
 
 export function TimeRangeSlider ({ onChange = () => {} }: Props) {
@@ -60,22 +61,23 @@ export function TimeRangeSlider ({ onChange = () => {} }: Props) {
     return formatNowMinusDays(value);
   }
   
-  let timeout: any = 0;
-  function onDayChange(event, value) {
-    clearTimeout(timeout);
+  function onSliderChange(event, value) {
     setValue(value)
+  }
 
+  function onDayChange(event, value) {
     const newDate = plusDays(value)
     const diff = diffDays(newDate, currentDate);
-
+    
     if (diff === 0) {
       return
     }
-      
-    timeout = setTimeout(() => {
+    
+    clearTimeout(timeout);
+    timeout = setTimeout((t) => {
       (onChange as Function)(newDate);
       dispatch(AppApi.setCurrentDate(newDate));
-    }, 400);
+    }, 150, timeout);
   }
 
   return (
@@ -84,7 +86,8 @@ export function TimeRangeSlider ({ onChange = () => {} }: Props) {
       defaultValue={0}
       value={value}
       getAriaValueText={valuetext}
-      onChange={onDayChange}
+      onChange={onSliderChange}
+      onChangeCommitted={onDayChange}
       aria-labelledby="discrete-slider-small-steps"
       step={1}
       marks
