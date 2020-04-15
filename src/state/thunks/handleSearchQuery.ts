@@ -24,10 +24,9 @@ const locationFound = (query, data, properties, searchOptions?) => {
 export function getPossibleSearchResults() {
   return (dispatch: ReduxDispatch, getState: () => State) => {
     const state = getState()
-    const { currentVisual } = state.app;
-    const visual = config.visuals[currentVisual]
+    const { currentLayerGroup } = state.app;
     const result = defaultSearchMethod('', state, {
-      ...visual.search,
+      ...currentLayerGroup.search,
       all: true
     } as DefaultSearchOptions)
     
