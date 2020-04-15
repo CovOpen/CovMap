@@ -1,3 +1,9 @@
+<div align="center" >
+  <a href="https://github.com/alexanderthieme/CovMapper">
+    <img style="height: 200px; width: auto;" src="https://github.com/alexanderthieme/CovMapper/raw/master/static/logo.png" alt="CovMapper">
+  </a>
+</div>
+
 # CovMapper
 
 A web app to display large-scale epidemiological data and forecasts of the SARS-CoV-2 pandemic.
