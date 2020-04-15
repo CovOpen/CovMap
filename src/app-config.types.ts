@@ -26,7 +26,6 @@ export type AppDatasource = {
 export type AppVisual = {
     name: string;
     description: string;
-    defaultMapping: MappingId;
     layers: Array<AppVisualLayerSpec>;
     layerGroups: Array<LayerGroup>;
     mappings: Record<MappingId, AppVisualMapping>;
@@ -38,6 +37,7 @@ export type LayerGroup = {
     default?: boolean;
     layers: Array<LayerId>;
     mappables: Array<Mappable>;
+    FeatureInfo: ComponentType<FeatureInfoProps>;
     pitch?: number;
     bearing?: number;
 }
@@ -113,7 +113,6 @@ export type AppVisualMapping = {
     datasourceId: string;
     geoProperty: string;
     dataProperty: string;
-    FeatureInfo: ComponentType<FeatureInfoProps>;
     transformData?: Function;
     transformGeo?: Function;
 }

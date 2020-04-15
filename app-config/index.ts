@@ -57,15 +57,12 @@ export const config: AppConfig = {
     'rki': {
       name: 'RKI Fallzahlen',
       description: 'Tagesaktuelle Zahlen des RKI',
-      defaultMapping: 'case-numbers-to-districts',
       mappings: {
         'case-numbers-to-districts': {
           datasourceId: 'rki-case-numbers',
           geoId: 'districts-city-details',
           geoProperty: 'cca_2',
           dataProperty: 'RS',
-          FeatureInfo: RKIFeatureInfo,
-          // TODO: Move mappables to layergroup
           transformData: transformRKIData
         },
         'case-numbers-to-district-points': {
@@ -73,23 +70,25 @@ export const config: AppConfig = {
           geoId: 'district-points',
           geoProperty: 'cca_2',
           dataProperty: 'RS',
-          FeatureInfo: RKIFeatureInfo,
           transformData: transformRKIData
         }
       },
       layerGroups: [{
         title: 'Flächen',
         mappables: RKIMappables,
+        FeatureInfo: RKIFeatureInfo,
         layers: ['areas-fill', 'hover'],
+        default: true
       }, {
         title: 'Bubbles',
         mappables: RKIMappables,
         layers: ['circles'],
-        default: true
+        FeatureInfo: RKIFeatureInfo,
       }, {
         title: 'Balken',
         mappables: RKIMappables,
         layers: ['extrusion', 'hover'],
+        FeatureInfo: RKIFeatureInfo,
         pitch: 40,
         bearing: 20,
       }],

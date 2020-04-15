@@ -98,6 +98,7 @@ export function Settings () {
               value={currentLayerGroup.title}
               onChange={(event) => {
                 const group = visual.layerGroups?.find(group => (group.title === event.target.value)) as LayerGroup
+                dispatch(AppApi.setCurrentFeature(null))
                 dispatch(AppApi.setLayerGroup(group))
                 dispatch(AppApi.mergeViewport({
                   pitch: group.pitch || 0,

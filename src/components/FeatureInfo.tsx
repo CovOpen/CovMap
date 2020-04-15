@@ -14,8 +14,10 @@ export const FeatureInfo = ({ feature, dataField, onClose }: { feature: any; dat
   const datasets = useSelector((state: State) => state.app.datasets);
   const currentDate = useSelector((state: State) => state.app.currentDate);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
+  const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
   const visual = config.visuals[currentVisual]
-  const mappingId = visual.defaultMapping
+  // TODO: Select data correctly from a dataset for info here
+  const mappingId = Object.keys(visual.mappings)[0]
   const activeMapping = visual.mappings[mappingId]
   const timeKey = formatUTCDate(currentDate)
   const currentDataSet = datasets.get(`${timeKey}-${activeMapping.datasourceId}`)
@@ -24,7 +26,7 @@ export const FeatureInfo = ({ feature, dataField, onClose }: { feature: any; dat
     return null
   }
 
-  const InfoComponent = activeMapping.FeatureInfo
+  const InfoComponent = currentLayerGroup.FeatureInfo
   let rawData: any = null
   if (currentDataSet) {
     rawData = currentDataSet.data[feature.feature.properties[activeMapping.geoProperty]]
