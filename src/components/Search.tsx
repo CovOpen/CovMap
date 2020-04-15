@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
   listbox: {
     borderRadius: `0 0 ${theme.shape.borderRadius} ${theme.shape.borderRadius}`,
     margin: 0,
-    padding: theme.spacing(0, 2),
     position: 'absolute',
     listStyle: 'none',
     backgroundColor: theme.palette.common.white,
@@ -54,7 +53,12 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '200px',
     fontFamily: theme.typography.fontFamily,
     color: 'inherit',
-    width: '168px',
+    minWidth: '200px',
+    boxShadow: '0px 2px 5px -1px rgba(0,0,0,0.55)',
+    '& li': {
+      padding: theme.spacing(0, 1),
+      lineHeight: '42px'
+    },
     '& li[data-focus="true"]': {
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.secondary.contrastText,
