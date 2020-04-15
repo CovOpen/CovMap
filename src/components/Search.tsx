@@ -103,7 +103,6 @@ export const Search = () => {
       event.target.blur()
     }, () => {
       console.log("the location wasnt found");
-      //dispatch(AppApi.setErrorStateSearch(false));
     }));
   }
 
