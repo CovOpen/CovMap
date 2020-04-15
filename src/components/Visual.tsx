@@ -6,7 +6,7 @@ const Layer = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map
   .catch(() => ({ default: LazyError })));
 import { useSelector } from "react-redux";
 
-import { AppApi } from "../state/app";
+import { AppApi, MapSet } from "../state/app";
 import { State } from "../state";
 import { getFallbackComponent } from './getFallback';
 import { config } from '../../app-config/index'
@@ -32,7 +32,7 @@ export const Visual = ({ dataField }: VisualProps) => {
   const filteredLayers = visual.layers
     .filter(layer => currentLayerGroup.layers.includes(layer.id))
 
-  const mappingIds = filteredLayers.map(layer => layer.source)
+  const mappingIds = new Set(filteredLayers.map(layer => layer.source))
   
   for (const mappingId of mappingIds) {
     const mapset = mappedSets.get(currentVisual)?.get(mappingId)
@@ -54,7 +54,10 @@ export const Visual = ({ dataField }: VisualProps) => {
     return null
   }
 
-  const mapsets = mappingIds.map(mappingId => mappedSets.get(currentVisual)?.get(mappingId))
+  const mapsets: Array<MapSet | undefined> = []
+  for(const mappingId of mappingIds) {
+    mapsets.push(mappedSets.get(currentVisual)?.get(mappingId))
+  }
 
   const visualLayers = filteredLayers.map(layer => {
     const l = layer.fn(dataField, timeKey)

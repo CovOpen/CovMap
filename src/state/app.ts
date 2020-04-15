@@ -5,14 +5,8 @@ import { Mappable, LayerGroup } from '../app-config.types'
 import { config } from '../../app-config/index'
 
 const defaultVisual = config.visuals[config.defaultVisual]
-const defaultMapping = defaultVisual.mappings[defaultVisual.defaultMapping]
-const defaultMappable = defaultMapping.mappables.find(mappable => mappable.default) || defaultMapping.mappables[0]
-let defaultLayerGroup: any = null
-if (defaultVisual.layerGroups) {
-  // Default Layers with special ids, always added
-  // defaultVisual.layerGroups.forEach(group => group.layers.push('hover'))
-  defaultLayerGroup = defaultVisual.layerGroups.find(group => group.default)
-}
+const defaultLayerGroup = defaultVisual.layerGroups.find(group => group.default) || defaultVisual.layerGroups[0]
+const defaultMappable = defaultLayerGroup.mappables.find(mappable => mappable.default) || defaultLayerGroup.mappables[0]
 
 export const backendUrl = "/api";
 

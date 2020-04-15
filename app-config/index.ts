@@ -66,7 +66,6 @@ export const config: AppConfig = {
           dataProperty: 'RS',
           FeatureInfo: RKIFeatureInfo,
           // TODO: Move mappables to layergroup
-          mappables: RKIMappables,
           transformData: transformRKIData
         },
         'case-numbers-to-district-points': {
@@ -75,19 +74,21 @@ export const config: AppConfig = {
           geoProperty: 'cca_2',
           dataProperty: 'RS',
           FeatureInfo: RKIFeatureInfo,
-          mappables: RKIMappables,
           transformData: transformRKIData
         }
       },
       layerGroups: [{
         title: 'Flächen',
+        mappables: RKIMappables,
         layers: ['areas-fill', 'hover'],
       }, {
         title: 'Bubbles',
+        mappables: RKIMappables,
         layers: ['circles'],
         default: true
       }, {
         title: 'Balken',
+        mappables: RKIMappables,
         layers: ['extrusion', 'hover'],
         pitch: 40,
         bearing: 20,

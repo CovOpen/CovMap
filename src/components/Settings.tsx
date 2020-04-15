@@ -40,7 +40,6 @@ export function Settings () {
   const currentMappable = useSelector((state: State) => state.app.currentMappable);
   const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
   const visual = config.visuals[currentVisual]
-  const currentMapping = visual.mappings[visual.defaultMapping]
   
   const handleSettingsClick = (event) => {
     setSettingsAnchorEl(event.currentTarget);
@@ -90,6 +89,30 @@ export function Settings () {
         </div>
         <div style={{ marginTop: 16 }}>
           <FormControl>
+            <InputLabel id="layer-group-label">Darstellung</InputLabel>
+            <Select
+              className={classes.menuItem}
+              style={{ touchAction: 'none' }}
+              labelId="layer-group-label"
+              id="layer-group-select"
+              value={currentLayerGroup.title}
+              onChange={(event) => {
+                const group = visual.layerGroups?.find(group => (group.title === event.target.value)) as LayerGroup
+                dispatch(AppApi.setLayerGroup(group))
+                dispatch(AppApi.mergeViewport({
+                  pitch: group.pitch || 0,
+                  bearing: group.bearing || 0
+                }))
+              }}
+            >
+              {visual.layerGroups?.map(group => (
+                <MenuItem key={group.title} style={{ touchAction: 'none' }} value={group.title}>{group.title}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+        <div style={{ marginTop: 16 }}>
+          <FormControl>
             <InputLabel id="mappable-label">Karten Wert</InputLabel>
             <Select
               className={classes.menuItem}
@@ -98,41 +121,15 @@ export function Settings () {
               id="mappable-select"
               value={currentMappable.property}
               onChange={(event) => dispatch(AppApi.setCurrentMappable(
-                currentMapping.mappables.find(mappable => (mappable.property === event.target.value)) as Mappable
+                currentLayerGroup.mappables.find(mappable => (mappable.property === event.target.value)) as Mappable
               ))}
             >
-              {currentMapping.mappables.map(mappable => (
+              {currentLayerGroup.mappables.map(mappable => (
                 <MenuItem key={mappable.property} style={{ touchAction: 'none' }} value={mappable.property}>{mappable.title}</MenuItem>
               ))}
             </Select>
           </FormControl>
         </div>
-        {visual.layerGroups &&
-          <div style={{ marginTop: 16 }}>
-            <FormControl>
-              <InputLabel id="layer-group-label">Layer Group</InputLabel>
-              <Select
-                className={classes.menuItem}
-                style={{ touchAction: 'none' }}
-                labelId="layer-group-label"
-                id="layer-group-select"
-                value={currentLayerGroup.title}
-                onChange={(event) => {
-                  const group = visual.layerGroups?.find(group => (group.title === event.target.value)) as LayerGroup
-                  dispatch(AppApi.setLayerGroup(group))
-                  dispatch(AppApi.mergeViewport({
-                    pitch: group.pitch || 0,
-                    bearing: group.bearing || 0
-                  }))
-                }}
-              >
-                {visual.layerGroups?.map(group => (
-                  <MenuItem key={group.title} style={{ touchAction: 'none' }} value={group.title}>{group.title}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div>
-        }
       </div>
     </Popover>
   </>)
