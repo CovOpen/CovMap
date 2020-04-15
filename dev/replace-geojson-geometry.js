@@ -6,11 +6,11 @@ program
   .version('0.1.0')
   .name("merge-geojson-props")
   .description('Merge feature props from one FeatureCollection GeoJSON into another')
-  .option('-p, --props <props>', 'Comma separated list of properties to merge')
+  .option('-p, --prop <prop>', 'Get coordinated from input GeoJSON property')
+  .option('-t, --type <type>', 'The type name of the geometry on the target')
   .option('-o, --output <path>', 'Where to output the generated JSON relative to CWD (default: next to input file)')
   .option('-m, --match <propertyName>', 'Which property is used for identifying a feature in both files(default: id)')
   .option('-i, --info', 'Output the identity property of missed features')
-  .option('-r, --reverse', 'Reverse merged array props')
   .arguments('[fromGeoJSON] [intoGeoJSON]');
 
 program.parse(process.argv);
@@ -32,7 +32,7 @@ if (program.output) {
   output = path.resolve(process.cwd(), program.output);
 } else {
   const pathInfo = path.parse(intoFilePath);
-  output = path.join(pathInfo.dir, `${pathInfo.name}.merged${pathInfo.ext}`);
+  output = path.join(pathInfo.dir, `${pathInfo.name}.replaced${pathInfo.ext}`);
 }
 
 const fromJSON = loadGeoJson(fromFilePath);
@@ -42,14 +42,6 @@ let matchProperty = 'id'
 if(program.match) {
   matchProperty = program.match
 }
-
-if (!program.props) {
-  console.warn('Error: Please specify a comma separated list of features to merge with the -p flag');
-  program.help()
-  process.exit();
-}
-
-const props = program.props.split(',').map(prop => prop.trim());
 
 let matchedFeatures = 0;
 let missedFeatures = [];
@@ -61,12 +53,25 @@ for(const intoFeature of intoJSON.features) {
   if (fromFeature) {
     matchedFeatures++;
 
-    for (const prop of props) {
-      const fProp = fromFeature.properties[prop]
-      if (program.reverse && Array.isArray(fProp)) {
-        fProp.reverse()
+    if (program.prop) {
+      // Take geometry from a feature property
+      const geometry = fromFeature.properties[program.prop]
+      if (geometry.type && geometry.coordinates) {
+        if (program.type) {
+          geometry.type = program.type
+        }
+        intoFeature.geometry = geometry
+      } else {
+        if (!program.type) {
+          throw new Error('Property geometry is not a geometry object, need a type')
+        }
+        intoFeature.geometry = {
+          type: program.type,
+          coordinates: geometry
+        }
       }
-      intoFeature.properties[prop] = fProp;
+    } else {
+      throw new Error('NOT IMPLEMENTED')
     }
   } else {
     missedFeatures.push(intoFeature.properties[matchProperty]);

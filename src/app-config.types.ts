@@ -27,9 +27,9 @@ export type AppVisual = {
     name: string;
     description: string;
     defaultMapping: MappingId;
+    layers: Array<AppVisualLayerFunction>;
     layerGroups?: Array<LayerGroup>;
     mappings: Record<MappingId, AppVisualMapping>;
-    layers: Array<AppVisualLayer | AppVisualLayerFunction>;
     search?: DefaultSearchOptions | CustomSearchOptions; 
 }
 

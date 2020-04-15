@@ -26,6 +26,7 @@ export const Visual = ({ dataField }: VisualProps) => {
   const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
   const visual = config.visuals[currentVisual]
   // TODO: handle multiple mappings (map and merge data on same geojson, layer decides what to render)
+  // -> Load all mappings, needed for displayed layers
   const mappingId = visual.defaultMapping
   const mapset = mappedSets.get(currentVisual)?.get(mappingId)
   const timeKey = formatUTCDate(currentDate)
@@ -34,7 +35,7 @@ export const Visual = ({ dataField }: VisualProps) => {
     if (mapset && mapset.timeKeys.includes(timeKey)) {
       dispatch(AppApi.setDatasetFound(true))
     }
-  }, [mappedSets])
+  }, [mappedSets, timeKey])
 
   if (!mapset || !mapset.timeKeys.includes(timeKey)) {
     dispatch(fetchMappedSet(currentVisual, mappingId, currentDate))

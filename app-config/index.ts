@@ -6,29 +6,23 @@ import { About } from "./components/pages/About"
 import { Imprint } from "./components/pages/Imprint"
 import { RKIFeatureInfo } from "./components/RKIFeatureInfo"
 
-function normalizeProperties(data, postfix, properties) {
-  const minMax = properties.reduce((acc, prop) => Object.assign(acc, {
-    [prop]: { min: Infinity, max: -Infinity, factor: 1 }
-  }), {})
-  for (const props of data) {
-    for(const prop of properties) {
-      const value = props[prop]
-      const mm = minMax[prop]
-      mm.min = Math.min(value, mm.min)
-      mm.max = Math.max(value, mm.max)
-    }
-  }
-  for(const prop of properties) {
-    const mm = minMax[prop]
-    mm.factor = 1 / (mm.max - mm.min)
-  }
-  for (const props of data) {
-    for(const prop of properties) {
-      props[`${prop}${postfix}`] = props[prop] * minMax[prop].factor
-    }
-  }
-  return data
-}
+const RKIMappables = [{
+  property: 'cases_per_population_norm',
+  title: 'Betroffenenrate',
+  default: true
+}, {
+  property: 'cases_norm',
+  title: 'Fälle',
+}, {
+  property: 'deaths_norm',
+  title: 'Verstorbene',
+}, {
+  property: 'cases_per_100k_norm',
+  title: 'Fälle pro 100k Einwohner',
+}, {
+  property: 'death_rate_norm',
+  title: 'Sterberate',
+}]
 
 export const config: AppConfig = {
   ui: {
@@ -62,7 +56,7 @@ export const config: AppConfig = {
   visuals: {
     'rki': {
       name: 'RKI Fallzahlen',
-      description: 'Anteil der betroffenen pro Landkreis',
+      description: 'Tagesaktuelle Zahlen des RKI',
       defaultMapping: 'case-numbers-to-districts',
       mappings: {
         'case-numbers-to-districts': {
@@ -71,44 +65,8 @@ export const config: AppConfig = {
           geoProperty: 'cca_2',
           dataProperty: 'RS',
           FeatureInfo: RKIFeatureInfo,
-          mappables: [{
-            property: 'cases_per_population_norm',
-            title: 'Betroffenenrate',
-            default: true
-          }, {
-            property: 'cases_norm',
-            title: 'Fälle',
-          }, {
-            property: 'deaths_norm',
-            title: 'Verstorbene',
-          }, {
-            property: 'cases_per_100k_norm',
-            title: 'Fälle pro 100k Einwohner',
-          }, {
-            property: 'death_rate_norm',
-            title: 'Sterberate',
-          }],
-          transformData: (json) => {
-            if (!json.result.length) {
-              return null
-            }
-
-            const normalized = normalizeProperties(json.result, '_norm', [
-              'cases_per_population',
-              'cases',
-              'deaths',
-              'cases_per_100k',
-              'death_rate'
-            ])
-
-            const propertiesByCCA2 = normalized.reduce((acc, curr) => Object.assign(acc, {
-              [curr.RS]: curr
-            }), {})
-
-            return {
-              data: propertiesByCCA2
-            };
-          }
+          mappables: RKIMappables,
+          transformData: transformRKIData
         }
       },
       layerGroups: [{
@@ -216,6 +174,55 @@ export const config: AppConfig = {
   geos: {
     'districts-city-details': {
       url: '/data/de_districts_all.geojson'
+    },
+    'district-points': {
+      url: '/data/de_districts_all_points.geojson'
     }
   }
+}
+
+function normalizeProperties(data, postfix, properties) {
+  const minMax = properties.reduce((acc, prop) => Object.assign(acc, {
+    [prop]: { min: Infinity, max: -Infinity, factor: 1 }
+  }), {})
+  for (const props of data) {
+    for(const prop of properties) {
+      const value = props[prop]
+      const mm = minMax[prop]
+      mm.min = Math.min(value, mm.min)
+      mm.max = Math.max(value, mm.max)
+    }
+  }
+  for(const prop of properties) {
+    const mm = minMax[prop]
+    mm.factor = 1 / (mm.max - mm.min)
+  }
+  for (const props of data) {
+    for(const prop of properties) {
+      props[`${prop}${postfix}`] = props[prop] * minMax[prop].factor
+    }
+  }
+  return data
+}
+
+function transformRKIData(json) {
+  if (!json.result.length) {
+    return null
+  }
+
+  const normalized = normalizeProperties(json.result, '_norm', [
+    'cases_per_population',
+    'cases',
+    'deaths',
+    'cases_per_100k',
+    'death_rate'
+  ])
+
+  const propertiesByCCA2 = normalized.reduce((acc, curr) => Object.assign(acc, {
+    [curr.RS]: curr
+  }), {})
+
+  return {
+    data: propertiesByCCA2
+  };
 }
