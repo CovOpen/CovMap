@@ -64,6 +64,7 @@ export type DefaultSearchOptions = {
      * @param query
      */
     transformQuery?(query: string): string;
+    all?: boolean;
 }
 
 export type CustomSearchOptions = {

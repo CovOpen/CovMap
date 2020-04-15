@@ -14,11 +14,25 @@ const locationFound = (query, data, properties, searchOptions?) => {
       console.warn(`Property "${propName}" not found in dataset, check your app-config search settings`)
       return false;
     }
-    if (data.properties[propName].toLowerCase().includes(queryTransformed)) {
+    if (data.properties[propName].toLowerCase().includes(queryTransformed.toLowerCase())) {
       return true;
     }
     return false;
   })
+}
+
+export function getPossibleSearchResults() {
+  return (dispatch: ReduxDispatch, getState: () => State) => {
+    const state = getState()
+    const { currentVisual } = state.app;
+    const visual = config.visuals[currentVisual]
+    const result = defaultSearchMethod('', state, {
+      ...visual.search,
+      all: true
+    } as DefaultSearchOptions)
+    
+    return result
+  }
 }
 
 function defaultSearchMethod(query: string, state: State, searchOptions?: DefaultSearchOptions) {
@@ -52,13 +66,15 @@ function defaultSearchMethod(query: string, state: State, searchOptions?: Defaul
             lat: coordinates[1],
             lng: coordinates[0]
           });
-
+          
         } catch(err) {
           console.log(err)
           console.warn('Coordinates extraction error, check your app-config search settings and geo data')
           return { results: [] }
         }
-        break;
+        if (!searchOptions?.all) {
+          break;
+        }
       } 
     }
   }
