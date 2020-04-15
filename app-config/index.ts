@@ -119,22 +119,22 @@ export const config: AppConfig = {
             paint: {
               'circle-color': [
                 'interpolate',
-                ['linear'],
+                ['exponential', 0.05],
                 ['get', dataField, ['get', timeKey]],
                 0.01,
-                '#FCA107',
+                '#f8fbff',
                 1,
-                '#7F3121'
+                '#113068'
               ],
-              'circle-opacity': 0.75,
+              'circle-opacity': 0.9,
               'circle-radius': [
                 'interpolate',
-                ['linear'],
+                ['exponential', 0.05],
                 ['get', dataField, ['get', timeKey]],
                 0.01,
-                5,
+                3,
                 1,
-                20
+                30
               ]
             }
           })
