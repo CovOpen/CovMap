@@ -14,11 +14,13 @@ import { useThunkDispatch } from "../useThunkDispatch";
 import { Settings } from './Settings';
 import { Zoom } from './Zoom';
 import { OfflineIndicator } from './OfflineIndicator';
+import { TopLeftContainer } from './TopLeftContainer';
 import { MAX_ZOOM_LEVEL } from '../constants';
 import { TimeRangeSlider } from './TimeRangeSlider';
 import { Visual } from './Visual';
 import { FeatureInfo } from './FeatureInfo';
 import { WelcomeInfo } from './WelcomeInfo';
+import { WelcomeInfoButton } from './WelcomeInfoButton';
 import { config } from '../../app-config/index'
  
 const useStyles = makeStyles((theme) => ({
@@ -190,7 +192,10 @@ export const CovMap = () => {
         </div>
         <Settings />
         <Zoom />
-        <OfflineIndicator />
+        <TopLeftContainer>
+          <WelcomeInfoButton />
+          <OfflineIndicator />
+        </TopLeftContainer>
         <WelcomeInfo />
         <ReactMapGL
           // reuseMaps={true} // - experimental, consider using when remounting the map component often

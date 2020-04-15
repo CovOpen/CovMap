@@ -3,11 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   indicator: {
-    position: 'absolute',
-    top: theme.spacing(2),
-    left: theme.spacing(2),
     padding: '4px 6px',
-    zIndex: 1100,
     borderRadius: '1rem',
     backgroundColor: 'rgba(0,0,0,0.5)',
     display: 'flex',
