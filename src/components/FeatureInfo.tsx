@@ -9,27 +9,29 @@ import { State } from "../state";
 import { formatUTCDate } from '../lib/formatUTCDate.js'
 import { getFallbackComponent } from './getFallback';
 
-export const FeatureInfo = memo(({ feature, dataField, onClose }: { feature: any; dataField: string; onClose: Function }) => {
+export const FeatureInfo = memo(({ dataField, onClose }: { dataField: string; onClose: Function }) => {
+  const currentFeature = useSelector((state: State) => state.app.currentFeature);
+  const datasetFound = useSelector((state: State) => state.app.datasetFound);
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const datasets = useSelector((state: State) => state.app.datasets);
   const currentDate = useSelector((state: State) => state.app.currentDate);
-  const datasetFound = useSelector((state: State) => state.app.datasetFound);
   const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
+  
+  if (!currentFeature.feature || !datasetFound) {
+    return null
+  }
+  
   const visual = config.visuals[currentVisual]
   // TODO: Select data correctly from a dataset for info here
   const mappingId = Object.keys(visual.mappings)[0] // <-
   const activeMapping = visual.mappings[mappingId]
   const timeKey = formatUTCDate(currentDate)
   const currentDataSet = datasets.get(`${timeKey}-${activeMapping.datasourceId}`)
-  
-  if (!feature.feature || !datasetFound) {
-    return null
-  }
 
   const InfoComponent = currentLayerGroup.FeatureInfo
   let rawData: any = null
   if (currentDataSet) {
-    rawData = currentDataSet.data[feature.feature.properties[activeMapping.geoProperty]]
+    rawData = currentDataSet.data[currentFeature.feature.properties[activeMapping.geoProperty]]
   }
 
   if (!rawData) {
@@ -39,8 +41,8 @@ export const FeatureInfo = memo(({ feature, dataField, onClose }: { feature: any
   return (
     <Suspense fallback={getFallbackComponent()}>
       <Popup
-        latitude={(feature as any).lngLat[1]}
-        longitude={(feature as any).lngLat[0]}
+        latitude={(currentFeature as any).lngLat[1]}
+        longitude={(currentFeature as any).lngLat[0]}
         closeButton={false}
         closeOnClick={true}
         onClose={onClose}
@@ -48,7 +50,7 @@ export const FeatureInfo = memo(({ feature, dataField, onClose }: { feature: any
         style={{ zIndex: 1100 }}
       >
         <InfoComponent 
-          feature={feature.feature} 
+          feature={currentFeature.feature} 
           dataField={dataField} 
           timeKey={timeKey} 
           rawData={rawData} 

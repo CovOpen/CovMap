@@ -16,10 +16,9 @@ export type GLMapProps = {
   onMapClick: Function;
   onViewportChange: Function;
   dataField: string;
-  currentFeature: any;
 }
 
-export const GLMap = ({ mapRef, onMapClick, onViewportChange, dataField, currentFeature }: GLMapProps) => {
+export const GLMap = ({ mapRef, onMapClick, onViewportChange, dataField }: GLMapProps) => {
   const dispatch = useThunkDispatch();
   const stateViewport = useSelector((state: State) => state.app.viewport);
   
@@ -40,7 +39,6 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange, dataField, current
       <Visual />
       <FeatureInfo
         dataField={dataField}
-        feature={currentFeature}
         onClose={() => {
           dispatch(AppApi.setCurrentFeature(null))
         }}

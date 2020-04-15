@@ -196,7 +196,6 @@ export const CovMap = () => {
           onMapClick={handleMapClick}
           onViewportChange={onViewportChange}
           dataField={dataField}
-          currentFeature={currentFeature}
         />
         <TimeRangeSlider />
         <Dialog
