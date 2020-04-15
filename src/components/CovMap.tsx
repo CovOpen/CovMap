@@ -175,8 +175,6 @@ export const CovMap = () => {
     }
   }
 
-  const dataField = currentMappable.property;
-
   return (
     <>
       <main className={classes.main}>
@@ -195,7 +193,6 @@ export const CovMap = () => {
           mapRef={mapRef}
           onMapClick={handleMapClick}
           onViewportChange={onViewportChange}
-          dataField={dataField}
         />
         <TimeRangeSlider />
         <Dialog

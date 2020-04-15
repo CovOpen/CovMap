@@ -8,18 +8,14 @@ const ReactMapGL = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'reac
 
 import { State } from "../state";
 import { MAX_ZOOM_LEVEL } from '../constants';
-import { AppApi } from "../state/app";
-import { useThunkDispatch } from "../useThunkDispatch";
 
 export type GLMapProps = {
   mapRef: any;
   onMapClick: Function;
   onViewportChange: Function;
-  dataField: string;
 }
 
-export const GLMap = ({ mapRef, onMapClick, onViewportChange, dataField }: GLMapProps) => {
-  const dispatch = useThunkDispatch();
+export const GLMap = ({ mapRef, onMapClick, onViewportChange }: GLMapProps) => {
   const stateViewport = useSelector((state: State) => state.app.viewport);
   
   return (
@@ -37,12 +33,7 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange, dataField }: GLMap
       mapboxApiAccessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
     >
       <Visual />
-      <FeatureInfo
-        dataField={dataField}
-        onClose={() => {
-          dispatch(AppApi.setCurrentFeature(null))
-        }}
-      />
+      <FeatureInfo />
     </ReactMapGL>
   )
 }

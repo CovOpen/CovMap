@@ -8,19 +8,23 @@ import { config } from '../../app-config/index'
 import { State } from "../state";
 import { formatUTCDate } from '../lib/formatUTCDate.js'
 import { getFallbackComponent } from './getFallback';
+import { AppApi } from "../state/app";
+import { useThunkDispatch } from "../useThunkDispatch";
 
-export const FeatureInfo = memo(({ dataField, onClose }: { dataField: string; onClose: Function }) => {
+export const FeatureInfo = memo(() => {
+  const dispatch = useThunkDispatch();
   const currentFeature = useSelector((state: State) => state.app.currentFeature);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const datasets = useSelector((state: State) => state.app.datasets);
   const currentDate = useSelector((state: State) => state.app.currentDate);
   const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
+  const currentMappable = useSelector((state: State) => state.app.currentMappable);
   
   if (!currentFeature.feature || !datasetFound) {
     return null
   }
-  
+
   const visual = config.visuals[currentVisual]
   // TODO: Select data correctly from a dataset for info here
   const mappingId = Object.keys(visual.mappings)[0] // <-
@@ -38,6 +42,8 @@ export const FeatureInfo = memo(({ dataField, onClose }: { dataField: string; on
     return null
   }
   
+  const onClose = () => dispatch(AppApi.setCurrentFeature(null))
+
   return (
     <Suspense fallback={getFallbackComponent()}>
       <Popup
@@ -51,7 +57,7 @@ export const FeatureInfo = memo(({ dataField, onClose }: { dataField: string; on
       >
         <InfoComponent 
           feature={currentFeature.feature} 
-          dataField={dataField} 
+          dataField={currentMappable.property} 
           timeKey={timeKey} 
           rawData={rawData} 
           onClose={onClose}
