@@ -33,6 +33,7 @@ export type AppVisual = {
 }
 
 export type LayerGroup = {
+    id: string;
     title: string;
     default?: boolean;
     layers: Array<LayerId>;

@@ -89,6 +89,7 @@ export const config: AppConfig = {
         }
       },
       layerGroups: [{
+        id: 'areas',
         title: 'Flächen',
         mappables: RKIMappables,
         FeatureInfo: RKIFeatureInfo,
@@ -96,12 +97,14 @@ export const config: AppConfig = {
         search: RKISearch,
         default: true
       }, {
+        id: 'bubbles',
         title: 'Bubbles',
         mappables: RKIMappables,
         layers: ['circles'],
         // search: RKISearch,
         FeatureInfo: RKIFeatureInfo,
       }, {
+        id: 'extrusion',
         title: 'Balken',
         mappables: RKIMappables,
         layers: ['extrusion', 'hover'],
