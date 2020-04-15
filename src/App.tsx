@@ -108,7 +108,7 @@ export const App = () => {
       }
     }
   }
-  console.log('currentLayerGroup', currentLayerGroup)
+
   return (
     <ThemeProvider theme={theme}>
       <ServiceWorker />

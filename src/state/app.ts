@@ -79,6 +79,7 @@ export interface AppState {
   isInstalled: boolean;
   installPrompt: Function | null;
   currentLayerGroup: LayerGroup;
+  infoDialogs: Record<string, boolean>;
 }
 
 export const defaultAppState: AppState = {
@@ -110,7 +111,8 @@ export const defaultAppState: AppState = {
   currentFeature: { feature: null },
   isInstalled: false,
   installPrompt: null,
-  currentLayerGroup: defaultLayerGroup
+  currentLayerGroup: defaultLayerGroup,
+  infoDialogs: {}
 };
 
 class AppReducer extends Reducer<AppState> {
@@ -197,6 +199,9 @@ class AppReducer extends Reducer<AppState> {
   }
   public setLayerGroup(group: LayerGroup) {
     this.state.currentLayerGroup = group
+  }
+  public setInfoDialog(visualId: string, seen: boolean) {
+    this.state.infoDialogs[visualId] = seen
   }
 }
 

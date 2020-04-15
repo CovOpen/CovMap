@@ -2,36 +2,34 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import { useSelector } from "react-redux";
 
+import { AppApi } from "../state/app";
 import { State } from "../state";
+import { config } from '../../app-config/index'
+import { useThunkDispatch } from "../useThunkDispatch";
 
-export const AlertDialog = () => {
-  const [open, setOpen] = React.useState(true);
+export const WelcomeInfo = () => {
+  const dispatch = useThunkDispatch();
+  const currentVisual = useSelector((state: State) => state.app.currentVisual);
+  const infoDialogs = useSelector((state: State) => state.app.infoDialogs);
+  const InfoComponent = config.visuals[currentVisual].InfoComponent
+  const seen = InfoComponent && infoDialogs[currentVisual] === true
 
   const handleClose = () => {
-    setOpen(false);
+    dispatch(AppApi.setInfoDialog(currentVisual, true))
   };
 
   return (
     <div>
       <Dialog
-        open={open}
+        open={!seen}
         scroll={'paper'}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Willkommen bei CovMapper "}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Hier siehst du die aktuelle Anzahl an Corona Infizierten pro Landkreis in Deutschland.
-            Du kannst dir auch andere Daten anschauen, indem du auf das Menü unten links klickst. Oder schaue
-            dir den zeitlichen Verlauf an, indem du die Zeitleiste am unteren Bildschirmrand bewegst.
-          </DialogContentText>
-        </DialogContent>
+        {InfoComponent && <InfoComponent />}
         <DialogActions>
           <Button onClick={handleClose} color="secondary">
             Schließen.

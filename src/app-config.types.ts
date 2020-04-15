@@ -29,6 +29,7 @@ export type AppVisual = {
     layers: Array<AppVisualLayerSpec>;
     layerGroups: Array<LayerGroup>;
     mappings: Record<MappingId, AppVisualMapping>;
+    InfoComponent?: ComponentType; 
 }
 
 export type LayerGroup = {

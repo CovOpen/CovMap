@@ -18,7 +18,7 @@ import { MAX_ZOOM_LEVEL } from '../constants';
 import { TimeRangeSlider } from './TimeRangeSlider';
 import { Visual } from './Visual';
 import { FeatureInfo } from './FeatureInfo';
-import { AlertDialog } from './WelcomeInfo';
+import { WelcomeInfo } from './WelcomeInfo';
 import { config } from '../../app-config/index'
  
 const useStyles = makeStyles((theme) => ({
@@ -191,7 +191,7 @@ export const CovMap = () => {
         <Settings />
         <Zoom />
         <OfflineIndicator />
-        <AlertDialog />
+        <WelcomeInfo />
         <ReactMapGL
           // reuseMaps={true} // - experimental, consider using when remounting the map component often
           ref={mapRef}

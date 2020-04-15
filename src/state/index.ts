@@ -15,6 +15,26 @@ const viewportSubsetFiler = createBlacklistFilter(
   ['transitionInterpolator']
 );
 
+// const transformMap = (props): any => createTransform(
+//   (inboundState: any, key: string | number, ...args) => {
+//     props.includes(key) && console.log('SSSSSERIALIZE MAAAPP', props.includes(key), typeof inboundState, inboundState, key, args)
+//     // const prop = inboundState
+//     return props.includes(key)
+//       ? [...inboundState]
+//       : inboundState
+//     return inboundState
+//   },
+//   (outboundState: any, key: string | number, ...args) => {
+//     // const prop = outboundState
+//     props.includes(key) && console.log('DEEEEEEERIALIZE MAAAPP', props.includes(key), typeof outboundState, outboundState, key, args)
+//     return props.includes(key)
+//       ? new Map(outboundState)
+//       : outboundState
+//     return outboundState
+//   },
+//   { whitelist: ['infoDialogs'] }
+// );
+
 function persist(reducer: any, key: string, whitelist?: string[], blacklist?: string[]) {
   return persistReducer({
     blacklist,
@@ -22,7 +42,10 @@ function persist(reducer: any, key: string, whitelist?: string[], blacklist?: st
     stateReconciler: autoMergeLevel2,  // alternatives: autoMigrateLevel1 (default), autoMigrateLevel2
     storage,
     whitelist,
-    transforms: [viewportSubsetFiler]
+    transforms: [
+      viewportSubsetFiler, 
+      // transformMap(['infoDialogs'])
+    ]
   }, reducer);
 }
 

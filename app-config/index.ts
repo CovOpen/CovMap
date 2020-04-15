@@ -5,6 +5,7 @@ import { Welcome } from "./components/pages/Welcome"
 import { About } from "./components/pages/About"
 import { Imprint } from "./components/pages/Imprint"
 import { RKIFeatureInfo } from "./components/RKIFeatureInfo"
+import { RKIWelcome } from './components/RKIWelcome'
 
 const RKIMappables = [{
   property: 'cases_per_population_norm',
@@ -70,6 +71,7 @@ export const config: AppConfig = {
     'rki': {
       name: 'RKI Fallzahlen',
       description: 'Tagesaktuelle Zahlen des RKI',
+      InfoComponent: RKIWelcome,
       mappings: {
         'case-numbers-to-districts': {
           datasourceId: 'rki-case-numbers',
