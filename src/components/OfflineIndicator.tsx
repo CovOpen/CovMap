@@ -26,9 +26,12 @@ export function OfflineIndicator() {
   const [shouldShow, setShouldShow] = useState<boolean>(() => false)
   
   useEffect(() => {
-    (navigator as any).connection.onchange = () => setShouldShow(() => !navigator.onLine)
+    if (window.navigator && (window.navigator as any).connection) {
+      (window.navigator as any).connection.onchange = () => setShouldShow(() => !window.navigator.onLine)
 
-    return () => (navigator as any).connection.onchange = undefined
+      return () => (window.navigator as any).connection.onchange = undefined
+    }
+    return () => {}
   }, [])
   return shouldShow
     ? (<div className={classes.indicator}><div className={classes.redBubble}></div>Offline</div>)
