@@ -24,6 +24,19 @@ const RKIMappables = [{
   title: 'Sterberate',
 }]
 
+const RKISearch = {
+  placeholder: 'Landkreis',
+  nameProp: 'name',
+  inMappings: [{
+    id: 'case-numbers-to-districts',
+    properties: ['name'],
+    getCoordinates: (feature) => {
+      return feature.properties.geo_point_2d
+    }
+  }],
+  notFoundMessage: 'Leider keinen Landkreis gefunden.'
+}
+
 export const config: AppConfig = {
   ui: {
     Logo: AnimatedLogo
@@ -78,17 +91,20 @@ export const config: AppConfig = {
         mappables: RKIMappables,
         FeatureInfo: RKIFeatureInfo,
         layers: ['areas-fill', 'hover'],
+        search: RKISearch,
         default: true
       }, {
         title: 'Bubbles',
         mappables: RKIMappables,
         layers: ['circles'],
+        // search: RKISearch,
         FeatureInfo: RKIFeatureInfo,
       }, {
         title: 'Balken',
         mappables: RKIMappables,
         layers: ['extrusion', 'hover'],
         FeatureInfo: RKIFeatureInfo,
+        search: RKISearch,
         pitch: 40,
         bearing: 20,
       }],
@@ -205,18 +221,6 @@ export const config: AppConfig = {
           })
         }
       ],
-      search: {
-        placeholder: 'Landkreis',
-        nameProp: 'name',
-        inMappings: [{
-          id: 'case-numbers-to-districts',
-          properties: ['name'],
-          getCoordinates: (feature) => {
-            return feature.properties.geo_point_2d
-          }
-        }],
-        notFoundMessage: 'Leider keinen Landkreis gefunden.'
-      }
     },
   },
   geos: {

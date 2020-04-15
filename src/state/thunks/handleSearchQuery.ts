@@ -4,9 +4,6 @@ import { DefaultSearchOptions, CustomSearchOptions, SearchMethod, SearchResult, 
 import { State } from "../";
 import { FeatureCollection } from "geojson";
 
-import { config } from "../../../app-config/index"
-
-
 const locationFound = (query, data, properties, searchOptions?) => {
   const queryTransformed = searchOptions?.transformQuery 
     ? searchOptions?.transformQuery(query) 
@@ -73,16 +70,15 @@ export function switchViewToPlace(query, onFoundCallback, onErrorCallback) {
   return async (dispatch: ReduxDispatch, getState: () => State) => {
     const { default: FlyToInterpolator } = await import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/utils/transition/viewport-fly-to-interpolator')
     const state = getState();
-    const { viewport, currentVisual } = state.app;
-    const visual = config.visuals[currentVisual]
-    const notFoundMessage = visual.search?.notFoundMessage
+    const { viewport, currentLayerGroup } = state.app;
+    const notFoundMessage = currentLayerGroup.search?.notFoundMessage
   
     let searchResult: SearchResultList 
     
-    if (visual.search && (visual.search as CustomSearchOptions).searchMethod) {
-      searchResult = await ((visual.search as CustomSearchOptions).searchMethod as SearchMethod)(query, state);
+    if (currentLayerGroup.search && (currentLayerGroup.search as CustomSearchOptions).searchMethod) {
+      searchResult = await ((currentLayerGroup.search as CustomSearchOptions).searchMethod as SearchMethod)(query, state);
     } else {
-      searchResult = await defaultSearchMethod(query, state, visual.search as DefaultSearchOptions);
+      searchResult = await defaultSearchMethod(query, state, currentLayerGroup.search as DefaultSearchOptions);
     }
 
     if(searchResult.results.length === 1) {

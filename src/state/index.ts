@@ -30,7 +30,8 @@ export const rootReducer = combineReducers({
   app: persist(AppReduxReducer, "app", undefined, [
     'mappedSets', 'datasets', 'geos', 'loading', 'datasetFound', 
     'viewPortEventsCount', 'currentDate', 'hasSearchError',
-    'currentFeature', 'isInstalled', 'installPrompt', 'snackbarMessage'
+    'currentFeature', 'isInstalled', 'installPrompt', 'snackbarMessage',
+    'currentLayerGroup'
   ]),
 });
 

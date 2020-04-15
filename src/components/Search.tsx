@@ -8,7 +8,6 @@ import { fade } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { State } from "../state";
-import { config } from "../../app-config/index"
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -52,9 +51,8 @@ const useStyles = makeStyles((theme) => ({
 export const Search = () => {
   const dispatch = useThunkDispatch();
   const classes = useStyles();
-  const currentVisual = (useSelector((state: State) => state.app.currentVisual))
-  const visual = config.visuals[currentVisual]
-  const placeholder = visual.search?.placeholder
+  const currentLayerGroup = (useSelector((state: State) => state.app.currentLayerGroup))
+  const placeholder = currentLayerGroup.search?.placeholder
   
   const handleSearch = (event) => {
     event.persist()

@@ -71,7 +71,7 @@ const pagesById: Record<string, AppPage> = config.content?.pages.reduce((acc, pa
 export const App = () => {
   const dispatch = useThunkDispatch();
   const activePage = useSelector((state: State) => state.app.activePage);
-  const currentVisual = useSelector((state: State) => state.app.currentVisual);
+  const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
   const viewportEventsCount = useSelector((state: State) => state.app.viewPortEventsCount);
   const snackbarMessage = (useSelector((state: State) => state.app.snackbarMessage))
   let showInstallPrompt = false
@@ -79,8 +79,7 @@ export const App = () => {
     showInstallPrompt = true
   }
   const [innerHeight, setInnerHeight] = useState(window.innerHeight)
-  const visual = config.visuals[currentVisual]
-  
+
   const timeout: any = null;
   const resizeListener = () => {
     clearTimeout(timeout);
@@ -109,13 +108,13 @@ export const App = () => {
       }
     }
   }
-  
+  console.log('currentLayerGroup', currentLayerGroup)
   return (
     <ThemeProvider theme={theme}>
       <ServiceWorker />
       <InstallPrompt shouldShow={showInstallPrompt} />
       <Container style={{  height: innerHeight, padding: 0, maxWidth: 'none' }}>
-        <NavBar showSearch={!!visual.search} />
+        <NavBar showSearch={!!currentLayerGroup.search} />
         <Container style={{ position: 'relative', height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
           <IntermediateProgress />
           <Suspense fallback={getFallbackComponent()}>

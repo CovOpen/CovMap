@@ -29,7 +29,6 @@ export type AppVisual = {
     layers: Array<AppVisualLayerSpec>;
     layerGroups: Array<LayerGroup>;
     mappings: Record<MappingId, AppVisualMapping>;
-    search?: DefaultSearchOptions | CustomSearchOptions; 
 }
 
 export type LayerGroup = {
@@ -38,6 +37,7 @@ export type LayerGroup = {
     layers: Array<LayerId>;
     mappables: Array<Mappable>;
     FeatureInfo: ComponentType<FeatureInfoProps>;
+    search?: DefaultSearchOptions | CustomSearchOptions;
     pitch?: number;
     bearing?: number;
 }
