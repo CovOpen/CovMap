@@ -18,6 +18,8 @@ export type VisualProps = {
   dataField: string;
 }
 
+const loadingSets = new Set();
+
 export const Visual = ({ dataField }: VisualProps) => {
   const dispatch = useThunkDispatch();
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
@@ -25,41 +27,48 @@ export const Visual = ({ dataField }: VisualProps) => {
   const currentDate = useSelector((state: State) => state.app.currentDate);
   const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
   const visual = config.visuals[currentVisual]
-  // TODO: handle multiple mappings (map and merge data on same geojson, layer decides what to render)
-  // -> Load all mappings, needed for displayed layers
-  const mappingId = visual.defaultMapping
-  const mapset = mappedSets.get(currentVisual)?.get(mappingId)
   const timeKey = formatUTCDate(currentDate)
 
+  const filteredLayers = visual.layers
+    .filter(layer => ['hover'].includes(layer.id) || currentLayerGroup.layers.includes(layer.id))
+
+  const mappingIds = filteredLayers.map(layer => layer.source)
+  
+  for (const mappingId of mappingIds) {
+    const mapset = mappedSets.get(currentVisual)?.get(mappingId)
+    if (!mapset || !mapset.timeKeys.includes(timeKey)) {
+      loadingSets.add(mappingId)
+      dispatch(fetchMappedSet(currentVisual, mappingId, currentDate))
+    } else {
+      loadingSets.delete(mappingId)
+    }
+  }
+  
   useEffect(() => {
-    if (mapset && mapset.timeKeys.includes(timeKey)) {
+    if (loadingSets.size === 0) {
       dispatch(AppApi.setDatasetFound(true))
     }
   }, [mappedSets, timeKey])
 
-  if (!mapset || !mapset.timeKeys.includes(timeKey)) {
-    dispatch(fetchMappedSet(currentVisual, mappingId, currentDate))
+  if (loadingSets.size > 0) {
     return null
   }
 
-  let visualLayers = visual.layers.map(layer => {
-    if (typeof layer === 'function') {
-      return layer(dataField, timeKey)
-    }
-    return layer
-  })
+  const mapsets = mappingIds.map(mappingId => mappedSets.get(currentVisual)?.get(mappingId))
 
-  if (currentLayerGroup) {
-    visualLayers = visualLayers.filter(layer => ['hover'].includes(layer.id) || currentLayerGroup.layers.includes(layer.id))
-  }
+  const visualLayers = filteredLayers.map(layer => {
+    const l = layer.fn(dataField, timeKey)
+    l.id = layer.id
+    l.source = layer.source
+    return l
+  })
 
   // TODO: Render function is called too often, seems unnecessary
   
   return (
     <Suspense fallback={getFallbackComponent()}>
-      <Source id={mappingId} type="geojson" data={mapset.geo}>
-        {visualLayers.map(layer => <Layer key={layer.id} {...layer} />)}
-      </Source>
+      {mapsets.map(mapset => mapset ? <Source id={mapset.id} key={mapset.id} type="geojson" data={mapset.geo} /> : null)}
+      {visualLayers.map(layer => <Layer key={layer.id} {...layer} />)}
     </Suspense>
   )
 }

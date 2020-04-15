@@ -76,6 +76,7 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Date
       let mapset: MapSet | undefined = mappedSets.get(visualId)?.get(mappingId)
       if (!mapset) {
         mapset = {
+          id: mappingId,
           timeKeys: [],
           geo: geojson
         }

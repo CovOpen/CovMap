@@ -65,6 +65,16 @@ export const config: AppConfig = {
           geoProperty: 'cca_2',
           dataProperty: 'RS',
           FeatureInfo: RKIFeatureInfo,
+          // TODO: Move mappables to layergroup
+          mappables: RKIMappables,
+          transformData: transformRKIData
+        },
+        'case-numbers-to-district-points': {
+          datasourceId: 'rki-case-numbers',
+          geoId: 'district-points',
+          geoProperty: 'cca_2',
+          dataProperty: 'RS',
+          FeatureInfo: RKIFeatureInfo,
           mappables: RKIMappables,
           transformData: transformRKIData
         }
@@ -72,6 +82,9 @@ export const config: AppConfig = {
       layerGroups: [{
         title: 'Flächen',
         layers: ['areas-fill'],
+      }, {
+        title: 'Bubbles',
+        layers: ['circles'],
         default: true
       }, {
         title: 'Balken',
@@ -82,80 +95,115 @@ export const config: AppConfig = {
       layers: [
         // See the Mapbox Style Specification for details on data expressions.
         // https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions
-        (dataField, timeKey) => ({
+        {
+          id: "circles",
+          source: "case-numbers-to-district-points",
+          fn: (dataField, timeKey) => ({
+            type: LayerType.CIRCLE,
+            paint: {
+              'circle-color': [
+                'interpolate',
+                ['linear'],
+                ['get', dataField, ['get', timeKey]],
+                0.01,
+                '#FCA107',
+                1,
+                '#7F3121'
+              ],
+              'circle-opacity': 0.75,
+              'circle-radius': [
+                'interpolate',
+                ['linear'],
+                ['get', dataField, ['get', timeKey]],
+                0.01,
+                5,
+                1,
+                20
+              ]
+            }
+          })
+        },
+        {
           id: "areas-fill",
-          sourceId: "case-numbers-to-districts",
-          type: LayerType.FILL,
-          paint: {
-            'fill-color': [
-              'interpolate',
-              ['linear'],
-              ['get', dataField, ['get', timeKey]],
-              // ['get', dataField],
-              0, '#f8fbff',
-              0.025, '#e1ebf5',
-              0.05, '#cadbed',
-              0.1, '#a6c9df',
-              0.2, '#79add2',
-              0.35, '#5591c3',
-              0.5, '#3771b0',
-              0.65, '#205297',
-              0.8, '#113068',
-            ],
-            'fill-opacity': 0.8,
-          }
-        }),
-        (dataField, timeKey) => ({
+          source: "case-numbers-to-districts",
+          fn: (dataField, timeKey) => ({
+            type: LayerType.FILL,
+            paint: {
+              'fill-color': [
+                'interpolate',
+                ['linear'],
+                ['get', dataField, ['get', timeKey]],
+                // ['get', dataField],
+                0, '#f8fbff',
+                0.025, '#e1ebf5',
+                0.05, '#cadbed',
+                0.1, '#a6c9df',
+                0.2, '#79add2',
+                0.35, '#5591c3',
+                0.5, '#3771b0',
+                0.65, '#205297',
+                0.8, '#113068',
+              ],
+              'fill-opacity': 0.8,
+            }
+          })
+        },
+        {
           id: "extrusion",
-          sourceId: "case-numbers-to-districts",
-          type: LayerType.FILL_EXTRUSION,
-          'paint': { 
-            'fill-extrusion-color': [
-              'interpolate',
-              ['linear'],
-              ['get', dataField, ['get', timeKey]],
-              0, '#f8fbff',
-              0.025, '#e1ebf5',
-              0.05, '#cadbed',
-              0.1, '#a6c9df',
-              0.2, '#79add2',
-              0.35, '#5591c3',
-              0.5, '#3771b0',
-              0.65, '#205297',
-              0.8, '#113068',
-            ],
-            'fill-extrusion-height': [
-              'interpolate',
-              ['linear'],
-              ['get', dataField, ['get', timeKey]],
-              0, 1000,
-              0.025, 2500,
-              0.05, 5000,
-              0.1, 10000,
-              0.2, 20000,
-              0.35, 40000,
-              0.5, 60000,
-              0.65, 100000,
-              0.8, 160000,
-            ],
-            'fill-extrusion-base': 1,
-            'fill-extrusion-opacity': 0.5
-          }
-        }),
-        () => ({
+          source: "case-numbers-to-districts",
+          fn: (dataField, timeKey) => ({
+            id: "extrusion",
+            type: LayerType.FILL_EXTRUSION,
+            'paint': { 
+              'fill-extrusion-color': [
+                'interpolate',
+                ['linear'],
+                ['get', dataField, ['get', timeKey]],
+                0, '#f8fbff',
+                0.025, '#e1ebf5',
+                0.05, '#cadbed',
+                0.1, '#a6c9df',
+                0.2, '#79add2',
+                0.35, '#5591c3',
+                0.5, '#3771b0',
+                0.65, '#205297',
+                0.8, '#113068',
+              ],
+              'fill-extrusion-height': [
+                'interpolate',
+                ['linear'],
+                ['get', dataField, ['get', timeKey]],
+                0, 1000,
+                0.025, 2500,
+                0.05, 5000,
+                0.1, 10000,
+                0.2, 20000,
+                0.35, 40000,
+                0.5, 60000,
+                0.65, 100000,
+                0.8, 160000,
+              ],
+              'fill-extrusion-base': 1,
+              'fill-extrusion-opacity': 0.5
+            }
+          })
+        },
+        {
           id: "hover",
-          sourceId: "case-numbers-to-districts",
-          type: LayerType.LINE,
-          paint: {
-            'line-color': '#627BC1',
-            'line-width': [
-              'case',
-              ['boolean', ['feature-state', 'hover'], false],
-              4,
-              0
-            ]
-          }
-        })
+          source: "case-numbers-to-districts",
+          fn: () => ({
+            type: LayerType.LINE,
+            paint: {
+              'line-color': '#627BC1',
+              'line-width': [
+                'case',
+                ['boolean', ['feature-state', 'hover'], false],
+                4,
+                0
+              ]
+            }
+          })
+        }
       ],
       search: {
         placeholder: 'Landkreis',

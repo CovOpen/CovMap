@@ -27,7 +27,7 @@ export type AppVisual = {
     name: string;
     description: string;
     defaultMapping: MappingId;
-    layers: Array<AppVisualLayerFunction>;
+    layers: Array<AppVisualLayerSpec>;
     layerGroups?: Array<LayerGroup>;
     mappings: Record<MappingId, AppVisualMapping>;
     search?: DefaultSearchOptions | CustomSearchOptions; 
@@ -86,9 +86,15 @@ export enum LayerType {
 
 export type AppVisualLayerFunction = (dataField?: string, timeKey?: string) => AppVisualLayer
 
-export type AppVisualLayer = {
+export type AppVisualLayerSpec = {
     id: LayerId;
-    sourceId: MappingId | GeoId; // TODO: currently only Mapping works as source
+    source: MappingId;
+    fn: AppVisualLayerFunction;
+}
+
+export type AppVisualLayer = {
+    id?: LayerId;
+    source?: MappingId;
     type: LayerType;
     paint: Record<string, any>;
 }

@@ -17,6 +17,7 @@ if (defaultVisual.layerGroups) {
 export const backendUrl = "/api";
 
 export type MapSet = {
+  id: string;
   geo: GeoJSON;
   timeKeys: Array<string>;
 }
