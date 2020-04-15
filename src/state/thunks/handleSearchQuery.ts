@@ -38,7 +38,7 @@ function defaultSearchMethod(query: string, state: State, searchOptions?: Defaul
   const { currentVisual, mappedSets } = state.app;
   const mappedSetsToSearchIn = searchOptions?.inMappings.map(mapping => ({
     ...mapping,
-    data: mappedSets.get(currentVisual)?.get(mapping.id)
+    data: mappedSets[currentVisual] ? mappedSets[currentVisual][mapping.id] : null
   }))
 
   if (!mappedSetsToSearchIn) {

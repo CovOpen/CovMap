@@ -55,7 +55,7 @@ export type SnackbarMessage = {
   duration?: number;
 }
 
-export type MapSetHolder = Map<VisualId, Map<string, MapSet>>
+export type MapSetHolder = Record<VisualId, Record<string, MapSet>>
 
 export interface AppState {
   activePage: string;
@@ -95,7 +95,7 @@ export const defaultAppState: AppState = {
   history: [],
   geos: new Map<string, GeoJSON>(),
   datasets: new Map<string, MapData>(),
-  mappedSets: new Map<VisualId, Map<string, MapSet>>(), 
+  mappedSets: {}, 
   currentDate: new Date(),
   currentMappable: defaultMappable,
   datasetFound: true,
@@ -149,10 +149,13 @@ class AppReducer extends Reducer<AppState> {
     this.state.datasets.set(id, data);
   }
   public addMappedSet(visualId: VisualId, mappingId: string, data: MapSet) {
-    if (!this.state.mappedSets.has(visualId)) {
-      this.state.mappedSets.set(visualId, new Map<string, MapSet>())
+    if (!this.state.mappedSets[visualId]) {
+      this.state.mappedSets[visualId] = {}
     }
-    this.state.mappedSets.get(visualId)?.set(mappingId, data);
+    this.state.mappedSets[visualId] = {
+      ...this.state.mappedSets[visualId],
+      [mappingId]: data
+    };
   }
   public setCurrentDate(date: Date) {
     this.state.currentDate = date;

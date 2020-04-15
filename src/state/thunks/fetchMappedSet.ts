@@ -73,7 +73,7 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Date
         return
       }
 
-      let mapset: MapSet | undefined = mappedSets.get(visualId)?.get(mappingId)
+      let mapset: MapSet | undefined = mappedSets[visualId] ? mappedSets[visualId][mappingId] : undefined
       if (!mapset) {
         mapset = {
           id: mappingId,

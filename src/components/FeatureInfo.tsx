@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, memo } from 'react'
 import { useSelector } from "react-redux";
 import { LazyError } from './LazyError'
 const Popup = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/popup')
@@ -9,7 +9,7 @@ import { State } from "../state";
 import { formatUTCDate } from '../lib/formatUTCDate.js'
 import { getFallbackComponent } from './getFallback';
 
-export const FeatureInfo = ({ feature, dataField, onClose }: { feature: any; dataField: string; onClose: Function }) => {
+export const FeatureInfo = memo(({ feature, dataField, onClose }: { feature: any; dataField: string; onClose: Function }) => {
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const datasets = useSelector((state: State) => state.app.datasets);
   const currentDate = useSelector((state: State) => state.app.currentDate);
@@ -17,7 +17,7 @@ export const FeatureInfo = ({ feature, dataField, onClose }: { feature: any; dat
   const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
   const visual = config.visuals[currentVisual]
   // TODO: Select data correctly from a dataset for info here
-  const mappingId = Object.keys(visual.mappings)[0]
+  const mappingId = Object.keys(visual.mappings)[0] // <-
   const activeMapping = visual.mappings[mappingId]
   const timeKey = formatUTCDate(currentDate)
   const currentDataSet = datasets.get(`${timeKey}-${activeMapping.datasourceId}`)
@@ -57,4 +57,4 @@ export const FeatureInfo = ({ feature, dataField, onClose }: { feature: any; dat
       </Popup>
     </Suspense>
   )
-}
+})

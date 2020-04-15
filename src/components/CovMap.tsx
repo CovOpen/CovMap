@@ -4,9 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from "@material-ui/core/Typography";
-import { LazyError } from './LazyError'
-const ReactMapGL = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/interactive-map')
-  .catch(() => ({ default: LazyError })));
 
 import { State } from "../state";
 import { AppApi } from "../state/app";
@@ -15,14 +12,12 @@ import { Settings } from './Settings';
 import { Zoom } from './Zoom';
 import { OfflineIndicator } from './OfflineIndicator';
 import { TopLeftContainer } from './TopLeftContainer';
-import { MAX_ZOOM_LEVEL } from '../constants';
 import { TimeRangeSlider } from './TimeRangeSlider';
-import { Visual } from './Visual';
-import { FeatureInfo } from './FeatureInfo';
 import { WelcomeInfo } from './WelcomeInfo';
 import { WelcomeInfoButton } from './WelcomeInfoButton';
 import { config } from '../../app-config/index'
- 
+import { GLMap } from './GLMap' 
+
 const useStyles = makeStyles((theme) => ({
   main: {
     height: '100%',
@@ -53,12 +48,13 @@ async function loadFlyTo() {
   FlyToInterpolator = FlyTo
 }
 
+const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
+
 export const CovMap = () => {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
   // const position = useSelector((state: State) => state.app.currentPosition); // TODO
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
-  const stateViewport = useSelector((state: State) => state.app.viewport);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
   const currentFeature = useSelector((state: State) => state.app.currentFeature);
   const currentMappable = useSelector((state: State) => state.app.currentMappable);
@@ -132,8 +128,6 @@ export const CovMap = () => {
     }
   }, [currentFeature])
 
-  const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
-
   const onViewportChange = ({ latitude, longitude, zoom, pitch, bearing }) => {
     viewPortEventCounter += 1
 
@@ -157,7 +151,7 @@ export const CovMap = () => {
   }
 
   const mappingLayers = Object.keys(visual.mappings);
-  const handleMapClick = (pointerEvent) => {
+  const handleMapClick = (pointerEvent, stateViewport) => {
     const { features } = pointerEvent;
     if (features.length > 0) {
       if (mapRef.current) {
@@ -197,30 +191,13 @@ export const CovMap = () => {
           <OfflineIndicator />
         </TopLeftContainer>
         <WelcomeInfo />
-        <ReactMapGL
-          // reuseMaps={true} // - experimental, consider using when remounting the map component often
-          ref={mapRef}
-          width="100%"
-          height="100%"
-          maxZoom={MAX_ZOOM_LEVEL}
-          minZoom={4}
-          mapStyle="mapbox://styles/mapbox/dark-v10"
-          {...stateViewport}
-          onClick={handleMapClick}
+        <GLMap 
+          mapRef={mapRef}
+          onMapClick={handleMapClick}
           onViewportChange={onViewportChange}
-          mapboxApiAccessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
-        >
-          <Visual
-            dataField={dataField}
-          />
-          <FeatureInfo
-            dataField={dataField}
-            feature={currentFeature}
-            onClose={() => {
-              dispatch(AppApi.setCurrentFeature(null))
-            }}
-          />
-        </ReactMapGL>
+          dataField={dataField}
+          currentFeature={currentFeature}
+        />
         <TimeRangeSlider />
         <Dialog
           aria-labelledby="simple-dialog-title"

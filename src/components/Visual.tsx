@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, memo } from "react";
 import { LazyError } from './LazyError'
 const Source = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/source')
   .catch(() => ({ default: LazyError })));
@@ -14,16 +14,13 @@ import { useThunkDispatch } from "../useThunkDispatch";
 import { fetchMappedSet } from "../state/thunks/fetchMappedSet"
 import { formatUTCDate } from '../lib/formatUTCDate.js'
 
-export type VisualProps = {
-  dataField: string;
-}
-
 const loadingSets = new Set();
 
-export const Visual = ({ dataField }: VisualProps) => {
+export const Visual = memo(() => {
   const dispatch = useThunkDispatch();
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const mappedSets = useSelector((state: State) => state.app.mappedSets);
+  const currentMappable = useSelector((state: State) => state.app.currentMappable);
   const currentDate = useSelector((state: State) => state.app.currentDate);
   const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
   const visual = config.visuals[currentVisual]
@@ -35,7 +32,7 @@ export const Visual = ({ dataField }: VisualProps) => {
   const mappingIds = new Set(filteredLayers.map(layer => layer.source))
   
   for (const mappingId of mappingIds) {
-    const mapset = mappedSets.get(currentVisual)?.get(mappingId)
+    const mapset = mappedSets[currentVisual] ? mappedSets[currentVisual][mappingId] : null
     if (!mapset || !mapset.timeKeys.includes(timeKey)) {
       loadingSets.add(mappingId)
       dispatch(fetchMappedSet(currentVisual, mappingId, currentDate))
@@ -56,22 +53,20 @@ export const Visual = ({ dataField }: VisualProps) => {
 
   const mapsets: Array<MapSet | undefined> = []
   for(const mappingId of mappingIds) {
-    mapsets.push(mappedSets.get(currentVisual)?.get(mappingId))
+    mapsets.push(mappedSets[currentVisual] ? mappedSets[currentVisual][mappingId] : undefined)
   }
 
   const visualLayers = filteredLayers.map(layer => {
-    const l = layer.fn(dataField, timeKey)
+    const l = layer.fn(currentMappable.property, timeKey)
     l.id = layer.id
     l.source = layer.source
     return l
   })
 
-  // TODO: Render function is called too often, seems unnecessary
-  
   return (
     <Suspense fallback={getFallbackComponent()}>
       {mapsets.map(mapset => mapset ? <Source id={mapset.id} key={mapset.id} type="geojson" data={mapset.geo} /> : null)}
       {visualLayers.map(layer => <Layer key={layer.id} {...layer} />)}
     </Suspense>
   )
-}
+})
