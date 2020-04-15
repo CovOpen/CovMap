@@ -8,10 +8,9 @@ import thunk from "redux-thunk";
 
 import App from "./App";
 import { rootReducer } from "./state";
-import { AppApi, Step } from "./state/app";
+import { AppApi } from "./state/app";
 
-const root = document.createElement("div");
-document.body.appendChild(root);
+const root = document.getElementById("app");
 
 const store = createStore(
   rootReducer,
@@ -19,14 +18,16 @@ const store = createStore(
 );
 
 // window.addEventListener("popstate", (e: PopStateEvent) => {
-//     store.dispatch(AppApi.gotoStep(Step.Map))
+//     store.dispatch(AppApi.gotoPage(Page.Map))
 // })
 
 store.subscribe(() => {
   (window as any).state = store.getState();
 });
-(window as any).go = (step: Step) => store.dispatch(AppApi.gotoStep(step))
+(window as any).go = (pageId: string) => store.dispatch(AppApi.gotoPage(pageId))
+
 const persistor = persistStore(store);
+
 render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>

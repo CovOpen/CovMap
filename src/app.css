@@ -28,6 +28,7 @@ footer, header, hgroup, menu, nav, section {
 body {
     line-height: 1;
     height: 100vh;
+    width: 100vw;
 }
 ol, ul {
     list-style: none;
@@ -78,6 +79,9 @@ body {
     justify-content: space-evenly;
 }
 
+#settings-popover div, #visual-type-select div, .MuiPopover-root div {
+    touch-action: none;
+}
 
 /* Pages */
 
@@ -86,7 +90,7 @@ body {
 /* Welcome */
 
 #info {
-    background-color: var(--light-blue);
+    background-color: #e7ecf5;
     padding-left: 16px;
     padding-right: 16px;
     position: relative;
@@ -102,36 +106,10 @@ body {
 
 #info .text {
     padding-top: 64px;
-    font-size: 24px;
-    color: var(--blue)
 }
 
-
-/* Search */
-#search {
-  height: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-#search .leaflet-container {
-  width: 100%;
-  flex-grow: 1;
-}
 
 /* About */
-
-.sections h1 {
-  font-size: 28px;
-  line-height: 24px;
-  font-weight: 700;
-  margin: 0px;
-  margin-left: 6px;
-  color: var(--blue);
-  display: inline;
-  text-transform: uppercase;
-}
 
 .sections section {
     padding: 1rem 2rem;
@@ -139,17 +117,7 @@ body {
     text-align: center;
 }
 
-.sections section h2 {
-    color: var(--blue);
-    font-size: 1.2rem;
-    font-weight: 900;
-    margin-top:.5rem;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-}
-
 .sections section p {
-    font-weight: 700;
     margin-bottom: 1rem;
 }
 
@@ -158,5 +126,9 @@ body {
 }
 
 .sections section:nth-of-type(even) {
-    background-color: var(--light-blue);
+    background-color: #E3E9F3;
+}
+
+#menu-appbar .MuiPaper-rounded {
+    background-color: #E3E9F3;
 }

@@ -1,48 +1,145 @@
 import "./app.css";
 import "mapbox-gl/dist/mapbox-gl.css"
 
-import React from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { hot } from "react-hot-loader";
 import { useSelector } from "react-redux";
-import { SnackbarProvider } from 'notistack';
 import Container from "@material-ui/core/Container";
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
-import { Step } from "state/app";
-import { About } from "components/About";
+import { getFallbackComponent } from './components/getFallback';
+import { InternalPages } from "state/app";
 import { NavBar } from "components/NavBar";
-import { Imprint } from "./components/Imprint";
 import { CovMap } from "./components/CovMap";
-import { Welcome } from "./components/Welcome";
 import { State } from "./state";
+import { IntermediateProgress } from "./components/IntermediateProgress";
+import { ServiceWorker } from './components/ServiceWorker';
+import { InstallPrompt } from './components/InstallPrompt';
+import { AppPage } from './app-config.types'
+import { useThunkDispatch } from "useThunkDispatch";
+import { AppApi } from "state/app";
+
+import { config } from '../app-config/index'
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const theme = createMuiTheme({
+  palette: {
+    secondary: {
+      main: '#002E62',
+      contrastText: '#E3E9F3'
+    },
+    primary: {
+      main: '#E3E9F3',
+      contrastText: '#002E62'
+    },
+    text: {
+      primary: '#002E62'
+    },
+    warning: {
+      main: '#FEAE00',
+      contrastText: '#E3E9F3',
+    },
+    error: {
+      main:'#ED4661',
+      contrastText: '#E3E9F3',
+    },
+    success: {
+      main: '#10B17E',
+      contrastText: '#E3E9F3',
+    }
+  },
+  typography: {
+    fontFamily: 'Dosis',
+    h1: {
+      fontSize: '24px'
+    },
+    h2: {
+      fontSize: '20px'
+    }
+  }
+});
+
+const pagesById: Record<string, AppPage> = config.content?.pages.reduce((acc, page) => Object.assign(acc, {
+  [page.id]: page
+}), {}) || {}
 
 export const App = () => {
-  const activeStep = useSelector((state: State) => state.app.activeStep);
+  const dispatch = useThunkDispatch();
+  const activePage = useSelector((state: State) => state.app.activePage);
+  const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
+  const viewportEventsCount = useSelector((state: State) => state.app.viewPortEventsCount);
+  const snackbarMessage = (useSelector((state: State) => state.app.snackbarMessage))
+  let showInstallPrompt = false
+  if (viewportEventsCount > 1000) {
+    showInstallPrompt = true
+  }
+  const [innerHeight, setInnerHeight] = useState(window.innerHeight)
+
+  const timeout: any = null;
+  const resizeListener = () => {
+    clearTimeout(timeout);
+    setTimeout(() => setInnerHeight(window.innerHeight), 350)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', resizeListener);
+
+    return () => {
+      window.removeEventListener('resize', resizeListener);
+    }
+  });
 
   function renderContent() {
-    switch (activeStep) {
-      case Step.Welcome:
-        return <Welcome />;
-      case Step.Map:
+    switch (activePage) {
+      case InternalPages.MAP: {
         return <CovMap />;
-      case Step.Imprint:
-        return <Imprint />
-      case Step.About:
-        return <About />;
-      default:
-        return <div>Page not found {Step[activeStep]}</div>;
+      }
+      default: {
+        const PageComponent = pagesById[activePage].Component
+        if (!PageComponent) {
+          return <div>Page not found &quot;{activePage}&quot;</div>;
+        }
+        return <PageComponent />
+      }
     }
   }
 
-  return <>
-    <SnackbarProvider maxSnack={3}>
-      <>
-        <NavBar />
-        <Container style={{height: '100%', paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
-          {renderContent()}
+  return (
+    <ThemeProvider theme={theme}>
+      <ServiceWorker />
+      <InstallPrompt shouldShow={showInstallPrompt} />
+      <Container style={{  height: innerHeight, padding: 0, maxWidth: 'none' }}>
+        <NavBar showSearch={!!currentLayerGroup.search} />
+        <Container style={{ position: 'relative', height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
+          <IntermediateProgress />
+          <Suspense fallback={getFallbackComponent()}>
+            {renderContent()}
+          </Suspense>
         </Container>
-      </>
-    </SnackbarProvider>
-  </>
+      </Container>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        open={!snackbarMessage.done}
+        autoHideDuration={snackbarMessage.duration || 6000}
+        onClose = {() => {
+          dispatch(AppApi.setSnackbarMessage({
+            ...snackbarMessage,
+            done: true
+          }))
+        }}
+      >
+        <Alert severity={snackbarMessage.type}>{snackbarMessage.text}</Alert>
+      </Snackbar>
+    </ThemeProvider>
+  )
 };
 
 // TODO: Hot only in dev?

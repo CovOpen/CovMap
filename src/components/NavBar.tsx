@@ -1,28 +1,65 @@
 import React, { useState } from "react";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import ShareIcon from '@material-ui/icons/Share';
 import MenuItem from '@material-ui/core/MenuItem';
+import Divider from '@material-ui/core/Divider';
 import Menu from '@material-ui/core/Menu';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppApi, Step } from "state/app";
+import { AppApi, InternalPages } from "state/app";
 import { useThunkDispatch } from "useThunkDispatch";
+import { useSelector } from "react-redux";
+import { State } from "../state";
+import { triggerInstallPrompt } from "../state/thunks/triggerInstallPrompt"
+import * as clipboard from "clipboard-polyfill"
+
+import { Search } from './Search'
+import { config } from "../../app-config/index"
+
+const Logo = config.ui?.Logo
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   menuButton: {
+    paddingRight: 10,
     marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1,
+    flexShrink: 1
+  },
+  menuItem: {
+    touchAction: 'none',
+    paddingLeft: 0,
+  },
+  menuIcon: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    transform: 'scale(.9)'
+  },
+  menu: {
+    touchAction: 'none',
+  },
+  menuContent: {
+    backgroundColor: theme.palette.primary.light,
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+  },
+  logo: {
+    height: '32px', 
+    width: 'auto', 
+    marginTop: '9px'
   },
 }));
 
-export const NavBar = () => {
+export type NavBarProps = {
+  showSearch: boolean;
+}
+
+export const NavBar = ({ showSearch }: NavBarProps) => {
   const dispatch = useThunkDispatch();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -36,15 +73,48 @@ export const NavBar = () => {
     setAnchorEl(null);
   };
 
+  const handleInstall = () => {
+    dispatch(triggerInstallPrompt())
+    handleClose()
+  }
+
+  const handleShare = async () => {
+    try {
+      await (window.navigator as any).share({
+        title: 'CovMapper',
+        url: 'https://' + window.location.hostname
+      })
+    } catch (err) {
+      clipboard.writeText('https://' + window.location.hostname)
+      dispatch(AppApi.setSnackbarMessage({ text: 'Link in Zwischenablage kopiert', type: 'info' }))
+    }
+  }
+
+  const selectPage = (pageId: string) => {
+    dispatch(AppApi.gotoPage(pageId))
+    handleClose()
+  }
+
+  const MenuEntries = () => {
+    if (!config.content?.pages) {
+      return null
+    }
+
+    return <>
+      {config.content?.pages.map((page, key) => (
+        <MenuItem key={key} className={classes.menuItem} onClick={() => selectPage(page.id)}>{page.title}</MenuItem>
+      ))}
+    </>
+  }
+
   return (
-    <AppBar position="static" style={{ backgroundColor: '#003f97' }}>
-      <Toolbar>
-        <Typography variant="h6" className={classes.title}>
-          CovMapper
-        </Typography>
+    <AppBar position="static" style={{ position: 'relative', zIndex: 1200, touchAction: 'none' }}>
+      <Toolbar style={{ height: 64 }}>
+        {(Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} /> }
+        {showSearch && < Search />}
         <div>
           <IconButton
-            aria-label="account of current user"
+            aria-label="Main Menu"
             aria-controls="menu-appbar"
             aria-haspopup="true"
             onClick={handleMenu}
@@ -52,7 +122,9 @@ export const NavBar = () => {
           >
             <MenuIcon />
           </IconButton>
+          
           <Menu
+            className={classes.menu}
             id="menu-appbar"
             anchorEl={anchorEl}
             anchorOrigin={{
@@ -67,10 +139,20 @@ export const NavBar = () => {
             open={open}
             onClose={handleClose}
           >
-            <MenuItem onClick={() => dispatch(AppApi.gotoStep(Step.Welcome))}>Start</MenuItem>
-            <MenuItem onClick={() => dispatch(AppApi.gotoStep(Step.Map))}>Karte</MenuItem>
-            <MenuItem onClick={() => dispatch(AppApi.gotoStep(Step.About))}>About</MenuItem>
-            <MenuItem onClick={() => dispatch(AppApi.gotoStep(Step.Imprint))}>Impressum</MenuItem>
+            <div className={classes.menuContent}>
+              <MenuItem className={classes.menuItem} onClick={() => selectPage(InternalPages.MAP)}>Karte</MenuItem>
+              <MenuEntries />
+              {
+                useSelector((state: State) => state.app.installPrompt) &&
+                <div>
+                  <Divider />
+                  <MenuItem className={classes.menuItem} onClick={handleInstall}>App Installieren</MenuItem>
+                </div>
+              }
+              <Divider />
+              <MenuItem className={classes.menuItem} onClick={handleShare}>Share <ShareIcon className={classes.menuIcon}/></MenuItem>
+
+            </div>
           </Menu>
         </div>
       </Toolbar>

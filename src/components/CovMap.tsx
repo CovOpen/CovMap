@@ -1,110 +1,215 @@
-import React, { useEffect } from "react";
-import { withSnackbar } from "notistack";
+import React, { useEffect, createRef } from "react";
 import { useSelector } from "react-redux";
-import ReactMapGL from 'react-map-gl';
+import { makeStyles } from '@material-ui/core/styles';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Typography from "@material-ui/core/Typography";
 
 import { State } from "../state";
 import { AppApi } from "../state/app";
 import { useThunkDispatch } from "../useThunkDispatch";
-import { hasGeolocation, getCurrentPosition } from "../geolocation";
-import { fetchDataset } from "../state/thunks/fetchDataset"
-import { fetchPostCodeAreas } from "../state/thunks/fetchPostCodeAreas"
-import { fetchPostCodePoints } from "../state/thunks/fetchPostCodePoints"
+import { Settings } from './Settings';
+import { Zoom } from './Zoom';
+import { OfflineIndicator } from './OfflineIndicator';
+import { TopLeftContainer } from './TopLeftContainer';
+import { TimeRangeSlider } from './TimeRangeSlider';
+import { WelcomeInfo } from './WelcomeInfo';
+import { WelcomeInfoButton } from './WelcomeInfoButton';
+import { config } from '../../app-config/index'
+import { GLMap } from './GLMap' 
 
-import { PostCodeAreas } from './PostCodeAreas'
-import { Heatmap } from './Heatmap'
+const useStyles = makeStyles((theme) => ({
+  main: {
+    height: '100%',
+    position: 'relative',
+    display: 'flex',
+    'flex-direction': 'column',
+  },
+  currentInfo: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    margin: theme.spacing(2),
+    zIndex: 1100,
+    textShadow: '0px 0px 6px rgba(0,0,0,0.86)',
+    '& h2': {
+      // fontWeight: 600
+    }
+  }
+}));
 
-let hasInitialPosition = false;
+let viewPortEventCounter = 0
 
-export const CovMap = withSnackbar(({ enqueueSnackbar, closeSnackbar }) => {
+// Note: React hooks ref diffing workaround
+let previousMapRef = null;
+let FlyToInterpolator = null
+async function loadFlyTo() {
+  const { default: FlyTo } = await import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/utils/transition/viewport-fly-to-interpolator')
+  FlyToInterpolator = FlyTo
+}
+
+const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
+
+export const CovMap = () => {
+  const classes = useStyles();
   const dispatch = useThunkDispatch();
   // const position = useSelector((state: State) => state.app.currentPosition); // TODO
-  const stateViewport = useSelector((state: State) => state.app.viewport);
-  const allowedLocation = useSelector((state: State) => state.app.userAllowedLocation);
-  const currentDataset = useSelector((state: State) => state.app.currentDataset); // TODO
-  const postCodeAreas = useSelector((state: State) => state.app.postCodeAreas);
-  const postCodePoints = useSelector((state: State) => state.app.postCodePoints);
-  
-  // Bound to germany for the time being
-  // TODO: Use mapbox helpers
-  // const southWest = L.latLng(43.27103747280261, 2.3730468750000004);
-  // const northEast = L.latLng(56.47462805805594, 17.885742187500004);
-  // const maxBounds = L.latLngBounds(southWest, northEast); 
-  
+  const currentVisual = useSelector((state: State) => state.app.currentVisual);
+  const datasetFound = useSelector((state: State) => state.app.datasetFound);
+  const currentFeature = useSelector((state: State) => state.app.currentFeature);
+  const currentMappable = useSelector((state: State) => state.app.currentMappable);
+  const mapRef = createRef<any>();
+  const visual = config.visuals[currentVisual]
+
+  const handleMapBusy = () => {
+    dispatch(AppApi.pushLoading('map-busy', 'Map is rendering stuff...'))
+  }
+
+  const handleMapIdleOrRemoved = () => {
+    dispatch(AppApi.popLoading('map-busy'))
+  }
+
   useEffect(() => {
-    if (!postCodePoints) {
-      dispatch(fetchPostCodePoints());
-    }
-    if (!postCodeAreas) {
-      dispatch(fetchPostCodeAreas());
-    }
-    if (!currentDataset) {
-      dispatch(fetchDataset());
-    }
-    // TODO: Does CovMapper even need the current location?
-    // -> Possibly, because a user wants to know the situation around him
-    if (hasGeolocation && allowedLocation && !hasInitialPosition) {
-      hasInitialPosition = true;
-      const positionPendingSnackbar = enqueueSnackbar("Versuche deine momentane Position zu finden...", {
-        persist: true,
-        variant: "info",
-      });
-
-      getCurrentPosition(
-        async (pos) => {
-          closeSnackbar(positionPendingSnackbar);
-          enqueueSnackbar("Position gefunden!", {
-            variant: "success",
-            autoHideDuration: 3000,
-          });
-          const crd = pos.coords;
-          dispatch(AppApi.setCurrentPosition([crd.latitude, crd.longitude]));
-        },
-        (err) => {
-          closeSnackbar(positionPendingSnackbar);
-          enqueueSnackbar(`Position Fehler: ${err.message} (${err.code})`, {
-            variant: "error",
-            autoHideDuration: 7000,
-          });
-
-          if (err.code === 1) {
-            dispatch(AppApi.setUserAllowedLocation(false));
-          }
-        },
-      );
-    } 
-
-    return () => {
-      // componendWillUnmount
-    }
+    loadFlyTo()
+    const interval = setInterval(() => {
+      if (viewPortEventCounter > 1000) {
+        clearInterval(interval)
+      }
+      
+      dispatch(AppApi.setViewportEventCount(viewPortEventCounter))
+    }, 10000)
   }, []);
 
-  // const UserPosition = ({ center }: { center: Array<number> | null }) => (center ? <CircleMarker center={center}></CircleMarker> : null);
+  // Note: This is to ensure the event listeners are attached only once,
+  // because react useEffect fires multiple times, even though mapRef.current did not change
+  const changedMapRef = previousMapRef !== mapRef.current;
+  useEffect(() => {
+    previousMapRef = mapRef.current;
+  }, [mapRef])
+  useEffect(function () {
+    if (mapRef.current) {
+      const map = mapRef.current.getMap();
+      map.on('dataloading', handleMapBusy)
+      map.on('idle', handleMapIdleOrRemoved)
+      map.once('remove', handleMapIdleOrRemoved)
+    }
 
-  // TODO: How to store the viewport state without constantly rerendering all map components?
-  const onViewportChange = ({ latitude, longitude, zoom }) => {
-    dispatch(AppApi.setViewport({
+    return () => {
+      if (mapRef.current) {
+        const map = mapRef.current.getMap();
+        map.off('dataloading', handleMapBusy)
+        map.off('idle', handleMapIdleOrRemoved)
+      }
+    }
+  }, [changedMapRef])
+
+  const resetFeature = (feature) => {
+    if (mapRef.current) {
+      const map = mapRef.current.getMap();
+      map.setFeatureState(
+        { source: feature.source, id: feature.id },
+        { hover: false }
+      );
+    }
+  }
+
+  useEffect(() => {
+    if (currentFeature.previousFeature) {
+      resetFeature(currentFeature.previousFeature)
+    }
+    if (currentFeature.feature) {
+      if (mapRef.current) {
+        const map = mapRef.current.getMap();
+        map.setFeatureState(
+          { source: currentFeature.feature.source, id: currentFeature.feature.id },
+          { hover: true }
+        );
+      }
+    }
+  }, [currentFeature])
+
+  const onViewportChange = ({ latitude, longitude, zoom, pitch, bearing }) => {
+    viewPortEventCounter += 1
+
+    // Note: Explicitly not spreading stateViewport in here,
+    // because it blows up with the transition interpolators
+    const newViewPort = {
+      pitch,
+      bearing,
       zoom,
-      center: [latitude, longitude]
-    }))
+      latitude,
+      longitude,
+    }
+
+    if (config.mapSettings?.constraints) {
+      const constraints = config.mapSettings?.constraints
+      newViewPort.latitude = clamp(latitude, constraints[1][0], constraints[0][0])
+      newViewPort.longitude = clamp(longitude, constraints[0][1], constraints[1][1])
+    }
+    
+    dispatch(AppApi.setViewport(newViewPort))
+  }
+
+  const mappingLayers = Object.keys(visual.mappings);
+  const handleMapClick = (pointerEvent, stateViewport) => {
+    const { features } = pointerEvent;
+    if (features.length > 0) {
+      if (mapRef.current) {
+        if (!mappingLayers.includes(features[0].source)) {
+          return;
+        }
+      }
+
+      dispatch(AppApi.setCurrentFeature(features[0], pointerEvent.lngLat));
+
+      if (stateViewport.zoom > 7) {
+        const newViewport = {
+          ...stateViewport,
+          latitude: pointerEvent.lngLat[1], 
+          longitude: pointerEvent.lngLat[0],
+          transitionDuration: 400,
+          transitionInterpolator: FlyToInterpolator ? new (FlyToInterpolator as any)({ curve: 1 }) : null
+        };
+        dispatch(AppApi.setViewport(newViewport));
+      }
+    }
   }
 
   return (
     <>
-      <main id="search">
-        <ReactMapGL
-          width="100%"
-          height="100%"
-          latitude={stateViewport.center[0]}
-          longitude={stateViewport.center[1]}
-          zoom={stateViewport.zoom}
+      <main className={classes.main}>
+        <div className={classes.currentInfo}>
+          <Typography variant="h2" color="primary">{visual.name}</Typography>
+          <Typography variant="subtitle1" color="primary">{currentMappable.title}</Typography>
+        </div>
+        <Settings />
+        <Zoom />
+        <TopLeftContainer>
+          <WelcomeInfoButton />
+          <OfflineIndicator />
+        </TopLeftContainer>
+        <WelcomeInfo />
+        <GLMap 
+          mapRef={mapRef}
+          onMapClick={handleMapClick}
           onViewportChange={onViewportChange}
-          mapboxApiAccessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
+        />
+        <TimeRangeSlider />
+        <Dialog
+          aria-labelledby="simple-dialog-title"
+          open={!datasetFound}
+          style={{
+            zIndex: 1190,
+            touchAction: 'none'
+          }}
         >
-          <PostCodeAreas currentDataset={currentDataset} postCodeAreas={postCodeAreas} />
-          {/* <Heatmap currentDataset={currentDataset} postCodePoints={postCodePoints} /> */}
-        </ReactMapGL>
+          <DialogTitle id="simple-dialog-title" style={{
+            touchAction: 'none'
+          }}>
+            Keine Daten für den ausgewählten Zeitraum.
+          </DialogTitle>
+        </Dialog>
       </main>
     </>
   );
-});
+};

@@ -1,4 +1,6 @@
 node_modules
 dist
 bundle-report.html
-*.generated.json
+*.generated*
+.now
+.DS_Store

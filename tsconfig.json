@@ -3,7 +3,7 @@
   "compilerOptions": {
     "incremental": true,
     "target": "es2015",
-    "module": "es2015",
+    "module": "esnext",
     "lib": [
         "dom",
         "esnext"
@@ -16,7 +16,7 @@
     "inlineSources": true,
     "sourceRoot": "/",
     "outDir": "./build/",
-    "rootDir": "./src/",
+    "rootDir": "./",
     "removeComments": true,
     "resolveJsonModule": true,
     "strict": true,
@@ -43,13 +43,14 @@
     "./node_modules",
     "./build",
     "./dev",
+    "./config",
     "scripts",
     "acceptance-tests",
-    "webpack",
     "jest"
   ],
   "include": [
-    "custom.d.ts",
-    "./src"
+    "./src/custom.d.ts",
+    "./src",
+    "./app-config"
   ]
 }
