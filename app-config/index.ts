@@ -81,14 +81,14 @@ export const config: AppConfig = {
       },
       layerGroups: [{
         title: 'Flächen',
-        layers: ['areas-fill'],
+        layers: ['areas-fill', 'hover'],
       }, {
         title: 'Bubbles',
         layers: ['circles'],
         default: true
       }, {
         title: 'Balken',
-        layers: ['extrusion'],
+        layers: ['extrusion', 'hover'],
         pitch: 40,
         bearing: 20,
       }],

@@ -30,7 +30,7 @@ export const Visual = ({ dataField }: VisualProps) => {
   const timeKey = formatUTCDate(currentDate)
 
   const filteredLayers = visual.layers
-    .filter(layer => ['hover'].includes(layer.id) || currentLayerGroup.layers.includes(layer.id))
+    .filter(layer => currentLayerGroup.layers.includes(layer.id))
 
   const mappingIds = filteredLayers.map(layer => layer.source)
   
