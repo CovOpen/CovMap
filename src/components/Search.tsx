@@ -11,6 +11,9 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 import { State } from "../state";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: theme.spacing(0, 2)
+  },
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -18,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.95),
     },
-    width: '200px',
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -37,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
-    width: '100%',
     [theme.breakpoints.up('md')]: {
       width: '20ch',
     },
@@ -110,7 +111,7 @@ export const Search = () => {
     }));
   }
 
-  return (<div>
+  return (<div className={classes.root}>
     <div {...getRootProps()} className={classes.search}>
       <div className={classes.searchIcon}>
         <SearchIcon />

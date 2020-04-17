@@ -21,13 +21,6 @@ import { config } from "../../app-config/index"
 const Logo = config.ui?.Logo
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    paddingRight: 10,
-    marginRight: theme.spacing(2),
-  },
   title: {
     flexShrink: 1
   },
@@ -36,9 +29,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: 0,
   },
   menuIcon: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    transform: 'scale(.9)'
+    padding: 0,
   },
   menu: {
     touchAction: 'none',
@@ -114,6 +105,9 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
         {showSearch && < Search />}
         <div>
           <IconButton
+            classes={{
+              root: classes.menuIcon
+            }}
             aria-label="Main Menu"
             aria-controls="menu-appbar"
             aria-haspopup="true"
