@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { useThunkDispatch } from "useThunkDispatch";
 
-import { AppApi, InternalPages } from "../../../src/state/app";
+import { AppApi, InternalPages } from "../../../../src/state/app";
 
 export const Welcome = () => {
   const dispatch = useThunkDispatch();

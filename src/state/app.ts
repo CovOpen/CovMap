@@ -2,7 +2,7 @@ import { Reducer } from "./reduxHelper";
 import { GeoJSON } from "geojson";
 import { Mappable, LayerGroup } from '../app-config.types'
 
-import { config } from '../../app-config/index'
+import { config } from 'app-config/index'
 
 const defaultVisual = config.visuals[config.defaultVisual]
 const defaultLayerGroup = defaultVisual.layerGroups.find(group => group.default) || defaultVisual.layerGroups[0]

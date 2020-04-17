@@ -6,7 +6,7 @@ import storage from "redux-persist/lib/storage";
 import { createBlacklistFilter } from 'redux-persist-transform-filter';
 
 import { AppReduxReducer, AppState } from "./app";
-import { config } from '../../app-config/index'
+import { config } from 'app-config/index'
 
 enableMapSet()
 setAutoFreeze(false);

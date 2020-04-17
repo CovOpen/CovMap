@@ -1,4 +1,4 @@
-import { AppConfig, LayerType } from "../src/app-config.types"
+import { AppConfig, LayerType } from "../../src/app-config.types"
 import { AnimatedLogo } from "./components/AnimatedLogo"
 import buildJSON from "./build.json"
 import { Welcome } from "./components/pages/Welcome"

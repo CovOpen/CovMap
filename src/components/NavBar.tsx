@@ -8,15 +8,15 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
 import Menu from '@material-ui/core/Menu';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppApi, InternalPages } from "state/app";
-import { useThunkDispatch } from "useThunkDispatch";
+import { AppApi, InternalPages } from "src/state/app";
+import { useThunkDispatch } from "src/useThunkDispatch";
 import { useSelector } from "react-redux";
 import { State } from "../state";
 import { triggerInstallPrompt } from "../state/thunks/triggerInstallPrompt"
 import * as clipboard from "clipboard-polyfill"
 
 import { Search } from './Search'
-import { config } from "../../app-config/index"
+import { config } from 'app-config/index'
 
 const Logo = config.ui?.Logo
 

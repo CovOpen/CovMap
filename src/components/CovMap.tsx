@@ -15,8 +15,8 @@ import { TopLeftContainer } from './TopLeftContainer';
 import { TimeRangeSlider } from './TimeRangeSlider';
 import { WelcomeInfo } from './WelcomeInfo';
 import { WelcomeInfoButton } from './WelcomeInfoButton';
-import { config } from '../../app-config/index'
 import { GLMap } from './GLMap' 
+import { config } from 'app-config/index'
 
 const useStyles = makeStyles((theme) => ({
   main: {

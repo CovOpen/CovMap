@@ -10,18 +10,18 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
 import { getFallbackComponent } from './components/getFallback';
-import { InternalPages } from "state/app";
-import { NavBar } from "components/NavBar";
+import { InternalPages } from "src/state/app";
+import { NavBar } from "src/components/NavBar";
 import { CovMap } from "./components/CovMap";
 import { State } from "./state";
 import { IntermediateProgress } from "./components/IntermediateProgress";
 import { ServiceWorker } from './components/ServiceWorker';
 import { InstallPrompt } from './components/InstallPrompt';
 import { AppPage } from './app-config.types'
-import { useThunkDispatch } from "useThunkDispatch";
-import { AppApi } from "state/app";
+import { useThunkDispatch } from "src/useThunkDispatch";
+import { AppApi } from "src/state/app";
 
-import { config } from '../app-config/index'
+import { config } from 'app-config/index'
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;

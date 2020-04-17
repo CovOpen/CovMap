@@ -4,8 +4,8 @@ import { ReduxDispatch } from "../../useThunkDispatch";
 import { AppApi, VisualId, MapSet } from "../app";
 import { State } from "../";
 
-import { config } from '../../../app-config/index'
 import { formatUTCDate } from '../../lib/formatUTCDate.js'
+import { config } from 'app-config/index'
 
 const fetchAndTransform = async (
   url: string | Function, 

@@ -13,7 +13,7 @@ RUN yarn install
 RUN openssl req -newkey rsa:2048 -new -nodes -x509 -subj "/C=DE/ST=Denial/L=Springfield/O=Dis/CN=www.covmapper.com" -days 3650 -keyout key.pem -out cert.pem 
 
 COPY src ./src/
-COPY app-config ./app-config/
+COPY apps/official ./apps/official/
 COPY static ./static/
 COPY data ./data
 COPY config ./config

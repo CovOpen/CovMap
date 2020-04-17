@@ -1,5 +1,5 @@
 import React from 'react'
-import { FeatureInfoProps } from '../../src/app-config.types'
+import { FeatureInfoProps } from '../../../src/app-config.types'
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 

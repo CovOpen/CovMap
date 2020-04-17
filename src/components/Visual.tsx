@@ -9,10 +9,10 @@ import { useSelector } from "react-redux";
 import { AppApi, MapSet } from "../state/app";
 import { State } from "../state";
 import { getFallbackComponent } from './getFallback';
-import { config } from '../../app-config/index'
 import { useThunkDispatch } from "../useThunkDispatch";
 import { fetchMappedSet } from "../state/thunks/fetchMappedSet"
 import { formatUTCDate } from '../lib/formatUTCDate.js'
+import { config } from 'app-config/index'
 
 const loadingSets = new Set();
 

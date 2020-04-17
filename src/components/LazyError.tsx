@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { AppApi } from "state/app";
-import { useThunkDispatch } from "useThunkDispatch";
+import { AppApi } from "src/state/app";
+import { useThunkDispatch } from "src/useThunkDispatch";
 
 export const LazyError = () => {
   const dispatch = useThunkDispatch();
