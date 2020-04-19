@@ -20,7 +20,6 @@ export type GLMapProps = {
 
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
 let debouncedViewportChange
-let debouncedSetViewport
 
 export const GLMap = ({ mapRef, onMapClick, onViewportChange }: GLMapProps) => {
   const stateViewport = useSelector((state: State) => state.app.viewport);
@@ -30,7 +29,6 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange }: GLMapProps) => {
 
   useEffect(() => {
     debouncedViewportChange = debounce(onViewportChange, 2500)
-    debouncedSetViewport = debounce(setViewport, 4)
   }, [])
 
   useEffect(() => {
@@ -52,11 +50,7 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange }: GLMapProps) => {
       newViewPort.longitude = clamp(longitude, constraints[0][1], constraints[1][1])
     }
     
-    if (viewport.zoom === newViewPort.zoom) {
-      debouncedSetViewport(newViewPort)
-    } else {
-      setViewport(newViewPort)
-    }
+    setViewport(newViewPort)
     
     if (debouncedViewportChange) {
       debouncedViewportChange(newViewPort)
