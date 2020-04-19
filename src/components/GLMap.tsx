@@ -70,6 +70,8 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange }: GLMapProps) => {
       onClick={(evt) => onMapClick(evt, viewport)}
       onViewportChange={handleLocalViewportChange}
       mapboxApiAccessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
+      preventStyleDiffing={true}
+      asyncRender={true}
     >
       <Visual />
       <FeatureInfo />
