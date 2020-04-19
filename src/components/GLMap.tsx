@@ -1,22 +1,67 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Visual } from './Visual';
 import { FeatureInfo } from './FeatureInfo';
 import { useSelector } from "react-redux";
 import { LazyError } from './LazyError'
+import debounce from 'debounce'
 const ReactMapGL = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/interactive-map')
   .catch(() => ({ default: LazyError })));
 
 import { State } from "../state";
+import { Viewport } from "../state/app";
 import { MAX_ZOOM_LEVEL } from '../constants';
+import { config } from 'app-config/index'
 
 export type GLMapProps = {
   mapRef: any;
   onMapClick: Function;
-  onViewportChange: Function;
+  onViewportChange?: Function;
 }
+
+const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
+let debouncedViewportChange
+let debouncedSetViewport
 
 export const GLMap = ({ mapRef, onMapClick, onViewportChange }: GLMapProps) => {
   const stateViewport = useSelector((state: State) => state.app.viewport);
+  const [viewport, setViewport] = useState<Viewport>(() => {
+    return stateViewport;
+  })
+
+  useEffect(() => {
+    debouncedViewportChange = debounce(onViewportChange, 2500)
+    debouncedSetViewport = debounce(setViewport, 4)
+  }, [])
+
+  useEffect(() => {
+    setViewport(stateViewport)
+  }, [stateViewport])
+
+  const handleLocalViewportChange = ({ pitch, bearing, zoom, latitude, longitude}) => {
+    const newViewPort = {
+      pitch,
+      bearing,
+      zoom,
+      latitude,
+      longitude,
+    }
+
+    if (config.mapSettings?.constraints) {
+      const constraints = config.mapSettings?.constraints
+      newViewPort.latitude = clamp(latitude, constraints[1][0], constraints[0][0])
+      newViewPort.longitude = clamp(longitude, constraints[0][1], constraints[1][1])
+    }
+    
+    if (viewport.zoom === newViewPort.zoom) {
+      debouncedSetViewport(newViewPort)
+    } else {
+      setViewport(newViewPort)
+    }
+    
+    if (debouncedViewportChange) {
+      debouncedViewportChange(newViewPort)
+    }
+  }
   
   return (
     <ReactMapGL
@@ -27,9 +72,9 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange }: GLMapProps) => {
       maxZoom={MAX_ZOOM_LEVEL}
       minZoom={4}
       mapStyle="mapbox://styles/mapbox/dark-v10"
-      {...stateViewport}
-      onClick={(evt) => onMapClick(evt, stateViewport)}
-      onViewportChange={onViewportChange}
+      {...viewport}
+      onClick={(evt) => onMapClick(evt, viewport)}
+      onViewportChange={handleLocalViewportChange}
       mapboxApiAccessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
     >
       <Visual />

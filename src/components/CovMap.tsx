@@ -48,8 +48,6 @@ async function loadFlyTo() {
   FlyToInterpolator = FlyTo
 }
 
-const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
-
 export const CovMap = () => {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
@@ -128,25 +126,11 @@ export const CovMap = () => {
     }
   }, [currentFeature])
 
-  const onViewportChange = ({ latitude, longitude, zoom, pitch, bearing }) => {
+  const onViewportChange = (newViewPort) => {
     viewPortEventCounter += 1
-
+    
     // Note: Explicitly not spreading stateViewport in here,
     // because it blows up with the transition interpolators
-    const newViewPort = {
-      pitch,
-      bearing,
-      zoom,
-      latitude,
-      longitude,
-    }
-
-    if (config.mapSettings?.constraints) {
-      const constraints = config.mapSettings?.constraints
-      newViewPort.latitude = clamp(latitude, constraints[1][0], constraints[0][0])
-      newViewPort.longitude = clamp(longitude, constraints[0][1], constraints[1][1])
-    }
-    
     dispatch(AppApi.setViewport(newViewPort))
   }
 
