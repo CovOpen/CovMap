@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
 
 export function IntermediateProgress () {
   const classes = useStyles();
-  const loading = useSelector((state: State) => state.app.loading);
+  const loading = useSelector((state: State) => state.app.isLoading);
   
-  if (loading.size === 0) {
+  if (!loading) {
     return null;
   }
 

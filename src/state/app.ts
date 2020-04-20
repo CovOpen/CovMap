@@ -66,7 +66,8 @@ export interface AppState {
   currentMappable: Mappable;
   datasetFound: boolean;
   currentVisual: VisualId; // TODO: Rename to currentVisual (when moving to app-config driven build)
-  loading: Map<string, string>;
+  loading: Set<string>;
+  isLoading: boolean;
   viewPortEventsCount: number;
   searchResult: boolean;
   snackbarMessage: SnackbarMessage;
@@ -94,7 +95,8 @@ export const defaultAppState: AppState = {
   currentMappable: defaultMappable,
   datasetFound: true,
   currentVisual: config.defaultVisual,
-  loading: new Map(),
+  loading: new Set(),
+  isLoading: false,
   viewPortEventsCount: 0,
   searchResult: false,
   snackbarMessage: {
@@ -161,13 +163,21 @@ class AppReducer extends Reducer<AppState> {
   public setViewportEventCount(count: number) {
     this.state.viewPortEventsCount = count;
   }
-  public pushLoading(id: string, message: string) {
+  public pushLoading(id: string) {
     if (!this.state.loading.has(id)) {
-      this.state.loading.set(id, message)
+      this.state.loading.add(id)
+      if (this.state.isLoading === false) {
+        this.state.isLoading = true
+      }
     }
   }
   public popLoading(id: string) {
     this.state.loading.delete(id)
+    if (this.state.loading.size === 0) {
+      if (this.state.isLoading === true) {
+        this.state.isLoading = false
+      }
+    }
   }
   public setSnackbarMessage(message: SnackbarMessage) {
     const { done = false } = message

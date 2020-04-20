@@ -60,7 +60,7 @@ export const CovMap = () => {
   const visual = config.visuals[currentVisual]
 
   const handleMapBusy = () => {
-    dispatch(AppApi.pushLoading('map-busy', 'Map is rendering stuff...'))
+    dispatch(AppApi.pushLoading('map-busy'))
   }
 
   const handleMapIdleOrRemoved = () => {
