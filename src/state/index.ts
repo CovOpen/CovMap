@@ -4,6 +4,8 @@ import { persistReducer, createTransform } from "redux-persist";
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
 import storage from "redux-persist/lib/storage";
 import { createBlacklistFilter } from 'redux-persist-transform-filter';
+import { applyMiddleware, createStore } from "redux";
+import thunk from "redux-thunk";
 
 import { AppReduxReducer, AppState } from "./app";
 import { config } from 'app-config/index'
@@ -52,7 +54,11 @@ export const rootReducer = combineReducers({
   ]),
 });
 
-// tslint:disable-next-line: no-empty-interface
+export const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk),
+);
+
 export interface State {
     app: AppState;
 }
