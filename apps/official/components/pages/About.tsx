@@ -1,8 +1,7 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import Link from 'react-router-dom/Link'
-import { AppApi } from "../../../../src/state/app";
+import { Link } from "react-router-dom";
 
 export const About = () => {
   return (

@@ -7,7 +7,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
 import Menu from '@material-ui/core/Menu';
-import Link from "react-router-dom/Link";
+import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import { AppApi } from "src/state/app";
 import { useThunkDispatch } from "src/useThunkDispatch";
@@ -88,9 +88,9 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
     }
 
     return <>
-      {config.content?.pages.map((page, key) => (
-        <Link style={{ textDecoration: 'none' }} to={page.route}>
-          <MenuItem key={key} className={classes.menuItem} >
+      {config.content?.pages.map((page) => (
+        <Link key={page.id} style={{ textDecoration: 'none' }} to={page.route}>
+          <MenuItem className={classes.menuItem} >
             {page.title}
           </MenuItem>
         </Link>
@@ -134,7 +134,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
             onClose={handleClose}
           >
             <div className={classes.menuContent}>
-              <Link style={{ textDecoration: 'none' }} to="/">
+              <Link key="map" style={{ textDecoration: 'none' }} to="/">
                 <MenuItem className={classes.menuItem} >
                   Karte
                 </MenuItem>

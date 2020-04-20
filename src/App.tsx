@@ -117,7 +117,7 @@ export const App = () => {
             <IntermediateProgress />
             <Suspense fallback={getFallbackComponent()}>
               <Switch>
-                <Route key="0" exact path="/" render={() => (<CovMap />)} />
+                <Route key="map" exact path="/" render={() => (<CovMap />)} />
                 {config.content?.pages.map(renderRoute)}
               </Switch>
             </Suspense>
