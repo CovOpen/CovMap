@@ -138,6 +138,7 @@ export type AppContent = {
 export type AppPage = {
     id: string;
     title: string;
+    route: string;
     Component: ComponentType;
 }
 

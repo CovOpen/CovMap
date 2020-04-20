@@ -46,14 +46,17 @@ export const config: AppConfig = {
     pages: [{
       id: 'welcome-page',
       title: 'Willkommen',
+      route: '/welcome',
       Component: Welcome
     }, {
       id: 'about-page',
       title: 'About',
+      route: '/about',
       Component: About
     }, {
       id: 'imprint-page',
       title: 'Impressum',
+      route: '/imprint',
       Component: Imprint
     }]
   },

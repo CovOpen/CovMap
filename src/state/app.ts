@@ -23,10 +23,6 @@ export interface MapArea {
   nelng: number;
 }
 
-export enum InternalPages {
-  MAP = 'internal--gl--map'
-}
-
 export type MapData = {
   types?: Record<string, string>;
   data: Array<Record<string, Record<string, number>>>;
@@ -58,7 +54,6 @@ export type SnackbarMessage = {
 export type MapSetHolder = Record<VisualId, Record<string, MapSet>>
 
 export interface AppState {
-  activePage: string;
   viewport: Viewport;
   currentPosition: Array<number> | null;
   userAllowedLocation: boolean;
@@ -83,7 +78,6 @@ export interface AppState {
 }
 
 export const defaultAppState: AppState = {
-  activePage: InternalPages.MAP,
   userAllowedLocation: true,
   currentPosition: null,
   viewport: {
@@ -118,11 +112,6 @@ export const defaultAppState: AppState = {
 class AppReducer extends Reducer<AppState> {
   constructor() {
     super(defaultAppState);
-  }
-  public gotoPage(pageId: string) {
-    window.history.pushState({ page: pageId }, pageId);
-    this.state.history.push(this.state.activePage);
-    this.state.activePage = pageId;
   }
   public setUserAllowedLocation(allowed: boolean) {
     this.state.userAllowedLocation = allowed;

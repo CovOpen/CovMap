@@ -1,13 +1,10 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-
-import { AppApi, InternalPages } from "../../../../src/state/app";
-import { useThunkDispatch } from "useThunkDispatch";
+import Link from 'react-router-dom/Link'
+import { AppApi } from "../../../../src/state/app";
 
 export const About = () => {
-  const dispatch = useThunkDispatch();
-    
   return (
     <>
       <main className="sections">
@@ -33,9 +30,10 @@ export const About = () => {
             <Button
               variant="contained"
               color="primary"
-              onClick={() => dispatch(AppApi.gotoPage(InternalPages.MAP))}
             >
-              Karte
+              <Link style={{ textDecoration: 'none' }} to="/">
+                Karte
+              </Link>
             </Button>
           </div>
         </section>
