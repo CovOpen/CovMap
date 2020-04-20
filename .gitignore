@@ -3,4 +3,5 @@ dist
 bundle-report.html
 *.generated*
 .now
+.vscode
 .DS_Store
