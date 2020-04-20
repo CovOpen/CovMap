@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Slider from '@material-ui/core/Slider';
-import ValueLabel from '@material-ui/core/Slider/ValueLabel';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { useSelector } from "react-redux";
+import Tooltip from '@material-ui/core/Tooltip';
 
 import { useThunkDispatch } from "../useThunkDispatch";
 import { formatNowMinusDays, plusDays } from '../lib/formatUTCDate.js';
@@ -93,7 +93,7 @@ export function TimeRangeSlider ({ onChange = () => {} }: Props) {
       marks
       min={-15}
       max={0}
-      valueLabelDisplay="auto"
+      valueLabelDisplay="on"
       ValueLabelComponent={ValueLabelComponent}
     />
   );
@@ -105,15 +105,20 @@ export type ValueLabelComponentProps = {
   value: number;
 };
 
-const CustomValueLabel = withStyles({
-  
-})(ValueLabel)
+const useValueStyles = makeStyles((theme) => ({
+  tooltip: {
+    
+  }
+}));
 
 function ValueLabelComponent({ children, open, value }: ValueLabelComponentProps) {
+  const classes = useValueStyles()
   // TODO: Show selected date in this component
+  const dateValue = plusDays(value).toUTCString()
+
   return (
-    <CustomValueLabel open={open} value={value}>
+    <Tooltip className={classes.tooltip} open={open} enterTouchDelay={0} placement="top" title={dateValue}>
       {children}
-    </CustomValueLabel>
+    </Tooltip>
   );
 }
