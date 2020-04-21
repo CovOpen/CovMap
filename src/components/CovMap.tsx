@@ -1,4 +1,4 @@
-import React, { useEffect, createRef } from "react";
+import React, { useEffect, createRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
@@ -68,6 +68,7 @@ export const CovMap = () => {
   const currentFeature = useSelector((state: State) => state.app.currentFeature);
   const currentMappable = useSelector((state: State) => state.app.currentMappable);
   const currentDate = useSelector((state: State) => state.app.currentDate);
+  const [mapLoaded, setMapLoaded] = useState<boolean>(false)
   const mapRef = createRef<any>();
   const visual = config.visuals[currentVisual]
 
@@ -124,6 +125,9 @@ export const CovMap = () => {
   }
 
   useEffect(() => {
+    if (!mapLoaded) {
+      return
+    }
     if (currentFeature.previousFeature) {
       resetFeature(currentFeature.previousFeature)
     }
@@ -171,6 +175,10 @@ export const CovMap = () => {
     }
   }
 
+  const handleMapLoaded = () => {
+    setMapLoaded(true)
+  }
+
   return (
     <div className={classes.main}>
       <div className={classes.currentInfo}>
@@ -189,6 +197,7 @@ export const CovMap = () => {
         mapRef={mapRef}
         onMapClick={handleMapClick}
         onViewportChange={onViewportChange}
+        onLoad={handleMapLoaded}
       />
       <TimeNav />
       <Dialog

@@ -17,12 +17,13 @@ export type GLMapProps = {
   mapRef: any;
   onMapClick: Function;
   onViewportChange?: Function;
+  onLoad?: Function;
 }
 
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
 let debouncedViewportChange
 
-export const GLMap = ({ mapRef, onMapClick, onViewportChange }: GLMapProps) => {
+export const GLMap = ({ mapRef, onMapClick, onViewportChange, onLoad }: GLMapProps) => {
   const stateViewport = useSelector((state: State) => state.app.viewport);
   const [viewport, setViewport] = useState<Viewport>(() => {
     return stateViewport;
@@ -70,6 +71,7 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange }: GLMapProps) => {
         mapStyle="mapbox://styles/mapbox/dark-v10"
         {...viewport}
         onClick={(evt) => onMapClick(evt, viewport)}
+        onLoad={onLoad}
         onViewportChange={handleLocalViewportChange}
         mapboxApiAccessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
         preventStyleDiffing={true}
