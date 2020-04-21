@@ -31,13 +31,13 @@ const TouchSlider = withStyles({
 
 const useStyles = makeStyles((theme) => ({
   slider: {
-    position: "absolute",
-    left: theme.spacing(12),
-    bottom: theme.spacing(4),
-    zIndex: 1200,
-    width: 'calc(100% - 180px) !important',
     touchAction: 'none',
   },
+  [theme.breakpoints.down('xs')]: {
+    slider: {
+      display: 'none'
+    }
+  }
 }));
 
 const MAX_SLIDER_VALUE = 0

@@ -13,7 +13,7 @@ import { Settings } from './Settings';
 import { Zoom } from './Zoom';
 import { OfflineIndicator } from './OfflineIndicator';
 import { TopLeftContainer } from './TopLeftContainer';
-import { TimeRangeSlider } from './TimeRangeSlider';
+import { TimeNav } from './TimeNav';
 import { WelcomeInfo } from './WelcomeInfo';
 import { WelcomeInfoButton } from './WelcomeInfoButton';
 import { GLMap } from './GLMap' 
@@ -190,7 +190,7 @@ export const CovMap = () => {
         onMapClick={handleMapClick}
         onViewportChange={onViewportChange}
       />
-      <TimeRangeSlider />
+      <TimeNav />
       <Dialog
         aria-labelledby="simple-dialog-title"
         open={!datasetFound}
