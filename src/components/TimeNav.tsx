@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from "react-redux";
 import Fab from '@material-ui/core/Fab';
@@ -9,8 +9,8 @@ import { useThunkDispatch } from "../useThunkDispatch";
 import { plusDays } from '../lib/formatUTCDate.js';
 import { State } from "../state";
 import { AppApi } from "../state/app";
-import { config } from 'app-config/index'
 import { TimeRangeSlider } from './TimeRangeSlider'
+import { diffDays } from '../lib/diff-days'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,13 +50,31 @@ export function TimeNav () {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
   const currentDate = useSelector((state: State) => state.app.currentDate);
+  const [value, setValue] = useState<number>(() => {
+    const today = new Date();
+    const diff =  diffDays(today, currentDate)
+
+    return Math.min(diff, 0)
+  })
 
   const onNextClick = () => {
-
+    const newValue = value + 1
+    if (newValue > 0) {
+      return
+    }
+    setValue(newValue)
+    const newDate = plusDays(newValue)
+    dispatch(AppApi.setCurrentDate(newDate));
   }
 
   const onPrevClick = () => {
-    
+    const newValue = value - 1
+    if (newValue < -14) {
+      return
+    }
+    setValue(newValue)
+    const newDate = plusDays(newValue)
+    dispatch(AppApi.setCurrentDate(newDate));
   }
 
   return (
