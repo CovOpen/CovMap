@@ -81,8 +81,11 @@ function defaultSearchMethod(query: string, state: State, searchOptions?: Defaul
   return { results: foundResults }
 }
 
-export function switchViewToPlace(query, onFoundCallback, onErrorCallback) {
+export function switchViewToPlace(query, onFoundCallback?, onErrorCallback?) {
   return async (dispatch: ReduxDispatch, getState: () => State) => {
+    if (!query || query.length < 3) {
+      return
+    }
     const { default: FlyToInterpolator } = await import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/utils/transition/viewport-fly-to-interpolator')
     const state = getState();
     const { viewport, currentLayerGroup } = state.app;
@@ -110,7 +113,7 @@ export function switchViewToPlace(query, onFoundCallback, onErrorCallback) {
         ...viewport,
         latitude, 
         longitude,
-        zoom: 9.5,
+        zoom: 8.5, // TODO: Choose zoom depending on screen size
         transitionDuration: 2500,
         transitionInterpolator: new FlyToInterpolator()
       };
@@ -120,9 +123,9 @@ export function switchViewToPlace(query, onFoundCallback, onErrorCallback) {
       if (result.feature) {
         dispatch(AppApi.setCurrentFeature({ ...result.feature, source: result.source }, [longitude, latitude]));
       }
-      onFoundCallback()
+      onFoundCallback && onFoundCallback()
     } else if (searchResult.results.length === 0) {
-      onErrorCallback() 
+      onErrorCallback && onErrorCallback() 
       dispatch(AppApi.setSnackbarMessage({ text: notFoundMessage || '', type: 'error' }))
     } else {
       // TODO: show multiple results

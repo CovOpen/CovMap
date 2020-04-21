@@ -3,7 +3,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import { switchViewToPlace, getPossibleSearchResults } from "../state/thunks/handleSearchQuery";
 import { useSelector } from "react-redux";
-import { useThunkDispatch } from "useThunkDispatch";
+import { useThunkDispatch } from "src/useThunkDispatch";
 import { fade } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
@@ -98,6 +98,9 @@ export const Search = () => {
     id: 'autocomplete',
     options: possibilities.results.map(result => result.name),
     getOptionLabel: (option) => option,
+    onChange: (evt, value) => {
+      dispatch(switchViewToPlace(value))
+    }
   });
 
   
