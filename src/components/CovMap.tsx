@@ -35,7 +35,9 @@ const useStyles = makeStyles((theme) => ({
     textShadow: '0px 0px 6px rgba(0,0,0,0.86)',
     '& h2': {
       // fontWeight: 600
-    }
+    },
+    textAlign: 'right',
+    touchAction: 'none'
   }
 }));
 
