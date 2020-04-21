@@ -22,7 +22,7 @@ import { useThunkDispatch } from "src/useThunkDispatch";
 import { AppApi } from "src/state/app";
 
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
