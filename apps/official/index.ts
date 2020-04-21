@@ -75,6 +75,7 @@ export const config: AppConfig = {
       name: 'RKI Fallzahlen',
       description: 'Tagesaktuelle Zahlen des RKI',
       InfoComponent: RKIWelcome,
+      dateFormat: 'dddd, Do MMMM YYYY',
       mappings: {
         'case-numbers-to-districts': {
           datasourceId: 'rki-case-numbers',

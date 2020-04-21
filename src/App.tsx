@@ -1,15 +1,17 @@
 import "./app.css";
 import "mapbox-gl/dist/mapbox-gl.css"
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import { hot } from "react-hot-loader";
 import { useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import * as moment from 'moment';
+import 'moment/locale/de';
+moment.locale('de');
 
-import { getFallbackComponent } from './components/getFallback';
 import { NavBar } from "src/components/NavBar";
 import { CovMap } from "./components/CovMap";
 import { State } from "./state";
@@ -94,13 +96,13 @@ export const App = () => {
     }
   });
 
-  function renderRoute(route) {
+  function renderRoute(page) {
     return (
       <Route
-        path={route.route}
-        key={route.id}
+        path={page.route}
+        key={page.id}
         render={() => (
-          <route.Component />
+          <page.Component />
         )}
       />
     );
@@ -115,12 +117,10 @@ export const App = () => {
           <NavBar showSearch={!!currentLayerGroup.search} />
           <Container style={{ position: 'relative', height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
             <IntermediateProgress />
-            <Suspense fallback={getFallbackComponent()}>
-              <Switch>
-                <Route key="map" exact path="/" render={() => (<CovMap />)} />
-                {config.content?.pages.map(renderRoute)}
-              </Switch>
-            </Suspense>
+            <Switch>
+              <Route key="map" exact path="/" render={() => (<CovMap />)} />
+              {config.content?.pages.map(renderRoute)}
+            </Switch>
           </Container>
         </Container>
         <Snackbar

@@ -25,6 +25,7 @@ export type AppDatasource = {
 
 export type AppVisual = {
     name: string;
+    dateFormat: string;
     description: string;
     layers: Array<AppVisualLayerSpec>;
     layerGroups: Array<LayerGroup>;

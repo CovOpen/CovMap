@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { Visual } from './Visual';
 import { FeatureInfo } from './FeatureInfo';
 import { useSelector } from "react-redux";
@@ -11,6 +11,7 @@ import { State } from "../state";
 import { Viewport } from "../state/app";
 import { MAX_ZOOM_LEVEL } from '../constants';
 import { config } from 'app-config/index'
+import { getFallbackComponent } from './getFallback';
 
 export type GLMapProps = {
   mapRef: any;
@@ -58,23 +59,25 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange }: GLMapProps) => {
   }
   
   return (
-    <ReactMapGL
-      // reuseMaps={true} // - experimental, consider using when remounting the map component often
-      ref={mapRef}
-      width="100%"
-      height="100%"
-      maxZoom={MAX_ZOOM_LEVEL}
-      minZoom={4}
-      mapStyle="mapbox://styles/mapbox/dark-v10"
-      {...viewport}
-      onClick={(evt) => onMapClick(evt, viewport)}
-      onViewportChange={handleLocalViewportChange}
-      mapboxApiAccessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
-      preventStyleDiffing={true}
-      asyncRender={true}
-    >
-      <Visual />
-      <FeatureInfo />
-    </ReactMapGL>
+    <Suspense fallback={getFallbackComponent()}>
+      <ReactMapGL
+        // reuseMaps={true} // - experimental, consider using when remounting the map component often
+        ref={mapRef}
+        width="100%"
+        height="100%"
+        maxZoom={MAX_ZOOM_LEVEL}
+        minZoom={4}
+        mapStyle="mapbox://styles/mapbox/dark-v10"
+        {...viewport}
+        onClick={(evt) => onMapClick(evt, viewport)}
+        onViewportChange={handleLocalViewportChange}
+        mapboxApiAccessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
+        preventStyleDiffing={true}
+        asyncRender={true}
+      >
+        <Visual />
+        <FeatureInfo />
+      </ReactMapGL>
+    </Suspense>
   )
 }

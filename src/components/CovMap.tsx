@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from "@material-ui/core/Typography";
+import moment from 'moment';
 
 import { State } from "../state";
 import { AppApi } from "../state/app";
@@ -56,6 +57,7 @@ export const CovMap = () => {
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
   const currentFeature = useSelector((state: State) => state.app.currentFeature);
   const currentMappable = useSelector((state: State) => state.app.currentMappable);
+  const currentDate = useSelector((state: State) => state.app.currentDate);
   const mapRef = createRef<any>();
   const visual = config.visuals[currentVisual]
 
@@ -160,40 +162,39 @@ export const CovMap = () => {
   }
 
   return (
-    <>
-      <main className={classes.main}>
-        <div className={classes.currentInfo}>
-          <Typography variant="h2" color="primary">{visual.name}</Typography>
-          <Typography variant="subtitle1" color="primary">{currentMappable.title}</Typography>
-        </div>
-        <Settings />
-        <Zoom />
-        <TopLeftContainer>
-          <WelcomeInfoButton />
-          <OfflineIndicator />
-        </TopLeftContainer>
-        <WelcomeInfo />
-        <GLMap 
-          mapRef={mapRef}
-          onMapClick={handleMapClick}
-          onViewportChange={onViewportChange}
-        />
-        <TimeRangeSlider />
-        <Dialog
-          aria-labelledby="simple-dialog-title"
-          open={!datasetFound}
-          style={{
-            zIndex: 1190,
-            touchAction: 'none'
-          }}
-        >
-          <DialogTitle id="simple-dialog-title" style={{
-            touchAction: 'none'
-          }}>
-            Keine Daten für den ausgewählten Zeitraum.
-          </DialogTitle>
-        </Dialog>
-      </main>
-    </>
+    <div className={classes.main}>
+      <div className={classes.currentInfo}>
+        <Typography variant="h2" color="primary">{visual.name}</Typography>
+        <Typography variant="subtitle1" color="primary">{currentMappable.title}</Typography>
+        <Typography variant="subtitle1" color="primary">{moment(currentDate).format(visual.dateFormat)}</Typography>
+      </div>
+      <Settings />
+      <Zoom />
+      <TopLeftContainer>
+        <WelcomeInfoButton />
+        <OfflineIndicator />
+      </TopLeftContainer>
+      <WelcomeInfo />
+      <GLMap 
+        mapRef={mapRef}
+        onMapClick={handleMapClick}
+        onViewportChange={onViewportChange}
+      />
+      <TimeRangeSlider />
+      <Dialog
+        aria-labelledby="simple-dialog-title"
+        open={!datasetFound}
+        style={{
+          zIndex: 1190,
+          touchAction: 'none'
+        }}
+      >
+        <DialogTitle id="simple-dialog-title" style={{
+          touchAction: 'none'
+        }}>
+          Keine Daten für den ausgewählten Zeitraum.
+        </DialogTitle>
+      </Dialog>
+    </div>
   );
 };
