@@ -29,7 +29,7 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange }: GLMapProps) => {
   })
 
   useEffect(() => {
-    debouncedViewportChange = debounce(onViewportChange, 2500)
+    debouncedViewportChange = debounce(onViewportChange, 250)
   }, [])
 
   useEffect(() => {
