@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 1200,
     width: 'calc(100% - 172px) !important',
     touchAction: 'none',
+    pointerEvents: 'none',
   },
   buttonContainer: {
     display: 'flex',
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     paddingRight: theme.spacing(2),
     width: 110,
+    pointerEvents: 'auto',
   },
   [theme.breakpoints.down('xs')]: {
     root: {
