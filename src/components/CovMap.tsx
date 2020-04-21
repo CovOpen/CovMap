@@ -32,9 +32,17 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     margin: theme.spacing(2),
     zIndex: 1100,
-    textShadow: '0px 0px 6px rgba(0,0,0,0.86)',
+    textShadow: `
+      -1px -1px 0 rgba(0,0,0,0.36),
+      1px -1px 0 rgba(0,0,0,0.36),
+      -1px 1px 0 rgba(0,0,0,0.36),
+      1px 1px 0 rgba(0,0,0,0.36);
+    `,
     '& h2': {
-      // fontWeight: 600
+      fontWeight: 600
+    },
+    '& h6': {
+      fontWeight: 600
     },
     textAlign: 'right',
     touchAction: 'none'
