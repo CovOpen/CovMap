@@ -33,6 +33,7 @@ const TouchSlider = withStyles({
 const useStyles = makeStyles((theme) => ({
   slider: {
     touchAction: 'none',
+    pointerEvents: 'initial',
   },
   [theme.breakpoints.down('xs')]: {
     slider: {
