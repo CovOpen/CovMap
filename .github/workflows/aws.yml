@@ -9,7 +9,7 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.DEPLOYMENTACCESSKEY }}
-        aws-secret-access-key: ${{ secrets.DEPLOYMMENTACCESSSECRET }}
+        aws-secret-access-key: ${{ secrets.DEPLOYMENTACCESSSECRET }}
         aws-region: eu-central-1
     - name: Build static site
       run: npm install && npm run-script build
