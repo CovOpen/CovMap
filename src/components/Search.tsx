@@ -3,7 +3,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import { switchViewToPlace, getPossibleSearchResults } from "../state/thunks/handleSearchQuery";
 import { useSelector } from "react-redux";
-import { useThunkDispatch } from "useThunkDispatch";
+import { useThunkDispatch } from "src/useThunkDispatch";
 import { fade } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
@@ -11,6 +11,9 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 import { State } from "../state";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: theme.spacing(0, 2)
+  },
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -18,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.95),
     },
-    width: '200px',
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -37,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
-    width: '100%',
     [theme.breakpoints.up('md')]: {
       width: '20ch',
     },
@@ -45,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
   listbox: {
     borderRadius: `0 0 ${theme.shape.borderRadius} ${theme.shape.borderRadius}`,
     margin: 0,
-    padding: theme.spacing(0, 2),
     position: 'absolute',
     listStyle: 'none',
     backgroundColor: theme.palette.common.white,
@@ -54,7 +54,12 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '200px',
     fontFamily: theme.typography.fontFamily,
     color: 'inherit',
-    width: '168px',
+    minWidth: '200px',
+    boxShadow: '0px 2px 5px -1px rgba(0,0,0,0.55)',
+    '& li': {
+      padding: theme.spacing(0, 1),
+      lineHeight: '42px'
+    },
     '& li[data-focus="true"]': {
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.secondary.contrastText,
@@ -93,6 +98,9 @@ export const Search = () => {
     id: 'autocomplete',
     options: possibilities.results.map(result => result.name),
     getOptionLabel: (option) => option,
+    onChange: (evt, value) => {
+      dispatch(switchViewToPlace(value))
+    }
   });
 
   
@@ -106,7 +114,7 @@ export const Search = () => {
     }));
   }
 
-  return (<div>
+  return (<div className={classes.root}>
     <div {...getRootProps()} className={classes.search}>
       <div className={classes.searchIcon}>
         <SearchIcon />

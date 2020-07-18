@@ -1,9 +1,7 @@
 /* global  __precacheManifest */
 import { Clerk } from 'clerk-sw/worker'
-import { MaintenancePagePlugin } from 'clerk-plugin-maintenance'
 import { IDBWorkerPlugin } from 'clerk-plugin-idb/src/worker'
 
-Clerk.use(new MaintenancePagePlugin())
 Clerk.use(new IDBWorkerPlugin())
 
 const version = '0.4.0'

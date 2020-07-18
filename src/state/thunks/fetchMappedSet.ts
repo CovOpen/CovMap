@@ -4,8 +4,8 @@ import { ReduxDispatch } from "../../useThunkDispatch";
 import { AppApi, VisualId, MapSet } from "../app";
 import { State } from "../";
 
-import { config } from '../../../app-config/index'
 import { formatUTCDate } from '../../lib/formatUTCDate.js'
+import { config } from 'app-config/index'
 
 const fetchAndTransform = async (
   url: string | Function, 
@@ -36,7 +36,10 @@ const fetchAndTransform = async (
 
 export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Date) {
   return async (dispatch: ReduxDispatch, getState: () => State) => {
-    dispatch(AppApi.pushLoading('mappedSet', 'Loading mapped set'))
+    const timeKey = formatUTCDate(date)
+    const loadingKey = `loading-${mappingId}-${timeKey}`
+
+    dispatch(AppApi.pushLoading(loadingKey))
 
     try {
       const mapping = config.visuals[visualId].mappings[mappingId]
@@ -44,8 +47,7 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Date
       const { datasets, geos, mappedSets }  = getState().app
       const datasource = config.datasources[datasourceId]
       const geo = config.geos[geoId]
-      const timeKey = formatUTCDate(date)
-
+      
       const [data, geojson] = await Promise.all([
         Promise.resolve().then(async () => {
           const datasetKey = `${formatUTCDate(date)}-${datasourceId}`
@@ -103,7 +105,7 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Date
       // TODO: error snackbar
       console.error(err)
     } finally {
-      dispatch(AppApi.popLoading('mappedSet'))
+      dispatch(AppApi.popLoading(loadingKey))
     }
   };
 }

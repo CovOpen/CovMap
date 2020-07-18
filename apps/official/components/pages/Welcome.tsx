@@ -1,13 +1,9 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import { useThunkDispatch } from "useThunkDispatch";
-
-import { AppApi, InternalPages } from "../../../src/state/app";
+import { Link } from "react-router-dom";
 
 export const Welcome = () => {
-  const dispatch = useThunkDispatch();
-
   return (
     <>
       <main>
@@ -16,8 +12,8 @@ export const Welcome = () => {
             <Typography variant="h1">Infektionsrisiko von COVID-19 gering halten</Typography>
           </div>
           <div className="btn-group">
-            <Button variant="contained" color="primary" onClick={() => dispatch(AppApi.gotoPage('about-page'))}>Infos</Button>
-            <Button variant="contained" color="secondary" onClick={() => dispatch(AppApi.gotoPage(InternalPages.MAP))}>Karte</Button>
+            <Button variant="contained" color="primary" ><Link style={{ textDecoration: 'none' }} to="/about">Infos</Link></Button>
+            <Button variant="contained" color="secondary" ><Link style={{ textDecoration: 'none' }} to="/">Karte</Link></Button>
           </div>
         </div>
       </main>

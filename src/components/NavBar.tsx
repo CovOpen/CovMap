@@ -7,27 +7,21 @@ import ShareIcon from '@material-ui/icons/Share';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
 import Menu from '@material-ui/core/Menu';
+import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import { AppApi, InternalPages } from "state/app";
-import { useThunkDispatch } from "useThunkDispatch";
+import { AppApi } from "src/state/app";
+import { useThunkDispatch } from "src/useThunkDispatch";
 import { useSelector } from "react-redux";
 import { State } from "../state";
 import { triggerInstallPrompt } from "../state/thunks/triggerInstallPrompt"
 import * as clipboard from "clipboard-polyfill"
 
 import { Search } from './Search'
-import { config } from "../../app-config/index"
+import { config } from 'app-config/index'
 
 const Logo = config.ui?.Logo
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    paddingRight: 10,
-    marginRight: theme.spacing(2),
-  },
   title: {
     flexShrink: 1
   },
@@ -36,9 +30,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: 0,
   },
   menuIcon: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    transform: 'scale(.9)'
+    padding: 0,
   },
   menu: {
     touchAction: 'none',
@@ -52,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     height: '32px', 
     width: 'auto', 
     marginTop: '9px'
-  },
+  }
 }));
 
 export type NavBarProps = {
@@ -90,19 +82,18 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
     }
   }
 
-  const selectPage = (pageId: string) => {
-    dispatch(AppApi.gotoPage(pageId))
-    handleClose()
-  }
-
   const MenuEntries = () => {
     if (!config.content?.pages) {
       return null
     }
 
     return <>
-      {config.content?.pages.map((page, key) => (
-        <MenuItem key={key} className={classes.menuItem} onClick={() => selectPage(page.id)}>{page.title}</MenuItem>
+      {config.content?.pages.map((page) => (
+        <Link key={page.id} style={{ textDecoration: 'none' }} to={page.route}>
+          <MenuItem className={classes.menuItem} >
+            {page.title}
+          </MenuItem>
+        </Link>
       ))}
     </>
   }
@@ -114,6 +105,9 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
         {showSearch && < Search />}
         <div>
           <IconButton
+            classes={{
+              root: classes.menuIcon
+            }}
             aria-label="Main Menu"
             aria-controls="menu-appbar"
             aria-haspopup="true"
@@ -140,7 +134,11 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
             onClose={handleClose}
           >
             <div className={classes.menuContent}>
-              <MenuItem className={classes.menuItem} onClick={() => selectPage(InternalPages.MAP)}>Karte</MenuItem>
+              <Link key="map" style={{ textDecoration: 'none' }} to="/">
+                <MenuItem className={classes.menuItem} >
+                  Karte
+                </MenuItem>
+              </Link>
               <MenuEntries />
               {
                 useSelector((state: State) => state.app.installPrompt) &&

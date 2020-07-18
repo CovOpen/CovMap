@@ -1,9 +1,10 @@
-import React, { useEffect, createRef } from "react";
+import React, { useEffect, createRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from "@material-ui/core/Typography";
+import moment from 'moment';
 
 import { State } from "../state";
 import { AppApi } from "../state/app";
@@ -12,11 +13,11 @@ import { Settings } from './Settings';
 import { Zoom } from './Zoom';
 import { OfflineIndicator } from './OfflineIndicator';
 import { TopLeftContainer } from './TopLeftContainer';
-import { TimeRangeSlider } from './TimeRangeSlider';
+import { TimeNav } from './TimeNav';
 import { WelcomeInfo } from './WelcomeInfo';
 import { WelcomeInfoButton } from './WelcomeInfoButton';
-import { config } from '../../app-config/index'
 import { GLMap } from './GLMap' 
+import { config } from 'app-config/index'
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -31,10 +32,20 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     margin: theme.spacing(2),
     zIndex: 1100,
-    textShadow: '0px 0px 6px rgba(0,0,0,0.86)',
+    textShadow: `
+      -1px -1px 0 rgba(0,0,0,0.36),
+      1px -1px 0 rgba(0,0,0,0.36),
+      -1px 1px 0 rgba(0,0,0,0.36),
+      1px 1px 0 rgba(0,0,0,0.36);
+    `,
     '& h2': {
-      // fontWeight: 600
-    }
+      fontWeight: 600
+    },
+    '& h6': {
+      fontWeight: 600
+    },
+    textAlign: 'right',
+    touchAction: 'none'
   }
 }));
 
@@ -48,8 +59,6 @@ async function loadFlyTo() {
   FlyToInterpolator = FlyTo
 }
 
-const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
-
 export const CovMap = () => {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
@@ -58,11 +67,13 @@ export const CovMap = () => {
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
   const currentFeature = useSelector((state: State) => state.app.currentFeature);
   const currentMappable = useSelector((state: State) => state.app.currentMappable);
+  const currentDate = useSelector((state: State) => state.app.currentDate);
+  const [mapLoaded, setMapLoaded] = useState<boolean>(false)
   const mapRef = createRef<any>();
   const visual = config.visuals[currentVisual]
 
   const handleMapBusy = () => {
-    dispatch(AppApi.pushLoading('map-busy', 'Map is rendering stuff...'))
+    dispatch(AppApi.pushLoading('map-busy'))
   }
 
   const handleMapIdleOrRemoved = () => {
@@ -114,6 +125,9 @@ export const CovMap = () => {
   }
 
   useEffect(() => {
+    if (!mapLoaded) {
+      return
+    }
     if (currentFeature.previousFeature) {
       resetFeature(currentFeature.previousFeature)
     }
@@ -128,25 +142,11 @@ export const CovMap = () => {
     }
   }, [currentFeature])
 
-  const onViewportChange = ({ latitude, longitude, zoom, pitch, bearing }) => {
+  const onViewportChange = (newViewPort) => {
     viewPortEventCounter += 1
-
+    
     // Note: Explicitly not spreading stateViewport in here,
     // because it blows up with the transition interpolators
-    const newViewPort = {
-      pitch,
-      bearing,
-      zoom,
-      latitude,
-      longitude,
-    }
-
-    if (config.mapSettings?.constraints) {
-      const constraints = config.mapSettings?.constraints
-      newViewPort.latitude = clamp(latitude, constraints[1][0], constraints[0][0])
-      newViewPort.longitude = clamp(longitude, constraints[0][1], constraints[1][1])
-    }
-    
     dispatch(AppApi.setViewport(newViewPort))
   }
 
@@ -175,41 +175,45 @@ export const CovMap = () => {
     }
   }
 
+  const handleMapLoaded = () => {
+    setMapLoaded(true)
+  }
+
   return (
-    <>
-      <main className={classes.main}>
-        <div className={classes.currentInfo}>
-          <Typography variant="h2" color="primary">{visual.name}</Typography>
-          <Typography variant="subtitle1" color="primary">{currentMappable.title}</Typography>
-        </div>
-        <Settings />
-        <Zoom />
-        <TopLeftContainer>
-          <WelcomeInfoButton />
-          <OfflineIndicator />
-        </TopLeftContainer>
-        <WelcomeInfo />
-        <GLMap 
-          mapRef={mapRef}
-          onMapClick={handleMapClick}
-          onViewportChange={onViewportChange}
-        />
-        <TimeRangeSlider />
-        <Dialog
-          aria-labelledby="simple-dialog-title"
-          open={!datasetFound}
-          style={{
-            zIndex: 1190,
-            touchAction: 'none'
-          }}
-        >
-          <DialogTitle id="simple-dialog-title" style={{
-            touchAction: 'none'
-          }}>
-            Keine Daten für den ausgewählten Zeitraum.
-          </DialogTitle>
-        </Dialog>
-      </main>
-    </>
+    <div className={classes.main}>
+      <div className={classes.currentInfo}>
+        <Typography variant="h2" color="primary">{visual.name}</Typography>
+        <Typography variant="subtitle1" color="primary">{currentMappable.title}</Typography>
+        <Typography variant="subtitle1" color="primary">{moment(currentDate).format(visual.dateFormat)}</Typography>
+      </div>
+      <Settings />
+      <Zoom />
+      <TopLeftContainer>
+        <WelcomeInfoButton />
+        <OfflineIndicator />
+      </TopLeftContainer>
+      <WelcomeInfo />
+      <GLMap 
+        mapRef={mapRef}
+        onMapClick={handleMapClick}
+        onViewportChange={onViewportChange}
+        onLoad={handleMapLoaded}
+      />
+      <TimeNav />
+      <Dialog
+        aria-labelledby="simple-dialog-title"
+        open={!datasetFound}
+        style={{
+          zIndex: 1190,
+          touchAction: 'none'
+        }}
+      >
+        <DialogTitle id="simple-dialog-title" style={{
+          touchAction: 'none'
+        }}>
+          Keine Daten für den ausgewählten Zeitraum.
+        </DialogTitle>
+      </Dialog>
+    </div>
   );
 };

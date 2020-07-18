@@ -28,7 +28,6 @@ footer, header, hgroup, menu, nav, section {
 body {
     line-height: 1;
     height: 100vh;
-    width: 100vw;
 }
 ol, ul {
     list-style: none;
@@ -46,10 +45,6 @@ table {
     border-spacing: 0;
 }
 
-body > div {
-  position: relative;
-  height: 100%;
-}
 /* Variables */
 body {
   font-family: 'Nunito', sans-serif;

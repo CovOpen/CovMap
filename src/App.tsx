@@ -1,27 +1,34 @@
 import "./app.css";
 import "mapbox-gl/dist/mapbox-gl.css"
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import { hot } from "react-hot-loader";
 import { useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import * as moment from 'moment';
+import 'moment/locale/de';
+moment.locale('de');
 
-import { getFallbackComponent } from './components/getFallback';
-import { InternalPages } from "state/app";
-import { NavBar } from "components/NavBar";
+import { NavBar } from "src/components/NavBar";
 import { CovMap } from "./components/CovMap";
 import { State } from "./state";
 import { IntermediateProgress } from "./components/IntermediateProgress";
 import { ServiceWorker } from './components/ServiceWorker';
 import { InstallPrompt } from './components/InstallPrompt';
-import { AppPage } from './app-config.types'
-import { useThunkDispatch } from "useThunkDispatch";
-import { AppApi } from "state/app";
+import { useThunkDispatch } from "src/useThunkDispatch";
+import { AppApi } from "src/state/app";
 
-import { config } from '../app-config/index'
+import {
+  HashRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+
+
+import { config } from 'app-config/index'
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -64,13 +71,8 @@ const theme = createMuiTheme({
   }
 });
 
-const pagesById: Record<string, AppPage> = config.content?.pages.reduce((acc, page) => Object.assign(acc, {
-  [page.id]: page
-}), {}) || {}
-
 export const App = () => {
   const dispatch = useThunkDispatch();
-  const activePage = useSelector((state: State) => state.app.activePage);
   const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
   const viewportEventsCount = useSelector((state: State) => state.app.viewPortEventsCount);
   const snackbarMessage = (useSelector((state: State) => state.app.snackbarMessage))
@@ -94,50 +96,50 @@ export const App = () => {
     }
   });
 
-  function renderContent() {
-    switch (activePage) {
-      case InternalPages.MAP: {
-        return <CovMap />;
-      }
-      default: {
-        const PageComponent = pagesById[activePage].Component
-        if (!PageComponent) {
-          return <div>Page not found &quot;{activePage}&quot;</div>;
-        }
-        return <PageComponent />
-      }
-    }
+  function renderRoute(page) {
+    return (
+      <Route
+        path={page.route}
+        key={page.id}
+        render={() => (
+          <page.Component />
+        )}
+      />
+    );
   }
 
   return (
     <ThemeProvider theme={theme}>
-      <ServiceWorker />
-      <InstallPrompt shouldShow={showInstallPrompt} />
-      <Container style={{  height: innerHeight, padding: 0, maxWidth: 'none' }}>
-        <NavBar showSearch={!!currentLayerGroup.search} />
-        <Container style={{ position: 'relative', height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
-          <IntermediateProgress />
-          <Suspense fallback={getFallbackComponent()}>
-            {renderContent()}
-          </Suspense>
+      <Router>
+        <ServiceWorker />
+        <InstallPrompt shouldShow={showInstallPrompt} />
+        <Container style={{  height: innerHeight, padding: 0, maxWidth: 'none' }}>
+          <NavBar showSearch={!!currentLayerGroup.search} />
+          <Container style={{ position: 'relative', height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
+            <IntermediateProgress />
+            <Switch>
+              <Route key="map" exact path="/" render={() => (<CovMap />)} />
+              {config.content?.pages.map(renderRoute)}
+            </Switch>
+          </Container>
         </Container>
-      </Container>
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        open={!snackbarMessage.done}
-        autoHideDuration={snackbarMessage.duration || 6000}
-        onClose = {() => {
-          dispatch(AppApi.setSnackbarMessage({
-            ...snackbarMessage,
-            done: true
-          }))
-        }}
-      >
-        <Alert severity={snackbarMessage.type}>{snackbarMessage.text}</Alert>
-      </Snackbar>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          open={!snackbarMessage.done}
+          autoHideDuration={snackbarMessage.duration || 6000}
+          onClose = {() => {
+            dispatch(AppApi.setSnackbarMessage({
+              ...snackbarMessage,
+              done: true
+            }))
+          }}
+        >
+          <Alert severity={snackbarMessage.type}>{snackbarMessage.text}</Alert>
+        </Snackbar>
+      </Router>
     </ThemeProvider>
   )
 };

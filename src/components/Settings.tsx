@@ -10,11 +10,11 @@ import LayersIcon from '@material-ui/icons/Layers'
 import LayersClearIcon from '@material-ui/icons/LayersClear'
 import { makeStyles } from '@material-ui/core/styles';
 
-import { State } from "../state";
-import { VisualId, AppApi } from '../state/app';
-import { useThunkDispatch } from "../useThunkDispatch";
-import { config } from "../../app-config/index"
-import { Mappable, LayerGroup } from "app-config.types";
+import { State } from "src/state";
+import { VisualId, AppApi } from 'src/state/app';
+import { useThunkDispatch } from "src/useThunkDispatch";
+import { Mappable, LayerGroup } from "src/app-config.types";
+import { config } from 'app-config/index'
 
 const useStyles = makeStyles((theme) => ({
   fab: {

@@ -6,8 +6,8 @@ import { useSelector } from "react-redux";
 
 import { AppApi } from "../state/app";
 import { State } from "../state";
-import { config } from '../../app-config/index'
 import { useThunkDispatch } from "../useThunkDispatch";
+import { config } from 'app-config/index'
 
 export const WelcomeInfo = () => {
   const dispatch = useThunkDispatch();

@@ -1,4 +1,4 @@
-import { AppConfig, LayerType } from "../src/app-config.types"
+import { AppConfig, LayerType } from "../../src/app-config.types"
 import { AnimatedLogo } from "./components/AnimatedLogo"
 import buildJSON from "./build.json"
 import { Welcome } from "./components/pages/Welcome"
@@ -46,14 +46,17 @@ export const config: AppConfig = {
     pages: [{
       id: 'welcome-page',
       title: 'Willkommen',
+      route: '/welcome',
       Component: Welcome
     }, {
       id: 'about-page',
       title: 'About',
+      route: '/about',
       Component: About
     }, {
       id: 'imprint-page',
       title: 'Impressum',
+      route: '/imprint',
       Component: Imprint
     }]
   },
@@ -72,6 +75,7 @@ export const config: AppConfig = {
       name: 'RKI Fallzahlen',
       description: 'Tagesaktuelle Zahlen des RKI',
       InfoComponent: RKIWelcome,
+      dateFormat: 'dddd, Do MMMM YYYY',
       mappings: {
         'case-numbers-to-districts': {
           datasourceId: 'rki-case-numbers',
@@ -89,6 +93,7 @@ export const config: AppConfig = {
         }
       },
       layerGroups: [{
+        id: 'areas',
         title: 'Flächen',
         mappables: RKIMappables,
         FeatureInfo: RKIFeatureInfo,
@@ -96,12 +101,14 @@ export const config: AppConfig = {
         search: RKISearch,
         default: true
       }, {
+        id: 'bubbles',
         title: 'Bubbles',
         mappables: RKIMappables,
         layers: ['circles'],
         // search: RKISearch,
         FeatureInfo: RKIFeatureInfo,
       }, {
+        id: 'extrusion',
         title: 'Balken',
         mappables: RKIMappables,
         layers: ['extrusion', 'hover'],

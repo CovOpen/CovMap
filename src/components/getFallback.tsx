@@ -10,7 +10,7 @@ const Fallback = () => {
   useEffect(() => {
     const key = `LazyComponent${counter++}`;
 
-    dispatch(AppApi.pushLoading(key, 'Loading the post code areas...'))
+    dispatch(AppApi.pushLoading(key))
 
     return () => {
       dispatch(AppApi.popLoading(key))

@@ -2,7 +2,7 @@ import { Reducer } from "./reduxHelper";
 import { GeoJSON } from "geojson";
 import { Mappable, LayerGroup } from '../app-config.types'
 
-import { config } from '../../app-config/index'
+import { config } from 'app-config/index'
 
 const defaultVisual = config.visuals[config.defaultVisual]
 const defaultLayerGroup = defaultVisual.layerGroups.find(group => group.default) || defaultVisual.layerGroups[0]
@@ -21,10 +21,6 @@ export interface MapArea {
   celng: number;
   nelat: number;
   nelng: number;
-}
-
-export enum InternalPages {
-  MAP = 'internal--gl--map'
 }
 
 export type MapData = {
@@ -58,7 +54,6 @@ export type SnackbarMessage = {
 export type MapSetHolder = Record<VisualId, Record<string, MapSet>>
 
 export interface AppState {
-  activePage: string;
   viewport: Viewport;
   currentPosition: Array<number> | null;
   userAllowedLocation: boolean;
@@ -71,7 +66,8 @@ export interface AppState {
   currentMappable: Mappable;
   datasetFound: boolean;
   currentVisual: VisualId; // TODO: Rename to currentVisual (when moving to app-config driven build)
-  loading: Map<string, string>;
+  loading: Set<string>;
+  isLoading: boolean;
   viewPortEventsCount: number;
   searchResult: boolean;
   snackbarMessage: SnackbarMessage;
@@ -83,7 +79,6 @@ export interface AppState {
 }
 
 export const defaultAppState: AppState = {
-  activePage: InternalPages.MAP,
   userAllowedLocation: true,
   currentPosition: null,
   viewport: {
@@ -100,7 +95,8 @@ export const defaultAppState: AppState = {
   currentMappable: defaultMappable,
   datasetFound: true,
   currentVisual: config.defaultVisual,
-  loading: new Map(),
+  loading: new Set(),
+  isLoading: false,
   viewPortEventsCount: 0,
   searchResult: false,
   snackbarMessage: {
@@ -118,11 +114,6 @@ export const defaultAppState: AppState = {
 class AppReducer extends Reducer<AppState> {
   constructor() {
     super(defaultAppState);
-  }
-  public gotoPage(pageId: string) {
-    window.history.pushState({ page: pageId }, pageId);
-    this.state.history.push(this.state.activePage);
-    this.state.activePage = pageId;
   }
   public setUserAllowedLocation(allowed: boolean) {
     this.state.userAllowedLocation = allowed;
@@ -172,13 +163,21 @@ class AppReducer extends Reducer<AppState> {
   public setViewportEventCount(count: number) {
     this.state.viewPortEventsCount = count;
   }
-  public pushLoading(id: string, message: string) {
+  public pushLoading(id: string) {
     if (!this.state.loading.has(id)) {
-      this.state.loading.set(id, message)
+      this.state.loading.add(id)
+      if (this.state.isLoading === false) {
+        this.state.isLoading = true
+      }
     }
   }
   public popLoading(id: string) {
     this.state.loading.delete(id)
+    if (this.state.loading.size === 0) {
+      if (this.state.isLoading === true) {
+        this.state.isLoading = false
+      }
+    }
   }
   public setSnackbarMessage(message: SnackbarMessage) {
     const { done = false } = message

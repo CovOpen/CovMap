@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import Slider from '@material-ui/core/Slider';
-import ValueLabel from '@material-ui/core/Slider/ValueLabel';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { useSelector } from "react-redux";
+import Tooltip from '@material-ui/core/Tooltip';
+import moment from 'moment';
 
 import { useThunkDispatch } from "../useThunkDispatch";
 import { formatNowMinusDays, plusDays } from '../lib/formatUTCDate.js';
 import { State } from "../state";
 import { AppApi } from "../state/app";
+import { config } from 'app-config/index'
+import { diffDays } from '../lib/diff-days'
 
 export type Props = {
   onChange?: Function | null;
@@ -29,22 +32,20 @@ const TouchSlider = withStyles({
 
 const useStyles = makeStyles((theme) => ({
   slider: {
-    position: "absolute",
-    left: theme.spacing(12),
-    bottom: theme.spacing(4),
-    zIndex: 1200,
-    width: 'calc(100% - 180px) !important',
     touchAction: 'none',
+    pointerEvents: 'initial',
   },
+  [theme.breakpoints.down('xs')]: {
+    slider: {
+      display: 'none'
+    }
+  }
 }));
 
 const MAX_SLIDER_VALUE = 0
 let timeout: any = 0;
 
-const diffDays = (date1: Date, date2: Date): number => {
-  const diffTime = Math.abs(date2.getTime() - date1.getTime());
-  return Math.round(diffTime / (1000 * 60 * 60 * 24));
-}
+
 
 export function TimeRangeSlider ({ onChange = () => {} }: Props) {
   const classes = useStyles();
@@ -105,15 +106,21 @@ export type ValueLabelComponentProps = {
   value: number;
 };
 
-const CustomValueLabel = withStyles({
-  
-})(ValueLabel)
+const SliderLabelTooltip = withStyles({
+  tooltip: {
+    fontSize: 20,
+    marginBottom: 30
+  }
+})(Tooltip)
 
 function ValueLabelComponent({ children, open, value }: ValueLabelComponentProps) {
-  // TODO: Show selected date in this component
+  const currentVisual = useSelector((state: State) => state.app.currentVisual);
+  const visual = config.visuals[currentVisual]
+  const dateValue = moment(plusDays(value)).format(visual.dateFormat)
+
   return (
-    <CustomValueLabel open={open} value={value}>
+    <SliderLabelTooltip open={open} enterTouchDelay={0} placement="top" title={dateValue}>
       {children}
-    </CustomValueLabel>
+    </SliderLabelTooltip>
   );
 }

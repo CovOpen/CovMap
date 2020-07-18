@@ -25,6 +25,7 @@ export type AppDatasource = {
 
 export type AppVisual = {
     name: string;
+    dateFormat: string;
     description: string;
     layers: Array<AppVisualLayerSpec>;
     layerGroups: Array<LayerGroup>;
@@ -33,6 +34,7 @@ export type AppVisual = {
 }
 
 export type LayerGroup = {
+    id: string;
     title: string;
     default?: boolean;
     layers: Array<LayerId>;
@@ -137,6 +139,7 @@ export type AppContent = {
 export type AppPage = {
     id: string;
     title: string;
+    route: string;
     Component: ComponentType;
 }
 

@@ -12,8 +12,10 @@ const HtmlPwaPlugin = require('./config/webpack/HtmlPwaPlugin/index.js');
 const BundleServiceWorkerPlugin = require('./config/webpack/BundleServiceWorkerPlugin/index.js');
 const { DefinePlugin, SplitChunksPlugin } = require('webpack')
 const CompressionPlugin = require('compression-webpack-plugin')
-
-const buildConfig = require('./app-config/build.json')
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+ 
+const APP_CONFIG_PATH = process.env.APP_CONFIG_PATH || path.resolve(__dirname, 'apps/official')
+const buildConfig = require(path.resolve(APP_CONFIG_PATH, 'build.json'))
 
 const babelLoader = {
   loader: "babel-loader",
@@ -41,7 +43,7 @@ module.exports = function(env) {
       contentBase: path.join(__dirname, "dist"),
       disableHostCheck: true,
       host: "0.0.0.0",
-      historyApiFallback: false,
+      historyApiFallback: true,
       proxy: {
         '/api': {
           target: 'http://api:3001'
@@ -101,7 +103,12 @@ module.exports = function(env) {
         },
       ],
     },
+    context: __dirname,
     resolve: {
+      alias: {
+        'app-config': APP_CONFIG_PATH,
+        'src': path.resolve(__dirname, 'src')
+      },
       // Add `.ts` and `.tsx` as a resolvable extension.
       extensions: [".mjs", ".js", ".ts", ".tsx", ".jsx"],
       modules: [path.resolve(__dirname, "src"), "node_modules"],
@@ -142,7 +149,7 @@ module.exports = function(env) {
       new CopyWebpackPlugin([
         { from: "static", to: "." },
         { from: path.resolve(__dirname, 'data'), to: "./data" },
-        { from: path.resolve(__dirname, 'app-config/static'), to: "./" },
+        { from: path.resolve(APP_CONFIG_PATH, 'static'), to: "./" },
       ]),
       new BundleServiceWorkerPlugin({
         buildOptions: {
@@ -199,6 +206,10 @@ module.exports = function(env) {
         COMMIT_HASH_LONG: JSON.stringify(commitHashLong),
         VERSION: JSON.stringify(packageJson.version),
         PRODUCTION: JSON.stringify(env === "prod"),
+        APP_CONFIG_PATH: JSON.stringify(APP_CONFIG_PATH)
+      }),
+      new MomentLocalesPlugin({
+        localesToKeep: ['en', 'de'],
       }),
     ],
   };

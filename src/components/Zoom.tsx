@@ -10,13 +10,13 @@ import { zoomIn, zoomOut } from "../state/thunks/handleZoom"
 const useStyles = makeStyles((theme) => ({
   zoomIn: {
     position: 'absolute',
-    bottom: theme.spacing(10),
+    bottom: theme.spacing(11),
     right: theme.spacing(2),
     zIndex: 1100
   },
   zoomOut: {
     position: 'absolute',
-    bottom: theme.spacing(4),
+    bottom: theme.spacing(5),
     right: theme.spacing(2),
     zIndex: 1100
   }
