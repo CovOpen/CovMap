@@ -6,6 +6,7 @@ import { About } from "./components/pages/About"
 import { Imprint } from "./components/pages/Imprint"
 import { RKIFeatureInfo } from "./components/RKIFeatureInfo"
 import { RKIWelcome } from './components/RKIWelcome'
+import { Questions } from './components/pages/Questions'
 
 const RKIMappables = [{
   property: 'cases_per_population_norm',
@@ -58,7 +59,13 @@ export const config: AppConfig = {
       title: 'Impressum',
       route: '/imprint',
       Component: Imprint
-    }]
+    }, {
+      id: 'questions-page',
+      title: 'Symptome erfassen',
+      route: '/questions',
+      Component: Questions
+    },
+    ]
   },
   buildJSON,
   mapSettings: {
