@@ -117,10 +117,8 @@ export const App = () => {
           <NavBar showSearch={!!currentLayerGroup.search} />
           <Container style={{ position: 'relative', height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
             <IntermediateProgress />
-            <Switch>
-              <Route key="map" exact path="/" render={() => (<CovMap />)} />
-              {config.content?.pages.map(renderRoute)}
-            </Switch>
+            <Route key="map" exact path="/"component={CovMap} />
+            {config.content?.pages.map((page) => renderRoute(page))}
           </Container>
         </Container>
         <Snackbar
