@@ -8,8 +8,7 @@ env:
   ANDROID_KEYSTORE_PASSWORD: 'android'
   ANDROID_KEYSTORE_KEY_ALIAS: 'androiddebugkey'
   ANDROID_KEYSTORE_KEY_PASSWORD: 'android'
-  ANDROID_APK_FILE: 'android/app/build/outputs/apk/release/app-release.apk'
-  ANDROID_SDK_ROOT: '../android-sdk-linux'
+  ANDROID_APK_FILE: 'android/app/build/outputs/apk/release/app-release-unsigned.apk'
 
 on:
   pull_request:
@@ -30,7 +29,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with:
-          java-version: '8'
+          java-version: '8' 
           java-package: jdk
       - name: Install Android SDK
         run: sh ci/install-android-sdk.sh
@@ -41,7 +40,7 @@ jobs:
       - name: Sync ionic capacitor
         run: npx cap sync android
       - name: Build apk
-        run: cd android && ./gradlew build
+        run: cd android && ANDROID_SDK_ROOT=../android-sdk-linux ./gradlew build
       - name: Archive APK
         uses: actions/upload-artifact@v1
         with:
@@ -50,6 +49,7 @@ jobs:
   deploy:
     name: Deploy APK as release
     needs: build
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v1
