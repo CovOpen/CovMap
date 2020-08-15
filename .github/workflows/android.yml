@@ -1,0 +1,75 @@
+name: Android
+
+env:
+  ANDROID_COMPILE_SDK: '29'
+  ANDROID_BUILD_TOOLS: '28.0.3'
+  ANDROID_SDK_TOOLS: '4333796'
+  ANDROID_KEYSTORE_FILE: 'android/app/debug.keystore'
+  ANDROID_KEYSTORE_PASSWORD: 'android'
+  ANDROID_KEYSTORE_KEY_ALIAS: 'androiddebugkey'
+  ANDROID_KEYSTORE_KEY_PASSWORD: 'android'
+  ANDROID_APK_FILE: 'android/app/build/outputs/apk/release/app-release.apk'
+  ANDROID_SDK_ROOT: '../android-sdk-linux'
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '8'
+          java-package: jdk
+      - name: Install Android SDK
+        run: sh ci/install-android-sdk.sh
+      - name: Install dependencies
+        run: npm install
+      - name: Build node modules
+        run: npm run-script build -- --env prod
+      - name: Sync ionic capacitor
+        run: npx cap sync android
+      - name: Build apk
+        run: cd android && ./gradlew build
+      - name: Archive APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-release.apk
+          path: ${{ env.ANDROID_APK_FILE }}
+  deploy:
+    name: Deploy APK as release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v1
+        with:
+          name: app-release.apk
+          path: .
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          release_name: Release ${{ github.ref }}
+          draft: true
+          prerelease: true
+      - name: Upload release asset with version number in filename
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./app-release.apk
+          asset_name: CovMapper.apk
+          asset_content_type: application/zip
