@@ -4,13 +4,13 @@ import buildJSON from "./build.json"
 import { Welcome } from "./components/pages/Welcome"
 import { About } from "./components/pages/About"
 import { Imprint } from "./components/pages/Imprint"
-import { RKIFeatureInfo } from "./components/RKIFeatureInfo"
-import { RKIWelcome } from './components/RKIWelcome'
+import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo"
+import { CovMapWelcome } from './components/CovMapWelcome'
 import { Questions } from './components/pages/Questions'
 
-const RKIMappables = [{
+const CovMapMappables = [{
   property: 'cases_per_population_norm',
-  title: 'Betroffenenrate',
+  title: 'Contact Index C',
   default: true
 }, {
   property: 'cases_norm',
@@ -26,7 +26,7 @@ const RKIMappables = [{
   title: 'Sterberate',
 }]
 
-const RKISearch = {
+const CovMapSearch = {
   placeholder: 'Landkreis',
   nameProp: 'name',
   inMappings: [{
@@ -71,17 +71,17 @@ export const config: AppConfig = {
   mapSettings: {
     constraints: [[56.47462805805594,  2.3730468750000004], [43.27103747280261, 17.885742187500004]]
   },
-  defaultVisual: 'rki',
+  defaultVisual: 'covmap',
   datasources: {
     'rki-case-numbers': {
       url: (dateString) => `https://warte.app/api/rki/rki-district-case-numbers?fields=BL,RS,EWZ,cases,deaths,cases_per_100k,cases_per_population,cases7_per_100k,death_rate&limit=0&date=${dateString}`
     }
   },
   visuals: {
-    'rki': {
-      name: 'RKI Fallzahlen',
-      description: 'Tagesaktuelle Zahlen des RKI',
-      InfoComponent: RKIWelcome,
+    'covmap': {
+      name: 'CovMap Fallzahlen',
+      description: 'Tagesaktuelle Zahlen des RKI - bis jetzt',
+      InfoComponent: CovMapWelcome,
       dateFormat: 'dddd, Do MMMM YYYY',
       mappings: {
         'case-numbers-to-districts': {
@@ -102,25 +102,25 @@ export const config: AppConfig = {
       layerGroups: [{
         id: 'areas',
         title: 'Flächen',
-        mappables: RKIMappables,
-        FeatureInfo: RKIFeatureInfo,
+        mappables: CovMapMappables,
+        FeatureInfo: CovMapFeatureInfo,
         layers: ['areas-fill', 'hover'],
-        search: RKISearch,
+        search: CovMapSearch,
         default: true
       }, {
         id: 'bubbles',
         title: 'Bubbles',
-        mappables: RKIMappables,
+        mappables: CovMapMappables,
         layers: ['circles'],
         // search: RKISearch,
-        FeatureInfo: RKIFeatureInfo,
+        FeatureInfo: CovMapFeatureInfo,
       }, {
         id: 'extrusion',
         title: 'Balken',
-        mappables: RKIMappables,
+        mappables: CovMapMappables,
         layers: ['extrusion', 'hover'],
-        FeatureInfo: RKIFeatureInfo,
-        search: RKISearch,
+        FeatureInfo: CovMapFeatureInfo,
+        search: CovMapSearch,
         pitch: 40,
         bearing: 20,
       }],

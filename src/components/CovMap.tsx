@@ -182,8 +182,8 @@ export const CovMap = () => {
   return (
     <div className={classes.main}>
       <div className={classes.currentInfo}>
-        <Typography variant="h2" color="primary">{visual.name}</Typography>
-        <Typography variant="subtitle1" color="primary">{currentMappable.title}</Typography>
+        {/*<Typography variant="h2" color="primary">{visual.name}</Typography>*/}
+        <Typography variant="h2" color="primary">{currentMappable.title}</Typography>
         <Typography variant="subtitle1" color="primary">{moment(currentDate).format(visual.dateFormat)}</Typography>
       </div>
       <Settings />
