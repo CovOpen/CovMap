@@ -4,7 +4,7 @@ import { Paper, Typography } from "@material-ui/core";
 
 export const ResultComponent: React.FC<{ result: Result[] }> = ({ result }) => {
   return (
-    <Paper style={{ color: "red", padding: "20px" }}>
+    <Paper style={{ padding: "20px" }}>
       {result.length > 0 ? (
         result.map((it) => (
           <Typography key={it.resultCategory.id}>
@@ -12,7 +12,7 @@ export const ResultComponent: React.FC<{ result: Result[] }> = ({ result }) => {
           </Typography>
         ))
       ) : (
-        <Typography>No result applies</Typography>
+        <Typography>Vielen Dank für das Ausfüllen des Fragebogens.</Typography>
       )}
     </Paper>
   );

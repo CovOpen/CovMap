@@ -9,7 +9,7 @@ type QuestionComponentProps = {
   handleNextClick: (value: Primitive | Array<Primitive> | undefined) => void;
 };
 
-const useStyles = makeStyles(() =>
+export const useStyles = makeStyles(() =>
   createStyles({
     root: {
       backgroundColor: "#F7FAFC",
@@ -19,6 +19,10 @@ const useStyles = makeStyles(() =>
       boxShadow: "none",
       padding: 20,
     },
+    questionText: {
+      color: "#002e62 !important",
+      marginBottom: "24px"
+    }
   })
 );
 

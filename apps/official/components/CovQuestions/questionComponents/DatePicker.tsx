@@ -2,10 +2,12 @@ import React from "react";
 import { TextField, Typography } from "@material-ui/core";
 import { QuestionFormComponentProps } from "./QuestionFormComponent";
 import { dateInSecondsTimestamp } from "../../utils/date";
+import { useStyles } from "app-config/components/CovQuestions/QuestionComponent";
 
 export const DatePicker: React.FC<QuestionFormComponentProps> = ({ currentQuestion, onChange, value }) => {
   // If the caller send a string date, like 2020-03-25, we should also return a string date.
   const callerExpectsStringDate = typeof value === "string";
+  const classes = useStyles();
 
   const handleChange = (e: any) => {
     if (callerExpectsStringDate) {
@@ -28,7 +30,7 @@ export const DatePicker: React.FC<QuestionFormComponentProps> = ({ currentQuesti
 
   return (
     <>
-      <Typography id="date-picker-inline" gutterBottom>
+      <Typography id="date-picker-inline" gutterBottom className={classes.questionText}>
         {currentQuestion.text}
       </Typography>
       <TextField

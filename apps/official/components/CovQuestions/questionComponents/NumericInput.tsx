@@ -1,8 +1,11 @@
 import React from "react";
 import { Grid, Input, Slider, Typography } from "@material-ui/core";
 import { QuestionFormComponentProps } from "./QuestionFormComponent";
+import { useStyles } from "app-config/components/CovQuestions/QuestionComponent";
 
 export const NumericInput: React.FC<QuestionFormComponentProps> = ({ currentQuestion, onChange, value }) => {
+  const classes = useStyles();
+
   const { min, max, step, defaultValue } = currentQuestion.numericOption || {};
   const fallbackValue = defaultValue ?? min ?? max ?? 0;
 
@@ -24,7 +27,7 @@ export const NumericInput: React.FC<QuestionFormComponentProps> = ({ currentQues
 
   return (
     <>
-      <Typography id="discrete-slider-always" gutterBottom>
+      <Typography id="discrete-slider-always" gutterBottom className={classes.questionText}>
         {currentQuestion.text}
       </Typography>
       <Grid container item spacing={2} alignItems="center" xs={12}>

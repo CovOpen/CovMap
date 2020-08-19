@@ -2,12 +2,15 @@ import React from "react";
 import { Checkbox, FormControlLabel, FormGroup, FormLabel } from "@material-ui/core";
 import { QuestionFormComponentProps } from "./QuestionFormComponent";
 import { isPrimitive } from "covquestions-js/primitive";
+import { useStyles } from "app-config/components/CovQuestions/QuestionComponent";
 
 export const MultiSelect: React.FC<QuestionFormComponentProps> = ({
   currentQuestion,
   onChange,
   value: checkedValues,
 }) => {
+  const classes = useStyles();
+
   const handleChange = (e: React.ChangeEvent<{ value: unknown; checked: boolean }>) => {
     const current = e.target.value;
     let values = checkedValues ? [...checkedValues] : [];
@@ -33,7 +36,7 @@ export const MultiSelect: React.FC<QuestionFormComponentProps> = ({
 
   return (
     <FormGroup>
-      <FormLabel component="legend">{currentQuestion.text}</FormLabel>
+      <FormLabel component="legend" className={classes.questionText}>{currentQuestion.text}</FormLabel>
       {options.map((answer) => (
         <FormControlLabel
           key={answer.value}
