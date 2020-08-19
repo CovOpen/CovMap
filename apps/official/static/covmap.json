@@ -76,9 +76,6 @@
       "type": "boolean"
     },
     {
-      "id": "q_symptoms",
-      "text": "Which of the following symptoms have you had in the past 24 hours? (multiple selection possible)",
-      "type": "multiselect",
       "options": [
         {
           "text": "Feeling tired or weak",
@@ -101,7 +98,11 @@
           "value": "taste"
         }
       ],
-      "details": "If you don't have any of the symptoms, don't select an entry and continue by choosing the \"Next\" button."
+      "id": "q_symptoms",
+      "text": "Which of the following symptoms have you had in the past 24 hours? (multiple selection possible)",
+      "type": "multiselect",
+      "details": "If you don't have any of the symptoms, don't select an entry and continue by choosing the \"Next\" button.",
+      "optional": true
     },
     {
       "id": "q_cough",
