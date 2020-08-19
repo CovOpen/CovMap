@@ -1,0 +1,234 @@
+{
+  "id": "covmap",
+  "schemaVersion": "1",
+  "version": 1,
+  "language": "en",
+  "title": "CovMap",
+  "meta": {
+    "author": "Alexander Thieme",
+    "availableLanguages": [
+      "de",
+      "en"
+    ],
+    "creationDate": "2020-08-19T21:00:05+0000"
+  },
+  "questions": [
+    {
+      "id": "q_contact",
+      "text": "Have you had close contact with a confirmed case?",
+      "details": "Choose \"No\" if you have worn adequate protective measures (mask, smock) on contact.",
+      "type": "boolean"
+    },
+    {
+      "id": "q_contact_date",
+      "text": "What day was the last contact?",
+      "type": "date",
+      "enableWhenExpression": {
+        "var": "q_contact"
+      }
+    },
+    {
+      "id": "q_fever",
+      "text": "Have you had a fever (over 38°C) in the past 24 hours?",
+      "type": "boolean"
+    },
+    {
+      "id": "q_fever",
+      "text": "What was the highest temperature, approx.?",
+      "type": "select",
+      "options": [
+        {
+          "text": "38°C",
+          "value": "38"
+        },
+        {
+          "text": "39°C",
+          "value": "39"
+        },
+        {
+          "text": "40°C",
+          "value": "40"
+        },
+        {
+          "text": "41°C",
+          "value": "41"
+        },
+        {
+          "text": "42°C",
+          "value": "42"
+        },
+        {
+          "text": "More than 42°C",
+          "value": "42+"
+        },
+        {
+          "text": "I don't know",
+          "value": "dont_know"
+        }
+      ],
+      "enableWhenExpression": {
+        "var": "q_fever"
+      }
+    },
+    {
+      "id": "q_chills",
+      "text": "Have you had chills in the past 24 hours?",
+      "type": "boolean"
+    },
+    {
+      "options": [
+        {
+          "text": "Feeling tired or weak",
+          "value": "tired"
+        },
+        {
+          "text": "Body aches",
+          "value": "aches"
+        },
+        {
+          "text": "Diarrhea",
+          "value": "diarrhea"
+        },
+        {
+          "text": "Headache",
+          "value": "headache"
+        },
+        {
+          "text": "Loss of taste and/or smell",
+          "value": "taste"
+        }
+      ],
+      "id": "q_symptoms",
+      "text": "Which of the following symptoms have you had in the past 24 hours? (multiple selection possible)",
+      "type": "multiselect",
+      "details": "If you don't have any of the symptoms, don't select an entry and continue by choosing the \"Next\" button.",
+      "optional": true
+    },
+    {
+      "id": "q_cough",
+      "text": "In the past 24 hours, have you had a persistent cough?",
+      "type": "boolean",
+      "details": "If you have a chronic cough, compare your current coughing to your regular problems."
+    },
+    {
+      "id": "q_runny_nose",
+      "text": "In the past 24 hours, have you had a runny nose?",
+      "type": "boolean",
+      "details": "The question relates to cold symptoms and excludes chronic runny nose, seasonal or allergy-related runny nose. If you have chronic sniffling, compare your current conditions with your existing problems."
+    },
+    {
+      "id": "q_sore_throat",
+      "text": "In the past 24 hours, have you had a sore throat?",
+      "type": "boolean"
+    },
+    {
+      "id": "q_breath",
+      "text": "In the past 24 hours, did you feel that you were more quickly out of breath than usual?",
+      "type": "boolean",
+      "details": "If you have chronic lung disease, compare your current breathing problems with your existing breathing problems."
+    },
+    {
+      "id": "q_symptoms_date",
+      "text": "With regard to all questions about symptoms: since when have you had the symptoms you specified?",
+      "type": "date",
+      "enableWhenExpression": {
+        "var": "v_symptoms"
+      }
+    },
+    {
+      "id": "q_postal_code",
+      "text": "What's your postal code?",
+      "type": "text",
+      "details": "You can enter your postal code here. By specifying your postal code, you allow us to map the data you donated on a map of Germany. This enables us further understand the spread of the pandemic."
+    }
+  ],
+  "variables": [
+    {
+      "id": "v_symptoms",
+      "expression": {
+        "var": "q_symptoms.symptoms"
+      }
+    },
+    {
+      "id": "v_contact_relevant",
+      "expression": {
+        "<=": [
+          {
+            "-": [
+              {
+                "var": "now"
+              },
+              {
+                "var": "q_contact_date"
+              }
+            ]
+          },
+          1209600
+        ]
+      }
+    },
+    {
+      "id": "v_symptoms",
+      "expression": {
+        "or": [
+          {
+            "var": "q_fever"
+          },
+          {
+            "var": "q_chills"
+          },
+          {
+            ">": [
+              {
+                "var": "q_symptoms.selected_count"
+              },
+              0
+            ]
+          },
+          {
+            "var": "q_cough"
+          },
+          {
+            "var": "q_runny_nose"
+          },
+          {
+            "var": "q_sore_throat"
+          },
+          {
+            "var": "q_breath"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v_symptoms_after_contact",
+      "expression": {
+        "<": [
+          {
+            "var": "q_contact_date"
+          },
+          {
+            "var": "q_symptoms_date"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v_respiratory_symptoms",
+      "expression": {
+        "or": [
+          {
+            "var": "q_cough"
+          },
+          {
+            "var": "q_sore_throat"
+          },
+          {
+            "var": "q_breath"
+          }
+        ]
+      }
+    }
+  ],
+  "resultCategories": []
+}
