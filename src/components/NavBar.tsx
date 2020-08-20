@@ -73,7 +73,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
   const handleShare = async () => {
     try {
       await (window.navigator as any).share({
-        title: 'CovMapper',
+        title: 'CovMap',
         url: 'https://' + window.location.hostname
       })
     } catch (err) {

@@ -8,7 +8,7 @@ export const About = () => {
     <>
       <main className="sections">
         <section>
-          <Typography variant="h1">About CovMapper</Typography>
+          <Typography variant="h1">About CovMap</Typography>
         </section>
         <section>
           <Typography variant="h2">About this Mapper app...</Typography>

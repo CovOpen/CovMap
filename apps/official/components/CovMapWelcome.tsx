@@ -6,7 +6,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 export const CovMapWelcome = () => {
   return (
     <>
-      <DialogTitle id="alert-dialog-title">{"Willkommen bei CovMapper "}</DialogTitle>
+      <DialogTitle id="alert-dialog-title">{"Willkommen bei CovMap "}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
             Hier siehst du die aktuelle Anzahl an Corona Infizierten pro Landkreis in Deutschland.

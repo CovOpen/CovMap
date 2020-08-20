@@ -7,15 +7,15 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
-   width="83.25"
-   sodipodi:docname="logo.svg"
-   version="1.1"
-   text-rendering="geometricPrecision"
-   shape-rendering="geometricPrecision"
-   viewBox="0 0 83.25 40.74"
+   id="ewvi8zzlfqc1"
    height="38"
-   id="ewvi8zzlfqc1">
+   viewBox="0 0 83.25 40.74"
+   shape-rendering="geometricPrecision"
+   text-rendering="geometricPrecision"
+   version="1.1"
+   sodipodi:docname="logo.svg"
+   width="83.25"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)">
   <metadata
      id="metadata208">
     <rdf:RDF>
@@ -24,30 +24,31 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <sodipodi:namedview
-     inkscape:current-layer="ewvi8zzlfqc1"
-     inkscape:window-maximized="1"
-     inkscape:window-y="0"
-     inkscape:window-x="0"
-     inkscape:cy="23.894795"
-     inkscape:cx="41.039183"
-     inkscape:zoom="8.1572581"
-     showgrid="false"
-     id="namedview206"
-     inkscape:window-height="1016"
-     inkscape:window-width="1920"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0"
-     guidetolerance="10"
-     gridtolerance="10"
-     objecttolerance="10"
-     borderopacity="1"
+     inkscape:document-rotation="0"
+     pagecolor="#ffffff"
      bordercolor="#666666"
-     pagecolor="#ffffff" />
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     id="namedview206"
+     showgrid="false"
+     inkscape:zoom="11.536105"
+     inkscape:cx="49.896683"
+     inkscape:cy="14.240934"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="ewvi8zzlfqc1" />
   <style
      id="style2"><![CDATA[#ewvi8zzlfqc49_ts {animation: ewvi8zzlfqc49_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc49_ts__ts { 0% {transform: translate(19.610000px,37.400000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 20% {transform: translate(19.610000px,37.400000px) scale(0.783935,0.783935);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 45% {transform: translate(19.610000px,37.400000px) scale(0.946559,0.946559);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 71.666667% {transform: translate(19.610000px,37.400000px) scale(0.703843,0.703843);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 100% {transform: translate(19.610000px,37.400000px) scale(1,1)} }#ewvi8zzlfqc50_ts {animation: ewvi8zzlfqc50_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc50_ts__ts { 0% {transform: translate(19.610000px,28.880000px) scale(1,1)} 66.666667% {transform: translate(19.610000px,28.880000px) scale(1.674378,1.674378)} 100% {transform: translate(19.610000px,28.880000px) scale(1,1)} }#ewvi8zzlfqc51_ts {animation: ewvi8zzlfqc51_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc51_ts__ts { 0% {transform: translate(19.640000px,20.370000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 50% {transform: translate(19.640000px,20.370000px) scale(0.546903,0.546903);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 100% {transform: translate(19.640000px,20.370000px) scale(1,1)} }#ewvi8zzlfqc52_ts {animation: ewvi8zzlfqc52_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc52_ts__ts { 0% {transform: translate(19.610000px,11.860000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 30% {transform: translate(19.610000px,11.860000px) scale(0.777523,0.777523);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 100% {transform: translate(19.610000px,11.860000px) scale(1,1)} }#ewvi8zzlfqc53_ts {animation: ewvi8zzlfqc53_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc53_ts__ts { 0% {transform: translate(19.610000px,3.350000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 16.666667% {transform: translate(19.610000px,3.350000px) scale(0.758531,0.758531);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 33.333333% {transform: translate(19.610000px,3.350000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 75% {transform: translate(19.610000px,3.350000px) scale(0.516781,0.516781);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 100% {transform: translate(19.610000px,3.350000px) scale(1,1)} }#ewvi8zzlfqc54_ts {animation: ewvi8zzlfqc54_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc54_ts__ts { 0% {transform: translate(11.720000px,33.280000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 61.666667% {transform: translate(11.720000px,33.280000px) scale(1.419122,1.419122);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 100% {transform: translate(11.720000px,33.280000px) scale(1,1)} }#ewvi8zzlfqc55_ts {animation: ewvi8zzlfqc55_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc55_ts__ts { 0% {transform: translate(11.720000px,24.840000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 46.666667% {transform: translate(11.720000px,24.840000px) scale(0.534644,0.534644);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 100% {transform: translate(11.720000px,24.840000px) scale(1,1)} }#ewvi8zzlfqc56_ts {animation: ewvi8zzlfqc56_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc56_ts__ts { 0% {transform: translate(11.720000px,16.330000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 50% {transform: translate(11.720000px,16.330000px) scale(0.653326,0.653326);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 100% {transform: translate(11.720000px,16.330000px) scale(1,1)} }#ewvi8zzlfqc57_ts {animation: ewvi8zzlfqc57_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc57_ts__ts { 0% {transform: translate(11.720000px,7.600000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 25% {transform: translate(11.720000px,7.600000px) scale(1.297540,1.297540);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 100% {transform: translate(11.720000px,7.600000px) scale(1,1)} }#ewvi8zzlfqc58_ts {animation: ewvi8zzlfqc58_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc58_ts__ts { 0% {transform: translate(4.190000px,29.090000px) scale(1,1);animation-timing-function: cubic-bezier(0.420000,0,1,1)} 33.333333% {transform: translate(4.190000px,29.090000px) scale(0.482360,0.482360);animation-timing-function: cubic-bezier(0.420000,0,1,1)} 100% {transform: translate(4.190000px,29.090000px) scale(1,1)} }#ewvi8zzlfqc59_ts {animation: ewvi8zzlfqc59_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc59_ts__ts { 0% {transform: translate(4.190000px,20.580000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 38.333333% {transform: translate(4.190000px,20.580000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 71.666667% {transform: translate(4.190000px,20.580000px) scale(0.836471,0.836471);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 100% {transform: translate(4.190000px,20.580000px) scale(1,1)} }#ewvi8zzlfqc60_ts {animation: ewvi8zzlfqc60_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc60_ts__ts { 0% {transform: translate(4.190000px,12.070000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 50% {transform: translate(4.190000px,12.070000px) scale(0.747724,0.747724);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 100% {transform: translate(4.190000px,12.070000px) scale(1,1)} }#ewvi8zzlfqc61_ts {animation: ewvi8zzlfqc61_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc61_ts__ts { 0% {transform: translate(26.610000px,33.140000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 13.333333% {transform: translate(26.610000px,33.140000px) scale(0.805268,0.805268);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 58.333333% {transform: translate(26.610000px,33.140000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 83.333333% {transform: translate(26.610000px,33.140000px) scale(0.797229,0.797229);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 100% {transform: translate(26.610000px,33.140000px) scale(1,1)} }#ewvi8zzlfqc62_ts {animation: ewvi8zzlfqc62_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc62_ts__ts { 0% {transform: translate(26.610000px,24.840000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 21.666667% {transform: translate(26.610000px,24.840000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 86.666667% {transform: translate(26.610000px,24.840000px) scale(0.767350,0.767350);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 100% {transform: translate(26.610000px,24.840000px) scale(1,1)} }#ewvi8zzlfqc63_ts {animation: ewvi8zzlfqc63_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc63_ts__ts { 0% {transform: translate(26.610000px,16.330000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 43.333333% {transform: translate(26.610000px,16.330000px) scale(1.249661,1.249661);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 98.333333% {transform: translate(26.610000px,16.330000px) scale(1,1)} 100% {transform: translate(26.610000px,16.330000px) scale(1,1)} }#ewvi8zzlfqc64_ts {animation: ewvi8zzlfqc64_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc64_ts__ts { 0% {transform: translate(33.600650px,29.353764px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 33.333333% {transform: translate(33.600650px,29.353764px) scale(0.679950,0.679950);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 100% {transform: translate(33.600650px,29.353764px) scale(1,1)} }#ewvi8zzlfqc65_ts {animation: ewvi8zzlfqc65_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc65_ts__ts { 0% {transform: translate(34.100000px,21.280000px) scale(1,1)} 5% {transform: translate(34.100000px,21.280000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 36.666667% {transform: translate(34.100000px,21.280000px) scale(0.742540,0.742540);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 70% {transform: translate(34.100000px,21.280000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 100% {transform: translate(34.100000px,21.280000px) scale(1,1)} }#ewvi8zzlfqc66_ts {animation: ewvi8zzlfqc66_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc66_ts__ts { 0% {transform: translate(34.100000px,12.770000px) scale(1,1);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 66.666667% {transform: translate(34.100000px,12.770000px) scale(0.670034,0.670034);animation-timing-function: cubic-bezier(0.445000,0.050000,0.550000,0.950000)} 100% {transform: translate(34.100000px,12.770000px) scale(1,1)} }#ewvi8zzlfqc67_ts {animation: ewvi8zzlfqc67_ts__ts 6000ms linear infinite normal forwards}@keyframes ewvi8zzlfqc67_ts__ts { 0% {transform: translate(26.610000px,7.600000px) scale(1,1)} 50% {transform: translate(26.610000px,7.600000px) scale(1.494318,1.494318)} 100% {transform: translate(26.610000px,7.600000px) scale(1,1)} }]]></style>
   <defs
@@ -55,1145 +56,1137 @@
     <clipPath
        id="ewvi8zzlfqc2">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc3-fill)"
-         transform="translate(19.61,37.4)"
+         id="ewvi8zzlfqc3"
          r="3.3499999"
-         id="ewvi8zzlfqc3" />
+         transform="translate(19.61,37.4)"
+         fill="url(#ewvi8zzlfqc3-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc4">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc5-fill)"
-         transform="translate(19.61,28.88)"
+         id="ewvi8zzlfqc5"
          r="2.3699999"
-         id="ewvi8zzlfqc5" />
+         transform="translate(19.61,28.88)"
+         fill="url(#ewvi8zzlfqc5-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc6">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc7-fill)"
-         transform="translate(19.61,20.37)"
+         id="ewvi8zzlfqc7"
          r="4.0799999"
-         id="ewvi8zzlfqc7" />
+         transform="translate(19.61,20.37)"
+         fill="url(#ewvi8zzlfqc7-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc8">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc9-fill)"
-         transform="translate(19.61,11.86)"
+         id="ewvi8zzlfqc9"
          r="3.3499999"
-         id="ewvi8zzlfqc9" />
+         transform="translate(19.61,11.86)"
+         fill="url(#ewvi8zzlfqc9-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc10">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc11-fill)"
-         transform="translate(19.61,3.35)"
+         id="ewvi8zzlfqc11"
          r="3.3499999"
-         id="ewvi8zzlfqc11" />
+         transform="translate(19.61,3.35)"
+         fill="url(#ewvi8zzlfqc11-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc12">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc13-fill)"
-         transform="translate(11.72,33.35)"
+         id="ewvi8zzlfqc13"
          r="3.1400001"
-         id="ewvi8zzlfqc13" />
+         transform="translate(11.72,33.35)"
+         fill="url(#ewvi8zzlfqc13-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc14">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc15-fill)"
-         transform="translate(11.72,24.84)"
+         id="ewvi8zzlfqc15"
          r="3.3499999"
-         id="ewvi8zzlfqc15" />
+         transform="translate(11.72,24.84)"
+         fill="url(#ewvi8zzlfqc15-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc16">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc17-fill)"
-         transform="translate(11.72,16.33)"
+         id="ewvi8zzlfqc17"
          r="3.8099999"
-         id="ewvi8zzlfqc17" />
+         transform="translate(11.72,16.33)"
+         fill="url(#ewvi8zzlfqc17-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc18">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc19-fill)"
-         transform="translate(11.72,7.81)"
+         id="ewvi8zzlfqc19"
          r="2.51"
-         id="ewvi8zzlfqc19" />
+         transform="translate(11.72,7.81)"
+         fill="url(#ewvi8zzlfqc19-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc20">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc21-fill)"
-         transform="translate(4.19,29.09)"
+         id="ewvi8zzlfqc21"
          r="4.1900001"
-         id="ewvi8zzlfqc21" />
+         transform="translate(4.19,29.09)"
+         fill="url(#ewvi8zzlfqc21-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc22">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc23-fill)"
-         transform="translate(4.19,20.58)"
+         id="ewvi8zzlfqc23"
          r="3.3499999"
-         id="ewvi8zzlfqc23" />
+         transform="translate(4.19,20.58)"
+         fill="url(#ewvi8zzlfqc23-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc24">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc25-fill)"
-         transform="translate(4.19,12.07)"
+         id="ewvi8zzlfqc25"
          r="3.3499999"
-         id="ewvi8zzlfqc25" />
+         transform="translate(4.19,12.07)"
+         fill="url(#ewvi8zzlfqc25-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc26">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc27-fill)"
-         transform="translate(26.61,33.14)"
+         id="ewvi8zzlfqc27"
          r="3.3499999"
-         id="ewvi8zzlfqc27" />
+         transform="translate(26.61,33.14)"
+         fill="url(#ewvi8zzlfqc27-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc28">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc29-fill)"
-         transform="translate(26.61,24.63)"
+         id="ewvi8zzlfqc29"
          r="3.3499999"
-         id="ewvi8zzlfqc29" />
+         transform="translate(26.61,24.63)"
+         fill="url(#ewvi8zzlfqc29-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc30">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc31-fill)"
-         transform="translate(26.61,16.12)"
+         id="ewvi8zzlfqc31"
          r="3.3499999"
-         id="ewvi8zzlfqc31" />
+         transform="translate(26.61,16.12)"
+         fill="url(#ewvi8zzlfqc31-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc32">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc33-fill)"
-         transform="translate(34.1,29.79)"
+         id="ewvi8zzlfqc33"
          r="4.2600002"
-         id="ewvi8zzlfqc33" />
+         transform="translate(34.1,29.79)"
+         fill="url(#ewvi8zzlfqc33-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc34">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc35-fill)"
-         transform="translate(34.1,21.28)"
+         id="ewvi8zzlfqc35"
          r="3.3499999"
-         id="ewvi8zzlfqc35" />
+         transform="translate(34.1,21.28)"
+         fill="url(#ewvi8zzlfqc35-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc36">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc37-fill)"
-         transform="translate(34.1,12.77)"
+         id="ewvi8zzlfqc37"
          r="3.3499999"
-         id="ewvi8zzlfqc37" />
+         transform="translate(34.1,12.77)"
+         fill="url(#ewvi8zzlfqc37-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <clipPath
        id="ewvi8zzlfqc38">
       <circle
-         cy="0"
-         cx="0"
-         stroke-width="1"
-         stroke="none"
-         fill="url(#ewvi8zzlfqc39-fill)"
-         transform="translate(26.61,7.6)"
+         id="ewvi8zzlfqc39"
          r="2.72"
-         id="ewvi8zzlfqc39" />
+         transform="translate(26.61,7.6)"
+         fill="url(#ewvi8zzlfqc39-fill)"
+         stroke="none"
+         stroke-width="1"
+         cx="0"
+         cy="0" />
     </clipPath>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-20.4"
-       x2="20.389999"
-       y1="16.84"
+       id="ewvi8zzlfqc3-fill"
        x1="-16.85"
-       id="ewvi8zzlfqc3-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc3-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc3-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-16.129999"
-       x2="16.139999"
-       y1="21.110001"
-       x1="-21.1"
-       id="ewvi8zzlfqc5-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc5-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc5-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-11.88"
-       x2="11.88"
-       y1="25.360001"
-       x1="-25.360001"
-       id="ewvi8zzlfqc7-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc7-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc7-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-7.6199999"
-       x2="7.6300001"
-       y1="29.620001"
-       x1="-29.610001"
-       id="ewvi8zzlfqc9-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc9-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc9-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-3.3699999"
-       x2="3.3699999"
-       y1="33.869999"
-       x1="-33.869999"
-       id="ewvi8zzlfqc11-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc11-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc11-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-22.32"
-       x2="22.32"
-       y1="14.93"
-       x1="-14.93"
-       id="ewvi8zzlfqc13-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc13-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc13-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-18.059999"
-       x2="18.059999"
-       y1="19.18"
-       x1="-19.18"
-       id="ewvi8zzlfqc15-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc15-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc15-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-13.81"
-       x2="13.8"
-       y1="23.43"
-       x1="-23.440001"
-       id="ewvi8zzlfqc17-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc17-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc17-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-9.54"
-       x2="9.5500002"
-       y1="27.700001"
-       x1="-27.690001"
-       id="ewvi8zzlfqc19-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc19-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc19-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-23.950001"
-       x2="23.950001"
-       y1="13.29"
-       x1="-13.29"
-       id="ewvi8zzlfqc21-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc21-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc21-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-19.700001"
-       x2="19.690001"
-       y1="17.540001"
-       x1="-17.549999"
-       id="ewvi8zzlfqc23-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc23-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc23-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-15.44"
-       x2="15.44"
-       y1="21.799999"
-       x1="-21.799999"
-       id="ewvi8zzlfqc25-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc25-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc25-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-14.77"
-       x2="14.76"
-       y1="22.469999"
-       x1="-22.48"
-       id="ewvi8zzlfqc27-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc27-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc27-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-10.51"
-       x2="10.51"
-       y1="26.73"
-       x1="-26.73"
-       id="ewvi8zzlfqc29-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc29-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc29-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-6.2600002"
-       x2="6.25"
-       y1="30.98"
-       x1="-30.99"
-       id="ewvi8zzlfqc31-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc31-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc31-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-9.3500004"
-       x2="9.3400002"
-       y1="27.9"
-       x1="-27.9"
-       id="ewvi8zzlfqc33-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc33-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc33-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-5.0900002"
-       x2="5.0900002"
-       y1="32.150002"
-       x1="-32.150002"
-       id="ewvi8zzlfqc35-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc35-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc35-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-0.83999997"
-       x2="0.82999998"
-       y1="36.400002"
-       x1="-36.41"
-       id="ewvi8zzlfqc37-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc37-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc37-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-1.99"
-       x2="2"
-       y1="35.25"
-       x1="-35.25"
-       id="ewvi8zzlfqc39-fill">
-      <stop
-         stop-color="rgb(0,46,98)"
-         offset="0%"
-         id="ewvi8zzlfqc39-fill-0" />
-      <stop
-         stop-color="rgb(56,181,255)"
-         offset="100%"
-         id="ewvi8zzlfqc39-fill-1" />
-    </linearGradient>
-    <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-20.4"
-       x2="20.389999"
        y1="16.84"
-       x1="-16.85"
-       id="ewvi8zzlfqc49-fill">
+       x2="20.389999"
+       y2="-20.4"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc3-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc49-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc3-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc49-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-16.129999"
-       x2="16.139999"
-       y1="21.110001"
+       id="ewvi8zzlfqc5-fill"
        x1="-21.1"
-       id="ewvi8zzlfqc50-fill">
+       y1="21.110001"
+       x2="16.139999"
+       y2="-16.129999"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc5-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc50-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc5-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc50-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-11.88"
-       x2="11.88"
-       y1="25.360001"
+       id="ewvi8zzlfqc7-fill"
        x1="-25.360001"
-       id="ewvi8zzlfqc51-fill">
+       y1="25.360001"
+       x2="11.88"
+       y2="-11.88"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc7-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc51-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc7-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc51-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-7.6199999"
-       x2="7.6300001"
-       y1="29.620001"
+       id="ewvi8zzlfqc9-fill"
        x1="-29.610001"
-       id="ewvi8zzlfqc52-fill">
+       y1="29.620001"
+       x2="7.6300001"
+       y2="-7.6199999"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc9-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc52-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc9-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc52-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-3.3699999"
-       x2="3.3699999"
-       y1="33.869999"
+       id="ewvi8zzlfqc11-fill"
        x1="-33.869999"
-       id="ewvi8zzlfqc53-fill">
+       y1="33.869999"
+       x2="3.3699999"
+       y2="-3.3699999"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc11-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc53-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc11-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc53-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-22.32"
-       x2="22.32"
-       y1="14.93"
+       id="ewvi8zzlfqc13-fill"
        x1="-14.93"
-       id="ewvi8zzlfqc54-fill">
+       y1="14.93"
+       x2="22.32"
+       y2="-22.32"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc13-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc54-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc13-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc54-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-18.059999"
-       x2="18.059999"
-       y1="19.18"
+       id="ewvi8zzlfqc15-fill"
        x1="-19.18"
-       id="ewvi8zzlfqc55-fill">
+       y1="19.18"
+       x2="18.059999"
+       y2="-18.059999"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc15-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc55-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc15-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc55-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-13.81"
-       x2="13.8"
-       y1="23.43"
+       id="ewvi8zzlfqc17-fill"
        x1="-23.440001"
-       id="ewvi8zzlfqc56-fill">
+       y1="23.43"
+       x2="13.8"
+       y2="-13.81"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc17-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc56-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc17-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc56-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-9.54"
-       x2="9.5500002"
-       y1="27.700001"
+       id="ewvi8zzlfqc19-fill"
        x1="-27.690001"
-       id="ewvi8zzlfqc57-fill">
+       y1="27.700001"
+       x2="9.5500002"
+       y2="-9.54"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc19-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc57-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc19-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc57-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-23.950001"
-       x2="23.950001"
-       y1="13.29"
+       id="ewvi8zzlfqc21-fill"
        x1="-13.29"
-       id="ewvi8zzlfqc58-fill">
+       y1="13.29"
+       x2="23.950001"
+       y2="-23.950001"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc21-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc58-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc21-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc58-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-19.700001"
-       x2="19.690001"
-       y1="17.540001"
+       id="ewvi8zzlfqc23-fill"
        x1="-17.549999"
-       id="ewvi8zzlfqc59-fill">
+       y1="17.540001"
+       x2="19.690001"
+       y2="-19.700001"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc23-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc59-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc23-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc59-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-15.44"
-       x2="15.44"
-       y1="21.799999"
+       id="ewvi8zzlfqc25-fill"
        x1="-21.799999"
-       id="ewvi8zzlfqc60-fill">
+       y1="21.799999"
+       x2="15.44"
+       y2="-15.44"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc25-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc60-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc25-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc60-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-14.77"
-       x2="14.76"
-       y1="22.469999"
+       id="ewvi8zzlfqc27-fill"
        x1="-22.48"
-       id="ewvi8zzlfqc61-fill">
+       y1="22.469999"
+       x2="14.76"
+       y2="-14.77"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc27-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc61-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc27-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc61-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-10.51"
-       x2="10.51"
-       y1="26.73"
+       id="ewvi8zzlfqc29-fill"
        x1="-26.73"
-       id="ewvi8zzlfqc62-fill">
+       y1="26.73"
+       x2="10.51"
+       y2="-10.51"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc29-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc62-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc29-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc62-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-6.2600002"
-       x2="6.25"
-       y1="30.98"
+       id="ewvi8zzlfqc31-fill"
        x1="-30.99"
-       id="ewvi8zzlfqc63-fill">
+       y1="30.98"
+       x2="6.25"
+       y2="-6.2600002"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc31-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc63-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc31-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc63-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-9.3500004"
-       x2="9.3400002"
-       y1="27.9"
+       id="ewvi8zzlfqc33-fill"
        x1="-27.9"
-       id="ewvi8zzlfqc64-fill">
+       y1="27.9"
+       x2="9.3400002"
+       y2="-9.3500004"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc33-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc64-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc33-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc64-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-5.0900002"
-       x2="5.0900002"
-       y1="32.150002"
+       id="ewvi8zzlfqc35-fill"
        x1="-32.150002"
-       id="ewvi8zzlfqc65-fill">
+       y1="32.150002"
+       x2="5.0900002"
+       y2="-5.0900002"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc35-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc65-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc35-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc65-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-0.83999997"
-       x2="0.82999998"
-       y1="36.400002"
+       id="ewvi8zzlfqc37-fill"
        x1="-36.41"
-       id="ewvi8zzlfqc66-fill">
+       y1="36.400002"
+       x2="0.82999998"
+       y2="-0.83999997"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc37-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc66-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc37-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc66-fill-1" />
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       spreadMethod="pad"
-       y2="-1.99"
-       x2="2"
-       y1="35.25"
+       id="ewvi8zzlfqc39-fill"
        x1="-35.25"
-       id="ewvi8zzlfqc67-fill">
+       y1="35.25"
+       x2="2"
+       y2="-1.99"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="rgb(0,46,98)"
+         id="ewvi8zzlfqc39-fill-0"
          offset="0%"
-         id="ewvi8zzlfqc67-fill-0" />
+         stop-color="rgb(0,46,98)" />
       <stop
-         stop-color="rgb(56,181,255)"
+         id="ewvi8zzlfqc39-fill-1"
          offset="100%"
-         id="ewvi8zzlfqc67-fill-1" />
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc49-fill"
+       x1="-16.85"
+       y1="16.84"
+       x2="20.389999"
+       y2="-20.4"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc49-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc49-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc50-fill"
+       x1="-21.1"
+       y1="21.110001"
+       x2="16.139999"
+       y2="-16.129999"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc50-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc50-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc51-fill"
+       x1="-25.360001"
+       y1="25.360001"
+       x2="11.88"
+       y2="-11.88"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc51-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc51-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc52-fill"
+       x1="-29.610001"
+       y1="29.620001"
+       x2="7.6300001"
+       y2="-7.6199999"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc52-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc52-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc53-fill"
+       x1="-33.869999"
+       y1="33.869999"
+       x2="3.3699999"
+       y2="-3.3699999"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc53-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc53-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc54-fill"
+       x1="-14.93"
+       y1="14.93"
+       x2="22.32"
+       y2="-22.32"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc54-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc54-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc55-fill"
+       x1="-19.18"
+       y1="19.18"
+       x2="18.059999"
+       y2="-18.059999"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc55-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc55-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc56-fill"
+       x1="-23.440001"
+       y1="23.43"
+       x2="13.8"
+       y2="-13.81"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc56-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc56-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc57-fill"
+       x1="-27.690001"
+       y1="27.700001"
+       x2="9.5500002"
+       y2="-9.54"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc57-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc57-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc58-fill"
+       x1="-13.29"
+       y1="13.29"
+       x2="23.950001"
+       y2="-23.950001"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc58-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc58-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc59-fill"
+       x1="-17.549999"
+       y1="17.540001"
+       x2="19.690001"
+       y2="-19.700001"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc59-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc59-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc60-fill"
+       x1="-21.799999"
+       y1="21.799999"
+       x2="15.44"
+       y2="-15.44"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc60-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc60-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc61-fill"
+       x1="-22.48"
+       y1="22.469999"
+       x2="14.76"
+       y2="-14.77"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc61-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc61-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc62-fill"
+       x1="-26.73"
+       y1="26.73"
+       x2="10.51"
+       y2="-10.51"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc62-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc62-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc63-fill"
+       x1="-30.99"
+       y1="30.98"
+       x2="6.25"
+       y2="-6.2600002"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc63-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc63-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc64-fill"
+       x1="-27.9"
+       y1="27.9"
+       x2="9.3400002"
+       y2="-9.3500004"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc64-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc64-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc65-fill"
+       x1="-32.150002"
+       y1="32.150002"
+       x2="5.0900002"
+       y2="-5.0900002"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc65-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc65-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc66-fill"
+       x1="-36.41"
+       y1="36.400002"
+       x2="0.82999998"
+       y2="-0.83999997"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc66-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc66-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
+    </linearGradient>
+    <linearGradient
+       id="ewvi8zzlfqc67-fill"
+       x1="-35.25"
+       y1="35.25"
+       x2="2"
+       y2="-1.99"
+       spreadMethod="pad"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="ewvi8zzlfqc67-fill-0"
+         offset="0%"
+         stop-color="rgb(0,46,98)" />
+      <stop
+         id="ewvi8zzlfqc67-fill-1"
+         offset="100%"
+         stop-color="rgb(56,181,255)" />
     </linearGradient>
   </defs>
-  <path
-     stroke-width="1"
-     stroke="none"
-     fill="#002e62"
-     d="m 52.41,19.7 c -0.792679,0.03206 -1.57961,-0.147413 -2.28,-0.52 -0.58357,-0.326916 -1.051655,-0.826439 -1.34,-1.43 -0.307827,-0.642442 -0.461892,-1.347717 -0.45,-2.06 v -2.46 c -0.0082,-0.707611 0.142145,-1.408079 0.44,-2.05 0.28497,-0.6084 0.753648,-1.112054 1.34,-1.44 0.70452,-0.371166 1.494273,-0.550498 2.29,-0.52 0.539192,-0.013779 1.076815,0.06399 1.59,0.23 0.362913,0.123488 0.701368,0.309638 1,0.55 0.200441,0.12239 0.336037,0.327616 0.37,0.56 -0.0065,0.08537 -0.03398,0.167805 -0.08,0.24 -0.04379,0.07964 -0.105396,0.148088 -0.18,0.2 -0.06723,0.05566 -0.152824,0.08419 -0.24,0.08 -0.168983,-0.01585 -0.325928,-0.09433 -0.44,-0.22 -0.215051,-0.168432 -0.450183,-0.309511 -0.7,-0.42 -0.402178,-0.151096 -0.830802,-0.219132 -1.26,-0.2 -0.840011,-0.06205 -1.66741,0.231899 -2.28,0.81 -0.546326,0.59797 -0.827647,1.39144 -0.78,2.2 v 2.46 c -0.04765,0.80856 0.233674,1.60203 0.78,2.2 0.620689,0.57806 1.454057,0.871551 2.3,0.81 0.453023,0.02158 0.905664,-0.04989 1.33,-0.21 0.258207,-0.114552 0.500272,-0.262481 0.72,-0.44 0.123418,-0.122567 0.286545,-0.197038 0.46,-0.21 0.08985,-0.0014 0.177685,0.02666 0.25,0.08 0.06473,0.05937 0.121838,0.126548 0.17,0.2 0.0513,0.06957 0.0793,0.153567 0.08,0.24 0,0.16 -0.13,0.34 -0.38,0.56 -0.314208,0.250515 -0.674265,0.437337 -1.06,0.55 -0.535416,0.156901 -1.092351,0.227784 -1.65,0.21 z"
-     id="ewvi8zzlfqc40" />
-  <path
-     stroke-width="1"
-     stroke="none"
-     fill="#002e62"
-     d="M 60.92,19.7 C 60.240266,19.6963 59.575158,19.502278 59,19.14 c -0.60082,-0.369292 -1.10479,-0.87669 -1.47,-1.48 -0.366239,-0.602339 -0.556746,-1.29509 -0.55,-2 v -2.48 c -0.0077,-0.70368 0.179216,-1.395799 0.54,-2 0.368075,-0.588634 0.876645,-1.076587 1.48,-1.42 0.604201,-0.360784 1.29632,-0.547656 2,-0.54 0.704146,-0.011368 1.397264,0.175774 2,0.54 0.593557,0.353655 1.094099,0.843913 1.46,1.43 0.366734,0.602125 0.55728,1.295021 0.55,2 v 2.51 c 0.0062,0.704841 -0.184253,1.397449 -0.55,2 -0.361122,0.605804 -0.861665,1.116633 -1.46,1.49 -0.627441,0.372448 -1.351438,0.549967 -2.08,0.51 z m 0,-1 c 0.525287,0.0083 1.040935,-0.141526 1.48,-0.43 0.433135,-0.289862 0.792665,-0.676784 1.05,-1.13 0.258104,-0.439926 0.396045,-0.939964 0.4,-1.45 v -2.51 c -1.62e-4,-0.502915 -0.134814,-0.996637 -0.39,-1.43 -0.260763,-0.442526 -0.620075,-0.818948 -1.05,-1.1 -0.442676,-0.288705 -0.961567,-0.438452 -1.49,-0.43 -0.5224,-0.01004 -1.035363,0.140012 -1.47,0.43 -0.410175,0.288661 -0.751621,0.664252 -1,1.1 -0.276273,0.427335 -0.431768,0.921463 -0.45,1.43 v 2.51 c 4.48e-4,0.50919 0.134957,1.009287 0.39,1.45 0.25162,0.457375 0.612297,0.845533 1.05,1.13 0.438537,0.289616 0.954546,0.439538 1.48,0.43 z"
-     id="ewvi8zzlfqc41" />
-  <path
-     stroke-width="1"
-     stroke="none"
-     fill="#002e62"
-     d="M 70.32,19.72 C 70.208946,19.7263 70.09829,19.70207 70,19.65 69.91102,19.59602 69.841105,19.515613 69.8,19.42 l -3.42,-9.27 c -0.0059,-0.04983 -0.0059,-0.100173 0,-0.15 -0.0108,-0.056152 -0.0108,-0.113848 0,-0.17 0.005,-0.09205 0.04013,-0.179899 0.1,-0.25 0.06235,-0.078907 0.140743,-0.14367 0.23,-0.19 0.0876,-0.040891 0.183333,-0.061405 0.28,-0.06 0.08999,8.92e-4 0.178715,0.021366 0.26,0.06 0.08188,0.040292 0.143426,0.112695 0.17,0.2 l 3,8.18 2.94,-8 c 0.03115,-0.095372 0.07487,-0.18617 0.13,-0.27 0.07758,-0.088169 0.193279,-0.132958 0.31,-0.12 0.09187,0.00417 0.182727,0.020997 0.27,0.05 0.09384,0.043874 0.178629,0.104925 0.25,0.18 0.06659,0.062574 0.106068,0.148708 0.11,0.24 0.01138,0.066181 0.01138,0.133819 0,0.2 l -0.05,0.15 -3.42,9.27 c -0.04745,0.08607 -0.116343,0.158413 -0.2,0.21 -0.131992,0.08245 -0.295303,0.0973 -0.44,0.04 z"
-     id="ewvi8zzlfqc42" />
-  <path
-     stroke-width="1"
-     stroke="none"
-     fill="#002e62"
-     d="m 49.6,34 c -0.28919,0.01241 -0.574248,-0.07205 -0.81,-0.24 -0.183716,-0.107372 -0.303244,-0.297869 -0.32,-0.51 v -8.77 c 0.0024,-0.221692 0.124945,-0.424613 0.32,-0.53 0.243022,-0.149198 0.525101,-0.22233 0.81,-0.21 0.252796,-0.0059 0.50109,0.06753 0.71,0.21 0.192748,0.106408 0.311735,0.309837 0.31,0.53 v 0.78 c 0.272249,-0.454447 0.640922,-0.843602 1.08,-1.14 0.530298,-0.357522 1.160976,-0.536214 1.8,-0.51 0.62791,-0.0094 1.238299,0.207107 1.72,0.61 0.505888,0.408529 0.889853,0.948155 1.11,1.56 0.321433,-0.670862 0.823572,-1.238799 1.45,-1.64 1.119708,-0.686924 2.530292,-0.686924 3.65,0 0.589931,0.346916 1.07399,0.848263 1.4,1.45 0.379254,0.713004 0.565415,1.512806 0.54,2.32 v 5.37 c -0.01742,0.21739 -0.146033,0.410308 -0.34,0.51 -0.485068,0.320882 -1.114932,0.320882 -1.6,0 -0.188809,-0.103641 -0.312825,-0.295302 -0.33,-0.51 v -5.4 c 0.01502,-0.436143 -0.08867,-0.86818 -0.3,-1.25 -0.175051,-0.320297 -0.434419,-0.586582 -0.75,-0.77 -0.304806,-0.172761 -0.649647,-0.26242 -1,-0.26 -0.352107,-0.006 -0.698739,0.08764 -1,0.27 -0.309801,0.189755 -0.570245,0.450199 -0.76,0.76 -0.209154,0.364518 -0.31301,0.779942 -0.3,1.2 v 5.44 c 0.0097,0.243808 -0.134152,0.467642 -0.36,0.56 -0.491761,0.226875 -1.058239,0.226875 -1.55,0 -0.22784,-0.0915 -0.375201,-0.31453 -0.37,-0.56 v -5.42 c 0.01187,-0.41428 -0.08465,-0.824479 -0.28,-1.19 -0.172676,-0.315458 -0.424193,-0.580757 -0.73,-0.77 -0.30384,-0.176254 -0.64874,-0.269377 -1,-0.27 -0.350353,-0.0024 -0.695194,0.08724 -1,0.26 -0.316417,0.181232 -0.578768,0.443583 -0.76,0.76 -0.208951,0.378764 -0.309303,0.807854 -0.29,1.24 v 5.37 c -0.01742,0.21739 -0.146033,0.410308 -0.34,0.51 -0.209022,0.145903 -0.455323,0.22916 -0.71,0.24 z"
-     id="ewvi8zzlfqc43" />
-  <path
-     stroke-width="1"
-     stroke="none"
-     fill="#002e62"
-     d="m 67.89,34.18 c -0.730019,0.0095 -1.439379,-0.242323 -2,-0.71 -0.61354,-0.540219 -0.942208,-1.334192 -0.89,-2.15 -0.04531,-0.695948 0.184526,-1.381852 0.64,-1.91 0.497141,-0.472438 1.117636,-0.794819 1.79,-0.93 0.864581,-0.182195 1.74648,-0.269379 2.63,-0.26 h 1 v -0.39 c 0.0035,-0.372769 -0.06437,-0.742764 -0.2,-1.09 -0.1387,-0.351819 -0.37026,-0.659413 -0.67,-0.89 -0.370391,-0.260272 -0.818124,-0.387188 -1.27,-0.36 -0.416152,-0.01783 -0.832259,0.0363 -1.23,0.16 -0.241968,0.0914 -0.473319,0.20875 -0.69,0.35 -0.135159,0.104194 -0.29946,0.163622 -0.47,0.17 -0.259814,0.0023 -0.497549,-0.14577 -0.61,-0.38 -0.13827,-0.229851 -0.214106,-0.49183 -0.22,-0.76 0.03212,-0.310341 0.226157,-0.580476 0.51,-0.71 0.395785,-0.229574 0.823935,-0.398137 1.27,-0.5 0.48797,-0.117776 0.988021,-0.178185 1.49,-0.18 0.892644,-0.04325 1.779535,0.164618 2.56,0.6 0.606227,0.36066 1.087736,0.897996 1.38,1.54 0.293969,0.646749 0.44409,1.349588 0.44,2.06 v 5.44 c -0.01375,0.218312 -0.133211,0.416163 -0.32,0.53 -0.233298,0.155347 -0.509988,0.2324 -0.79,0.22 -0.261072,0.01023 -0.518056,-0.06722 -0.73,-0.22 -0.181752,-0.117302 -0.296849,-0.314082 -0.31,-0.53 v -0.76 c -0.397346,0.450712 -0.854997,0.844427 -1.36,1.17 -0.587399,0.352195 -1.265887,0.522687 -1.95,0.49 z m 0.83,-1.74 c 0.379817,-0.0029 0.750956,-0.113893 1.07,-0.32 0.346571,-0.213645 0.648743,-0.49205 0.89,-0.82 0.217191,-0.289162 0.339463,-0.63851 0.35,-1 v -0.8 h -0.54 c -0.521708,-0.0035 -1.043009,0.02991 -1.56,0.1 -0.423812,0.03927 -0.830285,0.187393 -1.18,0.43 -0.296062,0.245367 -0.45912,0.615953 -0.44,1 -0.03589,0.398879 0.111251,0.792482 0.4,1.07 0.285042,0.230709 0.643467,0.351367 1.01,0.34 z"
-     id="ewvi8zzlfqc44" />
-  <path
-     stroke-width="1"
-     stroke="none"
-     fill="#002e62"
-     d="m 76.73,38.87 c -0.281112,0.0095 -0.557897,-0.07112 -0.79,-0.23 -0.182863,-0.11301 -0.301522,-0.30583 -0.32,-0.52 V 24.48 c 0.0024,-0.221692 0.124945,-0.424613 0.32,-0.53 0.229378,-0.146587 0.497961,-0.219836 0.77,-0.21 0.265744,-0.0096 0.527883,0.06379 0.75,0.21 0.192748,0.106408 0.311735,0.309837 0.31,0.53 v 0.78 c 0.27814,-0.45974 0.657839,-0.849702 1.11,-1.14 0.530614,-0.348743 1.155261,-0.526715 1.79,-0.51 0.708461,-0.01269 1.404673,0.18573 2,0.57 0.590199,0.38874 1.074683,0.917893 1.41,1.54 0.349548,0.665822 0.528231,1.408046 0.52,2.16 v 2 c -0.01827,0.745919 -0.224656,1.475139 -0.6,2.12 -0.333482,0.633862 -0.813449,1.178967 -1.4,1.59 -0.548743,0.392388 -1.205414,0.605456 -1.88,0.61 C 80.107323,34.1944 79.509587,34.010184 79,33.67 78.532473,33.384478 78.152052,32.976389 77.9,32.49 v 5.63 c -0.01956,0.219174 -0.147068,0.414183 -0.34,0.52 -0.246986,0.158962 -0.536424,0.239167 -0.83,0.23 z m 3.35,-6.71 c 0.386626,9.31e-4 0.765234,-0.11022 1.09,-0.32 0.337433,-0.212633 0.621423,-0.500045 0.83,-0.84 0.200219,-0.332184 0.307301,-0.712151 0.31,-1.1 v -2 c -0.0015,-0.383524 -0.105004,-0.759744 -0.3,-1.09 -0.197112,-0.342126 -0.475265,-0.630581 -0.81,-0.84 -0.35381,-0.238747 -0.773317,-0.361103 -1.2,-0.35 -0.350649,0.0051 -0.69444,0.09792 -1,0.27 -0.3292,0.186168 -0.607413,0.450642 -0.81,0.77 -0.216786,0.369102 -0.324289,0.792182 -0.31,1.22 v 2.49 c 0.02757,0.248478 0.124611,0.484154 0.28,0.68 0.21332,0.300009 0.477264,0.560569 0.78,0.77 0.334421,0.231167 0.733587,0.350217 1.14,0.34 z"
-     id="ewvi8zzlfqc45" />
   <g
-     transform="translate(19.61,37.4)"
-     id="ewvi8zzlfqc49_ts">
+     id="ewvi8zzlfqc49_ts"
+     transform="translate(19.61,37.4)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
+       id="ewvi8zzlfqc49"
+       r="3.3499999"
        fill="url(#ewvi8zzlfqc49-fill)"
-       r="3.3499999"
-       id="ewvi8zzlfqc49" />
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(19.61,28.88)"
-     id="ewvi8zzlfqc50_ts">
+     id="ewvi8zzlfqc50_ts"
+     transform="translate(19.61,28.88)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
-       fill="url(#ewvi8zzlfqc50-fill)"
+       id="ewvi8zzlfqc50"
        r="2.3699999"
-       id="ewvi8zzlfqc50" />
+       fill="url(#ewvi8zzlfqc50-fill)"
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(19.64,20.37)"
-     id="ewvi8zzlfqc51_ts">
+     id="ewvi8zzlfqc51_ts"
+     transform="translate(19.64,20.37)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
-       fill="url(#ewvi8zzlfqc51-fill)"
-       transform="translate(-0.03)"
+       id="ewvi8zzlfqc51"
        r="4.0799999"
-       id="ewvi8zzlfqc51" />
+       transform="translate(-0.03)"
+       fill="url(#ewvi8zzlfqc51-fill)"
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(19.61,11.86)"
-     id="ewvi8zzlfqc52_ts">
+     id="ewvi8zzlfqc52_ts"
+     transform="translate(19.61,11.86)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
+       id="ewvi8zzlfqc52"
+       r="3.3499999"
        fill="url(#ewvi8zzlfqc52-fill)"
-       r="3.3499999"
-       id="ewvi8zzlfqc52" />
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(19.61,3.35)"
-     id="ewvi8zzlfqc53_ts">
+     id="ewvi8zzlfqc53_ts"
+     transform="translate(19.61,3.35)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
+       id="ewvi8zzlfqc53"
+       r="3.3499999"
        fill="url(#ewvi8zzlfqc53-fill)"
-       r="3.3499999"
-       id="ewvi8zzlfqc53" />
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(11.72,33.28)"
-     id="ewvi8zzlfqc54_ts">
+     id="ewvi8zzlfqc54_ts"
+     transform="translate(11.72,33.28)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
-       fill="url(#ewvi8zzlfqc54-fill)"
-       transform="translate(0,0.07)"
+       id="ewvi8zzlfqc54"
        r="3.1400001"
-       id="ewvi8zzlfqc54" />
+       transform="translate(0,0.07)"
+       fill="url(#ewvi8zzlfqc54-fill)"
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(11.72,24.84)"
-     id="ewvi8zzlfqc55_ts">
+     id="ewvi8zzlfqc55_ts"
+     transform="translate(11.72,24.84)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
+       id="ewvi8zzlfqc55"
+       r="3.3499999"
        fill="url(#ewvi8zzlfqc55-fill)"
-       r="3.3499999"
-       id="ewvi8zzlfqc55" />
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(11.72,16.33)"
-     id="ewvi8zzlfqc56_ts">
+     id="ewvi8zzlfqc56_ts"
+     transform="translate(11.72,16.33)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
-       fill="url(#ewvi8zzlfqc56-fill)"
+       id="ewvi8zzlfqc56"
        r="3.8099999"
-       id="ewvi8zzlfqc56" />
+       fill="url(#ewvi8zzlfqc56-fill)"
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(11.72,7.6)"
-     id="ewvi8zzlfqc57_ts">
+     id="ewvi8zzlfqc57_ts"
+     transform="translate(11.72,7.6)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
-       fill="url(#ewvi8zzlfqc57-fill)"
-       transform="translate(0,0.21)"
+       id="ewvi8zzlfqc57"
        r="2.51"
-       id="ewvi8zzlfqc57" />
+       transform="translate(0,0.21)"
+       fill="url(#ewvi8zzlfqc57-fill)"
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(4.19,29.09)"
-     id="ewvi8zzlfqc58_ts">
+     id="ewvi8zzlfqc58_ts"
+     transform="translate(4.19,29.09)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
-       fill="url(#ewvi8zzlfqc58-fill)"
+       id="ewvi8zzlfqc58"
        r="4.1900001"
-       id="ewvi8zzlfqc58" />
+       fill="url(#ewvi8zzlfqc58-fill)"
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(4.19,20.58)"
-     id="ewvi8zzlfqc59_ts">
+     id="ewvi8zzlfqc59_ts"
+     transform="translate(4.19,20.58)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
+       id="ewvi8zzlfqc59"
+       r="3.3499999"
        fill="url(#ewvi8zzlfqc59-fill)"
-       r="3.3499999"
-       id="ewvi8zzlfqc59" />
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(4.19,12.07)"
-     id="ewvi8zzlfqc60_ts">
+     id="ewvi8zzlfqc60_ts"
+     transform="translate(4.19,12.07)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
+       id="ewvi8zzlfqc60"
+       r="3.3499999"
        fill="url(#ewvi8zzlfqc60-fill)"
-       r="3.3499999"
-       id="ewvi8zzlfqc60" />
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(26.61,33.14)"
-     id="ewvi8zzlfqc61_ts">
+     id="ewvi8zzlfqc61_ts"
+     transform="translate(26.61,33.14)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
+       id="ewvi8zzlfqc61"
+       r="3.3499999"
        fill="url(#ewvi8zzlfqc61-fill)"
-       r="3.3499999"
-       id="ewvi8zzlfqc61" />
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(26.61,24.84)"
-     id="ewvi8zzlfqc62_ts">
+     id="ewvi8zzlfqc62_ts"
+     transform="translate(26.61,24.84)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
+       id="ewvi8zzlfqc62"
+       r="3.3499999"
+       transform="translate(0,-0.21)"
        fill="url(#ewvi8zzlfqc62-fill)"
-       transform="translate(0,-0.21)"
-       r="3.3499999"
-       id="ewvi8zzlfqc62" />
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(26.61,16.33)"
-     id="ewvi8zzlfqc63_ts">
+     id="ewvi8zzlfqc63_ts"
+     transform="translate(26.61,16.33)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
+       id="ewvi8zzlfqc63"
+       r="3.3499999"
+       transform="translate(0,-0.21)"
        fill="url(#ewvi8zzlfqc63-fill)"
-       transform="translate(0,-0.21)"
-       r="3.3499999"
-       id="ewvi8zzlfqc63" />
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(33.60065,29.353764)"
-     id="ewvi8zzlfqc64_ts">
+     id="ewvi8zzlfqc64_ts"
+     transform="translate(33.60065,29.353764)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
-       fill="url(#ewvi8zzlfqc64-fill)"
+       id="ewvi8zzlfqc64"
        r="4.2600002"
-       id="ewvi8zzlfqc64" />
+       fill="url(#ewvi8zzlfqc64-fill)"
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(34.1,21.28)"
-     id="ewvi8zzlfqc65_ts">
+     id="ewvi8zzlfqc65_ts"
+     transform="translate(34.1,21.28)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
+       id="ewvi8zzlfqc65"
+       r="3.3499999"
        fill="url(#ewvi8zzlfqc65-fill)"
-       r="3.3499999"
-       id="ewvi8zzlfqc65" />
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(34.1,12.77)"
-     id="ewvi8zzlfqc66_ts">
+     id="ewvi8zzlfqc66_ts"
+     transform="translate(34.1,12.77)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
+       id="ewvi8zzlfqc66"
+       r="3.3499999"
        fill="url(#ewvi8zzlfqc66-fill)"
-       r="3.3499999"
-       id="ewvi8zzlfqc66" />
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
   <g
-     transform="translate(26.61,7.6)"
-     id="ewvi8zzlfqc67_ts">
+     id="ewvi8zzlfqc67_ts"
+     transform="translate(26.61,7.6)">
     <circle
-       cy="0"
-       cx="0"
-       stroke-width="1"
-       stroke="none"
-       fill="url(#ewvi8zzlfqc67-fill)"
+       id="ewvi8zzlfqc67"
        r="2.72"
-       id="ewvi8zzlfqc67" />
+       fill="url(#ewvi8zzlfqc67-fill)"
+       stroke="none"
+       stroke-width="1"
+       cx="0"
+       cy="0" />
   </g>
+  <text
+     id="text1028"
+     y="11.786567"
+     x="43.779346"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.8842px;line-height:125%;font-family:'DejaVu Serif';-inkscape-font-specification:'DejaVu Serif';letter-spacing:0px;word-spacing:0px;fill:#002e62;fill-opacity:1;stroke:none;stroke-width:1.07211px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     xml:space="preserve"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#002e62;fill-opacity:1;stroke-width:1.07211px"
+       y="11.786567"
+       x="43.779346"
+       id="tspan1026"
+       sodipodi:role="line" /></text>
+  <text
+     transform="scale(1.0826066,0.92369655)"
+     id="text1293"
+     y="20.325153"
+     x="41.178589"
+     style="font-size:19.806px;line-height:78.3%;font-family:Dosis;-inkscape-font-specification:Dosis;letter-spacing:0px;word-spacing:0px;fill:#002e62;fill-opacity:1;stroke:#002e62;stroke-width:0.202603;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     xml:space="preserve"><tspan
+       style="font-size:19.806px;fill:#002e62;fill-opacity:1;stroke:#002e62;stroke-width:0.202603;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       y="20.325153"
+       x="41.178589"
+       id="tspan1291"
+       sodipodi:role="line">Cov</tspan><tspan
+       id="tspan1295"
+       style="font-size:19.806px;fill:#002e62;fill-opacity:1;stroke:#002e62;stroke-width:0.202603;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       y="35.833252"
+       x="41.178589"
+       sodipodi:role="line">Map</tspan></text>
 </svg>
