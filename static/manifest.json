@@ -1,6 +1,6 @@
 {
-  "name": "CovMapper",
-  "short_name": "CovMapper",
+  "name": "CovMap",
+  "short_name": "CovMap",
   "theme_color": "#002E62",
   "background_color": "#E3E9F3",
   "display": "standalone",

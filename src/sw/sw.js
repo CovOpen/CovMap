@@ -7,8 +7,8 @@ Clerk.use(new IDBWorkerPlugin())
 const version = '0.4.0'
 const env = process.env.SW_ENV || process.env.NODE_ENV
 const defaultStrategy = 'network-first'
-const dataCacheName = 'covmapper-data'
-const assetCacheName = 'covmapper-assets'
+const dataCacheName = 'covmap-data'
+const assetCacheName = 'covmap-assets'
 
 // TODO: Add refetchOnInstall
 const routes = [{
@@ -42,9 +42,9 @@ const clerk = new Clerk({
   env,
   color: env !== 'production',
   defaultStrategy,
-  defaultCacheName: 'covmapper-clerk-cache-2',
-  logCacheName: 'covmapper-clerk-log',
-  idbName: 'covmapper-clerk-default-db',
+  defaultCacheName: 'covmap-clerk-cache-2',
+  logCacheName: 'covmap-clerk-log',
+  idbName: 'covmap-clerk-default-db',
   routes: routes,
   info: {
     version,
@@ -54,4 +54,4 @@ const clerk = new Clerk({
   precache: __precacheManifest
 })
 
-clerk.logger.namespace(`[covmapper ${version}]`, env !== 'production')
+clerk.logger.namespace(`[covmap ${version}]`, env !== 'production')

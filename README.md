@@ -1,10 +1,10 @@
 <div align="center" >
   <a href="https://github.com/alexanderthieme/CovMapper">
-    <img style="height: 200px; width: auto;" src="https://github.com/alexanderthieme/CovMapper/raw/master/static/logo.png" alt="CovMapper">
+    <img style="height: 200px; width: auto;" src="https://github.com/alexanderthieme/CovMapper/raw/master/static/logo.png" alt="CovMap">
   </a>
 </div>
 
-# CovMapper
+# CovMap
 
 A web app to display large-scale epidemiological data and forecasts of the SARS-CoV-2 pandemic.
 
@@ -16,7 +16,7 @@ It is not necessarily needed, on unix like systems you can use _yarn_ scripts di
 ### Docker for Unix like systems
 
 ```bash
-cd ./CovMapper
+cd ./CovMap
 yarn install
 docker-compose up
 ```
@@ -24,7 +24,7 @@ docker-compose up
 ### Yarn for Unix like systems
 
 ```bash
-cd ./CovMapper
+cd ./CovMap
 yarn dev
 ```
 

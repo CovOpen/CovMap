@@ -1,5 +1,5 @@
 {
-  "name": "covmapper",
+  "name": "covmap",
   "version": "0.1.0",
   "description": "A web app to display large-scale epidemiological data and forecasts of the SARS-CoV-2 pandemic.",
   "repository": "git@github.com:CovOpen/CovMapper.git",
