@@ -11,7 +11,7 @@ export const Imprint = () => {
         <section>
           <Typography variant="h2">Die CovMap App ist ein Forschungsprojekt von Mitarbeiten der Charité, NETCHECK und dem Hasso Plattner Institut.</Typography>
           <Typography variant="body1">Falls Du Fragen hast, wende Dich an:</Typography>
-          <Typography variant="body1">CovMap Team<br>Augustenburger Platz 1<br>13353 Berlin<br>Telefon: 030/450627346<br>Email: covmap@charite.de</Typography>
+          <Typography variant="body1">CovMap Team, Augustenburger Platz 1, 13353 Berlin, Telefon: 030/450627346, Email: covmap@charite.de</Typography>
         </section>
       </main>
     </>
