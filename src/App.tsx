@@ -97,9 +97,9 @@ export const App = () => {
       <Router>
         <ServiceWorker />
         <InstallPrompt shouldShow={showInstallPrompt} />
-        <Container disableGutters style={{ position: 'absolute', height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <Container disableGutters maxWidth={false} style={{ position: 'absolute', height: '100%', display: 'flex', flexDirection: 'column' }}>
           <NavBar showSearch={!!currentLayerGroup.search}/>
-          <Container disableGutters style={{ flex: '1 1 auto' }}>
+          <Container disableGutters maxWidth={false} style={{ flex: '1 1 auto' }}>
             <IntermediateProgress />
             <Route key="map" exact path="/" component={CovMap} />
             {config.content?.pages.map((page) => renderRoute(page))}
