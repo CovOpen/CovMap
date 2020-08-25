@@ -45,13 +45,8 @@ export const config: AppConfig = {
   },
   content: {
     pages: [{
-      id: 'welcome-page',
-      title: 'Willkommen',
-      route: '/welcome',
-      Component: Welcome
-    }, {
       id: 'about-page',
-      title: 'About',
+      title: 'Info',
       route: '/about',
       Component: About
     }, {
