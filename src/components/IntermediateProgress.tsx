@@ -8,7 +8,9 @@ import { State } from "../state";
 const useStyles = makeStyles((theme) => ({
   progress: {
     zIndex: 1200,
-    height: '5px'
+    height: 5,
+    marginBottom: -5,
+    flex: '0 1 auto'
   },
 }));
 
