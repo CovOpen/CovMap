@@ -15,21 +15,18 @@ export const About = () => {
           <Typography variant="body1">
             Kontaktbeschränkungen sind ein wesentlicher Grund dafür, weshalb sich das Coronavirus (SARS-CoV-2) nur langsam in Deutschland ausbreiten kann. Das Ziel von CovMap ist es, an den Umstand zu erinnern, dass jeder Bürger dabei helfen kann, Infektionen durch das eigene Verhalten zu vermeiden. Auf einer Deutschlandkarte stellen wir das aktuelle Kontaktverhalten pro Landkreis dar und bewerten es hinsichtlich des Risikos von neuen Infektionen.
           </Typography>
-          <Typography variant="body1">
-            Ein weiteres Ziel von CovMap ist es, lokale Ausbrüche des Virus möglichst frühzeitig zu erkennen.
-          </Typography>
         </section>
           <section>
           <Typography variant="h2">Wie funktioniert CovMap?</Typography>
           <Typography variant="body1">
-            CovMap wertet die frühestmöglichen Etappen eine Viruserkrankung aus: 1) dem Kontakt, bei dem das Virus übertragen wird, und 2) dem Auftreten von Symptomen. Hierzu werten wir größere Datenmengen an GPS- und Symptomdaten der Bevölkerung aus.
+            CovMap wertet die frühestmöglichen Etappen einer Coronavirus aus: 1) dem Kontakt zwischen Menschen, bei dem das Coronavirus übertragen werden kann, und 2) dem Auftreten von Symptomen, die nach der Inkubationszeit des Coronavirus auftreten können. Da das Coronavirus nicht bei jedem Kontakt übertragen wird und auch Symptome andere Ursachen als das Coronavirus haben können, werten wir große Datenmengen an GPS- und von der Bevölkerung berichteten Symptomen aus, um statistische Aussagen treffen und Wahrscheinlichkeiten für das Auftreten des Coronavirus treffen zu können.
           </Typography>
         </section>
 
         <section>
-          <Typography variant="h2">Kann ich CovMap nutzen, ohne Daten preiszugeben?</Typography>
+          <Typography variant="h2">Kann ich CovMap nutzen, ohne Daten von mir preiszugeben?</Typography>
           <Typography variant="body1">
-            Die Erhebung Deiner Daten ist vollkommen freiwillig und Du kannst die Karte von CovMap auch nutzen, ohne dass Du uns Deine Daten bereitstellst. Bitte bedenke, dass unser Dienst jedoch nur funktionieren kann, wenn ausreichend viele Menschen aktiv daran teilnehmen.
+            Die Erhebung Deiner Daten ist vollkommen freiwillig und Du kannst CovMap auch nutzen, ohne dass Du uns Deine Daten bereitstellst. Bitte bedenke, dass unser Dienst jedoch nur funktionieren kann, wenn ausreichend viele Menschen aktiv daran teilnehmen. Deine Daten werden anonym ausgewertet.
           </Typography>
           <div className="btn-group">
             <Button
