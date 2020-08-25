@@ -1,0 +1,90 @@
+name: Android
+
+env:
+  ANDROID_COMPILE_SDK: '29'
+  ANDROID_BUILD_TOOLS: '28.0.3'
+  ANDROID_SDK_TOOLS: '4333796'
+  ANDROID_KEYSTORE_FILE: 'android/app/my-release-key.jks'
+  ANDROID_KEYSTORE_KEY_ALIAS: 'my-alias'
+  ANDROID_UNSIGNED_APK_FILE: 'android/app/build/outputs/apk/release/app-release-unsigned.apk'
+  ANDROID_ALIGNED_APK_FILE: 'android/app/build/outputs/apk/release/app-release-aligned.apk'
+  ANDROID_SIGNED_APK_FILE: 'android/app/build/outputs/apk/release/app-release-signed.apk'
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '8' 
+          java-package: jdk
+      - name: Install Android SDK
+        run: sh ci/install-android-sdk.sh
+      - name: Install dependencies
+        run: npm install
+      - name: Build node modules
+        run: npm run-script build -- --env prod
+      - name: Sync ionic capacitor
+        run: npx cap sync android
+      - name: Build apk
+        run: cd android && ANDROID_SDK_ROOT=../android-sdk-linux ./gradlew build
+      - name: Align APK
+        run: ./android-sdk-linux/build-tools/28.0.3/zipalign -v -p 4 ${{ env.ANDROID_UNSIGNED_APK_FILE }} ${{ env.ANDROID_ALIGNED_APK_FILE }}
+      - name: Sign APK
+        if: github.event_name == 'push'
+        run: ./android-sdk-linux/build-tools/28.0.3/zipalign sign --ks-pass env:SIGNKEY --ks ${{ env.ANDROID_KEYSTORE_FILE }} --out ${{ env.ANDROID_SIGNED_APK_FILE }} ${{ env.ANDROID_ALIGNED_APK_FILE }}
+        env:
+          SIGNKEY: ${{ secrets.SIGNKEY }}
+      - name: Upload aligned APK
+        if: github.event_name != 'push'
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-release.apk
+          path: ${{ env.ANDROID_ALIGNED_APK_FILE }}
+      - name: Upload signed APK
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-release.apk
+          path: ${{ env.ANDROID_SIGNED_APK_FILE }}
+  deploy:
+    name: Deploy APK as release
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v1
+        with:
+          name: app-release.apk
+          path: .
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          release_name: Release ${{ github.ref }}
+          draft: true
+          prerelease: true
+      - name: Upload release asset with version number in filename
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./app-release.apk
+          asset_name: CovMap.apk
+          asset_content_type: application/zip

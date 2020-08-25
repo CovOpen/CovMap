@@ -19,6 +19,9 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
+    "@capacitor/android": "2.4.0",
+    "@capacitor/cli": "^2.4.0",
+    "@capacitor/core": "^2.4.0",
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
     "clerk-plugin-idb": "^0.5.0-alpha.11",

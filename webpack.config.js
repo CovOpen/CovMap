@@ -160,10 +160,6 @@ module.exports = function(env) {
           swWebpackConfig: {
             devtool: 'source-map',
             plugins: [
-              new CompressionPlugin({
-                test: /\.(js|css|png|svg|html|json|gif|xml|map)(\?.*)?$/i,
-                minRatio: 0.9
-              }),
               new DefinePlugin({
                 'process.env.SW_ENV': JSON.stringify(process.env.SW_ENV),
                 'process.env.SW_LOG_ENV': JSON.stringify(process.env.SW_LOG_ENV),
