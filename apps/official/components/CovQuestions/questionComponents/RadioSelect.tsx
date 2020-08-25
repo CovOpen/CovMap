@@ -16,8 +16,8 @@ export const RadioSelect: React.FC<QuestionFormComponentProps> = ({ currentQuest
   };
 
   const options: Option[] = currentQuestion.options ?? [
-    { value: "true", text: "yes" },
-    { value: "false", text: "no" },
+    { value: "true", text: "Ja" },
+    { value: "false", text: "Nein" },
   ];
 
   return (
