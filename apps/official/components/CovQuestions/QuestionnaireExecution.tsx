@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { createStyles, Grid, makeStyles } from "@material-ui/core";
+import { createStyles, Button, Grid, makeStyles } from "@material-ui/core";
 import { Question, QuestionnaireEngine, Result } from "covquestions-js";
 import { ResultComponent } from "./ResultComponent";
 import { QuestionComponent } from "./QuestionComponent";
@@ -32,6 +32,7 @@ export const QuestionnaireExecution: React.FC<QuestionnaireExecutionProps> = ({
   const [questionnaireEngine, setQuestionnaireEngine] = useState(new QuestionnaireEngine(currentQuestionnaire));
   const [currentQuestion, setCurrentQuestion] = useState<Question | undefined>(undefined);
   const [result, setResult] = useState<Result[] | undefined>(undefined);
+  const [showResult, setShowResult] = useState(false);
   const [doRerender, setDoRerender] = useState(false);
 
   const classes = useStyles();
@@ -40,6 +41,7 @@ export const QuestionnaireExecution: React.FC<QuestionnaireExecutionProps> = ({
     const engine = new QuestionnaireEngine(currentQuestionnaire);
     const nextQuestion = engine.nextQuestion();
 
+    setShowResult(false);
     setResult(undefined);
     setQuestionnaireEngine(engine);
     setCurrentQuestion(nextQuestion);
@@ -58,6 +60,11 @@ export const QuestionnaireExecution: React.FC<QuestionnaireExecutionProps> = ({
     }
   }
 
+  function submitAnswersAndShowResult() {
+  	// TODO submit answers
+    setShowResult(true);
+  }
+
   useEffect(restartQuestionnaire, [currentQuestionnaire]);
 
   useEffect(() => {
@@ -71,10 +78,16 @@ export const QuestionnaireExecution: React.FC<QuestionnaireExecutionProps> = ({
   ) : (
     <Grid container className={classes.root}>
       <Grid item xs={12} className={classes.execution}>
-        {result === undefined && currentQuestion ? (
+        {result === undefined && currentQuestion && (
           <QuestionComponent currentQuestion={currentQuestion} handleNextClick={handleNextClick}/>
-        ) : null}
-        {result !== undefined ? <ResultComponent result={result}/> : null}
+        )}
+        {result !== undefined && showResult && (<ResultComponent result={result}/>)}
+        {result !== undefined && !showResult && (
+          <Grid container justify="space-evenly">
+            <Button onClick={() => setShowResult(true)} variant="outlined" color="secondary">Nur Ergebnis anzeigen</Button>
+            <Button {() => submitAnswersAndShowResult()} variant="contained" color="secondary">Ergebnis abschicken und anzeigen</Button>
+          </Grid>
+        )}
       </Grid>
     </Grid>
   );
