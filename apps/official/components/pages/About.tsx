@@ -19,7 +19,7 @@ export const About = () => {
           <section>
           <Typography variant="h2">Wie funktioniert CovMap?</Typography>
           <Typography variant="body1">
-            CovMap wertet die frühestmöglichen Etappen einer Infektion aus: 1) dem Kontakt zwischen Menschen, bei dem das Coronavirus übertragen werden kann, und 2) dem Auftreten von Symptomen, die nach der Inkubationszeit auftreten können. Da das Coronavirus nicht bei jedem Kontakt übertragen wird und auch Symptome andere Ursachen als das Coronavirus haben können, werten wir große Datenmengen an GPS- und Symptomdaten aus, um die 8 Wahrscheinlichkeit für das Auftreten von neuen Infektionen mit dem Coronavirus in einem Landkreis treffen zu können.
+            CovMap wertet die frühestmöglichen Etappen einer Infektion aus: 1) dem Kontakt zwischen Menschen, bei dem das Coronavirus übertragen werden kann, und 2) dem Auftreten von Symptomen, die nach der Inkubationszeit auftreten können. Da das Coronavirus nicht bei jedem Kontakt übertragen wird und auch Symptome andere Ursachen als das Coronavirus haben können, werten wir große Datenmengen an GPS- und Symptomdaten aus, um die Wahrscheinlichkeit für das Auftreten von neuen Infektionen mit dem Coronavirus in einem Landkreis treffen zu können.
           </Typography>
         </section>
 
