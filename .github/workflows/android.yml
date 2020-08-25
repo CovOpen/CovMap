@@ -45,7 +45,7 @@ jobs:
         run: ./android-sdk-linux/build-tools/28.0.3/zipalign -v -p 4 ${{ env.ANDROID_UNSIGNED_APK_FILE }} ${{ env.ANDROID_ALIGNED_APK_FILE }}
       - name: Sign APK
         if: github.event_name == 'push'
-        run: ./android-sdk-linux/build-tools/28.0.3/zipalign sign --ks-pass env:SIGNKEY --ks ${{ env.ANDROID_KEYSTORE_FILE }} --out ${{ env.ANDROID_SIGNED_APK_FILE }} ${{ env.ANDROID_ALIGNED_APK_FILE }}
+        run: ./android-sdk-linux/build-tools/28.0.3/apksigner sign --ks-pass env:SIGNKEY --ks ${{ env.ANDROID_KEYSTORE_FILE }} --out ${{ env.ANDROID_SIGNED_APK_FILE }} ${{ env.ANDROID_ALIGNED_APK_FILE }}
         env:
           SIGNKEY: ${{ secrets.SIGNKEY }}
       - name: Upload aligned APK
