@@ -79,21 +79,6 @@ export const App = () => {
   if (viewportEventsCount > 1000) {
     showInstallPrompt = true
   }
-  const [innerHeight, setInnerHeight] = useState(window.innerHeight)
-
-  let timeout: any = null;
-  const resizeListener = () => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => setInnerHeight(window.innerHeight), 350)
-  }
-
-  useEffect(() => {
-    window.addEventListener('resize', resizeListener);
-
-    return () => {
-      window.removeEventListener('resize', resizeListener);
-    }
-  });
 
   function renderRoute(page) {
     return (
@@ -112,9 +97,9 @@ export const App = () => {
       <Router>
         <ServiceWorker />
         <InstallPrompt shouldShow={showInstallPrompt} />
-        <Container style={{  height: innerHeight, padding: 0, maxWidth: 'none' }}>
-          <NavBar showSearch={!!currentLayerGroup.search} />
-          <Container style={{ position: 'relative', height: innerHeight - 64, paddingLeft: 0, paddingRight: 0, maxWidth: 'none' }}>
+        <Container disableGutters style={{ position: 'absolute', height: '100%', display: 'flex', flexDirection: 'column' }}>
+          <NavBar showSearch={!!currentLayerGroup.search}/>
+          <Container disableGutters style={{ flex: '1 1 auto' }}>
             <IntermediateProgress />
             <Route key="map" exact path="/" component={CovMap} />
             {config.content?.pages.map((page) => renderRoute(page))}

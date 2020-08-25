@@ -7,10 +7,6 @@ import { State } from "../state";
 
 const useStyles = makeStyles((theme) => ({
   progress: {
-    width: '100%',
-    position: 'absolute',
-    top: 0,
-    left: 0,
     zIndex: 1200,
     height: '5px'
   },

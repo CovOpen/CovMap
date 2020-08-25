@@ -99,8 +99,8 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
   }
 
   return (
-    <AppBar position="static" style={{ position: 'relative', zIndex: 1200, touchAction: 'none' }}>
-      <Toolbar style={{ height: 64 }}>
+    <AppBar position="relative" style={{ height: 64, flex: '0 1 auto' }}>
+      <Toolbar>
         {(Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} /> }
         {showSearch && < Search />}
         <div>
