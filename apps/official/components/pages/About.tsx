@@ -13,7 +13,7 @@ export const About = () => {
         <section>
           <Typography variant="h2">Was ist CovMap?</Typography>
           <Typography variant="body1">
-            Dad momentane Kontaktverhalten ist ein wesentlicher Grund dafür, weshalb sich das Coronavirus (SARS-CoV-2) nur langsam in Deutschland ausbreiten kann. Das Ziel von CovMap ist es, an den Umstand zu erinnern, dass jeder Bürger dabei helfen kann, Infektionen durch das eigene Verhalten zu vermeiden. Auf einer Deutschlandkarte stellen wir das momentane Kontaktverhalten pro Landkreis dar und bewerten es hinsichtlich des Risikos von neuen Infektionen.
+            Kontaktbeschränkungen sind ein wesentlicher Grund dafür, weshalb sich das Coronavirus (SARS-CoV-2) nur langsam in Deutschland ausbreiten kann. Das Ziel von CovMap ist es, an den Umstand zu erinnern, dass jeder Bürger dabei helfen kann, Infektionen durch das eigene Verhalten zu vermeiden. Auf einer Deutschlandkarte stellen wir das aktuelle Kontaktverhalten pro Landkreis dar und bewerten es hinsichtlich des Risikos von neuen Infektionen.
           </Typography>
           <Typography variant="body1">
             Ein weiteres Ziel von CovMap ist es, lokale Ausbrüche des Virus möglichst frühzeitig zu erkennen.
@@ -22,7 +22,7 @@ export const About = () => {
           <section>
           <Typography variant="h2">Wie funktioniert CovMap?</Typography>
           <Typography variant="body1">
-            CovMap wertet die frühestmöglichen Etappen eine Viruserkrankung aus: dem Kontakt, bei dem das Virus übertragen wird, und dem Auftreten von Symptomen. Hierzu werten wir große Datenmengen an GPS- und Symptomdaten der Bevölkerung aus.
+            CovMap wertet die frühestmöglichen Etappen eine Viruserkrankung aus: 1) dem Kontakt, bei dem das Virus übertragen wird, und 2) dem Auftreten von Symptomen. Hierzu werten wir größere Datenmengen an GPS- und Symptomdaten der Bevölkerung aus.
           </Typography>
         </section>
 
