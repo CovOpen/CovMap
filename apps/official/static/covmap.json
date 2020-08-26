@@ -15,13 +15,13 @@
   "questions": [
     {
       "id": "q_contact",
-      "text": "Have you had close contact with a confirmed case?",
+      "text": "Hatten Sie Kontakt mit einem bestätigten Fall?",
       "details": "Choose \"No\" if you have worn adequate protective measures (mask, smock) on contact.",
       "type": "boolean"
     },
     {
       "id": "q_contact_date",
-      "text": "What day was the last contact?",
+      "text": "An welchem Tag hatten Sie Kontakt?",
       "type": "date",
       "enableWhenExpression": {
         "var": "q_contact"
@@ -29,12 +29,12 @@
     },
     {
       "id": "q_fever",
-      "text": "Have you had a fever (over 38°C) in the past 24 hours?",
+      "text": "Hatten Sie Fieber (über 38°C) in den letzten 24 Stunden?",
       "type": "boolean"
     },
     {
       "id": "q_fever",
-      "text": "What was the highest temperature, approx.?",
+      "text": "Was war die höchste Temperatur?",
       "type": "select",
       "options": [
         {
@@ -58,11 +58,11 @@
           "value": "42"
         },
         {
-          "text": "More than 42°C",
+          "text": "Höher als 42°C",
           "value": "42+"
         },
         {
-          "text": "I don't know",
+          "text": "Ich weiß es nicht",
           "value": "dont_know"
         }
       ],
@@ -72,64 +72,64 @@
     },
     {
       "id": "q_chills",
-      "text": "Have you had chills in the past 24 hours?",
+      "text": "Hatten Sie Schüttelfrost in den letzten 24 Stunden?",
       "type": "boolean"
     },
     {
       "options": [
         {
-          "text": "Feeling tired or weak",
+          "text": "Ich fühle mich abgeschlagen.",
           "value": "tired"
         },
         {
-          "text": "Body aches",
+          "text": "Ich habe Gliederschmerzen.",
           "value": "aches"
         },
         {
-          "text": "Diarrhea",
+          "text": "Ich habe Durchfall.",
           "value": "diarrhea"
         },
         {
-          "text": "Headache",
+          "text": "Ich habe Kopfschmerzen.",
           "value": "headache"
         },
         {
-          "text": "Loss of taste and/or smell",
+          "text": "Ich habe meinen Geschmacks- oder Geruchssinn verloren.",
           "value": "taste"
         }
       ],
       "id": "q_symptoms",
-      "text": "Which of the following symptoms have you had in the past 24 hours? (multiple selection possible)",
+      "text": "Welche der folgenden Symptome hast Du in den letzten 24 Stunden entwickelt?",
       "type": "multiselect",
       "details": "If you don't have any of the symptoms, don't select an entry and continue by choosing the \"Next\" button.",
       "optional": true
     },
     {
       "id": "q_cough",
-      "text": "In the past 24 hours, have you had a persistent cough?",
+      "text": "In den letzten 24 Stunden, hattest Du permanenten Husten?",
       "type": "boolean",
       "details": "If you have a chronic cough, compare your current coughing to your regular problems."
     },
     {
       "id": "q_runny_nose",
-      "text": "In the past 24 hours, have you had a runny nose?",
+      "text": "In den letzten 24 Stunden, hattest Du Schnupfen?",
       "type": "boolean",
       "details": "The question relates to cold symptoms and excludes chronic runny nose, seasonal or allergy-related runny nose. If you have chronic sniffling, compare your current conditions with your existing problems."
     },
     {
       "id": "q_sore_throat",
-      "text": "In the past 24 hours, have you had a sore throat?",
+      "text": "In den letzten 24 Stunden, hattest Du Halsschmerzen?",
       "type": "boolean"
     },
     {
       "id": "q_breath",
-      "text": "In the past 24 hours, did you feel that you were more quickly out of breath than usual?",
+      "text": "In den letzten 24 Stunden, warst Du schneller ausser Atem als sonst?",
       "type": "boolean",
       "details": "If you have chronic lung disease, compare your current breathing problems with your existing breathing problems."
     },
     {
       "id": "q_symptoms_date",
-      "text": "With regard to all questions about symptoms: since when have you had the symptoms you specified?",
+      "text": "In Bezug auf alle genannten Symptome: An welchem Tag hast Du Sie entwickelt?",
       "type": "date",
       "enableWhenExpression": {
         "var": "v_symptoms"
@@ -137,7 +137,7 @@
     },
     {
       "id": "q_postal_code",
-      "text": "What's your postal code?",
+      "text": "Was ist deine Postleitzahl?",
       "type": "text",
       "details": "You can enter your postal code here. By specifying your postal code, you allow us to map the data you donated on a map of Germany. This enables us further understand the spread of the pandemic."
     }
