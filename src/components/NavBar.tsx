@@ -66,11 +66,12 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
   };
 
   const handleInstall = () => {
-    dispatch(triggerInstallPrompt())
     handleClose()
+    dispatch(triggerInstallPrompt())
   }
 
   const handleShare = async () => {
+    handleClose()
     try {
       await (window.navigator as any).share({
         title: 'CovMap',
@@ -82,7 +83,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
     }
   }
 
-  const MenuEntries = () => {
+  const MenuEntries = (props) => {
     if (!config.content?.pages) {
       return null
     }
@@ -90,7 +91,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
     return <>
       {config.content?.pages.map((page) => (
         <Link key={page.id} style={{ textDecoration: 'none' }} to={page.route}>
-          <MenuItem className={classes.menuItem} >
+          <MenuItem className={classes.menuItem} onClick={props.handleClose} >
             {page.title}
           </MenuItem>
         </Link>
@@ -135,11 +136,11 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
           >
             <div className={classes.menuContent}>
               <Link key="map" style={{ textDecoration: 'none' }} to="/">
-                <MenuItem className={classes.menuItem} >
+                <MenuItem className={classes.menuItem} onClick={handleClose} >
                   Karte
                 </MenuItem>
               </Link>
-              <MenuEntries />
+              <MenuEntries handleClose={handleClose}/>
               {
                 useSelector((state: State) => state.app.installPrompt) &&
                 <div>
