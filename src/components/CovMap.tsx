@@ -22,7 +22,8 @@ import { config } from 'app-config/index'
 const useStyles = makeStyles((theme) => ({
   main: {
     height: '100%',
-    position: 'relative',
+    width: '100%',
+    position: 'absolute',
     display: 'flex',
     'flex-direction': 'column',
   },

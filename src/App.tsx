@@ -100,7 +100,7 @@ export const App = () => {
         <Container disableGutters maxWidth={false} style={{ position: 'absolute', height: '100%', display: 'flex', flexDirection: 'column' }}>
           <NavBar showSearch={!!currentLayerGroup.search}/>
           <IntermediateProgress />
-          <Container disableGutters maxWidth={false} style={{ flex: '1 1 auto' }}>
+          <Container disableGutters maxWidth={false} style={{ flex: '1 1 auto', position:'relative' }}>
             <Route key="map" exact path="/" component={CovMap} />
             {config.content?.pages.map((page) => renderRoute(page))}
           </Container>
