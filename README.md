@@ -46,11 +46,11 @@ For fast _Hackathon like_ sprints, we use the shared `develop` branch. Add your 
 
 MUST:
 
-- Show map of Germany with colored postal code areas
+- Show map of Germany with colored district areas
 - Timeline bar: Selection of day and automatic update of map
 - Selection for type of displayed data (e.g. confirmed cases, deaths)
-- does not rely on 3rd party maps, e.g. MapBox
 - uses efficient encoding of zip code areas, e.g. TopoJSON
+- can ask users for symptoms
 
 IMPORTANT:
 
@@ -61,3 +61,4 @@ NICE TO HAVE:
 
 - Addition of further countries
 - Multilingual
+- does not rely on 3rd party maps, e.g. MapBox
