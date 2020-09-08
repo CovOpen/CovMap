@@ -32,6 +32,8 @@ const useStyles = makeStyles((theme) => ({
     width: "2ch",
     height: "2ch",
     marginRight: "1ch",
+    marginTop: 2,
+    verticalAlign: "middle",
   },
 }));
 
