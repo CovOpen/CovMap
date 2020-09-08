@@ -17,6 +17,7 @@ import { TimeNav } from './TimeNav';
 import { WelcomeInfo } from './WelcomeInfo';
 import { WelcomeInfoButton } from './WelcomeInfoButton';
 import { GLMap } from './GLMap' 
+import { Legend } from './Legend' 
 import { config } from 'app-config/index'
 
 const useStyles = makeStyles((theme) => ({
@@ -201,6 +202,7 @@ export const CovMap = () => {
         onLoad={handleMapLoaded}
       />
       <TimeNav />
+      <Legend />
       <Dialog
         aria-labelledby="simple-dialog-title"
         open={!datasetFound}

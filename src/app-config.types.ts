@@ -67,6 +67,11 @@ export type DefaultSearchOptions = {
      * @param query
      */
     transformQuery?(query: string): string;
+    /**
+     * Allows to transform a search term before it is queried for in the data
+     * @param query
+     */
+    createLegend?(query: string): Array<String>;
     all?: boolean;
 }
 
@@ -94,6 +99,10 @@ export type AppVisualLayerFunction = (dataField?: string, timeKey?: string) => A
 export type AppVisualLayerSpec = {
     id: LayerId;
     source: MappingId;
+    /**
+     * Whether to show a box describing the color values of this layer
+     */
+    showLegend?: boolean;
     fn: AppVisualLayerFunction;
 }
 
@@ -118,6 +127,10 @@ export type AppVisualMapping = {
     geoProperty: string;
     dataProperty: string;
     transformData?: Function;
+    /**
+     * Calcultes the y-Values and the labels for the legend given the raw data and the property name
+     */
+    calculateLegend?: Function;
     transformGeo?: Function;
 }
 
