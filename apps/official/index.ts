@@ -254,7 +254,7 @@ export const config: AppConfig = {
 function calculateNumericScale(minData, maxData)
 	{
 		// The minimum and maximum number of legend labels
-		const minLabels = 7, maxLabels = 12
+		const minLabels = 6, maxLabels = 10
 	
 		// This function works by calculating the number of digits and then dividing or scaling by 2 until it kinda fits
 		let distanceBetweenLabels = Math.pow(10, Math.floor(Math.log10(maxData)))
@@ -270,14 +270,14 @@ function calculateNumericScale(minData, maxData)
 		}
 
 		recalculateLabels()
-		while(numLabels > maxLabels)
-		{
-			distanceBetweenLabels *= 2
-			recalculateLabels()
-		}
 		while(numLabels < minLabels)
 		{
 			distanceBetweenLabels /= 2
+			recalculateLabels()
+		}
+		while(numLabels > maxLabels)
+		{
+			distanceBetweenLabels *= 2
 			recalculateLabels()
 		}
 		return {distanceBetweenLabels, lowestLabel, highestLabel, numLabels}
