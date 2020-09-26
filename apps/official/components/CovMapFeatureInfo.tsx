@@ -8,11 +8,12 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     <div>
       <Typography variant="h2">{feature.properties.name}</Typography>
       <ul>
-        <li style={{marginTop: "0.4em", marginBottom: "0.4em"}}>Contact Index C: 42</li>
-        <li>F&auml;lle: {rawData['cases']}</li>
-        <li>Verstorben: {rawData['deaths']}</li>
-        <li>F&auml;lle per 100k: {Math.ceil(rawData['cases_per_100k'])}</li>
-        <li>Sterberate: {Math.floor(rawData['death_rate'] * 100) / 100} %</li>
+        <li style={{marginTop: "0.4em", marginBottom: "0.4em"}}>Contact Index C: {rawData['CI']}</li>
+        <li>Einwohner: {rawData['inhabitants']}</li>
+        <li>PLZ: {rawData['plz']}</li>
+        <li>Fläche: {rawData['area']}</li>
+        <li>Name: {rawData['names']}</li>
+        <li>Landkreis: {rawData['Landkreis']}</li>
       </ul>
       <Button size="small" onClick={onClose as any}>
         Schließen
