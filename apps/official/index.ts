@@ -44,12 +44,12 @@ export const config: AppConfig = {
       title: 'Impressum',
       route: '/imprint',
       Component: Imprint
-    }, {
+    },/* {
       id: 'questions-page',
       title: 'Symptome erfassen',
       route: '/questions',
       Component: Questions
-    },
+    },*/
     ]
   },
   buildJSON,

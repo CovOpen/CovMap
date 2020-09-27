@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    left: theme.spacing(11),
+    left: theme.spacing(5),
     bottom: theme.spacing(5),
     zIndex: 1200,
     width: 'calc(100% - 172px) !important',
