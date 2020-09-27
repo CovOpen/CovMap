@@ -8,32 +8,22 @@ import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo"
 import { CovMapWelcome } from './components/CovMapWelcome'
 import { Questions } from './components/pages/Questions'
 
+import netcheck_ci_data from "../../data/netcheck_ci.json"
+
 const CovMapMappables = [{
-  property: 'cases_per_population_scaled',
+  property: 'CI_scaled',
   title: 'Contact Index C',
   default: true
-}, {
-  property: 'cases_scaled',
-  title: 'Fälle',
-}, {
-  property: 'deaths_scaled',
-  title: 'Verstorbene',
-}, {
-  property: 'cases_per_100k_scaled',
-  title: 'Fälle pro 100k Einwohner',
-}, {
-  property: 'death_rate_scaled',
-  title: 'Sterberate',
 }]
 
 const CovMapSearch = {
-  placeholder: 'Landkreis',
-  nameProp: 'name',
+  placeholder: 'PLZ',
+  nameProp: 'note',
   inMappings: [{
-    id: 'case-numbers-to-districts',
-    properties: ['name'],
+    id: 'CI-to-plz',
+    properties: ['note'],
     getCoordinates: (feature) => {
-      return feature.properties.geo_point_2d
+      //return feature.properties.geo_point_2d TODO
     }
   }],
   notFoundMessage: 'Leider keinen Landkreis gefunden.'
@@ -68,8 +58,8 @@ export const config: AppConfig = {
   },
   defaultVisual: 'covmap',
   datasources: {
-    'rki-case-numbers': {
-      url: (dateString) => `https://warte.app/api/rki/rki-district-case-numbers?fields=BL,RS,EWZ,cases,deaths,cases_per_100k,cases_per_population,cases7_per_100k,death_rate&limit=0&date=${dateString}`
+    'contact-index': {
+      url: (dateString) => `data:application/json,${JSON.stringify(netcheck_ci_data)}`
     }
   },
   visuals: {
@@ -79,20 +69,12 @@ export const config: AppConfig = {
       InfoComponent: CovMapWelcome,
       dateFormat: 'dddd, Do MMMM YYYY',
       mappings: {
-        'case-numbers-to-districts': {
-          datasourceId: 'rki-case-numbers',
-          geoId: 'districts-city-details',
-          geoProperty: 'cca_2',
-          dataProperty: 'RS',
-          transformData: transformRKIData,
-          calculateLegend: calculateLegend,
-        },
-        'case-numbers-to-district-points': {
-          datasourceId: 'rki-case-numbers',
-          geoId: 'district-points',
-          geoProperty: 'cca_2',
-          dataProperty: 'RS',
-          transformData: transformRKIData,
+        'CI-to-plz': {
+          datasourceId: 'contact-index',
+          geoId: 'plz-details',
+          geoProperty: 'plz',
+          dataProperty: 'plz',
+          transformData: transformData,
           calculateLegend: calculateLegend,
         }
       },
@@ -122,39 +104,9 @@ export const config: AppConfig = {
         bearing: 20,
       }],
       layers: [
-        // See the Mapbox Style Specification for details on data expressions.
-        // https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions
-        {
-          id: "circles",
-          source: "case-numbers-to-district-points",
-          fn: (dataField, timeKey) => ({
-            type: LayerType.CIRCLE,
-            paint: {
-              'circle-color': [
-                'interpolate',
-                ['exponential', 0.05],
-                ['get', dataField, ['get', timeKey]],
-                0.01,
-                '#f8fbff',
-                1,
-                '#113068'
-              ],
-              'circle-opacity': 0.9,
-              'circle-radius': [
-                'interpolate',
-                ['exponential', 0.05],
-                ['get', dataField, ['get', timeKey]],
-                0.01,
-                3,
-                1,
-                30
-              ]
-            }
-          })
-        },
         {
           id: "areas-fill",
-          source: "case-numbers-to-districts",
+          source: "CI-to-plz",
           showLegend: true,
           fn: (dataField, timeKey) => ({
             type: LayerType.FILL,
@@ -180,7 +132,7 @@ export const config: AppConfig = {
         },
         {
           id: "extrusion",
-          source: "case-numbers-to-districts",
+          source: "CI-to-plz",
           fn: (dataField, timeKey) => ({
             id: "extrusion",
             type: LayerType.FILL_EXTRUSION,
@@ -220,7 +172,7 @@ export const config: AppConfig = {
         },
         {
           id: "hover",
-          source: "case-numbers-to-districts",
+          source: "CI-to-plz",
           fn: () => ({
             type: LayerType.LINE,
             paint: {
@@ -238,12 +190,9 @@ export const config: AppConfig = {
     },
   },
   geos: {
-    'districts-city-details': {
-      url: '/data/de_districts_all.geojson'
+    'plz-details': {
+      url: '/data/postleitzahlen-deutschland.geojson'
     },
-    'district-points': {
-      url: '/data/de_districts_all_points.geojson'
-    }
   }
 }
 
@@ -315,20 +264,16 @@ function scaleProperties(data, postfix, propertyNames) {
   return data
 }
 
-function transformRKIData(json) {
-  if (!json.result.length) {
+function transformData(json) {
+  if (!json.length) {
     return null
   }
   
-  const propertiesByCCA2 = {}
-  json.result.forEach((properties) => propertiesByCCA2[properties.RS] = properties)
+  const propertiesByPLZ = {}
+  json.forEach((properties) => propertiesByPLZ[properties.plz] = properties)
 
-  const scaledData = scaleProperties(propertiesByCCA2, '_scaled', [
-    'cases_per_population',
-    'cases',
-    'deaths',
-    'cases_per_100k',
-    'death_rate'
+  const scaledData = scaleProperties(propertiesByPLZ, '_scaled', [
+    'CI',
   ])
 
   return {
