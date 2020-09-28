@@ -128,7 +128,7 @@ body {
     background-color: #E3E9F3;
 }
 
-/* FIXME: removes Mapbox logo. Needs to be discussed with company before release. */
+/* FIXME: removes Mapbox logo. Needs to be discussed with company before release. 
 .mapboxgl-control-container {
     display: none;
-}
+}*/
