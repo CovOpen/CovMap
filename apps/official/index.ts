@@ -4,6 +4,8 @@ import buildJSON from "./build.json"
 import { About } from "./components/pages/About"
 import { Imprint } from "./components/pages/Imprint"
 import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo"
+// TODO: Integrate CovQuestions
+// import { Questions } from './components/pages/Questions'
 
 import netcheck_ci_data from "../../data/netcheck_ci.json"
 
