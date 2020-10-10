@@ -16,7 +16,7 @@ export const About = () => {
             Kontaktbeschränkungen sind ein wesentlicher Grund dafür, weshalb sich das Coronavirus (SARS-CoV-2) nur langsam in Deutschland ausbreitet. Das Ziel von CovMap ist es, an den Umstand zu erinnern, dass jeder Bürger dabei helfen kann, Infektionen durch das eigene Verhalten zu vermeiden. Auf einer Deutschlandkarte stellen wir das aktuelle Kontaktverhalten pro Landkreis dar und bewerten es hinsichtlich des Risikos von neuen Infektionen.
           </Typography>
         </section>
-          <section>
+        <section>
           <Typography variant="h2">Wie funktioniert CovMap?</Typography>
           <Typography variant="body1">
             CovMap wertet die frühestmöglichen Etappen einer Infektion aus: 1) dem Kontakt zwischen Menschen, bei dem das Coronavirus übertragen werden kann, und 2) dem Auftreten von Symptomen, die nach der Inkubationszeit auftreten können. Da das Coronavirus nicht bei jedem Kontakt übertragen wird und auch Symptome andere Ursachen als das Coronavirus haben können, werten wir große Datenmengen an GPS- und Symptomdaten aus, um Aussagen zur Wahrscheinlichkeit für das Auftreten von neuen Fällen in einem Landkreis treffen zu können.

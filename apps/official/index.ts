@@ -7,7 +7,7 @@ import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo"
 // TODO: Integrate CovQuestions
 // import { Questions } from './components/pages/Questions'
 
-import netcheck_ci_data from "../../data/netcheck_ci.json"
+import netcheckCIData from "../../data/netcheck_ci.json"
 
 const CovMapMappables = [{
   property: 'CI_scaled',
@@ -60,7 +60,7 @@ export const config: AppConfig = {
   defaultVisual: 'covmap',
   datasources: {
     'contact-index': {
-      url: (dateString) => `data:application/json,${JSON.stringify(netcheck_ci_data)}`
+      url: (dateString) => `data:application/json,${JSON.stringify(netcheckCIData)}`
     }
   },
   visuals: {
@@ -201,37 +201,36 @@ export const config: AppConfig = {
  * This function calclulates approximate lower and upper bounds and a
  * distance between labels for readable legends
  */
-function calculateNumericScale(minData, maxData)
-	{
-		// The minimum and maximum number of legend labels
-		const minLabels = 6, maxLabels = 10
+function calculateNumericScale(minData, maxData) {
+  // The minimum and maximum number of legend labels
+  const minLabels = 6, maxLabels = 10
 
-		// This function works by calculating the number of digits and then dividing or scaling by 2 until it kinda fits
-		let distanceBetweenLabels = Math.pow(10, Math.floor(Math.log10(maxData)))
-		let lowestLabel
-		let highestLabel
-		let numLabels
+  // This function works by calculating the number of digits and then dividing or scaling by 2 until it kinda fits
+  let distanceBetweenLabels = Math.pow(10, Math.floor(Math.log10(maxData)))
+  let lowestLabel
+  let highestLabel
+  let numLabels
 
-		function recalculateLabels()
-		{
-			highestLabel = Math.ceil(maxData / distanceBetweenLabels) * distanceBetweenLabels
-			lowestLabel = Math.floor(minData / distanceBetweenLabels) * distanceBetweenLabels
-			numLabels = highestLabel / distanceBetweenLabels - lowestLabel / distanceBetweenLabels + 1
-		}
+  function recalculateLabels()
+  {
+    highestLabel = Math.ceil(maxData / distanceBetweenLabels) * distanceBetweenLabels
+    lowestLabel = Math.floor(minData / distanceBetweenLabels) * distanceBetweenLabels
+    numLabels = highestLabel / distanceBetweenLabels - lowestLabel / distanceBetweenLabels + 1
+  }
 
-		recalculateLabels()
-		while(numLabels < minLabels)
-		{
-			distanceBetweenLabels /= 2
-			recalculateLabels()
-		}
-		while(numLabels > maxLabels)
-		{
-			distanceBetweenLabels *= 2
-			recalculateLabels()
-		}
-		return {distanceBetweenLabels, lowestLabel, highestLabel, numLabels}
-	}
+  recalculateLabels()
+  while(numLabels < minLabels)
+  {
+    distanceBetweenLabels /= 2
+    recalculateLabels()
+  }
+  while(numLabels > maxLabels)
+  {
+    distanceBetweenLabels *= 2
+    recalculateLabels()
+  }
+  return {distanceBetweenLabels, lowestLabel, highestLabel, numLabels}
+}
 
 function calculateBounds(data, propertyName) {
   let min = Infinity, max = -Infinity
@@ -246,12 +245,12 @@ function calculateBounds(data, propertyName) {
 }
 
 function scaleProperty(data, newPropertyName, propertyName) {
-  let {min, max} = calculateBounds(data, propertyName)
-  let {lowestLabel, highestLabel} = calculateNumericScale(min, max)
-
-  let offset = lowestLabel;
-  let scale = 1 / (highestLabel - lowestLabel)
-
+  const {min, max} = calculateBounds(data, propertyName)
+  const {lowestLabel, highestLabel} = calculateNumericScale(min, max)
+  
+  const offset = lowestLabel;
+  const scale = 1 / (highestLabel - lowestLabel)
+  
   for (const featureID of Object.keys(data)) {
     const feature = data[featureID]
     feature[newPropertyName] = (feature[propertyName] - offset) * scale
@@ -282,9 +281,9 @@ function transformData(json) {
   };
 }
 
- /**
-  * Calcultes the y-Values and the labels for the legend
-  */
+/**
+ * Calcultes the y-Values and the labels for the legend
+ */
 function calculateLegend(data, propertyName) {
 
   if(!propertyName.endsWith('_scaled'))
@@ -292,13 +291,13 @@ function calculateLegend(data, propertyName) {
 
   propertyName = propertyName.substring(0, propertyName.length - '_scaled'.length)
 
-  let {min, max} = calculateBounds(data, propertyName)
-  let {distanceBetweenLabels, lowestLabel, numLabels} = calculateNumericScale(min, max)
-
-  let legend = Array(numLabels).fill(undefined).map((_val, index) => {
-    let y = index / ( numLabels - 1)
-    let labelText = (index * distanceBetweenLabels + lowestLabel).toString()
-
+  const {min, max} = calculateBounds(data, propertyName)
+  const {distanceBetweenLabels, lowestLabel, numLabels} = calculateNumericScale(min, max)
+  
+  const legend = Array(numLabels).fill(undefined).map((_val, index) => {
+    const y = index / ( numLabels - 1)
+    const labelText = (index * distanceBetweenLabels + lowestLabel).toString()
+    
     return [y, labelText]
   })
 
