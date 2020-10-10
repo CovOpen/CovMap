@@ -20,6 +20,10 @@ export const WelcomeInfo = () => {
     dispatch(AppApi.setInfoDialog(currentVisual, true))
   };
 
+  if (!InfoComponent) {
+    return null
+  }
+
   return (
     <div>
       <Dialog

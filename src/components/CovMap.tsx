@@ -19,6 +19,7 @@ import { WelcomeInfo } from './WelcomeInfo';
 import { WelcomeInfoButton } from './WelcomeInfoButton';
 import { GLMap } from './GLMap'
 import { Legend } from './Legend'
+import { Settings } from './Settings'
 import { config } from 'app-config/index'
 
 const useStyles = makeStyles((theme) => ({
@@ -193,11 +194,11 @@ export const CovMap = () => {
       {config.showSettings === false ? null : <Settings />}
       <Zoom />
       <TopLeftContainer>
-        <WelcomeInfoButton />
+        {visual.InfoComponent ? <WelcomeInfoButton /> : null}
         <OfflineIndicator />
       </TopLeftContainer>
-      <WelcomeInfo />
-      <GLMap
+      {visual.InfoComponent ? <WelcomeInfo /> : null}
+      <GLMap 
         mapRef={mapRef}
         onMapClick={handleMapClick}
         onViewportChange={onViewportChange}

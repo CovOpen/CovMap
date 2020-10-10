@@ -67,7 +67,6 @@ export const config: AppConfig = {
     'covmap': {
       name: 'CovMap Fallzahlen',
       description: 'Tagesaktuelle Zahlen des RKI - bis jetzt',
-      // InfoComponent: CovMapWelcome,
       dateFormat: 'dddd, Do MMMM YYYY',
       mappings: {
         'CI-to-plz': {
