@@ -1,5 +1,4 @@
 {
-  "extends": "./tsconfig.app.json",
   "compileOnSave": true,
   "compilerOptions": {
     "incremental": true,
@@ -33,6 +32,9 @@
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
     "baseUrl": "./",
+    "paths": {
+      "app-config/*": ["./apps/official/*"]
+    },
     // "types": ["node"],
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
