@@ -87,22 +87,6 @@ export const config: AppConfig = {
         layers: ['areas-fill', 'hover'],
         search: CovMapSearch,
         default: true
-      }, {
-        id: 'bubbles',
-        title: 'Bubbles',
-        mappables: CovMapMappables,
-        layers: ['circles'],
-        // search: RKISearch,
-        FeatureInfo: CovMapFeatureInfo,
-      }, {
-        id: 'extrusion',
-        title: 'Balken',
-        mappables: CovMapMappables,
-        layers: ['extrusion', 'hover'],
-        FeatureInfo: CovMapFeatureInfo,
-        search: CovMapSearch,
-        pitch: 40,
-        bearing: 20,
       }],
       layers: [
         {
@@ -128,46 +112,6 @@ export const config: AppConfig = {
                 0.8, '#113068',
               ],
               'fill-opacity': 0.8,
-            }
-          })
-        },
-        {
-          id: "extrusion",
-          source: "CI-to-plz",
-          fn: (dataField, timeKey) => ({
-            id: "extrusion",
-            type: LayerType.FILL_EXTRUSION,
-            'paint': {
-              'fill-extrusion-color': [
-                'interpolate',
-                ['linear'],
-                ['get', dataField, ['get', timeKey]],
-                0, '#f8fbff',
-                0.025, '#e1ebf5',
-                0.05, '#cadbed',
-                0.1, '#a6c9df',
-                0.2, '#79add2',
-                0.35, '#5591c3',
-                0.5, '#3771b0',
-                0.65, '#205297',
-                0.8, '#113068',
-              ],
-              'fill-extrusion-height': [
-                'interpolate',
-                ['linear'],
-                ['get', dataField, ['get', timeKey]],
-                0, 1000,
-                0.025, 2500,
-                0.05, 5000,
-                0.1, 10000,
-                0.2, 20000,
-                0.35, 40000,
-                0.5, 60000,
-                0.65, 100000,
-                0.8, 160000,
-              ],
-              'fill-extrusion-base': 1,
-              'fill-extrusion-opacity': 0.5
             }
           })
         },
