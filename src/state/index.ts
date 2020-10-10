@@ -1,5 +1,5 @@
 import { setAutoFreeze, enableMapSet } from "immer";
-import { combineReducers } from "redux";
+import { combineReducers, compose } from "redux";
 import { persistReducer, createTransform } from "redux-persist";
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
 import storage from "redux-persist/lib/storage";
@@ -40,7 +40,7 @@ function persist(reducer: any, key: string, whitelist?: string[], blacklist?: st
     storage,
     whitelist,
     transforms: [
-      viewportSubsetFiler, 
+      viewportSubsetFiler,
       reviveCurrentLayerGroup
     ]
   }, reducer);
@@ -48,15 +48,17 @@ function persist(reducer: any, key: string, whitelist?: string[], blacklist?: st
 
 export const rootReducer = combineReducers({
   app: persist(AppReduxReducer, "app", undefined, [
-    'mappedSets', 'datasets', 'geos', 'loading', 'isLoading', 'datasetFound', 
+    'mappedSets', 'datasets', 'geos', 'loading', 'isLoading', 'datasetFound',
     'viewPortEventsCount', 'currentDate', 'hasSearchError',
     'currentFeature', 'isInstalled', 'installPrompt', 'snackbarMessage',
   ]),
 });
 
+const composeEnhancers = process.env.NODE_ENV === 'development' ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose : (middleware) => middleware;
+
 export const store = createStore(
   rootReducer,
-  applyMiddleware(thunk),
+  composeEnhancers(applyMiddleware(thunk)),
 );
 
 export interface State {
