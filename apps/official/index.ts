@@ -30,6 +30,8 @@ export const config: AppConfig = {
   ui: {
     Logo: AnimatedLogo
   },
+  showSettings: false,
+  showTimeNavigation: false,
   content: {
     pages: [{
       id: 'about-page',

@@ -190,7 +190,7 @@ export const CovMap = () => {
         <Typography variant="h2" color="primary">{currentMappable.title}</Typography>
         <Typography variant="subtitle1" color="primary">{moment(currentDate).format(visual.dateFormat)}</Typography>
       </div>
-      {/*<Settings />*/}
+      {config.showSettings === false ? null : <Settings />}
       <Zoom />
       <TopLeftContainer>
         <WelcomeInfoButton />
@@ -203,7 +203,7 @@ export const CovMap = () => {
         onViewportChange={onViewportChange}
         onLoad={handleMapLoaded}
       />
-      <TimeNav />
+      {config.showTimeNavigation === false ? null : <TimeNav />}
       <Legend />
       <Dialog
         aria-labelledby="simple-dialog-title"
