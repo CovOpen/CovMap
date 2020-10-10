@@ -23,7 +23,7 @@ export const WelcomeInfo = () => {
   return (
     <div>
       <Dialog
-        open={!seen}
+        open={InfoComponent !== undefined && !seen}
         scroll={'paper'}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"

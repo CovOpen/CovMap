@@ -62,7 +62,7 @@ export interface AppState {
   geos: Map<string, GeoJSON>;
   datasets: Map<string, MapData>;
   mappedSets: MapSetHolder;
-  currentDate: Date; 
+  currentDate: Date;
   currentMappable: Mappable;
   datasetFound: boolean;
   currentVisual: VisualId; // TODO: Rename to currentVisual (when moving to app-config driven build)
@@ -76,6 +76,7 @@ export interface AppState {
   installPrompt: Function | null;
   currentLayerGroup: LayerGroup;
   infoDialogs: Record<string, boolean>;
+  userPostalCode: number | null;
 }
 
 export const defaultAppState: AppState = {
@@ -90,7 +91,7 @@ export const defaultAppState: AppState = {
   history: [],
   geos: new Map<string, GeoJSON>(),
   datasets: new Map<string, MapData>(),
-  mappedSets: {}, 
+  mappedSets: {},
   currentDate: new Date(),
   currentMappable: defaultMappable,
   datasetFound: true,
@@ -108,7 +109,8 @@ export const defaultAppState: AppState = {
   isInstalled: false,
   installPrompt: null,
   currentLayerGroup: defaultLayerGroup,
-  infoDialogs: {}
+  infoDialogs: {},
+  userPostalCode: null,
 };
 
 class AppReducer extends Reducer<AppState> {
@@ -204,6 +206,9 @@ class AppReducer extends Reducer<AppState> {
   }
   public setInfoDialog(visualId: string, seen: boolean) {
     this.state.infoDialogs[visualId] = seen
+  }
+  public setUserPostalCode(postalCode: number) {
+    this.state.userPostalCode = postalCode
   }
 }
 

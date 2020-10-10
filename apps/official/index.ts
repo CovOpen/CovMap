@@ -1,12 +1,9 @@
 import { AppConfig, LayerType } from "../../src/app-config.types"
 import { AnimatedLogo } from "./components/AnimatedLogo"
 import buildJSON from "./build.json"
-import { Welcome } from "./components/pages/Welcome"
 import { About } from "./components/pages/About"
 import { Imprint } from "./components/pages/Imprint"
 import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo"
-import { CovMapWelcome } from './components/CovMapWelcome'
-import { Questions } from './components/pages/Questions'
 
 import netcheck_ci_data from "../../data/netcheck_ci.json"
 
@@ -66,7 +63,7 @@ export const config: AppConfig = {
     'covmap': {
       name: 'CovMap Fallzahlen',
       description: 'Tagesaktuelle Zahlen des RKI - bis jetzt',
-      InfoComponent: CovMapWelcome,
+      // InfoComponent: CovMapWelcome,
       dateFormat: 'dddd, Do MMMM YYYY',
       mappings: {
         'CI-to-plz': {
@@ -136,7 +133,7 @@ export const config: AppConfig = {
           fn: (dataField, timeKey) => ({
             id: "extrusion",
             type: LayerType.FILL_EXTRUSION,
-            'paint': { 
+            'paint': {
               'fill-extrusion-color': [
                 'interpolate',
                 ['linear'],
@@ -198,13 +195,13 @@ export const config: AppConfig = {
 
 /**
  * This function calclulates approximate lower and upper bounds and a
- * distance between labels for readable legends 
+ * distance between labels for readable legends
  */
 function calculateNumericScale(minData, maxData)
 	{
 		// The minimum and maximum number of legend labels
 		const minLabels = 6, maxLabels = 10
-	
+
 		// This function works by calculating the number of digits and then dividing or scaling by 2 until it kinda fits
 		let distanceBetweenLabels = Math.pow(10, Math.floor(Math.log10(maxData)))
 		let lowestLabel
@@ -234,23 +231,23 @@ function calculateNumericScale(minData, maxData)
 
 function calculateBounds(data, propertyName) {
   let min = Infinity, max = -Infinity
-  
+
   for (const featureID of Object.keys(data)) {
     const value = data[featureID][propertyName]
     min = Math.min(value, min);
     max = Math.max(value, max);
   }
-  
+
   return {min, max}
 }
 
 function scaleProperty(data, newPropertyName, propertyName) {
   let {min, max} = calculateBounds(data, propertyName)
   let {lowestLabel, highestLabel} = calculateNumericScale(min, max)
-  
+
   let offset = lowestLabel;
   let scale = 1 / (highestLabel - lowestLabel)
-  
+
   for (const featureID of Object.keys(data)) {
     const feature = data[featureID]
     feature[newPropertyName] = (feature[propertyName] - offset) * scale
@@ -268,7 +265,7 @@ function transformData(json) {
   if (!json.length) {
     return null
   }
-  
+
   const propertiesByPLZ = {}
   json.forEach((properties) => propertiesByPLZ[properties.plz] = properties)
 
@@ -285,21 +282,21 @@ function transformData(json) {
   * Calcultes the y-Values and the labels for the legend
   */
 function calculateLegend(data, propertyName) {
-  
+
   if(!propertyName.endsWith('_scaled'))
     return null;
-  
+
   propertyName = propertyName.substring(0, propertyName.length - '_scaled'.length)
 
   let {min, max} = calculateBounds(data, propertyName)
   let {distanceBetweenLabels, lowestLabel, numLabels} = calculateNumericScale(min, max)
-  
+
   let legend = Array(numLabels).fill(undefined).map((_val, index) => {
     let y = index / ( numLabels - 1)
     let labelText = (index * distanceBetweenLabels + lowestLabel).toString()
-    
+
     return [y, labelText]
   })
-  
+
   return legend
 }

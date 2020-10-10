@@ -5,19 +5,20 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from "@material-ui/core/Typography";
 import moment from 'moment';
+import { useParams } from "react-router-dom";
 
 import { State } from "../state";
 import { AppApi } from "../state/app";
 import { useThunkDispatch } from "../useThunkDispatch";
-import { Settings } from './Settings';
 import { Zoom } from './Zoom';
 import { OfflineIndicator } from './OfflineIndicator';
 import { TopLeftContainer } from './TopLeftContainer';
 import { TimeNav } from './TimeNav';
+import { WelcomeStepsModal } from './WelcomeStepsModal/WelcomeStepsModal';
 import { WelcomeInfo } from './WelcomeInfo';
 import { WelcomeInfoButton } from './WelcomeInfoButton';
-import { GLMap } from './GLMap' 
-import { Legend } from './Legend' 
+import { GLMap } from './GLMap'
+import { Legend } from './Legend'
 import { config } from 'app-config/index'
 
 const useStyles = makeStyles((theme) => ({
@@ -64,6 +65,7 @@ async function loadFlyTo() {
 export const CovMap = () => {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
+  const urlParams = useParams<{subPage?: string}>()
   // const position = useSelector((state: State) => state.app.currentPosition); // TODO
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
@@ -88,7 +90,7 @@ export const CovMap = () => {
       if (viewPortEventCounter > 1000) {
         clearInterval(interval)
       }
-      
+
       dispatch(AppApi.setViewportEventCount(viewPortEventCounter))
     }, 10000)
   }, []);
@@ -146,7 +148,7 @@ export const CovMap = () => {
 
   const onViewportChange = (newViewPort) => {
     viewPortEventCounter += 1
-    
+
     // Note: Explicitly not spreading stateViewport in here,
     // because it blows up with the transition interpolators
     dispatch(AppApi.setViewport(newViewPort))
@@ -167,7 +169,7 @@ export const CovMap = () => {
       if (stateViewport.zoom > 7) {
         const newViewport = {
           ...stateViewport,
-          latitude: pointerEvent.lngLat[1], 
+          latitude: pointerEvent.lngLat[1],
           longitude: pointerEvent.lngLat[0],
           transitionDuration: 400,
           transitionInterpolator: FlyToInterpolator ? new (FlyToInterpolator as any)({ curve: 1 }) : null
@@ -195,7 +197,7 @@ export const CovMap = () => {
         <OfflineIndicator />
       </TopLeftContainer>
       <WelcomeInfo />
-      <GLMap 
+      <GLMap
         mapRef={mapRef}
         onMapClick={handleMapClick}
         onViewportChange={onViewportChange}
@@ -217,6 +219,7 @@ export const CovMap = () => {
           Keine Daten für den ausgewählten Zeitraum.
         </DialogTitle>
       </Dialog>
+      <WelcomeStepsModal subPage={urlParams.subPage}/>
     </div>
   );
 };

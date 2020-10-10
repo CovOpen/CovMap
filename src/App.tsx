@@ -1,7 +1,7 @@
 import "./app.css";
 import "mapbox-gl/dist/mapbox-gl.css"
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { hot } from "react-hot-loader";
 import { useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
@@ -23,7 +23,8 @@ import { AppApi } from "src/state/app";
 
 import {
   HashRouter as Router,
-  Route
+  Route,
+  Switch
 } from "react-router-dom";
 
 
@@ -36,15 +37,15 @@ function Alert(props) {
 const theme = createMuiTheme({
   palette: {
     secondary: {
-      main: '#002E62',
+      main: '#161616',
       contrastText: '#E3E9F3'
     },
     primary: {
       main: '#E3E9F3',
-      contrastText: '#002E62'
+      contrastText: '#161616'
     },
     text: {
-      primary: '#002E62'
+      primary: '#161616'
     },
     warning: {
       main: '#FEAE00',
@@ -60,7 +61,7 @@ const theme = createMuiTheme({
     }
   },
   typography: {
-    fontFamily: 'Dosis',
+    fontFamily: 'Inter, sans-serif',
     h1: {
       fontSize: '24px'
     },
@@ -101,8 +102,10 @@ export const App = () => {
           <NavBar showSearch={!!currentLayerGroup.search}/>
           <IntermediateProgress />
           <Container disableGutters maxWidth={false} style={{ flex: '1 1 auto', position:'relative' }}>
-            <Route key="map" exact path="/" component={CovMap} />
-            {config.content?.pages.map((page) => renderRoute(page))}
+            <Switch>
+              {config.content?.pages.map((page) => renderRoute(page))}
+              <Route key="map" path="/:subPage?" component={CovMap} />
+            </Switch>
           </Container>
         </Container>
         <Snackbar
