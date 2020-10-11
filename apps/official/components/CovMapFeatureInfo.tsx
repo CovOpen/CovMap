@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
-import { Card, CardContent, CardHeader, Collapse, IconButton, Typography } from "@material-ui/core";
+import { Button, Card, CardContent, CardHeader, Collapse, IconButton, Typography } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { RiskBadge } from "app-config/components/RiskBadge";
 import { makeStyles } from "@material-ui/core/styles";
@@ -39,8 +39,15 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   function toggleExpand() {
     setExpanded((expanded) => !expanded);
   }
-  console.log(rawData);
-  const { N: locationName, Id: zipCode, R: riskScore } = rawData;
+  const {
+    N: locationName,
+    Id: zipCode,
+    R: riskScore,
+    U: howToBehaveUrl,
+    S: symptomIndex,
+    C: contactIndex,
+    I: incidence,
+  } = rawData;
   const title = titleByRiskScore[riskScore];
   const riskDescription = descriptionByRiskScore[riskScore];
   return (
@@ -68,6 +75,26 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography>{riskDescription}</Typography>
+          <Card>
+            <CardHeader
+              title="Kontaktverhalten der Bevölkerung"
+              titleTypographyProps={{ variant: "h2" }}
+              action={contactIndex}
+            />
+          </Card>
+          <Card>
+            <CardHeader
+              title="Symptomlast der Bevölkerung"
+              titleTypographyProps={{ variant: "h2" }}
+              action={symptomIndex}
+            />
+          </Card>
+          <Card>
+            <CardHeader title="Fallzahlen RKI" titleTypographyProps={{ variant: "h2" }} action={incidence} />
+          </Card>
+          <Button href={howToBehaveUrl} variant="contained" color="primary">
+            Wie sollte ich mich verhalten?
+          </Button>
         </CardContent>
       </Collapse>
     </Card>
