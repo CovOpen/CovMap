@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FeatureInfoProps } from "../../../src/app-config.types";
+import { FeatureInfoProps, RiskScore } from "../../../src/app-config.types";
 import { Button, Card, CardContent, CardHeader, Collapse, Grid, IconButton, Typography } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { RiskBadge } from "app-config/components/RiskBadge";
@@ -27,13 +27,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const titleByRiskScore = {
-  0: "Normales Risiko",
-  1: "Mittleres Risiko",
-  2: "Hohes Risiko",
+  [RiskScore.Low]: "Normales Risiko",
+  [RiskScore.Medium]: "Mittleres Risiko",
+  [RiskScore.High]: "Hohes Risiko",
 };
 
 const descriptionByRiskScore = {
-  1: "Ein mittleres Risiko kann bei mehreren Szenarien bestehen: Entweder ist die Zahl der Neuinfektionen über 20 Neuinfektionen pro 100.000 Einwohner oder das Kontaktverhalten der Bevölkerung oder die Symptomlast ist erhöht, so dass die Zahl der Neuinfektionen demnächst weiter ansteigen könnte. Bitte die AHA + L Regeln beachten. Wir empfehlen darüber hinaus, die Anzahl der Kontakte freiwillig weitestgehend zu reduzieren.",
+  // TODO: Add missing descriptions
+  // TODO: Update description with shorter text
+  [RiskScore.Medium]:
+    "Ein mittleres Risiko kann bei mehreren Szenarien bestehen: Entweder ist die Zahl der Neuinfektionen über 20 Neuinfektionen pro 100.000 Einwohner oder das Kontaktverhalten der Bevölkerung oder die Symptomlast ist erhöht, so dass die Zahl der Neuinfektionen demnächst weiter ansteigen könnte. Bitte die AHA + L Regeln beachten. Wir empfehlen darüber hinaus, die Anzahl der Kontakte freiwillig weitestgehend zu reduzieren.",
 };
 
 export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProps) => {

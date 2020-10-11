@@ -119,7 +119,7 @@ export type FeatureInfoProps = {
   feature: any; // TODO: use GeoJSON feature type
   dataField: string;
   timeKey: string;
-  rawData: any;
+  rawData: RawDataEntry;
   onClose?: Function;
 };
 
@@ -218,3 +218,21 @@ export type PWAOptions = {
     msTileImage?: string;
   };
 };
+
+// TODO: Update based on new JSON format
+export enum RiskScore {
+  Low = 0,
+  Medium = 1,
+  High = 2,
+}
+
+// TODO: Update based on new JSON format
+export interface RawDataEntry {
+  Id: string;
+  N: string;
+  I: number;
+  U: string;
+  C: number;
+  R: RiskScore;
+  S: number;
+}
