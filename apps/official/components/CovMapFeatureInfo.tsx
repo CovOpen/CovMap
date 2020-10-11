@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
-import { Box, Button, Card, CardContent, CardHeader, Collapse, Grid, IconButton, Typography } from "@material-ui/core";
+import { Button, Card, CardContent, CardHeader, Collapse, Grid, IconButton, Typography } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { RiskBadge } from "app-config/components/RiskBadge";
 import { makeStyles } from "@material-ui/core/styles";

@@ -5,13 +5,11 @@ import React from "react";
 import { hot } from "react-hot-loader";
 import { useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import * as moment from "moment";
 import "moment/locale/de";
-moment.locale("de");
-
 import { NavBar } from "src/components/NavBar";
 import { CovMap } from "./components/CovMap";
 import { State } from "./state";
@@ -24,52 +22,13 @@ import { AppApi } from "src/state/app";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 import { config } from "app-config/index";
+import { theme } from "./theme";
+
+moment.locale("de");
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-
-const theme = createMuiTheme({
-  palette: {
-    secondary: {
-      main: "#2274E3",
-      contrastText: "#E3E9F3",
-    },
-    primary: {
-      main: "#E3E9F3",
-      contrastText: "#161616",
-    },
-    text: {
-      primary: "#161616",
-    },
-    warning: {
-      main: "#FEAE00",
-      contrastText: "#E3E9F3",
-    },
-    error: {
-      main: "#ED4661",
-      contrastText: "#E3E9F3",
-    },
-    success: {
-      main: "#10B17E",
-      contrastText: "#E3E9F3",
-    },
-  },
-  typography: {
-    fontFamily: "Inter, sans-serif",
-    h1: {
-      fontSize: "24px",
-      fontWeight: 600,
-    },
-    h2: {
-      fontSize: "20px",
-    },
-    h3: {
-      fontSize: "16px",
-      fontWeight: 600,
-    },
-  },
-});
 
 export const App = () => {
   const dispatch = useThunkDispatch();
