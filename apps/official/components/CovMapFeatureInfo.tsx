@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import { FeatureInfoProps, RiskScore } from "../../../src/app-config.types";
+import { FeatureInfoProps } from "../../../src/app-config.types";
 import { Button, Card, CardContent, CardHeader, Collapse, Grid, IconButton, Typography } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { RiskBadge } from "app-config/components/RiskBadge";
 import { makeStyles } from "@material-ui/core/styles";
+import { ContactScore, RawDataEntry, RiskScore } from "app-config/models";
 
 const useStyles = makeStyles((theme) => ({
   action: {
     alignSelf: "auto",
     marginTop: 0,
     marginLeft: "8px",
+  },
+  container: {
+    maxWidth: "350px",
   },
   expand: {
     transform: "rotate(0deg)",
@@ -22,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     transform: "rotate(90deg)",
   },
   card: {
+    // TODO: Extract into theme
     backgroundColor: "#FCFCFC",
   },
 }));
@@ -32,6 +37,11 @@ const titleByRiskScore = {
   [RiskScore.High]: "Hohes Risiko",
 };
 
+const titleByContactScore = {
+  [ContactScore.Low]: "Reduziert",
+  [ContactScore.Medium]: "Zu hoch",
+};
+
 const descriptionByRiskScore = {
   // TODO: Add missing descriptions
   // TODO: Update description with shorter text
@@ -40,27 +50,25 @@ const descriptionByRiskScore = {
 };
 
 export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProps) => {
-  const { action, card, expand, expandOpen } = useStyles();
+  const { action, card, container, expand, expandOpen } = useStyles();
   const [expanded, setExpanded] = useState(false);
 
   function toggleExpand() {
     setExpanded((expanded) => !expanded);
   }
 
-  // TODO: This needs to be adjusted when the JSON data format changes
   const {
-    N: locationName,
-    Id: zipCode,
-    R: riskScore,
-    U: howToBehaveUrl,
-    // S: symptomIndex,
-    C: contactIndex,
-    I: incidence,
-  } = rawData;
+    locationName,
+    IdDistrict: zipCode,
+    riskScore,
+    howToBehaveUrl,
+    contactScore,
+    incidence,
+  } = rawData as RawDataEntry;
   const title = titleByRiskScore[riskScore];
   const riskDescription = descriptionByRiskScore[riskScore];
   return (
-    <Card>
+    <Card className={container}>
       <CardHeader
         avatar={<RiskBadge riskScore={riskScore} />}
         action={
@@ -81,15 +89,16 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Grid container direction="column" spacing={2}>
-            <Grid item>
-              <Typography>{riskDescription}</Typography>
-            </Grid>
+            {/* TODO: Comment this back in once the risk descriptions are updated */}
+            {/*<Grid item>*/}
+            {/*  <Typography>{riskDescription}</Typography>*/}
+            {/*</Grid>*/}
             <Grid item>
               <Card variant="outlined" className={card}>
                 <CardHeader
                   title="Kontaktverhalten der Bevölkerung"
                   titleTypographyProps={{ variant: "h3" }}
-                  action={contactIndex}
+                  action={titleByContactScore[contactScore]}
                   classes={{ action }}
                 />
               </Card>

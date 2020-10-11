@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import React, { FunctionComponent } from "react";
-import { RiskScore } from "../../../src/app-config.types";
+import { RiskScore } from "app-config/models";
 
 const boxColorsByRiskScore = (theme: Theme) => ({
   [RiskScore.Low]: theme.palette.lowRisk.main,

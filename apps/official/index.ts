@@ -9,7 +9,7 @@ import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo";
 
 const CovMapMappables = [
   {
-    property: "R",
+    property: "riskScore",
     title: "Contact Index C",
     default: true,
   },
@@ -80,7 +80,7 @@ export const config: AppConfig = {
           datasourceId: "contact-index",
           geoId: "plz-details",
           geoProperty: "cca_2",
-          dataProperty: "Id",
+          dataProperty: "IdDistrict",
           transformData: transformData,
           calculateLegend: calculateLegend,
         },
@@ -108,11 +108,11 @@ export const config: AppConfig = {
                 "interpolate",
                 ["linear"],
                 ["get", dataField, ["get", timeKey]],
-                0,
-                "#00CC1A",
                 1,
-                "#FFA100",
+                "#00CC1A",
                 2,
+                "#FFA100",
+                3,
                 "#FF5100",
               ],
               "fill-opacity": 0.8,
@@ -149,7 +149,7 @@ function transformData(json) {
     data: json.reduce(
       (acc, elem) =>
         Object.assign(acc, {
-          [elem.Id]: elem,
+          [elem.IdDistrict]: elem,
         }),
       {},
     ),
