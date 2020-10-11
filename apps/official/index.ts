@@ -8,7 +8,7 @@ import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo"
 // import { Questions } from './components/pages/Questions'
 
 const CovMapMappables = [{
-  property: 'Riskscore',
+  property: 'R',
   title: 'Contact Index C',
   default: true
 }]
@@ -58,7 +58,7 @@ export const config: AppConfig = {
   defaultVisual: 'covmap',
   datasources: {
     'contact-index': {
-      url: (dateString) => `/data/district_ci.json`
+      url: (dateString) => `/data/districts_data_all.json`
     }
   },
   visuals: {
@@ -71,7 +71,7 @@ export const config: AppConfig = {
           datasourceId: 'contact-index',
           geoId: 'plz-details',
           geoProperty: 'cca_2',
-          dataProperty: 'IdLandkreis',
+          dataProperty: 'Id',
           transformData: transformData,
           calculateLegend: calculateLegend,
         }
@@ -90,7 +90,7 @@ export const config: AppConfig = {
           id: "areas-fill",
           source: "CI-to-plz",
           // showLegend: true,
-          fn: (dataField, timeKey) => console.log('LAY', dataField, timeKey) as any || ({
+          fn: (dataField, timeKey) => ({
             type: LayerType.FILL,
             paint: {
               'fill-color': [
@@ -138,7 +138,7 @@ function transformData(json) {
 
   return {
     data: json.reduce((acc, elem) => Object.assign(acc, {
-      [elem.IdLandkreis]: elem
+      [elem.Id]: elem
     }), {})
   };
 }
