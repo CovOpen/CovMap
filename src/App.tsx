@@ -59,9 +59,14 @@ const theme = createMuiTheme({
     fontFamily: "Inter, sans-serif",
     h1: {
       fontSize: "24px",
+      fontWeight: 600,
     },
     h2: {
       fontSize: "20px",
+    },
+    h3: {
+      fontSize: "16px",
+      fontWeight: 600,
     },
   },
 });
