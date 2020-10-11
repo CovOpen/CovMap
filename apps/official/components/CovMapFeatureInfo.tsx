@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
-import { Card, CardContent, CardHeader, IconButton, Typography } from "@material-ui/core";
+import { Card, CardContent, CardHeader, Collapse, IconButton, Typography } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { RiskBadge } from "app-config/components/RiskBadge";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   action: {
     alignSelf: "auto",
     marginTop: 0,
     marginLeft: "8px",
   },
-});
+  expand: {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: "rotate(90deg)",
+  },
+}));
 
 const titleByRiskScore = {
   0: "Normales Risiko",
@@ -24,7 +34,11 @@ const descriptionByRiskScore = {
 };
 
 export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProps) => {
-  const { action } = useStyles();
+  const { action, expand, expandOpen } = useStyles();
+  const [expanded, setExpanded] = useState(false);
+  function toggleExpand() {
+    setExpanded((expanded) => !expanded);
+  }
   console.log(rawData);
   const { N: locationName, Id: zipCode, R: riskScore } = rawData;
   const title = titleByRiskScore[riskScore];
@@ -34,7 +48,12 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
       <CardHeader
         avatar={<RiskBadge riskScore={riskScore} />}
         action={
-          <IconButton aria-label="more">
+          <IconButton
+            className={`${expand} ${expanded ? expandOpen : ""}`}
+            onClick={toggleExpand}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
             <ArrowForwardIosIcon />
           </IconButton>
         }
@@ -46,9 +65,11 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
         titleTypographyProps={{ variant: "h1" }}
         subheader={`${zipCode} ${locationName}`}
       />
-      <CardContent>
-        <Typography>{riskDescription}</Typography>
-      </CardContent>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography>{riskDescription}</Typography>
+        </CardContent>
+      </Collapse>
     </Card>
   );
 };
