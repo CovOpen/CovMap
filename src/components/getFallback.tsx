@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
 import { AppApi } from "../state/app";
 import { useThunkDispatch } from "../useThunkDispatch";
@@ -10,14 +10,14 @@ const Fallback = () => {
   useEffect(() => {
     const key = `LazyComponent${counter++}`;
 
-    dispatch(AppApi.pushLoading(key))
+    dispatch(AppApi.pushLoading(key));
 
     return () => {
-      dispatch(AppApi.popLoading(key))
-    }
+      dispatch(AppApi.popLoading(key));
+    };
   }, []);
 
   return null;
-}
+};
 
-export const getFallbackComponent = () => <Fallback />
+export const getFallbackComponent = () => <Fallback />;

@@ -7,12 +7,12 @@ export function triggerInstallPrompt(cb?: (any) => any) {
     const { installPrompt, isInstalled } = getState().app;
 
     if (installPrompt && !isInstalled) {
-      const result = await installPrompt()
-      if (result.outcome === 'accepted') {
-        dispatch(AppApi.setIsInstalled(true)) 
-        dispatch(AppApi.setInstallPrompt(null))
+      const result = await installPrompt();
+      if (result.outcome === "accepted") {
+        dispatch(AppApi.setIsInstalled(true));
+        dispatch(AppApi.setInstallPrompt(null));
       }
-      cb && cb(result)
+      cb && cb(result);
     }
   };
 }

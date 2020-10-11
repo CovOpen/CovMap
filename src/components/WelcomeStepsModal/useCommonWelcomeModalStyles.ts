@@ -22,7 +22,7 @@ export const useCommonWelcomeModalStyles = makeStyles(() => ({
     height: "51px",
     background: "#2274E3",
     borderRadius: "12px",
-    margin: "10px"
+    margin: "10px",
   },
   secondaryButton: {
     color: "#828282",
@@ -31,9 +31,9 @@ export const useCommonWelcomeModalStyles = makeStyles(() => ({
     background: "#FFFFFF",
     borderRadius: "12px",
     margin: "10px",
-    boxShadow: "none"
+    boxShadow: "none",
   },
   infoTextDiv: {
-    margin: "20px 40px"
-  }
+    margin: "20px 40px",
+  },
 }));

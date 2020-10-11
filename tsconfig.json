@@ -4,10 +4,7 @@
     "incremental": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-        "dom",
-        "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "allowJs": false,
     "checkJs": false,
     "downlevelIteration": true,
@@ -42,18 +39,6 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true
   },
-  "exclude": [
-    "./node_modules",
-    "./build",
-    "./dev",
-    "./config",
-    "scripts",
-    "acceptance-tests",
-    "jest"
-  ],
-  "include": [
-    "./src/custom.d.ts",
-    "./src",
-    "./apps/*"
-  ]
+  "exclude": ["./node_modules", "./build", "./dev", "./config", "scripts", "acceptance-tests", "jest"],
+  "include": ["./src/custom.d.ts", "./src", "./apps/*"]
 }

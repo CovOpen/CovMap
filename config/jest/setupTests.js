@@ -1,12 +1,11 @@
 // setup testing environment
 
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { configure } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 
 configure({
   adapter: new Adapter(),
 });
-
 
 // Mock window.globalStorage
 class LocalStorageMock {
@@ -29,7 +28,7 @@ class LocalStorageMock {
   removeItem(key) {
     delete this.store[key];
   }
-};
+}
 
-global.window.localStorage = new LocalStorageMock;
+global.window.localStorage = new LocalStorageMock();
 global.localStorage = global.window.localStorage;

@@ -1,25 +1,25 @@
 name: Android
 
 env:
-  ANDROID_COMPILE_SDK: '29'
-  ANDROID_BUILD_TOOLS: '28.0.3'
-  ANDROID_SDK_TOOLS: '4333796'
-  ANDROID_KEYSTORE_FILE: 'android/app/my-release-key.jks'
-  ANDROID_KEYSTORE_KEY_ALIAS: 'my-alias'
-  ANDROID_UNSIGNED_APK_FILE: 'android/app/build/outputs/apk/release/app-release-unsigned.apk'
-  ANDROID_ALIGNED_APK_FILE: 'android/app/build/outputs/apk/release/app-release-aligned.apk'
-  ANDROID_SIGNED_APK_FILE: 'android/app/build/outputs/apk/release/app-release-signed.apk'
+  ANDROID_COMPILE_SDK: "29"
+  ANDROID_BUILD_TOOLS: "28.0.3"
+  ANDROID_SDK_TOOLS: "4333796"
+  ANDROID_KEYSTORE_FILE: "android/app/my-release-key.jks"
+  ANDROID_KEYSTORE_KEY_ALIAS: "my-alias"
+  ANDROID_UNSIGNED_APK_FILE: "android/app/build/outputs/apk/release/app-release-unsigned.apk"
+  ANDROID_ALIGNED_APK_FILE: "android/app/build/outputs/apk/release/app-release-aligned.apk"
+  ANDROID_SIGNED_APK_FILE: "android/app/build/outputs/apk/release/app-release-signed.apk"
 
 on:
   pull_request:
     branches:
       - master
     paths-ignore:
-      - '**.md'
-      - 'LICENSE'
+      - "**.md"
+      - "LICENSE"
   push:
     tags:
-      - '*'
+      - "*"
     branches:
       - master
 
@@ -31,7 +31,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with:
-          java-version: '8' 
+          java-version: "8"
           java-package: jdk
       - name: Install Android SDK
         run: sh ci/install-android-sdk.sh

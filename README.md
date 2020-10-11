@@ -40,7 +40,7 @@ node dev/generate-random-data-for-geojson --help
 
 ## Contributing
 
-For fast _Hackathon like_ sprints, we use the shared `develop` branch. Add your changes locally, use `git add X && git commit` __then__ use `git pull --rebase` __before you push__ and resolve possible conflicts locally, then `git push`.
+For fast _Hackathon like_ sprints, we use the shared `develop` branch. Add your changes locally, use `git add X && git commit` **then** use `git pull --rebase` **before you push** and resolve possible conflicts locally, then `git push`.
 
 ## Requirements for v1.0
 

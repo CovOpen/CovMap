@@ -52,7 +52,7 @@ export const NumericInput: React.FC<QuestionFormComponentProps> = ({ currentQues
               step,
               min,
               max,
-              type: "number",
+              "type": "number",
               "aria-labelledby": "input-slider",
             }}
           />

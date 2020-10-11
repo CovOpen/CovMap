@@ -22,7 +22,9 @@ export const RadioSelect: React.FC<QuestionFormComponentProps> = ({ currentQuest
 
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend" className={classes.questionText}>{currentQuestion.text}</FormLabel>
+      <FormLabel component="legend" className={classes.questionText}>
+        {currentQuestion.text}
+      </FormLabel>
       <RadioGroup name={currentQuestion.id} onChange={handleChange} value={String(value)}>
         {options.map((answer) => (
           <FormControlLabel key={answer.value} value={answer.value} control={<Radio />} label={answer.text} />

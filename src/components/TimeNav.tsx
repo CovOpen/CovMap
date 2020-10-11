@@ -1,94 +1,94 @@
 import React, { useState } from "react";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
-import Fab from '@material-ui/core/Fab';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import Fab from "@material-ui/core/Fab";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 
 import { useThunkDispatch } from "../useThunkDispatch";
-import { plusDays } from '../lib/formatUTCDate.js';
+import { plusDays } from "../lib/formatUTCDate.js";
 import { State } from "../state";
 import { AppApi } from "../state/app";
-import { TimeRangeSlider } from './TimeRangeSlider'
-import { diffDays } from '../lib/diff-days'
+import { TimeRangeSlider } from "./TimeRangeSlider";
+import { diffDays } from "../lib/diff-days";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "absolute",
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
     left: theme.spacing(5),
     bottom: theme.spacing(5),
     zIndex: 1200,
-    width: 'calc(100% - 172px) !important',
-    touchAction: 'none',
-    pointerEvents: 'none',
+    width: "calc(100% - 172px) !important",
+    touchAction: "none",
+    pointerEvents: "none",
   },
   buttonContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
     paddingRight: theme.spacing(2),
     width: 110,
-    pointerEvents: 'auto',
+    pointerEvents: "auto",
   },
-  [theme.breakpoints.down('xs')]: {
+  [theme.breakpoints.down("xs")]: {
     root: {
-      width: '100vw !important',
-      justifyContent: 'center',
-      left: 0
+      width: "100vw !important",
+      justifyContent: "center",
+      left: 0,
     },
     buttonContainer: {
-      width: '90',
+      width: "90",
       paddingRight: 0,
       paddingLeft: theme.spacing(2),
-      justifyContent: 'space-between'
-    }
-  }
+      justifyContent: "space-between",
+    },
+  },
 }));
 
-export function TimeNav () {
+export function TimeNav() {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
   const currentDate = useSelector((state: State) => state.app.currentDate);
   const [value, setValue] = useState<number>(() => {
     const today = new Date();
-    const diff =  diffDays(today, currentDate)
+    const diff = diffDays(today, currentDate);
 
-    return Math.min(diff, 0)
-  })
+    return Math.min(diff, 0);
+  });
 
   const onNextClick = () => {
-    const newValue = value + 1
+    const newValue = value + 1;
     if (newValue > 0) {
-      return
+      return;
     }
-    setValue(newValue)
-    const newDate = plusDays(newValue)
+    setValue(newValue);
+    const newDate = plusDays(newValue);
     dispatch(AppApi.setCurrentDate(newDate));
-  }
+  };
 
   const onPrevClick = () => {
-    const newValue = value - 1
+    const newValue = value - 1;
     if (newValue < -14) {
-      return
+      return;
     }
-    setValue(newValue)
-    const newDate = plusDays(newValue)
+    setValue(newValue);
+    const newDate = plusDays(newValue);
     dispatch(AppApi.setCurrentDate(newDate));
-  }
+  };
 
   return (
     <div className={classes.root}>
       <div className={classes.buttonContainer}>
-        <Fab color="primary" aria-label="zoom in" onClick={onPrevClick} size='small' >
+        <Fab color="primary" aria-label="zoom in" onClick={onPrevClick} size="small">
           <NavigateBeforeIcon />
         </Fab>
-        <Fab color="primary" aria-label="zoom in" onClick={onNextClick} size='small' >
+        <Fab color="primary" aria-label="zoom in" onClick={onNextClick} size="small">
           <NavigateNextIcon />
         </Fab>
-      </div>  
+      </div>
       <TimeRangeSlider />
     </div>
   );

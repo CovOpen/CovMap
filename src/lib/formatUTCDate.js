@@ -4,10 +4,10 @@ function formatUTCDate(date) {
   const year = date.getUTCFullYear();
 
   if (month < 10) {
-    month = '0' + month;
+    month = "0" + month;
   }
   if (day < 10) {
-    day = '0' + day;
+    day = "0" + day;
   }
 
   return `${year}-${month}-${day}`;
@@ -15,11 +15,11 @@ function formatUTCDate(date) {
 
 const oneDay = 1000 * 60 * 60 * 24;
 
-const formatNowMinusDays = (days) => formatUTCDate(plusDays(days))
-const plusDays = (days) => new Date(Date.now() + oneDay * days)
+const formatNowMinusDays = (days) => formatUTCDate(plusDays(days));
+const plusDays = (days) => new Date(Date.now() + oneDay * days);
 
 module.exports = {
   formatNowMinusDays,
   formatUTCDate,
-  plusDays
-}
+  plusDays,
+};

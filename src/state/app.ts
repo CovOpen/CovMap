@@ -1,12 +1,13 @@
 import { Reducer } from "./reduxHelper";
 import { GeoJSON } from "geojson";
-import { Mappable, LayerGroup } from '../app-config.types'
+import { Mappable, LayerGroup } from "../app-config.types";
 
-import { config } from 'app-config/index'
+import { config } from "app-config/index";
 
-const defaultVisual = config.visuals[config.defaultVisual]
-const defaultLayerGroup = defaultVisual.layerGroups.find(group => group.default) || defaultVisual.layerGroups[0]
-const defaultMappable = defaultLayerGroup.mappables.find(mappable => mappable.default) || defaultLayerGroup.mappables[0]
+const defaultVisual = config.visuals[config.defaultVisual];
+const defaultLayerGroup = defaultVisual.layerGroups.find((group) => group.default) || defaultVisual.layerGroups[0];
+const defaultMappable =
+  defaultLayerGroup.mappables.find((mappable) => mappable.default) || defaultLayerGroup.mappables[0];
 
 export const backendUrl = "/api";
 
@@ -14,7 +15,7 @@ export type MapSet = {
   id: string;
   geo: GeoJSON;
   timeKeys: Array<string>;
-}
+};
 
 export interface MapArea {
   celat: number;
@@ -26,7 +27,7 @@ export interface MapArea {
 export type MapData = {
   types?: Record<string, string>;
   data: Array<Record<string, Record<string, number>>>;
-}
+};
 
 export type VisualId = string;
 
@@ -36,22 +37,22 @@ export type Viewport = {
   zoom: number;
   pitch?: number;
   bearing?: number;
-}
+};
 
 export type CurrentFeature = {
   previousFeature?: any;
   feature: any;
   lngLat?: Array<number>;
-}
+};
 
 export type SnackbarMessage = {
   text: string;
-  type: 'info' | 'error' | 'warning';
+  type: "info" | "error" | "warning";
   done?: boolean;
   duration?: number;
-}
+};
 
-export type MapSetHolder = Record<VisualId, Record<string, MapSet>>
+export type MapSetHolder = Record<VisualId, Record<string, MapSet>>;
 
 export interface AppState {
   viewport: Viewport;
@@ -101,9 +102,9 @@ export const defaultAppState: AppState = {
   viewPortEventsCount: 0,
   searchResult: false,
   snackbarMessage: {
-    text: '',
-    type: 'info',
-    done: true
+    text: "",
+    type: "info",
+    done: true,
   },
   currentFeature: { feature: null },
   isInstalled: false,
@@ -129,7 +130,7 @@ class AppReducer extends Reducer<AppState> {
   public mergeViewport(partialViewport: Record<string, number>) {
     this.state.viewport = {
       ...this.state.viewport,
-      ...partialViewport
+      ...partialViewport,
     };
   }
   public setCurrentArea(area: MapArea) {
@@ -143,11 +144,11 @@ class AppReducer extends Reducer<AppState> {
   }
   public addMappedSet(visualId: VisualId, mappingId: string, data: MapSet) {
     if (!this.state.mappedSets[visualId]) {
-      this.state.mappedSets[visualId] = {}
+      this.state.mappedSets[visualId] = {};
     }
     this.state.mappedSets[visualId] = {
       ...this.state.mappedSets[visualId],
-      [mappingId]: data
+      [mappingId]: data,
     };
   }
   public setCurrentDate(date: Date) {
@@ -167,48 +168,48 @@ class AppReducer extends Reducer<AppState> {
   }
   public pushLoading(id: string) {
     if (!this.state.loading.has(id)) {
-      this.state.loading.add(id)
+      this.state.loading.add(id);
       if (this.state.isLoading === false) {
-        this.state.isLoading = true
+        this.state.isLoading = true;
       }
     }
   }
   public popLoading(id: string) {
-    this.state.loading.delete(id)
+    this.state.loading.delete(id);
     if (this.state.loading.size === 0) {
       if (this.state.isLoading === true) {
-        this.state.isLoading = false
+        this.state.isLoading = false;
       }
     }
   }
   public setSnackbarMessage(message: SnackbarMessage) {
-    const { done = false } = message
+    const { done = false } = message;
     this.state.snackbarMessage = {
       done,
-      ...message
-    }
+      ...message,
+    };
   }
   public setCurrentFeature(feature: any, lngLat?: Array<number>) {
     this.state.currentFeature = {
       feature,
       lngLat,
-      previousFeature: this.state.currentFeature?.feature
-    }
+      previousFeature: this.state.currentFeature?.feature,
+    };
   }
   public setIsInstalled(installed: boolean) {
-    this.state.isInstalled = installed
+    this.state.isInstalled = installed;
   }
   public setInstallPrompt(prompt: Function | null) {
-    this.state.installPrompt = prompt
+    this.state.installPrompt = prompt;
   }
   public setLayerGroup(group: LayerGroup) {
-    this.state.currentLayerGroup = group
+    this.state.currentLayerGroup = group;
   }
   public setInfoDialog(visualId: string, seen: boolean) {
-    this.state.infoDialogs[visualId] = seen
+    this.state.infoDialogs[visualId] = seen;
   }
   public setUserPostalCode(postalCode: number) {
-    this.state.userPostalCode = postalCode
+    this.state.userPostalCode = postalCode;
   }
 }
 

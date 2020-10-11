@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import Slider from '@material-ui/core/Slider';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Slider from "@material-ui/core/Slider";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
-import Tooltip from '@material-ui/core/Tooltip';
-import moment from 'moment';
+import Tooltip from "@material-ui/core/Tooltip";
+import moment from "moment";
 
 import { useThunkDispatch } from "../useThunkDispatch";
-import { formatNowMinusDays, plusDays } from '../lib/formatUTCDate.js';
+import { formatNowMinusDays, plusDays } from "../lib/formatUTCDate.js";
 import { State } from "../state";
 import { AppApi } from "../state/app";
-import { config } from 'app-config/index'
-import { diffDays } from '../lib/diff-days'
+import { config } from "app-config/index";
+import { diffDays } from "../lib/diff-days";
 
 export type Props = {
   onChange?: Function | null;
-}
+};
 
 const TouchSlider = withStyles({
   thumb: {
@@ -28,57 +28,59 @@ const TouchSlider = withStyles({
     width: 1,
     marginTop: -3,
   },
-})(Slider)
+})(Slider);
 
 const useStyles = makeStyles((theme) => ({
   slider: {
-    touchAction: 'none',
-    pointerEvents: 'initial',
+    touchAction: "none",
+    pointerEvents: "initial",
   },
-  [theme.breakpoints.down('xs')]: {
+  [theme.breakpoints.down("xs")]: {
     slider: {
-      display: 'none'
-    }
-  }
+      display: "none",
+    },
+  },
 }));
 
-const MAX_SLIDER_VALUE = 0
+const MAX_SLIDER_VALUE = 0;
 let timeout: any = 0;
 
-
-
-export function TimeRangeSlider ({ onChange = () => {} }: Props) {
+export function TimeRangeSlider({ onChange = () => {} }: Props) {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
   const currentDate = useSelector((state: State) => state.app.currentDate);
   const [value, setValue] = useState<number>(() => {
     const today = new Date();
-    const diff =  diffDays(today, currentDate)
+    const diff = diffDays(today, currentDate);
 
-    return Math.min(diff, MAX_SLIDER_VALUE)
-  })
-  
+    return Math.min(diff, MAX_SLIDER_VALUE);
+  });
+
   function valuetext(value) {
     return formatNowMinusDays(value);
   }
-  
+
   function onSliderChange(event, value) {
-    setValue(value)
+    setValue(value);
   }
 
   function onDayChange(event, value) {
-    const newDate = plusDays(value)
+    const newDate = plusDays(value);
     const diff = diffDays(newDate, currentDate);
-    
+
     if (diff === 0) {
-      return
+      return;
     }
-    
+
     clearTimeout(timeout);
-    timeout = setTimeout((t) => {
-      (onChange as Function)(newDate);
-      dispatch(AppApi.setCurrentDate(newDate));
-    }, 150, timeout);
+    timeout = setTimeout(
+      (t) => {
+        (onChange as Function)(newDate);
+        dispatch(AppApi.setCurrentDate(newDate));
+      },
+      150,
+      timeout,
+    );
   }
 
   return (
@@ -109,14 +111,14 @@ export type ValueLabelComponentProps = {
 const SliderLabelTooltip = withStyles({
   tooltip: {
     fontSize: 20,
-    marginBottom: 30
-  }
-})(Tooltip)
+    marginBottom: 30,
+  },
+})(Tooltip);
 
 function ValueLabelComponent({ children, open, value }: ValueLabelComponentProps) {
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
-  const visual = config.visuals[currentVisual]
-  const dateValue = moment(plusDays(value)).format(visual.dateFormat)
+  const visual = config.visuals[currentVisual];
+  const dateValue = moment(plusDays(value)).format(visual.dateFormat);
 
   return (
     <SliderLabelTooltip open={open} enterTouchDelay={0} placement="top" title={dateValue}>

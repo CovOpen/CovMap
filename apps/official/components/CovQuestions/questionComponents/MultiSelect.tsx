@@ -36,7 +36,9 @@ export const MultiSelect: React.FC<QuestionFormComponentProps> = ({
 
   return (
     <FormGroup>
-      <FormLabel component="legend" className={classes.questionText}>{currentQuestion.text}</FormLabel>
+      <FormLabel component="legend" className={classes.questionText}>
+        {currentQuestion.text}
+      </FormLabel>
       {options.map((answer) => (
         <FormControlLabel
           key={answer.value}
