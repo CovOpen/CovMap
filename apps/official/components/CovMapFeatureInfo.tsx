@@ -1,23 +1,44 @@
 import React from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
+import { Card, CardHeader, IconButton } from "@material-ui/core";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import { RiskBadge } from "app-config/components/RiskBadge";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  action: {
+    alignSelf: "auto",
+    marginTop: 0,
+    marginLeft: "8px",
+  },
+});
 
 export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProps) => {
+  const { action } = useStyles();
+  const riskScore = 1;
+  const titleByRiskScore = {
+    1: "Normales Risiko",
+    2: "Mittleres Risiko",
+    3: "Hohes Risiko",
+  };
+  const title = titleByRiskScore[riskScore];
   return (
-    <div>
-      <Typography variant="h2">{feature.properties.name}</Typography>
-      <ul>
-        <li style={{ marginTop: "0.4em", marginBottom: "0.4em" }}>Contact Index C: {rawData["CI"]}</li>
-        <li>Einwohner: {rawData["inhabitants"]}</li>
-        <li>PLZ: {rawData["plz"]}</li>
-        <li>Fläche: {rawData["area"]}</li>
-        <li>Name: {rawData["names"]}</li>
-        <li>Landkreis: {rawData["Landkreis"]}</li>
-      </ul>
-      <Button size="small" onClick={onClose as any}>
-        Schließen
-      </Button>
-    </div>
+    <Card>
+      <CardHeader
+        avatar={<RiskBadge riskScore={riskScore} />}
+        action={
+          <IconButton aria-label="more">
+            <ArrowForwardIosIcon />
+          </IconButton>
+        }
+        classes={{ action }}
+        title={title}
+        /* TODO: Should this be bold? It is bold in the design,
+            but not in our theme, so this seems to be the only place
+            where we use bold in the app. */
+        titleTypographyProps={{ variant: "h1" }}
+        subheader="12345 Berlin (Mitte)"
+      />
+    </Card>
   );
 };
