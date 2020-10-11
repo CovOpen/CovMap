@@ -1,14 +1,10 @@
-import React, { useEffect } from "react";
-import { LazyError } from './LazyError'
+import React from "react";
 import { useSelector } from "react-redux";
 
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper, Container, Box } from '@material-ui/core';
+import { Paper, Box } from '@material-ui/core';
 
-import { AppApi, MapSet } from "../state/app";
 import { State } from "../state";
-import { getFallbackComponent } from './getFallback';
-import { useThunkDispatch } from "../useThunkDispatch";
 import { formatUTCDate } from '../lib/formatUTCDate.js'
 import { config } from 'app-config/index'
 import { Expression } from '../lib/expression'
@@ -39,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
 
 export function Legend() {
   const classes = useStyles();
-  const dispatch = useThunkDispatch();
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const currentMappable = useSelector((state: State) => state.app.currentMappable);
   const currentDate = useSelector((state: State) => state.app.currentDate);
@@ -67,17 +62,16 @@ export function Legend() {
     if(layer.showLegend) {
 	    const paintExpression = Expression.parse(l.paint['fill-color'], 'color')
 	    
-	    let legendStops = activeMapping.calculateLegend(currentDataSet.data, currentMappable.property)
+	    const legendStops = activeMapping.calculateLegend(currentDataSet.data, currentMappable.property)
 	    
 	    legend = legendStops.map(([y, label]) => {
-	      // @ts-ignore
-	      let color = paintExpression.evaluate({properties: {[timeKey]: {[currentMappable.property]:y}}})
+	      const color = paintExpression.evaluate({properties: {[timeKey]: {[currentMappable.property]:y}}} as any)
 	      return [color.toString(), label]
 	    })
 	    
 	    showLegend = true
 	    break
-	}
+	  }
   }
 
   if (!showLegend)
@@ -86,8 +80,8 @@ export function Legend() {
   return (
     <Paper elevation={3} className={classes.root}>
       <Box p={2}>
-        {legend.map(([color, label]) => (
-          <div>
+        {legend.map(([color, label], index) => (
+          <div key={index}>
             <span className={classes.legendKey} style={{backgroundColor: color}}/>
             <span> {label} </span>
           </div>

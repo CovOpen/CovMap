@@ -8,6 +8,8 @@ export type AppConfig = {
     buildJSON: BuildJSON;
     mapSettings?: MapSettings;
     defaultVisual: string;
+    showSettings?: boolean;
+    showTimeNavigation?: boolean;
     datasources: Record<DatasourceId, AppDatasource>;
     visuals: Record<VisualId, AppVisual>;
     geos: Record<GeoId, AppGeo>;
@@ -71,7 +73,7 @@ export type DefaultSearchOptions = {
      * Allows to transform a search term before it is queried for in the data
      * @param query
      */
-    createLegend?(query: string): Array<String>;
+    createLegend?(query: string): Array<string>;
     all?: boolean;
 }
 
