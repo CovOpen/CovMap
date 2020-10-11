@@ -1,7 +1,12 @@
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import React, { FunctionComponent } from "react";
 
-const boxColorsByRiskScore = { 0: "#219653", 1: "#EEC341", 2: "#E84C4C" };
+const boxColorsByRiskScore = (theme: Theme) => ({
+  0: theme.palette.success.main,
+  1: theme.palette.warning.main,
+  2: theme.palette.error.main,
+});
+// const boxColorsByRiskScore = (theme) => ({ 0: "#219653", 1: "#EEC341", 2: "#E84C4C" });
 
 const useStyles = makeStyles<Theme, Props, string>((theme) => {
   return {
@@ -15,7 +20,7 @@ const useStyles = makeStyles<Theme, Props, string>((theme) => {
       alignItems: "center",
       justifyContent: "center",
       color: "#FFFFFF",
-      background: ({ riskScore }) => boxColorsByRiskScore[riskScore],
+      background: ({ riskScore }) => boxColorsByRiskScore(theme)[riskScore],
     },
   };
 });
