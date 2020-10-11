@@ -90,6 +90,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
                   title="Kontaktverhalten der Bevölkerung"
                   titleTypographyProps={{ variant: "h3" }}
                   action={contactIndex}
+                  classes={{ action }}
                 />
               </Card>
             </Grid>
@@ -101,6 +102,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
                   subheader="Bald verfügbar!"
                   // TODO: Instead of subheader, show actual data
                   // action={symptomIndex}
+                  // classes={{ action }}
                 />
               </Card>
             </Grid>
@@ -112,6 +114,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
                   action={new Intl.NumberFormat("de-de", { maximumFractionDigits: 1, minimumFractionDigits: 1 }).format(
                     incidence,
                   )}
+                  classes={{ action }}
                 />
               </Card>
             </Grid>
