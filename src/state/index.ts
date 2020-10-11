@@ -49,6 +49,7 @@ export const rootReducer = combineReducers({
     "loading",
     "isLoading",
     "datasetFound",
+    "currentMappable",
     "viewPortEventsCount",
     "currentDate",
     "hasSearchError",
