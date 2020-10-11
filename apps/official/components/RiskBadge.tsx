@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import React, { FunctionComponent } from "react";
 
-const boxColorsByRiskScore = { 1: "#219653", 2: "#EEC341", 3: "#E84C4C" };
+const boxColorsByRiskScore = { 0: "#219653", 1: "#EEC341", 2: "#E84C4C" };
 
 const useStyles = makeStyles<Theme, Props, string>((theme) => {
   return {
@@ -21,10 +21,10 @@ const useStyles = makeStyles<Theme, Props, string>((theme) => {
 });
 
 export interface Props {
-  riskScore: 1 | 2 | 3;
+  riskScore: 0 | 1 | 2;
 }
 
 export const RiskBadge: FunctionComponent<Props> = ({ riskScore }) => {
   const { box, medium } = useStyles({ riskScore });
-  return <div className={`${box} ${medium}`}>{riskScore}</div>;
+  return <div className={`${box} ${medium}`}>{riskScore + 1}</div>;
 };

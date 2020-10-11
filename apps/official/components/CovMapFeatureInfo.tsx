@@ -14,18 +14,19 @@ const useStyles = makeStyles({
 });
 
 const titleByRiskScore = {
-  1: "Normales Risiko",
-  2: "Mittleres Risiko",
-  3: "Hohes Risiko",
+  0: "Normales Risiko",
+  1: "Mittleres Risiko",
+  2: "Hohes Risiko",
 };
 
 const descriptionByRiskScore = {
-  2: "Ein mittleres Risiko kann bei mehreren Szenarien bestehen: Entweder ist die Zahl der Neuinfektionen über 20 Neuinfektionen pro 100.000 Einwohner oder das Kontaktverhalten der Bevölkerung oder die Symptomlast ist erhöht, so dass die Zahl der Neuinfektionen demnächst weiter ansteigen könnte. Bitte die AHA + L Regeln beachten. Wir empfehlen darüber hinaus, die Anzahl der Kontakte freiwillig weitestgehend zu reduzieren.",
+  1: "Ein mittleres Risiko kann bei mehreren Szenarien bestehen: Entweder ist die Zahl der Neuinfektionen über 20 Neuinfektionen pro 100.000 Einwohner oder das Kontaktverhalten der Bevölkerung oder die Symptomlast ist erhöht, so dass die Zahl der Neuinfektionen demnächst weiter ansteigen könnte. Bitte die AHA + L Regeln beachten. Wir empfehlen darüber hinaus, die Anzahl der Kontakte freiwillig weitestgehend zu reduzieren.",
 };
 
 export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProps) => {
   const { action } = useStyles();
-  const riskScore = 1;
+  console.log(rawData);
+  const { N: locationName, Id: zipCode, R: riskScore } = rawData;
   const title = titleByRiskScore[riskScore];
   const riskDescription = descriptionByRiskScore[riskScore];
   return (
@@ -43,7 +44,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
             but not in our theme, so this seems to be the only place
             where we use bold in the app. */
         titleTypographyProps={{ variant: "h1" }}
-        subheader="12345 Berlin (Mitte)"
+        subheader={`${zipCode} ${locationName}`}
       />
       <CardContent>
         <Typography>{riskDescription}</Typography>
