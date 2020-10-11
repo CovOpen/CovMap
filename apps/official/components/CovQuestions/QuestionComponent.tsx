@@ -21,9 +21,9 @@ export const useStyles = makeStyles(() =>
     },
     questionText: {
       color: "#002e62 !important",
-      marginBottom: "24px"
-    }
-  })
+      marginBottom: "24px",
+    },
+  }),
 );
 
 export const QuestionComponent: React.FC<QuestionComponentProps> = ({ currentQuestion, handleNextClick }) => {

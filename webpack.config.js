@@ -4,34 +4,34 @@ const webpack = require("webpack");
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const packageJson = require("./package.json");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const os = require('os')
-const HtmlPwaPlugin = require('./config/webpack/HtmlPwaPlugin/index.js');
-const BundleServiceWorkerPlugin = require('./config/webpack/BundleServiceWorkerPlugin/index.js');
-const { DefinePlugin, SplitChunksPlugin } = require('webpack')
-const CompressionPlugin = require('compression-webpack-plugin')
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
- 
-const APP_CONFIG_PATH = process.env.APP_CONFIG_PATH || path.resolve(__dirname, 'apps/official')
-const buildConfig = require(path.resolve(APP_CONFIG_PATH, 'build.json'))
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const os = require("os");
+const HtmlPwaPlugin = require("./config/webpack/HtmlPwaPlugin/index.js");
+const BundleServiceWorkerPlugin = require("./config/webpack/BundleServiceWorkerPlugin/index.js");
+const { DefinePlugin, SplitChunksPlugin } = require("webpack");
+const CompressionPlugin = require("compression-webpack-plugin");
+const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
+
+const APP_CONFIG_PATH = process.env.APP_CONFIG_PATH || path.resolve(__dirname, "apps/official");
+const buildConfig = require(path.resolve(APP_CONFIG_PATH, "build.json"));
 
 const babelLoader = {
   loader: "babel-loader",
   options: {
     cacheDirectory: true,
     babelrc: true,
-  }
+  },
 };
 
 const outputDir = path.join(__dirname, "dist");
-const swDest = 'sw.js';
+const swDest = "sw.js";
 
-module.exports = function(env) {
+module.exports = function (env) {
   const commitHash = "dev";
   const commitHashLong = "dev";
-  
+
   if (!env) {
     console.log("No env specified. Use `--env {dev|prod}`. Using `--env dev`");
     env = "dev";
@@ -45,8 +45,8 @@ module.exports = function(env) {
       host: "0.0.0.0",
       historyApiFallback: true,
       proxy: {
-        '/api': {
-          target: 'http://api:3001'
+        "/api": {
+          target: "http://api:3001",
         },
       },
     },
@@ -59,7 +59,7 @@ module.exports = function(env) {
       filename: "[name].[hash].js",
       globalObject: "this",
       chunkFilename: "[chunkhash].chunk.js",
-      publicPath: "/"
+      publicPath: "/",
     },
     module: {
       rules: [
@@ -82,7 +82,7 @@ module.exports = function(env) {
         },
         {
           test: /\.svg$/,
-          use: ['@svgr/webpack'],
+          use: ["@svgr/webpack"],
         },
         {
           test: /\.ts(x?)$/,
@@ -97,17 +97,15 @@ module.exports = function(env) {
         {
           test: /\.js(x?)$/,
           exclude: [/node_modules/],
-          use: [
-            babelLoader,
-          ],
+          use: [babelLoader],
         },
       ],
     },
     context: __dirname,
     resolve: {
       alias: {
-        'app-config': APP_CONFIG_PATH,
-        'src': path.resolve(__dirname, 'src')
+        "app-config": APP_CONFIG_PATH,
+        "src": path.resolve(__dirname, "src"),
       },
       // Add `.ts` and `.tsx` as a resolvable extension.
       extensions: [".mjs", ".js", ".ts", ".tsx", ".jsx"],
@@ -116,7 +114,7 @@ module.exports = function(env) {
     optimization: {
       splitChunks: {
         // include all types of chunks
-        chunks: 'all',
+        chunks: "all",
         maxAsyncRequests: 8,
         maxInitialRequests: 8,
       },
@@ -128,84 +126,83 @@ module.exports = function(env) {
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'src/index.ejs'),
+        template: path.resolve(__dirname, "src/index.ejs"),
         title: buildConfig.meta.title,
         url: buildConfig.meta.url,
         description: buildConfig.meta.description,
         // favicon: "path/to/favicon",  // TODO you can set a favicon here
         variables: buildConfig,
-        minify: env == "prod" ? {
-          collapseWhitespace: true,
-          removeComments: true,
-          minifyCSS: true,
-          minifyURLs: true,
-        } : false,
+        minify:
+          env == "prod"
+            ? {
+                collapseWhitespace: true,
+                removeComments: true,
+                minifyCSS: true,
+                minifyURLs: true,
+              }
+            : false,
         meta: {
           // TODO: double trouble - is in the template index.ejs and here
           viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
         },
       }),
-      
+
       new CopyWebpackPlugin([
         { from: "static", to: "." },
-        { from: path.resolve(__dirname, 'data'), to: "./data" },
-        { from: path.resolve(APP_CONFIG_PATH, 'static'), to: "./" },
+        { from: path.resolve(__dirname, "data"), to: "./data" },
+        { from: path.resolve(APP_CONFIG_PATH, "static"), to: "./" },
       ]),
       new BundleServiceWorkerPlugin({
         buildOptions: {
-          swSrc: path.resolve(__dirname, 'src/sw/sw.js'),
+          swSrc: path.resolve(__dirname, "src/sw/sw.js"),
           swDest,
-          targetDir: path.join(os.tmpdir(), 'bundle-service-worker'),
+          targetDir: path.join(os.tmpdir(), "bundle-service-worker"),
           context: process.cwd(),
           swWebpackConfig: {
-            devtool: 'source-map',
+            devtool: "source-map",
             plugins: [
               new DefinePlugin({
-                'process.env.SW_ENV': JSON.stringify(process.env.SW_ENV),
-                'process.env.SW_LOG_ENV': JSON.stringify(process.env.SW_LOG_ENV),
-                'process.env.SW_DEFAULT': JSON.stringify(process.env.SW_DEFAULT),
-                'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-              })
-            ]
+                "process.env.SW_ENV": JSON.stringify(process.env.SW_ENV),
+                "process.env.SW_LOG_ENV": JSON.stringify(process.env.SW_LOG_ENV),
+                "process.env.SW_DEFAULT": JSON.stringify(process.env.SW_DEFAULT),
+                "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+              }),
+            ],
           },
           workBoxConfig: {
-            exclude: [
-              /\.map$/,
-              /manifest\.json$/,
-              /data\//
-            ],
+            exclude: [/\.map$/, /manifest\.json$/, /data\//],
             swDest,
-            importWorkboxFrom: 'disabled',
-          }
-        }
+            importWorkboxFrom: "disabled",
+          },
+        },
       }),
       // TODO: @patrick - does this event work?
       new HtmlPwaPlugin({
         name: buildConfig.meta.title,
-        themeColor: '#003f97',
-        msTileColor: '#ffffff',
-        appleMobileWebAppCapable: 'no',
-        appleMobileWebAppStatusBarStyle: 'default',
-        assetsVersion: '',
-        manifestPath: 'manifest.json',
+        themeColor: "#003f97",
+        msTileColor: "#ffffff",
+        appleMobileWebAppCapable: "no",
+        appleMobileWebAppStatusBarStyle: "default",
+        assetsVersion: "",
+        manifestPath: "manifest.json",
         iconPaths: {
-          favicon32: 'favicon-32x32.png',
-          favicon16: 'favicon-16x16.png',
-          appleTouchIcon: 'apple-touch-icon.png',
-          maskIcon: 'safari-pinned-tab.svg',
-          msTileImage: 'mstile-144x144.png'
+          favicon32: "favicon-32x32.png",
+          favicon16: "favicon-16x16.png",
+          appleTouchIcon: "apple-touch-icon.png",
+          maskIcon: "safari-pinned-tab.svg",
+          msTileImage: "mstile-144x144.png",
         },
-        ...(buildConfig.pwaOptions || {})
+        ...(buildConfig.pwaOptions || {}),
       }),
       new webpack.DefinePlugin({
         COMMIT_HASH: JSON.stringify(commitHash),
         COMMIT_HASH_LONG: JSON.stringify(commitHashLong),
         VERSION: JSON.stringify(packageJson.version),
         PRODUCTION: JSON.stringify(env === "prod"),
-        APP_CONFIG_PATH: JSON.stringify(APP_CONFIG_PATH)
+        APP_CONFIG_PATH: JSON.stringify(APP_CONFIG_PATH),
       }),
       new MomentLocalesPlugin({
-        localesToKeep: ['en', 'de'],
+        localesToKeep: ["en", "de"],
       }),
     ],
   };
@@ -217,11 +214,13 @@ module.exports = function(env) {
   } else if (env === "prod") {
     config.mode = "production";
     config.devtool = "source-map";
-    config.plugins.push(new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
-      openAnalyzer: false,
-      reportFilename: path.resolve(__dirname, 'bundle-report.html')
-    }));
+    config.plugins.push(
+      new BundleAnalyzerPlugin({
+        analyzerMode: "static",
+        openAnalyzer: false,
+        reportFilename: path.resolve(__dirname, "bundle-report.html"),
+      }),
+    );
   } else {
     console.error(`Undefined environment ${env}.`);
     process.exit(1);

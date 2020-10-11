@@ -6,10 +6,7 @@
   "title": "CovMap",
   "meta": {
     "author": "Alexander Thieme",
-    "availableLanguages": [
-      "de",
-      "en"
-    ],
+    "availableLanguages": ["de", "en"],
     "creationDate": "2020-08-19T21:00:05+0000"
   },
   "questions": [

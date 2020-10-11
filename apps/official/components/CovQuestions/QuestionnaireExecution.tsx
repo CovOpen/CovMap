@@ -16,19 +16,17 @@ const useStyles = makeStyles(() =>
       display: "flex",
       justifyContent: "center",
       width: "100%",
-      padding: "48px 24px 24px 24px"
+      padding: "48px 24px 24px 24px",
     },
     execution: {
       maxHeight: "calc(100vh - 48px - 24px)",
       maxWidth: "600px",
       overflow: "auto",
     },
-  })
+  }),
 );
 
-export const QuestionnaireExecution: React.FC<QuestionnaireExecutionProps> = ({
-  currentQuestionnaire,
-}) => {
+export const QuestionnaireExecution: React.FC<QuestionnaireExecutionProps> = ({ currentQuestionnaire }) => {
   const [questionnaireEngine, setQuestionnaireEngine] = useState(new QuestionnaireEngine(currentQuestionnaire));
   const [currentQuestion, setCurrentQuestion] = useState<Question | undefined>(undefined);
   const [result, setResult] = useState<Result[] | undefined>(undefined);
@@ -72,9 +70,9 @@ export const QuestionnaireExecution: React.FC<QuestionnaireExecutionProps> = ({
     <Grid container className={classes.root}>
       <Grid item xs={12} className={classes.execution}>
         {result === undefined && currentQuestion ? (
-          <QuestionComponent currentQuestion={currentQuestion} handleNextClick={handleNextClick}/>
+          <QuestionComponent currentQuestion={currentQuestion} handleNextClick={handleNextClick} />
         ) : null}
-        {result !== undefined ? <ResultComponent result={result}/> : null}
+        {result !== undefined ? <ResultComponent result={result} /> : null}
       </Grid>
     </Grid>
   );

@@ -1,131 +1,210 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700,900&display=swap');
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-    color: inherit;
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700,900&display=swap");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  color: inherit;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-    display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-    line-height: 1;
-    height: 100%;
+  line-height: 1;
+  height: 100%;
 }
-ol, ul {
-    list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-    quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 /* Variables */
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   --blue: #003f97;
-  --red: #FC423F;
+  --red: #fc423f;
   --light-red: #ff7875;
   --light-blue: #e7ecf5;
-  --extra-light-red: #FCEFF3;
+  --extra-light-red: #fceff3;
 }
 
 /* Classes */
 
 .light {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 .uppercase {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 /* Components */
 
 .btn-group {
-    padding-top: 32px;
-    padding-bottom: 32px;
-    display: flex;
-    justify-content: space-evenly;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-#settings-popover div, #visual-type-select div, .MuiPopover-root div {
-    touch-action: none;
+#settings-popover div,
+#visual-type-select div,
+.MuiPopover-root div {
+  touch-action: none;
 }
 
 /* Pages */
 
-
-
 /* Welcome */
 
 #info {
-    background-color: #e7ecf5;
-    padding-left: 16px;
-    padding-right: 16px;
-    position: relative;
-
+  background-color: #e7ecf5;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
 }
 
 #info img {
-    left: 50%;
-    margin-left: -50px;
-    position: absolute;
-    margin-top: -50px;
+  left: 50%;
+  margin-left: -50px;
+  position: absolute;
+  margin-top: -50px;
 }
 
 #info .text {
-    padding-top: 64px;
+  padding-top: 64px;
 }
-
 
 /* About */
 
 .sections section {
-    padding: 1rem 2rem;
-    margin-top: .25rem;
-    text-align: center;
+  padding: 1rem 2rem;
+  margin-top: 0.25rem;
+  text-align: center;
 }
 
 .sections section p {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .sections section:nth-of-type(odd) {
-    background-color: white;
+  background-color: white;
 }
 
 .sections section:nth-of-type(even) {
-    background-color: #E3E9F3;
+  background-color: #e3e9f3;
 }
 
 #menu-appbar .MuiPaper-rounded {
-    background-color: #E3E9F3;
+  background-color: #e3e9f3;
 }
 
 /* FIXME: removes Mapbox logo. Needs to be discussed with company before release. 

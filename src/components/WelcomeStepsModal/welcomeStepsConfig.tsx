@@ -11,13 +11,13 @@ export type StepConfig = {
   previous?: WelcomeModalStep;
   skip?: WelcomeModalStep;
   dotProgressNumber?: number;
-}
+};
 
 export const enum WelcomeModalStep {
   Step1 = "welcome1",
   Step2 = "welcome2",
   Step3 = "welcome3",
-  StepPostalCode = "postalCode"
+  StepPostalCode = "postalCode",
 }
 
 export const welcomeStepsConfig: StepConfig[] = [
@@ -26,7 +26,7 @@ export const welcomeStepsConfig: StepConfig[] = [
     Component: WelcomeModal1,
     next: WelcomeModalStep.Step2,
     skip: WelcomeModalStep.StepPostalCode,
-    dotProgressNumber: 0
+    dotProgressNumber: 0,
   },
   {
     name: WelcomeModalStep.Step2,
@@ -34,7 +34,7 @@ export const welcomeStepsConfig: StepConfig[] = [
     previous: WelcomeModalStep.Step1,
     next: WelcomeModalStep.Step3,
     skip: WelcomeModalStep.StepPostalCode,
-    dotProgressNumber: 1
+    dotProgressNumber: 1,
   },
   {
     name: WelcomeModalStep.Step3,
@@ -42,10 +42,10 @@ export const welcomeStepsConfig: StepConfig[] = [
     previous: WelcomeModalStep.Step2,
     next: WelcomeModalStep.StepPostalCode,
     skip: WelcomeModalStep.StepPostalCode,
-    dotProgressNumber: 2
+    dotProgressNumber: 2,
   },
   {
     name: WelcomeModalStep.StepPostalCode,
     Component: WelcomeModalPostalCode,
   },
-]
+];

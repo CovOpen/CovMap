@@ -35,7 +35,7 @@ interface BeforeInstallPromptEvent extends Event {
    * Returns a Promise that resolves to a DOMString containing either "accepted" or "dismissed".
    */
   readonly userChoice: Promise<{
-    outcome: 'accepted' | 'dismissed';
+    outcome: "accepted" | "dismissed";
     platform: string;
   }>;
 
@@ -44,5 +44,4 @@ interface BeforeInstallPromptEvent extends Event {
    * This method returns a Promise.
    */
   prompt(): Promise<void>;
-
 }

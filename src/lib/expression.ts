@@ -1,6 +1,6 @@
-import {Feature} from 'geojson';
-import {Expression as MapboxExpression, StyleFunction} from 'mapbox-gl';
-import {expression} from 'mapbox-gl/dist/style-spec';
+import { Feature } from "geojson";
+import { Expression as MapboxExpression, StyleFunction } from "mapbox-gl";
+import { expression } from "mapbox-gl/dist/style-spec";
 
 // TODO(danvk): pass down the real zoom level.
 const expressionGlobals = {
@@ -42,13 +42,13 @@ export class Expression<T> {
     // https://github.com/mapbox/mapbox-gl-js/issues/7670
     let parseResult: expression.ParseResult;
     if (expectedType) {
-      parseResult = expression.createExpression(expr, {type: expectedType});
-      if (parseResult.result === 'success') {
+      parseResult = expression.createExpression(expr, { type: expectedType });
+      if (parseResult.result === "success") {
         return new Expression<TypeMap[T]>(parseResult.value);
       }
     } else {
       parseResult = expression.createExpression(expr);
-      if (parseResult.result === 'success') {
+      if (parseResult.result === "success") {
         return new Expression<any>(parseResult.value);
       }
     }

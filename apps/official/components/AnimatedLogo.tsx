@@ -1,27 +1,27 @@
 import React, { createRef, useEffect } from "react";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 
 import { State } from "../../../src/state";
-import Logo from '../static/images/logo.svg'
+import Logo from "../static/images/logo.svg";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
     flexGrow: 1,
-    height: '38px',
-    width: 'auto'
+    height: "38px",
+    width: "auto",
   },
   paused: {
-    '& > *': {
-      '-webkit-animation-play-state': 'paused !important',
-      '-moz-animation-play-state': 'paused !important',
-      '-o-animation-play-state': 'paused !important',
-      'animation-play-state': 'paused !important',
-    }
-  }
+    "& > *": {
+      "-webkit-animation-play-state": "paused !important",
+      "-moz-animation-play-state": "paused !important",
+      "-o-animation-play-state": "paused !important",
+      "animation-play-state": "paused !important",
+    },
+  },
 }));
 
-export function AnimatedLogo () {
+export function AnimatedLogo() {
   const classes = useStyles();
   const loading = useSelector((state: State) => state.app.isLoading);
   const logoRef = createRef<any>();
@@ -30,10 +30,10 @@ export function AnimatedLogo () {
     if (logoRef.current) {
       if (!loading) {
         const svg = logoRef.current.children[0];
-        svg.classList.add(classes.paused)
+        svg.classList.add(classes.paused);
       } else {
         const svg = logoRef.current.children[0];
-        svg.classList.remove(classes.paused)
+        svg.classList.remove(classes.paused);
       }
     }
   }, [loading]);
@@ -42,5 +42,5 @@ export function AnimatedLogo () {
     <div ref={logoRef} className={classes.logo}>
       <Logo />
     </div>
-  )
+  );
 }

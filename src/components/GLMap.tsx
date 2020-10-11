@@ -1,64 +1,67 @@
 import React, { useState, useEffect, Suspense } from "react";
-import { Visual } from './Visual';
-import { FeatureInfo } from './FeatureInfo';
+import { Visual } from "./Visual";
+import { FeatureInfo } from "./FeatureInfo";
 import { useSelector } from "react-redux";
-import { LazyError } from './LazyError'
-import debounce from 'debounce'
-const ReactMapGL = React.lazy(() => import(/* webpackChunkName: "mapgl" */ 'react-map-gl/dist/es6/components/interactive-map')
-  .catch(() => ({ default: LazyError })));
+import { LazyError } from "./LazyError";
+import debounce from "debounce";
+const ReactMapGL = React.lazy(() =>
+  import(/* webpackChunkName: "mapgl" */ "react-map-gl/dist/es6/components/interactive-map").catch(() => ({
+    default: LazyError,
+  })),
+);
 
 import { State } from "../state";
 import { Viewport } from "../state/app";
-import { MAX_ZOOM_LEVEL } from '../constants';
-import { config } from 'app-config/index'
-import { getFallbackComponent } from './getFallback';
+import { MAX_ZOOM_LEVEL } from "../constants";
+import { config } from "app-config/index";
+import { getFallbackComponent } from "./getFallback";
 
 export type GLMapProps = {
   mapRef: any;
   onMapClick: Function;
   onViewportChange?: Function;
   onLoad?: Function;
-}
+};
 
-const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
-let debouncedViewportChange
+const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+let debouncedViewportChange;
 
 export const GLMap = ({ mapRef, onMapClick, onViewportChange, onLoad }: GLMapProps) => {
   const stateViewport = useSelector((state: State) => state.app.viewport);
   const [viewport, setViewport] = useState<Viewport>(() => {
     return stateViewport;
-  })
+  });
 
   useEffect(() => {
-    debouncedViewportChange = debounce(onViewportChange, 250)
-  }, [])
+    debouncedViewportChange = debounce(onViewportChange, 250);
+  }, []);
 
   useEffect(() => {
-    setViewport(stateViewport)
-  }, [stateViewport])
+    setViewport(stateViewport);
+  }, [stateViewport]);
 
-  const handleLocalViewportChange = ({ pitch, bearing, zoom, latitude, longitude}) => {
+  const handleLocalViewportChange = ({ pitch, bearing, zoom, latitude, longitude }) => {
     const newViewPort = {
       pitch,
       bearing,
       zoom,
       latitude,
       longitude,
-    }
+    };
 
     if (config.mapSettings?.constraints) {
-      const constraints = config.mapSettings?.constraints
-      newViewPort.latitude = clamp(latitude, constraints[1][0], constraints[0][0])
-      newViewPort.longitude = clamp(longitude, constraints[0][1], constraints[1][1])
+      const constraints = config.mapSettings?.constraints;
+      newViewPort.latitude = clamp(latitude, constraints[1][0], constraints[0][0]);
+      newViewPort.longitude = clamp(longitude, constraints[0][1], constraints[1][1]);
     }
-    
-    setViewport(newViewPort)
-    
+
+    setViewport(newViewPort);
+
     if (debouncedViewportChange) {
-      debouncedViewportChange(newViewPort)
+      debouncedViewportChange(newViewPort);
     }
-  }
-  
+  };
+
   return (
     <Suspense fallback={getFallbackComponent()}>
       <ReactMapGL
@@ -81,5 +84,5 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange, onLoad }: GLMapPro
         <FeatureInfo />
       </ReactMapGL>
     </Suspense>
-  )
-}
+  );
+};

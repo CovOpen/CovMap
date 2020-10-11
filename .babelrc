@@ -1,13 +1,13 @@
 {
-  "presets": [
-    "@babel/preset-env",
-    "@babel/preset-react"
-  ],
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
   "plugins": [
     "react-hot-loader/babel",
-    ["@babel/plugin-transform-runtime", {
-      "regenerator": true
-    }],
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "regenerator": true
+      }
+    ],
     "syntax-dynamic-import"
   ]
 }
