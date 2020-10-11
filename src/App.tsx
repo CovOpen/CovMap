@@ -32,7 +32,7 @@ function Alert(props) {
 const theme = createMuiTheme({
   palette: {
     secondary: {
-      main: "#161616",
+      main: "#2274E3",
       contrastText: "#E3E9F3",
     },
     primary: {
