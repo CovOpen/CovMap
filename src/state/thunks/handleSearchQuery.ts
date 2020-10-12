@@ -10,47 +10,35 @@ import {
 import { State } from "../";
 import { FeatureCollection } from "geojson";
 
-// real locationFound code
-const locationFound0 = (query, data, properties, searchOptions?) => {
-  console.log(query)
-  const queryTransformed = searchOptions?.transformQuery
-    ? searchOptions?.transformQuery(query)
-    : query
 
-  return properties.some((propName) => {
-    if (!data.properties[propName]) {
-      console.warn(`Property "${propName}" not found in dataset, check your app-config search settings`);
-      return false;
-    }
-    if (data.properties[propName].toLowerCase().includes(queryTransformed.toLowerCase())) {
-      return true;
-    }
-    return false;
-  });
-};
 
 const locationFound = (query, data, properties, searchOptions?) => {
   const queryTransformed = searchOptions?.transformQuery
     ? searchOptions?.transformQuery(query)
     : query
 
-  const dataProps = data.properties;
-  // check if required fields are there
-  if (!(dataProps && dataProps.name && dataProps.name.length && query.length)) return false
 
-  // if the query is not a number we usually want to search for the name
-  if (isNaN(query)) {
-    if (dataProps.name.toLowerCase().includes(queryTransformed.toLowerCase())) {
-      console.log(dataProps.name)
-      return true
+  return properties.some((propName) => {
+    if (!data.properties[propName]) {
+      console.warn(`Property "${propName}" not found in dataset, check your app-config search settings`);
+      return false;
     }
-  } else { // else lets try looking for zipCodes
-    if (dataProps.zip_codes && dataProps.zip_codes.length) {
-      return dataProps.zip_codes.some(code => String(code) === query)
-    }
-  }
+    const propVal: any = data.properties[propName];
 
-  return false
+    // string constructor is pretty expensive as far as i know so forcing everything to be a string might be smart
+    if (Array.isArray(propVal)) {
+      // if its an array compare each item as string
+      return propVal.some(val => String(val).toLowerCase().includes(query))
+    }
+
+    // compare strings or numbers
+    if (String(propVal).toLowerCase().includes(queryTransformed.toLowerCase())) {
+      return true;
+    }
+    return false;
+  });
+
+
 }
 
 export function getPossibleSearchResults() {
@@ -86,7 +74,6 @@ function defaultSearchMethod(query: string, state: State, searchOptions?: Defaul
     for (let i = 0; i < features.length; i++) {
       if (locationFound(query, features[i], currentSet.properties, searchOptions)) {
         try {
-          console.log(features[i])
           const coordinates = features[i]?.properties?.geo_point_2d || [13.404954, 52.520008] // if nothing found zoom to the source of all evil
           const props = features[i].properties || {}
           const name = props[searchOptions?.nameProp || 'name']
