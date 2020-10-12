@@ -15,13 +15,29 @@ const CovMapMappables = [
   },
 ];
 
-const CovMapSearch = {
-  placeholder: "PLZ",
+// old search for zipCodes does not work since we dont use the zipCodes list
+const CovMapSearchPLZ = {
+  placeholder: "PLZ oder Landkreis",
   nameProp: "note",
   inMappings: [
     {
       id: "CI-to-plz",
       properties: ["note"],
+      getCoordinates: (feature) => {
+        //return feature.properties.geo_point_2d TODO
+      },
+    },
+  ],
+  notFoundMessage: "Leider keinen Landkreis gefunden.",
+};
+
+const CovMapSearch = {
+  placeholder: "PLZ oder Landkreis",
+  nameProp: "name",
+  inMappings: [
+    {
+      id: "CI-to-plz",
+      properties: ["name", "zip_codes"],
       getCoordinates: (feature) => {
         //return feature.properties.geo_point_2d TODO
       },
