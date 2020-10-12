@@ -53,7 +53,7 @@ export const FeatureInfo = memo(() => {
         latitude={(currentFeature as any).lngLat[1]}
         longitude={(currentFeature as any).lngLat[0]}
         closeButton={false}
-        closeOnClick={true}
+        closeOnClick={false}
         onClose={onClose}
         anchor="top"
         style={{ zIndex: 1100 }}

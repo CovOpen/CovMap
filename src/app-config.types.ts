@@ -1,6 +1,7 @@
 import { ComponentType } from "react";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import { State } from "./state";
+import { RawDataEntry } from "app-config/models";
 
 export type AppConfig = {
   ui: AppUI;
@@ -119,7 +120,7 @@ export type FeatureInfoProps = {
   feature: any; // TODO: use GeoJSON feature type
   dataField: string;
   timeKey: string;
-  rawData: any;
+  rawData: unknown;
   onClose?: Function;
 };
 
