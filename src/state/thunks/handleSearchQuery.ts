@@ -10,8 +10,12 @@ import {
 import { State } from "../";
 import { FeatureCollection } from "geojson";
 
-const locationFound = (query, data, properties, searchOptions?) => {
-  const queryTransformed = searchOptions?.transformQuery ? searchOptions?.transformQuery(query) : query;
+// real locationFound code
+const locationFound0 = (query, data, properties, searchOptions?) => {
+  console.log(query)
+  const queryTransformed = searchOptions?.transformQuery
+    ? searchOptions?.transformQuery(query)
+    : query
 
   return properties.some((propName) => {
     if (!data.properties[propName]) {
@@ -24,6 +28,30 @@ const locationFound = (query, data, properties, searchOptions?) => {
     return false;
   });
 };
+
+const locationFound = (query, data, properties, searchOptions?) => {
+  const queryTransformed = searchOptions?.transformQuery
+    ? searchOptions?.transformQuery(query)
+    : query
+
+  const dataProps = data.properties;
+  // check if required fields are there
+  if (!(dataProps && dataProps.name && dataProps.name.length && query.length)) return false
+
+  // if the query is not a number we usually want to search for the name
+  if (isNaN(query)) {
+    if (dataProps.name.toLowerCase().includes(queryTransformed.toLowerCase())) {
+      console.log(dataProps.name)
+      return true
+    }
+  } else { // else lets try looking for zipCodes
+    if (dataProps.zip_codes && dataProps.zip_codes.length) {
+      return dataProps.zip_codes.some(code => String(code) === query)
+    }
+  }
+
+  return false
+}
 
 export function getPossibleSearchResults() {
   return (dispatch: ReduxDispatch, getState: () => State) => {
@@ -52,15 +80,16 @@ function defaultSearchMethod(query: string, state: State, searchOptions?: Defaul
   const foundResults: Array<SearchResult> = [];
 
   for (let setNum = 0; setNum < mappedSetsToSearchIn.length; setNum++) {
-    const currentSet = mappedSetsToSearchIn[setNum];
-    const features = (currentSet.data?.geo as FeatureCollection).features;
+    const currentSet = mappedSetsToSearchIn[setNum]
+    const features = (currentSet.data?.geo as FeatureCollection).features
 
     for (let i = 0; i < features.length; i++) {
       if (locationFound(query, features[i], currentSet.properties, searchOptions)) {
         try {
-          const coordinates = currentSet.getCoordinates(features[i]);
-          const props = features[i].properties || {};
-          const name = props[searchOptions?.nameProp || "name"];
+          console.log(features[i])
+          const coordinates = features[i]?.properties?.geo_point_2d || [13.404954, 52.520008] // if nothing found zoom to the source of all evil
+          const props = features[i].properties || {}
+          const name = props[searchOptions?.nameProp || 'name']
 
           foundResults.push({
             name,
@@ -69,10 +98,11 @@ function defaultSearchMethod(query: string, state: State, searchOptions?: Defaul
             lat: coordinates[1],
             lng: coordinates[0],
           });
+
         } catch (err) {
-          console.log(err);
-          console.warn("Coordinates extraction error, check your app-config search settings and geo data");
-          return { results: [] };
+          console.log(err)
+          console.warn('Coordinates extraction error, check your app-config search settings and geo data')
+          return { results: [] }
         }
         if (!searchOptions?.all) {
           break;
@@ -84,7 +114,7 @@ function defaultSearchMethod(query: string, state: State, searchOptions?: Defaul
   return { results: foundResults };
 }
 
-export function switchViewToPlace(query, onFoundCallback?, onErrorCallback?) {
+export function switchViewToPlace(query: string, onFoundCallback?, onErrorCallback?) {
   return async (dispatch: ReduxDispatch, getState: () => State) => {
     if (!query || query.length < 3) {
       return;

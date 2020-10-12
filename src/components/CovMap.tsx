@@ -10,17 +10,18 @@ import { useParams } from "react-router-dom";
 import { State } from "../state";
 import { AppApi } from "../state/app";
 import { useThunkDispatch } from "../useThunkDispatch";
-import { Zoom } from "./Zoom";
-import { OfflineIndicator } from "./OfflineIndicator";
-import { TopLeftContainer } from "./TopLeftContainer";
-import { TimeNav } from "./TimeNav";
-import { WelcomeStepsModal } from "./WelcomeStepsModal/WelcomeStepsModal";
-import { WelcomeInfo } from "./WelcomeInfo";
-import { WelcomeInfoButton } from "./WelcomeInfoButton";
-import { GLMap } from "./GLMap";
-import { Legend } from "./Legend";
-import { Settings } from "./Settings";
-import { config } from "app-config/index";
+import { Zoom } from './Zoom';
+import { OfflineIndicator } from './OfflineIndicator';
+import { TopLeftContainer } from './TopLeftContainer';
+import { TimeNav } from './TimeNav';
+import { WelcomeStepsModal } from './WelcomeStepsModal/WelcomeStepsModal';
+import { WelcomeInfo } from './WelcomeInfo';
+import { WelcomeInfoButton } from './WelcomeInfoButton';
+import { GLMap } from './GLMap'
+import { Legend } from './Legend'
+import { Settings } from './Settings'
+import { config } from 'app-config/index'
+import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -75,7 +76,8 @@ export const CovMap = () => {
   const currentFeature = useSelector((state: State) => state.app.currentFeature);
   const currentMappable = useSelector((state: State) => state.app.currentMappable);
   const currentDate = useSelector((state: State) => state.app.currentDate);
-  const [mapLoaded, setMapLoaded] = useState<boolean>(false);
+  const userPostalCode = useSelector((state: State) => state.app.userPostalCode);
+  const [mapLoaded, setMapLoaded] = useState<boolean>(false)
   const mapRef = createRef<any>();
   const visual = config.visuals[currentVisual];
 
@@ -103,24 +105,27 @@ export const CovMap = () => {
   const changedMapRef = previousMapRef !== mapRef.current;
   useEffect(() => {
     previousMapRef = mapRef.current;
-  }, [mapRef]);
-  useEffect(
-    function () {
+  }, [mapRef])
+  useEffect(function () {
+    if (mapRef.current) {
+      const map = mapRef.current.getMap();
+      map.on('dataloading', handleMapBusy)
+      map.on('idle', handleMapIdleOrRemoved)
+      map.once('remove', handleMapIdleOrRemoved)
+      /* if user specified a home zipCode fly there.
+      tbh this should maybe happen with a delay but lets do it on mount for now.
+      looks like there is plenty of delay already */
+      flyToHome()
+    }
+
+    return () => {
       if (mapRef.current) {
         const map = mapRef.current.getMap();
-        map.on("dataloading", handleMapBusy);
-        map.on("idle", handleMapIdleOrRemoved);
-        map.once("remove", handleMapIdleOrRemoved);
+        map.off("dataloading", handleMapBusy);
+        map.off("idle", handleMapIdleOrRemoved);
       }
-
-      return () => {
-        if (mapRef.current) {
-          const map = mapRef.current.getMap();
-          map.off("dataloading", handleMapBusy);
-          map.off("idle", handleMapIdleOrRemoved);
-        }
-      };
-    },
+    };
+  },
     [changedMapRef],
   );
 
@@ -176,8 +181,17 @@ export const CovMap = () => {
         };
         dispatch(AppApi.setViewport(newViewport));
       }
+
     }
   };
+
+  const flyToHome = () => {
+    // check for "valid" postal codes
+    if (!userPostalCode || isNaN(userPostalCode)) return
+    dispatch(switchViewToPlace(String(userPostalCode)))
+  }
+
+
 
   const handleMapLoaded = () => {
     setMapLoaded(true);
@@ -202,7 +216,7 @@ export const CovMap = () => {
       </TopLeftContainer>
       {visual.InfoComponent ? <WelcomeInfo /> : null}
       <GLMap mapRef={mapRef} onMapClick={handleMapClick} onViewportChange={onViewportChange} onLoad={handleMapLoaded} />
-      {config.showTimeNavigation === false ? null : <TimeNav />}
+      { config.showTimeNavigation === false ? null : <TimeNav />}
       <Legend />
       <Dialog
         aria-labelledby="simple-dialog-title"
@@ -222,6 +236,6 @@ export const CovMap = () => {
         </DialogTitle>
       </Dialog>
       <WelcomeStepsModal subPage={urlParams.subPage} />
-    </div>
+    </div >
   );
 };
