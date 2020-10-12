@@ -6,7 +6,7 @@ export const useCommonWelcomeModalStyles = makeStyles(() => ({
     fontSize: "28px",
     lineHeight: "34px",
     textAlign: "center",
-    margin: "32px",
+    margin: "32px 50px",
   },
   largeText: {
     fontWeight: "bold",
@@ -15,6 +15,7 @@ export const useCommonWelcomeModalStyles = makeStyles(() => ({
   },
   smallText: {
     fontSize: "13px",
+    textAlign: "center",
   },
   primaryButton: {
     color: "#FFFFFF",
@@ -23,6 +24,7 @@ export const useCommonWelcomeModalStyles = makeStyles(() => ({
     background: "#2274E3",
     borderRadius: "12px",
     margin: "10px",
+    textTransform: "none",
   },
   secondaryButton: {
     color: "#828282",
@@ -32,6 +34,7 @@ export const useCommonWelcomeModalStyles = makeStyles(() => ({
     borderRadius: "12px",
     margin: "10px",
     boxShadow: "none",
+    textTransform: "none",
   },
   infoTextDiv: {
     margin: "20px 40px",

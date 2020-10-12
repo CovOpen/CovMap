@@ -7,7 +7,7 @@ const useStyles = makeStyles(() => ({
   listItemDiv: {
     display: "flex",
     flexDirection: "row",
-    margin: "6px",
+    margin: "12px 20px 12px 10px",
   },
 }));
 
@@ -17,28 +17,36 @@ export const WelcomeModal1: React.FC = () => {
     ...useStyles(),
   };
 
-  const listIcon = <img src={"/images/illustration.png"} alt="List Icon" width="20px" />;
+  const listIcon = (
+    <img
+      src={"/images/icon-checkmark-circle.svg"}
+      alt="List Icon"
+      style={{ width: "24px", height: "24px", marginRight: "12px" }}
+    />
+  );
 
   return (
     <>
       <Typography className={classes.title}>Willkommen bei der CovMap</Typography>
 
-      <img src={"/images/illustration.png"} alt="Welcome" width="100%" />
+      <img src={"/images/WelcomeModalImage1.svg"} alt="Welcome" width="100%" />
 
       <div className={classes.infoTextDiv}>
         <div className={classes.listItemDiv}>
           {listIcon}
-          <Typography className={classes.largeText}>Entwickelt von Ärzten der Charité Berlin</Typography>
+          <Typography className={classes.largeText}>
+            Entwickelt von Ärzten der Charité - Universitätsmedizin Berlin
+          </Typography>
         </div>
         <div className={classes.listItemDiv}>
           {listIcon}
           <Typography className={classes.largeText}>
-            Geographische Informationen zum Corona-Virus in Echtzeit
+            Regionale Risikoeinschätzung zum Coronavirus in Echtzeit
           </Typography>
         </div>
       </div>
 
-      <img src={"/images/illustration.png"} alt="Charité Berlin" width="100" />
+      <img src={"/images/Logo_Charite.svg"} alt="Charité Berlin" width="100" style={{ margin: "20px 0" }} />
     </>
   );
 };
