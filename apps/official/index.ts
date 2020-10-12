@@ -10,7 +10,7 @@ import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo";
 const CovMapMappables = [
   {
     property: "riskScore",
-    title: "Contact Index C",
+    title: "Risikoeinschätzung",
     default: true,
   },
 ];
@@ -125,11 +125,11 @@ export const config: AppConfig = {
                 ["linear"],
                 ["get", dataField, ["get", timeKey]],
                 1,
-                "#00CC1A",
+                "#219653",
                 2,
-                "#FFA100",
+                "#EEC341",
                 3,
-                "#FF5100",
+                "#E84C4C",
               ],
               "fill-opacity": 0.8,
             },
