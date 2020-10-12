@@ -53,7 +53,7 @@ export const config: AppConfig = {
   },
   buildJSON,
   mapSettings: {
-    constraints: [[56.47462805805594,  2.3730468750000004], [43.27103747280261, 17.885742187500004]]
+    constraints: [[56.47462805805594, 2.3730468750000004], [43.27103747280261, 17.885742187500004]]
   },
   defaultVisual: 'covmap',
   datasources: {
@@ -150,7 +150,7 @@ function calculateLegend(data, propertyName) {
   const legend = Array(3).fill(undefined).map((_val, index) => {
     const y = index / 2
     const labelText = (index).toString()
-    
+
     return [y, labelText]
   })
 

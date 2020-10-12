@@ -21,6 +21,7 @@ import { GLMap } from './GLMap'
 import { Legend } from './Legend'
 import { Settings } from './Settings'
 import { config } from 'app-config/index'
+import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -66,13 +67,14 @@ async function loadFlyTo() {
 export const CovMap = () => {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
-  const urlParams = useParams<{subPage?: string}>()
+  const urlParams = useParams<{ subPage?: string }>()
   // const position = useSelector((state: State) => state.app.currentPosition); // TODO
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
   const currentFeature = useSelector((state: State) => state.app.currentFeature);
   const currentMappable = useSelector((state: State) => state.app.currentMappable);
   const currentDate = useSelector((state: State) => state.app.currentDate);
+  const userPostalCode = useSelector((state: State) => state.app.userPostalCode);
   const [mapLoaded, setMapLoaded] = useState<boolean>(false)
   const mapRef = createRef<any>();
   const visual = config.visuals[currentVisual]
@@ -108,6 +110,10 @@ export const CovMap = () => {
       map.on('dataloading', handleMapBusy)
       map.on('idle', handleMapIdleOrRemoved)
       map.once('remove', handleMapIdleOrRemoved)
+      /* if user specified a home zipCode fly there.
+      tbh this should maybe happen with a delay but lets do it on mount for now.
+      looks like there is plenty of delay already */
+      flyToHome()
     }
 
     return () => {
@@ -177,8 +183,17 @@ export const CovMap = () => {
         };
         dispatch(AppApi.setViewport(newViewport));
       }
+
     }
   }
+
+  const flyToHome = () => {
+    // check for "valid" postal codes
+    if (!userPostalCode || isNaN(userPostalCode)) return
+    dispatch(switchViewToPlace(String(userPostalCode)))
+  }
+
+
 
   const handleMapLoaded = () => {
     setMapLoaded(true)
@@ -198,7 +213,7 @@ export const CovMap = () => {
         <OfflineIndicator />
       </TopLeftContainer>
       {visual.InfoComponent ? <WelcomeInfo /> : null}
-      <GLMap 
+      <GLMap
         mapRef={mapRef}
         onMapClick={handleMapClick}
         onViewportChange={onViewportChange}
@@ -220,7 +235,7 @@ export const CovMap = () => {
           Keine Daten für den ausgewählten Zeitraum.
         </DialogTitle>
       </Dialog>
-      <WelcomeStepsModal subPage={urlParams.subPage}/>
+      <WelcomeStepsModal subPage={urlParams.subPage} />
     </div>
   );
 };

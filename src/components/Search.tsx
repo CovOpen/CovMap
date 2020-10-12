@@ -103,10 +103,10 @@ export const Search = () => {
     }
   });
 
-  
+
   const handleSearch = (event) => {
     event.persist()
-    const location = event.target.value;
+    const location: string = event.target.value;
     dispatch(switchViewToPlace(location, () => {
       event.target.blur()
     }, () => {
@@ -122,10 +122,10 @@ export const Search = () => {
       <InputBase
         onKeyPress={(e) => {
           if (e.key === 'Enter') {
-            {handleSearch(e)};
+            { handleSearch(e) };
           }
         }}
-        type = 'text' 
+        type='text'
         placeholder={placeholder || 'Suche'}
         classes={{
           root: classes.inputRoot,
@@ -134,7 +134,7 @@ export const Search = () => {
         inputProps={{ 'aria-label': 'search', ...getInputProps() }}
         onFocus={() => setPossibilities(() => dispatch(getPossibleSearchResults()))}
       />
-    
+
     </div>
     {groupedOptions.length > 0 ? (
       <ul className={classes.listbox} {...getListboxProps()}>
