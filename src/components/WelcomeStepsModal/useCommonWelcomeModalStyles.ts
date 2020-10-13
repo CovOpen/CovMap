@@ -39,19 +39,19 @@ export const useCommonWelcomeModalStyles = makeStyles((theme) => ({
     color: "#828282",
     width: "194px",
     height: "51px",
-    background: "white",
+    background: "rgba(255,255,255,0)",
     borderRadius: "12px",
     margin: "0",
     boxShadow: "none",
     textTransform: "none",
     "&:focus": {
-      background: "white"
+      background: "rgba(255,255,255,0)"
     },
     "&:hover": {
-      background: "white"
+      background: "rgba(255,255,255,0)"
     },
     "&:active": {
-      background: "white"
+      background: "rgba(255,255,255,0)"
     }
   },
   infoTextDiv: {

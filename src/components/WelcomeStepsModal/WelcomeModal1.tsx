@@ -46,7 +46,7 @@ export const WelcomeModal1: React.FC = () => {
         </div>
       </div>
 
-      <img src={"/images/Logo_Charite.svg"} alt="Charité Berlin" width="100" style={{ margin: "8px 0" }}/>
+      <img src={"/images/Logo_Charite.svg"} alt="Charité Berlin" width="100" style={{ marginBottom: "24px" }}/>
     </>
   );
 };

@@ -35,11 +35,17 @@ export const WelcomeModalPostalCode: React.FC = () => {
     return dispatch(AppApi.setUserPostalCode(0));
   }
 
-  function onSubmit() {
+  function submit() {
     if (isValidPostalCode(postCode)) {
       dispatch(AppApi.setUserPostalCode(parseInt(postCode, 10)));
     } else {
       setError(true);
+    }
+  }
+
+  function onKeyPress(event) {
+    if (event.key === "Enter") {
+      submit();
     }
   }
 
@@ -50,10 +56,12 @@ export const WelcomeModalPostalCode: React.FC = () => {
       </Typography>
 
       <TextField
+        autoFocus
         error={error}
         variant="outlined"
         type="number"
         onChange={onPostalCodeChange}
+        onKeyPress={onKeyPress}
         onBlur={() => setTouched(true)}
         style={{ margin: "50px 0 30px 0", width: "150px" }}
       />
@@ -62,7 +70,7 @@ export const WelcomeModalPostalCode: React.FC = () => {
         className={`${classes.primaryButton} ${classes.largeText}`}
         variant="contained"
         color="primary"
-        onClick={onSubmit}
+        onClick={submit}
       >
         Jetzt starten
       </Button>
@@ -75,7 +83,9 @@ export const WelcomeModalPostalCode: React.FC = () => {
         alt="Security Icon"
         style={{ width: "24px", height: "24px", margin: "24px 0 12px 0" }}
       />
-      <Typography className={classes.smallText}>Siehe unsere Datenschutzrichtlinien.</Typography>
+      <div style={{ marginBottom: "28px" }}>
+        <Typography className={classes.smallText}>Siehe unsere Datenschutzrichtlinien.</Typography>
+      </div>
     </>
   );
 };
