@@ -3,7 +3,11 @@ dist
 bundle-report.html
 *.generated*
 .now
+
+# VS Code stuff
 .vscode
+*.code-workspace
+
 .DS_Store
 
 # CovQuestions is automatically cloned in by the npm postinstall script
