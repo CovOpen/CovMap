@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
     width: "12px",
     height: "12px",
     backgroundColor: "#E0E0E0",
-    margin: "0 10px",
+    margin: "0 4px",
   },
   dotActive: {
     backgroundColor: "#2274E3",
