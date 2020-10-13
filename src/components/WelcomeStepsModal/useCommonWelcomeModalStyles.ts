@@ -6,7 +6,7 @@ export const useCommonWelcomeModalStyles = makeStyles((theme) => ({
     fontSize: "28px",
     lineHeight: "34px",
     textAlign: "center",
-    margin: "32px 50px",
+    margin: "32px 40px 0 40px",
   },
   largeText: {
     fontWeight: "bold",
@@ -23,7 +23,7 @@ export const useCommonWelcomeModalStyles = makeStyles((theme) => ({
     height: "51px",
     background: theme.palette.secondary.main,
     borderRadius: "12px",
-    margin: "10px",
+    margin: "0",
     textTransform: "none",
     "&:focus": {
       background: theme.palette.secondary.main
@@ -41,7 +41,7 @@ export const useCommonWelcomeModalStyles = makeStyles((theme) => ({
     height: "51px",
     background: "white",
     borderRadius: "12px",
-    margin: "10px",
+    margin: "0",
     boxShadow: "none",
     textTransform: "none",
     "&:focus": {
@@ -55,6 +55,6 @@ export const useCommonWelcomeModalStyles = makeStyles((theme) => ({
     }
   },
   infoTextDiv: {
-    margin: "20px 40px",
+    margin: "24px 28px",
   },
 }));

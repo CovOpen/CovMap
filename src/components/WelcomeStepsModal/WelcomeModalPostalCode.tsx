@@ -51,12 +51,11 @@ export const WelcomeModalPostalCode: React.FC = () => {
 
       <TextField
         error={error}
-        label="Postleitzahl"
         variant="outlined"
         type="number"
         onChange={onPostalCodeChange}
         onBlur={() => setTouched(true)}
-        style={{ marginBottom: "12px" }}
+        style={{ margin: "50px 0 30px 0", width: "150px" }}
       />
 
       <Button
@@ -67,7 +66,8 @@ export const WelcomeModalPostalCode: React.FC = () => {
       >
         Jetzt starten
       </Button>
-      <Button className={`${classes.secondaryButton} ${classes.largeText}`} variant="contained" onClick={onSkip}>
+      <Button className={`${classes.secondaryButton} ${classes.largeText}`} style={{ width: "240px" }}
+        variant="contained" onClick={onSkip}>
         Ohne Postleitzahl weiter
       </Button>
       <img
