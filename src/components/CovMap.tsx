@@ -193,9 +193,9 @@ export const CovMap = () => {
 
   const handleMapLoaded = () => {
     setMapLoaded(true);
-    /* after map is completely loaded fly to useres home location
-    feel free to add a delay if needed */
-    flyToHome()
+    /* after map is completely loaded fly to useres home location after a short delay
+    tbh on most pcs this delay might as well be 0 */
+    setTimeout(flyToHome, 400)
   };
 
   return (
