@@ -67,6 +67,7 @@ async function loadFlyTo() {
 }
 
 export const CovMap = () => {
+  let startTime = Date.now()
   const classes = useStyles();
   const dispatch = useThunkDispatch();
   const urlParams = useParams<{ subPage?: string }>();
@@ -105,6 +106,7 @@ export const CovMap = () => {
   const changedMapRef = previousMapRef !== mapRef.current;
   useEffect(() => {
     previousMapRef = mapRef.current;
+
   }, [mapRef])
   useEffect(function () {
     if (mapRef.current) {
@@ -112,10 +114,6 @@ export const CovMap = () => {
       map.on('dataloading', handleMapBusy)
       map.on('idle', handleMapIdleOrRemoved)
       map.once('remove', handleMapIdleOrRemoved)
-      /* if user specified a home zipCode fly there.
-      tbh this should maybe happen with a delay but lets do it on mount for now.
-      looks like there is plenty of delay already */
-      flyToHome()
     }
 
     return () => {
@@ -195,6 +193,9 @@ export const CovMap = () => {
 
   const handleMapLoaded = () => {
     setMapLoaded(true);
+    /* after map is completely loaded fly to useres home location after a short delay
+    tbh on most pcs this delay might as well be 0 */
+    setTimeout(flyToHome, 400)
   };
 
   return (
