@@ -42,23 +42,11 @@ node dev/generate-random-data-for-geojson --help
 
 For fast _Hackathon like_ sprints, we use the shared `develop` branch. Add your changes locally, use `git add X && git commit` **then** use `git pull --rebase` **before you push** and resolve possible conflicts locally, then `git push`.
 
-## Requirements for v1.0
+---
+Copyright 2020 http://covmap.de
 
-MUST:
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this project except in compliance with the License. You may obtain a copy of the License at
 
-- Show map of Germany with colored district areas
-- Timeline bar: Selection of day and automatic update of map
-- Selection for type of displayed data (e.g. confirmed cases, deaths)
-- uses efficient encoding of zip code areas, e.g. TopoJSON
-- can ask users for symptoms
+http://www.apache.org/licenses/LICENSE-2.0
 
-IMPORTANT:
-
-- Displaying of further graphs, e.g. infections vs time
-- Displaying of further tables, e.g. infections vs state or zip code
-
-NICE TO HAVE:
-
-- Addition of further countries
-- Multilingual
-- does not rely on 3rd party maps, e.g. MapBox
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
