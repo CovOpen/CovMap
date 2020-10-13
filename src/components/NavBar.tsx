@@ -8,7 +8,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
 import Menu from "@material-ui/core/Menu";
 import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { AppApi } from "src/state/app";
 import { useThunkDispatch } from "src/useThunkDispatch";
 import { useSelector } from "react-redux";
@@ -22,6 +22,13 @@ import { config } from "app-config/index";
 const Logo = config.ui?.Logo;
 
 const useStyles = makeStyles((theme) => ({
+  appBar: {
+    /* [theme.breakpoints.down("sm")]: {  // on mobile devices
+      backgroundColor: "transparent",
+      boxShadow: "none"
+
+    } */
+  },
   title: {
     flexShrink: 1,
   },
@@ -31,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
   },
   menuIcon: {
     padding: 0,
+    zIndex: 999,  // put it on top of everything
+    /* [theme.breakpoints.down("sm")]: {  // on mobile devices
+
+    } */
   },
   menu: {
     touchAction: "none",
@@ -56,6 +67,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -101,8 +113,33 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
     );
   };
 
+  const NavMenuContent = () => {
+    return (
+      <div className={classes.menuContent}>
+        <Link key="map" style={{ textDecoration: "none" }} to="/">
+          <MenuItem className={classes.menuItem} onClick={handleClose}>
+            Karte
+          </MenuItem>
+        </Link>
+        <MenuEntries handleClose={handleClose} />
+        {useSelector((state: State) => state.app.installPrompt) && (
+          <div>
+            <Divider />
+            <MenuItem className={classes.menuItem} onClick={handleInstall}>
+              App Installieren
+                    </MenuItem>
+          </div>
+        )}
+        <Divider />
+        <MenuItem className={classes.menuItem} onClick={handleShare}>
+          Share <ShareIcon className={classes.menuIcon} />
+        </MenuItem>
+      </div>
+    )
+  }
+
   return (
-    <AppBar position="relative" style={{ height: 64, flex: "0 0 auto" }}>
+    <AppBar classes={{ root: classes.appBar }} position="relative" style={{ height: 64, flex: "0 0 auto" }}>
       <Toolbar>
         {(Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} />}
         {showSearch && <Search />}
@@ -136,29 +173,14 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
             open={open}
             onClose={handleClose}
           >
-            <div className={classes.menuContent}>
-              <Link key="map" style={{ textDecoration: "none" }} to="/">
-                <MenuItem className={classes.menuItem} onClick={handleClose}>
-                  Karte
-                </MenuItem>
-              </Link>
-              <MenuEntries handleClose={handleClose} />
-              {useSelector((state: State) => state.app.installPrompt) && (
-                <div>
-                  <Divider />
-                  <MenuItem className={classes.menuItem} onClick={handleInstall}>
-                    App Installieren
-                  </MenuItem>
-                </div>
-              )}
-              <Divider />
-              <MenuItem className={classes.menuItem} onClick={handleShare}>
-                Share <ShareIcon className={classes.menuIcon} />
-              </MenuItem>
-            </div>
+            <NavMenuContent />
           </Menu>
+
+          {/* do refactoring later :) */}
         </div>
       </Toolbar>
     </AppBar>
   );
 };
+
+

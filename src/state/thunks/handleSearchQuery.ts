@@ -28,7 +28,7 @@ const locationFound = (query, data, properties, searchOptions?) => {
     // string constructor is pretty expensive as far as i know so forcing everything to be a string might be smart
     if (Array.isArray(propVal)) {
       // if its an array compare each item as string
-      return propVal.some(val => String(val).toLowerCase().includes(query))
+      return propVal.some(val => String(val).toLowerCase().includes(queryTransformed.toLowerCase()))
     }
 
     // compare strings or numbers
@@ -37,7 +37,6 @@ const locationFound = (query, data, properties, searchOptions?) => {
     }
     return false;
   });
-
 
 }
 
