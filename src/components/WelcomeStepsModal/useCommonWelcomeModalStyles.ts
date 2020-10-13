@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export const useCommonWelcomeModalStyles = makeStyles(() => ({
+export const useCommonWelcomeModalStyles = makeStyles((theme) => ({
   title: {
     fontWeight: "bold",
     fontSize: "28px",
@@ -21,20 +21,38 @@ export const useCommonWelcomeModalStyles = makeStyles(() => ({
     color: "#FFFFFF",
     width: "194px",
     height: "51px",
-    background: "#2274E3",
+    background: theme.palette.secondary.main,
     borderRadius: "12px",
     margin: "10px",
     textTransform: "none",
+    "&:focus": {
+      background: theme.palette.secondary.main
+    },
+    "&:hover": {
+      background: theme.palette.secondary.main
+    },
+    "&:active": {
+      background: theme.palette.secondary.main
+    }
   },
   secondaryButton: {
     color: "#828282",
     width: "194px",
     height: "51px",
-    background: "#FFFFFF",
+    background: "white",
     borderRadius: "12px",
     margin: "10px",
     boxShadow: "none",
     textTransform: "none",
+    "&:focus": {
+      background: "white"
+    },
+    "&:hover": {
+      background: "white"
+    },
+    "&:active": {
+      background: "white"
+    }
   },
   infoTextDiv: {
     margin: "20px 40px",
