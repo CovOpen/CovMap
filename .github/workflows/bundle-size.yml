@@ -46,7 +46,7 @@ jobs:
       with:
         name: head-stats
     - name: Diff between base & head
-      uses: chronotruck/webpack-stats-diff-action@1.0.0
+      uses: weltenwort/webpack-stats-diff-action@v1.2.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         base_stats_path: ./base-stats/bundle-stats.json
