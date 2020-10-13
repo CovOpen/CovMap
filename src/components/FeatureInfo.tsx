@@ -1,6 +1,8 @@
 import React, { Suspense, memo } from "react";
 import { useSelector } from "react-redux";
 import { LazyError } from "./LazyError";
+import Drawer from '@material-ui/core/Drawer';
+
 const Popup = React.lazy(() =>
   import(/* webpackChunkName: "mapgl" */ "react-map-gl/dist/es6/components/popup").catch(() => ({
     default: LazyError,
@@ -49,15 +51,11 @@ export const FeatureInfo = memo(() => {
 
   return (
     <Suspense fallback={getFallbackComponent()}>
-      <Popup
-        latitude={(currentFeature as any).lngLat[1]}
-        longitude={(currentFeature as any).lngLat[0]}
-        closeButton={false}
-        closeOnClick={false}
-        onClose={onClose}
-        anchor="top"
-        style={{ zIndex: 1100 }}
-      >
+      <Drawer 
+        open={true}
+        anchor="bottom"        
+        onClose={onClose}>
+        
         <InfoComponent
           feature={currentFeature.feature}
           dataField={currentMappable.property}
@@ -65,7 +63,8 @@ export const FeatureInfo = memo(() => {
           rawData={rawData}
           onClose={onClose}
         />
-      </Popup>
+
+      </Drawer>      
     </Suspense>
   );
 });
