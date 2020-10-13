@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -8,7 +8,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
 import Menu from "@material-ui/core/Menu";
 import { Link } from "react-router-dom";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { AppApi } from "src/state/app";
 import { useThunkDispatch } from "src/useThunkDispatch";
 import { useSelector } from "react-redux";
@@ -18,16 +18,20 @@ import * as clipboard from "clipboard-polyfill";
 
 import { Search } from "./Search";
 import { config } from "app-config/index";
+import { Box, Drawer, useMediaQuery, useTheme } from "@material-ui/core";
+import { CloseRounded } from "@material-ui/icons";
 
 const Logo = config.ui?.Logo;
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    /* [theme.breakpoints.down("sm")]: {  // on mobile devices
+    /* zIndex: 1400, */
+    position: "relative",
+    [theme.breakpoints.down("xs")]: {  // on mobile devices
+      position: "fixed",
       backgroundColor: "transparent",
       boxShadow: "none"
-
-    } */
+    }
   },
   title: {
     flexShrink: 1,
@@ -38,16 +42,22 @@ const useStyles = makeStyles((theme) => ({
   },
   menuIcon: {
     padding: 0,
-    zIndex: 999,  // put it on top of everything
-    /* [theme.breakpoints.down("sm")]: {  // on mobile devices
-
-    } */
+    [theme.breakpoints.down("xs")]: {  // on mobile devices
+      backgroundColor: theme.palette.background.default,
+      /* backgroundColor: theme.palette.common.white, */
+      borderRadius: theme.shape.borderRadius,
+      padding: theme.spacing(0.4),
+      boxShadow: "0px 2px 5px -1px rgba(0,0,0,0.55)",
+      "&:hover": {
+        backgroundColor: theme.palette.background.default,
+      }
+    }
   },
   menu: {
     touchAction: "none",
   },
   menuContent: {
-    backgroundColor: theme.palette.primary.light,
+    /* backgroundColor: theme.palette.primary.light, */
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
   },
@@ -55,14 +65,36 @@ const useStyles = makeStyles((theme) => ({
     height: "32px",
     width: "auto",
     marginTop: "9px",
+
   },
+  /* logoMobileHidden: {
+    [theme.breakpoints.down("xs")]: {  // on mobile devices
+      display: "none"
+    }
+  }, */
+
+
+  drawer: {
+    touchAction: "none",
+  },
+  drawerPaper: {
+    width: "20rem",
+    maxWidth: "70vw",
+
+  },
+  drawerToolbar: {
+    justifyContent: "space-between"
+  }
 }));
+
+
 
 export type NavBarProps = {
   showSearch: boolean;
 };
 
 export const NavBar = ({ showSearch }: NavBarProps) => {
+  const isMobile = useMediaQuery('(max-width:600px)'); // some wierd bug makes every logo disappear when one logo has a display: none style
   const dispatch = useThunkDispatch();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -127,7 +159,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
             <Divider />
             <MenuItem className={classes.menuItem} onClick={handleInstall}>
               App Installieren
-                    </MenuItem>
+            </MenuItem>
           </div>
         )}
         <Divider />
@@ -138,45 +170,42 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
     )
   }
 
+
+
   return (
-    <AppBar classes={{ root: classes.appBar }} position="relative" style={{ height: 64, flex: "0 0 auto" }}>
+    <AppBar classes={{ root: classes.appBar }} style={{ height: 64, flex: "0 0 auto" }}>
       <Toolbar>
-        {(Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} />}
+        {!isMobile && (
+          (Logo && <Logo />)
+          ||
+          <img src={config.buildJSON.logoSrc} className={classes.logo} />
+        )}
         {showSearch && <Search />}
         <div>
-          <IconButton
-            classes={{
-              root: classes.menuIcon,
-            }}
-            aria-label="Main Menu"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleMenu}
-            color="inherit"
-          >
-            <MenuIcon />
-          </IconButton>
-
-          <Menu
-            className={classes.menu}
-            id="menu-appbar"
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
+          <MenuIconButton
+            handleMenu={handleMenu}
+          />
+          <Drawer
             open={open}
+            anchor="right"
+            id="menu-appbar"
+            keepMounted
             onClose={handleClose}
+            className={classes.drawer}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
           >
+            <Toolbar className={classes.drawerToolbar}>
+              {
+                (Logo && <Logo />)
+                ||
+                <img src={config.buildJSON.logoSrc} className={classes.logo} />
+              }
+              <MenuCloseButton handleClose={handleClose} />
+            </Toolbar>
             <NavMenuContent />
-          </Menu>
-
-          {/* do refactoring later :) */}
+          </Drawer>
         </div>
       </Toolbar>
     </AppBar>
@@ -184,3 +213,61 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
 };
 
 
+const useIconStyles = makeStyles((theme) => ({
+
+  menuIcon: {
+    padding: 0,
+    zIndex: 1400,  // put it on top of everything
+    [theme.breakpoints.down("xs")]: {  // on mobile devices
+      backgroundColor: theme.palette.background.default,
+      /* backgroundColor: theme.palette.common.white, */
+      borderRadius: theme.shape.borderRadius,
+      padding: theme.spacing(0.4),
+      boxShadow: "0px 2px 5px -1px rgba(0,0,0,0.55)",
+      "&:hover": {
+        backgroundColor: theme.palette.background.default,
+      }
+    }
+  },
+
+  closeIcon: {
+    color: theme.palette.highRisk.main
+  }
+
+
+}));
+
+
+const MenuCloseButton = ({ handleClose }) => {
+  const classes = useIconStyles();
+
+  return <IconButton   // if open show close icon
+    classes={{
+      root: `${classes.menuIcon} ${classes.closeIcon}`,
+    }}
+    aria-label="Close Main Menu"
+    aria-controls="menu-appbar"
+    aria-haspopup="true"
+    onClick={handleClose}
+    color="inherit"
+  >
+    <CloseRounded />
+  </IconButton>
+}
+
+const MenuIconButton = ({ handleMenu }) => {
+  const classes = useIconStyles();
+
+  return <IconButton
+    classes={{
+      root: classes.menuIcon,
+    }}
+    aria-label="Main Menu"
+    aria-controls="menu-appbar"
+    aria-haspopup="true"
+    onClick={handleMenu}
+    color="inherit"
+  >
+    <MenuIcon />
+  </IconButton>
+}
