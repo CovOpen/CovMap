@@ -109,9 +109,9 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
                   title="Symptomlast der Bevölkerung"
                   titleTypographyProps={{ variant: "h3" }}
                   subheader="Bald verfügbar!"
-                  // TODO: Instead of subheader, show actual data
-                  // action={symptomIndex}
-                  // classes={{ action }}
+                // TODO: Instead of subheader, show actual data
+                // action={symptomIndex}
+                // classes={{ action }}
                 />
               </Card>
             </Grid>
@@ -128,7 +128,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
               </Card>
             </Grid>
             <Grid item>
-              <Button href={howToBehaveUrl} fullWidth variant="contained" color="secondary">
+              <Button href={howToBehaveUrl} target="_blank" fullWidth variant="contained" color="secondary">
                 Wie sollte ich mich verhalten?
               </Button>
             </Grid>
