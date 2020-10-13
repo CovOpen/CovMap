@@ -13,6 +13,11 @@ import { State } from "../state";
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(0, 2),
+    marginLeft: "auto",
+    [theme.breakpoints.down("xs")]: {  // on mobile devices
+      flex: 1,
+    }
+
   },
   search: {
     "position": "relative",
@@ -21,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: fade(theme.palette.common.white, 0.95),
     },
+    [theme.breakpoints.down("xs")]: {  // on mobile devices
+      boxShadow: "0px 2px 5px -1px rgba(0,0,0,0.55)",
+    }
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -33,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inputRoot: {
     color: "inherit",
+
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -79,7 +88,7 @@ type Possibilities = {
   results: Array<any>;
 };
 
-export const Search = () => {
+export const Search = ({ className = "" }: { className?: string }) => {
   const dispatch = useThunkDispatch();
   const classes = useStyles();
   const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
@@ -114,7 +123,7 @@ export const Search = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={`${classes.root} ${className}`}>
       <div {...getRootProps()} className={classes.search}>
         <div className={classes.searchIcon}>
           <SearchIcon />

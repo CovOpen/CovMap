@@ -43,6 +43,11 @@ const useStyles = makeStyles((theme) => ({
       -1px 1px 0 rgba(0,0,0,0.36),
       1px 1px 0 rgba(0,0,0,0.36);
     `,
+    /* on mobile move it down by the navheight */
+    [theme.breakpoints.down("xs")]: {
+      top: 64,  // make this dynamic nav is 64px heigh so far tho
+      margin: theme.spacing(1, 2)
+    },
     "& h2": {
       fontWeight: 600,
     },
