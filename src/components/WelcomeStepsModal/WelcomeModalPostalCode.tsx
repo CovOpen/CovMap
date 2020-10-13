@@ -5,41 +5,42 @@ import Button from "@material-ui/core/Button";
 import { AppApi } from "../../state/app";
 import { useCommonWelcomeModalStyles } from "./useCommonWelcomeModalStyles";
 
+function isValidPostalCode(text: string) {
+  return /^[1-9][0-9]{4}$/.test(text);
+}
+
 export const WelcomeModalPostalCode: React.FC = () => {
   const classes = useCommonWelcomeModalStyles();
   const dispatch = useThunkDispatch();
   const [postCode, setPostCode] = useState("");
-  const [touched, setTouched] = useState(false);
+  const [alwaysValidate, setAlwaysValidate] = useState(false);
   const [error, setError] = useState(false);
-
-  function isValidPostalCode(text: string) {
-    const postCodeAsNumber = parseInt(text, 10);
-    return !isNaN(postCodeAsNumber) && postCodeAsNumber < 100000;
-  }
 
   useEffect(
     () => {
-      if (touched) {
+      if (alwaysValidate) {
         setError(!isValidPostalCode(postCode));
       }
     },
-    [touched, postCode],
+    [alwaysValidate, postCode],
   );
-
-  function onPostalCodeChange(event) {
-    setPostCode(event.target.value);
-    setTouched(true);
-  }
 
   function onSkip() {
     return dispatch(AppApi.setUserPostalCode(0));
   }
 
-  function onSubmit() {
+  function submit() {
     if (isValidPostalCode(postCode)) {
       dispatch(AppApi.setUserPostalCode(parseInt(postCode, 10)));
     } else {
+      setAlwaysValidate(true);
       setError(true);
+    }
+  }
+
+  function onKeyPress(event) {
+    if (event.key === "Enter") {
+      submit();
     }
   }
 
@@ -50,32 +51,45 @@ export const WelcomeModalPostalCode: React.FC = () => {
       </Typography>
 
       <TextField
+        autoFocus
         error={error}
-        label="Postleitzahl"
+        helperText={error ? "Bitte valide PLZ eingeben" : null}
         variant="outlined"
         type="number"
-        onChange={onPostalCodeChange}
-        onBlur={() => setTouched(true)}
-        style={{ marginBottom: "12px" }}
+        onChange={event => {
+          setPostCode(event.target.value);
+        }}
+        onKeyPress={onKeyPress}
+        onBlur={() => setAlwaysValidate(true)}
+        style={{ margin: "50px 0 30px 0", width: "180px", height: "80px" }}
       />
 
       <Button
         className={`${classes.primaryButton} ${classes.largeText}`}
         variant="contained"
         color="primary"
-        onClick={onSubmit}
+        onClick={submit}
       >
         Jetzt starten
       </Button>
-      <Button className={`${classes.secondaryButton} ${classes.largeText}`} variant="contained" onClick={onSkip}>
+
+      <Button
+        className={`${classes.secondaryButton} ${classes.largeText}`}
+        style={{ width: "240px" }}
+        variant="contained" onClick={onSkip}
+      >
         Ohne Postleitzahl weiter
       </Button>
+
       <img
         src={"/images/icon-security.svg"}
         alt="Security Icon"
         style={{ width: "24px", height: "24px", margin: "24px 0 12px 0" }}
       />
-      <Typography className={classes.smallText}>Siehe unsere Datenschutzrichtlinien.</Typography>
+
+      <div style={{ marginBottom: "28px" }}>
+        <Typography className={classes.smallText}>Siehe unsere Datenschutzrichtlinien.</Typography>
+      </div>
     </>
   );
 };
