@@ -39,8 +39,7 @@ node dev/generate-random-data-for-geojson --help
 ```
 
 ## Contributing
-
-For fast _Hackathon like_ sprints, we use the shared `develop` branch. Add your changes locally, use `git add X && git commit` **then** use `git pull --rebase` **before you push** and resolve possible conflicts locally, then `git push`.
+We use a shared `master` branch, with short lived feature branches. Create a branch, add your changes locally, use `git add X && git commit`, then create a Pull Request.
 
 ---
 Copyright 2020 http://covmap.de
