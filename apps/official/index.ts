@@ -3,6 +3,8 @@ import { AnimatedLogo } from "./components/AnimatedLogo";
 import buildJSON from "./build.json";
 import { About } from "./components/pages/About";
 import { Imprint } from "./components/pages/Imprint";
+import { Legal } from "./components/pages/Legal";
+import { Privacy } from "./components/pages/Privacy";
 import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo";
 // TODO: Integrate CovQuestions
 // import { Questions } from './components/pages/Questions'
@@ -14,22 +16,6 @@ const CovMapMappables = [
     default: true,
   },
 ];
-
-// old search for zipCodes does not work since we dont use the zipCodes list
-const CovMapSearchPLZ = {
-  placeholder: "PLZ oder Landkreis",
-  nameProp: "note",
-  inMappings: [
-    {
-      id: "CI-to-plz",
-      properties: ["note"],
-      getCoordinates: (feature) => {
-        //return feature.properties.geo_point_2d TODO
-      },
-    },
-  ],
-  notFoundMessage: "Leider keinen Landkreis gefunden.",
-};
 
 const CovMapSearch = {
   placeholder: "PLZ oder Landkreis",
@@ -65,6 +51,18 @@ export const config: AppConfig = {
         title: "Impressum",
         route: "/imprint",
         Component: Imprint,
+      },
+      {
+        id: "legal-page",
+        title: "Rechtliches",
+        route: "/legal",
+        Component: Legal,
+      },
+      {
+        id: "privacy-page",
+        title: "Datenschutz",
+        route: "/privacy-statement",
+        Component: Privacy,
       } /* {
       id: 'questions-page',
       title: 'Symptome erfassen',
