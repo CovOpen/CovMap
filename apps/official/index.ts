@@ -129,7 +129,7 @@ export const config: AppConfig = {
                 3,
                 "#E84C4C",
               ],
-              "fill-opacity": 0.8,
+              "fill-opacity": 0.5,
             },
           }),
         },
