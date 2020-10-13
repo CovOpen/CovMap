@@ -217,8 +217,10 @@ module.exports = function (env) {
     config.plugins.push(
       new BundleAnalyzerPlugin({
         analyzerMode: "static",
+        generateStatsFile: true,
         openAnalyzer: false,
         reportFilename: path.resolve(__dirname, "bundle-report.html"),
+        statsFilename: path.resolve(__dirname, "bundle-stats.json"),
       }),
     );
   } else {
