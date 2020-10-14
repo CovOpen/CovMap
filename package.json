@@ -14,7 +14,8 @@
     "refresh": "sudo docker-compose build frontend && sudo docker-compose up -d frontend",
     "restart": "sudo docker-compose restart frontend",
     "test": "jest --env=jsdom",
-    "coverage": "jest --env=jsdom --coverage"
+    "coverage": "jest --env=jsdom --coverage",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
@@ -51,8 +52,8 @@
     "@types/jsonwebtoken": "^8.3.8",
     "@types/react": "^16.9.25",
     "@types/react-dom": "^16.9.5",
-    "@types/react-router-dom": "^5.1.6",
     "@types/react-redux": "^7.1.7",
+    "@types/react-router-dom": "^5.1.6",
     "@types/redux-persist": "^4.3.1",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
@@ -75,6 +76,7 @@
     "jest": "^25.1.0",
     "moment": "^2.24.0",
     "moment-locales-webpack-plugin": "^1.2.0",
+    "prettier": "2.1.2",
     "react-hot-loader": "^4.12.20",
     "react-map-gl": "^5.2.3",
     "react-test-renderer": "^16.13.1",
