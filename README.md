@@ -26,7 +26,7 @@ Then go to [`https://localhost:8080`](https://localhost:8080) in your browser (i
 
 ### Test Data
 
-To generate test data for GeoJSONs you want to map your data on (like in _/data_), use the script at `dev/generate-random-data-for-geojson.js`.
+To generate test data for GeoJSONs you want to map your data on (like in _/data_), use the script at [`dev/generate-random-data-for-geojson.js`](./dev/generate-random-data-for-geojson.js).
 
 ```bash
 node dev/generate-random-data-for-geojson --help
