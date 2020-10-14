@@ -21,4 +21,4 @@ jobs:
         with:
           azcliversion: 2.0.72
           inlineScript: |
-            az storage account delete --name ${{ env.STORAGE_NAME }} --resource-group ${{ env.RESSOURCE_GROUP }} --yes
+            az storage account delete --name ${{ env.STORAGE_NAME }} --resource-group ${{ env.RESSOURCE_GROUP }} --subscription ${{ SECRETS.AZURE_SUBSCRIPTION_ID }} --yes
