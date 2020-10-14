@@ -10,17 +10,17 @@ import { useParams } from "react-router-dom";
 import { State } from "../state";
 import { AppApi } from "../state/app";
 import { useThunkDispatch } from "../useThunkDispatch";
-import { Zoom } from './Zoom';
-import { OfflineIndicator } from './OfflineIndicator';
-import { TopLeftContainer } from './TopLeftContainer';
-import { TimeNav } from './TimeNav';
-import { WelcomeStepsModal } from './WelcomeStepsModal/WelcomeStepsModal';
-import { WelcomeInfo } from './WelcomeInfo';
-import { WelcomeInfoButton } from './WelcomeInfoButton';
-import { GLMap } from './GLMap'
-import { Legend } from './Legend'
-import { Settings } from './Settings'
-import { config } from 'app-config/index'
+import { Zoom } from "./Zoom";
+import { OfflineIndicator } from "./OfflineIndicator";
+import { TopLeftContainer } from "./TopLeftContainer";
+import { TimeNav } from "./TimeNav";
+import { WelcomeStepsModal } from "./WelcomeStepsModal/WelcomeStepsModal";
+import { WelcomeInfo } from "./WelcomeInfo";
+import { WelcomeInfoButton } from "./WelcomeInfoButton";
+import { GLMap } from "./GLMap";
+import { Legend } from "./Legend";
+import { Settings } from "./Settings";
+import { config } from "app-config/index";
 import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
 
 const useStyles = makeStyles((theme) => ({
@@ -45,8 +45,8 @@ const useStyles = makeStyles((theme) => ({
     `,
     /* on mobile move it down by the navheight */
     [theme.breakpoints.down("xs")]: {
-      top: 64,  // make this dynamic nav is 64px heigh so far tho
-      margin: theme.spacing(1, 2)
+      top: 64, // make this dynamic nav is 64px heigh so far tho
+      margin: theme.spacing(1, 2),
     },
     "& h2": {
       fontWeight: 600,
@@ -72,7 +72,7 @@ async function loadFlyTo() {
 }
 
 export const CovMap = () => {
-  let startTime = Date.now()
+  let startTime = Date.now();
   const classes = useStyles();
   const dispatch = useThunkDispatch();
   const urlParams = useParams<{ subPage?: string }>();
@@ -83,7 +83,7 @@ export const CovMap = () => {
   const currentMappable = useSelector((state: State) => state.app.currentMappable);
   const currentDate = useSelector((state: State) => state.app.currentDate);
   const userPostalCode = useSelector((state: State) => state.app.userPostalCode);
-  const [mapLoaded, setMapLoaded] = useState<boolean>(false)
+  const [mapLoaded, setMapLoaded] = useState<boolean>(false);
   const mapRef = createRef<any>();
   const visual = config.visuals[currentVisual];
 
@@ -111,24 +111,24 @@ export const CovMap = () => {
   const changedMapRef = previousMapRef !== mapRef.current;
   useEffect(() => {
     previousMapRef = mapRef.current;
-
-  }, [mapRef])
-  useEffect(function () {
-    if (mapRef.current) {
-      const map = mapRef.current.getMap();
-      map.on('dataloading', handleMapBusy)
-      map.on('idle', handleMapIdleOrRemoved)
-      map.once('remove', handleMapIdleOrRemoved)
-    }
-
-    return () => {
+  }, [mapRef]);
+  useEffect(
+    function () {
       if (mapRef.current) {
         const map = mapRef.current.getMap();
-        map.off("dataloading", handleMapBusy);
-        map.off("idle", handleMapIdleOrRemoved);
+        map.on("dataloading", handleMapBusy);
+        map.on("idle", handleMapIdleOrRemoved);
+        map.once("remove", handleMapIdleOrRemoved);
       }
-    };
-  },
+
+      return () => {
+        if (mapRef.current) {
+          const map = mapRef.current.getMap();
+          map.off("dataloading", handleMapBusy);
+          map.off("idle", handleMapIdleOrRemoved);
+        }
+      };
+    },
     [changedMapRef],
   );
 
@@ -184,23 +184,20 @@ export const CovMap = () => {
         };
         dispatch(AppApi.setViewport(newViewport));
       }
-
     }
   };
 
   const flyToHome = () => {
     // check for "valid" postal codes
-    if (!userPostalCode || isNaN(userPostalCode)) return
-    dispatch(switchViewToPlace(String(userPostalCode)))
-  }
-
-
+    if (!userPostalCode || isNaN(userPostalCode)) return;
+    dispatch(switchViewToPlace(String(userPostalCode)));
+  };
 
   const handleMapLoaded = () => {
     setMapLoaded(true);
     /* after map is completely loaded fly to useres home location after a short delay
     tbh on most pcs this delay might as well be 0 */
-    setTimeout(flyToHome, 400)
+    setTimeout(flyToHome, 400);
   };
 
   return (
@@ -222,7 +219,7 @@ export const CovMap = () => {
       </TopLeftContainer>
       {visual.InfoComponent ? <WelcomeInfo /> : null}
       <GLMap mapRef={mapRef} onMapClick={handleMapClick} onViewportChange={onViewportChange} onLoad={handleMapLoaded} />
-      { config.showTimeNavigation === false ? null : <TimeNav />}
+      {config.showTimeNavigation === false ? null : <TimeNav />}
       <Legend />
       <Dialog
         aria-labelledby="simple-dialog-title"
@@ -242,6 +239,6 @@ export const CovMap = () => {
         </DialogTitle>
       </Dialog>
       <WelcomeStepsModal subPage={urlParams.subPage} />
-    </div >
+    </div>
   );
 };

@@ -207,7 +207,13 @@ body {
   background-color: #e3e9f3;
 }
 
-/* FIXME: removes Mapbox logo. Needs to be discussed with company before release. 
+@media only screen and (max-width: 600px) {
+  main.sections {
+    padding-top: 64px; /* 64px is AppBar height atm. AppBar is static on mobile and relative otherwise */
+  }
+}
+
+/* FIXME: removes Mapbox logo. Needs to be discussed with company before release.
 .mapboxgl-control-container {
     display: none;
 }*/
