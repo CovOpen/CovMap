@@ -40,10 +40,9 @@ const useStyles = makeStyles((theme) => ({
   menuItem: {
     touchAction: "none",
     paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(1),
+    paddingRight: theme.spacing(1)
   },
-  menuIcon: {
-    // share icon
+  menuIcon: { // share icon
     padding: 0,
     /* [theme.breakpoints.down("xs")]: {  // on mobile devices
       backgroundColor: theme.palette.background.default,
@@ -54,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.default,
       }
     } */
-    margin: theme.spacing(0, 1),
+    margin: theme.spacing(0, 1)
   },
   menu: {
     touchAction: "none",
@@ -91,8 +90,8 @@ const useStyles = makeStyles((theme) => ({
     /*  flexDirection: "column" */
   },
   drawerIcon: {
-    margin: theme.spacing(4, "auto"),
-  },
+    margin: theme.spacing(4, "auto")
+  }
 }));
 
 export type NavBarProps = {
@@ -198,11 +197,11 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
             </Toolbar>
             <NavMenuContent />
 
-            {(Logo && (
-              <div className={classes.drawerIcon}>
-                <Logo />
-              </div>
-            )) || <img src={config.buildJSON.logoSrc} className={classes.logo} />}
+            {
+              (Logo && <div className={classes.drawerIcon}><Logo /></div>)
+              ||
+              <img src={config.buildJSON.logoSrc} className={classes.logo} />
+            }
           </Drawer>
         </div>
       </Toolbar>
@@ -213,13 +212,12 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
 const useIconStyles = makeStyles((theme) => ({
   menuIcon: {
     padding: 0,
-    zIndex: 1400, // put it on top of everything
-    [theme.breakpoints.down("xs")]: {
-      // on mobile devices
-      "backgroundColor": theme.palette.background.default,
-      "borderRadius": theme.shape.borderRadius * 1.5,
-      "padding": theme.spacing(0.5),
-      "boxShadow": "0px 2px 5px -1px rgba(0,0,0,0.55)",
+    zIndex: 1400,  // put it on top of everything
+    [theme.breakpoints.down("xs")]: {  // on mobile devices
+      backgroundColor: theme.palette.background.default,
+      borderRadius: theme.shape.borderRadius * 1.5,
+      padding: theme.spacing(0.5),
+      boxShadow: "0px 2px 5px -1px rgba(0,0,0,0.55)",
       "&:hover": {
         backgroundColor: theme.palette.background.default,
       },
@@ -228,35 +226,36 @@ const useIconStyles = makeStyles((theme) => ({
 
   closeIcon: {
     /* color: theme.palette.highRisk.main */
-    "backgroundColor": theme.palette.secondary.main,
-    "borderRadius": theme.shape.borderRadius * 1.5,
-    "padding": theme.spacing(0.5),
-    "boxShadow": "0px 2px 5px -1px rgba(0,0,0,0.55)",
-    "marginLeft": "auto",
+    backgroundColor: theme.palette.secondary.main,
+    borderRadius: theme.shape.borderRadius * 1.5,
+    padding: theme.spacing(0.5),
+    boxShadow: "0px 2px 5px -1px rgba(0,0,0,0.55)",
+    marginLeft: "auto",
     "&:hover": {
       backgroundColor: theme.palette.secondary.main,
-    },
-  },
+
+    }
+  }
+
+
 }));
 
 const MenuCloseButton = ({ handleClose }) => {
   const classes = useIconStyles();
 
-  return (
-    <IconButton // if open show close icon
-      classes={{
-        root: `${classes.menuIcon} ${classes.closeIcon}`,
-      }}
-      aria-label="Close Main Menu"
-      aria-controls="menu-appbar"
-      aria-haspopup="true"
-      onClick={handleClose}
-      color="primary"
-    >
-      <CloseRounded />
-    </IconButton>
-  );
-};
+  return <IconButton   // if open show close icon
+    classes={{
+      root: `${classes.menuIcon} ${classes.closeIcon}`,
+    }}
+    aria-label="Close Main Menu"
+    aria-controls="menu-appbar"
+    aria-haspopup="true"
+    onClick={handleClose}
+    color="primary"
+  >
+    <CloseRounded />
+  </IconButton>
+}
 
 const MenuIconButton = ({ handleMenu }) => {
   const classes = useIconStyles();
