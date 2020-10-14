@@ -1,5 +1,5 @@
 <div align="center" >
-  <a href="https://github.com/alexanderthieme/CovMapper">
+  <a href="https://covmap.de">
     <img style="height: 200px; width: auto;" src="https://github.com/alexanderthieme/CovMapper/raw/master/static/logo.png" alt="CovMap">
   </a>
 </div>
@@ -37,7 +37,5 @@ node dev/generate-random-data-for-geojson --help
 We use a shared `master` branch, with short lived feature branches. Create a branch, add your changes locally, use `git add X && git commit`, then create a Pull Request.
 
 ---
-
-Copyright 2020 http://covmap.de
 
 Licensed under the Apache License. Find the license [here](./LICENSE).
