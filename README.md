@@ -54,7 +54,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/kommander"><img src="https://avatars2.githubusercontent.com/u/335157?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Sebastian Herrlinger</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=kommander" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/kommander"><img src="https://avatars2.githubusercontent.com/u/335157?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Sebastian Herrlinger</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=kommander" title="Code">💻</a> <a href="#business-kommander" title="Business development">💼</a></td>
   </tr>
 </table>
 
