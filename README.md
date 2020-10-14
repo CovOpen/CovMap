@@ -50,7 +50,6 @@ For fast _Hackathon like_ sprints, we use the shared `develop` branch. Add your 
 
 ## Contributors ✨
 
-<a name="contributers"></a>
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
