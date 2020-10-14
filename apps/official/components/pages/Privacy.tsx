@@ -10,9 +10,7 @@ export const Privacy = () => {
         </section>
         <section>
           <Typography variant="h2">Uberschrift</Typography>
-          <Typography variant="body1">
-            Inhalt
-          </Typography>
+          <Typography variant="body1">Inhalt</Typography>
         </section>
       </main>
     </>
