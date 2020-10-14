@@ -1,6 +1,6 @@
 <div align="center" >
-  <a href="https://github.com/alexanderthieme/CovMapper">
-    <img style="height: 200px; width: auto;" src="https://github.com/alexanderthieme/CovMapper/raw/master/static/logo.png" alt="CovMap">
+  <a href="https://covmap.de">
+    <img style="height: 200px; width: auto;" src="https://github.com/alexanderthieme/CovMapper/raw/master/static/logo.png" alt="CovMap Logo">
   </a>
 </div>
 
@@ -10,35 +10,29 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-# CovMap
+# CovMapper
 
-A web app to display large-scale epidemiological data and forecasts of the SARS-CoV-2 pandemic.
+A webapp to display large-scale epidemiological data and forecasts of the SARS-CoV-2 pandemic.
 
 ## Development
 
 We use Docker currently only to develop on different operating systems.
 It is not necessarily needed, on unix like systems you can use _yarn_ scripts directly, like `yarn dev`.
 
-### Docker for Unix like systems
-
 ```bash
 cd ./CovMap
-yarn install
+# If you don't want to setup yarn locally:
 docker-compose up
-```
-
-### Yarn for Unix like systems
-
-```bash
-cd ./CovMap
+# If you want to develop on your system:
+yarn install
 yarn dev
 ```
 
-Then go to `https://localhost:8080` in your browser (if you are using docker you have to allow self-signed certificates in order to work)
+Then go to [`https://localhost:8080`](https://localhost:8080) in your browser (if you are using docker you have to allow self-signed certificates in order to work)
 
 ### Test Data
 
-To generate test data for GeoJSONs you want to map your data on (like in _/data_), use the script at `dev/generate-random-data-for-geojson.js`.
+To generate test data for GeoJSONs you want to map your data on (like in _/data_), use the script at [`dev/generate-random-data-for-geojson.js`](./dev/generate-random-data-for-geojson.js).
 
 ```bash
 node dev/generate-random-data-for-geojson --help
@@ -46,7 +40,7 @@ node dev/generate-random-data-for-geojson --help
 
 ## Contributing
 
-For fast _Hackathon like_ sprints, we use the shared `develop` branch. Add your changes locally, use `git add X && git commit` **then** use `git pull --rebase` **before you push** and resolve possible conflicts locally, then `git push`.
+We use a shared `master` branch, with short lived feature branches. Create a branch, add your changes locally, use `git add X && git commit`, then create a Pull Request.
 
 ## Contributors ✨
 
@@ -77,10 +71,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 > This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome! Add them by referring to the [@all-contributers Bot](https://allcontributors.org/docs/en/bot/usage) or using the cli (`yarn all-contributers add <username> <emojikey>`).
 
-Copyright 2020 http://covmap.de
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this project except in compliance with the License. You may obtain a copy of the License at
 
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+Copyright 2020 http://covmap.de Licensed under the Apache License. Find the license [here](./LICENSE).
