@@ -13,21 +13,14 @@ A web app to display large-scale epidemiological data and forecasts of the SARS-
 We use Docker currently only to develop on different operating systems.
 It is not necessarily needed, on unix like systems you can use _yarn_ scripts directly, like `yarn dev`.
 
-### Docker for Unix like systems and Windows
-
 ```bash
 cd ./CovMap
-yarn install
+# If you don't want to setup yarn locally:
 docker-compose up
-```
-
-### Yarn for Unix like systems
-
-```bash
-cd ./CovMap
+# If you want to develop on your system:
+yarn install
 yarn dev
 ```
-
 
 Then go to `https://localhost:8080` in your browser (if you are using docker you have to allow self-signed certificates in order to work)
 
