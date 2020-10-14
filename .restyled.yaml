@@ -6,6 +6,8 @@ restylers:
       include:
         - "**/*.js"
         - "**/*.ts"
+        - "**/*.jsx"
+        - "**/*.tsx"
         - "**/*.html"
         - "**/*.md"
         - "**/*.yml"
