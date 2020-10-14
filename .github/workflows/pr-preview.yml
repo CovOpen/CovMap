@@ -49,6 +49,5 @@ jobs:
       with:
         issue-number: ${{ github.event.pull_request.number }}
         body: |
-          This PR is available as a preview [here][1].
-          [1]: https://${{ env.STORAGE_NAME }}.z16.web.core.windows.net/
+          This PR is available as a preview [here](https://${{ env.STORAGE_NAME }}.z16.web.core.windows.net).
         reaction-type: "rocket"
