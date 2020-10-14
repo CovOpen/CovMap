@@ -1,0 +1,24 @@
+{
+  "projectName": "CovMapper",
+  "projectOwner": "CovOpen",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 50,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "kommander",
+      "name": "Sebastian Herrlinger",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/335157?v=4",
+      "profile": "https://github.com/kommander",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
