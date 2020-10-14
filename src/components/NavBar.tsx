@@ -162,7 +162,6 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
   return (
     <AppBar classes={{ root: classes.appBar }} style={{ height: 64, flex: "0 0 auto" }}>
       <Toolbar>
-<<<<<<< HEAD
         {!isMobile && (
           (Logo && <Logo />)
           ||
@@ -196,35 +195,6 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
             <img src={config.buildJSON.logoSrc} className={classes.logo} />
           }
         </Drawer>
-=======
-        {!isMobile && ((Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} />)}
-        {showSearch && <Search />}
-        <div>
-          <MenuIconButton handleMenu={handleMenu} />
-          <Drawer
-            open={open}
-            anchor="right"
-            id="menu-appbar"
-            keepMounted
-            onClose={handleClose}
-            className={classes.drawer}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-          >
-            <Toolbar className={classes.drawerToolbar}>
-              <MenuCloseButton handleClose={handleClose} />
-            </Toolbar>
-            <NavMenuContent />
-
-            {
-              (Logo && <div className={classes.drawerIcon}><Logo /></div>)
-              ||
-              <img src={config.buildJSON.logoSrc} className={classes.logo} />
-            }
-          </Drawer>
-        </div>
->>>>>>> origin/master
       </Toolbar>
     </AppBar>
   );
