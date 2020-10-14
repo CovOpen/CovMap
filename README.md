@@ -33,9 +33,11 @@ node dev/generate-random-data-for-geojson --help
 ```
 
 ## Contributing
+
 We use a shared `master` branch, with short lived feature branches. Create a branch, add your changes locally, use `git add X && git commit`, then create a Pull Request.
 
 ---
+
 Copyright 2020 http://covmap.de
 
 Licensed under the Apache License. Find the license [here](./LICENSE).
