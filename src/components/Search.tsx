@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(0, 2),
     /* marginLeft: "auto", */
-    [theme.breakpoints.down("xs")]: {  // on mobile devices
+    [theme.breakpoints.down("xs")]: {
+      // on mobile devices
       flex: 1,
     },
   },
