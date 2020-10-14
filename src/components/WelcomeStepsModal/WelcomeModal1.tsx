@@ -29,7 +29,7 @@ export const WelcomeModal1: React.FC = () => {
     <>
       <Typography className={classes.title}>Willkommen bei der CovMap</Typography>
 
-      <img src={"/images/WelcomeModalImage1.svg"} alt="Welcome" width="100%"/>
+      <img src={"/images/WelcomeModalImage1.svg"} alt="Welcome" width="100%" />
 
       <div className={classes.infoTextDiv}>
         <div className={classes.listItemDiv}>
@@ -46,7 +46,7 @@ export const WelcomeModal1: React.FC = () => {
         </div>
       </div>
 
-      <img src={"/images/Logo_Charite.svg"} alt="Charité Berlin" width="100" style={{ marginBottom: "24px" }}/>
+      <img src={"/images/Logo_Charite.svg"} alt="Charité Berlin" width="100" style={{ marginBottom: "24px" }} />
     </>
   );
 };

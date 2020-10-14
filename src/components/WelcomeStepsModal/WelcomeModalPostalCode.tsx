@@ -33,14 +33,11 @@ export const WelcomeModalPostalCode: React.FC = () => {
   const [alwaysValidate, setAlwaysValidate] = useState(false);
   const [error, setError] = useState(false);
 
-  useEffect(
-    () => {
-      if (alwaysValidate) {
-        setError(!isValidPostalCode(postCode));
-      }
-    },
-    [alwaysValidate, postCode],
-  );
+  useEffect(() => {
+    if (alwaysValidate) {
+      setError(!isValidPostalCode(postCode));
+    }
+  }, [alwaysValidate, postCode]);
 
   function onSkip() {
     return dispatch(AppApi.setUserPostalCode(0));
@@ -74,7 +71,7 @@ export const WelcomeModalPostalCode: React.FC = () => {
         helperText={error ? "Bitte valide PLZ eingeben" : null}
         variant="outlined"
         type="number"
-        onChange={event => {
+        onChange={(event) => {
           setPostCode(event.target.value);
         }}
         onKeyPress={onKeyPress}
@@ -94,7 +91,8 @@ export const WelcomeModalPostalCode: React.FC = () => {
       <Button
         className={`${classes.secondaryButton} ${classes.largeText}`}
         style={{ width: "240px" }}
-        variant="contained" onClick={onSkip}
+        variant="contained"
+        onClick={onSkip}
       >
         Ohne Postleitzahl weiter
       </Button>

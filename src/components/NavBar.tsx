@@ -27,11 +27,12 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     /* zIndex: 1400, */
     position: "relative",
-    [theme.breakpoints.down("xs")]: {  // on mobile devices
+    [theme.breakpoints.down("xs")]: {
+      // on mobile devices
       position: "fixed",
       backgroundColor: "transparent",
-      boxShadow: "none"
-    }
+      boxShadow: "none",
+    },
   },
   title: {
     flexShrink: 1,
@@ -63,20 +64,17 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(1), */
     marginBottom: theme.spacing(4),
     marginTop: "auto",
-
   },
   logo: {
     height: "32px",
     width: "auto",
     marginTop: "9px",
-
   },
   /* logoMobileHidden: {
     [theme.breakpoints.down("xs")]: {  // on mobile devices
       display: "none"
     }
   }, */
-
 
   drawer: {
     touchAction: "none",
@@ -96,19 +94,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-
-
 export type NavBarProps = {
   showSearch: boolean;
 };
 
 export const NavBar = ({ showSearch }: NavBarProps) => {
-  const isMobile = useMediaQuery('(max-width:600px)'); // some wierd bug makes every logo disappear when one logo has a display: none style
+  const isMobile = useMediaQuery("(max-width:600px)"); // some wierd bug makes every logo disappear when one logo has a display: none style
   const dispatch = useThunkDispatch();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -176,24 +171,16 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
           Share <ShareIcon className={classes.menuIcon} />
         </MenuItem>
       </div>
-    )
-  }
-
-
+    );
+  };
 
   return (
     <AppBar classes={{ root: classes.appBar }} style={{ height: 64, flex: "0 0 auto" }}>
       <Toolbar>
-        {!isMobile && (
-          (Logo && <Logo />)
-          ||
-          <img src={config.buildJSON.logoSrc} className={classes.logo} />
-        )}
+        {!isMobile && ((Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} />)}
         {showSearch && <Search />}
         <div>
-          <MenuIconButton
-            handleMenu={handleMenu}
-          />
+          <MenuIconButton handleMenu={handleMenu} />
           <Drawer
             open={open}
             anchor="right"
@@ -222,9 +209,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
   );
 };
 
-
 const useIconStyles = makeStyles((theme) => ({
-
   menuIcon: {
     padding: 0,
     zIndex: 1400,  // put it on top of everything
@@ -235,8 +220,8 @@ const useIconStyles = makeStyles((theme) => ({
       boxShadow: "0px 2px 5px -1px rgba(0,0,0,0.55)",
       "&:hover": {
         backgroundColor: theme.palette.background.default,
-      }
-    }
+      },
+    },
   },
 
   closeIcon: {
@@ -254,7 +239,6 @@ const useIconStyles = makeStyles((theme) => ({
 
 
 }));
-
 
 const MenuCloseButton = ({ handleClose }) => {
   const classes = useIconStyles();
@@ -276,16 +260,18 @@ const MenuCloseButton = ({ handleClose }) => {
 const MenuIconButton = ({ handleMenu }) => {
   const classes = useIconStyles();
 
-  return <IconButton
-    classes={{
-      root: classes.menuIcon,
-    }}
-    aria-label="Main Menu"
-    aria-controls="menu-appbar"
-    aria-haspopup="true"
-    onClick={handleMenu}
-    color="inherit"
-  >
-    <MenuIcon />
-  </IconButton>
-}
+  return (
+    <IconButton
+      classes={{
+        root: classes.menuIcon,
+      }}
+      aria-label="Main Menu"
+      aria-controls="menu-appbar"
+      aria-haspopup="true"
+      onClick={handleMenu}
+      color="inherit"
+    >
+      <MenuIcon />
+    </IconButton>
+  );
+};

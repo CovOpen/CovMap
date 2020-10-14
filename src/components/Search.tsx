@@ -14,10 +14,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(0, 2),
     marginLeft: "auto",
-    [theme.breakpoints.down("xs")]: {  // on mobile devices
+    [theme.breakpoints.down("xs")]: {
+      // on mobile devices
       flex: 1,
-    }
-
+    },
   },
   search: {
     "position": "relative",
@@ -26,9 +26,10 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: fade(theme.palette.common.white, 0.95),
     },
-    [theme.breakpoints.down("xs")]: {  // on mobile devices
+    [theme.breakpoints.down("xs")]: {
+      // on mobile devices
       boxShadow: "0px 2px 5px -1px rgba(0,0,0,0.55)",
-    }
+    },
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -41,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputRoot: {
     color: "inherit",
-
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
