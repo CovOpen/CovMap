@@ -4,42 +4,57 @@ import { TextField, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { AppApi } from "../../state/app";
 import { useCommonWelcomeModalStyles } from "./useCommonWelcomeModalStyles";
+import { makeStyles } from "@material-ui/core/styles";
+
+function isValidPostalCode(text: string) {
+  return /^[1-9][0-9]{4}$/.test(text);
+}
+
+const useStyles = makeStyles(() => ({
+  "input": {
+    "& .MuiInputBase-input": {
+      "-moz-appearance": "textfield",
+    },
+    "& .MuiInputBase-input::-webkit-outer-spin-button": {
+      "-webkit-appearance": "none",
+      "margin": "0"
+    },
+    "& .MuiInputBase-input::-webkit-inner-spin-button": {
+      "-webkit-appearance": "none",
+      "margin": "0"
+    }
+  }
+}))
 
 export const WelcomeModalPostalCode: React.FC = () => {
-  const classes = useCommonWelcomeModalStyles();
+  const classes = { ...useCommonWelcomeModalStyles(), ...useStyles() };
   const dispatch = useThunkDispatch();
   const [postCode, setPostCode] = useState("");
-  const [touched, setTouched] = useState(false);
+  const [alwaysValidate, setAlwaysValidate] = useState(false);
   const [error, setError] = useState(false);
 
-  function isValidPostalCode(text: string) {
-    const postCodeAsNumber = parseInt(text, 10);
-    return !isNaN(postCodeAsNumber) && postCodeAsNumber < 100000;
-  }
-
-  useEffect(
-    () => {
-      if (touched) {
-        setError(!isValidPostalCode(postCode));
-      }
-    },
-    [touched, postCode],
-  );
-
-  function onPostalCodeChange(event) {
-    setPostCode(event.target.value);
-    setTouched(true);
-  }
+  useEffect(() => {
+    if (alwaysValidate) {
+      setError(!isValidPostalCode(postCode));
+    }
+  }, [alwaysValidate, postCode]);
 
   function onSkip() {
     return dispatch(AppApi.setUserPostalCode(0));
   }
 
-  function onSubmit() {
+  function submit() {
     if (isValidPostalCode(postCode)) {
       dispatch(AppApi.setUserPostalCode(parseInt(postCode, 10)));
     } else {
+      setAlwaysValidate(true);
       setError(true);
+    }
+  }
+
+  function onKeyPress(event) {
+    if (event.key === "Enter") {
+      submit();
     }
   }
 
@@ -50,32 +65,47 @@ export const WelcomeModalPostalCode: React.FC = () => {
       </Typography>
 
       <TextField
+        className={classes.input}
+        autoFocus
         error={error}
-        label="Postleitzahl"
+        helperText={error ? "Bitte valide PLZ eingeben" : null}
         variant="outlined"
         type="number"
-        onChange={onPostalCodeChange}
-        onBlur={() => setTouched(true)}
-        style={{ marginBottom: "12px" }}
+        onChange={(event) => {
+          setPostCode(event.target.value);
+        }}
+        onKeyPress={onKeyPress}
+        onBlur={() => setAlwaysValidate(true)}
+        style={{ margin: "50px 0 30px 0", width: "180px", height: "80px" }}
       />
 
       <Button
         className={`${classes.primaryButton} ${classes.largeText}`}
         variant="contained"
         color="primary"
-        onClick={onSubmit}
+        onClick={submit}
       >
         Jetzt starten
       </Button>
-      <Button className={`${classes.secondaryButton} ${classes.largeText}`} variant="contained" onClick={onSkip}>
+
+      <Button
+        className={`${classes.secondaryButton} ${classes.largeText}`}
+        style={{ width: "240px" }}
+        variant="contained"
+        onClick={onSkip}
+      >
         Ohne Postleitzahl weiter
       </Button>
+
       <img
         src={"/images/icon-security.svg"}
         alt="Security Icon"
         style={{ width: "24px", height: "24px", margin: "24px 0 12px 0" }}
       />
-      <Typography className={classes.smallText}>Siehe unsere Datenschutzrichtlinien.</Typography>
+
+      <div style={{ marginBottom: "28px" }}>
+        <Typography className={classes.smallText}>Siehe unsere Datenschutzrichtlinien.</Typography>
+      </div>
     </>
   );
 };

@@ -10,13 +10,9 @@ import {
 import { State } from "../";
 import { FeatureCollection } from "geojson";
 
-
-
 const locationFound = (query, data, properties, searchOptions?) => {
-  const queryTransformed = searchOptions?.transformQuery
-    ? searchOptions?.transformQuery(query)
-    : query
-
+  if (query === "") return true; // just give them every item for preview if they search for an empty string
+  const queryTransformed = searchOptions?.transformQuery ? searchOptions?.transformQuery(query) : query;
 
   return properties.some((propName) => {
     if (!data.properties[propName]) {
@@ -28,7 +24,7 @@ const locationFound = (query, data, properties, searchOptions?) => {
     // string constructor is pretty expensive as far as i know so forcing everything to be a string might be smart
     if (Array.isArray(propVal)) {
       // if its an array compare each item as string
-      return propVal.some(val => String(val).toLowerCase().includes(queryTransformed.toLowerCase()))
+      return propVal.some((val) => String(val).toLowerCase().includes(queryTransformed.toLowerCase()));
     }
 
     // compare strings or numbers
@@ -37,13 +33,13 @@ const locationFound = (query, data, properties, searchOptions?) => {
     }
     return false;
   });
-
-}
+};
 
 export function getPossibleSearchResults() {
   return (dispatch: ReduxDispatch, getState: () => State) => {
     const state = getState();
     const { currentLayerGroup } = state.app;
+    // this should maybe not always be an empty string
     const result = defaultSearchMethod("", state, {
       ...currentLayerGroup.search,
       all: true,
@@ -67,15 +63,15 @@ function defaultSearchMethod(query: string, state: State, searchOptions?: Defaul
   const foundResults: Array<SearchResult> = [];
 
   for (let setNum = 0; setNum < mappedSetsToSearchIn.length; setNum++) {
-    const currentSet = mappedSetsToSearchIn[setNum]
-    const features = (currentSet.data?.geo as FeatureCollection).features
+    const currentSet = mappedSetsToSearchIn[setNum];
+    const features = (currentSet.data?.geo as FeatureCollection).features;
 
     for (let i = 0; i < features.length; i++) {
       if (locationFound(query, features[i], currentSet.properties, searchOptions)) {
         try {
-          const coordinates = features[i]?.properties?.geo_point_2d || [13.404954, 52.520008] // if nothing found zoom to the source of all evil
-          const props = features[i].properties || {}
-          const name = props[searchOptions?.nameProp || 'name']
+          const coordinates = features[i]?.properties?.geo_point_2d || [13.404954, 52.520008]; // if nothing found zoom to the source of all evil
+          const props = features[i].properties || {};
+          const name = props[searchOptions?.nameProp || "name"];
 
           foundResults.push({
             name,
@@ -84,11 +80,10 @@ function defaultSearchMethod(query: string, state: State, searchOptions?: Defaul
             lat: coordinates[1],
             lng: coordinates[0],
           });
-
         } catch (err) {
-          console.log(err)
-          console.warn('Coordinates extraction error, check your app-config search settings and geo data')
-          return { results: [] }
+          console.log(err);
+          console.warn("Coordinates extraction error, check your app-config search settings and geo data");
+          return { results: [] };
         }
         if (!searchOptions?.all) {
           break;
