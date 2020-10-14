@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { ContactScore, RawDataEntry, RiskScore } from "app-config/models";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
-const useStyles = makeStyles<Theme, {fullScreen: boolean}>((theme) => ({
+const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
   action: {
     alignSelf: "auto",
     marginTop: 0,
@@ -31,16 +31,16 @@ const useStyles = makeStyles<Theme, {fullScreen: boolean}>((theme) => ({
     backgroundColor: "#FCFCFC",
   },
   drawerPaper: {
-    width: props => props.fullScreen ? "100%" : "450px",
+    width: (props) => (props.fullScreen ? "100%" : "450px"),
   },
   drawerRoot: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   drawerPaperAnchorBottom: {
     left: "auto",
-    right: "auto"
-  }
+    right: "auto",
+  },
 }));
 
 const titleByRiskScore = {
@@ -64,7 +64,9 @@ const descriptionByRiskScore = {
 export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProps) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const { action, card, container, expand, expandOpen, drawerPaper, drawerRoot, drawerPaperAnchorBottom } = useStyles({fullScreen});
+  const { action, card, container, expand, expandOpen, drawerPaper, drawerRoot, drawerPaperAnchorBottom } = useStyles({
+    fullScreen,
+  });
   const [expanded, setExpanded] = useState(false);
 
   function toggleExpand() {
@@ -82,80 +84,87 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   const title = titleByRiskScore[riskScore];
   const riskDescription = descriptionByRiskScore[riskScore];
 
-  const cardHeader = <CardHeader
-    onClick={toggleExpand}
-    avatar={<RiskBadge riskScore={riskScore}/>}
-    action={
-      <IconButton
-        className={`${expand} ${expanded ? expandOpen : ""}`}
-        aria-expanded={expanded}
-        aria-label="show more"
-      >
-        <ArrowForwardIosIcon/>
-      </IconButton>
-    }
-    classes={{ action }}
-    title={title}
-    titleTypographyProps={{ variant: "h1" }}
-    subheader={`${zipCode} ${locationName}`}
-  />;
+  const cardHeader = (
+    <CardHeader
+      onClick={toggleExpand}
+      avatar={<RiskBadge riskScore={riskScore} />}
+      action={
+        <IconButton
+          className={`${expand} ${expanded ? expandOpen : ""}`}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ArrowForwardIosIcon />
+        </IconButton>
+      }
+      classes={{ action }}
+      title={title}
+      titleTypographyProps={{ variant: "h1" }}
+      subheader={`${zipCode} ${locationName}`}
+    />
+  );
 
-  const cardContent = <CardContent>
-    <Grid container direction="column" spacing={2}>
-      {/* TODO: Comment this back in once the risk descriptions are updated */}
-      {/*<Grid item>*/}
-      {/*  <Typography>{riskDescription}</Typography>*/}
-      {/*</Grid>*/}
-      <Grid item>
-        <Card variant="outlined" className={card}>
-          <CardHeader
-            title="Kontaktverhalten der Bevölkerung"
-            titleTypographyProps={{ variant: "h3" }}
-            action={titleByContactScore[contactScore]}
-            classes={{ action }}
-          />
-        </Card>
+  const cardContent = (
+    <CardContent>
+      <Grid container direction="column" spacing={2}>
+        {/* TODO: Comment this back in once the risk descriptions are updated */}
+        {/*<Grid item>*/}
+        {/*  <Typography>{riskDescription}</Typography>*/}
+        {/*</Grid>*/}
+        <Grid item>
+          <Card variant="outlined" className={card}>
+            <CardHeader
+              title="Kontaktverhalten der Bevölkerung"
+              titleTypographyProps={{ variant: "h3" }}
+              action={titleByContactScore[contactScore]}
+              classes={{ action }}
+            />
+          </Card>
+        </Grid>
+        <Grid item>
+          <Card variant="outlined" className={card}>
+            <CardHeader
+              title="Symptomlast der Bevölkerung"
+              titleTypographyProps={{ variant: "h3" }}
+              subheader="Bald verfügbar!"
+              // TODO: Instead of subheader, show actual data
+              // action={symptomIndex}
+              // classes={{ action }}
+            />
+          </Card>
+        </Grid>
+        <Grid item>
+          <Card variant="outlined" className={card}>
+            <CardHeader
+              title="Fallzahlen RKI"
+              titleTypographyProps={{ variant: "h3" }}
+              action={new Intl.NumberFormat("de-de", { maximumFractionDigits: 1, minimumFractionDigits: 1 }).format(
+                incidence,
+              )}
+              classes={{ action }}
+            />
+          </Card>
+        </Grid>
+        <Grid item>
+          <Button href={howToBehaveUrl} target="_blank" fullWidth variant="contained" color="secondary">
+            Wie sollte ich mich verhalten?
+          </Button>
+        </Grid>
       </Grid>
-      <Grid item>
-        <Card variant="outlined" className={card}>
-          <CardHeader
-            title="Symptomlast der Bevölkerung"
-            titleTypographyProps={{ variant: "h3" }}
-            subheader="Bald verfügbar!"
-            // TODO: Instead of subheader, show actual data
-            // action={symptomIndex}
-            // classes={{ action }}
-          />
-        </Card>
-      </Grid>
-      <Grid item>
-        <Card variant="outlined" className={card}>
-          <CardHeader
-            title="Fallzahlen RKI"
-            titleTypographyProps={{ variant: "h3" }}
-            action={new Intl.NumberFormat("de-de", { maximumFractionDigits: 1, minimumFractionDigits: 1 }).format(
-              incidence,
-            )}
-            classes={{ action }}
-          />
-        </Card>
-      </Grid>
-      <Grid item>
-        <Button href={howToBehaveUrl} target="_blank" fullWidth variant="contained" color="secondary">
-          Wie sollte ich mich verhalten?
-        </Button>
-      </Grid>
-    </Grid>
-  </CardContent>;
+    </CardContent>
+  );
 
   return (
     <>
-      <Card className={container}>
-        {cardHeader}
-      </Card>
+      <Card className={container}>{cardHeader}</Card>
 
-      <Drawer open={expanded} variant="temporary" anchor="bottom" onClose={() => setExpanded(false)}
-        classes={{ paper: drawerPaper, root: drawerRoot, paperAnchorBottom: drawerPaperAnchorBottom }}>
+      <Drawer
+        open={expanded}
+        variant="temporary"
+        anchor="bottom"
+        onClose={() => setExpanded(false)}
+        classes={{ paper: drawerPaper, root: drawerRoot, paperAnchorBottom: drawerPaperAnchorBottom }}
+      >
         {cardHeader}
         {cardContent}
       </Drawer>

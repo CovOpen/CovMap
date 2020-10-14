@@ -43,8 +43,10 @@ export const FeatureInfo = memo(() => {
 
   return (
     <Suspense fallback={getFallbackComponent()}>
-      <Popper open={true} style={{top:"auto", width: "100%", bottom: "24px", display: "flex", justifyContent: "center" }}>
-
+      <Popper
+        open={true}
+        style={{ top: "auto", width: "100%", bottom: "24px", display: "flex", justifyContent: "center" }}
+      >
         <InfoComponent
           feature={currentFeature.feature}
           dataField={currentMappable.property}
@@ -52,7 +54,6 @@ export const FeatureInfo = memo(() => {
           rawData={rawData}
           onClose={onClose}
         />
-
       </Popper>
     </Suspense>
   );
