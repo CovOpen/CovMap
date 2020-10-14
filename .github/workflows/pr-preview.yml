@@ -17,20 +17,19 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - name: Get npm cache directory
-      id: npm-cache-dir
-      run: |
-        echo "::set-output name=dir::$(npm config get cache)"
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
     - uses: actions/cache@v2
-      id: npm-cache
+      id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
       with:
-        path: ${{ steps.npm-cache-dir.outputs.dir }}
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
-          ${{ runner.os }}-node-
+          ${{ runner.os }}-yarn-
     - name: Install Packages
-      if: steps.npm-cache.outputs.cache-hit != 'true'
-      run: npm install
+      if: steps.yarn-cache.outputs.cache-hit != 'true'
+      run: yarn install
     - name: Build
       run: npm run-script build -- --env prod
     - name: Upload artifact
