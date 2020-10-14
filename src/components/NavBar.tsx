@@ -220,9 +220,8 @@ const useIconStyles = makeStyles((theme) => ({
     zIndex: 1400,  // put it on top of everything
     [theme.breakpoints.down("xs")]: {  // on mobile devices
       backgroundColor: theme.palette.background.default,
-      /* backgroundColor: theme.palette.common.white, */
-      borderRadius: theme.shape.borderRadius,
-      padding: theme.spacing(0.4),
+      borderRadius: theme.shape.borderRadius * 1.5,
+      padding: theme.spacing(0.5),
       boxShadow: "0px 2px 5px -1px rgba(0,0,0,0.55)",
       "&:hover": {
         backgroundColor: theme.palette.background.default,
@@ -231,7 +230,14 @@ const useIconStyles = makeStyles((theme) => ({
   },
 
   closeIcon: {
-    color: theme.palette.highRisk.main
+    /* color: theme.palette.highRisk.main */
+    backgroundColor: theme.palette.secondary.main,
+    borderRadius: theme.shape.borderRadius * 1.5,
+    padding: theme.spacing(0.5),
+    boxShadow: "0px 2px 5px -1px rgba(0,0,0,0.55)",
+    "&:hover": {
+      backgroundColor: theme.palette.secondary.main,
+    }
   }
 
 
@@ -249,7 +255,7 @@ const MenuCloseButton = ({ handleClose }) => {
     aria-controls="menu-appbar"
     aria-haspopup="true"
     onClick={handleClose}
-    color="inherit"
+    color="primary"
   >
     <CloseRounded />
   </IconButton>
