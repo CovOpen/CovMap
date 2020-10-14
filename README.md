@@ -4,7 +4,7 @@
   </a>
 </div>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # CovMap
@@ -61,6 +61,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://kantimam.org/"><img src="https://avatars2.githubusercontent.com/u/24353308?v=4?s=50" width="50px;" alt=""/><br /><sub><b>kant imam</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=kantimam" title="Code">💻</a></td>
     <td align="center"><a href="https://startup-cto.net/"><img src="https://avatars2.githubusercontent.com/u/3396992?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Daniel Bartholomae</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=dbartholomae" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/ChristophWersal"><img src="https://avatars0.githubusercontent.com/u/45358216?v=4?s=50" width="50px;" alt=""/><br /><sub><b>ChristophWersal</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=ChristophWersal" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/weltenwort"><img src="https://avatars3.githubusercontent.com/u/973741?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Felix Stürmer</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=weltenwort" title="Code">💻</a></td>
   </tr>
 </table>
 
