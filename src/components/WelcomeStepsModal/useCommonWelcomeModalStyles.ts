@@ -18,41 +18,41 @@ export const useCommonWelcomeModalStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   primaryButton: {
-    color: "#FFFFFF",
-    width: "194px",
-    height: "51px",
-    background: theme.palette.secondary.main,
-    borderRadius: "12px",
-    margin: "0",
-    textTransform: "none",
+    "color": "#FFFFFF",
+    "width": "194px",
+    "height": "51px",
+    "background": theme.palette.secondary.main,
+    "borderRadius": "12px",
+    "margin": "0",
+    "textTransform": "none",
     "&:focus": {
-      background: theme.palette.secondary.main
+      background: theme.palette.secondary.main,
     },
     "&:hover": {
-      background: theme.palette.secondary.main
+      background: theme.palette.secondary.main,
     },
     "&:active": {
-      background: theme.palette.secondary.main
-    }
+      background: theme.palette.secondary.main,
+    },
   },
   secondaryButton: {
-    color: "#828282",
-    width: "194px",
-    height: "51px",
-    background: "rgba(255,255,255,0)",
-    borderRadius: "12px",
-    margin: "0",
-    boxShadow: "none",
-    textTransform: "none",
+    "color": "#828282",
+    "width": "194px",
+    "height": "51px",
+    "background": "rgba(255,255,255,0)",
+    "borderRadius": "12px",
+    "margin": "0",
+    "boxShadow": "none",
+    "textTransform": "none",
     "&:focus": {
-      background: "rgba(255,255,255,0)"
+      background: "rgba(255,255,255,0)",
     },
     "&:hover": {
-      background: "rgba(255,255,255,0)"
+      background: "rgba(255,255,255,0)",
     },
     "&:active": {
-      background: "rgba(255,255,255,0)"
-    }
+      background: "rgba(255,255,255,0)",
+    },
   },
   infoTextDiv: {
     margin: "24px 28px",

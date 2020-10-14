@@ -109,9 +109,9 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
                   title="Symptomlast der Bevölkerung"
                   titleTypographyProps={{ variant: "h3" }}
                   subheader="Bald verfügbar!"
-                // TODO: Instead of subheader, show actual data
-                // action={symptomIndex}
-                // classes={{ action }}
+                  // TODO: Instead of subheader, show actual data
+                  // action={symptomIndex}
+                  // classes={{ action }}
                 />
               </Card>
             </Grid>
