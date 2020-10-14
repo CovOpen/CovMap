@@ -39,29 +39,32 @@ const useStyles = makeStyles((theme) => ({
   },
   menuItem: {
     touchAction: "none",
-    paddingLeft: 0,
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(1),
   },
   menuIcon: {
+    // share icon
     padding: 0,
-    [theme.breakpoints.down("xs")]: {
-      // on mobile devices
-      "backgroundColor": theme.palette.background.default,
-      /* backgroundColor: theme.palette.common.white, */
-      "borderRadius": theme.shape.borderRadius,
-      "padding": theme.spacing(0.4),
-      "boxShadow": "0px 2px 5px -1px rgba(0,0,0,0.55)",
+    /* [theme.breakpoints.down("xs")]: {  // on mobile devices
+      backgroundColor: theme.palette.background.default,
+      borderRadius: theme.shape.borderRadius,
+      padding: theme.spacing(0.4),
+      boxShadow: "0px 2px 5px -1px rgba(0,0,0,0.55)",
       "&:hover": {
         backgroundColor: theme.palette.background.default,
-      },
-    },
+      }
+    } */
+    margin: theme.spacing(0, 1),
   },
   menu: {
     touchAction: "none",
   },
   menuContent: {
     /* backgroundColor: theme.palette.primary.light, */
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
+    /* paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(1), */
+    marginBottom: theme.spacing(4),
+    marginTop: "auto",
   },
   logo: {
     height: "32px",
@@ -80,9 +83,15 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: "20rem",
     maxWidth: "70vw",
+    display: "flex",
+    /* flexDirection: "column",
+    justifyContent: "space-around" */
   },
   drawerToolbar: {
-    justifyContent: "space-between",
+    /*  flexDirection: "column" */
+  },
+  drawerIcon: {
+    margin: theme.spacing(4, "auto"),
   },
 }));
 
@@ -185,10 +194,15 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
             }}
           >
             <Toolbar className={classes.drawerToolbar}>
-              {(Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} />}
               <MenuCloseButton handleClose={handleClose} />
             </Toolbar>
             <NavMenuContent />
+
+            {(Logo && (
+              <div className={classes.drawerIcon}>
+                <Logo />
+              </div>
+            )) || <img src={config.buildJSON.logoSrc} className={classes.logo} />}
           </Drawer>
         </div>
       </Toolbar>
@@ -203,9 +217,8 @@ const useIconStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       // on mobile devices
       "backgroundColor": theme.palette.background.default,
-      /* backgroundColor: theme.palette.common.white, */
-      "borderRadius": theme.shape.borderRadius,
-      "padding": theme.spacing(0.4),
+      "borderRadius": theme.shape.borderRadius * 1.5,
+      "padding": theme.spacing(0.5),
       "boxShadow": "0px 2px 5px -1px rgba(0,0,0,0.55)",
       "&:hover": {
         backgroundColor: theme.palette.background.default,
@@ -214,7 +227,15 @@ const useIconStyles = makeStyles((theme) => ({
   },
 
   closeIcon: {
-    color: theme.palette.highRisk.main,
+    /* color: theme.palette.highRisk.main */
+    "backgroundColor": theme.palette.secondary.main,
+    "borderRadius": theme.shape.borderRadius * 1.5,
+    "padding": theme.spacing(0.5),
+    "boxShadow": "0px 2px 5px -1px rgba(0,0,0,0.55)",
+    "marginLeft": "auto",
+    "&:hover": {
+      backgroundColor: theme.palette.secondary.main,
+    },
   },
 }));
 
@@ -230,7 +251,7 @@ const MenuCloseButton = ({ handleClose }) => {
       aria-controls="menu-appbar"
       aria-haspopup="true"
       onClick={handleClose}
-      color="inherit"
+      color="primary"
     >
       <CloseRounded />
     </IconButton>
