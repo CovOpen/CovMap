@@ -4,7 +4,7 @@
   </a>
 </div>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # CovMap
@@ -57,6 +57,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/kommander"><img src="https://avatars2.githubusercontent.com/u/335157?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Sebastian Herrlinger</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=kommander" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/alexanderthieme"><img src="https://avatars1.githubusercontent.com/u/61984544?v=4?s=50" width="50px;" alt=""/><br /><sub><b>alexanderthieme</b></sub></a><br /><a href="#business-alexanderthieme" title="Business development">💼</a></td>
     <td align="center"><a href="https://github.com/ChristianRomberg"><img src="https://avatars0.githubusercontent.com/u/25772118?v=4?s=50" width="50px;" alt=""/><br /><sub><b>ChristianRomberg</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=ChristianRomberg" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/m-pa"><img src="https://avatars0.githubusercontent.com/u/790655?v=4?s=50" width="50px;" alt=""/><br /><sub><b>m-pa</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=m-pa" title="Code">💻</a></td>
   </tr>
 </table>
 
