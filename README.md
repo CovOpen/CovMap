@@ -1,5 +1,5 @@
 <div align="center" >
-  <a href="https://covmap.de" target="_blank" rel="noopener noreferrer">
+  <a href="https://covmap.de">
     <img style="height: 200px; width: auto;" src="https://github.com/alexanderthieme/CovMapper/raw/master/static/logo.png" alt="CovMap Logo">
   </a>
 </div>
