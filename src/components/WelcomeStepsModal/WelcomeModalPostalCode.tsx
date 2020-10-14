@@ -4,13 +4,30 @@ import { TextField, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { AppApi } from "../../state/app";
 import { useCommonWelcomeModalStyles } from "./useCommonWelcomeModalStyles";
+import { makeStyles } from "@material-ui/core/styles";
 
 function isValidPostalCode(text: string) {
   return /^[1-9][0-9]{4}$/.test(text);
 }
 
+const useStyles = makeStyles(() => ({
+  "input": {
+    "& .MuiInputBase-input": {
+      "-moz-appearance": "textfield",
+    },
+    "& .MuiInputBase-input::-webkit-outer-spin-button": {
+      "-webkit-appearance": "none",
+      "margin": "0"
+    },
+    "& .MuiInputBase-input::-webkit-inner-spin-button": {
+      "-webkit-appearance": "none",
+      "margin": "0"
+    }
+  }
+}))
+
 export const WelcomeModalPostalCode: React.FC = () => {
-  const classes = useCommonWelcomeModalStyles();
+  const classes = { ...useCommonWelcomeModalStyles(), ...useStyles() };
   const dispatch = useThunkDispatch();
   const [postCode, setPostCode] = useState("");
   const [alwaysValidate, setAlwaysValidate] = useState(false);
@@ -51,6 +68,7 @@ export const WelcomeModalPostalCode: React.FC = () => {
       </Typography>
 
       <TextField
+        className={classes.input}
         autoFocus
         error={error}
         helperText={error ? "Bitte valide PLZ eingeben" : null}
