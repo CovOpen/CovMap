@@ -22,7 +22,7 @@ yarn install
 yarn dev
 ```
 
-Then go to `https://localhost:8080` in your browser (if you are using docker you have to allow self-signed certificates in order to work)
+Then go to [`https://localhost:8080`](https://localhost:8080) in your browser (if you are using docker you have to allow self-signed certificates in order to work)
 
 ### Test Data
 
