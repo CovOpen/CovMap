@@ -1,11 +1,13 @@
 on:
-  pull_request:
+  pull_request_target:
 jobs:
   build-head:
     name: 'Build head'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
+      ref: ${{github.event.pull_request.head.ref}}
+      repository: ${{github.event.pull_request.head.repo.full_name}}
     - name: Install dependencies
       run: yarn install
     - name: Build
@@ -19,9 +21,9 @@ jobs:
     name: 'Build base'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-      with:
-        ref: ${{ github.base_ref }}
+    - uses: actions/checkout@v2
+      ref: ${{github.event.pull_request.base.ref}}
+      repository: ${{github.event.pull_request.base.repo.full_name}}
     - name: Install dependencies
       run: yarn install
     - name: Build
