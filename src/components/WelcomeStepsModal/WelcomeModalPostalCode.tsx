@@ -13,20 +13,20 @@ function isValidPostalCode(text: string) {
 }
 
 const useStyles = makeStyles(() => ({
-  "input": {
+  input: {
     "& .MuiInputBase-input": {
       "-moz-appearance": "textfield",
     },
     "& .MuiInputBase-input::-webkit-outer-spin-button": {
       "-webkit-appearance": "none",
-      "margin": "0"
+      "margin": "0",
     },
     "& .MuiInputBase-input::-webkit-inner-spin-button": {
       "-webkit-appearance": "none",
-      "margin": "0"
-    }
-  }
-}))
+      "margin": "0",
+    },
+  },
+}));
 
 export const WelcomeModalPostalCode: React.FC = () => {
   const classes = { ...useCommonWelcomeModalStyles(), ...useStyles() };
@@ -44,14 +44,14 @@ export const WelcomeModalPostalCode: React.FC = () => {
 
   function onSkip() {
     dispatch(AppApi.setUserPostalCode(0));
-    history.push('/');
+    history.push("/");
   }
 
   function submit() {
     if (isValidPostalCode(postCode)) {
       dispatch(AppApi.setUserPostalCode(parseInt(postCode, 10)));
-      history.push('/');
-      void dispatch(switchViewToPlace(postCode))
+      history.push("/");
+      void dispatch(switchViewToPlace(postCode));
     } else {
       setAlwaysValidate(true);
       setError(true);
