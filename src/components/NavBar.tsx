@@ -73,6 +73,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
 
   },
+  fullHeightToolbar: {
+    minHeight: "64px",
+  },
 
   drawerIcon: {
     margin: theme.spacing(4, "auto")
@@ -161,18 +164,16 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
 
   return (
     <AppBar classes={{ root: classes.appBar }} style={{ height: 64, flex: "0 0 auto" }}>
-      <Toolbar>
+      <Toolbar className={classes.fullHeightToolbar}>
         {!isMobile && (
           (Logo && <Logo />)
           ||
           <img src={config.buildJSON.logoSrc} className={classes.logo} />
         )}
-        <Box flex={1} alignItems="center" display="flex" justifyContent="flex-end">
-          <Route key="map" exact path="/" render={() => showSearch && <Search />} />
-          <MenuIconButton
-            handleMenu={handleMenu}
-          />
-        </Box>
+        {/* <Route key="map" exact path="/" render={() => showSearch && <Search />} /> */}
+        <MenuIconButton
+          handleMenu={handleMenu}
+        />
         <Drawer
           open={open}
           anchor="right"
@@ -184,7 +185,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
             paper: classes.drawerPaper,
           }}
         >
-          <Toolbar>
+          <Toolbar className={classes.fullHeightToolbar}> {/* only here for the gutter feel free create your own gutter styles and remove this */}
             <MenuCloseButton handleClose={handleClose} />
           </Toolbar>
           <NavMenuContent />
@@ -204,6 +205,7 @@ const useIconStyles = makeStyles((theme) => ({
   menuIcon: {
     padding: 0,
     zIndex: 1400,  // put it on top of everything
+    marginLeft: "auto",
     [theme.breakpoints.down("xs")]: {  // on mobile devices
       backgroundColor: theme.palette.background.default,
       borderRadius: theme.shape.borderRadius * 1.5,
@@ -221,7 +223,6 @@ const useIconStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius * 1.5,
     padding: theme.spacing(0.5),
     boxShadow: "0px 2px 5px -1px rgba(0,0,0,0.55)",
-    marginLeft: "auto",
     "&:hover": {
       backgroundColor: theme.palette.secondary.main,
 
