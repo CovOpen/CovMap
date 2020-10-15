@@ -131,6 +131,7 @@ export const config: AppConfig = {
               ],
               "fill-opacity": 0.5,
             },
+            beforeId: "road-label",
           }),
         },
         {
