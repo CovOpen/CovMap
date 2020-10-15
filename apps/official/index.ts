@@ -6,6 +6,7 @@ import { Imprint } from "./components/pages/Imprint";
 import { Legal } from "./components/pages/Legal";
 import { Privacy } from "./components/pages/Privacy";
 import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo";
+import { RiskLevelsPage } from "./components/risk-levels-page/RiskLevelsPage";
 // TODO: Integrate CovQuestions
 // import { Questions } from './components/pages/Questions'
 
@@ -69,6 +70,12 @@ export const config: AppConfig = {
       route: '/questions',
       Component: Questions
     },*/,
+      {
+        id: "risk-levels-page",
+        title: "Risikostufen",
+        route: "/risk-levels",
+        Component: RiskLevelsPage
+      }
     ],
   },
   buildJSON,

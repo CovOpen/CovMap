@@ -129,7 +129,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
             </Grid>
             <Grid item>
               <Button href={howToBehaveUrl} target="_blank" fullWidth variant="contained" color="secondary">
-                Wie sollte ich mich verhalten?
+                Wie kann ich mich verhalten?
               </Button>
             </Grid>
           </Grid>
