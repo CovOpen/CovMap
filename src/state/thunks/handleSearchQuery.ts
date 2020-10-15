@@ -11,6 +11,7 @@ import { State } from "../";
 import { FeatureCollection } from "geojson";
 
 const locationFound = (query, data, properties, searchOptions?) => {
+  if (query === "") return true; // just give them every item for preview if they search for an empty string
   const queryTransformed = searchOptions?.transformQuery ? searchOptions?.transformQuery(query) : query;
 
   return properties.some((propName) => {
@@ -38,6 +39,7 @@ export function getPossibleSearchResults() {
   return (dispatch: ReduxDispatch, getState: () => State) => {
     const state = getState();
     const { currentLayerGroup } = state.app;
+    // this should maybe not always be an empty string
     const result = defaultSearchMethod("", state, {
       ...currentLayerGroup.search,
       all: true,

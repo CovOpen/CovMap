@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import { AppApi } from "../../state/app";
 import { useCommonWelcomeModalStyles } from "./useCommonWelcomeModalStyles";
 import { makeStyles } from "@material-ui/core/styles";
+import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
 
 function isValidPostalCode(text: string) {
   return /^[1-9][0-9]{4}$/.test(text);
@@ -46,6 +47,9 @@ export const WelcomeModalPostalCode: React.FC = () => {
   function submit() {
     if (isValidPostalCode(postCode)) {
       dispatch(AppApi.setUserPostalCode(parseInt(postCode, 10)));
+      /* after setting postal code fly there :)
+      tbh should maybe do this by listening for postalCode change but i suck at redux */
+      dispatch(switchViewToPlace(postCode))
     } else {
       setAlwaysValidate(true);
       setError(true);
