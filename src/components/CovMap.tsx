@@ -22,6 +22,9 @@ import { Legend } from "./Legend";
 import { Settings } from "./Settings";
 import { config } from "app-config/index";
 import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
+import { Search } from "./Search";
+import Box from "@material-ui/core/Box";
+import FixedSearch from "./FixedSearch";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -202,6 +205,7 @@ export const CovMap = () => {
 
   return (
     <div className={classes.main}>
+      <FixedSearch />
       <div className={classes.currentInfo}>
         {/*<Typography variant="h2" color="primary">{visual.name}</Typography>*/}
         <Typography variant="h2" color="primary">

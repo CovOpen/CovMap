@@ -81,8 +81,8 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange, onLoad }: GLMapPro
         asyncRender={true}
       >
         <Visual />
-        <FeatureInfo />
       </ReactMapGL>
+      <FeatureInfo />
     </Suspense>
   );
 };

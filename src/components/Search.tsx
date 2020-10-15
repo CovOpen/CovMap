@@ -12,10 +12,10 @@ import { State } from "../state";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    zIndex: theme.zIndex.appBar + 1, // on top of appBar
     padding: theme.spacing(0, 2),
-    marginLeft: "auto",
-    [theme.breakpoints.down("xs")]: {
-      // on mobile devices
+    /* marginLeft: "auto", */
+    [theme.breakpoints.down("xs")]: {  // on mobile devices
       flex: 1,
     },
   },

@@ -7,7 +7,7 @@ import ShareIcon from "@material-ui/icons/Share";
 import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
 import Menu from "@material-ui/core/Menu";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppApi } from "src/state/app";
 import { useThunkDispatch } from "src/useThunkDispatch";
@@ -44,15 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuIcon: { // share icon
     padding: 0,
-    /* [theme.breakpoints.down("xs")]: {  // on mobile devices
-      backgroundColor: theme.palette.background.default,
-      borderRadius: theme.shape.borderRadius,
-      padding: theme.spacing(0.4),
-      boxShadow: "0px 2px 5px -1px rgba(0,0,0,0.55)",
-      "&:hover": {
-        backgroundColor: theme.palette.background.default,
-      }
-    } */
+
     margin: theme.spacing(0, 1)
   },
   menu: {
@@ -70,11 +62,7 @@ const useStyles = makeStyles((theme) => ({
     width: "auto",
     marginTop: "9px",
   },
-  /* logoMobileHidden: {
-    [theme.breakpoints.down("xs")]: {  // on mobile devices
-      display: "none"
-    }
-  }, */
+
 
   drawer: {
     touchAction: "none",
@@ -83,12 +71,12 @@ const useStyles = makeStyles((theme) => ({
     width: "20rem",
     maxWidth: "70vw",
     display: "flex",
-    /* flexDirection: "column",
-    justifyContent: "space-around" */
+
   },
-  drawerToolbar: {
-    /*  flexDirection: "column" */
+  fullHeightToolbar: {
+    minHeight: "64px",
   },
+
   drawerIcon: {
     margin: theme.spacing(4, "auto")
   }
@@ -176,34 +164,38 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
 
   return (
     <AppBar classes={{ root: classes.appBar }} style={{ height: 64, flex: "0 0 auto" }}>
-      <Toolbar>
-        {!isMobile && ((Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} />)}
-        {showSearch && <Search />}
-        <div>
-          <MenuIconButton handleMenu={handleMenu} />
-          <Drawer
-            open={open}
-            anchor="right"
-            id="menu-appbar"
-            keepMounted
-            onClose={handleClose}
-            className={classes.drawer}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-          >
-            <Toolbar className={classes.drawerToolbar}>
-              <MenuCloseButton handleClose={handleClose} />
-            </Toolbar>
-            <NavMenuContent />
+      <Toolbar className={classes.fullHeightToolbar}>
+        {!isMobile && (
+          (Logo && <Logo />)
+          ||
+          <img src={config.buildJSON.logoSrc} className={classes.logo} />
+        )}
+        {/* <Route key="map" exact path="/" render={() => showSearch && <Search />} /> */}
+        <MenuIconButton
+          handleMenu={handleMenu}
+        />
+        <Drawer
+          open={open}
+          anchor="right"
+          id="menu-appbar"
+          keepMounted
+          onClose={handleClose}
+          className={classes.drawer}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <Toolbar className={classes.fullHeightToolbar}> {/* only here for the gutter feel free create your own gutter styles and remove this */}
+            <MenuCloseButton handleClose={handleClose} />
+          </Toolbar>
+          <NavMenuContent />
 
-            {
-              (Logo && <div className={classes.drawerIcon}><Logo /></div>)
-              ||
-              <img src={config.buildJSON.logoSrc} className={classes.logo} />
-            }
-          </Drawer>
-        </div>
+          {
+            (Logo && <div className={classes.drawerIcon}><Logo /></div>)
+            ||
+            <img src={config.buildJSON.logoSrc} className={classes.logo} />
+          }
+        </Drawer>
       </Toolbar>
     </AppBar>
   );
@@ -213,6 +205,7 @@ const useIconStyles = makeStyles((theme) => ({
   menuIcon: {
     padding: 0,
     zIndex: 1400,  // put it on top of everything
+    marginLeft: "auto",
     [theme.breakpoints.down("xs")]: {  // on mobile devices
       backgroundColor: theme.palette.background.default,
       borderRadius: theme.shape.borderRadius * 1.5,
@@ -230,7 +223,6 @@ const useIconStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius * 1.5,
     padding: theme.spacing(0.5),
     boxShadow: "0px 2px 5px -1px rgba(0,0,0,0.55)",
-    marginLeft: "auto",
     "&:hover": {
       backgroundColor: theme.palette.secondary.main,
 

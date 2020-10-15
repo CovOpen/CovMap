@@ -1,0 +1,87 @@
+{
+  "projectName": "CovMapper",
+  "projectOwner": "CovOpen",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 50,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "kommander",
+      "name": "Sebastian Herrlinger",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/335157?v=4",
+      "profile": "https://github.com/kommander",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "alexanderthieme",
+      "name": "alexanderthieme",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/61984544?v=4",
+      "profile": "https://github.com/alexanderthieme",
+      "contributions": [
+        "business"
+      ]
+    },
+    {
+      "login": "ChristianRomberg",
+      "name": "ChristianRomberg",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/25772118?v=4",
+      "profile": "https://github.com/ChristianRomberg",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "m-pa",
+      "name": "m-pa",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/790655?v=4",
+      "profile": "https://github.com/m-pa",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "kantimam",
+      "name": "kant imam",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/24353308?v=4",
+      "profile": "https://kantimam.org/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "dbartholomae",
+      "name": "Daniel Bartholomae",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3396992?v=4",
+      "profile": "https://startup-cto.net/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ChristophWersal",
+      "name": "ChristophWersal",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/45358216?v=4",
+      "profile": "https://github.com/ChristophWersal",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "weltenwort",
+      "name": "Felix Stürmer",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/973741?v=4",
+      "profile": "https://github.com/weltenwort",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
