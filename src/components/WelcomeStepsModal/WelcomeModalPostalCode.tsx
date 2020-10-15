@@ -6,6 +6,7 @@ import { AppApi } from "../../state/app";
 import { useCommonWelcomeModalStyles } from "./useCommonWelcomeModalStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
+import { useHistory } from "react-router-dom";
 
 function isValidPostalCode(text: string) {
   return /^[1-9][0-9]{4}$/.test(text);
@@ -30,6 +31,7 @@ const useStyles = makeStyles(() => ({
 export const WelcomeModalPostalCode: React.FC = () => {
   const classes = { ...useCommonWelcomeModalStyles(), ...useStyles() };
   const dispatch = useThunkDispatch();
+  const history = useHistory();
   const [postCode, setPostCode] = useState("");
   const [alwaysValidate, setAlwaysValidate] = useState(false);
   const [error, setError] = useState(false);
@@ -41,15 +43,15 @@ export const WelcomeModalPostalCode: React.FC = () => {
   }, [alwaysValidate, postCode]);
 
   function onSkip() {
-    return dispatch(AppApi.setUserPostalCode(0));
+    dispatch(AppApi.setUserPostalCode(0));
+    history.push('/');
   }
 
   function submit() {
     if (isValidPostalCode(postCode)) {
       dispatch(AppApi.setUserPostalCode(parseInt(postCode, 10)));
-      /* after setting postal code fly there :)
-      tbh should maybe do this by listening for postalCode change but i suck at redux */
-      dispatch(switchViewToPlace(postCode))
+      history.push('/');
+      void dispatch(switchViewToPlace(postCode))
     } else {
       setAlwaysValidate(true);
       setError(true);
