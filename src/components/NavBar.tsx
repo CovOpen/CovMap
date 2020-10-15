@@ -127,11 +127,14 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
     return (
       <>
         {config.content?.pages.map((page) => (
-          <Link key={page.id} style={{ textDecoration: "none" }} to={page.route}>
-            <MenuItem className={classes.menuItem} onClick={props.handleClose}>
-              {page.title}
-            </MenuItem>
-          </Link>
+          page.hidden ?
+            null
+            :
+            <Link key={page.id} style={{ textDecoration: "none" }} to={page.route}>
+              <MenuItem className={classes.menuItem} onClick={props.handleClose}>
+                {page.title}
+              </MenuItem>
+            </Link>
         ))}
       </>
     );

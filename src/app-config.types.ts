@@ -156,6 +156,7 @@ export type AppPage = {
   id: string;
   title: string;
   route: string;
+  hidden?: boolean  // a way to exclude the page from the navbar
   Component: ComponentType;
 };
 

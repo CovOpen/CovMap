@@ -207,6 +207,14 @@ body {
   background-color: #e3e9f3;
 }
 
+
+/* recommendations page */
+
+#recommendationsPage .contentBody{
+  text-align: left;
+  background-color: unset;
+}
+
 @media only screen and (max-width: 600px) {
   main.sections {
     padding-top: 64px; /* 64px is AppBar height atm. AppBar is static on mobile and relative otherwise */
