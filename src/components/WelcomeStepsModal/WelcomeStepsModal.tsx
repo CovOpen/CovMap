@@ -53,7 +53,7 @@ export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
   return (
     <div>
       <Dialog open={userPostalCode === null} fullScreen={fullScreen}>
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: "100%" }}>
           <div style={{ alignItems: "center", display: "flex", flexDirection: "column" }}>
             <currentStepConfig.Component />
           </div>

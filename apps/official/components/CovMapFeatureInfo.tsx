@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
-import { Button, Card, CardContent, CardHeader, Drawer, Grid, IconButton, Theme, useTheme } from "@material-ui/core";
+import { Link as RouterLink } from 'react-router-dom';
+import { Card, Button, CardContent, CardHeader, Drawer, Grid, IconButton, Theme, Typography, useTheme } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { RiskBadge } from "app-config/components/RiskBadge";
 import { makeStyles } from "@material-ui/core/styles";
@@ -41,6 +42,17 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
     left: "auto",
     right: "auto",
   },
+  recommendationsLink: {
+    textAlign: "center",
+    "& p": {
+      fontWeight: "bold",
+      margin: theme.spacing(1, 0)
+    },
+    "& a": {
+      padding: theme.spacing(1.4, 8),
+      borderRadius: theme.shape.borderRadius * 2
+    }
+  }
 }));
 
 const titleByRiskScore = {
@@ -64,7 +76,7 @@ const descriptionByRiskScore = {
 export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProps) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const { action, card, container, expand, expandOpen, drawerPaper, drawerRoot, drawerPaperAnchorBottom } = useStyles({
+  const { recommendationsLink, action, card, container, expand, expandOpen, drawerPaper, drawerRoot, drawerPaperAnchorBottom } = useStyles({
     fullScreen,
   });
   const [expanded, setExpanded] = useState(false);
@@ -127,9 +139,9 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
               title="Symptomlast der Bevölkerung"
               titleTypographyProps={{ variant: "h3" }}
               subheader="Bald verfügbar!"
-              // TODO: Instead of subheader, show actual data
-              // action={symptomIndex}
-              // classes={{ action }}
+            // TODO: Instead of subheader, show actual data
+            // action={symptomIndex}
+            // classes={{ action }}
             />
           </Card>
         </Grid>
@@ -145,9 +157,12 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
             />
           </Card>
         </Grid>
-        <Grid item>
-          <Button href={howToBehaveUrl} target="_blank" fullWidth variant="contained" color="secondary">
-            Wie sollte ich mich verhalten?
+        <Grid item className={recommendationsLink}>
+          <Typography>
+            Wie kann ich mich verhalten?
+          </Typography>
+          <Button component={RouterLink} to="/recommendations" variant="contained" color="secondary">
+            Weiter
           </Button>
         </Grid>
       </Grid>

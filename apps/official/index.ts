@@ -5,6 +5,7 @@ import { About } from "./components/pages/About";
 import { Imprint } from "./components/pages/Imprint";
 import { Legal } from "./components/pages/Legal";
 import { Privacy } from "./components/pages/Privacy";
+import BasicRecommendations from "./components/pages/BasicRecommendations";
 import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo";
 // TODO: Integrate CovQuestions
 // import { Questions } from './components/pages/Questions'
@@ -63,12 +64,20 @@ export const config: AppConfig = {
         title: "Datenschutz",
         route: "/privacy-statement",
         Component: Privacy,
-      } /* {
-      id: 'questions-page',
-      title: 'Symptome erfassen',
-      route: '/questions',
-      Component: Questions
-    },*/,
+      },
+      {
+        id: "basic-recommendations",
+        title: "Empfehlungen",
+        route: "/recommendations",
+        Component: BasicRecommendations,
+        hidden: true   // dont show this page in the navbar
+      },
+      /* {
+     id: 'questions-page',
+     title: 'Symptome erfassen',
+     route: '/questions',
+     Component: Questions
+   },*/
     ],
   },
   buildJSON,
@@ -131,6 +140,7 @@ export const config: AppConfig = {
               ],
               "fill-opacity": 0.5,
             },
+            beforeId: "road-label",
           }),
         },
         {
