@@ -1,24 +1,49 @@
 import React from "react";
+import { Link } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import { Typography, Card, CardHeader, CardContent, IconButton } from '@material-ui/core';
+import { Typography, Grid, Card, CardHeader, CardContent, Avatar, IconButton } from '@material-ui/core';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { RiskTexts } from "../../models"
 
 const useStyles = makeStyles({
-    root: {
-        border: 0,
-
+    action: {
+        alignSelf: "auto",
+        marginTop: 0,
+        marginLeft: "8px",
     }
 })
+
+const riskLevelHeader = () => {
+    const classes = useStyles()
+    return (    
+        <CardHeader title="Risikostufen">
+            <Grid container direction="row">
+                <Grid item>
+                <IconButton                    
+                    component={Link}
+                    to="/"
+                    color="primary"
+                    aria-label="go back to map"
+                >
+                    <ArrowBackIosIcon />
+                </IconButton>
+                </Grid>
+                <Grid item>
+                    <Typography variant="h1">Risikostufen</Typography>
+                </Grid>
+            </Grid>
+        </CardHeader>
+    )
+}
 
 export const RiskLevelsPage = () => {
 
     const classes  = useStyles()
 
     return (
-        <div className={classes.root} id="risk-levels-page">
-            <Paper elevation={1}>                
-                <Typography variant="h1">Risikostufen</Typography>
+        <div className={classes.action} id="risk-levels-page">
+            <Card >                
+                {riskLevelHeader()}
                 <Typography variant="h2">Normales Risiko</Typography>
                 <Typography>
                     {RiskTexts.NORMAL}
@@ -31,7 +56,7 @@ export const RiskLevelsPage = () => {
                 <Typography>
                     {RiskTexts.HIGH}
                 </Typography>
-            </Paper>
+            </Card>
         </div>
     )
 }
