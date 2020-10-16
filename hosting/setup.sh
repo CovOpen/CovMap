@@ -67,6 +67,8 @@ done
 
 
 domains=($BASE_DOMAIN $OPENMAP_DOMAIN)
+echo "Requesting Certificates for: "
+echo ${domains[@]}
 rsa_key_size=4096
 data_path_certbot="${path}certbot"
 
