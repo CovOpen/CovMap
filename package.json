@@ -14,7 +14,6 @@
     "restart": "sudo docker-compose restart frontend",
     "test": "jest --env=jsdom",
     "test:testcafe": "testcafe chrome testcafe/*.spec.ts --debug-on-fail --speed 0.5",
-    "test-ci": "testcafe chrome:headless testcafe/*.spec.ts --app \"cd ./dist && http-server -p 8080\"",
     "coverage": "jest --env=jsdom --coverage",
     "format": "prettier --write ."
   },
