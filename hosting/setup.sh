@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # What does this file do?
+# - Download Openmaptiles
 # - Setup your nginx config
 # - Setup letsencrypt certificates
 
@@ -20,6 +21,7 @@ export $(egrep -v '^#' .env | xargs)
 
 # State all required variables here
 requiredVariables=(
+  OPENMAPTILES_ACCESS_KEY # Key for OpenMaptileDownload
   LETSENCRYPT_EMAIL # Adding a valid address is strongly recommended
   LETSENCRYPT_STAGING # Set to 1 if you're testing your setup to avoid hitting request limits
   BASE_DOMAIN # Base Domain of the website e.g. example.com
@@ -38,11 +40,22 @@ do
   fi
 done
 
+
+# Download OpenMapTiles
+path_openmaptiles="${path}openmaptiles"
+mkdir -p $path_openmaptiles
+cp -r ./openmaptiles ./data
+
+tile_file="osm-2017-07-03-v3.6.1-europe_germany.mbtiles"
+
+[ -f ${path_openmaptiles}/${tile_file} ] && echo "Data File already exist." || wget -O ${path_openmaptiles}/${tile_file} https://openmaptiles.com/download/${OPENMAPTILES_ACCESS_KEY}/${tile_file}?usage=open-source
+
+
+
 path_nginx="${path}nginx"
 mkdir -p $path_nginx
 cp -r ./nginx ./data
-
-# Write Variables to files
+# Write Variables to NGINX files
 for i in "${requiredVariables[@]}"
 do
   # Inform if a variable is not defined
