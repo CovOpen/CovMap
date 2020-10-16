@@ -71,7 +71,7 @@ export const config: AppConfig = {
         title: "Empfehlungen",
         route: "/recommendations",
         Component: BasicRecommendations,
-        hidden: true   // dont show this page in the navbar
+        hidden: true, // dont show this page in the navbar
       },
       /* 
       {
@@ -85,8 +85,8 @@ export const config: AppConfig = {
         id: "risk-levels-page",
         title: "Risikostufen",
         route: "/risk-levels",
-        Component: RiskLevelsPage
-      }
+        Component: RiskLevelsPage,
+      },
     ],
   },
   buildJSON,

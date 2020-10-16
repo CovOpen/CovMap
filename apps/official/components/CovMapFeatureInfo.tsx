@@ -1,12 +1,23 @@
 import React, { useState } from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
-import { Link as RouterLink } from 'react-router-dom';
-import { Card, Button, CardContent, CardHeader, Drawer, Grid, IconButton, Theme, Typography, useTheme } from "@material-ui/core";
+import { Link as RouterLink } from "react-router-dom";
+import {
+  Card,
+  Button,
+  CardContent,
+  CardHeader,
+  Drawer,
+  Grid,
+  IconButton,
+  Theme,
+  Typography,
+  useTheme,
+} from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { RiskBadge } from "app-config/components/RiskBadge";
 import { makeStyles } from "@material-ui/core/styles";
 import { ContactScore, RawDataEntry, RiskScore } from "app-config/models";
-import { RiskRecommendation } from './risk-recommendation/RiskRecommendation'
+import { RiskRecommendation } from "./risk-recommendation/RiskRecommendation";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
@@ -44,16 +55,16 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
     right: "auto",
   },
   recommendationsLink: {
-    textAlign: "center",
+    "textAlign": "center",
     "& p": {
       fontWeight: "bold",
-      margin: theme.spacing(1, 0)
+      margin: theme.spacing(1, 0),
     },
     "& a": {
       padding: theme.spacing(1.4, 8),
-      borderRadius: theme.shape.borderRadius * 2
-    }
-  }
+      borderRadius: theme.shape.borderRadius * 2,
+    },
+  },
 }));
 
 const titleByRiskScore = {
@@ -70,7 +81,17 @@ const titleByContactScore = {
 export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProps) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const { recommendationsLink, action, card, container, expand, expandOpen, drawerPaper, drawerRoot, drawerPaperAnchorBottom } = useStyles({
+  const {
+    recommendationsLink,
+    action,
+    card,
+    container,
+    expand,
+    expandOpen,
+    drawerPaper,
+    drawerRoot,
+    drawerPaperAnchorBottom,
+  } = useStyles({
     fullScreen,
   });
   const [expanded, setExpanded] = useState(false);
@@ -88,7 +109,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     incidence,
   } = rawData as RawDataEntry;
   const title = titleByRiskScore[riskScore];
-  
+
   const cardHeader = (
     <CardHeader
       onClick={toggleExpand}
@@ -116,9 +137,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
         {/*<Grid item>*/}
         {/*  <Typography>{riskDescription}</Typography>*/}
         {/*</Grid>*/}
-        <Grid item>
-          {RiskRecommendation({riskScore})}
-        </Grid>
+        <Grid item>{RiskRecommendation({ riskScore })}</Grid>
         <Grid item>
           <Card variant="outlined" className={card}>
             <CardHeader
@@ -135,9 +154,9 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
               title="Symptomlast der Bevölkerung"
               titleTypographyProps={{ variant: "h3" }}
               subheader="Bald verfügbar!"
-            // TODO: Instead of subheader, show actual data
-            // action={symptomIndex}
-            // classes={{ action }}
+              // TODO: Instead of subheader, show actual data
+              // action={symptomIndex}
+              // classes={{ action }}
             />
           </Card>
         </Grid>
@@ -154,9 +173,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
           </Card>
         </Grid>
         <Grid item className={recommendationsLink}>
-          <Typography>
-            Wie kann ich mich verhalten?
-          </Typography>
+          <Typography>Wie kann ich mich verhalten?</Typography>
           <Button component={RouterLink} to="/recommendations" variant="contained" color="secondary">
             Weiter
           </Button>
@@ -165,7 +182,6 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     </CardContent>
   );
 
-  
   return (
     <>
       <Card className={container}>{cardHeader}</Card>
@@ -176,7 +192,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
         anchor="bottom"
         onClose={() => setExpanded(false)}
         classes={{ paper: drawerPaper, root: drawerRoot, paperAnchorBottom: drawerPaperAnchorBottom }}
-      >        
+      >
         {cardHeader}
         {cardContent}
       </Drawer>
