@@ -1,6 +1,31 @@
 version: "3.0"
 services:
+
+  nginx:
+    # https://hub.docker.com/_/nginx
+    image: nginx:1.19-alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: unless-stopped
+    volumes:
+      - ./data/nginx:/etc/nginx/conf.d
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+
+  certbot:
+    # https://hub.docker.com/r/certbot/certbot/
+    image: certbot/certbot
+    container_name: certbot
+    restart: unless-stopped
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
   openmaptiles:
+    
     image: klokantech/openmaptiles-server
     # Supply the Access key for the map download via environment variable or in the env file
     # environment:
@@ -16,3 +41,5 @@ services:
         [ -f /data/osm-2017-07-03-v3.6.1-europe_germany.mbtiles ] && echo "Data File already exist." || wget -O /data/osm-2017-07-03-v3.6.1-europe_germany.mbtiles https://openmaptiles.com/download/${OPENMAPTILES_ACCESS_KEY}/osm-2017-07-03-v3.6.1-europe_germany.mbtiles?usage=open-source
         echo '{"styles":{"standard":["dark-matter","klokantech-basic","osm-bright","positron"],"custom":[],"lang":"","langLatin":true,"langAlts":true},"settings":{"serve":{"vector":true,"raster":true,"services":true,"static":true},"raster":{"format":"PNG_256","hidpi":2,"maxsize":2048},"server":{"title":"","redirect":"","domains":[]},"memcache":{"size":2,"servers":["localhost:11211"]}}}' > /data/config.json
         supervisord -n
+    restart: always
+
