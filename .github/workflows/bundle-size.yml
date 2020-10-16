@@ -1,5 +1,11 @@
 on:
   pull_request_target:
+    branches-ignore:
+      - 'restyled/**'
+    paths-ignore:
+      - '.github/**'
+      - '.hosting/**'
+        
 jobs:
   build-head:
     name: 'Build head'
