@@ -55,9 +55,9 @@ jobs:
       with:
         name: dist
     - name: test
-      run: npm install http-server testcafe
+      run: yarn install http-server testcafe
     - name: test
-      run: npm run test-ci
+      run: yarn testcafe chrome:headless testcafe/*.spec.ts --app "cd ./dist && http-server -p 8080"
 
   build-base:
     name: 'Build base'
