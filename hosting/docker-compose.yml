@@ -1,6 +1,5 @@
 version: "3.0"
 services:
-
   nginx:
     # https://hub.docker.com/_/nginx
     image: nginx:1.19-alpine
@@ -26,7 +25,6 @@ services:
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
   openmaptiles:
-
     image: klokantech/openmaptiles-server
     # Supply the Access key for the map download via environment variable or in the env file
     # environment:
@@ -43,4 +41,3 @@ services:
         echo '{"styles":{"standard":["dark-matter","klokantech-basic","osm-bright","positron"],"custom":[],"lang":"","langLatin":true,"langAlts":true},"settings":{"serve":{"vector":true,"raster":true,"services":true,"static":true},"raster":{"format":"PNG_256","hidpi":2,"maxsize":2048},"server":{"title":"","redirect":"","domains":[]},"memcache":{"size":2,"servers":["localhost:11211"]}}}' > /data/config.json
         supervisord -n
     restart: always
-
