@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardHeader, CardContent, IconButton } from '@material-ui/core';
+import { Grid, Card, CardHeader, CardContent, IconButton } from '@material-ui/core';
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 import Typography from "@material-ui/core/Typography";
@@ -25,21 +25,22 @@ const renderRecommendation = (recommendation: () => any) => () => {
     const { alignment } = useStyles()
     
     return (
-        <Card>
-            <CardHeader       
-                action={
-                    <IconButton                    
-                        component={Link}
-                        to="/risk-levels"
-                        aria-label="show risk level explanations"
-                    >
-                        <ArrowForwardIosIcon />
-                    </IconButton>
-                }
-                classes={{ alignment }}        
-            />
+        <Card>            
             <CardContent>
-                {recommendation()}
+                <Grid container direction="row" spacing={2}>
+                    <Grid item xs={9}>
+                    {recommendation()}
+                    </Grid>
+                    <Grid item xs={3}>
+                        <IconButton                    
+                            component={Link}
+                            to="/risk-levels"
+                            aria-label="show risk level explanations"
+                        >
+                            <ArrowForwardIosIcon />
+                        </IconButton>
+                    </Grid>
+                </Grid>
             </CardContent>            
         </Card>
     )
