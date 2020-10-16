@@ -2,7 +2,7 @@
   "name": "covmap",
   "version": "0.1.0",
   "description": "A web app to display large-scale epidemiological data and forecasts of the SARS-CoV-2 pandemic.",
-  "repository": "git@github.com:CovOpen/CovMapper.git",
+  "repository": "https://github.com/CovOpen/CovMapper",
   "license": "Apache2",
   "private": true,
   "scripts": {
@@ -15,6 +15,7 @@
     "restart": "sudo docker-compose restart frontend",
     "test": "jest --env=jsdom",
     "coverage": "jest --env=jsdom --coverage",
+    "release": "semantic-release",
     "format": "prettier --write ."
   },
   "dependencies": {
@@ -36,6 +37,7 @@
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "semantic-release": "^17.2.1",
     "webpack-merge": "^4.2.2",
     "workbox-webpack-plugin": "3.6.3"
   },
@@ -45,6 +47,11 @@
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.1",
     "@material-ui/lab": "^4.0.0-alpha.49",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/exec": "^5.0.0",
+    "@semantic-release/github": "^7.1.1",
+    "@semantic-release/release-notes-generator": "^9.0.1",
     "@svgr/webpack": "^5.3.1",
     "@types/enzyme": "^3.10.5",
     "@types/geojson": "^7946.0.7",
