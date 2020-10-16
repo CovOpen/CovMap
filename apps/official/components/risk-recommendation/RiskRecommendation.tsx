@@ -9,23 +9,19 @@ import { Link } from "react-router-dom";
 import { RiskScore, RiskTexts } from "../../models"
 
 const useStyles = makeStyles({   
-    alignment: {
-        alignSelf: "auto",
-        marginTop: 0,
-        marginLeft: "8px",
-        },
-    container: {
-        maxWidth: "300px",
-    },
-        
+    root: {
+        border: 0,
+        background: '#2979ff',
+        color: 'white'
+    }   
 });
 
 
 const renderRecommendation = (recommendation: () => any) => () => {
-    const { alignment } = useStyles()
+    const classes = useStyles()
     
     return (
-        <Card>            
+        <Card className={classes.root}>            
             <CardContent>
                 <Grid container direction="row" spacing={2}>
                     <Grid item xs={9}>
@@ -35,6 +31,7 @@ const renderRecommendation = (recommendation: () => any) => () => {
                         <IconButton                    
                             component={Link}
                             to="/risk-levels"
+                            color="primary"
                             aria-label="show risk level explanations"
                         >
                             <ArrowForwardIosIcon />
