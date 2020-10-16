@@ -7,14 +7,14 @@
   "private": true,
   "scripts": {
     "lint": "eslint --ext ts,tsx ./src/",
-    "build": "webpack --config ./webpack.config.js",
-    "build:prod": "webpack --config ./webpack.config.js --env prod",
+    "build": "webpack --config ./webpack.config.js --env prod",
     "dev": "webpack-dev-server --env dev --hot --host=0.0.0.0 --port=8080",
     "dev:ssl": "webpack-dev-server --env dev --hot --host=0.0.0.0 --port=8080 --https --cert=cert.pem --key=key.pem",
     "refresh": "sudo docker-compose build frontend && sudo docker-compose up -d frontend",
     "restart": "sudo docker-compose restart frontend",
     "test": "jest --env=jsdom",
     "test:testcafe": "testcafe chrome testcafe/*.spec.ts --debug-on-fail --speed 0.5",
+    "test-ci": "testcafe chrome:headless testcafe/*.spec.ts --app \"cd ./dist && http-server -p 8080\"",
     "coverage": "jest --env=jsdom --coverage",
     "format": "prettier --write ."
   },

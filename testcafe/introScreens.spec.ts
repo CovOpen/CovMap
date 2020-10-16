@@ -1,6 +1,7 @@
 import { Selector } from "testcafe";
+import { Config } from "./testcafe.config";
 
-fixture`Intro screens test`.page`http://test.covmap.de`;
+fixture`Intro screens test`.page`${Config.baseUrl}`;
 
 test("Finish intro screens", async (t) => {
   const nextButton = Selector("a").withAttribute("role", "button").child().withText("Weiter");

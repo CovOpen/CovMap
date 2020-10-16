@@ -15,7 +15,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.DEPLOYMENTACCESSSECRET }}
           aws-region: eu-central-1
       - name: Build static site
-        run: npm install && npm run-script build -- --env prod
+        run: yarn install && yarn build
       - name: Deploy static site to covmapper.com
         run: aws s3 sync ./dist/ s3://covmapper-webinterface --delete
       - name: Deploy static site to covmap.de
