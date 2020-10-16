@@ -71,7 +71,6 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange, onLoad }: GLMapPro
         height="100%"
         maxZoom={MAX_ZOOM_LEVEL}
         minZoom={4}
-        mapStyle="mapbox://styles/mapbox/dark-v10"
         {...viewport}
         onClick={(evt) => onMapClick(evt, viewport)}
         onLoad={onLoad}
