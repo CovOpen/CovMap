@@ -2,6 +2,11 @@ name: PR - Preview
 on:
   pull_request_target:
     branches: [ master ]
+    branches-ignore:
+      - 'restyled/**'
+    paths-ignore:
+      - '.github/**'
+      - '.hosting/**'
     
 env:
   RESSOURCE_GROUP: covmapper
