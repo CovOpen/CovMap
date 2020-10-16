@@ -13,7 +13,6 @@ services:
       - /bin/bash
       - -c
       - |
-          wget -O /data/osm-2017-07-03-v3.6.1-europe_germany.mbtiles https://openmaptiles.com/download/${OPENMAPTILES_ACCESS_KEY}/osm-2017-07-03-v3.6.1-europe_germany.mbtiles?usage=open-source
-          echo '{"styles":{"standard":["dark-matter","klokantech-basic","osm-bright","positron"],"custom":[],"lang":"","langLatin":true,"langAlts":true},"settings":{"serve":{"vector":true,"raster":true,"services":true,"static":true},"raster":{"format":"PNG_256","hidpi":2,"maxsize":2048},"server":{"title":"","redirect":"","domains":[]},"memcache":{"size":2,"servers":["localhost:11211"]}}}' > /data/config.json
-          supervisord -n
-
+        wget -O /data/osm-2017-07-03-v3.6.1-europe_germany.mbtiles https://openmaptiles.com/download/${OPENMAPTILES_ACCESS_KEY}/osm-2017-07-03-v3.6.1-europe_germany.mbtiles?usage=open-source
+        echo '{"styles":{"standard":["dark-matter","klokantech-basic","osm-bright","positron"],"custom":[],"lang":"","langLatin":true,"langAlts":true},"settings":{"serve":{"vector":true,"raster":true,"services":true,"static":true},"raster":{"format":"PNG_256","hidpi":2,"maxsize":2048},"server":{"title":"","redirect":"","domains":[]},"memcache":{"size":2,"servers":["localhost:11211"]}}}' > /data/config.json
+        supervisord -n
