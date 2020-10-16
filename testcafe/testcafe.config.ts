@@ -1,3 +1,3 @@
 export class Config {
-  static baseUrl = "http://localhost:8081";
+  static baseUrl = "http://localhost:8080";
 }
