@@ -44,10 +44,18 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-head]
     steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: '${{github.event.pull_request.head.ref}}'
+        repository: '${{github.event.pull_request.head.repo.full_name}}'
+    - name: remove uneeded files
+      run: rm -v !(testcafe)
     - name: Download base artifact
       uses: actions/download-artifact@v1
       with:
         name: dist
+    - name: test
+      run: npm install http-server testcafe
     - name: test
       run: npm run test-ci
 
