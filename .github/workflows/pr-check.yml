@@ -23,6 +23,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
+    - uses: actions/cache@v2
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - name: Install dependencies
       run: yarn install
     - name: Build
@@ -49,15 +53,15 @@ jobs:
         ref: '${{github.event.pull_request.head.ref}}'
         repository: '${{github.event.pull_request.head.repo.full_name}}'
     - name: remove uneeded files
-      run: rm -v !(testcafe)
+      run: rm package.json
     - name: Download base artifact
       uses: actions/download-artifact@v1
       with:
         name: dist
     - name: test
-      run: yarn install http-server testcafe
+      run: yarn add http-server testcafe
     - name: test
-      run: yarn testcafe chrome:headless testcafe/*.spec.ts --app "cd ./dist && http-server -p 8080"
+      run: yarn run testcafe chrome:headless testcafe/*.spec.ts --app "cd ./dist && http-server -p 8080"
 
   build-base:
     name: 'Build base'
