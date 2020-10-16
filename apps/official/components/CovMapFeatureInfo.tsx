@@ -67,13 +67,6 @@ const titleByContactScore = {
   [ContactScore.Medium]: "Zu hoch",
 };
 
-const descriptionByRiskScore = {
-  // TODO: Add missing descriptions
-  // TODO: Update description with shorter text
-  [RiskScore.Medium]:
-    "Ein mittleres Risiko kann bei mehreren Szenarien bestehen: Entweder ist die Zahl der Neuinfektionen über 20 Neuinfektionen pro 100.000 Einwohner oder das Kontaktverhalten der Bevölkerung oder die Symptomlast ist erhöht, so dass die Zahl der Neuinfektionen demnächst weiter ansteigen könnte. Bitte die AHA + L Regeln beachten. Wir empfehlen darüber hinaus, die Anzahl der Kontakte freiwillig weitestgehend zu reduzieren.",
-};
-
 export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProps) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -95,8 +88,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     incidence,
   } = rawData as RawDataEntry;
   const title = titleByRiskScore[riskScore];
-  const riskDescription = descriptionByRiskScore[riskScore];
-
+  
   const cardHeader = (
     <CardHeader
       onClick={toggleExpand}
