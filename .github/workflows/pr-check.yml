@@ -2,8 +2,6 @@ name: PR-Checks
 on:
   pull_request_target:
     branches: [ master ]
-    branches-ignore:
-      - 'restyled/**'
     paths-ignore:
       - '.github/**'
       - '.hosting/**'
