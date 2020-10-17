@@ -69,7 +69,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: [release]
-    if: steps.semantic.outputs.RELEASE == 'true'
+    if: ${{ steps.semantic.outputs.RELEASE == 'true' }}
     steps:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
