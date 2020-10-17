@@ -1,6 +1,8 @@
 const https = require("https");
 const { writeFileSync } = require("fs");
 var pjson = require("../package.json");
+const { resolve } = require("path");
+
 /**
  * Retrieves the changelog.md file during a release with semantic release
  * Usage:
@@ -32,8 +34,12 @@ function getChangelogFromUrl(url) {
             throw new Error(`Could not parse redirect url.`);
           }
         } else if (res.statusCode === 200) {
-          writeFileSync("../static/changelog.md", data, { encoding: "utf-8" });
-          console.log(`Fetched Changelog from: ${url}`);
+          let path = resolve(__dirname, "..", "static", "changelog.md")
+          console.log("Wrote changelog to: " + path)
+          console.log("Here is the top of it:")
+          console.log(data.substring(0,700))
+          writeFileSync(path, data, { encoding: "utf-8" });
+          // console.log(`Fetched Changelog from: ${url}`);
         } else {
           throw new Error(
             `File in remote location does not seem to exist. Error Code: ${res.statusCode} ${res.statusMessage} (${url})`,
