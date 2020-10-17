@@ -6,6 +6,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 import moment from "moment";
 import { useParams } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 import { State } from "../state";
 import { AppApi } from "../state/app";
@@ -22,8 +23,6 @@ import { Legend } from "./Legend";
 import { Settings } from "./Settings";
 import { config } from "app-config/index";
 import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
-import { Search } from "./Search";
-import Box from "@material-ui/core/Box";
 import FixedSearch from "./FixedSearch";
 
 const useStyles = makeStyles((theme) => ({
@@ -75,7 +74,6 @@ async function loadFlyTo() {
 }
 
 export const CovMap = () => {
-  let startTime = Date.now();
   const classes = useStyles();
   const dispatch = useThunkDispatch();
   const urlParams = useParams<{ subPage?: string }>();
@@ -89,6 +87,7 @@ export const CovMap = () => {
   const [mapLoaded, setMapLoaded] = useState<boolean>(false);
   const mapRef = createRef<any>();
   const visual = config.visuals[currentVisual];
+  const { t } = useTranslation(['common']);
 
   const handleMapBusy = () => {
     dispatch(AppApi.pushLoading("map-busy"));
@@ -239,7 +238,7 @@ export const CovMap = () => {
             touchAction: "none",
           }}
         >
-          Keine Daten für den ausgewählten Zeitraum.
+          {t('no data for selected timeframe')}
         </DialogTitle>
       </Dialog>
       <WelcomeStepsModal subPage={urlParams.subPage} />
