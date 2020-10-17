@@ -76,7 +76,7 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange, onLoad }: GLMapPro
         onLoad={onLoad}
         onViewportChange={handleLocalViewportChange}
         baseApiUrl="https://openmap.covmap.aquiver.de"
-        mapStyle="https://openmap.covmap.aquiver.de/styles/osm-bright/style.json"
+        mapStyle="https://openmap.covmap.aquiver.de/styles/dark-matter/style.json"
         preventStyleDiffing={true}
         asyncRender={true}
       >
