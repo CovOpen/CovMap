@@ -19,7 +19,7 @@ import { InstallPrompt } from "./components/InstallPrompt";
 import { useThunkDispatch } from "src/useThunkDispatch";
 import { AppApi } from "src/state/app";
 
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { config } from "app-config/index";
 import { theme } from "./theme";
