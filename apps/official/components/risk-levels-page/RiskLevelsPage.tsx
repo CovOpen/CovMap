@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Grid, Card, CardHeader, CardContent, Avatar, IconButton } from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import { RiskTexts } from "../../models"
+import { RiskActionTexts, RiskStatusTexts } from "../../models"
 
 const useStyles = makeStyles({
     action: {
@@ -47,15 +47,18 @@ export const RiskLevelsPage = () => {
                 {riskLevelHeader()}
                 <Typography variant="h2">Normales Risiko</Typography>
                 <Typography>
-                    {RiskTexts.NORMAL}
+                    {RiskActionTexts.NORMAL}
+                    {RiskStatusTexts.NORMAL}
                 </Typography>
                 <Typography variant="h2">Mittleres Risiko</Typography>
                 <Typography>
-                    {RiskTexts.MEDIUM}
+                    {RiskActionTexts.MEDIUM}
+                    {RiskStatusTexts.MEDIUM}
                 </Typography>
                 <Typography variant="h2">Hohes Risiko</Typography>
                 <Typography>
-                    {RiskTexts.HIGH}
+                    {RiskActionTexts.HIGH}
+                    {RiskStatusTexts.HIGH}
                 </Typography>
             </Card>
         </div>

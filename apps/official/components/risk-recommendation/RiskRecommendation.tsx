@@ -6,7 +6,7 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 
-import { RiskScore, RiskTexts } from "../../models";
+import { RiskScore, RiskActionTexts, RiskStatusTexts } from "../../models";
 
 const useStyles = makeStyles({
   root: {
@@ -16,20 +16,27 @@ const useStyles = makeStyles({
   },
 });
 
-const renderRecommendation = (recommendation: () => any) => () => {
+const renderRecommendation = (action: () => any, status: () => any) => () => {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
-      <CardContent>
-        <Grid container direction="row" spacing={2}>
-          <Grid item xs={10}>
-            {recommendation()}
+      <CardContent>        
+        <Grid container direction="column" spacing={2}>
+          <Grid item>
+            <Grid container direction="row">
+              <Grid item xs={11}>
+                {action()}
+              </Grid>
+              <Grid item xs={1}>            
+                  <IconButton component={Link} to="/risk-levels" color="primary" aria-label="show risk level explanations">
+                    <ArrowForwardIosIcon fontSize="small"/>
+                  </IconButton>            
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid item xs={2}>            
-              <IconButton component={Link} to="/risk-levels" color="primary" aria-label="show risk level explanations">
-                <ArrowForwardIosIcon fontSize="small"/>
-              </IconButton>            
+          <Grid item>
+            {status()}
           </Grid>
         </Grid>
       </CardContent>
@@ -37,17 +44,20 @@ const renderRecommendation = (recommendation: () => any) => () => {
   );
 };
 
-const renderNormalRiskRecommendation = renderRecommendation(() => (
-  <Typography variant="body2">{RiskTexts.NORMAL}</Typography>
-));
+const renderNormalRiskRecommendation = renderRecommendation( 
+  () => <Typography variant="body2">{RiskActionTexts.NORMAL}</Typography>,
+  () => <Typography variant="body2">{RiskStatusTexts.NORMAL}</Typography>
+);
 
-const renderMediumRiskRecommendation = renderRecommendation(() => (
-  <Typography variant="body2">{RiskTexts.MEDIUM}</Typography>
-));
+const renderMediumRiskRecommendation = renderRecommendation(
+  () => <Typography variant="body2">{RiskActionTexts.MEDIUM}</Typography>,
+  () => <Typography variant="body2">{RiskStatusTexts.MEDIUM}</Typography>
+);
 
-const renderHighRiskRecommendation = renderRecommendation(() => (
-  <Typography variant="body2">{RiskTexts.HIGH}</Typography>
-));
+const renderHighRiskRecommendation = renderRecommendation(
+  () => <Typography variant="body2">{RiskActionTexts.HIGH}</Typography>,
+  () => <Typography variant="body2">{RiskStatusTexts.HIGH}</Typography>
+);
 
 export const RiskRecommendation = ({ riskScore }: { riskScore: RiskScore }) => {
   switch (riskScore) {
