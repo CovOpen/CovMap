@@ -21,7 +21,7 @@ const riskLevelHeader = () => {
                 <Grid item>
                 <IconButton                    
                     component={Link}
-                    to="/"
+                    to="/#"
                     color="primary"
                     aria-label="go back to map"
                 >
@@ -37,8 +37,39 @@ const riskLevelHeader = () => {
 }
 
 
-export const RiskLevelsPage = () => {
+export const RiskLevelsPage = () => (
+    <>
+        <main className="sections">
+            <section>
+                <Typography variant="h1">"Risikostufen"</Typography>
+            </section>
 
+            <section>
+                <Typography variant="h2">Normales Risiko</Typography>
+                <Typography variant="body1">
+                    {RiskTexts.NORMAL}
+                </Typography>
+            </section>
+
+            <section>
+                <Typography variant="h2">Mittleres Risiko</Typography>
+                <Typography variant="body1">
+                    {RiskTexts.MEDIUM}
+                </Typography>
+            </section>
+
+            <section>
+                <Typography variant="h2">Hohes Risiko</Typography>
+                <Typography variant="body1">
+                    {RiskTexts.HIGH}
+                </Typography>
+            </section>
+        </main>
+    </>
+);
+
+    
+    /*
     const classes  = useStyles()
 
     return (
@@ -60,4 +91,5 @@ export const RiskLevelsPage = () => {
             </Card>
         </div>
     )
-}
+    */
+
