@@ -1,6 +1,6 @@
 const https = require("https");
 const { writeFileSync } = require("fs");
-
+var pjson = require("../package.json");
 /**
  * Retrieves the changelog.md file during a release with semantic release
  * Usage:
@@ -9,7 +9,7 @@ const { writeFileSync } = require("fs");
 
 let lastVersion = process.argv[2];
 
-let url = `https://github.com/CovOpen/CovMapper/releases/download/v${lastVersion}/changelog.md`;
+let url = `${pjson.repository}/releases/download/v${lastVersion}/changelog.md`;
 
 getChangelogFromUrl(url);
 
