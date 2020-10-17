@@ -29,6 +29,10 @@
           "label": "Changelog"
         }
       ]
+    },
+    {
+      "path": "@semantic-release/exec",
+      "cmd": "echo 'true' >> $RELEASED"
     }
   ],
   "fail": ["@semantic-release/github"],
