@@ -32,7 +32,7 @@ function getChangelogFromUrl(url) {
             throw new Error(`Could not parse redirect url.`);
           }
         } else if (res.statusCode === 200) {
-          writeFileSync("../src/changelog.md", data, { encoding: "utf-8" });
+          writeFileSync("../static/changelog.md", data, { encoding: "utf-8" });
           console.log(`Fetched Changelog from: ${url}`);
         } else {
           throw new Error(
