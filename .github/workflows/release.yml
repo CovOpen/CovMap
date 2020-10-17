@@ -24,10 +24,8 @@ jobs:
       run: yarn install
     - name: Build
       run: yarn build
-    - name: install testcafe
-      run: yarn add http-server testcafe
     - name: test
-      run: yarn run testcafe chrome:headless testcafe/*.spec.ts --app "cd ./dist && http-server -p 8080"
+      run: yarn run test-ci
 
   release:
     name: Release
@@ -40,7 +38,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - run: git checkout master
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:

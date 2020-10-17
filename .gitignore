@@ -15,4 +15,5 @@ bundle-stats.json
 CovQuestions/
 
 .env
-src/changelog.md
+static/changelog.md
+package-lock.json

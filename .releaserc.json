@@ -9,7 +9,7 @@
     },
     {
       "path": "@semantic-release/changelog",
-      "changelogFile": "src/changelog.md"
+      "changelogFile": "static/changelog.md"
     },
     {
       "path": "@semantic-release/exec",
@@ -25,14 +25,14 @@
       "path": "@semantic-release/github",
       "assets": [
         {
-          "path": "src/changelog.md",
+          "path": "static/changelog.md",
           "label": "Changelog"
         }
       ]
     },
     {
       "path": "@semantic-release/exec",
-      "cmd": "echo 'true' >> $RELEASED"
+      "cmd": "echo \"::set-output name=RELEASED::true\""
     }
   ],
   "fail": ["@semantic-release/github"],
