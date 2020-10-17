@@ -40,7 +40,7 @@ jobs:
           fetch-depth: 0
       - name: Fetch Tags
         run: |
-          git fetch --prune --unshallow --tags
+          git fetch --prune --tags
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
