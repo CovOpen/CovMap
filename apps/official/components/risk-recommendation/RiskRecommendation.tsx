@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Card, CardHeader, CardContent, IconButton } from "@material-ui/core";
+import { Grid, Box, Card, CardHeader, CardContent, IconButton } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 import Typography from "@material-ui/core/Typography";
@@ -23,13 +23,13 @@ const renderRecommendation = (recommendation: () => any) => () => {
     <Card className={classes.root}>
       <CardContent>
         <Grid container direction="row" spacing={2}>
-          <Grid item xs={9}>
+          <Grid item xs={10}>
             {recommendation()}
           </Grid>
-          <Grid item xs={3}>
-            <IconButton component={Link} to="/risk-levels" color="primary" aria-label="show risk level explanations">
-              <ArrowForwardIosIcon />
-            </IconButton>
+          <Grid item xs={2}>            
+              <IconButton component={Link} to="/risk-levels" color="primary" aria-label="show risk level explanations">
+                <ArrowForwardIosIcon fontSize="small"/>
+              </IconButton>            
           </Grid>
         </Grid>
       </CardContent>
@@ -38,15 +38,15 @@ const renderRecommendation = (recommendation: () => any) => () => {
 };
 
 const renderNormalRiskRecommendation = renderRecommendation(() => (
-  <Typography variant="body1">{RiskTexts.NORMAL}</Typography>
+  <Typography variant="body2">{RiskTexts.NORMAL}</Typography>
 ));
 
 const renderMediumRiskRecommendation = renderRecommendation(() => (
-  <Typography variant="body1">{RiskTexts.MEDIUM}</Typography>
+  <Typography variant="body2">{RiskTexts.MEDIUM}</Typography>
 ));
 
 const renderHighRiskRecommendation = renderRecommendation(() => (
-  <Typography variant="body1">{RiskTexts.HIGH}</Typography>
+  <Typography variant="body2">{RiskTexts.HIGH}</Typography>
 ));
 
 export const RiskRecommendation = ({ riskScore }: { riskScore: RiskScore }) => {
