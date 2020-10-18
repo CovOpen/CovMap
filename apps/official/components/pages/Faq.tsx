@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import { Accordion, AccordionDetails, AccordionSummary } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-const FaqAccordion: React.FC<{ title: string; content: string | ReactElement }> = (props) => {
+const FaqAccordion: React.FC<{ title: string; content: string | ReactElement }>  = (props) => {
   return (
     <Accordion>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
