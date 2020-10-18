@@ -11,14 +11,14 @@ export const Privacy = () => {
         <section>
           <Typography variant="h2">1.	Verantwortlichkeit</Typography>
           <Typography variant="body1">
-Die CovMap ist ein Projekt der Charité – Universitätsmedizin Berlin, die für die Verarbeitung personenbezogener Daten verantwortlich ist:<br>
-<br>
-Charité – Universitätsmedizin Berlin<br>
-Charitéplatz 1<br>
-10117 Berlin<br>
-Deutschland<br>
-<br>
-Tel: +49 (0) 30 450 50<br>
+<p>Die CovMap ist ein Projekt der Charité – Universitätsmedizin Berlin, die für die Verarbeitung personenbezogener Daten verantwortlich ist:</p>
+
+Charité – Universitätsmedizin Berlin
+Charitéplatz 1<br />
+10117 Berlin<br />
+Deutschland<br />
+<br />
+Tel: +49 (0) 30 450 50<br />
   Website: <a href="www.charite.de">www.charite.de</a>
 </Typography>
         </section>
@@ -28,9 +28,9 @@ Tel: +49 (0) 30 450 50<br>
         <section>
           <Typography variant="h2">2.	Datenschutzbeauftragte</Typography>
           <Typography variant="body1">
-Bei Fragen zur Verarbeitung Ihrer personenbezogenen Daten sowie zu Ihren Rechten rund um den Datenschutz, wenden Sie sich bitte an unsere Datenschutzbeauftragte:<br>
-            <br>
-t: +49 30 450 580 016<br>
+Bei Fragen zur Verarbeitung Ihrer personenbezogenen Daten sowie zu Ihren Rechten rund um den Datenschutz, wenden Sie sich bitte an unsere Datenschutzbeauftragte:<br />
+            <br />
+t: +49 30 450 580 016<br />
 E-Mail: datenschutz(at)charite.de
 
           </Typography>
@@ -56,28 +56,28 @@ Bei der CovMap handelt es sich sowohl um eine Web-App als auch um eine App, die 
           <Typography variant="h2">5.	Aufruf der CovMap</Typography>
           <Typography variant="body1">
 
-a.	Log-Dateien (sog. Log Files)<br>
-Bei jedem Zugriff auf die CovMap werden Daten über diesen Vorgang vorübergehend in einer Protokolldatei verarbeitet. Im Einzelnen werden folgende Daten gespeichert:<br>
-•	das Datum und die Uhrzeit des Aufrufs der CovMap<br>
-•	verwendete Webbrowser und verwendetes Betriebssystem<br> 
-•	die vollständige IP-Adresse des anfordernden Endgeräts <br>
-•	der Name und die URL der abgerufenen Datei<br>
-•	im Fall des Aufrufs der Web-App auch die Webseite, von der aus der Zugriff erfolgt<br>
-•	der Name des verwendeten Internet-Providers<br>
-            <br>
+a.	Log-Dateien (sog. Log Files)<br />
+Bei jedem Zugriff auf die CovMap werden Daten über diesen Vorgang vorübergehend in einer Protokolldatei verarbeitet. Im Einzelnen werden folgende Daten gespeichert:<br />
+•	das Datum und die Uhrzeit des Aufrufs der CovMap<br />
+•	verwendete Webbrowser und verwendetes Betriebssystem<br /> 
+•	die vollständige IP-Adresse des anfordernden Endgeräts <br />
+•	der Name und die URL der abgerufenen Datei<br />
+•	im Fall des Aufrufs der Web-App auch die Webseite, von der aus der Zugriff erfolgt<br />
+•	der Name des verwendeten Internet-Providers<br />
+            <br />
 Diese Datenverarbeitung durch unser System dient dem Zweck und unserem Interesse, die Auslieferung der CovMap an das Endgerät des Nutzers/der Nutzerin zu ermöglichen. Hierfür muss die IP-Adresse der Nutzenden für die Dauer der Sitzung gespeichert bleiben. Ihre IP-Adresse löschen wir nach Ablauf von vier Wochen. Wir speichern sie vier Wochen, damit wir im Fall von Datensicherheitsmängeln oder Problemen von Eingriffen der Nutzenden Rechtsverstöße verfolgen können. Nach Ende der vierwöchigen Aufbewahrung werden die IP-Adressen unverzüglich gelöscht. Im Übrigen werden die Daten in unserem System gelöscht, wenn die jeweilige Sitzung beendet ist.
 Die Erfassung der Daten zur Bereitstellung CovMap ist für den Betrieb der Applikation zwingend erforderlich. Rechtsgrundlage hierfür ist Art. 6 Abs. 1 S. 1 lit. f DS-GVO.
- <br>
-b.	Session-Cookies<br>
-Beim Aufruf der CovMap erheben wir während einer laufenden Verbindung über Ihren Internetbrowser und mit Hilfe von technisch notwendigen sog. Session-Cookies Daten. Diese Daten beziehen sich lediglich auf Ihre IP-Adresse (siehe nachstehende Bullet Points). Session-Cookies ermöglichen die Funktionalität dieser Anwendungen. Sie verfallen nach 24 Stunden. Die meisten Browser sind so eingestellt, dass sie Cookies automatisch akzeptieren. Sie können das Speichern von Cookies jedoch deaktivieren oder Ihren Browser so einstellen, dass er Sie benachrichtigt, sobald Cookies gesendet werden. Durch den Einsatz von Cookies fließen der Stelle, die den Cookie setzt (hier der durch uns eingesetzte Auftragsverarbeiter KeyCDN, siehe dazu unter 6.) folgende Informationen zu:<br>
-•	Datum und Uhrzeit des Aufrufs der Website<br>
-•	verwendete Webbrowser und verwendetes Betriebssystem<br>
-•	vollständige IP-Adresse des anfordernden Endgeräts<br>
-•	übertragene Datenmenge<br>
-•	Name des verwendeten Internet-Providers.<br>
-Die Verarbeitung erfolgt auf der Rechtsgrundlage des Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse bei der Verwendung von technischen Cookies liegt in der Ermöglichung der Nutzung und Bereitstellung der CovMap. Bei den Cookies handelt es sich um für die Nutzung von CovMap technisch zwingend notwendige Cookies. <br>
-<br>            
-c.	Eingabe der Postleitzahl<br>
+ <br />
+b.	Session-Cookies<br />
+Beim Aufruf der CovMap erheben wir während einer laufenden Verbindung über Ihren Internetbrowser und mit Hilfe von technisch notwendigen sog. Session-Cookies Daten. Diese Daten beziehen sich lediglich auf Ihre IP-Adresse (siehe nachstehende Bullet Points). Session-Cookies ermöglichen die Funktionalität dieser Anwendungen. Sie verfallen nach 24 Stunden. Die meisten Browser sind so eingestellt, dass sie Cookies automatisch akzeptieren. Sie können das Speichern von Cookies jedoch deaktivieren oder Ihren Browser so einstellen, dass er Sie benachrichtigt, sobald Cookies gesendet werden. Durch den Einsatz von Cookies fließen der Stelle, die den Cookie setzt (hier der durch uns eingesetzte Auftragsverarbeiter KeyCDN, siehe dazu unter 6.) folgende Informationen zu:<br />
+•	Datum und Uhrzeit des Aufrufs der Website<br />
+•	verwendete Webbrowser und verwendetes Betriebssystem<br />
+•	vollständige IP-Adresse des anfordernden Endgeräts<br />
+•	übertragene Datenmenge<br />
+•	Name des verwendeten Internet-Providers.<br />
+Die Verarbeitung erfolgt auf der Rechtsgrundlage des Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse bei der Verwendung von technischen Cookies liegt in der Ermöglichung der Nutzung und Bereitstellung der CovMap. Bei den Cookies handelt es sich um für die Nutzung von CovMap technisch zwingend notwendige Cookies. <br />
+<br />            
+c.	Eingabe der Postleitzahl<br />
 Bei Aufruf der App besteht die Möglichkeit, dass Sie die Postleitzahl Ihrer Heimatadresse eingeben. Dies ist eine freiwillige Option und keine Voraussetzung zur Nutzung der CovMap. Sofern Sie Ihre Postleitzahl eingeben, wird diese mit Ihrer IP-Adresse verknüpft und durch uns dazu verwendet, Ihnen bei der anschließenden Darstellung der Deutschlandkarte auf den ersten Blick den Bereich Ihrer Heimatadresse und der unmittelbaren Umgebung anzuzeigen. Geben Sie keine Postleitzahl ein, können Sie den Fokus auf den Sie interessierenden Kartenabschnitt selbstständig manuell einstellen. 
 Die Verarbeitung Ihrer Postleitzahl erfolgt aufgrund Ihrer freiwilligen und informierten Einwilligung gemäß Art. 6 Abs. 1 lit. a DS-GVO. Diese Einwilligungserklärung können Sie vor Eingabe Ihrer Postleitzahl in der Applikation durch Setzens eines Häkchens in einer Checkbox abgeben.
 Sie können die von Ihnen erteilte Einwilligungserklärung jederzeit widerrufen. Für einen Widerruf genügt eine E-Mail an: covmap@charite.de. Ein Widerruf bezieht sich lediglich auf zukünftige Datenverarbeitungsvorgänge und berührt nicht die Rechtmäßigkeit der im Vorfeld auf Grundlage der abgegebenen Einwilligungserklärung erfolgten Datenverarbeitung.
@@ -110,13 +110,13 @@ Eine Pflicht zur Bereitstellung der personenbezogenen Daten besteht nicht. Eine 
                 <section>
           <Typography variant="h2">8.	Ihre Rechte</Typography>
           <Typography variant="body1">
-Sie haben grundsätzlich folgende Rechte hinsichtlich der Sie betreffenden personenbezogenen Daten: <br>
--	Recht auf Auskunft (Art. 15 DS-GVO) <br>
--	Recht auf Berichtigung (Art. 16 DS-GVO) <br>
--	Recht auf Löschung (Art. 17 DS-GVO; “Recht auf Vergessenwerden”)<br>
--	Recht auf Einschränkung der Verarbeitung (Art. 18 DS-GVO)<br>
--	Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DS-GVO)<br>
--	Recht auf Datenübertragbarkeit (Art. 20 DS-GVO) <br>
+Sie haben grundsätzlich folgende Rechte hinsichtlich der Sie betreffenden personenbezogenen Daten: <br />
+-	Recht auf Auskunft (Art. 15 DS-GVO) <br />
+-	Recht auf Berichtigung (Art. 16 DS-GVO) <br />
+-	Recht auf Löschung (Art. 17 DS-GVO; “Recht auf Vergessenwerden”)<br />
+-	Recht auf Einschränkung der Verarbeitung (Art. 18 DS-GVO)<br />
+-	Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DS-GVO)<br />
+-	Recht auf Datenübertragbarkeit (Art. 20 DS-GVO) <br />
 Soweit Sie uns eine Einwilligung in die Verarbeitung Ihrer Daten erteilt haben, können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen. Die Rechtmäßigkeit der Verarbeitung Ihrer Daten bis zum Widerruf bleibt hiervon unberührt. 
 Sie haben zudem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde in dem Mitgliedstaat Ihres Aufenthaltsorts, Ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes über die Verarbeitung Ihrer personenbezogenen Daten durch uns zu beschweren, wenn Sie der Ansicht sind, dass die Verarbeitung der Sie betreffenden personenbezogenen Daten rechtswidrig erfolgt.
                   </Typography>
