@@ -19,7 +19,7 @@ export const enum WelcomeModalStep {
   Step2 = "welcome2",
   Step3 = "welcome3",
   StepPostalCode = "postalCode",
-  StepPostalCodeDataPrivacy = "postalCodeDataPrivacy"
+  StepPostalCodeDataPrivacy = "postalCodeDataPrivacy",
 }
 
 export const welcomeStepsConfig: StepConfig[] = [
@@ -52,7 +52,11 @@ export const welcomeStepsConfig: StepConfig[] = [
   },
   {
     name: WelcomeModalStep.StepPostalCodeDataPrivacy,
-    Component: () => <div style={{marginBottom: "28px"}}><Privacy /></div>,
-    next: WelcomeModalStep.StepPostalCode
+    Component: () => (
+      <div style={{ marginBottom: "28px" }}>
+        <Privacy />
+      </div>
+    ),
+    next: WelcomeModalStep.StepPostalCode,
   },
 ];

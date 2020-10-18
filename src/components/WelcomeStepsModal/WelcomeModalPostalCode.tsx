@@ -85,10 +85,11 @@ export const WelcomeModalPostalCode: React.FC = () => {
       />
 
       <div style={{ display: "flex", flexDirection: "row", alignItems: "center", marginBottom: "10px" }}>
-        <Checkbox value={checked} onChange={handleCheckedChange}/>
-        <Typography className={classes.smallText} style={isCheckboxError ? { color: "red" } : {}}>Ja, ich habe die <Link
-          to={WelcomeModalStep.StepPostalCodeDataPrivacy}>Datenschutzerklärung</Link> zur Kenntnis genommen und willige
-          ein.</Typography>
+        <Checkbox value={checked} onChange={handleCheckedChange} />
+        <Typography className={classes.smallText} style={isCheckboxError ? { color: "red" } : {}}>
+          Ja, ich habe die <Link to={WelcomeModalStep.StepPostalCodeDataPrivacy}>Datenschutzerklärung</Link> zur
+          Kenntnis genommen und willige ein.
+        </Typography>
       </div>
 
       <Button
@@ -108,7 +109,6 @@ export const WelcomeModalPostalCode: React.FC = () => {
       >
         Ohne Postleitzahl weiter
       </Button>
-
     </>
   );
 };
