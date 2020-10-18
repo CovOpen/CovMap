@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import { State } from "../state";
 import { triggerInstallPrompt } from "../state/thunks/triggerInstallPrompt";
 import * as clipboard from "clipboard-polyfill";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 import { config } from "app-config/index";
 import { Drawer, useMediaQuery } from "@material-ui/core";
@@ -85,7 +85,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(["common"]);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -138,7 +138,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
       <div className={classes.menuContent}>
         <Link key="map" style={{ textDecoration: "none" }} to="/">
           <MenuItem className={classes.menuItem} onClick={handleClose}>
-            {t('menu-item-map')}
+            {t("menu-item-map")}
           </MenuItem>
         </Link>
         <MenuEntries handleClose={handleClose} />

@@ -6,7 +6,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 import moment from "moment";
 import { useParams } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 import { State } from "../state";
 import { AppApi } from "../state/app";
@@ -86,7 +86,7 @@ export const CovMap = () => {
   const [mapLoaded, setMapLoaded] = useState<boolean>(false);
   const mapRef = createRef<any>();
   const visual = config.visuals[currentVisual];
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(["common"]);
 
   const handleMapBusy = () => {
     dispatch(AppApi.pushLoading("map-busy"));
@@ -255,7 +255,7 @@ export const CovMap = () => {
             touchAction: "none",
           }}
         >
-          {t('no data for selected timeframe')}
+          {t("no data for selected timeframe")}
         </DialogTitle>
       </Dialog>
       <WelcomeStepsModal subPage={urlParams.subPage} />
