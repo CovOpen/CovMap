@@ -152,11 +152,12 @@ export type AppContent = {
   pages: Array<AppPage>;
 };
 
+export type AppPageTitleFunction = (t: Function) => string;
 export type AppPage = {
   id: string;
-  title: string;
+  title: string | AppPageTitleFunction;
   route: string;
-  hidden?: boolean  // a way to exclude the page from the navbar
+  hidden?: boolean;  // a way to exclude the page from the navbar
   Component: ComponentType;
 };
 

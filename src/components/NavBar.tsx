@@ -90,7 +90,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const { t } = useTranslation(["common"]);
+  const { t } = useTranslation(["translation", "common"]);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -129,7 +129,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
           page.hidden ? null : (
             <Link key={page.id} style={{ textDecoration: "none" }} to={page.route}>
               <MenuItem className={classes.menuItem} onClick={props.handleClose}>
-                {page.title}
+                {typeof page.title === 'function' ? page.title(t) : page.title}
               </MenuItem>
             </Link>
           ),
@@ -143,7 +143,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
       <div className={classes.menuContent}>
         <Link key="map" style={{ textDecoration: "none" }} to="/">
           <MenuItem className={classes.menuItem} onClick={handleClose}>
-            {t("menu-item-map")}
+            {t("common:menu-item-map")}
           </MenuItem>
         </Link>
         <MenuEntries handleClose={handleClose} />
@@ -151,13 +151,13 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
           <div>
             <Divider />
             <MenuItem className={classes.menuItem} onClick={handleInstall}>
-              App Installieren
+              {t("common:menu-item-install")}
             </MenuItem>
           </div>
         )}
         <Divider />
         <MenuItem className={classes.menuItem} onClick={handleShare}>
-          Share <ShareIcon className={classes.menuIcon} />
+          {t("common:menu-item-share")} <ShareIcon className={classes.menuIcon} />
         </MenuItem>
       </div>
     );

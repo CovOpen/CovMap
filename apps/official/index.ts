@@ -43,7 +43,7 @@ export const config: AppConfig = {
     pages: [
       {
         id: "about-page",
-        title: "Info",
+        title: (t) => t("pages.menu-info"),
         route: "/about",
         Component: About,
       },
