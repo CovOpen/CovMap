@@ -63,7 +63,7 @@ export const Faq: React.FC = () => {
                   </div>
                   <div className={classes.textBlock}>
                     Mit der CovMap möchten wir an eine freiwillige Reduzierung von Kontakten appellieren und
-                    gleichermaßenaufzeigen, wo diese nach unserer Meinung besonders notwendig sind.
+                    gleichermaßen aufzeigen, wo diese nach unserer Meinung besonders notwendig sind.
                   </div>
                 </div>
               </Typography>
@@ -103,7 +103,7 @@ export const Faq: React.FC = () => {
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <div className={classes.textBlock}>
                     Damit das Virus übertragen werden kann, müssen sich Menschen begegnen. Wenige Tage nach der
-                    Infektionberichten viele infizierte Personen über Symptome. Damit stellen der Kontakt zwischen
+                    Infektion berichten viele infizierte Personen über Symptome. Damit stellen der Kontakt zwischen
                     Menschen und das Bemerken von Symptomen die zwei frühesten beobachtbaren Ereignisse einer Infektion
                     dar. Und genau da setzt unser Projekt an.
                   </div>
