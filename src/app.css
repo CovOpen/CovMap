@@ -187,30 +187,29 @@ body {
 
 .sections section {
   padding: 1rem 2rem;
-  margin-top: 0.25rem;
-  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  max-width: 450px;
+  background-color: #e3e9f3;
 }
 
 .sections section p {
+  margin-top: 0.25rem;
   margin-bottom: 1rem;
 }
 
-.sections section:nth-of-type(odd) {
+.sections section:first-of-type {
   background-color: white;
-}
-
-.sections section:nth-of-type(even) {
-  background-color: #e3e9f3;
 }
 
 #menu-appbar .MuiPaper-rounded {
   background-color: #e3e9f3;
 }
 
-
 /* recommendations page */
 
-#recommendationsPage .contentBody{
+#recommendationsPage .contentBody {
   text-align: left;
   background-color: unset;
 }
