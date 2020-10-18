@@ -20,9 +20,15 @@ export const Imprint = () => {
         <section>
           <Typography variant="h2">Kontakt</Typography>
           <Typography variant="body1">
-            Für Hinweise, Lob und Kritik schreiben Sie uns bitte eine E-Mail an: <a href="mailto:covmap@charite.de">covmap@charite.de</a>
+            Für Hinweise, Lob und Kritik schreiben Sie uns bitte eine E-Mail an:{" "}
+            <a href="mailto:covmap@charite.de">covmap@charite.de</a>
           </Typography>
-          <Typography variant="body1">Internet: <a href="https://www.charite.de" target="_blank" rel="noreferrer">https://www.charite.de</a></Typography>
+          <Typography variant="body1">
+            Internet:{" "}
+            <a href="https://www.charite.de" target="_blank" rel="noreferrer">
+              https://www.charite.de
+            </a>
+          </Typography>
         </section>
 
         <section>
@@ -33,7 +39,10 @@ export const Imprint = () => {
           <Typography variant="body1">Verantwortlich für Inhalte:</Typography>
           <Typography variant="body1">Projektleitung CovMap: Dr. med. Alexander H. Thieme, M.Sc.</Typography>
           <Typography variant="body1">Das CovMap Team:</Typography>
-          <Typography variant="body1">Dr. Mittermaier (Charité), Dr. Gertler (Charité), Prof. Dr. Lippert (HPI), Dr. Konigorski (HPI), Dr. Edelmann (HPI), PD. Dr. Rüdiger (NETCHECK), Hr. Zernick (NETCHECK)</Typography>
+          <Typography variant="body1">
+            Dr. Mittermaier (Charité), Dr. Gertler (Charité), Prof. Dr. Lippert (HPI), Dr. Konigorski (HPI), Dr.
+            Edelmann (HPI), PD. Dr. Rüdiger (NETCHECK), Hr. Zernick (NETCHECK)
+          </Typography>
         </section>
 
         <section>
@@ -42,11 +51,17 @@ export const Imprint = () => {
             Der Regierende Bürgermeister von Berlin – inkl. Wissenschaft und Forschung
           </Typography>
           <Typography variant="body1">
-            Kontakt: <a href="https://www.berlin.de/rbmskzl/" target="_blank" rel="noreferrer">https://www.berlin.de/rbmskzl/</a>
+            Kontakt:{" "}
+            <a href="https://www.berlin.de/rbmskzl/" target="_blank" rel="noreferrer">
+              https://www.berlin.de/rbmskzl/
+            </a>
           </Typography>
           <Typography variant="body1">Senatsverwaltung für Gesundheit, Pflege und Gleichstellung</Typography>
           <Typography variant="body1">
-            Kontakt: <a href="https://www.berlin.de/sen/gpg/" target="_blank" rel="noreferrer">https://www.berlin.de/sen/gpg/</a>
+            Kontakt:{" "}
+            <a href="https://www.berlin.de/sen/gpg/" target="_blank" rel="noreferrer">
+              https://www.berlin.de/sen/gpg/
+            </a>
           </Typography>
           <Typography variant="body1">Umsatzsteuer-Identifikationsnummer: DE 228847810</Typography>
         </section>

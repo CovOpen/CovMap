@@ -207,10 +207,9 @@ body {
   background-color: #e3e9f3;
 }
 
-
 /* recommendations page */
 
-#recommendationsPage .contentBody{
+#recommendationsPage .contentBody {
   text-align: left;
   background-color: unset;
 }
