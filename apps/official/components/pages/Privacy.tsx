@@ -31,7 +31,7 @@ Tel: +49 (0) 30 450 50<br>
 Bei Fragen zur Verarbeitung Ihrer personenbezogenen Daten sowie zu Ihren Rechten rund um den Datenschutz, wenden Sie sich bitte an unsere Datenschutzbeauftragte:<br>
             <br>
 t: +49 30 450 580 016<br>
-E-Mail: datenschutz(at)charite.de<br>
+E-Mail: datenschutz(at)charite.de
 
           </Typography>
         </section>
