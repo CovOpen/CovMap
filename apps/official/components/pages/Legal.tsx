@@ -41,11 +41,6 @@ export const Legal = () => {
 
         <section>
           <Typography variant="h2">Urheberrecht</Typography>
-          <Typography variant="body1"></Typography>
-        </section>
-
-        <section>
-          <Typography variant="h2"></Typography>
           <Typography variant="body1">
             Die durch den Dienstanbieter erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen
             Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der
