@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
 const FaqAccordion: React.FC<{ title: string; content: string | ReactElement }> = (props) => {
   return (
     <Accordion>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
         <Typography variant="h3" style={{ margin: "10px" }}>
           {props.title}
         </Typography>
@@ -63,7 +63,8 @@ export const Faq: React.FC = () => {
                   </div>
                   <div className={classes.textBlock}>
                     Mit der CovMap möchten wir an eine freiwillige Reduzierung von Kontakten appellieren und
-                    gleichermaßen aufzeigen, wo diese nach unserer Meinung besonders notwendig sind.
+
+                    gleichermaßenaufzeigen, wo diese nach unserer Meinung besonders notwendig sind.
                   </div>
                 </div>
               </Typography>
