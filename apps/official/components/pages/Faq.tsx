@@ -1,18 +1,22 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { Accordion, AccordionDetails, AccordionSummary } from "@material-ui/core";
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const FaqAccordion: React.FC<{ title: string; content: string }> = (props) => {
-  return <Accordion>
-    <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
-      <Typography variant="h3" style={{ margin: "10px" }}>{props.title}</Typography>
-    </AccordionSummary>
-    <AccordionDetails>
-      <Typography>{props.content}</Typography>
-    </AccordionDetails>
-  </Accordion>
-}
+  return (
+    <Accordion>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <Typography variant="h3" style={{ margin: "10px" }}>
+          {props.title}
+        </Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Typography>{props.content}</Typography>
+      </AccordionDetails>
+    </Accordion>
+  );
+};
 
 export const Faq: React.FC = () => {
   return (
@@ -89,7 +93,6 @@ export const Faq: React.FC = () => {
             zuvor zusammengefasst worden sind. Dies führt dazu, dass die Daten anonymisiert sind."
           />
         </section>
-
       </main>
     </>
   );
