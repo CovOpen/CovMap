@@ -1,95 +1,97 @@
 import React from "react";
 import { Link } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Grid, Card, CardHeader, CardContent, Avatar, IconButton } from '@material-ui/core';
+import { Typography, Grid, Card, CardHeader, CardContent, Avatar, IconButton, SvgIcon } from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { RiskTexts } from "../../models"
+import RiskScoreNormalIcon from "../../static/images/risk-score-1.svg"
+import RiskScoreMediumIcon from "../../static/images/risk-score-2.svg"
+import RiskScoreHighIcon from "../../static/images/risk-score-3.svg"
 
 const useStyles = makeStyles({
-    action: {
-        alignSelf: "auto",
-        marginTop: 0,
-        marginLeft: "8px",
+    leftText: {
+      textAlign: "left"
     }
-})
+  });
 
-const riskLevelHeader = () => {
-    const classes = useStyles()
-    return (    
-        <CardHeader title="Risikostufen">
-            <Grid container direction="row">
-                <Grid item>
-                <IconButton                    
-                    component={Link}
-                    to="/#"
-                    color="primary"
-                    aria-label="go back to map"
-                >
-                    <ArrowBackIosIcon />
-                </IconButton>
-                </Grid>
-                <Grid item>
-                    <Typography variant="h1">Risikostufen</Typography>
-                </Grid>
-            </Grid>
-        </CardHeader>
-    )
-}
+const RiskLevelHeader = () => (            
+    <Grid container direction="row" alignItems="center">
+        <Grid item>
+        <IconButton                    
+            component={Link}
+            to="/"
+            color="primary"
+            aria-label="go back to map"
+        >
+            <ArrowBackIosIcon />
+        </IconButton>
+        </Grid>
+        <Grid item>
+            <Typography variant="h1">Risikostufen</Typography>
+        </Grid>
+    </Grid>
+)
 
 
-export const RiskLevelsPage = () => (
+export const RiskLevelsPage = () => {
+
+    const classes = useStyles();
+
+    return (
     <>
         <main className="sections">
-            <section>
-                <Typography variant="h1">"Risikostufen"</Typography>
+            <section>                
+                <RiskLevelHeader/>
             </section>
 
             <section>
-                <Typography variant="h2">Normales Risiko</Typography>
-                <Typography variant="body1">
+                <Grid container direction="row">
+                    <Grid item xs={9}>
+                        <Typography variant="h2" className={classes.leftText}>
+                            Normales Risiko
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={3}>                        
+                        <RiskScoreNormalIcon/>
+                    </Grid>
+                </Grid>                
+                <Typography variant="body1" className={classes.leftText}>
                     {RiskTexts.NORMAL}
-                </Typography>
+                </Typography>                        
             </section>
 
             <section>
-                <Typography variant="h2">Mittleres Risiko</Typography>
-                <Typography variant="body1">
+                <Grid container direction="row">
+                    <Grid item xs={9}>
+                        <Typography variant="h2" className={classes.leftText}>
+                            Mittleres Risiko
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={3}>                        
+                        <RiskScoreMediumIcon/>
+                    </Grid>
+                </Grid>                
+                <Typography variant="body1" className={classes.leftText}>
                     {RiskTexts.MEDIUM}
-                </Typography>
+                </Typography>                 
             </section>
 
             <section>
-                <Typography variant="h2">Hohes Risiko</Typography>
-                <Typography variant="body1">
+                <Grid container direction="row">
+                    <Grid item xs={9}>
+                        <Typography variant="h2" className={classes.leftText}>
+                            Hohes Risiko
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={3}>                        
+                        <RiskScoreHighIcon/>
+                    </Grid>
+                </Grid>                
+                <Typography variant="body1" className={classes.leftText}>
                     {RiskTexts.HIGH}
-                </Typography>
+                </Typography> 
             </section>
         </main>
     </>
-);
-
-    
-    /*
-    const classes  = useStyles()
-
-    return (
-        <div className={classes.action} id="risk-levels-page">
-            <Card >                
-                {riskLevelHeader()}
-                <Typography variant="h2">Normales Risiko</Typography>
-                <Typography>
-                    {RiskTexts.NORMAL}
-                </Typography>
-                <Typography variant="h2">Mittleres Risiko</Typography>
-                <Typography>
-                    {RiskTexts.MEDIUM}
-                </Typography>
-                <Typography variant="h2">Hohes Risiko</Typography>
-                <Typography>
-                    {RiskTexts.HIGH}
-                </Typography>
-            </Card>
-        </div>
-    )
-    */
-
+    );
+}
