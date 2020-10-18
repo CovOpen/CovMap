@@ -157,6 +157,7 @@ export const Faq: React.FC = () => {
                 der Bevölkerung aus. Wir werten dabei die Daten von einer großen Anzahl von Personen aus, die zuvor
                 zusammengefasst worden sind. Dies führt dazu, dass die Daten anonymisiert sind."
           />
+
         </section>
       </main>
     </>
