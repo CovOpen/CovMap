@@ -11,41 +11,60 @@ export const About = () => {
           <Typography variant="h1">Fragen und Antworten zu CovMap!</Typography>
         </section>
         <section>
-          <Typography variant="h2">Was ist CovMap?</Typography>
+          <Typography variant="h2">Was ist die CovMap?</Typography>
           <Typography variant="body1">
-            Kontaktbeschränkungen sind ein wesentlicher Grund dafür, weshalb sich das Coronavirus (SARS-CoV-2) nur
-            langsam in Deutschland ausbreitet. Das Ziel von CovMap ist es, an den Umstand zu erinnern, dass jeder Bürger
-            dabei helfen kann, Infektionen durch das eigene Verhalten zu vermeiden. Auf einer Deutschlandkarte stellen
-            wir das aktuelle Kontaktverhalten pro Landkreis dar und bewerten es hinsichtlich des Risikos von neuen
-            Infektionen.
+            Die CovMap visualisiert eine regionale Risikoeinschätzung auf einer Deutschlandkarte. Für die CovMap Risikoeinschätzung ziehen wir einerseits die offiziellen Fallzahlstatistiken des Robert-Koch-Instituts und darüber hinausgehend von uns entwickelte Indices heran, die auf Big Data von Kontakten und Symptomen beruhen. Wir möchten mit der CovMap Risikogebiete so schnell wie möglich identifizieren. Wir möchten die Bevölkerung anhand von drei regionalen Risikostufen (normal/mittel/hoch). Darüber hinaus möchten wir Informationen zu allgemeinen Verhaltensregeln geben und verlinken zu den Webpages der Landkreise, welche die aktuellen regionalen Informationen zum Coronavirus bereitstellen.
+
           </Typography>
         </section>
         <section>
-          <Typography variant="h2">Wie funktioniert CovMap?</Typography>
+          <Typography variant="h2">Wie kann ich die CovMap erreichen?</Typography>
           <Typography variant="body1">
-            CovMap wertet die frühestmöglichen Etappen einer Infektion aus: 1) dem Kontakt zwischen Menschen, bei dem
-            das Coronavirus übertragen werden kann, und 2) dem Auftreten von Symptomen, die nach der Inkubationszeit
-            auftreten können. Da das Coronavirus nicht bei jedem Kontakt übertragen wird und auch Symptome andere
-            Ursachen als das Coronavirus haben können, werten wir große Datenmengen an GPS- und Symptomdaten aus, um
-            Aussagen zur Wahrscheinlichkeit für das Auftreten von neuen Fällen in einem Landkreis treffen zu können.
+              Die CovMap ist als WebApp über www.covmap.de und covmap.charite.de und als Android App über den Play Store (bald verfügbar) erreichbar. 
           </Typography>
         </section>
 
         <section>
-          <Typography variant="h2">Kann ich CovMap nutzen, ohne Daten von mir preiszugeben?</Typography>
+          <Typography variant="h2">Handelt es sich um offizielle Risikoeinschätzungen?</Typography>
           <Typography variant="body1">
-            Die Erhebung Deiner Daten ist vollkommen freiwillig und Du kannst CovMap auch nutzen, ohne dass Du uns Deine
-            Daten bereitstellst. Bitte bedenke, dass unser Dienst jedoch nur funktionieren kann, wenn ausreichend viele
-            Menschen aktiv daran teilnehmen. Deine Daten werden anonym ausgewertet.
+            Nein, bei der CovMap Risikoeinschätzung handelt es sich nicht um eine offizielle Risikoeinschätzung einer nationalen Behörde oder Institution. Die Bewertung basiert auf Modellen, die von Wissenschaftlern der Charité, des Hasso-Plattner-Instituts und der Firma NETCHECK entwickelt worden sind. 
           </Typography>
-          <div className="btn-group">
-            <Button variant="contained" color="primary">
-              <Link style={{ textDecoration: "none" }} to="/">
-                Karte
-              </Link>
-            </Button>
-          </div>
         </section>
+
+          <section>
+          <Typography variant="h2">
+            Wie aktuell ist die CovMap?
+          </Typography>
+          <Typography variant="body1">
+            Die CovMap wird einmal täglich aktualisiert. Der Datenstand ist in der Kartendarstellung oben rechts mit Datum und Uhrzeit erkenntlich.
+          </Typography>
+        </section>
+
+                  <section>
+          <Typography variant="h2">
+            Welche Daten verwendet die CovMap?
+          </Typography>
+          <Typography variant="body1">
+            Die CovMap greift auf drei Datenquellen zurück, um die regionalen Risikobewertung durchzuführen: 1.) Fallzahlstatistiken vom Robert-Koch-Institut, 2.) ein geschätztes Kontaktverhalten, ermittelt aus GPS Daten von der Firma NETCHECK, 3.) Symptomdaten von der Chartié CovApp.
+          </Typography>
+        </section>
+
+                  <section>
+          <Typography variant="h2">
+            Welche Vorteile ergeben sich durch die Auswertung des Kontaktverhaltens und der Symptomlast der Bevölkerung? 
+          </Typography>
+          <Typography variant="body1">
+            Damit das Virus übertragen werden kann, müssen sich Menschen begegnen. Wenige Tage nach der Infektion berichten viele infizierte Personen über Symptome. Damit stellen der Kontakt zwischen Menschen und das Bemerken von Symptomen die zwei frühesten beobachtbaren Ereignisse einer Infektion dar. Und genau da setzt unser Projekt an.
+Wir charakterisieren aus anonymisierten Smartphone-Daten (ermittelt aus GPS Daten) das Kontaktverhalten. Des weiteren werten wir selbstberichtete Symptome aus. Nun ist es so, dass nicht jeder Kontakt zu einer Virusübertragung führt und auch Symptome nicht beweisend für eine Infektion mit dem Coronavirus sind. Wertet man jedoch die Daten von vielen Personen aus, dann erreicht man dadurch erstens eine Anonymisierung und man kann mit diesen Daten eine Prognose der zukünftigen Fallzahlen erstellen.
+Der von uns entwickelte Kontakt-Index ist aktueller als die 7-Tages-Inzidenz und quasi ein Frühwarnsystem. Er gibt die Anzahl der durchschnittlichen Kontakte pro Person und Region in den letzten 24h Stunden an. In ersten Analysen konnten wir zeigen, dass eine hohe Anzahl an Kontakten mit einem vermehrten Infektionsgeschehen korreliert (LINK Publikation: https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2). Auch die Messung der Symptomlast wurde von uns entwickelt. Steigt in einer Region die Zahl der gemeldeten Symptome, fließt dies in unsere Risikoanalyse ein. Zeitlich ist die Symptomlast als Prädiktor für das Infektionsgeschehen zwischen Kontakt-Index und 7-Tages-Inzidenz einzuordnen.
+Der große Vorteil der Auswertung von Kontakten und Symptomen liegt darin, dass die Daten ohne Verzögerung analysiert werden können und daher ohne den Meldeverzug der offiziellen RKI Daten zur Verfügung stehen. Dadurch können wir die Bevölkerung schneller auf die Möglichkeit eines erhöhten regionalen Risikos hinweisen.
+Welche Daten werden für die Erstellung der Karten verwendet und sind diese anonym? 
+Zur Einschätzung des regionales Risikos ziehen wir einerseits die offizielle 7-Tage-Inzidenz des RKIs heran und werten darüber hinaus das Kontaktverhalten ermittelt aus GPS Daten und die Antworten von Fragen nach Symptomen der Bevölkerung aus. Wir werten dabei die Daten von einer großen Anzahl von Personen aus, die zuvor zusammengefasst worden sind. Dies führt dazu, dass die Daten anonymisiert sind. 
+
+          </Typography>
+        </section>
+
+       
       </main>
     </>
   );
