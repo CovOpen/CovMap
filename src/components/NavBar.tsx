@@ -124,7 +124,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
           page.hidden ? null : (
             <Link key={page.id} style={{ textDecoration: "none" }} to={page.route}>
               <MenuItem className={classes.menuItem} onClick={props.handleClose}>
-                {typeof page.title === 'function' ? page.title(t) : page.title}
+                {typeof page.title === "function" ? page.title(t) : page.title}
               </MenuItem>
             </Link>
           ),
