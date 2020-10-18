@@ -26,10 +26,10 @@ const renderRecommendation = (recommendation: () => any) => () => {
           <Grid item xs={10}>
             {recommendation()}
           </Grid>
-          <Grid item xs={2}>            
-              <IconButton component={Link} to="/risk-levels" color="primary" aria-label="show risk level explanations">
-                <ArrowForwardIosIcon fontSize="small"/>
-              </IconButton>            
+          <Grid item xs={2}>
+            <IconButton component={Link} to="/risk-levels" color="primary" aria-label="show risk level explanations">
+              <ArrowForwardIosIcon fontSize="small" />
+            </IconButton>
           </Grid>
         </Grid>
       </CardContent>
