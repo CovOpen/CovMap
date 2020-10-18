@@ -153,9 +153,10 @@ export type AppContent = {
   PrivacyComponent: ComponentType;
 };
 
+export type AppPageTitleFunction = (t: Function) => string;
 export type AppPage = {
   id: string;
-  title: string;
+  title: string | AppPageTitleFunction;
   route: string;
   hidden?: boolean; // a way to exclude the page from the navbar
   Component: ComponentType;

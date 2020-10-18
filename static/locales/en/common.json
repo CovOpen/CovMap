@@ -1,6 +1,6 @@
 {
-  "translation": {
-    "menu-item-map": "Map",
-    "no data for selected timeframe": "No data available for the selected date."
-  }
+  "menu-item-map": "Map",
+  "menu-item-install": "Install App",
+  "menu-item-share": "Share",
+  "no data for selected timeframe": "No data available for the selected date."
 }
