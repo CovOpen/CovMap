@@ -2,6 +2,13 @@ import React, { ReactElement } from "react";
 import Typography from "@material-ui/core/Typography";
 import { Accordion, AccordionDetails, AccordionSummary } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(() => ({
+  textBlock: {
+    marginBottom: "10px",
+  },
+}));
 
 const FaqAccordion: React.FC<{ title: string; content: string | ReactElement }> = (props) => {
   return (
@@ -23,6 +30,8 @@ const FaqAccordion: React.FC<{ title: string; content: string | ReactElement }> 
 };
 
 export const Faq: React.FC = () => {
+  const classes = useStyles();
+
   return (
     <>
       <main className="sections">
@@ -33,12 +42,32 @@ export const Faq: React.FC = () => {
         <section>
           <FaqAccordion
             title="Was ist die CovMap?"
-            content="Die CovMap visualisiert eine regionale Risikoeinschätzung auf einer Deutschlandkarte.
-            Für die CovMap Risikoeinschätzung ziehen wir einerseits die offiziellen Fallzahlstatistiken des Robert-Koch-Instituts
-            und darüber hinausgehend von uns entwickelte Indices heran, die auf Big Data von Kontakten und Symptomen beruhen.
-            Wir möchten mit der CovMap Risikogebiete so schnell wie möglich identifizieren. Wir möchten die Bevölkerung anhand von
-            drei regionalen Risikostufen (normal/mittel/hoch). Darüber hinaus möchten wir Informationen zu allgemeinen Verhaltensregeln
-            geben und verlinken zu den Webpages der Landkreise, welche die aktuellen regionalen Informationen zum Coronavirus bereitstellen."
+            content={
+              <Typography style={{ width: "100%" }}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <div className={classes.textBlock}>
+                    Die CovMap visualisiert eine regionale Risikoeinschätzung auf einer Deutschlandkarte. Unsere
+                    Einschätzung beruhen auf den Fallzahlstatistiken des Robert-Koch-Instituts und selbst entwickelten
+                    Modellen basierend auf dem Kontaktverhalten und selbst berichteten Symptomen der Bevölkerung. Die
+                    Hauptziele der CovMap sind:
+                  </div>
+                  <div className={classes.textBlock}>
+                    <ul style={{ listStyle: "inside" }}>
+                      <li>Risikogebiete so schnell wie möglich darzustellen</li>
+                      <li>Über allgemeine Schutzmaßnahmen zur Vermeidung von Infektionen zu informieren</li>
+                      <li>
+                        Zu den Angeboten mit Informationen und den aktuellen Verhaltensregeln der Landkreise zu
+                        verlinken
+                      </li>
+                    </ul>
+                  </div>
+                  <div className={classes.textBlock}>
+                    Mit der CovMap möchten wir an eine freiwillige Reduzierung von Kontakten appellieren und
+                    gleichermaßen aufzeigen, wo diese nach unserer Meinung besonders notwendig sind.
+                  </div>
+                </div>
+              </Typography>
+            }
           />
 
           <FaqAccordion
@@ -71,38 +100,62 @@ export const Faq: React.FC = () => {
             title="Welche Vorteile ergeben sich durch die Auswertung des Kontaktverhaltens und der Symptomlast der Bevölkerung?"
             content={
               <Typography style={{ width: "100%" }}>
-                Damit das Virus übertragen werden kann, müssen sich Menschen begegnen. Wenige Tage nach der Infektion
-                berichten viele infizierte Personen über Symptome. Damit stellen der Kontakt zwischen Menschen und das
-                Bemerken von Symptomen die zwei frühesten beobachtbaren Ereignisse einer Infektion dar. Und genau da
-                setzt unser Projekt an. Wir charakterisieren aus anonymisierten Smartphone-Daten (ermittelt aus GPS
-                Daten) das Kontaktverhalten. Des weiteren werten wir selbstberichtete Symptome aus. Nun ist es so, dass
-                nicht jeder Kontakt zu einer Virusübertragung führt und auch Symptome nicht beweisend für eine Infektion
-                mit dem Coronavirus sind. Wertet man jedoch die Daten von vielen Personen aus, dann erreicht man dadurch
-                erstens eine Anonymisierung und man kann mit diesen Daten eine Prognose der zukünftigen Fallzahlen
-                erstellen. Der von uns entwickelte Kontakt-Index ist aktueller als die 7-Tages-Inzidenz und quasi ein
-                Frühwarnsystem. Er gibt die Anzahl der durchschnittlichen Kontakte pro Person und Region in den letzten
-                24h Stunden an. In ersten Analysen konnten wir zeigen, dass eine hohe Anzahl an Kontakten mit einem
-                vermehrten Infektionsgeschehen korreliert (
-                <a
-                  href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2
-                </a>
-                ). Auch die Messung der Symptomlast wurde von uns entwickelt. Steigt in einer Region die Zahl der
-                gemeldeten Symptome, fließt dies in unsere Risikoanalyse ein. Zeitlich ist die Symptomlast als Prädiktor
-                für das Infektionsgeschehen zwischen Kontakt-Index und 7-Tages-Inzidenz einzuordnen. Der große Vorteil
-                der Auswertung von Kontakten und Symptomen liegt darin, dass die Daten ohne Verzögerung analysiert
-                werden können und daher ohne den Meldeverzug der offiziellen RKI Daten zur Verfügung stehen. Dadurch
-                können wir die Bevölkerung schneller auf die Möglichkeit eines erhöhten regionalen Risikos hinweisen.
-                Welche Daten werden für die Erstellung der Karten verwendet und sind diese anonym? Zur Einschätzung des
-                regionales Risikos ziehen wir einerseits die offizielle 7-Tage-Inzidenz des RKIs heran und werten
-                darüber hinaus das Kontaktverhalten ermittelt aus GPS Daten und die Antworten von Fragen nach Symptomen
-                der Bevölkerung aus. Wir werten dabei die Daten von einer großen Anzahl von Personen aus, die zuvor
-                zusammengefasst worden sind. Dies führt dazu, dass die Daten anonymisiert sind.
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <div className={classes.textBlock}>
+                    Damit das Virus übertragen werden kann, müssen sich Menschen begegnen. Wenige Tage nach der
+                    Infektion berichten viele infizierte Personen über Symptome. Damit stellen der Kontakt zwischen
+                    Menschen und das Bemerken von Symptomen die zwei frühesten beobachtbaren Ereignisse einer Infektion
+                    dar. Und genau da setzt unser Projekt an.
+                  </div>
+                  <div className={classes.textBlock}>
+                    Wir charakterisieren aus anonymisierten Smartphone-Daten (ermittelt aus GPS Daten) das
+                    Kontaktverhalten. Des weiteren werten wir selbstberichtete Symptome aus. Nun ist es so, dass nicht
+                    jeder Kontakt zu einer Virusübertragung führt und auch Symptome nicht beweisend für eine Infektion
+                    mit dem Coronavirus sind. Wertet man jedoch die Daten von vielen Personen aus, dann erreicht man
+                    dadurch erstens eine Anonymisierung und man kann mit diesen Daten eine Prognose der zukünftigen
+                    Fallzahlen erstellen.
+                  </div>
+                  <div className={classes.textBlock}>
+                    Der von uns entwickelte Kontakt-Index ist aktueller als die 7-Tages-Inzidenz und quasi ein
+                    Frühwarnsystem. Er gibt die Anzahl der durchschnittlichen Kontakte pro Person und Region in den
+                    letzten 24h Stunden an. In ersten Analysen konnten wir zeigen, dass eine hohe Anzahl an Kontakten
+                    mit einem vermehrten Infektionsgeschehen korreliert.
+                    <Typography variant="caption" style={{ verticalAlign: "super" }}>
+                      <a
+                        href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        [1]
+                      </a>
+                    </Typography>
+                  </div>
+                  <div className={classes.textBlock}>
+                    Von anderen Autoren wurde gezeigt, dass die Auswertung von Symptomen zur Vorhersage von lokalen
+                    Ausbrüchen verwendet werden kann. Über die Charité CovApp werden von vielen Benutzern
+                    Symptomantworten eingegeben und wir planen, dies in ein verbessertes Modell einfließen zu lassen.
+                    Zeitlich ist die Symptomlast als Prädiktor für das Infektionsgeschehen zwischen Kontakt-Index und
+                    7-Tages-Inzidenz einzuordnen.
+                  </div>
+                  <div className={classes.textBlock}>
+                    Der große Vorteil der Auswertung von Kontakten und Symptomen liegt darin, dass die Daten ohne
+                    Verzögerung analysiert werden können und daher ohne den Meldeverzug der offiziellen RKI Daten zur
+                    Verfügung stehen. Dadurch können wir die Bevölkerung schneller auf die Möglichkeit eines erhöhten
+                    regionalen Risikos hinweisen.
+                  </div>
+                  <div className={classes.textBlock}>
+                    Das CovMap Projekt wird zur Zeit aktiv weiterentwickelt und verbessert.
+                  </div>
+                </div>
               </Typography>
             }
+          />
+          <FaqAccordion
+            title="Welche Daten werden für die Erstellung der Karten verwendet und sind diese anonym?"
+            content="Zur Einschätzung des regionales Risikos ziehen wir einerseits die offizielle 7-Tage-Inzidenz des RKIs heran und werten
+                darüber hinaus das Kontaktverhalten ermittelt aus GPS Daten und die Antworten von Fragen nach Symptomen
+                der Bevölkerung aus. Wir werten dabei die Daten von einer großen Anzahl von Personen aus, die zuvor
+                zusammengefasst worden sind. Dies führt dazu, dass die Daten anonymisiert sind."
           />
         </section>
       </main>
