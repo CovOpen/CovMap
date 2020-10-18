@@ -70,7 +70,7 @@ export const config: AppConfig = {
         title: "Empfehlungen",
         route: "/recommendations",
         Component: BasicRecommendations,
-        hidden: true   // dont show this page in the navbar
+        hidden: true, // dont show this page in the navbar
       },
       /* {
      id: 'questions-page',
