@@ -19,7 +19,7 @@ Charitéplatz 1<br>
 Deutschland<br>
 <br>
 Tel: +49 (0) 30 450 50<br>
-  Website: <a href="www.charite.de">www.charite.de</a><br>
+  Website: <a href="www.charite.de">www.charite.de</a>
 </Typography>
         </section>
         
