@@ -15,7 +15,7 @@ i18n
     },
     load: "languageOnly",
     supportedLngs: ["de", "en"],
-    nonExplicitSupportedLngs: true
+    nonExplicitSupportedLngs: true,
   });
 
 export default i18n;
