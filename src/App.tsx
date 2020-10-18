@@ -26,7 +26,7 @@ import { getFallbackComponent } from "./components/getFallback";
  * so all shared translations will come from /static/locales/[lang]/common.json
  * App specific translations will come from /apps/official/static/locales/[lang]/translation.json
  */
-import './i18n';
+import "./i18n";
 
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
