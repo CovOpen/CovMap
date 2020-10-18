@@ -33,6 +33,10 @@
     {
       "path": "@semantic-release/exec",
       "cmd": "echo \"::set-output name=RELEASED::true\""
+    },
+    {
+      "path": "@semantic-release/exec",
+      "cmd": "echo \"::set-output name=VERSION::${nextRelease.version}\""
     }
   ],
   "fail": ["@semantic-release/github"],

@@ -33,6 +33,7 @@ jobs:
     needs: [test]
     outputs:
       released: ${{ steps.semantic.outputs.RELEASED }}
+      version: ${{ steps.semantic.outputs.VERSION }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
