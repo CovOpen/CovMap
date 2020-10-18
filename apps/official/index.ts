@@ -1,7 +1,7 @@
 import { AppConfig, LayerType } from "../../src/app-config.types";
 import { AnimatedLogo } from "./components/AnimatedLogo";
 import buildJSON from "./build.json";
-import { About } from "./components/pages/About";
+import { Faq } from "./components/pages/Faq";
 import { Imprint } from "./components/pages/Imprint";
 import { Legal } from "./components/pages/Legal";
 import { Privacy } from "./components/pages/Privacy";
@@ -42,10 +42,10 @@ export const config: AppConfig = {
   content: {
     pages: [
       {
-        id: "about-page",
-        title: "Info",
-        route: "/about",
-        Component: About,
+        id: "faq-page",
+        title: "Fragen und Antworten",
+        route: "/faq",
+        Component: Faq,
       },
       {
         id: "imprint-page",
