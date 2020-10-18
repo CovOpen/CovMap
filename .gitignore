@@ -13,3 +13,6 @@ bundle-stats.json
 
 # CovQuestions is automatically cloned in by the npm postinstall script
 CovQuestions/
+
+.env
+hosting/data
