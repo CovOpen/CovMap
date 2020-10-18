@@ -6,14 +6,14 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   textBlock: {
-    marginBottom: "10px"
-  }
-}))
+    marginBottom: "10px",
+  },
+}));
 
 const FaqAccordion: React.FC<{ title: string; content: string | ReactElement }> = (props) => {
   return (
     <Accordion>
-      <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography variant="h3" style={{ margin: "10px" }}>
           {props.title}
         </Typography>
@@ -63,8 +63,7 @@ export const Faq: React.FC = () => {
                   </div>
                   <div className={classes.textBlock}>
                     Mit der CovMap möchten wir an eine freiwillige Reduzierung von Kontakten appellieren und
-                    gleichermaßen
-                    aufzeigen, wo diese nach unserer Meinung besonders notwendig sind.
+                    gleichermaßen aufzeigen, wo diese nach unserer Meinung besonders notwendig sind.
                   </div>
                 </div>
               </Typography>
@@ -104,39 +103,39 @@ export const Faq: React.FC = () => {
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <div className={classes.textBlock}>
                     Damit das Virus übertragen werden kann, müssen sich Menschen begegnen. Wenige Tage nach der
-                    Infektion
-                    berichten viele infizierte Personen über Symptome. Damit stellen der Kontakt zwischen Menschen und
-                    das
-                    Bemerken von Symptomen die zwei frühesten beobachtbaren Ereignisse einer Infektion dar. Und genau da
-                    setzt unser Projekt an.
+                    Infektion berichten viele infizierte Personen über Symptome. Damit stellen der Kontakt zwischen
+                    Menschen und das Bemerken von Symptomen die zwei frühesten beobachtbaren Ereignisse einer Infektion
+                    dar. Und genau da setzt unser Projekt an.
                   </div>
                   <div className={classes.textBlock}>
                     Wir charakterisieren aus anonymisierten Smartphone-Daten (ermittelt aus GPS Daten) das
-                    Kontaktverhalten.
-                    Des weiteren werten wir selbstberichtete Symptome aus. Nun ist es so, dass nicht jeder Kontakt zu
-                    einer
-                    Virusübertragung führt und auch Symptome nicht beweisend für eine Infektion mit dem Coronavirus
-                    sind.
-                    Wertet man jedoch die Daten von vielen Personen aus, dann erreicht man dadurch erstens eine
-                    Anonymisierung und man kann mit diesen Daten eine Prognose der zukünftigen Fallzahlen erstellen.
+                    Kontaktverhalten. Des weiteren werten wir selbstberichtete Symptome aus. Nun ist es so, dass nicht
+                    jeder Kontakt zu einer Virusübertragung führt und auch Symptome nicht beweisend für eine Infektion
+                    mit dem Coronavirus sind. Wertet man jedoch die Daten von vielen Personen aus, dann erreicht man
+                    dadurch erstens eine Anonymisierung und man kann mit diesen Daten eine Prognose der zukünftigen
+                    Fallzahlen erstellen.
                   </div>
                   <div className={classes.textBlock}>
                     Der von uns entwickelte Kontakt-Index ist aktueller als die 7-Tages-Inzidenz und quasi ein
                     Frühwarnsystem. Er gibt die Anzahl der durchschnittlichen Kontakte pro Person und Region in den
-                    letzten
-                    24h Stunden an. In ersten Analysen konnten wir zeigen, dass eine hohe Anzahl an Kontakten mit einem
-                    vermehrten Infektionsgeschehen korreliert.
-                    <Typography variant="caption" style={{verticalAlign: "super"}}>
-                      <a href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2" target="_blank" rel="noreferrer">[1]</a>
+                    letzten 24h Stunden an. In ersten Analysen konnten wir zeigen, dass eine hohe Anzahl an Kontakten
+                    mit einem vermehrten Infektionsgeschehen korreliert.
+                    <Typography variant="caption" style={{ verticalAlign: "super" }}>
+                      <a
+                        href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        [1]
+                      </a>
                     </Typography>
                   </div>
                   <div className={classes.textBlock}>
                     Von anderen Autoren wurde gezeigt, dass die Auswertung von Symptomen zur Vorhersage von lokalen
                     Ausbrüchen verwendet werden kann. Über die Charité CovApp werden von vielen Benutzern
-                    Symptomantworten
-                    eingegeben und wir planen, dies in ein verbessertes Modell einfließen zu lassen. Zeitlich ist die
-                    Symptomlast als Prädiktor für das Infektionsgeschehen zwischen Kontakt-Index und 7-Tages-Inzidenz
-                    einzuordnen.
+                    Symptomantworten eingegeben und wir planen, dies in ein verbessertes Modell einfließen zu lassen.
+                    Zeitlich ist die Symptomlast als Prädiktor für das Infektionsgeschehen zwischen Kontakt-Index und
+                    7-Tages-Inzidenz einzuordnen.
                   </div>
                   <div className={classes.textBlock}>
                     Der große Vorteil der Auswertung von Kontakten und Symptomen liegt darin, dass die Daten ohne
