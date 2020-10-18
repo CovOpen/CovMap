@@ -12,7 +12,7 @@ const FaqAccordion: React.FC<{ title: string; content: string | ReactElement }> 
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        {typeof props.content === "string" ? <Typography>{props.content}</Typography> : props.content}
+        {typeof props.content === "string" ? <Typography style={{width:"100%"}}>{props.content}</Typography> : props.content}
       </AccordionDetails>
     </Accordion>
   );
@@ -66,7 +66,7 @@ export const Faq: React.FC = () => {
           <FaqAccordion
             title="Welche Vorteile ergeben sich durch die Auswertung des Kontaktverhaltens und der Symptomlast der Bevölkerung?"
             content={
-              <Typography>
+              <Typography style={{width:"100%"}}>
                 Damit das Virus übertragen werden kann, müssen sich Menschen begegnen. Wenige Tage nach der Infektion
                 berichten viele infizierte Personen über Symptome. Damit stellen der Kontakt zwischen Menschen und das
                 Bemerken von Symptomen die zwei frühesten beobachtbaren Ereignisse einer Infektion dar. Und genau da
