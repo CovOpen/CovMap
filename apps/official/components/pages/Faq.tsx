@@ -33,12 +33,18 @@ export const Faq: React.FC = () => {
         <section>
           <FaqAccordion
             title="Was ist die CovMap?"
-            content="Die CovMap visualisiert eine regionale Risikoeinschätzung auf einer Deutschlandkarte.
-            Für die CovMap Risikoeinschätzung ziehen wir einerseits die offiziellen Fallzahlstatistiken des Robert-Koch-Instituts
-            und darüber hinausgehend von uns entwickelte Indices heran, die auf Big Data von Kontakten und Symptomen beruhen.
-            Wir möchten mit der CovMap Risikogebiete so schnell wie möglich identifizieren. Wir möchten die Bevölkerung anhand von
-            drei regionalen Risikostufen (normal/mittel/hoch). Darüber hinaus möchten wir Informationen zu allgemeinen Verhaltensregeln
-            geben und verlinken zu den Webpages der Landkreise, welche die aktuellen regionalen Informationen zum Coronavirus bereitstellen."
+            content="Die CovMap visualisiert eine regionale Risikoeinschätzung auf einer Deutschlandkarte. Unsere Einschätzung
+            beruhen auf den Fallzahlstatistiken des Robert-Koch-Instituts und selbst entwickelten Modellen basierend auf
+            dem Kontaktverhalten und selbst berichteten Symptomen der Bevölkerung. Die Hauptziele der CovMap sind:
+            <br />
+            <ul>
+              <li>Risikogebiete so schnell wie möglich darzustellen</li>
+              <li>Über allgemeine Schutzmaßnahmen zur Vermeidung von Infektionen zu informieren</li>
+              <li>Zu den Angeboten mit Informationen und den aktuellen Verhaltensregeln der Landkreise zu verlinken</li>
+            </ul>
+            <br />
+            Mit der CovMap möchten wir an eine freiwillige Reduzierung von Kontakten appellieren und gleichermaßen
+            aufzeigen, wo diese nach unserer Meinung besonders notwendig sind."
           />
 
           <FaqAccordion
