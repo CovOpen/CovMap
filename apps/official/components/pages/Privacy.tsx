@@ -23,7 +23,10 @@ export const Privacy = () => {
             <br />
             Tel: +49 (0) 30 450 50
             <br />
-            Website: <a href="http://www.charite.de" target="_blank" rel="noreferrer">www.charite.de</a>
+            Website:{" "}
+            <a href="http://www.charite.de" target="_blank" rel="noreferrer">
+              www.charite.de
+            </a>
           </Typography>
         </section>
 
@@ -186,7 +189,6 @@ export const Privacy = () => {
             Verarbeitung der Sie betreffenden personenbezogenen Daten rechtswidrig erfolgt.
           </Typography>
         </section>
-
       </main>
     </>
   );
