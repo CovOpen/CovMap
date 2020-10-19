@@ -23,7 +23,10 @@ export const Privacy = () => {
             <br />
             Tel: +49 (0) 30 450 50
             <br />
-            Website: <a href="www.charite.de">www.charite.de</a>
+            Website:{" "}
+            <a href="http://www.charite.de" target="_blank" rel="noreferrer">
+              www.charite.de
+            </a>
           </Typography>
         </section>
 
@@ -91,6 +94,7 @@ export const Privacy = () => {
             unverzüglich gelöscht. Im Übrigen werden die Daten in unserem System gelöscht, wenn die jeweilige Sitzung
             beendet ist. Die Erfassung der Daten zur Bereitstellung CovMap ist für den Betrieb der Applikation zwingend
             erforderlich. Rechtsgrundlage hierfür ist Art. 6 Abs. 1 S. 1 lit. f DS-GVO.
+            <br />
             <br />
             b. Session-Cookies
             <br />
@@ -184,11 +188,6 @@ export const Privacy = () => {
             Verarbeitung Ihrer personenbezogenen Daten durch uns zu beschweren, wenn Sie der Ansicht sind, dass die
             Verarbeitung der Sie betreffenden personenbezogenen Daten rechtswidrig erfolgt.
           </Typography>
-        </section>
-
-        <section>
-          <Typography variant="h2">Uberschrift</Typography>
-          <Typography variant="body1">Inhalt</Typography>
         </section>
       </main>
     </>

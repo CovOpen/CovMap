@@ -1,0 +1,161 @@
+name: PR-Checks
+on:
+  pull_request_target:
+    branches: [ master ]
+    paths-ignore:
+      - '.github/**'
+      - '.hosting/**'
+
+env:
+  RESSOURCE_GROUP: covmapper
+  STORAGE_NAME: covmapperpr${{ github.event.pull_request.number }}
+
+jobs:
+  build-head:
+    name: 'Build head'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: '${{github.event.pull_request.head.ref}}'
+        repository: '${{github.event.pull_request.head.repo.full_name}}'
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - uses: actions/cache@v2
+      id: yarn-cache
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+    - name: Install dependencies
+      if: steps.yarn-cache.outputs.cache-hit != 'true'
+      run: yarn install
+    - name: Build
+      run: yarn build
+    - name: Upload bundle-stats.json
+      uses: actions/upload-artifact@v1
+      with:
+        name: head-stats
+        path: ./bundle-stats.json
+    - name: Upload dist
+      uses: actions/upload-artifact@v1
+      with:
+        name: dist
+        path: ./dist
+
+
+  e2e-test:
+    name: "E2E Tests"
+    runs-on: ubuntu-latest
+    needs: [build-head]
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: '${{github.event.pull_request.head.ref}}'
+        repository: '${{github.event.pull_request.head.repo.full_name}}'
+    - name: remove unneeded files
+      run: rm package.json
+    - name: Download base artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: dist
+    - name: install testcafe
+      run: yarn add http-server testcafe
+    - name: test
+      run: yarn run testcafe chrome:headless testcafe/*.spec.ts --app "cd ./dist && http-server -p 8080"
+
+  build-base:
+    name: 'Build base'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: '${{github.event.pull_request.base.ref}}'
+        repository: '${{github.event.pull_request.base.repo.full_name}}'
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - uses: actions/cache@v2
+      id: yarn-cache
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+    - name: Install dependencies
+      if: steps.yarn-cache.outputs.cache-hit != 'true'
+      run: yarn install
+    - name: Build
+      run: yarn build
+    - name: Upload bundle-stats.json
+      uses: actions/upload-artifact@v1
+      with:
+        name: base-stats
+        path: ./bundle-stats.json
+
+  compare:
+    name: 'Compare base & head bundle sizes'
+    runs-on: ubuntu-latest
+    needs: [build-base, build-head]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Download base artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: base-stats
+    - name: Download head artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: head-stats
+    - name: Diff between base & head
+      uses: weltenwort/webpack-stats-diff-action@v1.2.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        base_stats_path: ./base-stats/bundle-stats.json
+        head_stats_path: ./head-stats/bundle-stats.json
+
+
+  # Setup Preview
+  preview:
+    name: "Preview"
+    runs-on: ubuntu-latest
+    needs: [build-head]
+    steps:
+    - name: Download base artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: dist
+    - name: Azure Login
+      uses: azure/login@v1.1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Azure CLI script
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.0.72
+        inlineScript: |
+          az storage account create --kind StorageV2 --name ${{ env.STORAGE_NAME }} --resource-group ${{ env.RESSOURCE_GROUP }} --subscription ${{ SECRETS.AZURE_SUBSCRIPTION_ID }}
+          az storage blob service-properties update --account-name ${{ env.STORAGE_NAME }} --static-website --404-document 404.html --index-document index.html --subscription ${{ SECRETS.AZURE_SUBSCRIPTION_ID }}
+          export key=$(az storage account keys list --account-name ${{ env.STORAGE_NAME }} --resource-group  ${{ env.RESSOURCE_GROUP }} --subscription ${{ SECRETS.AZURE_SUBSCRIPTION_ID }} --query "[0].value")
+          az storage blob upload-batch -d '$web' -s ./dist/ --account-name ${{ env.STORAGE_NAME }} --account-key $key --subscription ${{ SECRETS.AZURE_SUBSCRIPTION_ID }}
+
+    - name: Slack Notification
+      run: |
+        curl -X POST -H 'Content-type: application/json' --data '{"text":"🚀 Try out the Preview for [PR-${{ github.event.pull_request.number }}](https://github.com/CovOpen/CovMapper/pull/${{ github.event.pull_request.number }} here: https://${{ env.STORAGE_NAME }}.z16.web.core.windows.net)"}' https://hooks.slack.com/services/${{ SECRETS.SLACK_WEBHOOK_SECRET }}
+
+#    - name: Find Comment
+#      uses: peter-evans/find-comment@v1
+#      id: fc
+#      with:
+#        issue-number: ${{ github.event.pull_request.number }}
+#        body-includes: This PR is available as a preview
+#
+#    - name: Create comment
+#      if: ${{ steps.fc.outputs.comment-id == 0 }}
+#      uses: peter-evans/create-or-update-comment@v1
+#      with:
+#        issue-number: ${{ github.event.pull_request.number }}
+#        body: |
+#          This PR is available as a preview [here](https://${{ env.STORAGE_NAME }}.z16.web.core.windows.net).
+#        reaction-type: "rocket"
