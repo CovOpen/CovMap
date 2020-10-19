@@ -1,37 +1,32 @@
 import React from "react";
-import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
-} from 'recharts';
+import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, } from 'recharts';
 
-import chartsdata from "../../static/ChartsData.json"
+import chartsData from "../../static/ChartsData.json"
 
 export const Charts = () => {
-  const links = [2294, 2302, 2311, 2341]
-  const index = Math.floor(Math.random() * links.length)
-  const link = links[index]
-  
-  const indices = Array(chartsdata.days.length).fill(undefined).map((_, index) => index)
-  
   return (
-  <a href={`https://xkcd.com/${link}/`}>
-  	<ResponsiveContainer>
-      <LineChart
-        data={indices}
-        margin={{
-          top: 20, right: 30, left: 20, bottom: 10,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey={(x) => chartsdata.days[x]}/>
-        <YAxis yAxisId="left" />
-        <YAxis yAxisId="right" orientation="right" />
-        <Tooltip />
-        <Legend />
-        <Line yAxisId="left" type="monotone" dataKey={(x) => chartsdata.ci[x]} stroke="#8884d8" name="Contact Index C"/>
-        <Line yAxisId="left" type="monotone" dataKey={(x) => chartsdata.md[x]} stroke="#82ca9d" name="Mean Contacts"/>
-        <Line yAxisId="right" type="monotone" dataKey={(x) => chartsdata.R[x]} stroke="#f01a8d" name="Reproduction rate R"/>
-      </LineChart>
-    </ResponsiveContainer>
-  </a>
+    <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ width: "100%", height: "calc(100vh - 100px)" }}>
+        <ResponsiveContainer>
+          <LineChart
+            data={chartsData}
+            margin={{
+              top: 20, right: 20, left: 20, bottom: 20,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3"/>
+            <XAxis dataKey={"name"}/>
+            <YAxis yAxisId="left"/>
+            <YAxis yAxisId="right" orientation="right"/>
+            <Tooltip/>
+            <Legend/>
+            <Line yAxisId="left" type="monotone" dataKey={'ci'} stroke="#8884d8" strokeWidth="4px"
+              name="Kontaktindex C"/>
+            <Line yAxisId="right" type="monotone" dataKey={'R'} stroke="#f01a8d" strokeWidth="4px"
+              name="Reproduktionszahl R"/>
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
   );
 };
