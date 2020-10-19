@@ -29,7 +29,7 @@ const useStyles = makeStyles({
     marginLeft: "8px",
   },
   leftText: {
-    textAlign: "left",
+    textAlign: "left"
   },
   subHeader: {
     textAlign: "left",
@@ -57,22 +57,22 @@ const CountyTeaser = ({ county, url }: { county: string; url: string }): JSX.Ele
   const teaser = `${ActionTexts.COUNTY_TEASER_1}${county}${ActionTexts.COUNTY_TEASER_2}`;
 
   return (
-    <Button href={url} target="_blank" disableRipple>
-      <Card className={classes.teaser}>
-        <CardContent>
-          <Grid container direction="row" alignItems="center" spacing={2}>
-            <Grid item xs={10}>
-              <Typography variant="body1" className={classes.leftText}>
-                {teaser}
-              </Typography>
-            </Grid>
-            <Grid item xs={2}>
-              <ArrowForwardIosIcon fontSize="small" />
-            </Grid>
+    <Card className={classes.teaser}>
+      <CardContent>
+        <Grid container direction="row" spacing={2}>
+          <Grid item xs={10}>
+            <Typography variant="body1" className={classes.leftText}>
+              {teaser}
+            </Typography>
           </Grid>
+          <Grid item xs={2}>
+            <IconButton href={url} target="_blank" color="primary" aria-label="show risk level explanations">
+              <ArrowForwardIosIcon fontSize="small"/>
+            </IconButton>            
+          </Grid>
+        </Grid>
         </CardContent>
       </Card>
-    </Button>
   );
 };
 
