@@ -151,14 +151,7 @@ export const Faq: React.FC = () => {
               </Typography>
             }
           />
-          <FaqAccordion
-            title="Welche Daten werden für die Erstellung der Karten verwendet und sind diese anonym?"
-            content="Zur Einschätzung des regionales Risikos ziehen wir einerseits die offizielle 7-Tage-Inzidenz des RKIs heran und werten
-                darüber hinaus das Kontaktverhalten ermittelt aus GPS Daten und die Antworten von Fragen nach Symptomen
-                der Bevölkerung aus. Wir werten dabei die Daten von einer großen Anzahl von Personen aus, die zuvor
-                zusammengefasst worden sind. Dies führt dazu, dass die Daten anonymisiert sind."
-          />
-        </section>
+
       </main>
     </>
   );
