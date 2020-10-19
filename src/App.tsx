@@ -41,7 +41,7 @@ export const App = () => {
   }
 
   function renderRoute(page) {
-    return <Route path={page.route} key={page.id} render={() => <page.Component />} />;
+    return <Route path={page.route} key={page.id} component={page.Component} />;
   }
 
   return (
