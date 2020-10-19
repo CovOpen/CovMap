@@ -26,7 +26,7 @@ export const Credits = () => {
         <section>
           <Typography variant="h2">Unternehmen</Typography>
           <Typography variant="body1">
-            Der Firma Portbluesky für die Freistellung von ... .
+            Port Blue Sky für die technische Umsetzung der App durch Ihre Mitarbeiter sowie das Organisieren von weiterer Unterstützung durch Voluntäre aus der Node.js Community.
 
           </Typography>
           <Typography variant="body1">
