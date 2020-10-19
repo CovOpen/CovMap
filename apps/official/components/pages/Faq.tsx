@@ -23,27 +23,29 @@ const FaqAccordion: React.FC<{ title: string; content: string | ReactElement }> 
         {typeof props.content === "string" ? (
           <Typography style={{ width: "100%" }}>{props.content}</Typography>
         ) : (
-            props.content
-          )}
+          props.content
+        )}
       </AccordionDetails>
     </Accordion>
   );
 };
 
 const RiskHeading: React.FC<{ risk: 1 | 2 | 3 }> = ({ risk = 1 }) => {
-  const riskText = ["Normales", "Mittleres", "Hohes"]
+  const riskText = ["Normales", "Mittleres", "Hohes"];
   return (
-    <div style={{
-      display: "flex",
-      alignItems: "center"
-    }}>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       <RiskBadge riskScore={risk} />
       <Typography variant="h3" style={{ margin: "0 1rem" }}>
         {`${riskText[risk - 1] || "Normales"} Risiko`}
       </Typography>
     </div>
-  )
-}
+  );
+};
 
 export const Faq: React.FC = () => {
   const classes = useStyles();
