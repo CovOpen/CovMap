@@ -1,6 +1,8 @@
 {
-  "menu-item-map": "Karte",
-  "menu-item-install": "App installieren",
-  "menu-item-share": "Teilen",
+  "pages": {
+    "map": "Karte",
+    "share": "Teilen",
+    "install": "App Installieren"
+  },
   "no data for selected timeframe": "Keine Daten für den ausgewählten Zeitraum."
 }

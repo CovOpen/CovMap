@@ -8,9 +8,6 @@ import Container from "@material-ui/core/Container";
 import { ThemeProvider } from "@material-ui/core/styles";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
-import * as moment from "moment";
-// TODO: load the correct locale based on selected language dynamically
-import "moment/locale/de";
 import { NavBar } from "src/components/NavBar";
 import { CovMap } from "./components/CovMap";
 import { State } from "./state";
@@ -32,8 +29,6 @@ import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 import { config } from "app-config/index";
 import { theme } from "./theme";
-
-moment.locale("de");
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;

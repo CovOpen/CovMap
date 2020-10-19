@@ -225,10 +225,10 @@ export const CovMap = () => {
       <div className={classes.currentInfo}>
         {/*<Typography variant="h2" color="primary">{visual.name}</Typography>*/}
         <Typography variant="h2" color="primary">
-          {currentMappable.title}
+          {typeof currentMappable.title === 'function' ? currentMappable.title(t) : currentMappable.title}
         </Typography>
         <Typography variant="subtitle1" color="primary">
-          {moment(currentDate).format(visual.dateFormat)}
+          {typeof visual.dateFormat === 'function' ? visual.dateFormat(t, { date: currentDate }) : moment(currentDate).format(visual.dateFormat)}
         </Typography>
       </div>
       {config.showSettings === false ? null : <Settings />}
