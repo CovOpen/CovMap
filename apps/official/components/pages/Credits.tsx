@@ -11,7 +11,7 @@ export const Credits = () => {
         </section>
         <section>
         <Typography variant="body1">
-            An der Entwicklung dieser App sind und waren verschiedene 
+            An der Entwicklung dieser App sind und waren verschiedene Personen und Unternehmen beteiligt, diesen möchten wir an dieser Stelle danken.
           </Typography>
           <Typography variant="h2">Personen</Typography>
           <Typography variant="body1">
@@ -26,8 +26,13 @@ export const Credits = () => {
         <section>
           <Typography variant="h2">Unternehmen</Typography>
           <Typography variant="body1">
-            Die Nutzung dieser App ersetzt keine ärztliche Behandlung. Wenn Sie sich aktuell schwer krank fühlen, suchen
-            Sie bitte umgehend medizinische Hilfe.
+            Der Firma Portbluesky für die Freistellung von ... .
+
+          </Typography>
+          <Typography variant="body1">
+            KeyCDN für die Bereitstellung ihrer Dienste.
+            OpenStreetMap für die Bereitstellung ihrer Dienste.
+
           </Typography>
         </section>
       </main>
