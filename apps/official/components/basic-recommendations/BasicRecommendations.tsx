@@ -35,6 +35,10 @@ const useStyles = makeStyles({
   },
   leftText: {
     textAlign: "left"
+  },
+  subHeader: {
+    textAlign: "left",
+    fontWeight: "bold"
   }
 })
 
@@ -44,11 +48,10 @@ const Header = (): JSX.Element => {
         <Grid item>
         <IconButton                    
             component={Link}
-            to="/"
-            color="primary"
+            to="/"            
             aria-label="go back to map"
         >
-            <ArrowBackIosIcon />
+            <ArrowBackIosIcon color="action"/>
         </IconButton>
         </Grid>
         <Grid item>
@@ -74,9 +77,8 @@ const CountyTeaser = ({county, url}: {county: string, url: string}): JSX.Element
                 {teaser}
             </Typography>
           </Grid>
-          <Grid item xs={2}>            
-              {/*<IconButton component={Link} to={url} color="primary" aria-label="show risk level explanations">*/}
-              <IconButton href={url} color="primary" aria-label="show risk level explanations">
+          <Grid item xs={2}>                          
+              <IconButton href={url} target="_blank" color="primary" aria-label="show risk level explanations">
                 <ArrowForwardIosIcon fontSize="small"/>
               </IconButton>            
           </Grid>
@@ -111,7 +113,7 @@ const Intro = (): JSX.Element => {
         </Typography>
       </Grid>
       <Grid item>
-        <Typography variant="h2" className={classes.leftText}>
+        <Typography variant="body1" className={classes.subHeader}>
           {ActionTexts.INTRO_TEASER_2}
         </Typography>
       </Grid>

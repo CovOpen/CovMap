@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
-import { Link as RouterLink } from 'react-router-dom';
-import { Button, Card, CardContent, CardHeader, Chip, Drawer, Grid, IconButton, Theme, Typography, useTheme } from "@material-ui/core";
+import { Link, Link as RouterLink } from 'react-router-dom';
+import { Badge, Button, Card, CardActionArea, CardContent, CardHeader, Chip, Drawer, Grid, IconButton, Theme, Typography, useTheme } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { RiskBadge } from "app-config/components/RiskBadge";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,7 +10,7 @@ import { RiskRecommendation } from "./risk-recommendation/RiskRecommendation";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import ContactsLowIcon from "../static/images/contacts-low.svg";
 import ContactsMediumIcon from "../static/images/contacts-medium.svg";
-import SymptomsLow from "../static/images/symptoms-low.svg";
+import SymptomsLowIcon from "../static/images/symptoms-low.svg";
 
 const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
   category: {
@@ -104,7 +104,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     incidence,
   } = rawData as RawDataEntry;
   const title = titleByRiskScore[riskScore];
-  const county = `${zipCode} ${locationName}`
+  //const county = `${zipCode} ${locationName}`
 
   const cardHeader = (
     <CardHeader
@@ -116,14 +116,14 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
           aria-expanded={expanded}
           aria-label="show more"
         >
-          <ArrowForwardIosIcon />
+          <ArrowForwardIosIcon/>
         </IconButton>
       }
       classes={{ action }}
       title={title}
       titleTypographyProps={{ variant: "h1" }}
-      subheader={county}
-    />
+      subheader={locationName}
+    ></CardHeader>
   );
 
   const ContactsIcon = ({score}: {score: ContactScore}) => {
@@ -141,75 +141,121 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     }
   };
 
+  
   const ContactBehaviorCategory = (): JSX.Element => (
-    <RouterLink  to="/legal">
-    <Card variant="outlined" className={card}>      
+    
+    <Card variant="outlined" className={card}>         
       <CardContent>
-        <Chip label="beta"></Chip>
-        <Grid container direction="row">
-          <Grid item xs={8}>            
-              <Typography variant="h3">
-                "Kontaktverhalten der Bevölkerung"
-              </Typography>              
+        <Grid container direction="column" spacing={1}>
+          <Grid item>
+            <Chip size="small" label="beta"></Chip>
           </Grid>
-          <Grid item xs={2}>
-            <ContactsIcon score={contactScore}/>
+          <Grid item>
+            <Grid item>
+              <Grid container direction="row" alignItems="center">
+                <Grid item xs={8}> 
+                    <Typography variant="h3">
+                      Kontaktverhalten der Bevölkerung
+                    </Typography>  
+                </Grid>
+                <Grid item xs={2}>
+                    <ContactsIcon score={contactScore}/>
+                </Grid>
+                <Grid item xs={2}>
+                  <IconButton                                  
+                    color="primary"
+                    aria-label="go to contact explanation"
+                    component={RouterLink}
+                    to="/contacts-explain"
+                  >
+                    <ArrowForwardIosIcon color="action"/>
+                  </IconButton>
+                </Grid>
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid item xs={2}>
-            <IconButton                                  
-              color="primary"
-              aria-label="go to contact explanation"
-          >
-              <ArrowForwardIosIcon/>
-          </IconButton>
-          </Grid>
-        </Grid>
-      </CardContent>      
-    </Card>    
-    </RouterLink>
-  )
-
-  const SymptomLoadCard = (): JSX.Element => (
-
-    <Card variant="outlined" className={card}>      
-      <CardContent>
-        <Chip label="beta"></Chip>
-        <Grid container direction="row">
-          <Grid item xs={8}>            
-              <Typography variant="h3">
-                "Symptomlast der Bevölkerung"
-              </Typography>
-          </Grid>
-          <Grid item xs={2}>
-            <ContactsLowIcon/>
-          </Grid>
-          <Grid item xs={2}>
-            <IconButton                    
-              component={RouterLink}
-              to="/symptoms-explain"
-              color="primary"
-              aria-label="go to symptom explanation"
-          >
-              <ArrowForwardIosIcon/>
-          </IconButton>
-          </Grid>
-        </Grid>
+        </Grid>        
       </CardContent>
-    </Card>
+    </Card>    
+   
   )
 
-  const CaseNumbersCard = (): JSX.Element => (
-    <Card variant="outlined" className={card}>
-      <CardHeader
-        title="Fallzahlen RKI"
-        titleTypographyProps={{ variant: "h3" }}
-        action={new Intl.NumberFormat("de-de", { maximumFractionDigits: 1, minimumFractionDigits: 1 }).format(
-          incidence,
-        )}
-        classes={{ action }}
-      />
-    </Card>
+  const SymptomLoadCategory = (): JSX.Element => (
+
+    <Card variant="outlined" className={card}>         
+      <CardContent>
+        <Grid container direction="column" spacing={1}>
+          <Grid item>
+            <Chip size="small" label="coming soon"></Chip>
+          </Grid>
+          <Grid item>
+            <Grid item>
+              <Grid container direction="row" alignItems="center">
+                <Grid item xs={8}> 
+                    <Typography variant="h3">
+                      Symptomlast der Bevölkerung
+                    </Typography>  
+                </Grid>
+                <Grid item xs={2}>
+                    <SymptomsLowIcon/>
+                </Grid>
+                <Grid item xs={2}>
+                  <IconButton                                  
+                    color="primary"
+                    aria-label="go to symptom explanation"
+                    component={RouterLink}
+                    to="/symptoms-explain"
+                  >
+                    <ArrowForwardIosIcon color="action"/>
+                  </IconButton>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>        
+      </CardContent>
+    </Card>    
   )
+
+  const CaseNumbersCategory = (): JSX.Element => {
+
+    const format = new Intl.NumberFormat(
+      "de-de", 
+      { maximumFractionDigits: 1, minimumFractionDigits: 1 });
+    
+    const incidenceDisplay = format.format(incidence)
+    
+    return (
+      <Card variant="outlined" className={card}>         
+        <CardContent>
+          <Grid item>
+            <Grid item>
+              <Grid container direction="row" alignItems="center">
+                <Grid item xs={8}> 
+                    <Typography variant="h3">
+                      7-Tages-Inzidenz (RKI)
+                    </Typography>  
+                </Grid>
+                <Grid item xs={2}>
+                    <Typography>{incidenceDisplay}</Typography>
+                </Grid>
+                <Grid item xs={2}>
+                  <IconButton                                  
+                    color="primary"
+                    aria-label="go to symptom explanation"
+                    component={RouterLink}
+                    to="/incidence-explain"
+                  >
+                    <ArrowForwardIosIcon color="action"/>
+                  </IconButton>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>        
+    )
+  }
 
 
   const link = `/recommendations?IdDistrict=${zipCode}`;
@@ -225,10 +271,10 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
           <ContactBehaviorCategory/>
         </Grid>
         <Grid item>
-          <SymptomLoadCard/>
+          <SymptomLoadCategory/>
         </Grid>
         <Grid item>
-          <CaseNumbersCard/>
+          <CaseNumbersCategory/>
         </Grid>
         <Grid item className={recommendationsLink}>
           <Typography>Wie kann ich mich verhalten?</Typography>

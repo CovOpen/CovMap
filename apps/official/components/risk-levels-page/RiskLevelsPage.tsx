@@ -23,7 +23,7 @@ const RiskLevelHeader = () => (
             color="primary"
             aria-label="go back to map"
         >
-            <ArrowBackIosIcon />
+            <ArrowBackIosIcon color="action"/>
         </IconButton>
         </Grid>
         <Grid item>
