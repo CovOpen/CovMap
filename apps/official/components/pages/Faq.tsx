@@ -47,16 +47,16 @@ export const Faq: React.FC = () => {
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <div className={classes.textBlock}>
                     Die CovMap visualisiert eine regionale Risikoeinschätzung auf einer Deutschlandkarte. Unsere
-                    Einschätzung beruhen auf täglich aktualisierten Fallzahlstatistiken des Robert-Koch-Instituts und Vorhersagen von selbst entwickelten
-                    Modellen basierend auf dem Kontaktverhalten und selbst berichteten Symptomen der Bevölkerung. Mit
-                    der CovMap möchten wir folgende Fragen zum Coronavirus adressieren :
+                    Einschätzung beruhen auf täglich aktualisierten Fallzahlstatistiken des Robert-Koch-Instituts und
+                    Vorhersagen von selbst entwickelten Modellen basierend auf dem Kontaktverhalten und selbst
+                    berichteten Symptomen der Bevölkerung. Mit der CovMap möchten wir folgende Fragen zum Coronavirus
+                    adressieren :
                   </div>
                   <div className={classes.textBlock}>
                     <ul style={{ listStyle: "inside" }}>
                       <li>Wie hoch ist das regionale Risiko?</li>
                       <li>Welche allgemeine Schutzmaßnahmen gibt es?</li>
-                      <li>Was sind die aktuellen Verhaltensregeln des Landkreises?
-                      </li>
+                      <li>Was sind die aktuellen Verhaltensregeln des Landkreises?</li>
                     </ul>
                   </div>
                   <div className={classes.textBlock}>
