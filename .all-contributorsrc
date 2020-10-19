@@ -117,6 +117,15 @@
       "contributions": [
         "financial"
       ]
+    },
+    {
+      "login": "cnrun",
+      "name": "Éric Louvard",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/9567496?v=4",
+      "profile": "https://www.louvard.de/CommitNRun/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7

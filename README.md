@@ -5,7 +5,7 @@
 </div>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # CovMapper
@@ -62,7 +62,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/ttobollik"><img src="https://avatars3.githubusercontent.com/u/6298068?v=4?s=50" width="50px;" alt=""/><br /><sub><b>ttobollik</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=ttobollik" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/onouv"><img src="https://avatars2.githubusercontent.com/u/30532561?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Olaf Nouvortne</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=onouv" title="Code">💻</a></td>
     <td align="center"><a href="https://danielhabenicht.github.io/"><img src="https://avatars3.githubusercontent.com/u/13590797?v=4?s=50" width="50px;" alt=""/><br /><sub><b>DanielHabenicht</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=DanielHabenicht" title="Code">💻</a></td>
-    <td align="center"><a href="https://www.linkedin.com/in/mgrupp/"><img src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortRound&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=ShirtCrewNeck&clotheColor=Blue02&eyeType=Wink&eyebrowType=RaisedExcited&mouthType=Twinkle&skinColor=Pale?s=50" width="50px;" alt=""/><br /><sub><b>Michael Grupp</b></sub></a><br /><a href="#financial" title="Financial">💵</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/mgrupp/"><img src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairDreads02&accessoriesType=Blank&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=CollarSweater&clotheColor=Black&eyeType=Default&eyebrowType=Default&mouthType=Twinkle&skinColor=Light?s=50" width="50px;" alt=""/><br /><sub><b>Michael Grupp</b></sub></a><br /><a href="#financial" title="Financial">💵</a></td>
+    <td align="center"><a href="https://www.louvard.de/CommitNRun/"><img src="https://avatars2.githubusercontent.com/u/9567496?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Éric Louvard</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=cnrun" title="Code">💻</a></td>
   </tr>
 </table>
 
