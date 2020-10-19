@@ -55,9 +55,7 @@ export const Faq: React.FC = () => {
                     <ul style={{ listStyle: "inside" }}>
                       <li>Risikogebiete so schnell wie möglich zu identifizieren</li>
                       <li>Informationen über allgemeine Schutzmaßnahmen zur Verfügung zu stellen</li>
-                      <li>
-                        Zu den Angeboten der Landkreise mit den aktuellen Verhaltensregeln zu verlinken
-                      </li>
+                      <li>Zu den Angeboten der Landkreise mit den aktuellen Verhaltensregeln zu verlinken</li>
                     </ul>
                   </div>
                   <div className={classes.textBlock}>
