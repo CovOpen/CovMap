@@ -1,10 +1,5 @@
 name: PR-Checks
-on:
-  pull_request_target:
-#    branches: [ master ]
-    paths-ignore:
-#      - '.github/**'
-      - '.hosting/**'
+on: [push]
 
 env:
   RESSOURCE_GROUP: covmapper
