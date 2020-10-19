@@ -143,7 +143,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
       <div className={classes.menuContent}>
         <Link key="map" style={{ textDecoration: "none" }} to="/">
           <MenuItem className={classes.menuItem} onClick={handleClose}>
-            {t('common:pages.map')}
+            {t("common:pages.map")}
           </MenuItem>
         </Link>
         <MenuEntries handleClose={handleClose} />
@@ -151,13 +151,13 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
           <div>
             <Divider />
             <MenuItem className={classes.menuItem} onClick={handleInstall}>
-              {t('common:pages.install')}
+              {t("common:pages.install")}
             </MenuItem>
           </div>
         )}
         <Divider />
         <MenuItem className={classes.menuItem} onClick={handleShare}>
-          {t('common:pages.share')} <ShareIcon className={classes.menuIcon} />
+          {t("common:pages.share")} <ShareIcon className={classes.menuIcon} />
         </MenuItem>
       </div>
     );
