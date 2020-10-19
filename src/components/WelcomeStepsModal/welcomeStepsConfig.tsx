@@ -3,7 +3,7 @@ import { WelcomeModal1 } from "./WelcomeModal1";
 import { WelcomeModal2 } from "./WelcomeModal2";
 import { WelcomeModal3 } from "./WelcomeModal3";
 import { WelcomeModalPostalCode } from "./WelcomeModalPostalCode";
-import { Privacy } from "app-config/components/pages/Privacy";
+import { config } from "app-config/index";
 
 export type StepConfig = {
   name: WelcomeModalStep;
@@ -54,7 +54,7 @@ export const welcomeStepsConfig: StepConfig[] = [
     name: WelcomeModalStep.StepPostalCodeDataPrivacy,
     Component: () => (
       <div style={{ marginBottom: "28px" }}>
-        <Privacy />
+        <config.content.PrivacyComponent />
       </div>
     ),
     next: WelcomeModalStep.StepPostalCode,

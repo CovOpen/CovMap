@@ -1,11 +1,10 @@
 import { ComponentType } from "react";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import { State } from "./state";
-import { RawDataEntry } from "app-config/models";
 
 export type AppConfig = {
   ui: AppUI;
-  content?: AppContent;
+  content: AppContent;
   buildJSON: BuildJSON;
   mapSettings?: MapSettings;
   defaultVisual: string;
@@ -150,13 +149,14 @@ export type AppGeo = {
 
 export type AppContent = {
   pages: Array<AppPage>;
+  PrivacyComponent: ComponentType;
 };
 
 export type AppPage = {
   id: string;
   title: string;
   route: string;
-  hidden?: boolean  // a way to exclude the page from the navbar
+  hidden?: boolean; // a way to exclude the page from the navbar
   Component: ComponentType;
 };
 
@@ -196,10 +196,12 @@ export type AppUI = {
 };
 
 export type Color = string;
+
 export enum AppleMobileWebAppCapable {
   YES = "yes",
   NO = "no",
 }
+
 export enum AppleMobileWebAppStatusBarStyle {
   DEFAULT = "default",
 }
