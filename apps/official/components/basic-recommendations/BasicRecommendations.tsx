@@ -76,7 +76,7 @@ const CountyTeaser = ({county, url}: {county: string, url: string}): JSX.Element
           </Grid>
           <Grid item xs={2}>            
               {/*<IconButton component={Link} to={url} color="primary" aria-label="show risk level explanations">*/}
-              <IconButton href={url} color="primary" aria-label="show risk level explanations">
+              <IconButton href={url} target="_blank" color="primary" aria-label="show risk level explanations">
                 <ArrowForwardIosIcon fontSize="small"/>
               </IconButton>            
           </Grid>
@@ -266,7 +266,7 @@ export const BasicRecommendations = ({location}: RouteProps): JSX.Element => {
             <Header/>
           </section>
           <section>
-            <CountyTeaser county={county} url={howToBehaveUrl}/>
+            {<CountyTeaser county={county} url={howToBehaveUrl} />}
           </section>
           <section>
             <Intro/>
