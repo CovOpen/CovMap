@@ -1,19 +1,7 @@
 import React, { useState } from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
-import { Link as RouterLink } from "react-router-dom";
-import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Chip,
-  Drawer,
-  Grid,
-  IconButton,
-  Theme,
-  Typography,
-  useTheme,
-} from "@material-ui/core";
+import { Link as RouterLink } from 'react-router-dom';
+import { Button, Card, CardContent, CardHeader, Chip, Drawer, Grid, IconButton, Theme, Typography, useTheme } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { RiskBadge } from "app-config/components/RiskBadge";
 import { makeStyles } from "@material-ui/core/styles";
@@ -108,7 +96,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     incidence,
   } = rawData as RawDataEntry;
   const title = titleByRiskScore[riskScore];
-
+  
   const cardHeader = (
     <CardHeader
       onClick={toggleExpand}
@@ -119,7 +107,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
           aria-expanded={expanded}
           aria-label="show more"
         >
-          <ArrowForwardIosIcon />
+          <ArrowForwardIosIcon/>
         </IconButton>
       }
       classes={{ action }}
