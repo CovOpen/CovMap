@@ -120,6 +120,44 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     />
   );
 
+  const ContactBehaviorCard = (): JSX.Element => (    
+      <Card variant="outlined" className={card}>
+        <CardHeader
+          title="Kontaktverhalten der Bevölkerung"
+          titleTypographyProps={{ variant: "h3" }}
+          action={titleByContactScore[contactScore]}
+          classes={{ action }}
+        />
+      </Card>
+  )
+
+  const SymptomLoadCard = (): JSX.Element => (
+    <Card variant="outlined" className={card}>
+      <CardHeader
+        title="Symptomlast der Bevölkerung"
+        titleTypographyProps={{ variant: "h3" }}
+        subheader="Bald verfügbar!"
+        // TODO: Instead of subheader, show actual data
+        // action={symptomIndex}
+        // classes={{ action }}
+      />
+    </Card>
+  )
+
+  const CaseNumbersCard = (): JSX.Element => (
+    <Card variant="outlined" className={card}>
+      <CardHeader
+        title="Fallzahlen RKI"
+        titleTypographyProps={{ variant: "h3" }}
+        action={new Intl.NumberFormat("de-de", { maximumFractionDigits: 1, minimumFractionDigits: 1 }).format(
+          incidence,
+        )}
+        classes={{ action }}
+      />
+    </Card>
+  )
+
+
   const link = `/recommendations?IdDistrict=${zipCode}`;
   const cardContent = (
     <CardContent>
@@ -130,38 +168,13 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
         {/*</Grid>*/}
         <Grid item>{RiskRecommendation({ riskScore })}</Grid>
         <Grid item>
-          <Card variant="outlined" className={card}>
-            <CardHeader
-              title="Kontaktverhalten der Bevölkerung"
-              titleTypographyProps={{ variant: "h3" }}
-              action={titleByContactScore[contactScore]}
-              classes={{ action }}
-            />
-          </Card>
+          <ContactBehaviorCard/>
         </Grid>
         <Grid item>
-          <Card variant="outlined" className={card}>
-            <CardHeader
-              title="Symptomlast der Bevölkerung"
-              titleTypographyProps={{ variant: "h3" }}
-              subheader="Bald verfügbar!"
-              // TODO: Instead of subheader, show actual data
-              // action={symptomIndex}
-              // classes={{ action }}
-            />
-          </Card>
+          <SymptomLoadCard/>
         </Grid>
         <Grid item>
-          <Card variant="outlined" className={card}>
-            <CardHeader
-              title="Fallzahlen RKI"
-              titleTypographyProps={{ variant: "h3" }}
-              action={new Intl.NumberFormat("de-de", { maximumFractionDigits: 1, minimumFractionDigits: 1 }).format(
-                incidence,
-              )}
-              classes={{ action }}
-            />
-          </Card>
+          <CaseNumbersCard/>
         </Grid>
         <Grid item className={recommendationsLink}>
           <Typography>Wie kann ich mich verhalten?</Typography>
