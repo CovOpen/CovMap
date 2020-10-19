@@ -1,12 +1,13 @@
 import { AppConfig, LayerType } from "../../src/app-config.types";
 import { AnimatedLogo } from "./components/AnimatedLogo";
 import buildJSON from "./build.json";
-import { About } from "./components/pages/About";
+import { Faq } from "./components/pages/Faq";
 import { Imprint } from "./components/pages/Imprint";
 import { Legal } from "./components/pages/Legal";
 import { Privacy } from "./components/pages/Privacy";
-import BasicRecommendations from "./components/pages/BasicRecommendations";
+import { BasicRecommendations } from "./components/basic-recommendations/BasicRecommendations";
 import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo";
+import { RiskLevelsPage } from "./components/risk-levels-page/RiskLevelsPage";
 // TODO: Integrate CovQuestions
 // import { Questions } from './components/pages/Questions'
 
@@ -19,17 +20,18 @@ const CovMapMappables = [
 ];
 
 const CovMapSearch = {
-  placeholder: "PLZ oder Landkreis",
+  placeholder: "PLZ, Landkreis oder Stadt",
   nameProp: "name",
   inMappings: [
     {
       id: "CI-to-plz",
-      properties: ["name", "zip_codes"],
+      properties: ["name", "zip_codes", "cities"],
       getCoordinates: (feature) => {
         //return feature.properties.geo_point_2d TODO
       },
     },
   ],
+
   notFoundMessage: "Leider keinen Landkreis gefunden.",
 };
 
@@ -42,10 +44,10 @@ export const config: AppConfig = {
   content: {
     pages: [
       {
-        id: "about-page",
-        title: "Info",
-        route: "/about",
-        Component: About,
+        id: "faq-page",
+        title: "Fragen und Antworten",
+        route: "/faq",
+        Component: Faq,
       },
       {
         id: "imprint-page",
@@ -70,7 +72,14 @@ export const config: AppConfig = {
         title: "Empfehlungen",
         route: "/recommendations",
         Component: BasicRecommendations,
-        hidden: true   // dont show this page in the navbar
+        hidden: true, // dont show this page in the navbar
+      },
+      {
+        id: "risk-levels-page",
+        title: "Risikostufen",
+        route: "/risk-levels",
+        Component: RiskLevelsPage,
+        hidden: true,
       },
       /* {
      id: 'questions-page',

@@ -17,3 +17,4 @@ CovQuestions/
 .env
 static/changelog.md
 package-lock.json
+hosting/data
