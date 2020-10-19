@@ -1,7 +1,18 @@
 import React, { useState } from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
-import { Link as RouterLink } from 'react-router-dom';
-import { Card, Button, CardContent, CardHeader, Drawer, Grid, IconButton, Theme, Typography, useTheme } from "@material-ui/core";
+import { Link as RouterLink } from "react-router-dom";
+import {
+  Card,
+  Button,
+  CardContent,
+  CardHeader,
+  Drawer,
+  Grid,
+  IconButton,
+  Theme,
+  Typography,
+  useTheme,
+} from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { RiskBadge } from "app-config/components/RiskBadge";
 import { makeStyles } from "@material-ui/core/styles";
@@ -98,7 +109,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     incidence,
   } = rawData as RawDataEntry;
   const title = titleByRiskScore[riskScore];
-  const county = `${zipCode} ${locationName}`
+  const county = `${zipCode} ${locationName}`;
 
   const cardHeader = (
     <CardHeader
