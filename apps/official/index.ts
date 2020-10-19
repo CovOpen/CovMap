@@ -5,6 +5,7 @@ import { Faq } from "./components/pages/Faq";
 import { Imprint } from "./components/pages/Imprint";
 import { Legal } from "./components/pages/Legal";
 import { Privacy } from "./components/pages/Privacy";
+import { Credits } from "./components/pages/Credits";
 import BasicRecommendations from "./components/pages/BasicRecommendations";
 import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo";
 // TODO: Integrate CovQuestions
@@ -64,6 +65,12 @@ export const config: AppConfig = {
         title: "Datenschutz",
         route: "/privacy-statement",
         Component: Privacy,
+      },
+      {
+        id: "privacy-page",
+        title: "Danksagung",
+        route: "/credits",
+        Component: Credits,
       },
       {
         id: "basic-recommendations",
