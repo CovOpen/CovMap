@@ -20,17 +20,18 @@ const CovMapMappables = [
 ];
 
 const CovMapSearch = {
-  placeholder: "PLZ oder Landkreis",
+  placeholder: "PLZ, Landkreis oder Stadt",
   nameProp: "name",
   inMappings: [
     {
       id: "CI-to-plz",
-      properties: ["name", "zip_codes"],
+      properties: ["name", "zip_codes", "cities"],
       getCoordinates: (feature) => {
         //return feature.properties.geo_point_2d TODO
       },
     },
   ],
+
   notFoundMessage: "Leider keinen Landkreis gefunden.",
 };
 
