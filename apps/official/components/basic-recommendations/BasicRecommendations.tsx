@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     marginLeft: "8px",
   },
   leftText: {
-    textAlign: "left",
+    textAlign: "left"
   },
   subHeader: {
     textAlign: "left",
@@ -66,8 +66,8 @@ const CountyTeaser = ({ county, url }: { county: string; url: string }): JSX.Ele
           </Grid>
           <Grid item xs={2}>
             <IconButton href={url} target="_blank" color="primary" aria-label="show risk level explanations">
-              <ArrowForwardIosIcon fontSize="small" />
-            </IconButton>
+              <ArrowForwardIosIcon fontSize="small"/>
+            </IconButton>            
           </Grid>
         </Grid>
       </CardContent>
