@@ -3,7 +3,7 @@ on:
   pull_request_target:
 #    branches: [ master ]
     paths-ignore:
-      - '.github/**'
+#      - '.github/**'
       - '.hosting/**'
 
 env:
