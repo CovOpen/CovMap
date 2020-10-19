@@ -47,17 +47,15 @@ export const Faq: React.FC = () => {
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <div className={classes.textBlock}>
                     Die CovMap visualisiert eine regionale Risikoeinschätzung auf einer Deutschlandkarte. Unsere
-                    Einschätzung beruhen auf den Fallzahlstatistiken des Robert-Koch-Instituts und selbst entwickelten
-                    Modellen basierend auf dem Kontaktverhalten und selbst berichteten Symptomen der Bevölkerung. Die
-                    Hauptziele der CovMap sind:
+                    Einschätzung beruhen auf täglich aktualisierten Fallzahlstatistiken des Robert-Koch-Instituts und Vorhersagen von selbst entwickelten
+                    Modellen basierend auf dem Kontaktverhalten und selbst berichteten Symptomen der Bevölkerung. Mit
+                    der CovMap möchte wir folgende Fragen zum Coronavirus adressieren :
                   </div>
                   <div className={classes.textBlock}>
                     <ul style={{ listStyle: "inside" }}>
-                      <li>Risikogebiete so schnell wie möglich darzustellen</li>
-                      <li>Über allgemeine Schutzmaßnahmen zur Vermeidung von Infektionen zu informieren</li>
-                      <li>
-                        Zu den Angeboten mit Informationen und den aktuellen Verhaltensregeln der Landkreise zu
-                        verlinken
+                      <li>Wie hoch ist das regionale Risiko?</li>
+                      <li>Welche allgemeine Schutzmaßnahmen gibt es?</li>
+                      <li>Was sind die aktuellen Verhaltensregeln des Landkreises?
                       </li>
                     </ul>
                   </div>
@@ -79,10 +77,13 @@ export const Faq: React.FC = () => {
           <FaqAccordion
             title="Handelt es sich um offizielle Risikoeinschätzungen?"
             content="Nein, bei der CovMap Risikoeinschätzung handelt es sich nicht um eine offizielle Risikoeinschätzung einer
-            nationalen Behörde oder Institution. Die Bewertung basiert auf Modellen, die von Wissenschaftlern der
-            Charité, des Hasso-Plattner-Instituts und der Firma NETCHECK entwickelt worden sind."
+            nationalen Behörde oder Institution. Die CovMap Risikoeinschätzung wurde von Wissenschaftlern der
+            Charité, des Hasso-Plattner-Instituts und Spezialisten der Firma NETCHECK entwickelt."
           />
-
+          <FaqAccordion
+            title="Welche Risikostufen gibt es?"
+            content="Auf der Karte stellen wir ein normales (=Grün), mittleres (=Orange) und hohes Risiko (=Rot) dar. Ein hohes Risiko leiten wir von der etablierten 7-Tages-Inzidenz des RKIs ab, wenn die Schwelle von 50 Neuinfektionen in den letzten 7 Tagen pro 100.000 Einwohner überschritten wurde. Von einem mittleren Risiko gehen wir aus, wenn die 7-Tages-Inzidenz zwischen 20 und 50 Neuinfektionen in den letzten 7 Tagen pro 100.000 liegt oder Vorhersagemodell auf einen Anstieg der Neuinfektionen hindeutet. Ein normales Risiko liegt vor, wenn die Zahl der Neuinfektionen gering ist und unser Vorhersagemodell keinen Anstieg vermuten lässt. Bitte beachte, dass das Virus derzeit überall in Deutschland zirkuliert und daher eine Ansteckung auch in einer Region mit einem normalen Risiko möglich ist."
+          />
           <FaqAccordion
             title="Wie aktuell ist die CovMap?"
             content="Die CovMap wird einmal täglich aktualisiert. Der Datenstand ist in der Kartendarstellung oben rechts mit
