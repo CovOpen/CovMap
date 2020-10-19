@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
 import { Link as RouterLink } from 'react-router-dom';
-import { Card, Button, CardContent, CardHeader, Drawer, Grid, IconButton, Theme, Typography, useTheme } from "@material-ui/core";
+import { Button, Card, CardContent, CardHeader, Chip, Drawer, Grid, IconButton, Theme, Typography, useTheme } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { RiskBadge } from "app-config/components/RiskBadge";
 import { makeStyles } from "@material-ui/core/styles";
 import { ContactScore, RawDataEntry, RiskScore } from "app-config/models";
 import { RiskRecommendation } from "./risk-recommendation/RiskRecommendation";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import ContactsLowIcon from "../static/images/contacts-low.svg";
+import ContactsMediumIcon from "../static/images/contacts-medium.svg";
+import SymptomsLow from "../static/images/symptoms-low.svg";
 
 const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
+  category: {
+
+  },
   action: {
     alignSelf: "auto",
     marginTop: 0,
@@ -120,27 +126,75 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     />
   );
 
-  const ContactBehaviorCard = (): JSX.Element => (    
-      <Card variant="outlined" className={card}>
-        <CardHeader
-          title="Kontaktverhalten der Bevölkerung"
-          titleTypographyProps={{ variant: "h3" }}
-          action={titleByContactScore[contactScore]}
-          classes={{ action }}
-        />
-      </Card>
+  const ContactsIcon = ({score}: {score: ContactScore}) => {
+    switch(score) {
+      case ContactScore.Low:
+        return (
+          <ContactsLowIcon/>
+        )
+      case ContactScore.Medium: 
+          return (
+            <ContactsMediumIcon/>
+          )
+      default:
+        return null;
+    }
+  };
+
+  const ContactBehaviorCategory = (): JSX.Element => (
+    <Card variant="outlined" className={card}>      
+      <CardContent>
+        <Chip label="beta"></Chip>
+        <Grid container direction="row">
+          <Grid item xs={8}>            
+              <Typography variant="h3">
+                "Kontaktverhalten der Bevölkerung"
+              </Typography>              
+          </Grid>
+          <Grid item xs={2}>
+            <ContactsIcon score={contactScore}/>
+          </Grid>
+          <Grid item xs={2}>
+            <IconButton                    
+              component={RouterLink}
+              to="/contacts-explain"
+              color="primary"
+              aria-label="go to contact explanation"
+          >
+              <ArrowForwardIosIcon/>
+          </IconButton>
+          </Grid>
+        </Grid>
+      </CardContent>      
+    </Card>    
   )
 
   const SymptomLoadCard = (): JSX.Element => (
-    <Card variant="outlined" className={card}>
-      <CardHeader
-        title="Symptomlast der Bevölkerung"
-        titleTypographyProps={{ variant: "h3" }}
-        subheader="Bald verfügbar!"
-        // TODO: Instead of subheader, show actual data
-        // action={symptomIndex}
-        // classes={{ action }}
-      />
+
+    <Card variant="outlined" className={card}>      
+      <CardContent>
+        <Chip label="beta"></Chip>
+        <Grid container direction="row">
+          <Grid item xs={8}>            
+              <Typography variant="h3">
+                "Symptomlast der Bevölkerung"
+              </Typography>
+          </Grid>
+          <Grid item xs={2}>
+            <ContactsLowIcon/>
+          </Grid>
+          <Grid item xs={2}>
+            <IconButton                    
+              component={RouterLink}
+              to="/symptoms-explain"
+              color="primary"
+              aria-label="go to symptom explanation"
+          >
+              <ArrowForwardIosIcon/>
+          </IconButton>
+          </Grid>
+        </Grid>
+      </CardContent>
     </Card>
   )
 
@@ -168,7 +222,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
         {/*</Grid>*/}
         <Grid item>{RiskRecommendation({ riskScore })}</Grid>
         <Grid item>
-          <ContactBehaviorCard/>
+          <ContactBehaviorCategory/>
         </Grid>
         <Grid item>
           <SymptomLoadCard/>
