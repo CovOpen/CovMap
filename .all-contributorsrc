@@ -108,6 +108,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "",
+      "name": "Michael Grupp",
+      "avatar_url": "https://avataaars.io/?avatarStyle=Circle&topType=ShortHairDreads02&accessoriesType=Blank&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=CollarSweater&clotheColor=Black&eyeType=Default&eyebrowType=Default&mouthType=Twinkle&skinColor=Light",
+      "profile": "https://www.linkedin.com/in/mgrupp/",
+      "contributions": [
+        "financial"
+      ]
     }
   ],
   "contributorsPerLine": 7
