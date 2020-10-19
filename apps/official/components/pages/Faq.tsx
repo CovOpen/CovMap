@@ -49,7 +49,7 @@ export const Faq: React.FC = () => {
                     Die CovMap visualisiert eine regionale Risikoeinschätzung auf einer Deutschlandkarte. Unsere
                     Einschätzung beruhen auf täglich aktualisierten Fallzahlstatistiken des Robert-Koch-Instituts und Vorhersagen von selbst entwickelten
                     Modellen basierend auf dem Kontaktverhalten und selbst berichteten Symptomen der Bevölkerung. Mit
-                    der CovMap möchte wir folgende Fragen zum Coronavirus adressieren :
+                    der CovMap möchten wir folgende Fragen zum Coronavirus adressieren :
                   </div>
                   <div className={classes.textBlock}>
                     <ul style={{ listStyle: "inside" }}>
@@ -82,7 +82,7 @@ export const Faq: React.FC = () => {
           />
           <FaqAccordion
             title="Welche Risikostufen gibt es?"
-            content="Auf der Karte stellen wir ein normales (=Grün), mittleres (=Orange) und hohes Risiko (=Rot) dar. Ein hohes Risiko leiten wir von der etablierten 7-Tages-Inzidenz des RKIs ab, wenn die Schwelle von 50 Neuinfektionen in den letzten 7 Tagen pro 100.000 Einwohner überschritten wurde. Von einem mittleren Risiko gehen wir aus, wenn die 7-Tages-Inzidenz zwischen 20 und 50 Neuinfektionen in den letzten 7 Tagen pro 100.000 liegt oder unser Vorhersagemodell auf einen Anstieg der Neuinfektionen hindeutet. Ein normales Risiko liegt vor, wenn die Zahl der Neuinfektionen gering ist und unser Vorhersagemodell keinen Anstieg vermuten lässt. Bitte beachte, dass das Virus derzeit überall in Deutschland zirkuliert und daher eine Ansteckung auch in einer Region mit einem normalen Risiko möglich ist."
+            content="Auf der Karte stellen wir ein normales (=Grün), mittleres (=Orange) und hohes Risiko (=Rot) dar. Ein hohes Risiko leiten wir von der etablierten 7-Tages-Inzidenz des RKIs ab, wenn die Schwelle von 50 Neuinfektionen in den letzten 7 Tagen pro 100.000 Einwohner überschritten wurde. Eine Region mit mittlerem Risiko kann in Zukunft zu einer Region mit hohem Risiko werden. Von einem mittleren Risiko gehen wir aus, wenn die 7-Tages-Inzidenz zwischen 20 und 50 Neuinfektionen in den letzten 7 Tagen pro 100.000 liegt oder unser Vorhersagemodell auf einen Anstieg der Neuinfektionen hindeutet. Ein normales Risiko liegt vor, wenn die Zahl der Neuinfektionen gering ist und unser Vorhersagemodell keinen Anstieg vermuten lässt. Bitte beachte, dass das Virus derzeit überall in Deutschland zirkuliert und daher eine Ansteckung auch in einer Region mit einem normalen Risiko möglich ist."
           />
           <FaqAccordion
             title="Wie aktuell ist die CovMap?"
