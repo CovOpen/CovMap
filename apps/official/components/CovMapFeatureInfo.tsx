@@ -133,15 +133,16 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
           <ContactsLowIcon/>
         )
       case ContactScore.Medium: 
-          return (
-            <ContactsMediumIcon/>
-          )
+        return (
+          <ContactsMediumIcon/>
+        )
       default:
         return null;
     }
   };
 
   const ContactBehaviorCategory = (): JSX.Element => (
+    <RouterLink  to="/legal">
     <Card variant="outlined" className={card}>      
       <CardContent>
         <Chip label="beta"></Chip>
@@ -155,9 +156,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
             <ContactsIcon score={contactScore}/>
           </Grid>
           <Grid item xs={2}>
-            <IconButton                    
-              component={RouterLink}
-              to="/contacts-explain"
+            <IconButton                                  
               color="primary"
               aria-label="go to contact explanation"
           >
@@ -167,6 +166,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
         </Grid>
       </CardContent>      
     </Card>    
+    </RouterLink>
   )
 
   const SymptomLoadCard = (): JSX.Element => (
