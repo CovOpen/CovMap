@@ -151,7 +151,7 @@ export const Faq: React.FC = () => {
               </Typography>
             }
           />
-
+        </section>
       </main>
     </>
   );

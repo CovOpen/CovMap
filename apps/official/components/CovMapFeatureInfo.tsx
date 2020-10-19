@@ -6,6 +6,7 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { RiskBadge } from "app-config/components/RiskBadge";
 import { makeStyles } from "@material-ui/core/styles";
 import { ContactScore, RawDataEntry, RiskScore } from "app-config/models";
+import { RiskRecommendation } from "./risk-recommendation/RiskRecommendation";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
@@ -123,6 +124,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
         {/*<Grid item>*/}
         {/*  <Typography>{riskDescription}</Typography>*/}
         {/*</Grid>*/}
+        <Grid item>{RiskRecommendation({ riskScore })}</Grid>
         <Grid item>
           <Card variant="outlined" className={card}>
             <CardHeader
