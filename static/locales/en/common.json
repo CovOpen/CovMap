@@ -1,6 +1,8 @@
 {
-  "menu-item-map": "Map",
-  "menu-item-install": "Install App",
-  "menu-item-share": "Share",
+  "pages": {
+    "map": "Map",
+    "share": "Share",
+    "install": "Install App"
+  },
   "no data for selected timeframe": "No data available for the selected date."
 }

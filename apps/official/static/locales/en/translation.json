@@ -1,5 +1,13 @@
 {
   "pages": {
-    "menu-info": "Info"
-  }
+    "info": "Info",
+    "legal": "Legal",
+    "copyright": "Copyright",
+    "privacy-policy": "Privacy Policy"
+  },
+  "formats": {
+    "date": "{{date, dddd, MMMM DD, YYYY}}"
+  },
+  "risk-score": "Risk Score",
+  "search-placeholder": "ZIP code or Region"
 }

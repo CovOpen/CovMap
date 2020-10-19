@@ -7,6 +7,7 @@ import { useThunkDispatch } from "src/useThunkDispatch";
 import { fade } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import useAutocomplete from "@material-ui/lab/useAutocomplete";
+import { useTranslation } from 'react-i18next';
 
 import { State } from "../state";
 
@@ -90,6 +91,7 @@ type Possibilities = {
 
 export const Search = ({ className = "" }: { className?: string }) => {
   const dispatch = useThunkDispatch();
+  const { t } = useTranslation(['translation'])
   const classes = useStyles();
   const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
   const placeholder = currentLayerGroup.search?.placeholder;
@@ -137,7 +139,7 @@ export const Search = ({ className = "" }: { className?: string }) => {
             }
           }}
           type="text"
-          placeholder={placeholder || "Suche"}
+          placeholder={typeof placeholder === 'function' ? placeholder(t) : placeholder || "Suche"}
           classes={{
             root: classes.inputRoot,
             input: classes.inputInput,
