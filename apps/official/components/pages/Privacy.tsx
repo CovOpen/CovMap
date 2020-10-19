@@ -6,7 +6,7 @@ export const Privacy = () => {
     <>
       <main className="sections">
         <section>
-          <Typography variant="h1">Datenschutzerklärung der CovMapp</Typography>
+          <Typography variant="h1">Datenschutzerklärung der CovMap</Typography>
         </section>
         <section>
           <Typography variant="h2">1. Verantwortlichkeit</Typography>
