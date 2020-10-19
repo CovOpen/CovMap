@@ -206,13 +206,12 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
 
 const useIconStyles = makeStyles((theme) => ({
   menuIcon: {
-    padding: 0,
     zIndex: 1400,  // put it on top of everything
     marginLeft: "auto",
+    padding: theme.spacing(0.5),
     [theme.breakpoints.down("xs")]: {  // on mobile devices
       backgroundColor: theme.palette.background.default,
       borderRadius: theme.shape.borderRadius * 1.5,
-      padding: theme.spacing(0.5),
       boxShadow: "0px 2px 5px -1px rgba(0,0,0,0.55)",
       "&:hover": {
         backgroundColor: theme.palette.background.default,
@@ -224,7 +223,6 @@ const useIconStyles = makeStyles((theme) => ({
     /* color: theme.palette.highRisk.main */
     backgroundColor: theme.palette.secondary.main,
     borderRadius: theme.shape.borderRadius * 1.5,
-    padding: theme.spacing(0.5),
     boxShadow: "0px 2px 5px -1px rgba(0,0,0,0.55)",
     "&:hover": {
       backgroundColor: theme.palette.secondary.main,
