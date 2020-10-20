@@ -18,9 +18,9 @@ export const Charts = () => {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey={"datum"} />
-            <YAxis yAxisId="left" />
-            <YAxis yAxisId="right" orientation="right" />
+            <XAxis dataKey={"datum"} interval={"preserveEnd"} angle={-8} />
+            <YAxis yAxisId="left" domain={[0, 650]} />
+            <YAxis yAxisId="right" domain={[0, 15]} orientation="right" />
             <Tooltip />
             <Legend />
             <Line
