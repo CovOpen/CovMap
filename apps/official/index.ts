@@ -5,7 +5,7 @@ import { Faq } from "./components/pages/Faq";
 import { Imprint } from "./components/pages/Imprint";
 import { Legal } from "./components/pages/Legal";
 import { Privacy } from "./components/pages/Privacy";
-import { Charts } from './components/pages/Charts';
+import { Charts } from "./components/pages/Charts";
 import { BasicRecommendations } from "./components/basic-recommendations/BasicRecommendations";
 import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo";
 import { RiskLevelsPage } from "./components/risk-levels-page/RiskLevelsPage";
@@ -81,11 +81,12 @@ export const config: AppConfig = {
         route: "/risk-levels",
         Component: RiskLevelsPage,
         hidden: true,
-      }, {
-        id: 'charts',
-        title: 'Deutschlandweite Graphen',
-        route: '/charts',
-        Component: Charts
+      },
+      {
+        id: "charts",
+        title: "Deutschlandweite Graphen",
+        route: "/charts",
+        Component: Charts,
       },
       /* {
      id: 'questions-page',
