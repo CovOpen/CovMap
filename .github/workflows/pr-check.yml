@@ -55,8 +55,6 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: dist
-    - name: Install TestCafe BrowserStack plugin
-      run: npm install testcafe-browser-provider-browserstack
     - name: install testcafe
       run: yarn add http-server testcafe testcafe-browser-provider-browserstack
     - name: 'BrowserStack Env Setup'
@@ -66,8 +64,10 @@ jobs:
         access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
         build-name: 'covmapperpr${{ github.event.pull_request.number }}'
         project-name: 'CovMap'
-    - name: test
+    - name: test chrome
       run: yarn run testcafe 'browserstack:chrome:Windows 10' testcafe/*.spec.ts --app "cd ./dist && http-server -p 8080"
+    - name: test chrome
+      run: yarn run testcafe 'browserstack:firefox:Windows 10' testcafe/*.spec.ts --app "cd ./dist && http-server -p 8080"
 
 #    - name: Find Comment
 #      uses: peter-evans/find-comment@v1
