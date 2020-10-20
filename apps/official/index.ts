@@ -88,6 +88,7 @@ export const config: AppConfig = {
      Component: Questions
    },*/
     ],
+    PrivacyComponent: Privacy,
   },
   buildJSON,
   mapSettings: {

@@ -23,7 +23,7 @@ export const MobileDotsStepper: React.FC<{ currentStepConfig: StepConfig }> = (p
   const classes = useStyles();
 
   if (props.currentStepConfig.dotProgressNumber === undefined) {
-    return null;
+    return <div style={{ height: "28px" }} />;
   }
 
   const numberOfStepsWithProgressDots = welcomeStepsConfig.filter(
