@@ -114,7 +114,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     incidence,
   } = rawData as RawDataEntry;
   const title = titleByRiskScore[riskScore];
-  
+
   const cardHeader = (
     <CardHeader
       onClick={toggleExpand}
@@ -125,7 +125,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
           aria-expanded={expanded}
           aria-label="show more"
         >
-          <ArrowForwardIosIcon/>
+          <ArrowForwardIosIcon />
         </IconButton>
       }
       classes={{ action }}
