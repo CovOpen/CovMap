@@ -69,8 +69,8 @@ export const config: AppConfig = {
         Component: Privacy,
       },
       {
-        id: "privacy-page",
-        title: "Danksagung",
+        id: "credits",
+        title: "Über die CovApp",
         route: "/credits",
         Component: Credits,
       },
