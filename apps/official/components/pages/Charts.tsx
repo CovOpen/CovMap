@@ -1,7 +1,7 @@
 import React from "react";
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, } from 'recharts';
 
-import chartsData from "../../static/ChartsData.json"
+import chartsData from "../../../../data/charts-data.json"
 
 export const Charts = () => {
   return (
@@ -15,12 +15,12 @@ export const Charts = () => {
             }}
           >
             <CartesianGrid strokeDasharray="3 3"/>
-            <XAxis dataKey={"name"}/>
+            <XAxis dataKey={"datum"}/>
             <YAxis yAxisId="left"/>
             <YAxis yAxisId="right" orientation="right"/>
             <Tooltip/>
             <Legend/>
-            <Line yAxisId="left" type="monotone" dataKey={'ci'} stroke="#8884d8" strokeWidth="4px"
+            <Line yAxisId="left" type="monotone" dataKey={'CI'} stroke="#8884d8" strokeWidth="4px"
               name="Kontaktindex C"/>
             <Line yAxisId="right" type="monotone" dataKey={'R'} stroke="#f01a8d" strokeWidth="4px"
               name="Reproduktionszahl R"/>
