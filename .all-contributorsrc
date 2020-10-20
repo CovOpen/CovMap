@@ -21,7 +21,7 @@
     },
     {
       "login": "alexanderthieme",
-      "name": "alexanderthieme",
+      "name": "Alexander Thieme",
       "avatar_url": "https://avatars1.githubusercontent.com/u/61984544?v=4",
       "profile": "https://github.com/alexanderthieme",
       "contributions": [
@@ -30,7 +30,7 @@
     },
     {
       "login": "ChristianRomberg",
-      "name": "ChristianRomberg",
+      "name": "Christian Romberg",
       "avatar_url": "https://avatars0.githubusercontent.com/u/25772118?v=4",
       "profile": "https://github.com/ChristianRomberg",
       "contributions": [
@@ -66,7 +66,7 @@
     },
     {
       "login": "ChristophWersal",
-      "name": "ChristophWersal",
+      "name": "Christoph Wersal",
       "avatar_url": "https://avatars0.githubusercontent.com/u/45358216?v=4",
       "profile": "https://github.com/ChristophWersal",
       "contributions": [
@@ -102,7 +102,7 @@
     },
     {
       "login": "DanielHabenicht",
-      "name": "DanielHabenicht",
+      "name": "Daniel Habenicht",
       "avatar_url": "https://avatars3.githubusercontent.com/u/13590797?v=4",
       "profile": "https://danielhabenicht.github.io/",
       "contributions": [
@@ -115,7 +115,16 @@
       "avatar_url": "https://avataaars.io/?avatarStyle=Circle&topType=ShortHairDreads02&accessoriesType=Blank&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=CollarSweater&clotheColor=Black&eyeType=Default&eyebrowType=Default&mouthType=Twinkle&skinColor=Light",
       "profile": "https://www.linkedin.com/in/mgrupp/",
       "contributions": [
-        "financial"
+        "code"
+      ]
+    },
+    {
+      "login": "",
+      "name": "Cornelia Furkert",
+      "avatar_url": "https://avataaars.io/?avatarStyle=Circle&topType=WinterHat3&accessoriesType=Round&hatColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=Heather&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Twinkle&skinColor=Light",
+      "profile": "",
+      "contributions": [
+        "code"
       ]
     },
     {
