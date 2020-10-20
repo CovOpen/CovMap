@@ -28,24 +28,20 @@ const useStyles = makeStyles({
     marginLeft: "8px",
   },
   leftText: {
-    textAlign: "left"
+    textAlign: "left",
   },
   subHeader: {
     textAlign: "left",
-    fontWeight: "bold"
-  }
-})
+    fontWeight: "bold",
+  },
+});
 
 const Header = (): JSX.Element => {
   return (
     <Grid container direction="row" alignItems="center">
-        <Grid item>
-        <IconButton                    
-            component={Link}
-            to="/"            
-            aria-label="go back to map"
-        >
-            <ArrowBackIosIcon color="action"/>
+      <Grid item>
+        <IconButton component={Link} to="/" aria-label="go back to map">
+          <ArrowBackIosIcon color="action" />
         </IconButton>
       </Grid>
       <Grid item>
@@ -68,10 +64,10 @@ const CountyTeaser = ({ county, url }: { county: string; url: string }): JSX.Ele
               {teaser}
             </Typography>
           </Grid>
-          <Grid item xs={2}>                          
+          <Grid item xs={2}>
             <IconButton href={url} target="_blank" color="primary" aria-label="show risk level explanations">
-              <ArrowForwardIosIcon fontSize="small"/>
-            </IconButton>            
+              <ArrowForwardIosIcon fontSize="small" />
+            </IconButton>
           </Grid>
         </Grid>
       </CardContent>
