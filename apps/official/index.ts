@@ -96,6 +96,8 @@ export const config: AppConfig = {
       [56.47462805805594, 2.3730468750000004],
       [43.27103747280261, 17.885742187500004],
     ],
+    baseApiUrl: "https://tiles.covmap.de",
+    mapStyle: "https://tiles.covmap.de/styles/dark-matter/style.json",
   },
   defaultVisual: "covmap",
   datasources: {
@@ -150,7 +152,7 @@ export const config: AppConfig = {
               ],
               "fill-opacity": 0.5,
             },
-            beforeId: "road-label",
+            beforeId: "place_other",
           }),
         },
         {

@@ -181,6 +181,9 @@ type SouthEast = LatLang;
 
 export type MapSettings = {
   constraints: [NorthWest, SouthEast];
+  baseApiUrl?: string;
+  mapStyle?: string;
+  mapboxApiAccessToken?: string;
 };
 
 export type AppMeta = {
