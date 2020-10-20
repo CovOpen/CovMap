@@ -39,7 +39,7 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Date
     const timeKey = formatUTCDate(date);
     const loadingKey = `loading-${mappingId}-${timeKey}`;
 
-    dispatch(AppApi.pushLoading(loadingKey));
+    dispatch(() => AppApi.pushLoading(loadingKey));
 
     try {
       const mapping = config.visuals[visualId].mappings[mappingId];
