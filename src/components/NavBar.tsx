@@ -16,9 +16,8 @@ import { State } from "../state";
 import { triggerInstallPrompt } from "../state/thunks/triggerInstallPrompt";
 import * as clipboard from "clipboard-polyfill";
 
-import { Search } from "./Search";
 import { config } from "app-config/index";
-import { Box, Drawer, useMediaQuery, useTheme } from "@material-ui/core";
+import { Drawer, useMediaQuery } from "@material-ui/core";
 import { CloseRounded } from "@material-ui/icons";
 
 const Logo = config.ui?.Logo;

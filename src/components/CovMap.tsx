@@ -22,8 +22,6 @@ import { Legend } from "./Legend";
 import { Settings } from "./Settings";
 import { config } from "app-config/index";
 import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
-import { Search } from "./Search";
-import Box from "@material-ui/core/Box";
 import FixedSearch from "./FixedSearch";
 
 const useStyles = makeStyles((theme) => ({
@@ -75,7 +73,6 @@ async function loadFlyTo() {
 }
 
 export const CovMap = () => {
-  let startTime = Date.now();
   const classes = useStyles();
   const dispatch = useThunkDispatch();
   const urlParams = useParams<{ subPage?: string }>();
@@ -168,14 +165,21 @@ export const CovMap = () => {
   const mappingLayers = Object.keys(visual.mappings);
   const handleMapClick = (pointerEvent, stateViewport) => {
     const { features } = pointerEvent;
+    console.log(features)
     if (features.length > 0) {
+      /* console.log(config.visuals.covmap.layers) */
+
+      /* handle multiple features. this happens when a street or text is clicked */
+      const countyFeatures = features.length > 1 ?
+        features.filter(feature => feature.layer && feature.layer.id == "areas-fill") : features;
+
       if (mapRef.current) {
-        if (!mappingLayers.includes(features[0].source)) {
+        if (!mappingLayers.includes(countyFeatures[0].source)) {
           return;
         }
       }
 
-      dispatch(AppApi.setCurrentFeature(features[0], pointerEvent.lngLat));
+      dispatch(AppApi.setCurrentFeature(countyFeatures[0], pointerEvent.lngLat));
 
       if (stateViewport.zoom > 7) {
         const newViewport = {
