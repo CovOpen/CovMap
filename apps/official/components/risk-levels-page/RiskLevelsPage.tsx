@@ -18,7 +18,7 @@ const RiskLevelHeader = () => (
   <Grid container direction="row" alignItems="center">
     <Grid item>
       <IconButton component={Link} to="/" aria-label="go back to map">
-        <ArrowBackIosIcon color="action"/>
+        <ArrowBackIosIcon color="action" />
       </IconButton>
     </Grid>
     <Grid item>
