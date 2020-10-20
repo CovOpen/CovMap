@@ -45,7 +45,14 @@ export const FeatureInfo = memo(() => {
     <Suspense fallback={getFallbackComponent()}>
       <Popper
         open={true}
-        style={{ top: "auto", width: "100%", bottom: "24px", display: "flex", justifyContent: "center", pointerEvents: "none" }}
+        style={{
+          top: "auto",
+          width: "100%",
+          bottom: "24px",
+          display: "flex",
+          justifyContent: "center",
+          pointerEvents: "none",
+        }}
       >
         <InfoComponent
           feature={currentFeature.feature}
