@@ -278,7 +278,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   );
 
   return (
-    <div style={{pointerEvents: "auto"}}>
+    <div style={{ pointerEvents: "auto" }}>
       <Card className={container}>{cardHeader}</Card>
 
       <Drawer
