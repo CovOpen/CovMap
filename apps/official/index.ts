@@ -5,8 +5,12 @@ import { Faq } from "./components/pages/Faq";
 import { Imprint } from "./components/pages/Imprint";
 import { Legal } from "./components/pages/Legal";
 import { Privacy } from "./components/pages/Privacy";
-import BasicRecommendations from "./components/pages/BasicRecommendations";
+import RKI from "./components/pages/RKI";
+import ContactBehavior from "./components/pages/ContactBehavior";
+import SymptomLevel from "./components/pages/SymptomLevel";
+import { BasicRecommendations } from "./components/basic-recommendations/BasicRecommendations";
 import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo";
+import { RiskLevelsPage } from "./components/risk-levels-page/RiskLevelsPage";
 // TODO: Integrate CovQuestions
 // import { Questions } from './components/pages/Questions'
 
@@ -73,6 +77,34 @@ export const config: AppConfig = {
         Component: BasicRecommendations,
         hidden: true, // dont show this page in the navbar
       },
+      {
+        id: "risk-levels-page",
+        title: "Risikostufen",
+        route: "/risk-levels",
+        Component: RiskLevelsPage,
+        hidden: true,
+      },
+      {
+        id: "rki-page",
+        title: "RKI",
+        route: "/rki",
+        Component: RKI,
+        hidden: true,
+      },
+      {
+        id: "contact-behavior",
+        title: "Kontaktverhalten",
+        route: "/contact-behavior",
+        Component: ContactBehavior,
+        hidden: true,
+      },
+      {
+        id: "symptom-level",
+        title: "Symptomlast",
+        route: "/symptom-level",
+        Component: SymptomLevel,
+        hidden: true,
+      },
       /* {
      id: 'questions-page',
      title: 'Symptome erfassen',
@@ -80,6 +112,7 @@ export const config: AppConfig = {
      Component: Questions
    },*/
     ],
+    PrivacyComponent: Privacy,
   },
   buildJSON,
   mapSettings: {

@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useThunkDispatch } from "../../useThunkDispatch";
-import { TextField, Typography } from "@material-ui/core";
+import { Checkbox, TextField, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { AppApi } from "../../state/app";
 import { useCommonWelcomeModalStyles } from "./useCommonWelcomeModalStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { WelcomeModalStep } from "./welcomeStepsConfig";
 
 function isValidPostalCode(text: string) {
   return /^[1-9][0-9]{4}$/.test(text);
@@ -33,14 +34,8 @@ export const WelcomeModalPostalCode: React.FC = () => {
   const dispatch = useThunkDispatch();
   const history = useHistory();
   const [postCode, setPostCode] = useState("");
-  const [alwaysValidate, setAlwaysValidate] = useState(false);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    if (alwaysValidate) {
-      setError(!isValidPostalCode(postCode));
-    }
-  }, [alwaysValidate, postCode]);
+  const [validate, setValidate] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   function onSkip() {
     dispatch(AppApi.setUserPostalCode(0));
@@ -48,13 +43,11 @@ export const WelcomeModalPostalCode: React.FC = () => {
   }
 
   function submit() {
-    if (isValidPostalCode(postCode)) {
+    setValidate(true);
+    if (isValidPostalCode(postCode) && checked) {
       dispatch(AppApi.setUserPostalCode(parseInt(postCode, 10)));
       history.push("/");
       void dispatch(switchViewToPlace(postCode));
-    } else {
-      setAlwaysValidate(true);
-      setError(true);
     }
   }
 
@@ -63,6 +56,13 @@ export const WelcomeModalPostalCode: React.FC = () => {
       submit();
     }
   }
+
+  function handleCheckedChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setChecked(event.target.checked);
+  }
+
+  const isCheckboxError = validate && !checked;
+  const isPostCodeError = validate && !isValidPostalCode(postCode);
 
   return (
     <>
@@ -73,17 +73,24 @@ export const WelcomeModalPostalCode: React.FC = () => {
       <TextField
         className={classes.input}
         autoFocus
-        error={error}
-        helperText={error ? "Bitte valide PLZ eingeben" : null}
+        error={isPostCodeError}
+        helperText={isPostCodeError ? "Bitte valide PLZ eingeben" : null}
         variant="outlined"
         type="number"
         onChange={(event) => {
           setPostCode(event.target.value);
         }}
         onKeyPress={onKeyPress}
-        onBlur={() => setAlwaysValidate(true)}
         style={{ margin: "50px 0 30px 0", width: "180px", height: "80px" }}
       />
+
+      <div style={{ display: "flex", flexDirection: "row", alignItems: "center", marginBottom: "10px" }}>
+        <Checkbox value={checked} onChange={handleCheckedChange} />
+        <Typography className={classes.smallText} style={isCheckboxError ? { color: "red" } : {}}>
+          Ja, ich habe die <Link to={WelcomeModalStep.StepPostalCodeDataPrivacy}>Datenschutzerklärung</Link> zur
+          Kenntnis genommen und willige ein.
+        </Typography>
+      </div>
 
       <Button
         className={`${classes.primaryButton} ${classes.largeText}`}
@@ -102,16 +109,6 @@ export const WelcomeModalPostalCode: React.FC = () => {
       >
         Ohne Postleitzahl weiter
       </Button>
-
-      <img
-        src={"/images/icon-security.svg"}
-        alt="Security Icon"
-        style={{ width: "24px", height: "24px", margin: "24px 0 12px 0" }}
-      />
-
-      <div style={{ marginBottom: "28px" }}>
-        <Typography className={classes.smallText}>Siehe unsere Datenschutzrichtlinien.</Typography>
-      </div>
     </>
   );
 };

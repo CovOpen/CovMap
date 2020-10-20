@@ -18,7 +18,7 @@ test("Finish intro screens", async (t) => {
 
   await t.expect(websiteText).contains(titleForIntro3).click(nextButton);
 
-  await t.expect(websiteText).contains(titleTextForPostalCode).pressKey("1 2 3 4 5 enter");
+  await t.expect(websiteText).contains(titleTextForPostalCode).pressKey("1 2 3 4 5 tab space tab tab enter");
 
   await t.expect(websiteText).notContains(titleTextForPostalCode);
 });
