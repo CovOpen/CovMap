@@ -27,7 +27,8 @@
         {
           "path": "static/changelog.md",
           "label": "Changelog"
-        }
+        },
+        { "path": "dist/**", "label": "WebApp-${nextRelease.gitTag}.zip" }
       ]
     },
     {
@@ -53,11 +54,6 @@
           }
         ]
       }
-    ],
-    ["@semantic-release/github", {
-      "assets": [
-        {"path": "dist/**", "label": "WebApp-${nextRelease.gitTag}.zip"}
-      ]
-    }]
+    ]
   ]
 }
