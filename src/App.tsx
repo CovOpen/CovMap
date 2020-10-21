@@ -45,7 +45,14 @@ export const App = () => {
   }
 
   function renderRoute(page) {
-    return <Route path={page.route} key={page.id} component={page.Component} style={{ flex: "1 1 auto", position: "relative" }}/>;
+    return (
+      <Route
+        path={page.route}
+        key={page.id}
+        component={page.Component}
+        style={{ flex: "1 1 auto", position: "relative" }}
+      />
+    );
   }
 
   return (
