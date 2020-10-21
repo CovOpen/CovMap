@@ -10,7 +10,7 @@ import { Link, useHistory } from "react-router-dom";
 import { WelcomeModalStep } from "./welcomeStepsConfig";
 
 function isValidPostalCode(text: string) {
-  return /^[1-9][0-9]{4}$/.test(text);
+  return /^[0-9]{5}$/.test(text);
 }
 
 const useStyles = makeStyles(() => ({
