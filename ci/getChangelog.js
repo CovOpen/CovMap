@@ -34,10 +34,10 @@ function getChangelogFromUrl(url) {
             throw new Error(`Could not parse redirect url.`);
           }
         } else if (res.statusCode === 200) {
-          let path = resolve(__dirname, "..", "static", "changelog.md")
-          console.log("Wrote changelog to: " + path)
-          console.log("Here is the top of it:")
-          console.log(data.substring(0,700))
+          let path = resolve(__dirname, "..", "static", "changelog.md");
+          console.log("Wrote changelog to: " + path);
+          console.log("Here is the top of it:");
+          console.log(data.substring(0, 700));
           writeFileSync(path, data, { encoding: "utf-8" });
           // console.log(`Fetched Changelog from: ${url}`);
         } else {
