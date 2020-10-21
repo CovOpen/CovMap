@@ -49,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
     touchAction: "none",
   },
   menuContent: {
-
     marginBottom: theme.spacing(4),
     marginTop: "auto",
   },

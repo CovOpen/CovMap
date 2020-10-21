@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     "position": "absolute",
     "display": "flex",
     "flex-direction": "column",
-
   },
   currentInfo: {
     "position": "absolute",
@@ -165,18 +164,19 @@ export const CovMap = () => {
   const mappingLayers = Object.keys(visual.mappings);
   const handleMapClick = (pointerEvent, stateViewport) => {
     const { features } = pointerEvent;
-    console.log(features)
+    console.log(features);
     if (features.length > 0) {
-
       /* handle multiple features. this happens when a street or text is clicked */
-      let countyFeatures
+      let countyFeatures;
       if (features.length > 1) {
         // find out target features from index.ts
         const layers = config.visuals.covmap.layers;
         if (!layers) return;
-        const fillLayer = layers.filter(layer => layer.type === LayerType.FILL); // get the layer with the layer type "fill"
+        const fillLayer = layers.filter((layer) => layer.type === LayerType.FILL); // get the layer with the layer type "fill"
         if (!fillLayer) return;
-        countyFeatures = features.filter(feature => fillLayer.some(layer => feature.layer && (feature.layer.id === layer.id)));
+        countyFeatures = features.filter((feature) =>
+          fillLayer.some((layer) => feature.layer && feature.layer.id === layer.id),
+        );
         if (!countyFeatures) return;
       } else {
         countyFeatures = features;

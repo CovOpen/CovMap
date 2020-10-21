@@ -184,7 +184,7 @@ body {
 }
 
 /* About */
-main.sections{
+main.sections {
   padding-top: 64px; /* move down by static appBar height */
 }
 
@@ -209,8 +209,6 @@ main.sections{
 #menu-appbar .MuiPaper-rounded {
   background-color: #e3e9f3;
 }
-
-
 
 /* @media only screen and (max-width: 600px) {
   main.sections {
