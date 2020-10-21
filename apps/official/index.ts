@@ -74,7 +74,7 @@ export const config: AppConfig = {
       },
       {
         id: "credits",
-        title: "Über die CovApp",
+        title: "Über die CovMap",
         route: "/credits",
         Component: Credits,
       },
