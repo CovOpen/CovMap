@@ -24,7 +24,7 @@ const Logo = config.ui?.Logo;
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    position: "relative",
+    position: "sticky",
     [theme.breakpoints.down("xs")]: {
       // on mobile devices
       backgroundColor: "transparent",
