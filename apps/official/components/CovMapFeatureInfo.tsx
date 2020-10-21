@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
 import { Link as RouterLink } from "react-router-dom";
 import {
-  Card,
   Button,
+  Card,
   CardContent,
   CardHeader,
+  Chip,
   Drawer,
   Grid,
   IconButton,
@@ -19,8 +20,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import { ContactScore, RawDataEntry, RiskScore } from "app-config/models";
 import { RiskRecommendation } from "./risk-recommendation/RiskRecommendation";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import ContactsLowIcon from "../static/images/contacts-low.svg";
+import ContactsMediumIcon from "../static/images/contacts-medium.svg";
+import SymptomsLowIcon from "../static/images/symptoms-low.svg";
 
 const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
+  category: {},
   action: {
     alignSelf: "auto",
     marginTop: 0,
@@ -109,7 +114,6 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     incidence,
   } = rawData as RawDataEntry;
   const title = titleByRiskScore[riskScore];
-  const county = `${zipCode} ${locationName}`;
 
   const cardHeader = (
     <CardHeader
@@ -127,9 +131,118 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
       classes={{ action }}
       title={title}
       titleTypographyProps={{ variant: "h1" }}
-      subheader={county}
-    />
+      subheader={locationName}
+    ></CardHeader>
   );
+
+  const ContactsIcon = ({ score }: { score: ContactScore }) => {
+    switch (score) {
+      case ContactScore.Low:
+        return <ContactsLowIcon />;
+      case ContactScore.Medium:
+        return <ContactsMediumIcon />;
+      default:
+        return null;
+    }
+  };
+
+  const ContactBehaviorCategory = (): JSX.Element => (
+    <Card variant="outlined" className={card}>
+      <CardContent>
+        <Grid container direction="column" spacing={1}>
+          <Grid item>
+            <Chip size="small" label="beta"></Chip>
+          </Grid>
+          <Grid item>
+            <Grid item>
+              <Grid container direction="row" alignItems="center">
+                <Grid item xs={8}>
+                  <Typography variant="h3">Kontaktverhalten der Bevölkerung</Typography>
+                </Grid>
+                <Grid item xs={2}>
+                  <ContactsIcon score={contactScore} />
+                </Grid>
+                <Grid item xs={2}>
+                  <IconButton
+                    color="primary"
+                    aria-label="go to contact explanation"
+                    component={RouterLink}
+                    to="/contact-behavior"
+                  >
+                    <ArrowForwardIosIcon color="action" />
+                  </IconButton>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </CardContent>
+    </Card>
+  );
+
+  const SymptomLoadCategory = (): JSX.Element => (
+    <Card variant="outlined" className={card}>
+      <CardContent>
+        <Grid container direction="column" spacing={1}>
+          <Grid item>
+            <Chip size="small" label="coming soon"></Chip>
+          </Grid>
+          <Grid item>
+            <Grid item>
+              <Grid container direction="row" alignItems="center">
+                <Grid item xs={8}>
+                  <Typography variant="h3">Symptomlast der Bevölkerung</Typography>
+                </Grid>
+                <Grid item xs={2}>
+                  <SymptomsLowIcon />
+                </Grid>
+                <Grid item xs={2}>
+                  <IconButton
+                    color="primary"
+                    aria-label="go to symptom explanation"
+                    component={RouterLink}
+                    to="/symptom-level"
+                  >
+                    <ArrowForwardIosIcon color="action" />
+                  </IconButton>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </CardContent>
+    </Card>
+  );
+
+  const CaseNumbersCategory = (): JSX.Element => {
+    const format = new Intl.NumberFormat("de-de", { maximumFractionDigits: 1, minimumFractionDigits: 1 });
+
+    const incidenceDisplay = format.format(incidence);
+
+    return (
+      <Card variant="outlined" className={card}>
+        <CardContent>
+          <Grid item>
+            <Grid item>
+              <Grid container direction="row" alignItems="center">
+                <Grid item xs={8}>
+                  <Typography variant="h3">7-Tages-Inzidenz (RKI)</Typography>
+                </Grid>
+                <Grid item xs={2}>
+                  <Typography>{incidenceDisplay}</Typography>
+                </Grid>
+                <Grid item xs={2}>
+                  <IconButton color="primary" aria-label="go to symptom explanation" component={RouterLink} to="/rki">
+                    <ArrowForwardIosIcon color="action" />
+                  </IconButton>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
+    );
+  };
 
   const link = `/recommendations?IdDistrict=${zipCode}`;
   const cardContent = (
@@ -141,38 +254,13 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
         {/*</Grid>*/}
         <Grid item>{RiskRecommendation({ riskScore })}</Grid>
         <Grid item>
-          <Card variant="outlined" className={card}>
-            <CardHeader
-              title="Kontaktverhalten der Bevölkerung"
-              titleTypographyProps={{ variant: "h3" }}
-              action={titleByContactScore[contactScore]}
-              classes={{ action }}
-            />
-          </Card>
+          <ContactBehaviorCategory />
         </Grid>
         <Grid item>
-          <Card variant="outlined" className={card}>
-            <CardHeader
-              title="Symptomlast der Bevölkerung"
-              titleTypographyProps={{ variant: "h3" }}
-              subheader="Bald verfügbar!"
-              // TODO: Instead of subheader, show actual data
-              // action={symptomIndex}
-              // classes={{ action }}
-            />
-          </Card>
+          <SymptomLoadCategory />
         </Grid>
         <Grid item>
-          <Card variant="outlined" className={card}>
-            <CardHeader
-              title="Fallzahlen RKI"
-              titleTypographyProps={{ variant: "h3" }}
-              action={new Intl.NumberFormat("de-de", { maximumFractionDigits: 1, minimumFractionDigits: 1 }).format(
-                incidence,
-              )}
-              classes={{ action }}
-            />
-          </Card>
+          <CaseNumbersCategory />
         </Grid>
         <Grid item className={recommendationsLink}>
           <Typography>Wie kann ich mich verhalten?</Typography>
@@ -185,7 +273,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   );
 
   return (
-    <>
+    <div style={{ pointerEvents: "auto" }}>
       <Card className={container}>{cardHeader}</Card>
 
       <Drawer
@@ -198,6 +286,6 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
         {cardHeader}
         {cardContent}
       </Drawer>
-    </>
+    </div>
   );
 };

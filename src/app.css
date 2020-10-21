@@ -184,6 +184,9 @@ body {
 }
 
 /* About */
+main.sections {
+  padding-top: 64px; /* move down by static appBar height */
+}
 
 .sections section {
   padding: 1rem 2rem;
@@ -191,7 +194,6 @@ body {
   margin-right: auto;
   text-align: left;
   max-width: 600px;
-  background-color: #e3e9f3;
 }
 
 .sections section p {
@@ -205,19 +207,6 @@ body {
 
 #menu-appbar .MuiPaper-rounded {
   background-color: #e3e9f3;
-}
-
-/* recommendations page */
-
-#recommendationsPage .contentBody {
-  text-align: left;
-  background-color: unset;
-}
-
-@media only screen and (max-width: 600px) {
-  main.sections {
-    padding-top: 64px; /* 64px is AppBar height atm. AppBar is static on mobile and relative otherwise */
-  }
 }
 
 /* FIXME: removes Mapbox logo. Needs to be discussed with company before release.

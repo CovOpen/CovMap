@@ -17,8 +17,8 @@ const useStyles = makeStyles({
 const RiskLevelHeader = () => (
   <Grid container direction="row" alignItems="center">
     <Grid item>
-      <IconButton component={Link} to="/" color="primary" aria-label="go back to map">
-        <ArrowBackIosIcon />
+      <IconButton component={Link} to="/" aria-label="go back to map">
+        <ArrowBackIosIcon color="action" />
       </IconButton>
     </Grid>
     <Grid item>

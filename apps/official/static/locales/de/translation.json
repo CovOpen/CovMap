@@ -1,0 +1,14 @@
+{
+  "pages": {
+    "faq": "Fragen und Antworten",
+    "info": "Info",
+    "legal": "Rechtliches",
+    "copyright": "Impressum",
+    "privacy-policy": "Datenschutz"
+  },
+  "formats": {
+    "date": "{{ date, dddd, Do MMMM YYYY}}"
+  },
+  "risk-score": "Risikoeinschätzung",
+  "search-placeholder": "PLZ, Landkreis oder Stadt"
+}

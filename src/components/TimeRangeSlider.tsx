@@ -4,6 +4,7 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import Tooltip from "@material-ui/core/Tooltip";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 
 import { useThunkDispatch } from "../useThunkDispatch";
 import { formatNowMinusDays, plusDays } from "../lib/formatUTCDate.js";
@@ -118,7 +119,11 @@ const SliderLabelTooltip = withStyles({
 function ValueLabelComponent({ children, open, value }: ValueLabelComponentProps) {
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const visual = config.visuals[currentVisual];
-  const dateValue = moment(plusDays(value)).format(visual.dateFormat);
+  const t = useTranslation(["translation"]);
+  const dateValue =
+    typeof visual.dateFormat === "function"
+      ? visual.dateFormat(t, plusDays(value))
+      : moment(plusDays(value)).format(visual.dateFormat);
 
   return (
     <SliderLabelTooltip open={open} enterTouchDelay={0} placement="top" title={dateValue}>
