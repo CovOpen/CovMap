@@ -24,7 +24,6 @@ const Logo = config.ui?.Logo;
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    /* zIndex: 1400, */
     position: "fixed",
     [theme.breakpoints.down("xs")]: {
       // on mobile devices
@@ -163,7 +162,6 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
     <AppBar classes={{ root: classes.appBar }} style={{ height: 64, flex: "0 0 auto" }}>
       <Toolbar className={classes.fullHeightToolbar}>
         {!isMobile && ((Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} />)}
-        {/* <Route key="map" exact path="/" render={() => showSearch && <Search />} /> */}
         <MenuIconButton handleMenu={handleMenu} />
         <Drawer
           open={open}
@@ -211,7 +209,6 @@ const useIconStyles = makeStyles((theme) => ({
   },
 
   closeIcon: {
-    /* color: theme.palette.highRisk.main */
     "backgroundColor": theme.palette.secondary.main,
     "borderRadius": theme.shape.borderRadius * 1.5,
     "boxShadow": "0px 2px 5px -1px rgba(0,0,0,0.55)",

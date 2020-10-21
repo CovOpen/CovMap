@@ -23,6 +23,7 @@ import { Settings } from "./Settings";
 import { config } from "app-config/index";
 import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
 import FixedSearch from "./FixedSearch";
+import { LayerType } from "src/app-config.types";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -166,11 +167,20 @@ export const CovMap = () => {
     const { features } = pointerEvent;
     console.log(features)
     if (features.length > 0) {
-      /* console.log(config.visuals.covmap.layers) */
 
       /* handle multiple features. this happens when a street or text is clicked */
-      const countyFeatures = features.length > 1 ?
-        features.filter(feature => feature.layer && feature.layer.id == "areas-fill") : features;
+      let countyFeatures
+      if (features.length > 1) {
+        // find out target features from index.ts
+        const layers = config.visuals.covmap.layers;
+        if (!layers) return;
+        const fillLayer = layers.filter(layer => layer.type === LayerType.FILL); // get the layer with the layer type "fill"
+        if (!fillLayer) return;
+        countyFeatures = features.filter(feature => fillLayer.some(layer => feature.layer && (feature.layer.id === layer.id)));
+        if (!countyFeatures) return;
+      } else {
+        countyFeatures = features;
+      }
 
       if (mapRef.current) {
         if (!mappingLayers.includes(countyFeatures[0].source)) {

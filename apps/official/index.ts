@@ -157,6 +157,7 @@ export const config: AppConfig = {
         {
           id: "areas-fill",
           source: "CI-to-plz",
+          type: LayerType.FILL,
           // showLegend: true,
           fn: (dataField, timeKey) => ({
             type: LayerType.FILL,

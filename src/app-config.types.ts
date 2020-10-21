@@ -101,6 +101,7 @@ export type AppVisualLayerFunction = (dataField?: string, timeKey?: string) => A
 export type AppVisualLayerSpec = {
   id: LayerId;
   source: MappingId;
+  type?: string; // optional way to identify the different type of layers
   /**
    * Whether to show a box describing the color values of this layer
    */
