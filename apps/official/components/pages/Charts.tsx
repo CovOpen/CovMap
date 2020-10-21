@@ -7,25 +7,25 @@ import { AppApi } from "../../../../src/state/app";
 
 import { formatUTCDate } from "../../../../src/lib/formatUTCDate";
 
-
 export const Charts = () => {
   const dispatch = useThunkDispatch();
   const currentDate = useSelector((state: State) => state.app.currentDate);
   const dateKey = formatUTCDate(currentDate);
-  const dataUrl = process.env.NODE_ENV === "production"
-    ? `https://data.covmap.de/data/graph-${dateKey}.json`
-    : "/data/charts-data.json";
+  const dataUrl =
+    process.env.NODE_ENV === "production"
+      ? `https://data.covmap.de/data/graph-${dateKey}.json`
+      : "/data/charts-data.json";
   const [data, setData] = useState();
 
   useEffect(() => {
-    dispatch(AppApi.pushLoading('charts-data'));
+    dispatch(AppApi.pushLoading("charts-data"));
     fetch(dataUrl)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
-        dispatch(AppApi.popLoading('charts-data'));
-      })
-  }, [])
+        dispatch(AppApi.popLoading("charts-data"));
+      });
+  }, []);
 
   if (!data) {
     return null;
