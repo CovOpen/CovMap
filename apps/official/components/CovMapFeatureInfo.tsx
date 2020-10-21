@@ -141,25 +141,25 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   };
 
   const ContactBehaviorCategory = (): JSX.Element => (
-    <RouterLink to="/contacts-explain" style={{ textDecoration: 'none' }} aria-label="go to contacts explanation">
+    <RouterLink to="/contacts-explain" style={{ textDecoration: "none" }} aria-label="go to contacts explanation">
       <Card variant="outlined" className={card}>
         <CardContent>
           <Grid container direction="column" spacing={1}>
-            <Grid item style = {{minWidth: "350px"}}>
+            <Grid item style={{ minWidth: "350px" }}>
               <Chip size="small" label="beta"></Chip>
             </Grid>
-            <Grid item style = {{minWidth: "350px"}} >
-                <Grid container direction="row" alignItems="center">
-                  <Grid item xs={8}>
-                    <Typography variant="h3">Kontaktverhalten der Bevölkerung</Typography>
-                  </Grid>
-                  <Grid item xs={2}>
-                    <ContactsIcon score={contactScore} />
-                  </Grid>
-                  <Grid item xs={2}>
-                      <ArrowForwardIosIcon color="action" />
-                  </Grid>
+            <Grid item style={{ minWidth: "350px" }}>
+              <Grid container direction="row" alignItems="center">
+                <Grid item xs={8}>
+                  <Typography variant="h3">Kontaktverhalten der Bevölkerung</Typography>
                 </Grid>
+                <Grid item xs={2}>
+                  <ContactsIcon score={contactScore} />
+                </Grid>
+                <Grid item xs={2}>
+                  <ArrowForwardIosIcon color="action" />
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </CardContent>
@@ -168,25 +168,25 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   );
 
   const SymptomLoadCategory = (): JSX.Element => (
-    <RouterLink to="/symptoms-explain" style={{ textDecoration: 'none' }} aria-label="go to symptoms explanation">
+    <RouterLink to="/symptoms-explain" style={{ textDecoration: "none" }} aria-label="go to symptoms explanation">
       <Card variant="outlined" className={card}>
         <CardContent>
           <Grid container direction="column" spacing={1}>
             <Grid item>
               <Chip size="small" label="coming soon"></Chip>
             </Grid>
-            <Grid item style = {{minWidth: "350px"}}>
-                <Grid container direction="row" alignItems="center">
-                  <Grid item xs={8}>
-                    <Typography variant="h3">Symptomlast der Bevölkerung</Typography>
-                  </Grid>
-                  <Grid item xs={2}>
-                    <SymptomsLowIcon />
-                  </Grid>
-                  <Grid item xs={2}>
-                      <ArrowForwardIosIcon color="action" />
-                  </Grid>
+            <Grid item style={{ minWidth: "350px" }}>
+              <Grid container direction="row" alignItems="center">
+                <Grid item xs={8}>
+                  <Typography variant="h3">Symptomlast der Bevölkerung</Typography>
                 </Grid>
+                <Grid item xs={2}>
+                  <SymptomsLowIcon />
+                </Grid>
+                <Grid item xs={2}>
+                  <ArrowForwardIosIcon color="action" />
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </CardContent>
@@ -200,21 +200,21 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     const incidenceDisplay = format.format(incidence);
 
     return (
-      <RouterLink to="/incidence-explain" style={{ textDecoration: 'none' }} aria-label="go to explanation">
+      <RouterLink to="/incidence-explain" style={{ textDecoration: "none" }} aria-label="go to explanation">
         <Card variant="outlined" className={card}>
           <CardContent>
-            <Grid item style = {{minWidth: "350px"}} >
-                <Grid container direction="row" alignItems="center">
-                  <Grid item xs={8}>
-                    <Typography variant="h3">7-Tages-Inzidenz (RKI)</Typography>
-                  </Grid>
-                  <Grid item xs={2}>
-                    <Typography>{incidenceDisplay}</Typography>
-                  </Grid>
-                  <Grid item xs={2}>
-                      <ArrowForwardIosIcon color="action" />
-                  </Grid>
+            <Grid item style={{ minWidth: "350px" }}>
+              <Grid container direction="row" alignItems="center">
+                <Grid item xs={8}>
+                  <Typography variant="h3">7-Tages-Inzidenz (RKI)</Typography>
                 </Grid>
+                <Grid item xs={2}>
+                  <Typography>{incidenceDisplay}</Typography>
+                </Grid>
+                <Grid item xs={2}>
+                  <ArrowForwardIosIcon color="action" />
+                </Grid>
+              </Grid>
             </Grid>
           </CardContent>
         </Card>
@@ -230,7 +230,9 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
         {/*<Grid item>*/}
         {/*  <Typography>{riskDescription}</Typography>*/}
         {/*</Grid>*/}
-        <Grid item xs={12} >{RiskRecommendation({ riskScore })}</Grid>
+        <Grid item xs={12}>
+          {RiskRecommendation({ riskScore })}
+        </Grid>
         <Grid item xs={12} alignContent="stretch">
           <ContactBehaviorCategory />
         </Grid>
