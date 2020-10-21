@@ -8,8 +8,9 @@ import moment from "moment";
 const languageDetector = new LanguageDetector();
 
 const i18nOptions: InitOptions = {
-  fallbackLng: "en",
-  debug: true,
+  lng: "de", // <- remove this line to activate language detection!
+  fallbackLng: "de",
+  debug: process.env.NODE_ENV === 'development',
   load: "languageOnly",
   nonExplicitSupportedLngs: true,
   interpolation: {
