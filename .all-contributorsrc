@@ -119,10 +119,10 @@
       ]
     },
     {
-      "login": "",
+      "login": "zwischenmoment",
       "name": "Cornelia Furkert",
       "avatar_url": "https://avataaars.io/?avatarStyle=Circle&topType=WinterHat3&accessoriesType=Round&hatColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=Heather&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Twinkle&skinColor=Light",
-      "profile": "",
+      "profile": "mailto:cornelia.furkert@googlemail.com",
       "contributions": [
         "code"
       ]
@@ -147,7 +147,7 @@
     },
     {
       "login": "baskle",
-      "name": "baskle",
+      "name": "Bastian Klenow",
       "avatar_url": "https://avatars1.githubusercontent.com/u/53707554?v=4",
       "profile": "https://github.com/baskle",
       "contributions": [
