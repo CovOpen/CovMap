@@ -54,40 +54,16 @@ jobs:
       with:
         ref: '${{github.event.pull_request.head.ref}}'
         repository: '${{github.event.pull_request.head.repo.full_name}}'
-    - uses: actions/cache@v2
-      id: yarn-cache
-      with:
-        path: '**/node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-    - name: Install dependencies
-      if: steps.yarn-cache.outputs.cache-hit != 'true'
-      run: yarn install
+    - name: remove unneeded files
+      run: rm package.json
     - name: Download base artifact
       uses: actions/download-artifact@v1
       with:
         name: dist
-    - name: 'BrowserStack Env Setup'
-      uses: 'browserstack/github-actions/setup-env@master'
-      with:
-        username:  ${{ secrets.BROWSERSTACK_USERNAME }}
-        access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-        build-name: 'covmapperpr${{ github.event.pull_request.number }}'
-        project-name: 'CovMap'
-    - name: 'BrowserStackLocal Setup'
-      uses: 'browserstack/github-actions/setup-local@master'
-      with:
-        local-testing: start
-        local-identifier: random
+    - name: install testcafe
+      run: yarn add http-server testcafe
     - name: test
-      run: |
-        yarn run testcafe "browserstack:chrome:Windows 10","browserstack:firefox:Windows 10" testcafe/*.spec.ts --app "cd ./dist && http-server -p 8080"
-        yarn run testcafe "browserstack:opera:Windows 10","browserstack:chrome@78.0:OS X Catalina" testcafe/*.spec.ts --app "cd ./dist && http-server -p 8080"
-        yarn run testcafe "browserstack:firefox@78.0:OS X Yosemite" testcafe/*.spec.ts --app "cd ./dist && http-server -p 8080"
-
-    - name: 'BrowserStackLocal Stop'
-      uses: 'browserstack/github-actions/setup-local@master'
-      with:
-        local-testing: stop
+      run: yarn run testcafe chrome:headless testcafe/*.spec.ts --app "cd ./dist && http-server -p 8080"
 
   build-base:
     name: 'Build base'
@@ -163,9 +139,11 @@ jobs:
           az storage blob service-properties update --account-name ${{ env.STORAGE_NAME }} --static-website --404-document 404.html --index-document index.html --subscription ${{ SECRETS.AZURE_SUBSCRIPTION_ID }}
           export key=$(az storage account keys list --account-name ${{ env.STORAGE_NAME }} --resource-group  ${{ env.RESSOURCE_GROUP }} --subscription ${{ SECRETS.AZURE_SUBSCRIPTION_ID }} --query "[0].value")
           az storage blob upload-batch -d '$web' -s ./dist/ --account-name ${{ env.STORAGE_NAME }} --account-key $key --subscription ${{ SECRETS.AZURE_SUBSCRIPTION_ID }}
+
     - name: Slack Notification
       run: |
         curl -X POST -H 'Content-type: application/json' --data '{"text":"🚀 Try out the Preview for [PR-${{ github.event.pull_request.number }}](https://github.com/CovOpen/CovMapper/pull/${{ github.event.pull_request.number }} here: https://${{ env.STORAGE_NAME }}.z16.web.core.windows.net)"}' https://hooks.slack.com/services/${{ SECRETS.SLACK_WEBHOOK_SECRET }}
+
 #    - name: Find Comment
 #      uses: peter-evans/find-comment@v1
 #      id: fc
