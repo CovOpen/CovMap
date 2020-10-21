@@ -90,7 +90,8 @@ export const config: AppConfig = {
         title: "Deutschlandweite Graphen",
         route: "/charts",
         Component: Charts,
-      }, {
+      },
+      {
         id: "rki-page",
         title: "RKI",
         route: "/rki",
