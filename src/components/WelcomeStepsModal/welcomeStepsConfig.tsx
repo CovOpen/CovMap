@@ -55,6 +55,6 @@ export const welcomeStepsConfig: StepConfig[] = [
     name: WelcomeModalStep.StepPostalCodeDataPrivacy,
     Component: WelcomeModalDataPrivacy,
     next: WelcomeModalStep.StepPostalCode,
-    closeable: true
+    closeable: true,
   },
 ];
