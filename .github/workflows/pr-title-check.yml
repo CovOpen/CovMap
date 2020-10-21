@@ -26,7 +26,7 @@ jobs:
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-author: 'github-actions[bot]'
-          body-includes: Please make sure that your Pull Request title does conform to this format
+          body-includes: Please make sure that your Pull Request title and body does conform to this format
 
       - name: Create comment
         if: ${{ steps.fc.outputs.comment-id == 0 }}
@@ -34,4 +34,16 @@ jobs:
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            We are following [Conventional Commit Format](https://www.conventionalcommits.org/en/v1.0.0/). Please make sure that your Pull Request title does conform to this format, otherwise it might not be released. 
+            We are following the [Conventional Commit Format](https://www.conventionalcommits.org/en/v1.0.0/). Please make sure that your Pull Request title and body does conform to this format, otherwise, it might not be released. Here is a short example: 
+            ```
+            fix(webapp): correct styling in cool component
+            <type>[optional scope]: <description>
+            ```
+            These are the most used types: (you can find more [here](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#type))
+            | Type | Meaning | Resulting Semantic Release
+            | :------------- |:-------------|:----:|
+            | `fix`       | patches a bug | PATCH (v1.0.0 -> v1.0.1)|
+            | `feat`    |  introduces a new feature | MINOR (v1.0.0 -> v1.1.0)|
+            | `chore` | other non releasing code changes | NONE (v1.0.0 -> v1.0.0|
+
+            In the Pull Request Body please describe what changes for the user of the application. If the user has to do Things different than before (excluding new functionality) please include `BREAKING CHANGE` at the end. This will trigger a major release (v1.0.0 -> v2.0.0)
