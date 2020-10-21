@@ -25,7 +25,7 @@ import { getFallbackComponent } from "./components/getFallback";
  */
 import "./i18n";
 
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 
 import { config } from "app-config/index";
 import { theme } from "./theme";
@@ -49,8 +49,11 @@ export const App = () => {
       <Route
         path={page.route}
         key={page.id}
-        component={page.Component}
-        style={{ flex: "1 1 auto", position: "relative" }}
+        component={() => (
+          <div style={{ zIndex: 1050, backgroundColor: "white", width: "100%", height: "100%" }}>
+            <page.Component/>
+          </div>)}
+        style={{ flex: "1 1 auto", position: "absolute" }}
       />
     );
   }
@@ -69,12 +72,10 @@ export const App = () => {
             <NavBar showSearch={!!currentLayerGroup.search} />
           </Suspense>
           <IntermediateProgress />
-          <Switch>
-            {config.content?.pages.map((page) => renderRoute(page))}
-            <Suspense fallback={getFallbackComponent()}>
-              <Route key="map" path="/:subPage?" component={CovMap} />
-            </Suspense>
-          </Switch>
+          {config.content?.pages.map((page) => renderRoute(page))}
+          <Suspense fallback={getFallbackComponent()}>
+            <Route key="map" path="/:subPage?" component={CovMap} />
+          </Suspense>
         </Container>
         <Snackbar
           anchorOrigin={{
