@@ -25,7 +25,6 @@ import ContactsMediumIcon from "../static/images/contacts-medium.svg";
 import SymptomsLowIcon from "../static/images/symptoms-low.svg";
 
 const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
-  category: {},
   action: {
     alignSelf: "auto",
     marginTop: 0,
@@ -76,11 +75,6 @@ const titleByRiskScore = {
   [RiskScore.Low]: "Normales Risiko",
   [RiskScore.Medium]: "Mittleres Risiko",
   [RiskScore.High]: "Hohes Risiko",
-};
-
-const titleByContactScore = {
-  [ContactScore.Low]: "Reduziert",
-  [ContactScore.Medium]: "Zu hoch",
 };
 
 export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProps) => {
@@ -147,71 +141,57 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   };
 
   const ContactBehaviorCategory = (): JSX.Element => (
-    <Card variant="outlined" className={card}>
-      <CardContent>
-        <Grid container direction="column" spacing={1}>
-          <Grid item>
-            <Chip size="small" label="beta"></Chip>
-          </Grid>
-          <Grid item>
-            <Grid item>
-              <Grid container direction="row" alignItems="center">
-                <Grid item xs={8}>
-                  <Typography variant="h3">Kontaktverhalten der Bevölkerung</Typography>
+    <RouterLink to="/contacts-explain" style={{ textDecoration: 'none' }} aria-label="go to contacts explanation">
+      <Card variant="outlined" className={card}>
+        <CardContent>
+          <Grid container direction="column" spacing={1}>
+            <Grid item style = {{minWidth: "350px"}}>
+              <Chip size="small" label="beta"></Chip>
+            </Grid>
+            <Grid item style = {{minWidth: "350px"}} >
+                <Grid container direction="row" alignItems="center">
+                  <Grid item xs={8}>
+                    <Typography variant="h3">Kontaktverhalten der Bevölkerung</Typography>
+                  </Grid>
+                  <Grid item xs={2}>
+                    <ContactsIcon score={contactScore} />
+                  </Grid>
+                  <Grid item xs={2}>
+                      <ArrowForwardIosIcon color="action" />
+                  </Grid>
                 </Grid>
-                <Grid item xs={2}>
-                  <ContactsIcon score={contactScore} />
-                </Grid>
-                <Grid item xs={2}>
-                  <IconButton
-                    color="primary"
-                    aria-label="go to contact explanation"
-                    component={RouterLink}
-                    to="/contacts-explain"
-                  >
-                    <ArrowForwardIosIcon color="action" />
-                  </IconButton>
-                </Grid>
-              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </RouterLink>
   );
 
   const SymptomLoadCategory = (): JSX.Element => (
-    <Card variant="outlined" className={card}>
-      <CardContent>
-        <Grid container direction="column" spacing={1}>
-          <Grid item>
-            <Chip size="small" label="coming soon"></Chip>
-          </Grid>
-          <Grid item>
+    <RouterLink to="/symptoms-explain" style={{ textDecoration: 'none' }} aria-label="go to symptoms explanation">
+      <Card variant="outlined" className={card}>
+        <CardContent>
+          <Grid container direction="column" spacing={1}>
             <Grid item>
-              <Grid container direction="row" alignItems="center">
-                <Grid item xs={8}>
-                  <Typography variant="h3">Symptomlast der Bevölkerung</Typography>
+              <Chip size="small" label="coming soon"></Chip>
+            </Grid>
+            <Grid item style = {{minWidth: "350px"}}>
+                <Grid container direction="row" alignItems="center">
+                  <Grid item xs={8}>
+                    <Typography variant="h3">Symptomlast der Bevölkerung</Typography>
+                  </Grid>
+                  <Grid item xs={2}>
+                    <SymptomsLowIcon />
+                  </Grid>
+                  <Grid item xs={2}>
+                      <ArrowForwardIosIcon color="action" />
+                  </Grid>
                 </Grid>
-                <Grid item xs={2}>
-                  <SymptomsLowIcon />
-                </Grid>
-                <Grid item xs={2}>
-                  <IconButton
-                    color="primary"
-                    aria-label="go to symptom explanation"
-                    component={RouterLink}
-                    to="/symptoms-explain"
-                  >
-                    <ArrowForwardIosIcon color="action" />
-                  </IconButton>
-                </Grid>
-              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </RouterLink>
   );
 
   const CaseNumbersCategory = (): JSX.Element => {
@@ -220,32 +200,25 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     const incidenceDisplay = format.format(incidence);
 
     return (
-      <Card variant="outlined" className={card}>
-        <CardContent>
-          <Grid item>
-            <Grid item>
-              <Grid container direction="row" alignItems="center">
-                <Grid item xs={8}>
-                  <Typography variant="h3">7-Tages-Inzidenz (RKI)</Typography>
+      <RouterLink to="/incidence-explain" style={{ textDecoration: 'none' }} aria-label="go to explanation">
+        <Card variant="outlined" className={card}>
+          <CardContent>
+            <Grid item style = {{minWidth: "350px"}} >
+                <Grid container direction="row" alignItems="center">
+                  <Grid item xs={8}>
+                    <Typography variant="h3">7-Tages-Inzidenz (RKI)</Typography>
+                  </Grid>
+                  <Grid item xs={2}>
+                    <Typography>{incidenceDisplay}</Typography>
+                  </Grid>
+                  <Grid item xs={2}>
+                      <ArrowForwardIosIcon color="action" />
+                  </Grid>
                 </Grid>
-                <Grid item xs={2}>
-                  <Typography>{incidenceDisplay}</Typography>
-                </Grid>
-                <Grid item xs={2}>
-                  <IconButton
-                    color="primary"
-                    aria-label="go to symptom explanation"
-                    component={RouterLink}
-                    to="/incidence-explain"
-                  >
-                    <ArrowForwardIosIcon color="action" />
-                  </IconButton>
-                </Grid>
-              </Grid>
             </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </RouterLink>
     );
   };
 
@@ -257,14 +230,14 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
         {/*<Grid item>*/}
         {/*  <Typography>{riskDescription}</Typography>*/}
         {/*</Grid>*/}
-        <Grid item>{RiskRecommendation({ riskScore })}</Grid>
-        <Grid item>
+        <Grid item xs={12} >{RiskRecommendation({ riskScore })}</Grid>
+        <Grid item xs={12} alignContent="stretch">
           <ContactBehaviorCategory />
         </Grid>
-        <Grid item>
+        <Grid item xs={12}>
           <SymptomLoadCategory />
         </Grid>
-        <Grid item>
+        <Grid item xs={12}>
           <CaseNumbersCategory />
         </Grid>
         <Grid item className={recommendationsLink}>
