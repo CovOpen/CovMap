@@ -73,8 +73,8 @@ export const Credits = () => {
                   <img className={classes.logo} src="images/credits/PortBlueSky.png"></img>
                 </Grid>
                 <Grid item xs={10}>
-                  Port Blue Sky für die technische Unterstüzung der App durch Ihre Mitarbeiter sowie das Organisieren von
-                  weiterer Unterstützung durch Voluntäre aus der Node.js Community.
+                  Port Blue Sky für die technische Unterstüzung der App durch Ihre Mitarbeiter sowie das Organisieren
+                  von weiterer Unterstützung durch Voluntäre aus der Node.js Community.
                 </Grid>
                 <Grid item xs={2} className={classes.centered}>
                   <img className={classes.logo} src="images/credits/pwc.jpg"></img>
