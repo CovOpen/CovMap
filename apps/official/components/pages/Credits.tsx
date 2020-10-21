@@ -30,7 +30,7 @@ export const Credits = () => {
     <>
       <main className="sections">
         <section>
-          <Typography variant="h1">Über die CovApp</Typography>
+          <Typography variant="h1">Über die CovMap</Typography>
           <div className={(classes.root, classes.logobar)}>
             <Grid container spacing={3}>
               <Grid item xs={4} className={classes.centered}>
@@ -73,14 +73,14 @@ export const Credits = () => {
                   <img className={classes.logo} src="images/credits/PortBlueSky.png"></img>
                 </Grid>
                 <Grid item xs={10}>
-                  Port Blue Sky für die technische Umsetzung der App durch Ihre Mitarbeiter sowie das Organisieren von
+                  Port Blue Sky für die technische Unterstüzung der App durch Ihre Mitarbeiter sowie das Organisieren von
                   weiterer Unterstützung durch Voluntäre aus der Node.js Community.
                 </Grid>
                 <Grid item xs={2} className={classes.centered}>
                   <img className={classes.logo} src="images/credits/pwc.jpg"></img>
                 </Grid>
                 <Grid item xs={10}>
-                  PWC
+                  PWC - Für Lob, Kritik und Rat bei der Umsetzung der CovMap.
                 </Grid>
                 <Grid item xs={2} className={classes.centered}>
                   <img className={classes.logo} src="images/credits/maptiler.png"></img>
