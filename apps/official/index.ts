@@ -6,6 +6,9 @@ import { Imprint } from "./components/pages/Imprint";
 import { Legal } from "./components/pages/Legal";
 import { Privacy } from "./components/pages/Privacy";
 import { Charts } from "./components/pages/Charts";
+import RKI from "./components/pages/RKI";
+import ContactBehavior from "./components/pages/ContactBehavior";
+import SymptomLevel from "./components/pages/SymptomLevel";
 import { BasicRecommendations } from "./components/basic-recommendations/BasicRecommendations";
 import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo";
 import { RiskLevelsPage } from "./components/risk-levels-page/RiskLevelsPage";
@@ -88,6 +91,26 @@ export const config: AppConfig = {
         route: "/charts",
         Component: Charts,
       },
+        id: "rki-page",
+        title: "RKI",
+        route: "/rki",
+        Component: RKI,
+        hidden: true,
+      },
+      {
+        id: "contact-behavior",
+        title: "Kontaktverhalten",
+        route: "/contact-behavior",
+        Component: ContactBehavior,
+        hidden: true,
+      },
+      {
+        id: "symptom-level",
+        title: "Symptomlast",
+        route: "/symptom-level",
+        Component: SymptomLevel,
+        hidden: true,
+      },
       /* {
      id: 'questions-page',
      title: 'Symptome erfassen',
@@ -107,7 +130,10 @@ export const config: AppConfig = {
   defaultVisual: "covmap",
   datasources: {
     "contact-index": {
-      url: (dateString) => `/data/districts_data_all.json`,
+      url: (dateString) =>
+        process.env.NODE_ENV === "production"
+          ? `https://data.covmap.de/data/map-${dateString}.json`
+          : `/data/districts_data_all.json`,
     },
   },
   visuals: {
@@ -140,6 +166,7 @@ export const config: AppConfig = {
         {
           id: "areas-fill",
           source: "CI-to-plz",
+          clickable: true,
           // showLegend: true,
           fn: (dataField, timeKey) => ({
             type: LayerType.FILL,

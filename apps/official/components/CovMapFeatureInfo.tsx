@@ -167,7 +167,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
                     color="primary"
                     aria-label="go to contact explanation"
                     component={RouterLink}
-                    to="/contacts-explain"
+                    to="/contact-behavior"
                   >
                     <ArrowForwardIosIcon color="action" />
                   </IconButton>
@@ -201,7 +201,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
                     color="primary"
                     aria-label="go to symptom explanation"
                     component={RouterLink}
-                    to="/symptoms-explain"
+                    to="/symptom-level"
                   >
                     <ArrowForwardIosIcon color="action" />
                   </IconButton>
@@ -232,12 +232,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
                   <Typography>{incidenceDisplay}</Typography>
                 </Grid>
                 <Grid item xs={2}>
-                  <IconButton
-                    color="primary"
-                    aria-label="go to symptom explanation"
-                    component={RouterLink}
-                    to="/incidence-explain"
-                  >
+                  <IconButton color="primary" aria-label="go to symptom explanation" component={RouterLink} to="/rki">
                     <ArrowForwardIosIcon color="action" />
                   </IconButton>
                 </Grid>
@@ -278,7 +273,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   );
 
   return (
-    <>
+    <div style={{ pointerEvents: "auto" }}>
       <Card className={container}>{cardHeader}</Card>
 
       <Drawer
@@ -291,6 +286,6 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
         {cardHeader}
         {cardContent}
       </Drawer>
-    </>
+    </div>
   );
 };

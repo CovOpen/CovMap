@@ -16,20 +16,17 @@ import { State } from "../state";
 import { triggerInstallPrompt } from "../state/thunks/triggerInstallPrompt";
 import * as clipboard from "clipboard-polyfill";
 
-import { Search } from "./Search";
 import { config } from "app-config/index";
-import { Box, Drawer, useMediaQuery, useTheme } from "@material-ui/core";
+import { Drawer, useMediaQuery } from "@material-ui/core";
 import { CloseRounded } from "@material-ui/icons";
 
 const Logo = config.ui?.Logo;
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    /* zIndex: 1400, */
-    position: "relative",
+    position: "fixed",
     [theme.breakpoints.down("xs")]: {
       // on mobile devices
-      position: "fixed",
       backgroundColor: "transparent",
       boxShadow: "none",
     },
@@ -52,9 +49,6 @@ const useStyles = makeStyles((theme) => ({
     touchAction: "none",
   },
   menuContent: {
-    /* backgroundColor: theme.palette.primary.light, */
-    /* paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(1), */
     marginBottom: theme.spacing(4),
     marginTop: "auto",
   },
@@ -167,7 +161,6 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
     <AppBar classes={{ root: classes.appBar }} style={{ height: 64, flex: "0 0 auto" }}>
       <Toolbar className={classes.fullHeightToolbar}>
         {!isMobile && ((Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} />)}
-        {/* <Route key="map" exact path="/" render={() => showSearch && <Search />} /> */}
         <MenuIconButton handleMenu={handleMenu} />
         <Drawer
           open={open}
@@ -215,7 +208,6 @@ const useIconStyles = makeStyles((theme) => ({
   },
 
   closeIcon: {
-    /* color: theme.palette.highRisk.main */
     "backgroundColor": theme.palette.secondary.main,
     "borderRadius": theme.shape.borderRadius * 1.5,
     "boxShadow": "0px 2px 5px -1px rgba(0,0,0,0.55)",
