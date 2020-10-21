@@ -18,13 +18,13 @@ import { RiskLevelsPage } from "./components/risk-levels-page/RiskLevelsPage";
 const CovMapMappables = [
   {
     property: "riskScore",
-    title: "Risikoeinschätzung",
+    title: (t) => t("translation:risk-score"),
     default: true,
   },
 ];
 
 const CovMapSearch = {
-  placeholder: "PLZ, Landkreis oder Stadt",
+  placeholder: (t) => t("translation:search-placeholder"),
   nameProp: "name",
   inMappings: [
     {
@@ -49,25 +49,25 @@ export const config: AppConfig = {
     pages: [
       {
         id: "faq-page",
-        title: "Fragen und Antworten",
+        title: (t) => t("translation:pages.faq"),
         route: "/faq",
         Component: Faq,
       },
       {
         id: "imprint-page",
-        title: "Impressum",
+        title: (t) => t("translation:pages.copyright"),
         route: "/imprint",
         Component: Imprint,
       },
       {
         id: "legal-page",
-        title: "Rechtliches",
+        title: (t) => t("translation:pages.legal"),
         route: "/legal",
         Component: Legal,
       },
       {
         id: "privacy-page",
-        title: "Datenschutz",
+        title: (t) => t("translation:pages.privacy-policy"),
         route: "/privacy-statement",
         Component: Privacy,
       },
@@ -141,7 +141,7 @@ export const config: AppConfig = {
     covmap: {
       name: "CovMap Fallzahlen",
       description: "Tagesaktuelle Zahlen des RKI - bis jetzt",
-      dateFormat: "dddd, Do MMMM YYYY",
+      dateFormat: (t, date) => t("translation:formats.date", date),
       mappings: {
         "CI-to-plz": {
           datasourceId: "contact-index",

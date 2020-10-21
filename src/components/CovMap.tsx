@@ -6,6 +6,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 import moment from "moment";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { State } from "../state";
 import { AppApi } from "../state/app";
@@ -85,6 +86,7 @@ export const CovMap = () => {
   const [mapLoaded, setMapLoaded] = useState<boolean>(false);
   const mapRef = createRef<any>();
   const visual = config.visuals[currentVisual];
+  const { t } = useTranslation(["common"]);
 
   const handleMapBusy = () => {
     dispatch(AppApi.pushLoading("map-busy"));
@@ -223,10 +225,12 @@ export const CovMap = () => {
       <div className={classes.currentInfo}>
         {/*<Typography variant="h2" color="primary">{visual.name}</Typography>*/}
         <Typography variant="h2" color="primary">
-          {currentMappable.title}
+          {typeof currentMappable.title === "function" ? currentMappable.title(t) : currentMappable.title}
         </Typography>
         <Typography variant="subtitle1" color="primary">
-          {moment(currentDate).format(visual.dateFormat)}
+          {typeof visual.dateFormat === "function"
+            ? visual.dateFormat(t, { date: currentDate })
+            : moment(currentDate).format(visual.dateFormat)}
         </Typography>
       </div>
       {config.showSettings === false ? null : <Settings />}
@@ -253,7 +257,7 @@ export const CovMap = () => {
             touchAction: "none",
           }}
         >
-          Keine Daten für den ausgewählten Zeitraum.
+          {t("no data for selected timeframe")}
         </DialogTitle>
       </Dialog>
       <WelcomeStepsModal subPage={urlParams.subPage} />

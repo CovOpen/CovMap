@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -6,8 +6,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ShareIcon from "@material-ui/icons/Share";
 import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
-import Menu from "@material-ui/core/Menu";
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppApi } from "src/state/app";
 import { useThunkDispatch } from "src/useThunkDispatch";
@@ -15,6 +14,7 @@ import { useSelector } from "react-redux";
 import { State } from "../state";
 import { triggerInstallPrompt } from "../state/thunks/triggerInstallPrompt";
 import * as clipboard from "clipboard-polyfill";
+import { useTranslation } from "react-i18next";
 
 import { config } from "app-config/index";
 import { Drawer, useMediaQuery } from "@material-ui/core";
@@ -85,6 +85,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const { t } = useTranslation(["translation", "common"]);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -123,7 +124,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
           page.hidden ? null : (
             <Link key={page.id} style={{ textDecoration: "none" }} to={page.route}>
               <MenuItem className={classes.menuItem} onClick={props.handleClose}>
-                {page.title}
+                {typeof page.title === "function" ? page.title(t) : page.title}
               </MenuItem>
             </Link>
           ),
@@ -137,7 +138,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
       <div className={classes.menuContent}>
         <Link key="map" style={{ textDecoration: "none" }} to="/">
           <MenuItem className={classes.menuItem} onClick={handleClose}>
-            Karte
+            {t("common:pages.map")}
           </MenuItem>
         </Link>
         <MenuEntries handleClose={handleClose} />
@@ -145,13 +146,13 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
           <div>
             <Divider />
             <MenuItem className={classes.menuItem} onClick={handleInstall}>
-              App Installieren
+              {t("common:pages.install")}
             </MenuItem>
           </div>
         )}
         <Divider />
         <MenuItem className={classes.menuItem} onClick={handleShare}>
-          Share <ShareIcon className={classes.menuIcon} />
+          {t("common:pages.share")} <ShareIcon className={classes.menuIcon} />
         </MenuItem>
       </div>
     );

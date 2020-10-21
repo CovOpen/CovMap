@@ -27,7 +27,7 @@ export type AppDatasource = {
 
 export type AppVisual = {
   name: string;
-  dateFormat: string;
+  dateFormat: string | Function;
   description: string;
   layers: Array<AppVisualLayerSpec>;
   layerGroups: Array<LayerGroup>;
@@ -60,7 +60,7 @@ export type SearchResultList = {
 export type SearchMethod = (query: string, state: State) => SearchResultList;
 
 export type DefaultSearchOptions = {
-  placeholder: string;
+  placeholder: string | Function;
   inMappings: Array<AppSearchWhere>;
   nameProp: string;
   notFoundMessage: string;
@@ -78,7 +78,7 @@ export type DefaultSearchOptions = {
 };
 
 export type CustomSearchOptions = {
-  placeholder: string;
+  placeholder: string | Function;
   notFoundMessage: string;
   searchMethod?: SearchMethod;
 };
@@ -139,7 +139,7 @@ export type AppVisualMapping = {
 
 export type Mappable = {
   property: string;
-  title: string;
+  title: string | Function;
   default?: boolean;
   transform?: Function;
 };
@@ -153,9 +153,10 @@ export type AppContent = {
   PrivacyComponent: ComponentType;
 };
 
+export type AppPageTitleFunction = (t: Function) => string;
 export type AppPage = {
   id: string;
-  title: string;
+  title: string | AppPageTitleFunction;
   route: string;
   hidden?: boolean; // a way to exclude the page from the navbar
   Component: ComponentType;
