@@ -45,7 +45,14 @@ export const App = () => {
   }
 
   function renderRoute(page) {
-    return <Route path={page.route} key={page.id} component={page.Component} />;
+    return (
+      <Route
+        path={page.route}
+        key={page.id}
+        component={page.Component}
+        style={{ flex: "1 1 auto", position: "relative" }}
+      />
+    );
   }
 
   return (
@@ -62,14 +69,12 @@ export const App = () => {
             <NavBar showSearch={!!currentLayerGroup.search} />
           </Suspense>
           <IntermediateProgress />
-          <Container disableGutters maxWidth={false} style={{ flex: "1 1 auto", position: "relative" }}>
-            <Switch>
-              {config.content?.pages.map((page) => renderRoute(page))}
-              <Suspense fallback={getFallbackComponent()}>
-                <Route key="map" path="/:subPage?" component={CovMap} />
-              </Suspense>
-            </Switch>
-          </Container>
+          <Switch>
+            {config.content?.pages.map((page) => renderRoute(page))}
+            <Suspense fallback={getFallbackComponent()}>
+              <Route key="map" path="/:subPage?" component={CovMap} />
+            </Suspense>
+          </Switch>
         </Container>
         <Snackbar
           anchorOrigin={{
