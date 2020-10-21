@@ -5,9 +5,7 @@
 </div>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # CovMapper
@@ -67,6 +65,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://www.linkedin.com/in/mgrupp/"><img src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairDreads02&accessoriesType=Blank&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=CollarSweater&clotheColor=Black&eyeType=Default&eyebrowType=Default&mouthType=Twinkle&skinColor=Light?s=50" width="50px;" alt=""/><br /><sub><b>Michael Grupp</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=" title="Code">💻</a></td>
     <td align="center"><img src="https://avataaars.io/?avatarStyle=Circle&topType=WinterHat3&accessoriesType=Round&hatColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=Heather&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Twinkle&skinColor=Light?s=50" width="50px;" alt=""/><br /><sub><b>Cornelia Furkert</b></sub><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=" title="Code">💻</a></td>
     <td align="center"><a href="https://www.louvard.de/CommitNRun/"><img src="https://avatars2.githubusercontent.com/u/9567496?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Éric Louvard</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=cnrun" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="http://www.manuel-blechschmidt.de/"><img src="https://avatars3.githubusercontent.com/u/457641?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Manuel Blechschmidt</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=ManuelB" title="Code">💻</a></td>
   </tr>
 </table>
 

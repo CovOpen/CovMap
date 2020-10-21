@@ -135,6 +135,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ManuelB",
+      "name": "Manuel Blechschmidt",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/457641?v=4",
+      "profile": "http://www.manuel-blechschmidt.de/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
