@@ -5,7 +5,7 @@
 </div>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # CovMapper
@@ -68,6 +68,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="http://www.manuel-blechschmidt.de/"><img src="https://avatars3.githubusercontent.com/u/457641?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Manuel Blechschmidt</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=ManuelB" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/baskle"><img src="https://avatars1.githubusercontent.com/u/53707554?v=4?s=50" width="50px;" alt=""/><br /><sub><b>baskle</b></sub></a><br /><a href="#design-baskle" title="Design">🎨</a></td>
   </tr>
 </table>
 
