@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link, RouteProps } from "react-router-dom";
 import { Card, CardContent, Grid, IconButton, Typography } from "@material-ui/core";
@@ -30,14 +30,18 @@ const useStyles = makeStyles({
   leftText: {
     textAlign: "left",
   },
+  subHeader: {
+    textAlign: "left",
+    fontWeight: "bold",
+  },
 });
 
 const Header = (): JSX.Element => {
   return (
     <Grid container direction="row" alignItems="center">
       <Grid item>
-        <IconButton component={Link} to="/" color="primary" aria-label="go back to map">
-          <ArrowBackIosIcon />
+        <IconButton component={Link} to="/" aria-label="go back to map">
+          <ArrowBackIosIcon color="action" />
         </IconButton>
       </Grid>
       <Grid item>
@@ -61,7 +65,6 @@ const CountyTeaser = ({ county, url }: { county: string; url: string }): JSX.Ele
             </Typography>
           </Grid>
           <Grid item xs={2}>
-            {/*<IconButton component={Link} to={url} color="primary" aria-label="show risk level explanations">*/}
             <IconButton href={url} target="_blank" color="primary" aria-label="show risk level explanations">
               <ArrowForwardIosIcon fontSize="small" />
             </IconButton>
@@ -95,7 +98,7 @@ const Intro = (): JSX.Element => {
         </Typography>
       </Grid>
       <Grid item>
-        <Typography variant="h2" className={classes.leftText}>
+        <Typography variant="body1" className={classes.subHeader}>
           {ActionTexts.INTRO_TEASER_2}
         </Typography>
       </Grid>
