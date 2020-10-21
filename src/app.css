@@ -179,15 +179,6 @@ body {
   margin-top: -50px;
 }
 
-#info .text {
-  padding-top: 64px;
-}
-
-/* About */
-main.sections {
-  padding-top: 64px; /* move down by static appBar height */
-}
-
 .sections section {
   padding: 1rem 2rem;
   margin-left: auto;
