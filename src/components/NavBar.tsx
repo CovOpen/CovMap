@@ -25,10 +25,9 @@ const Logo = config.ui?.Logo;
 const useStyles = makeStyles((theme) => ({
   appBar: {
     /* zIndex: 1400, */
-    position: "relative",
+    position: "fixed",
     [theme.breakpoints.down("xs")]: {
       // on mobile devices
-      position: "fixed",
       backgroundColor: "transparent",
       boxShadow: "none",
     },
@@ -51,9 +50,7 @@ const useStyles = makeStyles((theme) => ({
     touchAction: "none",
   },
   menuContent: {
-    /* backgroundColor: theme.palette.primary.light, */
-    /* paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(1), */
+
     marginBottom: theme.spacing(4),
     marginTop: "auto",
   },
