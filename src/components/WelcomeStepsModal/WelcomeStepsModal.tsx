@@ -53,7 +53,7 @@ export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
 
   function onClose() {
     if (currentStepConfig.closeable) {
-      history.goBack()
+      history.goBack();
     }
   }
 

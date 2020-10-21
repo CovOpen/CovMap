@@ -8,8 +8,8 @@ const useStyles = makeStyles(() => ({
   outerDiv: { marginBottom: "28px" },
   iconDiv: { position: "absolute", right: "10px", top: "10px" },
   icon: {
-    fontSize: "36px"
-  }
+    fontSize: "36px",
+  },
 }));
 
 export const WelcomeModalDataPrivacy: React.FC = () => {
@@ -19,9 +19,9 @@ export const WelcomeModalDataPrivacy: React.FC = () => {
   return (
     <div className={classes.outerDiv}>
       <div className={classes.iconDiv}>
-        <CancelOutlined classes={{ root: classes.icon }} onClick={history.goBack}/>
+        <CancelOutlined classes={{ root: classes.icon }} onClick={history.goBack} />
       </div>
-      <config.content.PrivacyComponent/>
+      <config.content.PrivacyComponent />
     </div>
   );
 };
