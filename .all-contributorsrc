@@ -21,7 +21,7 @@
     },
     {
       "login": "alexanderthieme",
-      "name": "alexanderthieme",
+      "name": "Alexander Thieme",
       "avatar_url": "https://avatars1.githubusercontent.com/u/61984544?v=4",
       "profile": "https://github.com/alexanderthieme",
       "contributions": [
@@ -30,7 +30,7 @@
     },
     {
       "login": "ChristianRomberg",
-      "name": "ChristianRomberg",
+      "name": "Christian Romberg",
       "avatar_url": "https://avatars0.githubusercontent.com/u/25772118?v=4",
       "profile": "https://github.com/ChristianRomberg",
       "contributions": [
@@ -48,7 +48,7 @@
     },
     {
       "login": "kantimam",
-      "name": "kant imam",
+      "name": "Kantemir Imamov",
       "avatar_url": "https://avatars2.githubusercontent.com/u/24353308?v=4",
       "profile": "https://kantimam.org/",
       "contributions": [
@@ -66,7 +66,7 @@
     },
     {
       "login": "ChristophWersal",
-      "name": "ChristophWersal",
+      "name": "Christoph Wersal",
       "avatar_url": "https://avatars0.githubusercontent.com/u/45358216?v=4",
       "profile": "https://github.com/ChristophWersal",
       "contributions": [
@@ -80,6 +80,80 @@
       "profile": "https://github.com/weltenwort",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "ttobollik",
+      "name": "ttobollik",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/6298068?v=4",
+      "profile": "https://github.com/ttobollik",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "onouv",
+      "name": "Olaf Nouvortne",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/30532561?v=4",
+      "profile": "https://github.com/onouv",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "DanielHabenicht",
+      "name": "Daniel Habenicht",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/13590797?v=4",
+      "profile": "https://danielhabenicht.github.io/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "",
+      "name": "Michael Grupp",
+      "avatar_url": "https://avataaars.io/?avatarStyle=Circle&topType=ShortHairDreads02&accessoriesType=Blank&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=CollarSweater&clotheColor=Black&eyeType=Default&eyebrowType=Default&mouthType=Twinkle&skinColor=Light",
+      "profile": "https://www.linkedin.com/in/mgrupp/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "zwischenmoment",
+      "name": "Cornelia Furkert",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/73227216?v=4",
+      "profile": "mailto:cornelia.furkert@googlemail.com",
+      "contributions": [
+        "design",
+        "userTesting",
+        "mentoring"
+      ]
+    },
+    {
+      "login": "cnrun",
+      "name": "Éric Louvard",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/9567496?v=4",
+      "profile": "https://www.louvard.de/CommitNRun/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ManuelB",
+      "name": "Manuel Blechschmidt",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/457641?v=4",
+      "profile": "http://www.manuel-blechschmidt.de/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "baskle",
+      "name": "Bastian Klenow",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/53707554?v=4",
+      "profile": "https://github.com/baskle",
+      "contributions": [
+        "design"
       ]
     }
   ],
