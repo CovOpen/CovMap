@@ -232,12 +232,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
                   <Typography>{incidenceDisplay}</Typography>
                 </Grid>
                 <Grid item xs={2}>
-                  <IconButton
-                    color="primary"
-                    aria-label="go to symptom explanation"
-                    component={RouterLink}
-                    to="/rki"
-                  >
+                  <IconButton color="primary" aria-label="go to symptom explanation" component={RouterLink} to="/rki">
                     <ArrowForwardIosIcon color="action" />
                   </IconButton>
                 </Grid>

@@ -184,7 +184,7 @@ body {
 }
 
 /* About */
-main.sections{
+main.sections {
   padding-top: 64px; /* move down by static appBar height */
 }
 
@@ -208,10 +208,6 @@ main.sections{
 #menu-appbar .MuiPaper-rounded {
   background-color: #e3e9f3;
 }
-
-
-
-
 
 /* FIXME: removes Mapbox logo. Needs to be discussed with company before release.
 .mapboxgl-control-container {
