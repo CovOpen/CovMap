@@ -165,7 +165,6 @@ export const CovMap = () => {
   const mappingLayers = Object.keys(visual.mappings);
   const handleMapClick = (pointerEvent, stateViewport) => {
     const { features } = pointerEvent;
-    console.log(features)
     if (features.length > 0) {
 
       /* handle multiple features. this happens when a street or text is clicked */
@@ -174,9 +173,13 @@ export const CovMap = () => {
         // find out target features from index.ts
         const layers = config.visuals.covmap.layers;
         if (!layers) return;
-        const fillLayer = layers.filter(layer => layer.type === LayerType.FILL); // get the layer with the layer type "fill"
-        if (!fillLayer) return;
-        countyFeatures = features.filter(feature => fillLayer.some(layer => feature.layer && (feature.layer.id === layer.id)));
+        const clickableLayer = layers.filter(layer => layer.clickable); // get all clickable layers
+        if (!clickableLayer) return;
+        countyFeatures = features.filter(feature =>
+          clickableLayer.some(layer =>
+            feature.layer && feature.layer.id === layer.id
+          )
+        );
         if (!countyFeatures) return;
       } else {
         countyFeatures = features;

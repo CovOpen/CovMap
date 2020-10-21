@@ -194,7 +194,6 @@ main.sections{
   margin-right: auto;
   text-align: left;
   max-width: 600px;
-  /* background-color: #e3e9f3; */
 }
 
 .sections section p {
@@ -212,11 +211,7 @@ main.sections{
 
 
 
-/* @media only screen and (max-width: 600px) {
-  main.sections {
-    padding-top: 64px; 
-  }
-} */
+
 
 /* FIXME: removes Mapbox logo. Needs to be discussed with company before release.
 .mapboxgl-control-container {
