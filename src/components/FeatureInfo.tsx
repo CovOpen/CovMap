@@ -23,8 +23,7 @@ export const FeatureInfo = memo(() => {
   }
 
   const visual = config.visuals[currentVisual];
-  // TODO: Select data correctly from a dataset for info here
-  const mappingId = Object.keys(visual.mappings)[0]; // <-
+  const mappingId = Object.keys(visual.mappings)[0];
   const activeMapping = visual.mappings[mappingId];
   const timeKey = formatUTCDate(currentDate);
   const currentDataSet = datasets.get(`${timeKey}-${activeMapping.datasourceId}`);
@@ -45,7 +44,14 @@ export const FeatureInfo = memo(() => {
     <Suspense fallback={getFallbackComponent()}>
       <Popper
         open={true}
-        style={{ top: "auto", width: "100%", bottom: "24px", display: "flex", justifyContent: "center" }}
+        style={{
+          top: "auto",
+          width: "100%",
+          bottom: "24px",
+          display: "flex",
+          justifyContent: "center",
+          pointerEvents: "none",
+        }}
       >
         <InfoComponent
           feature={currentFeature.feature}

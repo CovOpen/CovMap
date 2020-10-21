@@ -6,6 +6,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 import moment from "moment";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { State } from "../state";
 import { AppApi } from "../state/app";
@@ -22,9 +23,8 @@ import { Legend } from "./Legend";
 import { Settings } from "./Settings";
 import { config } from "app-config/index";
 import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
-import { Search } from "./Search";
-import Box from "@material-ui/core/Box";
 import FixedSearch from "./FixedSearch";
+import { LayerType } from "src/app-config.types";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   currentInfo: {
     "position": "absolute",
-    "top": 0,
+    "top": "64px",
     "right": 0,
     "margin": theme.spacing(2),
     "zIndex": 1100,
@@ -46,9 +46,7 @@ const useStyles = makeStyles((theme) => ({
       -1px 1px 0 rgba(0,0,0,0.36),
       1px 1px 0 rgba(0,0,0,0.36);
     `,
-    /* on mobile move it down by the navheight */
     [theme.breakpoints.down("xs")]: {
-      top: 64, // make this dynamic nav is 64px heigh so far tho
       margin: theme.spacing(1, 2),
     },
     "& h2": {
@@ -75,7 +73,6 @@ async function loadFlyTo() {
 }
 
 export const CovMap = () => {
-  let startTime = Date.now();
   const classes = useStyles();
   const dispatch = useThunkDispatch();
   const urlParams = useParams<{ subPage?: string }>();
@@ -89,6 +86,7 @@ export const CovMap = () => {
   const [mapLoaded, setMapLoaded] = useState<boolean>(false);
   const mapRef = createRef<any>();
   const visual = config.visuals[currentVisual];
+  const { t } = useTranslation(["common"]);
 
   const handleMapBusy = () => {
     dispatch(AppApi.pushLoading("map-busy"));
@@ -169,13 +167,31 @@ export const CovMap = () => {
   const handleMapClick = (pointerEvent, stateViewport) => {
     const { features } = pointerEvent;
     if (features.length > 0) {
+      /* handle multiple features. this happens when a street or text is clicked */
+      let countyFeatures;
+      if (features.length > 1) {
+        // find out target features from index.ts
+        const layers = config.visuals.covmap.layers;
+        if (!layers || !layers.length) return;
+
+        const clickableLayer = layers.filter((layer) => layer.clickable); // get all clickable layers
+        if (!clickableLayer.length) return;
+
+        countyFeatures = features.filter((feature) =>
+          clickableLayer.some((layer) => feature.layer && feature.layer.id === layer.id),
+        );
+        if (!countyFeatures.length) return;
+      } else {
+        countyFeatures = features;
+      }
+
       if (mapRef.current) {
-        if (!mappingLayers.includes(features[0].source)) {
+        if (!mappingLayers.includes(countyFeatures[0].source)) {
           return;
         }
       }
 
-      dispatch(AppApi.setCurrentFeature(features[0], pointerEvent.lngLat));
+      dispatch(AppApi.setCurrentFeature(countyFeatures[0], pointerEvent.lngLat));
 
       if (stateViewport.zoom > 7) {
         const newViewport = {
@@ -209,10 +225,12 @@ export const CovMap = () => {
       <div className={classes.currentInfo}>
         {/*<Typography variant="h2" color="primary">{visual.name}</Typography>*/}
         <Typography variant="h2" color="primary">
-          {currentMappable.title}
+          {typeof currentMappable.title === "function" ? currentMappable.title(t) : currentMappable.title}
         </Typography>
         <Typography variant="subtitle1" color="primary">
-          {moment(currentDate).format(visual.dateFormat)}
+          {typeof visual.dateFormat === "function"
+            ? visual.dateFormat(t, { date: currentDate })
+            : moment(currentDate).format(visual.dateFormat)}
         </Typography>
       </div>
       {config.showSettings === false ? null : <Settings />}
@@ -239,7 +257,7 @@ export const CovMap = () => {
             touchAction: "none",
           }}
         >
-          Keine Daten für den ausgewählten Zeitraum.
+          {t("no data for selected timeframe")}
         </DialogTitle>
       </Dialog>
       <WelcomeStepsModal subPage={urlParams.subPage} />

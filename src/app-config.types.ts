@@ -1,11 +1,10 @@
 import { ComponentType } from "react";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import { State } from "./state";
-import { RawDataEntry } from "app-config/models";
 
 export type AppConfig = {
   ui: AppUI;
-  content?: AppContent;
+  content: AppContent;
   buildJSON: BuildJSON;
   mapSettings?: MapSettings;
   defaultVisual: string;
@@ -28,7 +27,7 @@ export type AppDatasource = {
 
 export type AppVisual = {
   name: string;
-  dateFormat: string;
+  dateFormat: string | Function;
   description: string;
   layers: Array<AppVisualLayerSpec>;
   layerGroups: Array<LayerGroup>;
@@ -61,7 +60,7 @@ export type SearchResultList = {
 export type SearchMethod = (query: string, state: State) => SearchResultList;
 
 export type DefaultSearchOptions = {
-  placeholder: string;
+  placeholder: string | Function;
   inMappings: Array<AppSearchWhere>;
   nameProp: string;
   notFoundMessage: string;
@@ -79,7 +78,7 @@ export type DefaultSearchOptions = {
 };
 
 export type CustomSearchOptions = {
-  placeholder: string;
+  placeholder: string | Function;
   notFoundMessage: string;
   searchMethod?: SearchMethod;
 };
@@ -102,6 +101,7 @@ export type AppVisualLayerFunction = (dataField?: string, timeKey?: string) => A
 export type AppVisualLayerSpec = {
   id: LayerId;
   source: MappingId;
+  clickable?: boolean;
   /**
    * Whether to show a box describing the color values of this layer
    */
@@ -139,7 +139,7 @@ export type AppVisualMapping = {
 
 export type Mappable = {
   property: string;
-  title: string;
+  title: string | Function;
   default?: boolean;
   transform?: Function;
 };
@@ -150,13 +150,15 @@ export type AppGeo = {
 
 export type AppContent = {
   pages: Array<AppPage>;
+  PrivacyComponent: ComponentType;
 };
 
+export type AppPageTitleFunction = (t: Function) => string;
 export type AppPage = {
   id: string;
-  title: string;
+  title: string | AppPageTitleFunction;
   route: string;
-  hidden?: boolean  // a way to exclude the page from the navbar
+  hidden?: boolean; // a way to exclude the page from the navbar
   Component: ComponentType;
 };
 
@@ -196,10 +198,12 @@ export type AppUI = {
 };
 
 export type Color = string;
+
 export enum AppleMobileWebAppCapable {
   YES = "yes",
   NO = "no",
 }
+
 export enum AppleMobileWebAppStatusBarStyle {
   DEFAULT = "default",
 }
