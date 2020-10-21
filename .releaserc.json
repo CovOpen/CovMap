@@ -18,6 +18,10 @@
     {
       "path": "@semantic-release/exec",
       "cmd": "npm run build"
+    },
+    {
+      "path": "@semantic-release/exec",
+      "cmd": "cd dist; zip -r ../release.zip *"
     }
   ],
   "publish": [
@@ -28,7 +32,7 @@
           "path": "static/changelog.md",
           "label": "Changelog"
         },
-        { "path": "dist/**", "label": "WebApp-${nextRelease.gitTag}.zip" }
+        { "path": "release.zip", "label": "WebApp-${nextRelease.gitTag}.zip" }
       ]
     },
     {
