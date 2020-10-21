@@ -54,6 +54,10 @@
         ]
       }
     ],
-    "@semantic-release/release-notes-generator"
+    ["@semantic-release/github", {
+      "assets": [
+        {"path": "dist/**", "label": "WebApp-${nextRelease.gitTag}.zip"}
+      ]
+    }]
   ]
 }
