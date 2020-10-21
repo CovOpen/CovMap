@@ -39,10 +39,10 @@ const useStyles = makeStyles({
 
 const Header = (): JSX.Element => {
   return (
-    <Link to="/" style={{ textDecoration: 'none' }} aria-label="go back to map">
+    <Link to="/" style={{ textDecoration: "none" }} aria-label="go back to map">
       <Grid container direction="row">
-        <Grid item>        
-            <ArrowBackIosIcon color="action" />        
+        <Grid item>
+          <ArrowBackIosIcon color="action" />
         </Grid>
         <Grid item>
           <Typography variant="h1">{ActionTexts.TITLE}</Typography>
