@@ -100,9 +100,10 @@ export const config: AppConfig = {
   defaultVisual: "covmap",
   datasources: {
     "contact-index": {
-      url: (dateString) => process.env.NODE_ENV === 'production' 
-        ? `https://data.covmap.de/data/map-${dateString}.json`
-        : `/data/districts_data_all.json`,
+      url: (dateString) =>
+        process.env.NODE_ENV === "production"
+          ? `https://data.covmap.de/data/map-${dateString}.json`
+          : `/data/districts_data_all.json`,
     },
   },
   visuals: {
