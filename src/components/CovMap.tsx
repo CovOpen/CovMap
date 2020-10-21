@@ -172,15 +172,17 @@ export const CovMap = () => {
       if (features.length > 1) {
         // find out target features from index.ts
         const layers = config.visuals.covmap.layers;
-        if (!layers) return;
+        if (!layers || !layers.length) return;
+
         const clickableLayer = layers.filter(layer => layer.clickable); // get all clickable layers
-        if (!clickableLayer) return;
+        if (!clickableLayer.length) return;
+
         countyFeatures = features.filter(feature =>
           clickableLayer.some(layer =>
             feature.layer && feature.layer.id === layer.id
           )
         );
-        if (!countyFeatures) return;
+        if (!countyFeatures.length) return;
       } else {
         countyFeatures = features;
       }
