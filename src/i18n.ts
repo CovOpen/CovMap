@@ -10,7 +10,7 @@ const languageDetector = new LanguageDetector();
 const i18nOptions: InitOptions = {
   lng: "de", // <- remove this line to activate language detection!
   fallbackLng: "de",
-  debug: process.env.NODE_ENV === 'development',
+  debug: process.env.NODE_ENV === "development",
   load: "languageOnly",
   nonExplicitSupportedLngs: true,
   interpolation: {
