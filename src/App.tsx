@@ -70,7 +70,7 @@ export const App = () => {
           style={{ position: "absolute", height: "100%", display: "flex", flexDirection: "column" }}
         >
           <Suspense fallback={getFallbackComponent()}>
-            <NavBar showSearch={!!currentLayerGroup.search} />
+            <NavBar />
           </Suspense>
           <IntermediateProgress />
           {config.content?.pages.map((page) => renderRoute(page))}
