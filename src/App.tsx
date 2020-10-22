@@ -51,8 +51,9 @@ export const App = () => {
         key={page.id}
         component={() => (
           <div style={{ zIndex: 1050, backgroundColor: "white", width: "100%", height: "100%" }}>
-            <page.Component/>
-          </div>)}
+            <page.Component />
+          </div>
+        )}
         style={{ flex: "1 1 auto", position: "absolute" }}
       />
     );
