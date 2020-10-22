@@ -12,12 +12,12 @@ const ContactBehavior = () => {
       <section>
         <Typography>Wie wird das Kontaktverhalten der Bevölkerung bestimmt?</Typography>
         <Typography>
-        Unsere Gruppe hat ein Modell für das Kontaktverhalten auf Basis von GPS Daten entwickelt. Wir konnten einen{" "}
+          Unsere Gruppe hat ein Modell für das Kontaktverhalten auf Basis von GPS Daten entwickelt. Wir konnten einen{" "}
           <a target="_blank" href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2" rel="noreferrer">
-          Kontakt-Index
+            Kontakt-Index
           </a>{" "}
-        entwickeln, der eine hohe Korrelation mit der effektiven Reproduktionszahl (R) des Coronavirus aufweist, und das
-        6 Tage früher!
+          entwickeln, der eine hohe Korrelation mit der effektiven Reproduktionszahl (R) des Coronavirus aufweist, und
+          das 6 Tage früher!
         </Typography>
         <Typography>
           Der R-Wert ist eine wichtige Maßzahl zur Steuerung der Corona Maßnahmen. Er besagt, wie viele Personen von

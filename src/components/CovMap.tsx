@@ -97,7 +97,7 @@ export const CovMap = () => {
     dispatch(AppApi.popLoading("map-busy"));
   };
 
-  const isCurrentPageWelcomeScreen = welcomeStepsConfig.find(({name}) => name === urlParams.subPage) !== undefined;
+  const isCurrentPageWelcomeScreen = welcomeStepsConfig.find(({ name }) => name === urlParams.subPage) !== undefined;
   const showSearch = !urlParams.subPage || isCurrentPageWelcomeScreen;
 
   useEffect(() => {
