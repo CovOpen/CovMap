@@ -38,10 +38,10 @@ export const Imprint = () => {
           </Typography>
           <Typography variant="body1">Verantwortlich für Inhalte:</Typography>
           <Typography variant="body1">Projektleitung CovMap: Dr. med. Alexander H. Thieme, M.Sc.</Typography>
-          <Typography variant="body1">Das CovMap Team:</Typography>
+          <Typography variant="body1">Das gesamte Team:</Typography>
           <Typography variant="body1">
-            Dr. Mittermaier (Charité), Dr. Gertler (Charité), Prof. Dr. Lippert (HPI), Dr. Konigorski (HPI), Dr.
-            Edelmann (HPI), PD. Dr. Rüdiger (NETCHECK), Hr. Zernick (NETCHECK)
+            Dr. Thieme (Charité), Dr. Mittermaier (Charité), Dr. Gertler (Charité), Prof. Dr. Lippert (HPI), Dr. Konigorski (HPI), Dr.
+            Edelmann (HPI), PD. Dr. Rüdiger (NET CHECK), Hr. Zernick (NET CHECK)
           </Typography>
         </section>
 
