@@ -140,6 +140,7 @@ Die Verarbeitung der IP-Adresse der Nutzerinnen und Nutzer der CovMap erfolgt mi
             Mitgliedstaat Ihres Aufenthaltsorts, Ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes über die
             Verarbeitung Ihrer personenbezogenen Daten durch uns zu beschweren, wenn Sie der Ansicht sind, dass die
             Verarbeitung der Sie betreffenden personenbezogenen Daten rechtswidrig erfolgt.
+            <br />
           </Typography>
         </section>
       </main>
