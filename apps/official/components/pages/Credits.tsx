@@ -59,7 +59,7 @@ export const Credits = () => {
             </p>
             </Typography>
           <Typography variant="body1">
-            Projektleitung: <br />
+            Projektleitung: <br /><br />
             Charité: Dr. med. Alexander H. Thieme, M. Sc. <br />
             Gesamtkonzept, CovMap, Datenanalyse Symptome<br /><br />
             HPI: Prof. Dr. Christoph Lippert<br />
@@ -103,6 +103,7 @@ export const Credits = () => {
             </Typography>
             <Typography variant="body1"></Typography>
           </section>
+          <section>
           <Typography variant="h2">Ganz besonders möchten wir folgenden Personen danken:</Typography>
           {contributors.contributors.map((el, i) => (
             <p>
@@ -112,6 +113,7 @@ export const Credits = () => {
               </a>
             </p>
           ))}
+          </section>
           <Typography variant="body1"></Typography>
         </section>
       </main>
