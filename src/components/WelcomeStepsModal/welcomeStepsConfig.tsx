@@ -3,7 +3,7 @@ import { WelcomeModal1 } from "./WelcomeModal1";
 import { WelcomeModal2 } from "./WelcomeModal2";
 import { WelcomeModal3 } from "./WelcomeModal3";
 import { WelcomeModalPostalCode } from "./WelcomeModalPostalCode";
-import { config } from "app-config/index";
+import { WelcomeModalDataPrivacy } from "./WelcomeModalDataPrivacy";
 
 export type StepConfig = {
   name: WelcomeModalStep;
@@ -12,6 +12,7 @@ export type StepConfig = {
   previous?: WelcomeModalStep;
   skip?: WelcomeModalStep;
   dotProgressNumber?: number;
+  closeable?: boolean;
 };
 
 export const enum WelcomeModalStep {
@@ -52,11 +53,8 @@ export const welcomeStepsConfig: StepConfig[] = [
   },
   {
     name: WelcomeModalStep.StepPostalCodeDataPrivacy,
-    Component: () => (
-      <div style={{ marginBottom: "28px" }}>
-        <config.content.PrivacyComponent />
-      </div>
-    ),
+    Component: WelcomeModalDataPrivacy,
     next: WelcomeModalStep.StepPostalCode,
+    closeable: true,
   },
 ];

@@ -5,6 +5,8 @@ import { Faq } from "./components/pages/Faq";
 import { Imprint } from "./components/pages/Imprint";
 import { Legal } from "./components/pages/Legal";
 import { Privacy } from "./components/pages/Privacy";
+import { Credits } from "./components/pages/Credits";
+import { Charts } from "./components/pages/Charts";
 import RKI from "./components/pages/RKI";
 import ContactBehavior from "./components/pages/ContactBehavior";
 import SymptomLevel from "./components/pages/SymptomLevel";
@@ -17,18 +19,18 @@ import { RiskLevelsPage } from "./components/risk-levels-page/RiskLevelsPage";
 const CovMapMappables = [
   {
     property: "riskScore",
-    title: "Risikoeinschätzung",
+    title: (t) => t("translation:risk-score"),
     default: true,
   },
 ];
 
 const CovMapSearch = {
-  placeholder: "PLZ, Landkreis oder Stadt",
+  placeholder: (t) => t("translation:search-placeholder"),
   nameProp: "name",
   inMappings: [
     {
       id: "CI-to-plz",
-      properties: ["name", "zip_codes", "cities"],
+      properties: ["name", "zip_codes"],
       getCoordinates: (feature) => {
         //return feature.properties.geo_point_2d TODO
       },
@@ -47,26 +49,39 @@ export const config: AppConfig = {
   content: {
     pages: [
       {
+        id: "charts",
+        title: (t) => t("translation:pages.charts"),
+        route: "/charts",
+        Component: Charts,
+      },
+      {
         id: "faq-page",
-        title: "Fragen und Antworten",
+        title: (t) => t("translation:pages.faq"),
         route: "/faq",
         Component: Faq,
       },
       {
+        id: "credits",
+        title: (t) => t("translation:pages.about"),
+        route: "/credits",
+        Component: Credits,
+      },
+      {
         id: "imprint-page",
-        title: "Impressum",
+        title: (t) => t("translation:pages.copyright"),
         route: "/imprint",
         Component: Imprint,
+        menuDivider: true,
       },
       {
         id: "legal-page",
-        title: "Rechtliches",
+        title: (t) => t("translation:pages.legal"),
         route: "/legal",
         Component: Legal,
       },
       {
         id: "privacy-page",
-        title: "Datenschutz",
+        title: (t) => t("translation:pages.privacy-policy"),
         route: "/privacy-statement",
         Component: Privacy,
       },
@@ -120,18 +135,23 @@ export const config: AppConfig = {
       [56.47462805805594, 2.3730468750000004],
       [43.27103747280261, 17.885742187500004],
     ],
+    baseApiUrl: "https://tiles.covmap.de",
+    mapStyle: "https://tiles.covmap.de/styles/custom_dark_matter/style.json",
   },
   defaultVisual: "covmap",
   datasources: {
     "contact-index": {
-      url: (dateString) => `/data/districts_data_all.json`,
+      url: (dateString) =>
+        process.env.NODE_ENV === "production"
+          ? `https://data.covmap.de/data/map-${dateString}.json`
+          : `/data/districts_data_all.json`,
     },
   },
   visuals: {
     covmap: {
       name: "CovMap Fallzahlen",
       description: "Tagesaktuelle Zahlen des RKI - bis jetzt",
-      dateFormat: "dddd, Do MMMM YYYY",
+      dateFormat: (t, date) => t("translation:formats.date", date),
       mappings: {
         "CI-to-plz": {
           datasourceId: "contact-index",
@@ -175,7 +195,7 @@ export const config: AppConfig = {
               ],
               "fill-opacity": 0.5,
             },
-            beforeId: "road-label",
+            beforeId: "place_other",
           }),
         },
         {

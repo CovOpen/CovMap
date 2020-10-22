@@ -5,7 +5,7 @@ const ContactBehavior = () => {
   return (
     <main className="sections">
       <section>
-        <Typography variant="h1">Kontakverhalten</Typography>
+        <Typography variant="h1">Kontaktverhalten</Typography>
       </section>
       <section>
         <Typography>Wie wird das Kontaktverhalten der Bevölkerung bestimmt?</Typography>
