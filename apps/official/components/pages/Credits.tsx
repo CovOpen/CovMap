@@ -55,7 +55,7 @@ export const Credits = () => {
           <Typography variant="h2">
             <p>
               CovMap ist ein Gemeinschaftsprojekt der Charité - Universitätsmedizin Berlin, des Hasso-Plattner-Instituts (HPI) und der Firma
-              NETCHECK.
+              NET CHECK.
             </p>
             </Typography>
           <Typography variant="body1">
@@ -64,7 +64,7 @@ export const Credits = () => {
             Gesamtkonzept, CovMap, Datenanalyse Symptome<br /><br />
             HPI: Prof. Dr. Christoph Lippert<br />
             Datenanalyse, Modellerstellung, Prognosen<br /><br />
-            NETCHECK: PD. Dr. Sten Rüdiger <br />
+            NET CHECK: PD. Dr. Sten Rüdiger <br />
             Datenanalyse GPS-Daten, Kontakt-Index<br />
           </Typography>
         </section>
@@ -104,7 +104,7 @@ export const Credits = () => {
             <Typography variant="body1"></Typography>
           </section>
           <section>
-          <Typography variant="h2">Ganz besonders möchten wir folgenden Personen danken:</Typography>
+          <Typography variant="h2">Ganz besonders möchten wir folgenden Personen danken:<br /></Typography>
           {contributors.contributors.map((el, i) => (
             <p>
               {" - "}
