@@ -49,16 +49,29 @@ export const config: AppConfig = {
   content: {
     pages: [
       {
+        id: "charts",
+        title: (t) => t("translation:pages.charts"),
+        route: "/charts",
+        Component: Charts,
+      },
+      {
         id: "faq-page",
         title: (t) => t("translation:pages.faq"),
         route: "/faq",
         Component: Faq,
       },
       {
+        id: "credits",
+        title: (t) => t("translation:pages.about"),
+        route: "/credits",
+        Component: Credits,
+      },
+      {
         id: "imprint-page",
         title: (t) => t("translation:pages.copyright"),
         route: "/imprint",
         Component: Imprint,
+        menuDivider: true,
       },
       {
         id: "legal-page",
@@ -73,12 +86,6 @@ export const config: AppConfig = {
         Component: Privacy,
       },
       {
-        id: "credits",
-        title: "Über die CovMap",
-        route: "/credits",
-        Component: Credits,
-      },
-      {
         id: "basic-recommendations",
         title: "Empfehlungen",
         route: "/recommendations",
@@ -91,12 +98,6 @@ export const config: AppConfig = {
         route: "/risk-levels",
         Component: RiskLevelsPage,
         hidden: true,
-      },
-      {
-        id: "charts",
-        title: "Deutschlandweite Graphen",
-        route: "/charts",
-        Component: Charts,
       },
       {
         id: "rki-page",
@@ -134,6 +135,8 @@ export const config: AppConfig = {
       [56.47462805805594, 2.3730468750000004],
       [43.27103747280261, 17.885742187500004],
     ],
+    baseApiUrl: "https://tiles.covmap.de",
+    mapStyle: "https://tiles.covmap.de/styles/custom_dark_matter/style.json",
   },
   defaultVisual: "covmap",
   datasources: {
@@ -192,7 +195,7 @@ export const config: AppConfig = {
               ],
               "fill-opacity": 0.5,
             },
-            beforeId: "road-label",
+            beforeId: "place_other",
           }),
         },
         {

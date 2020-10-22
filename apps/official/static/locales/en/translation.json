@@ -2,6 +2,8 @@
   "pages": {
     "faq": "FAQ",
     "info": "Info",
+    "charts": "Data Graphs",
+    "about": "About CovMap",
     "legal": "Legal",
     "copyright": "Copyright",
     "privacy-policy": "Privacy Policy"
@@ -10,5 +12,5 @@
     "date": "{{date, dddd, MMMM DD, YYYY}}"
   },
   "risk-score": "Risk Score",
-  "search-placeholder": "ZIP code, District or City"
+  "search-placeholder": "ZIP code or District"
 }

@@ -19,6 +19,7 @@ import { useTranslation } from "react-i18next";
 import { config } from "app-config/index";
 import { Drawer, useMediaQuery } from "@material-ui/core";
 import { CloseRounded } from "@material-ui/icons";
+import { VERSION, HASH_LONG, HASH_SHORT } from 'src/version';
 
 const Logo = config.ui?.Logo;
 
@@ -58,7 +59,12 @@ const useStyles = makeStyles((theme) => ({
     width: "auto",
     marginTop: "9px",
   },
-
+  version: {
+    fontSize: "12px",
+    margin: "auto",
+    marginBottom: "10px",
+    marginTop: 0
+  },
   drawer: {
     touchAction: "none",
   },
@@ -121,15 +127,22 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
 
     return (
       <>
-        {config.content?.pages.map((page) =>
-          page.hidden ? null : (
-            <Link key={page.id} style={{ textDecoration: "none" }} to={page.route}>
-              <MenuItem className={classes.menuItem} onClick={props.handleClose}>
-                {typeof page.title === "function" ? page.title(t) : page.title}
-              </MenuItem>
-            </Link>
-          ),
-        )}
+        {config.content?.pages.map((page) => {
+          if (page.hidden) {
+            return null;
+          }
+
+          return (
+            <div key={page.id}>
+              {page.menuDivider ? <Divider /> : null}
+              <Link style={{ textDecoration: "none" }} to={page.route}>
+                <MenuItem className={classes.menuItem} onClick={props.handleClose}>
+                  {typeof page.title === "function" ? page.title(t) : page.title}
+                </MenuItem>
+              </Link>
+            </div>
+          );
+        })}
       </>
     );
   };
@@ -181,12 +194,14 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
             <MenuCloseButton handleClose={handleClose} />
           </Toolbar>
           <NavMenuContent />
-
-          {(Logo && (
+          {
+            (Logo && (
             <div className={classes.drawerIcon}>
               <Logo />
             </div>
-          )) || <img src={config.buildJSON.logoSrc} className={classes.logo} />}
+          )) || <img src={config.buildJSON.logoSrc} className={classes.logo} />
+        }
+          <div className={classes.version}>{"v" + VERSION} - <a href={"https://github.com/CovOpen/CovMapper/commit/" + HASH_LONG} target='_blank' rel="noopener">{HASH_SHORT}</a></div>
         </Drawer>
       </Toolbar>
     </AppBar>
