@@ -26,9 +26,8 @@ export const Privacy = () => {
             <a href="http://www.charite.de" target="_blank" rel="noreferrer">
               www.charite.de
             </a>
-            <p>Für die Datenverarbeitung auf Ihrem Endgerät, auf das Sie die CovMap laden, sind Sie selbst verantwortlich. Das gilt auch für die Eingabe der Postleitzahl (siehe unter 5 c)).
-            </p>Grundlage der für den Nutzer der Website visualisierten Darstellung sind Daten, die von der Firma NET CHECK GmbH zusammengestellt und verarbeitet werden. Die Charité übernimmt mit diesem Webangebot die reine Visualisierung in Form einer Deutschlandkarte der insoweit von der NET CHECK GmbH zur Verfügung gestellten Information. Die Charité haftet nur für eigene Inhalte; als Diensteanbieter ist die Charité nicht verpflichtet, übermittelte fremde Informationen zu prüfen oder zu überwachen.
-            <p>
+            <p>Für die Datenverarbeitung auf Ihrem Endgerät, auf das Sie die CovMap laden, sind Sie selbst verantwortlich. Das gilt auch für die Eingabe der Postleitzahl (siehe unter 5 c)).</p>
+            <p>Grundlage der für den Nutzer der Website visualisierten Darstellung sind Daten, die von der Firma NET CHECK GmbH zusammengestellt und verarbeitet werden. Die Charité übernimmt mit diesem Webangebot die reine Visualisierung in Form einer Deutschlandkarte der insoweit von der NET CHECK GmbH zur Verfügung gestellten Information. Die Charité haftet nur für eigene Inhalte; als Diensteanbieter ist die Charité nicht verpflichtet, übermittelte fremde Informationen zu prüfen oder zu überwachen.</p>
           </Typography>
         </section>
 
