@@ -1,20 +1,24 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
+import { DetailPageNavigateBackHeader } from "app-config/components/DetailPageNavigateBackHeader";
 
 const ContactBehavior = () => {
   return (
     <main className="sections">
       <section>
-        <Typography variant="h1">Kontaktverhalten</Typography>
+        <DetailPageNavigateBackHeader title="Kontaktverhalten" />
       </section>
+
       <section>
         <Typography>Wie wird das Kontaktverhalten der Bevölkerung bestimmt?</Typography>
+        <Typography>
         Unsere Gruppe hat ein Modell für das Kontaktverhalten auf Basis von GPS Daten entwickelt. Wir konnten einen{" "}
-        <a target="_blank" href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2">
+          <a target="_blank" href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2" rel="noreferrer">
           Kontakt-Index
-        </a>{" "}
+          </a>{" "}
         entwickeln, der eine hohe Korrelation mit der effektiven Reproduktionszahl (R) des Coronavirus aufweist, und das
         6 Tage früher!
+        </Typography>
         <Typography>
           Der R-Wert ist eine wichtige Maßzahl zur Steuerung der Corona Maßnahmen. Er besagt, wie viele Personen von
           einer infizierten Person im Durchschnitt angesteckt werden. Wenn der R Wert 1 beträgt, bedeutet dies, dass
@@ -26,6 +30,7 @@ const ContactBehavior = () => {
           <a
             target="_blank"
             href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Projekte_RKI/R-Wert-Erlaeuterung.pdf?__blob=publicationFile"
+            rel="noreferrer"
           >
             R-Wertes
           </a>{" "}

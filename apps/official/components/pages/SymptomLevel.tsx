@@ -1,12 +1,14 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
+import { DetailPageNavigateBackHeader } from "app-config/components/DetailPageNavigateBackHeader";
 
 const SymptomLevel = () => {
   return (
     <main className="sections">
       <section>
-        <Typography variant="h1">Symptomlast</Typography>
+        <DetailPageNavigateBackHeader title="Symptomlast" />
       </section>
+
       <section>
         <Typography>
           Wenige Tage nach einer Coronavirusinfektion entwickelt ein Teil der Personen nach der Inkubationszeit Symptome
@@ -15,7 +17,7 @@ const SymptomLevel = () => {
           sondern treten beispielsweise auch bei einer harmlosen Erkältung auf. Falls man jedoch eine große
           Menschenmenge nach diesen Symptomen befragt, so konnte bereits gezeigt werden, dass man Hotspots des
           Coronavirus früher als durch die offiziellen Fallzahlstatistiken detektieren kann. Wir verwenden die Charité{" "}
-          <a target="_blank" href="http://www.covapp.de">
+          <a target="_blank" href="http://www.covapp.de" rel="noreferrer">
             CovApp
           </a>
           , um die Antworten nach Symptomen von einer großen Anzahl von Menschen auszuwerten, und können daher indirekt
