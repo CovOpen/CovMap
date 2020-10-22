@@ -13,7 +13,7 @@ export const WelcomeModal3: React.FC = () => {
       <img src={"/images/WelcomeModalImage3_sub.svg"} alt="Welcome" />
 
       <div className={classes.infoTextDiv}>
-        <Typography className={classes.smallText}>
+        <Typography className={classes.largeText}>
           Auf der Karte kannst du ganz einfach erkennen, wo sich momentane Risikogebiete in Deutschland und in Deiner
           Region befinden.
         </Typography>
