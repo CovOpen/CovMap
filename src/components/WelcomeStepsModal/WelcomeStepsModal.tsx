@@ -28,28 +28,30 @@ export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
     return null;
   }
 
-  const renderNextButton = () => currentStepConfig.next ? (
-    <Button
-      className={`${classes.primaryButton} ${classes.largeText}`}
-      variant="contained"
-      color="primary"
-      component={Link}
-      to={currentStepConfig.next}
-    >
-      Weiter
-    </Button>
-  ) : null;
+  const renderNextButton = () =>
+    currentStepConfig.next ? (
+      <Button
+        className={`${classes.primaryButton} ${classes.largeText}`}
+        variant="contained"
+        color="primary"
+        component={Link}
+        to={currentStepConfig.next}
+      >
+        Weiter
+      </Button>
+    ) : null;
 
-  const renderSkipButton = () => currentStepConfig.skip ? (
-    <Button
-      className={`${classes.secondaryButton} ${classes.largeText}`}
-      variant="contained"
-      component={Link}
-      to={currentStepConfig.skip}
-    >
-      Überspringen
-    </Button>
-  ) : null;
+  const renderSkipButton = () =>
+    currentStepConfig.skip ? (
+      <Button
+        className={`${classes.secondaryButton} ${classes.largeText}`}
+        variant="contained"
+        component={Link}
+        to={currentStepConfig.skip}
+      >
+        Überspringen
+      </Button>
+    ) : null;
 
   const onClose = () => {
     if (currentStepConfig.closeable) {

@@ -101,23 +101,17 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   const history = useHistory();
   const location = useLocation();
 
-  const expanded: boolean = new URLSearchParams(location.search).get('expanded') === "true";
+  const expanded: boolean = new URLSearchParams(location.search).get("expanded") === "true";
 
   function toggleExpand() {
     if (expanded) {
-      history.push({search: ''})
+      history.push({ search: "" });
     } else {
-      history.push({search: '?expanded=true'});
+      history.push({ search: "?expanded=true" });
     }
   }
 
-  const {
-    locationName,
-    IdDistrict: zipCode,
-    riskScore,
-    contactScore,
-    incidence,
-  } = rawData as RawDataEntry;
+  const { locationName, IdDistrict: zipCode, riskScore, contactScore, incidence } = rawData as RawDataEntry;
   const title = titleByRiskScore[riskScore];
 
   const cardHeader = (
@@ -271,7 +265,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
         open={expanded}
         variant="temporary"
         anchor="bottom"
-        onClose={() => history.push({search: ''})}
+        onClose={() => history.push({ search: "" })}
         classes={{ paper: drawerPaper, root: drawerRoot, paperAnchorBottom: drawerPaperAnchorBottom }}
       >
         {cardHeader}
