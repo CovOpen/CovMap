@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
   iconDiv: { position: "absolute", right: "10px", top: "10px" },
   icon: {
     fontSize: "36px",
+    cursor: "pointer",
   },
 }));
 
