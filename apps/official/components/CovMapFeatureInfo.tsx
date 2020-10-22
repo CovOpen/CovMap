@@ -141,7 +141,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   };
 
   const ContactBehaviorCategory = (): JSX.Element => (
-    <RouterLink to="/contacts-explain" style={{ textDecoration: 'none' }} aria-label="go to contacts explanation">
+    <RouterLink to="/contact-behavior" style={{ textDecoration: 'none' }} aria-label="go to contacts explanation">
       <Card variant="outlined" className={card}>
         <CardContent>
           <Grid container direction="column" spacing={1}>
@@ -168,7 +168,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   );
 
   const SymptomLoadCategory = (): JSX.Element => (
-    <RouterLink to="/symptoms-explain" style={{ textDecoration: 'none' }} aria-label="go to symptoms explanation">
+    <RouterLink to="/symptom-level" style={{ textDecoration: 'none' }} aria-label="go to symptoms explanation">
       <Card variant="outlined" className={card}>
         <CardContent>
           <Grid container direction="column" spacing={1}>
@@ -200,7 +200,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     const incidenceDisplay = format.format(incidence);
 
     return (
-      <RouterLink to="/incidence-explain" style={{ textDecoration: 'none' }} aria-label="go to explanation">
+      <RouterLink to="/rki" style={{ textDecoration: 'none' }} aria-label="go to explanation">
         <Card variant="outlined" className={card}>
           <CardContent>
             <Grid item style = {{minWidth: "350px"}} >
