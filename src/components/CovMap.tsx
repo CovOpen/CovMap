@@ -1,11 +1,11 @@
-import React, { useEffect, createRef, useState } from "react";
+import React, { createRef, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 import moment from "moment";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { State } from "../state";
@@ -24,6 +24,7 @@ import { Settings } from "./Settings";
 import { config } from "app-config/index";
 import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
 import FixedSearch from "./FixedSearch";
+import { welcomeStepsConfig } from "./WelcomeStepsModal/welcomeStepsConfig";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -75,6 +76,7 @@ export const CovMap = () => {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
   const urlParams = useParams<{ subPage?: string }>();
+  const history = useHistory();
   // const position = useSelector((state: State) => state.app.currentPosition); // TODO
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
@@ -94,6 +96,13 @@ export const CovMap = () => {
   const handleMapIdleOrRemoved = () => {
     dispatch(AppApi.popLoading("map-busy"));
   };
+
+  useEffect(() => {
+    const isCurrentPageWelcomeScreen = welcomeStepsConfig.find(({name}) => name === urlParams.subPage) !== undefined;
+    if (userPostalCode === null && !isCurrentPageWelcomeScreen) {
+      history.push(welcomeStepsConfig[0].name);
+    }
+  }, [userPostalCode, urlParams]);
 
   useEffect(() => {
     loadFlyTo();

@@ -10,8 +10,8 @@ import { StepConfig, welcomeStepsConfig } from "./welcomeStepsConfig";
 import { MobileDotsStepper } from "./MobileDotsStepper";
 import { useCommonWelcomeModalStyles } from "./useCommonWelcomeModalStyles";
 
-function getStepConfig(stepName?: string): StepConfig {
-  return welcomeStepsConfig.find(({ name }) => name === stepName) ?? welcomeStepsConfig[0];
+function getStepConfig(stepName?: string): StepConfig | undefined {
+  return welcomeStepsConfig.find(({ name }) => name === stepName);
 }
 
 export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
@@ -24,38 +24,38 @@ export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
 
   const currentStepConfig = getStepConfig(props.subPage);
 
-  function renderNextButton() {
-    return currentStepConfig.next ? (
-      <Button
-        className={`${classes.primaryButton} ${classes.largeText}`}
-        variant="contained"
-        color="primary"
-        component={Link}
-        to={currentStepConfig.next}
-      >
-        Weiter
-      </Button>
-    ) : null;
+  if (currentStepConfig === undefined) {
+    return null;
   }
 
-  function renderSkipButton() {
-    return currentStepConfig.skip ? (
-      <Button
-        className={`${classes.secondaryButton} ${classes.largeText}`}
-        variant="contained"
-        component={Link}
-        to={currentStepConfig.skip}
-      >
-        Überspringen
-      </Button>
-    ) : null;
-  }
+  const renderNextButton = () => currentStepConfig.next ? (
+    <Button
+      className={`${classes.primaryButton} ${classes.largeText}`}
+      variant="contained"
+      color="primary"
+      component={Link}
+      to={currentStepConfig.next}
+    >
+      Weiter
+    </Button>
+  ) : null;
 
-  function onClose() {
+  const renderSkipButton = () => currentStepConfig.skip ? (
+    <Button
+      className={`${classes.secondaryButton} ${classes.largeText}`}
+      variant="contained"
+      component={Link}
+      to={currentStepConfig.skip}
+    >
+      Überspringen
+    </Button>
+  ) : null;
+
+  const onClose = () => {
     if (currentStepConfig.closeable) {
       history.goBack();
     }
-  }
+  };
 
   return (
     <div>
