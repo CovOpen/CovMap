@@ -2,7 +2,7 @@
   "name": "covmap",
   "version": "0.1.0",
   "description": "A web app to display large-scale epidemiological data and forecasts of the SARS-CoV-2 pandemic.",
-  "repository": "https://github.com/DanielHabenicht/CovMapper",
+  "repository": "https://github.com/CovOpen/CovMapper",
   "license": "Apache2",
   "private": true,
   "scripts": {
