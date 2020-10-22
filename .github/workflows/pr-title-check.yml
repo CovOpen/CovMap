@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: aslafy-z/conventional-pr-title-action@master
+        id: title-check
         with:
           success-state: Title follows the specification.
           failure-state: Title does not follow the specification.
@@ -21,6 +22,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
       - name: Find Comment
+        if: always()
         uses: peter-evans/find-comment@v1
         id: fc
         with:
@@ -29,7 +31,8 @@ jobs:
           body-includes: Please make sure that your Pull Request title and body does conform to this format
 
       - name: Create comment
-        if: ${{ steps.fc.outputs.comment-id == 0 }}
+        # Attention title-check output is reversed: https://github.com/aslafy-z/conventional-pr-title-action/issues/63
+        if: always() && (steps.fc.outputs.comment-id == 0) && (steps.title-check.outputs.success == 'true')
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -47,3 +50,15 @@ jobs:
             | `chore` | other non releasing code changes | NONE (v1.0.0 -> v1.0.0|
 
             In the Pull Request Body please describe what changes for the user of the application. If the user has to do Things different than before (excluding new functionality) please include `BREAKING CHANGE` at the end. This will trigger a major release (v1.0.0 -> v2.0.0)
+
+      - name: Delete comment
+        # Attention title-check output is reversed: https://github.com/aslafy-z/conventional-pr-title-action/issues/63
+        if: always() && (steps.fc.outputs.comment-id != 0) && (steps.title-check.outputs.success == 'false')
+        uses: actions/github-script@v3
+        with:
+          script: |
+            github.issues.deleteComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: ${{ steps.fc.outputs.comment-id }},
+            })
