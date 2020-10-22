@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Card, CardContent, IconButton } from "@material-ui/core";
+import { Card, CardContent, Button, IconButton, Grid } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 import Typography from "@material-ui/core/Typography";
@@ -10,59 +10,52 @@ import { RiskScore } from "../../models";
 import { RiskTexts } from "../../static/texts/RiskTexts";
 
 const useStyles = makeStyles({
-  root: {
+  teaser: {
     border: 0,
     background: "#2979ff",
     color: "white",
+    textTransform: "none",
+  },
+  centerIcon: {
+    margin: "0 auto",
+    display: "block",
   },
 });
 
-const renderRecommendation = (recommendation: () => any) => () => {
+const Recommendation = ({ recommendation }: { recommendation: string }): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
-      <CardContent>
-        <Grid container direction="row" spacing={2}>
-          <Grid item xs={10}>
-            {recommendation()}
+    <Link to="/risk-levels" style={{ textDecoration: "none" }} aria-label="go to explanation">
+      <Card className={classes.teaser}>
+        <CardContent>
+          <Grid container direction="row" alignItems="center" spacing={2}>
+            <Grid item xs={10}>
+              <Typography variant="body2">{recommendation}</Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <ArrowForwardIosIcon className={classes.centerIcon} fontSize="small" />
+            </Grid>
           </Grid>
-          <Grid item xs={2}>
-            <IconButton component={Link} to="/risk-levels" color="primary" aria-label="show risk level explanations">
-              <ArrowForwardIosIcon fontSize="small" />
-            </IconButton>
-          </Grid>
-        </Grid>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </Link>
   );
 };
-
-const renderNormalRiskRecommendation = renderRecommendation(() => (
-  <Typography variant="body2">{RiskTexts.NORMAL}</Typography>
-));
-
-const renderMediumRiskRecommendation = renderRecommendation(() => (
-  <Typography variant="body2">{RiskTexts.MEDIUM}</Typography>
-));
-
-const renderHighRiskRecommendation = renderRecommendation(() => (
-  <Typography variant="body2">{RiskTexts.HIGH}</Typography>
-));
 
 export const RiskRecommendation = ({ riskScore }: { riskScore: RiskScore }) => {
   switch (riskScore) {
     case RiskScore.Low:
-      return renderNormalRiskRecommendation();
+      return <Recommendation recommendation={RiskTexts.NORMAL} />;
 
     case RiskScore.Medium:
-      return renderMediumRiskRecommendation();
+      return <Recommendation recommendation={RiskTexts.MEDIUM} />;
 
     case RiskScore.High:
-      return renderHighRiskRecommendation();
+      return <Recommendation recommendation={RiskTexts.HIGH} />;
 
     default:
       console.warn("cannot display risk score -- unrecognized score value");
-      return <></>;
+      return null;
   }
 };

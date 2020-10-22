@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link, RouteProps } from "react-router-dom";
-import { Card, CardContent, Grid, IconButton, Typography } from "@material-ui/core";
+import { Button, Card, CardContent, Grid, IconButton, Typography } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { useSelector } from "react-redux";
@@ -21,6 +21,7 @@ const useStyles = makeStyles({
     border: 0,
     background: "#2979ff",
     color: "white",
+    textTransform: "none",
   },
   action: {
     alignSelf: "auto",
@@ -38,16 +39,16 @@ const useStyles = makeStyles({
 
 const Header = (): JSX.Element => {
   return (
-    <Grid container direction="row" alignItems="center">
-      <Grid item>
-        <IconButton component={Link} to="/" aria-label="go back to map">
+    <Link to="/" style={{ textDecoration: "none" }} aria-label="go back to map">
+      <Grid container direction="row">
+        <Grid item>
           <ArrowBackIosIcon color="action" />
-        </IconButton>
+        </Grid>
+        <Grid item>
+          <Typography variant="h1">{ActionTexts.TITLE}</Typography>
+        </Grid>
       </Grid>
-      <Grid item>
-        <Typography variant="h1">{ActionTexts.TITLE}</Typography>
-      </Grid>
-    </Grid>
+    </Link>
   );
 };
 
@@ -56,22 +57,22 @@ const CountyTeaser = ({ county, url }: { county: string; url: string }): JSX.Ele
   const teaser = `${ActionTexts.COUNTY_TEASER_1}${county}${ActionTexts.COUNTY_TEASER_2}`;
 
   return (
-    <Card className={classes.teaser}>
-      <CardContent>
-        <Grid container direction="row" spacing={2}>
-          <Grid item xs={10}>
-            <Typography variant="body1" className={classes.leftText}>
-              {teaser}
-            </Typography>
-          </Grid>
-          <Grid item xs={2}>
-            <IconButton href={url} target="_blank" color="primary" aria-label="show risk level explanations">
+    <Button href={url} target="_blank" disableRipple>
+      <Card className={classes.teaser}>
+        <CardContent>
+          <Grid container direction="row" alignItems="center" spacing={2}>
+            <Grid item xs={10}>
+              <Typography variant="body1" className={classes.leftText}>
+                {teaser}
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
               <ArrowForwardIosIcon fontSize="small" />
-            </IconButton>
+            </Grid>
           </Grid>
-        </Grid>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </Button>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography, Grid, Card, CardHeader, CardContent, Avatar, IconButton, SvgIcon } from "@material-ui/core";
+import { Button, Typography, Grid } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { RiskTexts } from "../../static/texts/RiskTexts";
 import RiskScoreNormalIcon from "../../static/images/risk-score-1.svg";
@@ -15,16 +15,16 @@ const useStyles = makeStyles({
 });
 
 const RiskLevelHeader = () => (
-  <Grid container direction="row" alignItems="center">
-    <Grid item>
-      <IconButton component={Link} to="/" aria-label="go back to map">
+  <Link to="/" style={{ textDecoration: "none" }} aria-label="go back to map">
+    <Grid container direction="row" alignItems="center">
+      <Grid item>
         <ArrowBackIosIcon color="action" />
-      </IconButton>
+      </Grid>
+      <Grid item>
+        <Typography variant="h1">Risikostufen</Typography>
+      </Grid>
     </Grid>
-    <Grid item>
-      <Typography variant="h1">Risikostufen</Typography>
-    </Grid>
-  </Grid>
+  </Link>
 );
 
 export const RiskLevelsPage = () => {
