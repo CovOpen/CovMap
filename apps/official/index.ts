@@ -186,11 +186,11 @@ export const config: AppConfig = {
           source: "riskscore-to-district-point",
           fn: (dataField, timeKey) => ({
             type: LayerType.SYMBOL,
-            'layout': {
-              'icon-image': 'contacts-low',
-              'icon-size': 0.25,
-            }
-          })
+            layout: {
+              "icon-image": "contacts-low",
+              "icon-size": 0.25,
+            },
+          }),
         },
         {
           id: "areas-fill",
@@ -240,18 +240,18 @@ export const config: AppConfig = {
   },
   imageIcons: [
     {
-      id: 'contacts-low',
-      url: '/images/no-contacts.png',
+      id: "contacts-low",
+      url: "/images/no-contacts.png",
     },
     {
-      id: 'contacts-medium',
-      url: '/images/contacts-low.png',
+      id: "contacts-medium",
+      url: "/images/contacts-low.png",
     },
     {
-      id: 'contacts-high',
-      url: '/images/contacts-medium.png',
-    }
-  ]
+      id: "contacts-high",
+      url: "/images/contacts-medium.png",
+    },
+  ],
 };
 
 function transformData(json) {
