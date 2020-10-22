@@ -119,6 +119,14 @@ export const CovMap = () => {
         map.on("dataloading", handleMapBusy);
         map.on("idle", handleMapIdleOrRemoved);
         map.once("remove", handleMapIdleOrRemoved);
+        config.imageIcons?.map(({ id, url, pixelRatio, sdf }) => {
+          map.loadImage(url, (err, data) => {
+            if (err) {
+              throw err;
+            }
+            map.addImage(id, data, { pixelRatio, sdf });
+          });
+        });
       }
 
       return () => {
@@ -126,6 +134,9 @@ export const CovMap = () => {
           const map = mapRef.current.getMap();
           map.off("dataloading", handleMapBusy);
           map.off("idle", handleMapIdleOrRemoved);
+          config.imageIcons?.map(({ id }) => {
+            map.removeImage(id);
+          });
         }
       };
     },
