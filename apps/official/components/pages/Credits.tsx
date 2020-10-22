@@ -57,10 +57,15 @@ export const Credits = () => {
               CovMap ist ein Gemeinschaftsprojekt der Charité, des Hasso-Plattner-Instituts (HPI) und der Firma
               NETCHECK.
             </p>
-            Projektleiter Charité: Dr. med. Alexander H. Thieme, M. Sc., Gesamtkonzept, Datenanalyse Symptome, CovMap
-            Softwareentwicklung<br />
-            Projektleiter HPI: Prof. Dr. Christoph Lippert, Datenanalyse, Modellerstellung, Prognosen<br />
-            Projektleiter NETCHECK: PD. Dr. Sten Rüdiger, Datenanalyse GPS-Daten, Kontakt-Index<br />
+            </Typography>
+          <Typography variant="body1">
+            Projektleitung: <br />
+            Charité: Dr. med. Alexander H. Thieme, M. Sc. <br />
+            Gesamtkonzept, CovMap, Datenanalyse Symptome<br />
+            HPI: Prof. Dr. Christoph Lippert<br />
+            Datenanalyse, Modellerstellung, Prognosen<br />
+            NETCHECK: PD. Dr. Sten Rüdiger <br />
+            Datenanalyse GPS-Daten, Kontakt-Index<br />
           </Typography>
         </section>
         <section>
