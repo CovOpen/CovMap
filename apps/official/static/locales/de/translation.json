@@ -10,5 +10,5 @@
     "date": "{{ date, dddd, Do MMMM YYYY}}"
   },
   "risk-score": "Risikoeinschätzung",
-  "search-placeholder": "PLZ, Landkreis oder Stadt"
+  "search-placeholder": "PLZ oder Landkreis"
 }
