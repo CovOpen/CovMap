@@ -135,7 +135,7 @@ export const config: AppConfig = {
       [43.27103747280261, 17.885742187500004],
     ],
     baseApiUrl: "https://tiles.covmap.de",
-    mapStyle: "https://tiles.covmap.de/styles/dark-matter/style.json",
+    mapStyle: "https://tiles.covmap.de/styles/custom_dark_matter/style.json",
   },
   defaultVisual: "covmap",
   datasources: {
