@@ -9,7 +9,7 @@ export const Privacy = () => {
           <Typography variant="h1">Datenschutzrechtliche Informationen gemäß Art. 13 DS-GVO </Typography>
         </section>
         <section>
-          <Typography variant="h2">1. 1.	Datenschutzrechtliche Verantwortlichkeit</Typography>
+          <Typography variant="h2">1. Datenschutzrechtliche Verantwortlichkeit</Typography>
           <Typography variant="body1">
             <p>
               Die CovMap ist ein Projekt der Charité – Universitätsmedizin Berlin, die für die Verarbeitung personenbezogener Daten auf dieser Website verantwortlich ist. Die Kontaktdaten lauten wie folgt:
@@ -26,6 +26,7 @@ export const Privacy = () => {
             <a href="http://www.charite.de" target="_blank" rel="noreferrer">
               www.charite.de
             </a>
+            <br />
             <p>Für die Datenverarbeitung auf Ihrem Endgerät, auf das Sie die CovMap laden, sind Sie selbst verantwortlich. Das gilt auch für die Eingabe der Postleitzahl (siehe unter 5 c)).</p>
             <p>Grundlage der für den Nutzer der Website visualisierten Darstellung sind Daten, die von der Firma NET CHECK GmbH zusammengestellt und verarbeitet werden. Die Charité übernimmt mit diesem Webangebot die reine Visualisierung in Form einer Deutschlandkarte der insoweit von der NET CHECK GmbH zur Verfügung gestellten Information. Die Charité haftet nur für eigene Inhalte; als Diensteanbieter ist die Charité nicht verpflichtet, übermittelte fremde Informationen zu prüfen oder zu überwachen.</p>
           </Typography>
@@ -77,6 +78,7 @@ Bei jedem Zugriff auf die CovMap werden Daten über diesen Vorgang vorübergehen
 Diese Datenverarbeitung durch unser System dient dem Zweck und unserem Interesse, die Auslieferung der CovMap an das Endgerät des Nutzers/der Nutzerin zu ermöglichen. Hierfür muss die IP-Adresse der Nutzenden für die Dauer der Sitzung gespeichert bleiben. Ihre IP-Adresse löschen wir nach Ablauf von 20 Tagen. Wir speichern sie 20 Tage lang, damit wir im Fall von Datensicherheitsmängeln oder Problemen von Eingriffen der Nutzenden Rechtsverstöße verfolgen können. Nach Ende der Aufbewahrung werden die IP-Adressen unverzüglich gelöscht. Im Übrigen werden die Daten in unserem System gelöscht, wenn die jeweilige Sitzung beendet ist.
             <br />
             Die Erfassung der Daten zur Bereitstellung CovMap ist für den Betrieb der Applikation zwingend erforderlich. Rechtsgrundlage hierfür ist Art. 6 Abs. 1 S. 1 lit. f DS-GVO.
+            <br />
             <br />
             b. Session-Cookies
             <br />
