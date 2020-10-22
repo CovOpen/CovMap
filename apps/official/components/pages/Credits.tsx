@@ -54,16 +54,16 @@ export const Credits = () => {
           </div>
           <Typography variant="h2">
             <p>
-              CovMap ist ein Gemeinschaftsprojekt der Charité, des Hasso-Plattner-Instituts (HPI) und der Firma
+              CovMap ist ein Gemeinschaftsprojekt der Charité - Universitätsmedizin Berlin, des Hasso-Plattner-Instituts (HPI) und der Firma
               NETCHECK.
             </p>
             </Typography>
           <Typography variant="body1">
             Projektleitung: <br />
             Charité: Dr. med. Alexander H. Thieme, M. Sc. <br />
-            Gesamtkonzept, CovMap, Datenanalyse Symptome<br />
+            Gesamtkonzept, CovMap, Datenanalyse Symptome<br /><br />
             HPI: Prof. Dr. Christoph Lippert<br />
-            Datenanalyse, Modellerstellung, Prognosen<br />
+            Datenanalyse, Modellerstellung, Prognosen<br /><br />
             NETCHECK: PD. Dr. Sten Rüdiger <br />
             Datenanalyse GPS-Daten, Kontakt-Index<br />
           </Typography>
