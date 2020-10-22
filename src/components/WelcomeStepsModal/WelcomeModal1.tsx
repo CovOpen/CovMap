@@ -51,7 +51,7 @@ export const WelcomeModal1: React.FC = () => {
             Informationen zu allgemeinen Schutzmaßnahmen
           </Typography>
         </div>
-      </div>
+      
 
         <div className={classes.listItemDiv}>
           {listIcon}
