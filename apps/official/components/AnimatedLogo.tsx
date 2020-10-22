@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     /* flexGrow: 1, */
     height: "64px",
     width: "auto",
-    scale: "0.5"
+    scale: "0.5",
   },
   paused: {
     "& > *": {
