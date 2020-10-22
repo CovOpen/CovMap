@@ -159,6 +159,7 @@ export type AppPage = {
   title: string | AppPageTitleFunction;
   route: string;
   hidden?: boolean; // a way to exclude the page from the navbar
+  menuDivider?: boolean; // Adds a menu divider before the page menu entry
   Component: ComponentType;
 };
 
@@ -183,6 +184,9 @@ type SouthEast = LatLang;
 
 export type MapSettings = {
   constraints: [NorthWest, SouthEast];
+  baseApiUrl?: string;
+  mapStyle?: string;
+  mapboxApiAccessToken?: string;
 };
 
 export type AppMeta = {

@@ -2,6 +2,8 @@
   "pages": {
     "faq": "Fragen und Antworten",
     "info": "Info",
+    "charts": "Deutschlandweite Graphen",
+    "about": "Über die CovMap",
     "legal": "Rechtliches",
     "copyright": "Impressum",
     "privacy-policy": "Datenschutz"
@@ -10,5 +12,5 @@
     "date": "{{ date, dddd, Do MMMM YYYY}}"
   },
   "risk-score": "Risikoeinschätzung",
-  "search-placeholder": "PLZ, Landkreis oder Stadt"
+  "search-placeholder": "PLZ oder Landkreis"
 }

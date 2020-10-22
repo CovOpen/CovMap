@@ -24,7 +24,6 @@ import { Settings } from "./Settings";
 import { config } from "app-config/index";
 import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
 import FixedSearch from "./FixedSearch";
-import { LayerType } from "src/app-config.types";
 
 const useStyles = makeStyles((theme) => ({
   main: {

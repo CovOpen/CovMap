@@ -5,7 +5,7 @@ const RKI = () => {
   return (
     <main className="sections">
       <section>
-        <Typography variant="h1">Datenschutzerklärung der CovMap</Typography>
+        <Typography variant="h1">7-Tages-Inzidenz (RKI)</Typography>
       </section>
       <section>
         <Typography>

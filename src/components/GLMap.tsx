@@ -62,6 +62,15 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange, onLoad }: GLMapPro
     }
   };
 
+  const additionalSettings = {};
+  if (config.mapSettings) {
+    Object.assign(additionalSettings, {
+      baseApiUrl: config.mapSettings?.baseApiUrl,
+      mapStyle: config.mapSettings?.mapStyle,
+      mapboxApiAccessToken: config.mapSettings?.mapboxApiAccessToken,
+    });
+  }
+
   return (
     <Suspense fallback={getFallbackComponent()}>
       <ReactMapGL
@@ -71,12 +80,11 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange, onLoad }: GLMapPro
         height="100%"
         maxZoom={MAX_ZOOM_LEVEL}
         minZoom={4}
-        mapStyle="mapbox://styles/mapbox/dark-v10"
+        {...additionalSettings}
         {...viewport}
         onClick={(evt) => onMapClick(evt, viewport)}
         onLoad={onLoad}
         onViewportChange={handleLocalViewportChange}
-        mapboxApiAccessToken="pk.eyJ1IjoiYWxleGFuZGVydGhpZW1lIiwiYSI6ImNrODFjNjV0NDBuenIza3J1ZXFsYnBxdHAifQ.8Xh_Y9eCFgEgQ-6mXsxZxQ"
         preventStyleDiffing={true}
         asyncRender={true}
       >
