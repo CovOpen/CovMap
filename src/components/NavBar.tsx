@@ -121,15 +121,22 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
 
     return (
       <>
-        {config.content?.pages.map((page) =>
-          page.hidden ? null : (
-            <Link key={page.id} style={{ textDecoration: "none" }} to={page.route}>
-              <MenuItem className={classes.menuItem} onClick={props.handleClose}>
-                {typeof page.title === "function" ? page.title(t) : page.title}
-              </MenuItem>
-            </Link>
-          ),
-        )}
+        {config.content?.pages.map((page) => {
+          if (page.hidden) {
+            return null;
+          } 
+          
+          return (
+            <div key={page.id}>
+              {page.menuDivider ? <Divider /> : null}
+              <Link style={{ textDecoration: "none" }} to={page.route}>
+                <MenuItem className={classes.menuItem} onClick={props.handleClose}>
+                  {typeof page.title === "function" ? page.title(t) : page.title}
+                </MenuItem>
+              </Link>
+            </div>
+          );
+        })}
       </>
     );
   };

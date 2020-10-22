@@ -71,6 +71,7 @@ export const config: AppConfig = {
         title: (t) => t("translation:pages.copyright"),
         route: "/imprint",
         Component: Imprint,
+        menuDivider: true,
       },
       {
         id: "legal-page",
