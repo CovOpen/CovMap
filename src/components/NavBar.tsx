@@ -124,8 +124,8 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
         {config.content?.pages.map((page) => {
           if (page.hidden) {
             return null;
-          } 
-          
+          }
+
           return (
             <div key={page.id}>
               {page.menuDivider ? <Divider /> : null}
