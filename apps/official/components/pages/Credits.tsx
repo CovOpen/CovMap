@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     "display": "block",
     "margin": "auto",
     "margin-right": "auto",
-  }, 
+  },
   logo_small: {
     "textAlign": "center",
     "width": "80px",
@@ -53,9 +53,12 @@ export const Credits = () => {
             </Grid>
           </div>
           <Typography variant="body1">
-            <p>CovMap ist ein Gemeinschaftsprojekt der Charité, des Hasso-Plattner-Instituts (HPI) und der Firma NETCHECK.</p>
-            Projektleitung Charité: Dr. med. Alexander H. Thieme, M. Sc., Gesamtkonzept, Datenanalyse Symptome, CovMap Softwareentwicklung
-            Projektleitung HPI: Prof. Dr. Christoph Lippert, Datenanalyse, Prognosemodelle
+            <p>
+              CovMap ist ein Gemeinschaftsprojekt der Charité, des Hasso-Plattner-Instituts (HPI) und der Firma
+              NETCHECK.
+            </p>
+            Projektleitung Charité: Dr. med. Alexander H. Thieme, M. Sc., Gesamtkonzept, Datenanalyse Symptome, CovMap
+            Softwareentwicklung Projektleitung HPI: Prof. Dr. Christoph Lippert, Datenanalyse, Prognosemodelle
             Projektleitung NETCHECK: PD. Dr. Sten Rüdiger, Datenanalyse GPS-Daten, Kontakt-Index
           </Typography>
         </section>
@@ -64,36 +67,36 @@ export const Credits = () => {
             Die CovMap App wurde mit der Unterstützung von zahlreichen Personen und Unternehmen entwickelt. Wir möchten
             an dieser Stelle unseren großen Dank aussprechen:
           </Typography>
-          
-        <section>
-          <Typography variant="h2">Wir Danken den Unternehmen</Typography>
-          <Typography variant="body1">
-            <div className={classes.root}>
-              <Grid container spacing={3}>
-                <Grid item xs={2} className={classes.centered}>
-                  <img className={classes.logo} src="images/credits/PortBlueSky.png"></img>
+
+          <section>
+            <Typography variant="h2">Wir Danken den Unternehmen</Typography>
+            <Typography variant="body1">
+              <div className={classes.root}>
+                <Grid container spacing={3}>
+                  <Grid item xs={2} className={classes.centered}>
+                    <img className={classes.logo} src="images/credits/PortBlueSky.png"></img>
+                  </Grid>
+                  <Grid item xs={10}>
+                    Port Blue Sky, für die technische Unterstüzung der App durch Ihre Mitarbeiter sowie das Organisieren
+                    von weiterer Unterstützung aus der Node.js Community.
+                  </Grid>
+                  <Grid item xs={2} className={classes.centered}>
+                    <img className={classes.logo} src="images/credits/pwc.jpg"></img>
+                  </Grid>
+                  <Grid item xs={10}>
+                    PWC, für Lob, Kritik und Rat bei der Umsetzung der CovMap.
+                  </Grid>
+                  <Grid item xs={2} className={classes.centered}>
+                    <img className={classes.logo} src="images/credits/maptiler.png"></img>
+                  </Grid>
+                  <Grid item xs={10}>
+                    Maptiler, für die Unterstützung in Form von Kartendaten.
+                  </Grid>
                 </Grid>
-                <Grid item xs={10}>
-                  Port Blue Sky, für die technische Unterstüzung der App durch Ihre Mitarbeiter sowie das Organisieren
-                  von weiterer Unterstützung aus der Node.js Community.
-                </Grid>
-                <Grid item xs={2} className={classes.centered}>
-                  <img className={classes.logo} src="images/credits/pwc.jpg"></img>
-                </Grid>
-                <Grid item xs={10}>
-                  PWC, für Lob, Kritik und Rat bei der Umsetzung der CovMap.
-                </Grid>
-                <Grid item xs={2} className={classes.centered}>
-                  <img className={classes.logo} src="images/credits/maptiler.png"></img>
-                </Grid>
-                <Grid item xs={10}>
-                  Maptiler, für die Unterstützung in Form von Kartendaten.
-                </Grid>
-              </Grid>
-            </div>
-          </Typography>
-          <Typography variant="body1"></Typography>
-        </section>
+              </div>
+            </Typography>
+            <Typography variant="body1"></Typography>
+          </section>
           <Typography variant="h2">Personen</Typography>
           {contributors.contributors.map((el, i) => (
             <p>
