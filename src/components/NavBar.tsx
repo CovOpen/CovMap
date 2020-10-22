@@ -195,7 +195,8 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
             <div className={classes.drawerIcon}>
               <Logo />
             </div>
-          )) || covMapLogoAsImg}
+          )) ||
+            covMapLogoAsImg}
         </Drawer>
       </Toolbar>
     </AppBar>
