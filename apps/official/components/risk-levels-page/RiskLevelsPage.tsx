@@ -15,10 +15,10 @@ const useStyles = makeStyles({
 });
 
 const RiskLevelHeader = () => (
-  <Link to="/" style={{ textDecoration: 'none' }} aria-label="go back to map">
+  <Link to="/" style={{ textDecoration: "none" }} aria-label="go back to map">
     <Grid container direction="row" alignItems="center">
       <Grid item>
-          <ArrowBackIosIcon color="action" />
+        <ArrowBackIosIcon color="action" />
       </Grid>
       <Grid item>
         <Typography variant="h1">Risikostufen</Typography>
