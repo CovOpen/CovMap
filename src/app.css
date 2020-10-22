@@ -178,18 +178,6 @@ body {
   margin-top: -50px;
 }
 
-<<<<<<< HEAD
-#info .text {
-  padding-top: 64px;
-}
-
-/* About */
-main.sections {
-  padding-top: 64px; /* move down by static appBar height */
-}
-
-=======
->>>>>>> origin/master
 .sections section {
   padding: 1rem 2rem;
   margin-left: auto;
