@@ -1,7 +1,7 @@
 {
   "styles": {
     "standard": ["dark-matter", "klokantech-basic", "osm-bright", "positron"],
-    "custom": [],
+    "custom": ["custom_dark_matter.json"],
     "lang": "",
     "langLatin": true,
     "langAlts": true
