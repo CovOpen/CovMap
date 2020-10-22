@@ -97,8 +97,10 @@ export const CovMap = () => {
     dispatch(AppApi.popLoading("map-busy"));
   };
 
+  const isCurrentPageWelcomeScreen = welcomeStepsConfig.find(({name}) => name === urlParams.subPage) !== undefined;
+  const showSearch = !urlParams.subPage || isCurrentPageWelcomeScreen;
+
   useEffect(() => {
-    const isCurrentPageWelcomeScreen = welcomeStepsConfig.find(({name}) => name === urlParams.subPage) !== undefined;
     if (userPostalCode === null && !isCurrentPageWelcomeScreen) {
       history.push(welcomeStepsConfig[0].name);
     }
@@ -229,7 +231,7 @@ export const CovMap = () => {
 
   return (
     <div className={classes.main}>
-      <FixedSearch />
+      {showSearch && <FixedSearch />}
       <div className={classes.currentInfo}>
         {/*<Typography variant="h2" color="primary">{visual.name}</Typography>*/}
         <Typography variant="h2" color="primary">
