@@ -154,17 +154,8 @@ export const Faq: React.FC = () => {
                 <div className={classes.textBlock}>
                   Der von uns entwickelte Kontakt-Index ist aktueller als die 7-Tages-Inzidenz und quasi ein
                   Frühwarnsystem. Er gibt die Anzahl der durchschnittlichen Kontakte pro Person und Region in den
-                  letzten 24h Stunden an. In ersten Analysen konnten wir zeigen, dass eine hohe Anzahl an Kontakten mit
-                  einem vermehrten Infektionsgeschehen korreliert
-                  <Typography variant="caption" style={{ verticalAlign: "super" }}>
-                    <a
-                      href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      [1]
-                    </a>.
-                  </Typography>
+                  letzten 24h Stunden an. In <a href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2">ersten Analysen</a> konnten wir zeigen, dass eine hohe Anzahl an Kontakten mit
+                  einem vermehrten Infektionsgeschehen korreliert.
                 </div>
                 <div className={classes.textBlock}>
                   Man weiß inzwischen, dass die Auswertung von Symptomen zur Vorhersage von lokalen
