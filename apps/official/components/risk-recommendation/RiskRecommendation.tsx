@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { RiskScore } from "../../models";
 import { RiskTexts } from "../../static/texts/RiskTexts";
 
-const useStyles = makeStyles({  
+const useStyles = makeStyles({
   teaser: {
     border: 0,
     background: "#2979ff",
@@ -22,15 +22,15 @@ const Recommendation = ({ recommendation }: { recommendation: string }): JSX.Ele
   const classes = useStyles();
 
   return (
-    <Link to="/risk-levels" style={{ textDecoration: 'none' }} aria-label="go to explanation">
+    <Link to="/risk-levels" style={{ textDecoration: "none" }} aria-label="go to explanation">
       <Card className={classes.teaser}>
         <CardContent>
           <Grid container direction="row" alignItems="center" spacing={2}>
-            <Grid item xs={10} >
+            <Grid item xs={10}>
               <Typography variant="body2">{recommendation}</Typography>
             </Grid>
             <Grid item xs={2}>
-                <ArrowForwardIosIcon fontSize="small" />
+              <ArrowForwardIosIcon fontSize="small" />
             </Grid>
           </Grid>
         </CardContent>
@@ -39,18 +39,16 @@ const Recommendation = ({ recommendation }: { recommendation: string }): JSX.Ele
   );
 };
 
-
-
 export const RiskRecommendation = ({ riskScore }: { riskScore: RiskScore }) => {
   switch (riskScore) {
     case RiskScore.Low:
-      return <Recommendation recommendation={RiskTexts.NORMAL}/>
+      return <Recommendation recommendation={RiskTexts.NORMAL} />;
 
     case RiskScore.Medium:
-      return <Recommendation recommendation={RiskTexts.MEDIUM}/>
+      return <Recommendation recommendation={RiskTexts.MEDIUM} />;
 
     case RiskScore.High:
-      return <Recommendation recommendation={RiskTexts.HIGH}/>
+      return <Recommendation recommendation={RiskTexts.HIGH} />;
 
     default:
       console.warn("cannot display risk score -- unrecognized score value");
