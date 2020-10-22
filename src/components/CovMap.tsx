@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     "top": "64px",
     "right": 0,
     "margin": theme.spacing(2),
-    "zIndex": 1100,
+    "zIndex": 1090,
     "textShadow": `
       -1px -1px 0 rgba(0,0,0,0.36),
       1px -1px 0 rgba(0,0,0,0.36),
