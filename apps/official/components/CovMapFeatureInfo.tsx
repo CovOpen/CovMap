@@ -69,6 +69,10 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
       borderRadius: theme.shape.borderRadius * 2,
     },
   },
+  centerIcon: {
+    margin: "0 auto",
+    display: "block",
+  },
 }));
 
 const titleByRiskScore = {
@@ -90,6 +94,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     drawerPaper,
     drawerRoot,
     drawerPaperAnchorBottom,
+    centerIcon,
   } = useStyles({
     fullScreen,
   });
@@ -145,11 +150,11 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
       <Card variant="outlined" className={card}>
         <CardContent>
           <Grid container direction="column" spacing={1}>
-            <Grid item style={{ minWidth: "350px" }}>
+            <Grid item>
               <Chip size="small" label="beta"></Chip>
             </Grid>
-            <Grid item style={{ minWidth: "350px" }}>
-              <Grid container direction="row" alignItems="center">
+            <Grid item>
+              <Grid container direction="row" alignItems="center" spacing={2}>
                 <Grid item xs={8}>
                   <Typography variant="h3">Kontaktverhalten der Bevölkerung</Typography>
                 </Grid>
@@ -157,7 +162,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
                   <ContactsIcon score={contactScore} />
                 </Grid>
                 <Grid item xs={2}>
-                  <ArrowForwardIosIcon color="action" />
+                  <ArrowForwardIosIcon className={centerIcon} color="action" fontSize="small" />
                 </Grid>
               </Grid>
             </Grid>
@@ -175,8 +180,8 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
             <Grid item>
               <Chip size="small" label="coming soon"></Chip>
             </Grid>
-            <Grid item style={{ minWidth: "350px" }}>
-              <Grid container direction="row" alignItems="center">
+            <Grid item>
+              <Grid container direction="row" alignItems="center" spacing={2}>
                 <Grid item xs={8}>
                   <Typography variant="h3">Symptomlast der Bevölkerung</Typography>
                 </Grid>
@@ -184,7 +189,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
                   <SymptomsLowIcon />
                 </Grid>
                 <Grid item xs={2}>
-                  <ArrowForwardIosIcon color="action" />
+                  <ArrowForwardIosIcon className={centerIcon} color="action" fontSize="small" />
                 </Grid>
               </Grid>
             </Grid>
@@ -203,8 +208,8 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
       <RouterLink to="/rki" style={{ textDecoration: "none" }} aria-label="go to explanation">
         <Card variant="outlined" className={card}>
           <CardContent>
-            <Grid item style={{ minWidth: "350px" }}>
-              <Grid container direction="row" alignItems="center">
+            <Grid item>
+              <Grid container direction="row" alignItems="center" spacing={2}>
                 <Grid item xs={8}>
                   <Typography variant="h3">7-Tages-Inzidenz (RKI)</Typography>
                 </Grid>
@@ -212,7 +217,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
                   <Typography>{incidenceDisplay}</Typography>
                 </Grid>
                 <Grid item xs={2}>
-                  <ArrowForwardIosIcon color="action" />
+                  <ArrowForwardIosIcon className={centerIcon} color="action" fontSize="small" />
                 </Grid>
               </Grid>
             </Grid>

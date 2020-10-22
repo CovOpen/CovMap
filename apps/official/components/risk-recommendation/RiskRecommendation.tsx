@@ -16,6 +16,10 @@ const useStyles = makeStyles({
     color: "white",
     textTransform: "none",
   },
+  centerIcon: {
+    margin: "0 auto",
+    display: "block",
+  },
 });
 
 const Recommendation = ({ recommendation }: { recommendation: string }): JSX.Element => {
@@ -30,7 +34,7 @@ const Recommendation = ({ recommendation }: { recommendation: string }): JSX.Ele
               <Typography variant="body2">{recommendation}</Typography>
             </Grid>
             <Grid item xs={2}>
-              <ArrowForwardIosIcon fontSize="small" />
+              <ArrowForwardIosIcon className={classes.centerIcon} fontSize="small" />
             </Grid>
           </Grid>
         </CardContent>
