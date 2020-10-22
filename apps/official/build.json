@@ -3,6 +3,7 @@
     "title": "CovMap",
     "url": "https://covmap.de",
     "description": "Tool zur Visualisierung von epidemiologischen Daten und Frühindikatoren des SARS-CoV-2 Infektionsgeschehens"
+    "keywords": "CovMap, Corona, Coronavirus, Vorhersage, Regionales Risiko"
   },
   "logoSrc": "/images/logo.svg"
 }
