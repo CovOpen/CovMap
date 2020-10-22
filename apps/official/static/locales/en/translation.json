@@ -2,6 +2,8 @@
   "pages": {
     "faq": "FAQ",
     "info": "Info",
+    "charts": "Data Graphs",
+    "about": "About CovMap",
     "legal": "Legal",
     "copyright": "Copyright",
     "privacy-policy": "Privacy Policy"
