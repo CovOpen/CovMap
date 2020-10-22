@@ -166,10 +166,12 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
     );
   };
 
+  const covMapLogoAsImg = <img src={config.buildJSON.logoSrc} alt={"CovMap Logo"} className={classes.logo} />;
+
   return (
     <AppBar classes={{ root: classes.appBar }} style={{ height: 64, flex: "0 0 auto" }}>
       <Toolbar className={classes.fullHeightToolbar}>
-        {!isMobile && ((Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} />)}
+        <Link to="/">{!isMobile && ((Logo && <Logo />) || covMapLogoAsImg)}</Link>
         <MenuIconButton handleMenu={handleMenu} />
         <Drawer
           open={open}
@@ -193,7 +195,7 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
             <div className={classes.drawerIcon}>
               <Logo />
             </div>
-          )) || <img src={config.buildJSON.logoSrc} className={classes.logo} />}
+          )) || covMapLogoAsImg}
         </Drawer>
       </Toolbar>
     </AppBar>
