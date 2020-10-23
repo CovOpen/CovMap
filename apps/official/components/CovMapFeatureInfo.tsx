@@ -45,8 +45,15 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
   },
   card: {
     // TODO: Extract into theme
-    backgroundColor: "#FCFCFC",
+    "backgroundColor": "#FCFCFC",
+    "position": "relative",
+    "padding": theme.spacing(4, 2),
+    "overflow": "visible",
+    "&:last-child": {
+      paddingBottom: theme.spacing(4, 2), // make the cards symmetric by removing the huge padding bottom
+    },
   },
+
   drawerPaper: {
     width: (props) => (props.fullScreen ? "100%" : "450px"),
   },
@@ -73,6 +80,10 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
     margin: "0 auto",
     display: "block",
   },
+  chipTop: {
+    position: "absolute",
+    top: -12, // half hight of the badge
+  },
 }));
 
 const titleByRiskScore = {
@@ -95,6 +106,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     drawerRoot,
     drawerPaperAnchorBottom,
     centerIcon,
+    chipTop,
   } = useStyles({
     fullScreen,
   });
@@ -148,26 +160,18 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   const ContactBehaviorCategory = (): JSX.Element => (
     <RouterLink to="/contact-behavior" style={{ textDecoration: "none" }} aria-label="go to contacts explanation">
       <Card variant="outlined" className={card}>
-        <CardContent>
-          <Grid container direction="column" spacing={1}>
-            <Grid item>
-              <Chip size="small" label="beta"></Chip>
-            </Grid>
-            <Grid item>
-              <Grid container direction="row" alignItems="center" spacing={2}>
-                <Grid item xs={8}>
-                  <Typography variant="h3">Kontaktverhalten der Bevölkerung</Typography>
-                </Grid>
-                <Grid item xs={2}>
-                  <ContactsIcon score={contactScore} />
-                </Grid>
-                <Grid item xs={2}>
-                  <ArrowForwardIosIcon className={centerIcon} color="action" fontSize="small" />
-                </Grid>
-              </Grid>
-            </Grid>
+        <Chip size="small" label="beta" className={chipTop}></Chip>
+        <Grid container direction="row" alignItems="center" spacing={2}>
+          <Grid item xs={8}>
+            <Typography variant="h3">Kontaktverhalten der Bevölkerung</Typography>
           </Grid>
-        </CardContent>
+          <Grid item xs={2}>
+            <ContactsIcon score={contactScore} />
+          </Grid>
+          <Grid item xs={2}>
+            <ArrowForwardIosIcon className={centerIcon} color="action" fontSize="small" />
+          </Grid>
+        </Grid>
       </Card>
     </RouterLink>
   );
@@ -175,26 +179,18 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   const SymptomLoadCategory = (): JSX.Element => (
     <RouterLink to="/symptom-level" style={{ textDecoration: "none" }} aria-label="go to symptoms explanation">
       <Card variant="outlined" className={card}>
-        <CardContent>
-          <Grid container direction="column" spacing={1}>
-            <Grid item>
-              <Chip size="small" label="coming soon"></Chip>
-            </Grid>
-            <Grid item>
-              <Grid container direction="row" alignItems="center" spacing={2}>
-                <Grid item xs={8}>
-                  <Typography variant="h3">Symptomlast der Bevölkerung</Typography>
-                </Grid>
-                <Grid item xs={2}>
-                  <SymptomsLowIcon />
-                </Grid>
-                <Grid item xs={2}>
-                  <ArrowForwardIosIcon className={centerIcon} color="action" fontSize="small" />
-                </Grid>
-              </Grid>
-            </Grid>
+        <Chip size="small" label="coming soon" className={chipTop}></Chip>
+        <Grid container direction="row" alignItems="center" spacing={2}>
+          <Grid item xs={8}>
+            <Typography variant="h3">Symptomlast der Bevölkerung</Typography>
           </Grid>
-        </CardContent>
+          <Grid item xs={2}>
+            <SymptomsLowIcon />
+          </Grid>
+          <Grid item xs={2}>
+            <ArrowForwardIosIcon className={centerIcon} color="action" fontSize="small" />
+          </Grid>
+        </Grid>
       </Card>
     </RouterLink>
   );
@@ -207,21 +203,17 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     return (
       <RouterLink to="/rki" style={{ textDecoration: "none" }} aria-label="go to explanation">
         <Card variant="outlined" className={card}>
-          <CardContent>
-            <Grid item>
-              <Grid container direction="row" alignItems="center" spacing={2}>
-                <Grid item xs={8}>
-                  <Typography variant="h3">7-Tages-Inzidenz (RKI)</Typography>
-                </Grid>
-                <Grid item xs={2}>
-                  <Typography>{incidenceDisplay}</Typography>
-                </Grid>
-                <Grid item xs={2}>
-                  <ArrowForwardIosIcon className={centerIcon} color="action" fontSize="small" />
-                </Grid>
-              </Grid>
+          <Grid container direction="row" alignItems="center" spacing={2}>
+            <Grid item xs={8}>
+              <Typography variant="h3">7-Tages-Inzidenz (RKI)</Typography>
             </Grid>
-          </CardContent>
+            <Grid item xs={2}>
+              <Typography align="center">{incidenceDisplay}</Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <ArrowForwardIosIcon className={centerIcon} color="action" fontSize="small" />
+            </Grid>
+          </Grid>
         </Card>
       </RouterLink>
     );
