@@ -134,7 +134,7 @@ export const Faq: React.FC = () => {
         />
 
         <FaqAccordion
-          title="Welche Vorteile ergeben sich durch die Auswertung des Kontaktverhaltens und der Symptomlast der Bevölkerung?"
+          title="Welche Vorteile ergeben sich durch die Auswertung von Kontakten und Symptomen der Bevölkerung?"
           content={
             <Typography style={{ width: "100%" }}>
               <div style={{ display: "flex", flexDirection: "column" }}>
@@ -144,7 +144,7 @@ export const Faq: React.FC = () => {
                   Bemerken von Symptomen die zwei frühesten beobachtbaren Ereignisse einer Infektion dar. Hier setzt die CovMap an.
                 </div>
                 <div className={classes.textBlock}>
-                  Wir charakterisieren aus anonymisierten Smartphone-Daten (ermittelt aus GPS Daten) das
+                  Wir charakterisieren aus anonymisierten Smartphone-Daten das
                   Kontaktverhalten. Zusätzlich werten wir selbstberichtete Symptome aus. Naturlich führt nicht
                   jeder Kontakt zu einer Virusübertragung und Symptome allein beweisen keine Infektion mit
                   dem Coronavirus. Wertet man jedoch die Daten von vielen Personen aus, dann kann eine Prognose der zukünftigen Fallzahlen
@@ -157,7 +157,7 @@ export const Faq: React.FC = () => {
                 <div className={classes.textBlock}>
                   Man weiß inzwischen, dass die Auswertung von Symptomen zur Vorhersage von lokalen
                   Ausbrüchen verwendet werden kann. Zeitlich ist die Symptomlast als Variable für die Vorhersage des Infektionsgeschehens zwischen Kontakt-Index und 7-Tages-Inzidenz einzuordnen. Über die CovApp der Charité geben viele Nutzerinnen und Nutzern ihre Symptome
-                  an. Wir planen, dies Angaben anonymisiert in ein verbessertes Modell einfließen zu lassen. 
+                  an. Wir planen, diese Angaben anonymisiert in ein verbessertes Modell einfließen zu lassen. 
                 </div>
                 <div className={classes.textBlock}>
                   Der große Vorteil der Auswertung von Kontakten und Symptomen liegt darin, dass die Daten fast ohne
