@@ -1,12 +1,14 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
+import { DetailPageNavigateBackHeader } from "app-config/components/DetailPageNavigateBackHeader";
 
 const RKI = () => {
   return (
     <main className="sections">
       <section>
-        <Typography variant="h1">7-Tages-Inzidenz (RKI)</Typography>
+        <DetailPageNavigateBackHeader title="7-Tages-Inzidenz (RKI)" />
       </section>
+
       <section>
         <Typography>
           Wie berechnet sich die 7-Tages-Inzidenz (Anzahl der Neuinfektionen pro 100.000 Einwohner der letzten 7 Tage)?

@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next";
 import { config } from "app-config/index";
 import { Drawer, useMediaQuery } from "@material-ui/core";
 import { CloseRounded } from "@material-ui/icons";
-import { VERSION, HASH_LONG, HASH_SHORT } from 'src/version';
+import { VERSION, HASH_LONG, HASH_SHORT } from "src/version";
 
 const Logo = config.ui?.Logo;
 
@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       // on mobile devices
       backgroundColor: "transparent",
+      pointerEvents: "none",
       boxShadow: "none",
       position: "fixed",
     },
@@ -63,10 +64,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "12px",
     margin: "auto",
     marginBottom: "10px",
-    marginTop: 0
+    marginTop: 0,
   },
   drawer: {
     touchAction: "none",
+    pointerEvents: "auto",
   },
   drawerPaper: {
     width: "20rem",
@@ -82,11 +84,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export type NavBarProps = {
-  showSearch: boolean;
-};
-
-export const NavBar = ({ showSearch }: NavBarProps) => {
+export const NavBar = () => {
   const isMobile = useMediaQuery("(max-width:600px)"); // some wierd bug makes every logo disappear when one logo has a display: none style
   const dispatch = useThunkDispatch();
   const classes = useStyles();
@@ -194,14 +192,17 @@ export const NavBar = ({ showSearch }: NavBarProps) => {
             <MenuCloseButton handleClose={handleClose} />
           </Toolbar>
           <NavMenuContent />
-          {
-            (Logo && (
+          {(Logo && (
             <div className={classes.drawerIcon}>
               <Logo />
             </div>
-          )) || <img src={config.buildJSON.logoSrc} className={classes.logo} />
-        }
-          <div className={classes.version}>{"v" + VERSION} - <a href={"https://github.com/CovOpen/CovMapper/commit/" + HASH_LONG} target='_blank' rel="noopener">{HASH_SHORT}</a></div>
+          )) || <img src={config.buildJSON.logoSrc} className={classes.logo} />}
+          <div className={classes.version}>
+            {"v" + VERSION} -{" "}
+            <a href={"https://github.com/CovOpen/CovMapper/commit/" + HASH_LONG} target="_blank" rel="noopener">
+              {HASH_SHORT}
+            </a>
+          </div>
         </Drawer>
       </Toolbar>
     </AppBar>
@@ -213,6 +214,7 @@ const useIconStyles = makeStyles((theme) => ({
     zIndex: 1400, // put it on top of everything
     marginLeft: "auto",
     padding: theme.spacing(0.5),
+    pointerEvents: "auto",
     [theme.breakpoints.down("xs")]: {
       // on mobile devices
       "backgroundColor": theme.palette.background.default,

@@ -25,7 +25,7 @@ import { getFallbackComponent } from "./components/getFallback";
  */
 import "./i18n";
 
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 
 import { config } from "app-config/index";
 import { theme } from "./theme";
@@ -49,8 +49,12 @@ export const App = () => {
       <Route
         path={page.route}
         key={page.id}
-        component={page.Component}
-        style={{ flex: "1 1 auto", position: "relative" }}
+        component={() => (
+          <div style={{ zIndex: 1095, backgroundColor: "white", width: "100%", minHeight: "100%", flexShrink: 0 }}>
+            <page.Component />
+          </div>
+        )}
+        style={{ flex: "1 1 auto", position: "absolute" }}
       />
     );
   }
@@ -66,15 +70,13 @@ export const App = () => {
           style={{ position: "absolute", height: "100%", display: "flex", flexDirection: "column" }}
         >
           <Suspense fallback={getFallbackComponent()}>
-            <NavBar showSearch={!!currentLayerGroup.search} />
+            <NavBar />
           </Suspense>
           <IntermediateProgress />
-          <Switch>
-            {config.content?.pages.map((page) => renderRoute(page))}
-            <Suspense fallback={getFallbackComponent()}>
-              <Route key="map" path="/:subPage?" component={CovMap} />
-            </Suspense>
-          </Switch>
+          {config.content?.pages.map((page) => renderRoute(page))}
+          <Suspense fallback={getFallbackComponent()}>
+            <Route key="map" path="/:subPage?" component={CovMap} />
+          </Suspense>
         </Container>
         <Snackbar
           anchorOrigin={{

@@ -1,31 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Typography, Grid } from "@material-ui/core";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import { Grid, Typography } from "@material-ui/core";
 import { RiskTexts } from "../../static/texts/RiskTexts";
 import RiskScoreNormalIcon from "../../static/images/risk-score-1.svg";
 import RiskScoreMediumIcon from "../../static/images/risk-score-2.svg";
 import RiskScoreHighIcon from "../../static/images/risk-score-3.svg";
+import { DetailPageNavigateBackHeader } from "app-config/components/DetailPageNavigateBackHeader";
 
 const useStyles = makeStyles({
   leftText: {
     textAlign: "left",
   },
 });
-
-const RiskLevelHeader = () => (
-  <Link to="/" style={{ textDecoration: "none" }} aria-label="go back to map">
-    <Grid container direction="row" alignItems="center">
-      <Grid item>
-        <ArrowBackIosIcon color="action" />
-      </Grid>
-      <Grid item>
-        <Typography variant="h1">Risikostufen</Typography>
-      </Grid>
-    </Grid>
-  </Link>
-);
 
 export const RiskLevelsPage = () => {
   const classes = useStyles();
@@ -34,7 +20,7 @@ export const RiskLevelsPage = () => {
     <>
       <main className="sections">
         <section>
-          <RiskLevelHeader />
+          <DetailPageNavigateBackHeader title="Risikostufen" />
         </section>
 
         <section>

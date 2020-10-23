@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     bottom: theme.spacing(4),
     left: theme.spacing(2),
-    zIndex: 1100,
+    zIndex: 1090,
   },
   popoverContent: {
     padding: theme.spacing(2),
