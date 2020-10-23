@@ -34,15 +34,12 @@ const ContactBehavior = () => {
           >
             R-Wertes
           </a>{" "}
-          ist jedoch nicht ganz so einfach und zur Berechnung greift das RKI auf die sogenannte „Nowcast“ Model zurück.
-          Da der R-Wert stärkeren Schwankungen unterliegt, hat das RKI eine Methode entwickelt, um den 7-Tage R-Wert zu
-          berechnen und somit den R-Wert zu glätten. Das Problem des R-Werts und des 7-Tage R-Wert Wertes ist es, dass
+          ist jedoch nicht trivial. Zur Berechnung greift das RKI auf das sogenannte „Nowcast“ Model zurück.
+          Das Problem des R-Werts ist es, dass
           das Infektionsgeschehen mit mehreren Tage Verzögerung abgebildet wird. Dies erscheint auch logisch, wenn man
-          bedenkt, dass man nach einer Ansteckung mit dem Coronavirus nicht sofort Symptome entwickelt und viele bei
-          Symptomen auch einige Tage warten, bis zum Arzt gehen. Ein Labortest und bei einem positiven Ergebnis die
-          Meldung an das RKI benötigen wiederum mehrere Tage Zeit. Der R-Wert ist somit immer ein Blick in die
-          Vergangenheit. Der Vorteil unseres Kontakt-Index ist, dass die Auswertung von Kontakten viel schneller
-          analysiert werden kann und daher ohne den Meldeverzug der offiziellen RKI Daten zur Verfügung steht. Dadurch
+          bedenkt, dass man nach einer Ansteckung mit dem Coronavirus nicht sofort Symptome entwickelt. Falls sich eine Person einem Labortest unterzieht, dauert es in der Regel mehrere Tage, bis das Ergebnis dem Robert-Koch-Institut mitgeteilt wird.
+          Der R-Wert ist somit immer ein Blick in die Vergangenheit. Der Vorteil unseres Kontakt-Index ist, dass die Auswertung von Kontakten viel schneller
+          analysiert werden kann und daher ohne den Meldeverzug der offiziellen Daten zur Verfügung steht. Dadurch
           können wir die Bevölkerung schneller auf die Möglichkeit eines erhöhten regionalen Risikos hinweisen.
         </Typography>
       </section>
