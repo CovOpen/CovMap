@@ -35,9 +35,6 @@ const locationFound = (query, data, properties, searchOptions?) => {
   });
 };
 
-
-
-
 export function getPossibleSearchResults() {
   return (dispatch: ReduxDispatch, getState: () => State) => {
     const state = getState();

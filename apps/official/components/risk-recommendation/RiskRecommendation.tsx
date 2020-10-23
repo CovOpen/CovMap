@@ -11,13 +11,13 @@ import { RiskTexts } from "../../static/texts/RiskTexts";
 
 const useStyles = makeStyles((theme) => ({
   teaser: {
-    border: 0,
-    background: "#2979ff",
-    color: "white",
-    textTransform: "none",
-    padding: theme.spacing(4, 2),
+    "border": 0,
+    "background": "#2979ff",
+    "color": "white",
+    "textTransform": "none",
+    "padding": theme.spacing(4, 2),
     "&:last-child": {
-      paddingBottom: theme.spacing(4, 2),  // make the cards symmetric by removing the huge padding bottom
+      paddingBottom: theme.spacing(4, 2), // make the cards symmetric by removing the huge padding bottom
     },
   },
 
