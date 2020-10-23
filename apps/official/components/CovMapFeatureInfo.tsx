@@ -48,6 +48,7 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
     backgroundColor: "#FCFCFC",
     position: "relative",
     padding: theme.spacing(4, 2),
+    overflow: "visible",
     "&:last-child": {
       paddingBottom: theme.spacing(4, 2),  // make the cards symmetric by removing the huge padding bottom
     },
@@ -81,7 +82,7 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
   },
   chipTop: {
     position: "absolute",
-    top: theme.spacing(0.5)
+    top: -12  // half hight of the badge
   }
 }));
 
@@ -207,7 +208,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
               <Typography variant="h3">7-Tages-Inzidenz (RKI)</Typography>
             </Grid>
             <Grid item xs={2}>
-              <Typography>{incidenceDisplay}</Typography>
+              <Typography align="center">{incidenceDisplay}</Typography>
             </Grid>
             <Grid item xs={2}>
               <ArrowForwardIosIcon className={centerIcon} color="action" fontSize="small" />
