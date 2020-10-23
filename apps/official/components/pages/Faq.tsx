@@ -148,7 +148,7 @@ export const Faq: React.FC = () => {
                   Wir charakterisieren aus anonymisierten Smartphone-Daten (ermittelt aus GPS Daten) das
                   Kontaktverhalten. Des Weiteren werten wir selbstberichtete Symptome aus. Nicht
                   jeder Kontakt führt zu einer Virusübertragung und auch Symptome sind nicht beweisend für eine Infektion mit
-                  dem Coronavirus. Wertet man jedoch die Daten von vielen Personen aus, dann können mit Hilfe von statistischen Modellen eine Prognose der zukünftigen Fallzahlen
+                  dem Coronavirus. Wertet man jedoch die Daten von vielen Personen aus, dann kann eine Prognose der zukünftigen Fallzahlen
                   erstellt werden.
                 </div>
                 <div className={classes.textBlock}>
