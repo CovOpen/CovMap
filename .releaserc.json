@@ -57,7 +57,8 @@
             "release": "patch"
           }
         ]
-      }
+      },
+      "@semantic-release/release-notes-generator"
     ]
   ]
 }
