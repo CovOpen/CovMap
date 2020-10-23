@@ -58,7 +58,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: yarn run semantic-release
       - name: Upload dist
-        if: steps.semantic.outputs.RELEASE == 'true'
+        if: steps.semantic.outputs.released == 'true'
         uses: actions/upload-artifact@v1
         with:
           name: dist
