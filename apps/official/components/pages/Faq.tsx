@@ -70,11 +70,11 @@ export const Faq: React.FC = () => {
                   <ul style={{ listStyle: "inside" }}>
                     <li>Wie hoch ist das regionale Risiko?</li>
                     <li>Wie kann ich mich schützen?</li>
-                    <li>Welche Verhaltensregeln gibt es in meiner Region?</li>
+                    <li>Was sind die in meinem Landkreis aktuell geltenden Verhaltensregeln?</li>
                   </ul>
                 </div>
                 <div className={classes.textBlock}>
-                  Mit der CovMap möchten wir an eine freiwillige Reduzierung von Kontakten appellieren und gleichermaßen
+                  Mit der CovMap möchten wir zu einer freiwilligen Reduzierung von Kontakten aufrufen und gleichermaßen
                   aufzeigen, wo dies nach unserer Meinung besonders notwendig ist.
                 </div>
               </div>
@@ -91,8 +91,8 @@ export const Faq: React.FC = () => {
         <FaqAccordion
           title="Handelt es sich um offizielle Risikoeinschätzungen?"
           content="Nein, bei der CovMap Risikoeinschätzung handelt es sich nicht um eine offizielle Risikoeinschätzung einer
-            nationalen Behörde oder Institution. Die CovMap Risikoeinschätzung wurde von Wissenschaftlern der
-            Charité, des Hasso-Plattner-Instituts und Spezialisten der Firma NETCHECK entwickelt."
+            nationalen Behörde oder Institution. Die CovMap Risikoeinschätzung wurde von Forschenden der
+            Charité, des Hasso-Plattner-Instituts und Datenspezialisten der Firma NETCHECK entwickelt."
         />
         <FaqAccordion
           title="Welche Risikostufen gibt es?"
@@ -141,36 +141,31 @@ export const Faq: React.FC = () => {
                 <div className={classes.textBlock}>
                   Damit das Virus übertragen werden kann, müssen sich Menschen begegnen. Wenige Tage nach der Infektion
                   berichten viele infizierte Personen über Symptome. Damit stellen der Kontakt zwischen Menschen und das
-                  Bemerken von Symptomen die zwei frühesten beobachtbaren Ereignisse einer Infektion dar. Und genau da
-                  setzt unser Projekt an.
+                  Bemerken von Symptomen die zwei frühesten beobachtbaren Ereignisse einer Infektion dar. Hier setzt die CovMap an.
                 </div>
                 <div className={classes.textBlock}>
                   Wir charakterisieren aus anonymisierten Smartphone-Daten (ermittelt aus GPS Daten) das
-                  Kontaktverhalten. Des Weiteren werten wir selbstberichtete Symptome aus. Nicht
-                  jeder Kontakt führt zu einer Virusübertragung und auch Symptome sind nicht beweisend für eine Infektion mit
+                  Kontaktverhalten. Zusätzlich werten wir selbstberichtete Symptome aus. Naturlich führt nicht
+                  jeder Kontakt zu einer Virusübertragung und Symptome allein beweisen keine Infektion mit
                   dem Coronavirus. Wertet man jedoch die Daten von vielen Personen aus, dann kann eine Prognose der zukünftigen Fallzahlen
                   erstellt werden.
                 </div>
                 <div className={classes.textBlock}>
-                  Der von uns entwickelte Kontakt-Index ist aktueller als die 7-Tages-Inzidenz und quasi ein
-                  Frühwarnsystem. Er gibt die Anzahl der durchschnittlichen Kontakte pro Person und Region in den
-                  letzten 24h Stunden an. In <a href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2">ersten Analysen</a> konnten wir zeigen, dass eine hohe Anzahl an Kontakten mit
-                  einem vermehrten Infektionsgeschehen korreliert.
+                  Die vom Robert Koch-Institut gemeldete 7-Tages-Inzidenz spiegelt das Infektionsgeschehen wider, das vor etwa einer Woche stattgefunden hat, und ist deshalb ein Blick in die Vergangenheit. Der von uns entwickelte Kontakt-Index spiegelt die Anzahl der Kontakte pro Person und Region wi. In <a href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2">ersten Analysen</a> konnten wir zeigen, dass ein hoher Kontakt-Index mit
+                  einem vermehrten Infektionsgeschehen korreliert. Der Kontakt-Index erlaubt insofern einen vorsichtigen Blick in die Zukunft und kann als eine Art Frühwarnsystem angesehen werden. Wichtig ist, dass es sich bei dem hinterlegten Algorithmus um ein rechnerisches Modell handelt. Das tatsächliche Infektionsgeschehen kann deshalb von der Vorhersage auf Basis des Kontakt-Index abweichen.
                 </div>
                 <div className={classes.textBlock}>
                   Man weiß inzwischen, dass die Auswertung von Symptomen zur Vorhersage von lokalen
-                  Ausbrüchen verwendet werden kann. Über die Charité CovApp werden von vielen Benutzern Symptomantworten
-                  eingegeben und wir planen, dies in ein verbessertes Modell einfließen zu lassen. Zeitlich ist die
-                  Symptomlast als Prädiktor für das Infektionsgeschehen zwischen Kontakt-Index und 7-Tages-Inzidenz
-                  einzuordnen.
+                  Ausbrüchen verwendet werden kann. Zeitlich ist die Symptomlast als PrädiktorVariable für die Vorhersage desas Infektionsgeschehens zwischen Kontakt-Index und 7-Tages-Inzidenz einzuordnen. Über die CovApp der Charité geben viele Nutzerinnen und Nutzern ihre Symptome
+                  an. Wir planen, dies Angaben anonymisiert in ein verbessertes Modell einfließen zu lassen. 
                 </div>
                 <div className={classes.textBlock}>
                   Der große Vorteil der Auswertung von Kontakten und Symptomen liegt darin, dass die Daten fast ohne
-                  Verzögerung analysiert werden können. Dadurch können wir die Bevölkerung schneller auf die Möglichkeit eines erhöhten
+                  Verzögerung analysiert werden können und daher ohne den Meldeverzug der offiziellen RKI Fallzahlen des Robert Koch-InstitutsDaten zur Verfügung stehen. Dadurch können wir die Bevölkerung schneller auf die Möglichkeit eines erhöhten
                   regionalen Risikos hinweisen.
                 </div>
                 <div className={classes.textBlock}>
-                  Das CovMap Projekt wird zur Zeit aktiv weiterentwickelt und verbessert.
+                  Das CovMap Projekt wird zurzeit aktiv weiterentwickelt und verbessert.
                 </div>
               </div>
             </Typography>
