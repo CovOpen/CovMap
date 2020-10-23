@@ -13,9 +13,9 @@ export const WelcomeModal2: React.FC = () => {
       <img src={"/images/WelcomeModalImage2_sub.svg"} alt="Welcome" />
 
       <div className={classes.infoTextDiv}>
-        <Typography className={classes.smallText}>
-          Die CovMap möchte Risikogebiete so zeitnah wie möglich erkennen. Dazu ziehen wir die offiziellen RKI
-          Fallzahlen, sowie einen von uns entwickelten Kontakt-Index und Symptom-Index heran.
+        <Typography className={classes.largeText}>
+          Die CovMap möchte Risikogebiete so zeitnah wie möglich erkennen. Dazu ziehen wir die offiziellen 
+          Fallzahlen, sowie ein von uns entwickeltes Vorhersagemodell basierend auf Kontakten und Symptomen heran.
         </Typography>
       </div>
     </>

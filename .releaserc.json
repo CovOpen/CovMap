@@ -1,0 +1,63 @@
+{
+  "branches": ["master"],
+  "verifyConditions": ["@semantic-release/changelog", "@semantic-release/github"],
+  "verifyConfig": ["@semantic-release/github"],
+  "prepare": [
+    {
+      "path": "@semantic-release/exec",
+      "cmd": "node ./ci/getChangelog.js ${lastRelease.version}"
+    },
+    {
+      "path": "@semantic-release/changelog",
+      "changelogFile": "static/changelog.md"
+    },
+    {
+      "path": "@semantic-release/exec",
+      "cmd": "node ./ci/version.js ${nextRelease.version} ${commits[0].commit.short} ${commits[0].commit.long}"
+    },
+    {
+      "path": "@semantic-release/exec",
+      "cmd": "npm run build"
+    },
+    {
+      "path": "@semantic-release/exec",
+      "cmd": "cd dist; zip -r ../release.zip *"
+    }
+  ],
+  "publish": [
+    {
+      "path": "@semantic-release/github",
+      "assets": [
+        {
+          "path": "static/changelog.md",
+          "label": "Changelog"
+        },
+        { "path": "release.zip", "label": "WebApp-${nextRelease.gitTag}.zip" }
+      ]
+    },
+    {
+      "path": "@semantic-release/exec",
+      "cmd": "echo \"::set-output name=RELEASED::true\""
+    },
+    {
+      "path": "@semantic-release/exec",
+      "cmd": "echo \"::set-output name=VERSION::${nextRelease.version}\""
+    }
+  ],
+  "fail": ["@semantic-release/github"],
+  "success": ["@semantic-release/github"],
+  "plugins": [
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "preset": "angular",
+        "releaseRules": [
+          {
+            "type": "trans",
+            "release": "patch"
+          }
+        ]
+      }
+    ]
+  ]
+}
