@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useHistory, useLocation } from "react-router-dom";
 import {
   Button,
   Card,
@@ -98,20 +98,20 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   } = useStyles({
     fullScreen,
   });
-  const [expanded, setExpanded] = useState(false);
+  const history = useHistory();
+  const location = useLocation();
+
+  const expanded: boolean = new URLSearchParams(location.search).get("expanded") === "true";
 
   function toggleExpand() {
-    setExpanded((expanded) => !expanded);
+    if (expanded) {
+      history.push({ search: "" });
+    } else {
+      history.push({ search: "?expanded=true" });
+    }
   }
 
-  const {
-    locationName,
-    IdDistrict: zipCode,
-    riskScore,
-    howToBehaveUrl,
-    contactScore,
-    incidence,
-  } = rawData as RawDataEntry;
+  const { locationName, IdDistrict: zipCode, riskScore, contactScore, incidence } = rawData as RawDataEntry;
   const title = titleByRiskScore[riskScore];
 
   const cardHeader = (
@@ -265,7 +265,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
         open={expanded}
         variant="temporary"
         anchor="bottom"
-        onClose={() => setExpanded(false)}
+        onClose={() => history.push({ search: "" })}
         classes={{ paper: drawerPaper, root: drawerRoot, paperAnchorBottom: drawerPaperAnchorBottom }}
       >
         {cardHeader}

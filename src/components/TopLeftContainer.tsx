@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     top: theme.spacing(2),
     left: theme.spacing(2),
-    zIndex: 1100,
+    zIndex: 1090,
     display: "flex",
     alignItems: "left",
   },
