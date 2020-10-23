@@ -35,6 +35,32 @@ const locationFound = (query, data, properties, searchOptions?) => {
   });
 };
 
+const locationFound = (query, data, properties, searchOptions?) => {
+  if (query === "") return true; // just give them every item for preview if they search for an empty string
+  const queryTransformed = searchOptions?.transformQuery ? searchOptions?.transformQuery(query) : query;
+
+  return properties.some((propName) => {
+    if (!data.properties[propName]) {
+      console.warn(`Property "${propName}" not found in dataset, check your app-config search settings`);
+      return false;
+    }
+    const propVal: any = data.properties[propName];
+
+    // string constructor is pretty expensive as far as i know so forcing everything to be a string might be smart
+    if (Array.isArray(propVal)) {
+      // if its an array compare each item as string
+      return propVal.some((val) => String(val).toLowerCase().includes(queryTransformed.toLowerCase()));
+    }
+
+    // compare strings or numbers
+    if (String(propVal).toLowerCase().includes(queryTransformed.toLowerCase())) {
+      return true;
+    }
+    return false;
+  });
+};
+
+
 export function getPossibleSearchResults() {
   return (dispatch: ReduxDispatch, getState: () => State) => {
     const state = getState();
