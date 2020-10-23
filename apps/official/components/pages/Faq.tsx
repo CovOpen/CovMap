@@ -151,7 +151,7 @@ export const Faq: React.FC = () => {
                   erstellt werden.
                 </div>
                 <div className={classes.textBlock}>
-                  Die vom Robert Koch-Institut gemeldete 7-Tages-Inzidenz spiegelt das Infektionsgeschehen wider, das vor etwa einer Woche stattgefunden hat, und ist deshalb ein Blick in die Vergangenheit. Der von uns entwickelte Kontakt-Index spiegelt die Anzahl der Kontakte pro Person und Region wi. In <a href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2">ersten Analysen</a> konnten wir zeigen, dass ein hoher Kontakt-Index mit
+                  Die vom Robert Koch-Institut gemeldete 7-Tages-Inzidenz spiegelt das Infektionsgeschehen wider, das bereits vor einiger Zeit stattgefunden hat, und ist deshalb ein Blick in die Vergangenheit. Der von uns entwickelte Kontakt-Index ist ein Maß für die Anzahl der Kontakte pro Person und Region und kann schneller ausgewertet werden. In <a href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2">ersten Analysen</a> konnten wir zeigen, dass ein hoher Kontakt-Index mit
                   einem vermehrten Infektionsgeschehen korreliert. Der Kontakt-Index erlaubt insofern einen vorsichtigen Blick in die Zukunft und kann als eine Art Frühwarnsystem angesehen werden. Wichtig ist, dass es sich bei dem hinterlegten Algorithmus um ein rechnerisches Modell handelt. Das tatsächliche Infektionsgeschehen kann deshalb von der Vorhersage auf Basis des Kontakt-Index abweichen.
                 </div>
                 <div className={classes.textBlock}>
