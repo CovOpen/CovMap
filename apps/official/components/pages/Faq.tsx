@@ -156,7 +156,7 @@ export const Faq: React.FC = () => {
                 </div>
                 <div className={classes.textBlock}>
                   Man weiß inzwischen, dass die Auswertung von Symptomen zur Vorhersage von lokalen
-                  Ausbrüchen verwendet werden kann. Zeitlich ist die Symptomlast als PrädiktorVariable für die Vorhersage desas Infektionsgeschehens zwischen Kontakt-Index und 7-Tages-Inzidenz einzuordnen. Über die CovApp der Charité geben viele Nutzerinnen und Nutzern ihre Symptome
+                  Ausbrüchen verwendet werden kann. Zeitlich ist die Symptomlast als Variable für die Vorhersage des Infektionsgeschehens zwischen Kontakt-Index und 7-Tages-Inzidenz einzuordnen. Über die CovApp der Charité geben viele Nutzerinnen und Nutzern ihre Symptome
                   an. Wir planen, dies Angaben anonymisiert in ein verbessertes Modell einfließen zu lassen. 
                 </div>
                 <div className={classes.textBlock}>
