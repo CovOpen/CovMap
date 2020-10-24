@@ -42,9 +42,10 @@ module.exports = function (env) {
     { from: path.resolve(APP_CONFIG_PATH, "static"), to: "./" },
   ];
 
-  if (env === 'dev') {
+  if (env === "dev") {
     staticResources.push({
-      from: path.resolve(__dirname, "dev/data"), to: "./data" 
+      from: path.resolve(__dirname, "dev/data"),
+      to: "./data",
     });
   }
 
