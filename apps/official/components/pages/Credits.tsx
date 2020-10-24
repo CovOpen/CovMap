@@ -54,18 +54,25 @@ export const Credits = () => {
           </div>
           <Typography variant="h2">
             <p>
-              CovMap ist ein Gemeinschaftsprojekt der Charité - Universitätsmedizin Berlin, des Hasso-Plattner-Instituts (HPI) und der Firma
-              NET CHECK.
+              CovMap ist ein Gemeinschaftsprojekt der Charité - Universitätsmedizin Berlin, des Hasso-Plattner-Instituts
+              (HPI) und der Firma NET CHECK.
             </p>
-            </Typography>
+          </Typography>
           <Typography variant="body1">
-            Projektleitung: <br /><br />
+            Projektleitung: <br />
+            <br />
             Charité: Dr. med. Alexander H. Thieme, M. Sc. <br />
-            Gesamtkonzept, CovMap, Datenanalyse Symptome<br /><br />
-            HPI: Prof. Dr. Christoph Lippert<br />
-            Datenanalyse, Modellerstellung, Prognosen<br /><br />
+            Gesamtkonzept, CovMap, Datenanalyse Symptome
+            <br />
+            <br />
+            HPI: Prof. Dr. Christoph Lippert
+            <br />
+            Datenanalyse, Modellerstellung, Prognosen
+            <br />
+            <br />
             NET CHECK: PD. Dr. Sten Rüdiger <br />
-            Datenanalyse GPS-Daten, Kontakt-Index<br />
+            Datenanalyse GPS-Daten, Kontakt-Index
+            <br />
           </Typography>
         </section>
         <section>
@@ -104,15 +111,18 @@ export const Credits = () => {
             <Typography variant="body1"></Typography>
           </section>
           <section>
-          <Typography variant="h2">Ganz besonders möchten wir folgenden Personen danken:<br /></Typography>
-          {contributors.contributors.map((el, i) => (
-            <p>
-              {" - "}
-              <a href={el.profile} target="_blank" rel="noopener">
-                {el.name + (i == contributors.contributors.length - 1 ? "" : " ")}
-              </a>
-            </p>
-          ))}
+            <Typography variant="h2">
+              Ganz besonders möchten wir folgenden Personen danken:
+              <br />
+            </Typography>
+            {contributors.contributors.map((el, i) => (
+              <p>
+                {" - "}
+                <a href={el.profile} target="_blank" rel="noopener">
+                  {el.name + (i == contributors.contributors.length - 1 ? "" : " ")}
+                </a>
+              </p>
+            ))}
           </section>
           <Typography variant="body1"></Typography>
         </section>
