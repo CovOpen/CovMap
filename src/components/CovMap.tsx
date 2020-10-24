@@ -76,7 +76,7 @@ async function loadFlyTo() {
   FlyToInterpolator = FlyTo;
 }
 
-let jumpedToLastFeatureOnce = false
+let jumpedToLastFeatureOnce = false;
 
 export const CovMap = () => {
   const classes = useStyles();
@@ -232,26 +232,32 @@ export const CovMap = () => {
     if (jumpedToLastFeatureOnce) {
       return;
     }
-    
+
     if (mapRef.current && currentVisual && mappedSets[currentVisual] && currentFeaturePropId) {
       const mapset = mappedSets[currentVisual][currentFeaturePropId.mappingId];
       if (mapset) {
         const featurePropKey = config.visuals[currentVisual].mappings[currentFeaturePropId.mappingId].featurePropKey;
-        const feature = (mapset.geo as FeatureCollection).features
-          .find(({ properties }) => (properties || {})[featurePropKey] === currentFeaturePropId.featurePropId);
+        const feature = (mapset.geo as FeatureCollection).features.find(
+          ({ properties }) => (properties || {})[featurePropKey] === currentFeaturePropId.featurePropId,
+        );
         const map = mapRef.current.getMap();
-        
-        map.once('idle', (evt) => {
-          dispatch(AppApi.setCurrentFeature({ 
-            ...feature,
-            id: currentFeaturePropId.featureId,
-            source: currentFeaturePropId.mappingId,
-          }, currentFeaturePropId.lngLat));
+
+        map.once("idle", (evt) => {
+          dispatch(
+            AppApi.setCurrentFeature(
+              {
+                ...feature,
+                id: currentFeaturePropId.featureId,
+                source: currentFeaturePropId.mappingId,
+              },
+              currentFeaturePropId.lngLat,
+            ),
+          );
         });
         jumpedToLastFeatureOnce = true;
       }
     }
-  }, [currentVisual, mappedSets, mapRef])
+  }, [currentVisual, mappedSets, mapRef]);
 
   const handleMapLoaded = () => {
     setMapLoaded(true);
