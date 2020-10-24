@@ -1,9 +1,4 @@
-import {
-  AppConfig,
-  CustomSearchOptions,
-  DefaultSearchOptions,
-  LayerType,
-} from "../../src/app-config.types";
+import { AppConfig, CustomSearchOptions, DefaultSearchOptions, LayerType } from "../../src/app-config.types";
 import { AnimatedLogo } from "./components/AnimatedLogo";
 import buildJSON from "./build.json";
 import { Faq } from "./components/pages/Faq";
