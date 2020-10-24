@@ -3,7 +3,6 @@ import {
   CustomSearchOptions,
   DefaultSearchOptions,
   LayerType,
-  SearchResultList,
 } from "../../src/app-config.types";
 import { AnimatedLogo } from "./components/AnimatedLogo";
 import buildJSON from "./build.json";
@@ -163,6 +162,7 @@ export const config: AppConfig = {
         "CI-to-plz": {
           datasourceId: "contact-index",
           geoId: "plz-details",
+          featurePropKey: "cca_2",
           geoProperty: "cca_2",
           dataProperty: "IdDistrict",
           transformData: transformData,
@@ -185,7 +185,6 @@ export const config: AppConfig = {
           id: "areas-fill",
           source: "CI-to-plz",
           clickable: true,
-          // showLegend: true,
           fn: (dataField, timeKey) => ({
             type: LayerType.FILL,
             paint: {
