@@ -53,9 +53,6 @@ export const Visual = memo(() => {
 
   useEffect(() => {
     loadMissingSets();
-  }, []);
-  useEffect(() => {
-    loadMissingSets();
     if (allSetsAreLoaded()) {
       dispatch(AppApi.setDatasetFound(true));
     }
