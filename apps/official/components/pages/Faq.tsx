@@ -23,27 +23,29 @@ const FaqAccordion: React.FC<{ title: string; content: string | ReactElement }> 
         {typeof props.content === "string" ? (
           <Typography style={{ width: "100%" }}>{props.content}</Typography>
         ) : (
-            props.content
-          )}
+          props.content
+        )}
       </AccordionDetails>
     </Accordion>
   );
 };
 
 const RiskHeading: React.FC<{ risk: 1 | 2 | 3 }> = ({ risk = 1 }) => {
-  const riskText = ["Normales", "Mittleres", "Hohes"]
+  const riskText = ["Normales", "Mittleres", "Hohes"];
   return (
-    <div style={{
-      display: "flex",
-      alignItems: "center"
-    }}>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       <RiskBadge riskScore={risk} />
       <Typography variant="h3" style={{ margin: "0 1rem" }}>
         {`${riskText[risk - 1] || "Normales"} Risiko`}
       </Typography>
     </div>
-  )
-}
+  );
+};
 
 export const Faq: React.FC = () => {
   const classes = useStyles();
@@ -101,21 +103,23 @@ export const Faq: React.FC = () => {
               <Typography>Auf der Karte stellen wir ein normales, mittleres und hohes Risiko dar.</Typography>
               <RiskHeading risk={3} />
               <Typography>
-                Ein hohes Risiko leiten wir von der etablierten 7-Tages-Inzidenz des Robert-Koch-Instituts ab, wenn die 7-Tages-Inzidenz die Schwelle von 50
-                Neuinfektionen pro 100.000 Einwohner überschritten wurde.
+                Ein hohes Risiko leiten wir von der etablierten 7-Tages-Inzidenz des Robert-Koch-Instituts ab, wenn die
+                7-Tages-Inzidenz die Schwelle von 50 Neuinfektionen pro 100.000 Einwohner überschritten wurde.
               </Typography>
               <RiskHeading risk={2} />
 
               <Typography>
-                Von einem mittleren Risiko gehen wir aus, wenn die 7-Tages-Inzidenz zwischen 20 und 50 Neuinfektionen pro 100.000 Einwohnern liegt oder unser Vorhersagemodell auf einen Anstieg der Neuinfektionen
-                hindeutet. Eine Region mit mittlerem Risiko kann in Zukunft eine Region mit hohem Risiko werden.
+                Von einem mittleren Risiko gehen wir aus, wenn die 7-Tages-Inzidenz zwischen 20 und 50 Neuinfektionen
+                pro 100.000 Einwohnern liegt oder unser Vorhersagemodell auf einen Anstieg der Neuinfektionen hindeutet.
+                Eine Region mit mittlerem Risiko kann in Zukunft eine Region mit hohem Risiko werden.
               </Typography>
               <RiskHeading risk={1} />
 
               <Typography>
-                Ein normales Risiko liegt vor, wenn die 7-Tages-Inzidenz geringer als 20 Neuinfektionen pro 100.000 Einwohner ist und unser Vorhersagemodell
-                keinen Anstieg vermuten lässt. Bitte beachte, dass das Virus derzeit überall in Deutschland zirkuliert
-                und daher eine Ansteckung auch in einer Region mit einem normalen Risiko möglich ist.
+                Ein normales Risiko liegt vor, wenn die 7-Tages-Inzidenz geringer als 20 Neuinfektionen pro 100.000
+                Einwohner ist und unser Vorhersagemodell keinen Anstieg vermuten lässt. Bitte beachte, dass das Virus
+                derzeit überall in Deutschland zirkuliert und daher eine Ansteckung auch in einer Region mit einem
+                normalen Risiko möglich ist.
               </Typography>
             </Box>
           }
@@ -141,28 +145,39 @@ export const Faq: React.FC = () => {
                 <div className={classes.textBlock}>
                   Damit das Virus übertragen werden kann, müssen sich Menschen begegnen. Wenige Tage nach der Infektion
                   berichten viele infizierte Personen über Symptome. Damit stellen der Kontakt zwischen Menschen und das
-                  Bemerken von Symptomen die zwei frühesten beobachtbaren Ereignisse einer Infektion dar. Hier setzt die CovMap an.
+                  Bemerken von Symptomen die zwei frühesten beobachtbaren Ereignisse einer Infektion dar. Hier setzt die
+                  CovMap an.
                 </div>
                 <div className={classes.textBlock}>
-                  Wir charakterisieren aus anonymisierten Smartphone-Daten das
-                  Kontaktverhalten. Zusätzlich werten wir selbstberichtete Symptome aus. Naturlich führt nicht
-                  jeder Kontakt zu einer Virusübertragung und Symptome allein beweisen keine Infektion mit
-                  dem Coronavirus. Wertet man jedoch die Daten von vielen Personen aus, dann kann eine Prognose der zukünftigen Fallzahlen
-                  erstellt werden.
+                  Wir charakterisieren aus anonymisierten Smartphone-Daten das Kontaktverhalten. Zusätzlich werten wir
+                  selbstberichtete Symptome aus. Naturlich führt nicht jeder Kontakt zu einer Virusübertragung und
+                  Symptome allein beweisen keine Infektion mit dem Coronavirus. Wertet man jedoch die Daten von vielen
+                  Personen aus, dann kann eine Prognose der zukünftigen Fallzahlen erstellt werden.
                 </div>
                 <div className={classes.textBlock}>
-                  Die vom Robert Koch-Institut gemeldete 7-Tages-Inzidenz spiegelt das Infektionsgeschehen wider, das bereits vor einiger Zeit stattgefunden hat, und ist deshalb ein Blick in die Vergangenheit. Der von uns entwickelte Kontakt-Index ist ein Maß für die Anzahl der Kontakte pro Person und Region und kann schneller ausgewertet werden. In <a href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2">ersten Analysen</a> konnten wir zeigen, dass ein hoher Kontakt-Index mit
-                  einem vermehrten Infektionsgeschehen korreliert. Der Kontakt-Index erlaubt insofern einen vorsichtigen Blick in die Zukunft und kann als eine Art Frühwarnsystem angesehen werden. Wichtig ist, dass es sich bei dem hinterlegten Algorithmus um ein rechnerisches Modell handelt. Das tatsächliche Infektionsgeschehen kann deshalb von der Vorhersage auf Basis des Kontakt-Index abweichen.
+                  Die vom Robert Koch-Institut gemeldete 7-Tages-Inzidenz spiegelt das Infektionsgeschehen wider, das
+                  bereits vor einiger Zeit stattgefunden hat, und ist deshalb ein Blick in die Vergangenheit. Der von
+                  uns entwickelte Kontakt-Index ist ein Maß für die Anzahl der Kontakte pro Person und Region und kann
+                  schneller ausgewertet werden. In{" "}
+                  <a href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2">ersten Analysen</a> konnten
+                  wir zeigen, dass ein hoher Kontakt-Index mit einem vermehrten Infektionsgeschehen korreliert. Der
+                  Kontakt-Index erlaubt insofern einen vorsichtigen Blick in die Zukunft und kann als eine Art
+                  Frühwarnsystem angesehen werden. Wichtig ist, dass es sich bei dem hinterlegten Algorithmus um ein
+                  rechnerisches Modell handelt. Das tatsächliche Infektionsgeschehen kann deshalb von der Vorhersage auf
+                  Basis des Kontakt-Index abweichen.
                 </div>
                 <div className={classes.textBlock}>
-                  Man weiß inzwischen, dass die Auswertung von Symptomen zur Vorhersage von lokalen
-                  Ausbrüchen verwendet werden kann. Zeitlich ist die Symptomlast als Variable für die Vorhersage des Infektionsgeschehens zwischen Kontakt-Index und 7-Tages-Inzidenz einzuordnen. Über die CovApp der Charité geben viele Nutzerinnen und Nutzern ihre Symptome
-                  an. Wir planen, diese Angaben anonymisiert in ein verbessertes Modell einfließen zu lassen. 
+                  Man weiß inzwischen, dass die Auswertung von Symptomen zur Vorhersage von lokalen Ausbrüchen verwendet
+                  werden kann. Zeitlich ist die Symptomlast als Variable für die Vorhersage des Infektionsgeschehens
+                  zwischen Kontakt-Index und 7-Tages-Inzidenz einzuordnen. Über die CovApp der Charité geben viele
+                  Nutzerinnen und Nutzern ihre Symptome an. Wir planen, diese Angaben anonymisiert in ein verbessertes
+                  Modell einfließen zu lassen.
                 </div>
                 <div className={classes.textBlock}>
                   Der große Vorteil der Auswertung von Kontakten und Symptomen liegt darin, dass die Daten fast ohne
-                  Verzögerung analysiert werden können und daher ohne den Meldeverzug der offiziellen RKI Fallzahlen des Robert Koch-InstitutsDaten zur Verfügung stehen. Dadurch können wir die Bevölkerung schneller auf die Möglichkeit eines erhöhten
-                  regionalen Risikos hinweisen.
+                  Verzögerung analysiert werden können und daher ohne den Meldeverzug der offiziellen RKI Fallzahlen des
+                  Robert Koch-InstitutsDaten zur Verfügung stehen. Dadurch können wir die Bevölkerung schneller auf die
+                  Möglichkeit eines erhöhten regionalen Risikos hinweisen.
                 </div>
                 <div className={classes.textBlock}>
                   Das CovMap Projekt wird zurzeit aktiv weiterentwickelt und verbessert.

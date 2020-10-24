@@ -40,24 +40,17 @@ export const WelcomeModal1: React.FC = () => {
         </div>
         <div className={classes.listItemDiv}>
           {listIcon}
-          <Typography className={classes.largeText}>
-            Regionale Risikoeinschätzung zum Coronavirus 
-          </Typography>
+          <Typography className={classes.largeText}>Regionale Risikoeinschätzung zum Coronavirus</Typography>
         </div>
-        
-        <div className={classes.listItemDiv}>
-          {listIcon}
-          <Typography className={classes.largeText}>
-            Informationen zu allgemeinen Schutzmaßnahmen
-          </Typography>
-        </div>
-      
 
         <div className={classes.listItemDiv}>
           {listIcon}
-          <Typography className={classes.largeText}>
-            Links zu aktuellen Verhaltensregeln aller Landkreise
-          </Typography>
+          <Typography className={classes.largeText}>Informationen zu allgemeinen Schutzmaßnahmen</Typography>
+        </div>
+
+        <div className={classes.listItemDiv}>
+          {listIcon}
+          <Typography className={classes.largeText}>Links zu aktuellen Verhaltensregeln aller Landkreise</Typography>
         </div>
       </div>
       <img src={"/images/Logo_Charite.svg"} alt="Charité Berlin" width="100" style={{ marginBottom: "24px" }} />

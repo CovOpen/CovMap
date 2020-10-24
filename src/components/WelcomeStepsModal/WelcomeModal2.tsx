@@ -14,8 +14,8 @@ export const WelcomeModal2: React.FC = () => {
 
       <div className={classes.infoTextDiv}>
         <Typography className={classes.largeText}>
-          Die CovMap möchte Risikogebiete so zeitnah wie möglich erkennen. Dazu ziehen wir die offiziellen 
-          Fallzahlen, sowie ein von uns entwickeltes Vorhersagemodell basierend auf Kontakten und Symptomen heran.
+          Die CovMap möchte Risikogebiete so zeitnah wie möglich erkennen. Dazu ziehen wir die offiziellen Fallzahlen,
+          sowie ein von uns entwickeltes Vorhersagemodell basierend auf Kontakten und Symptomen heran.
         </Typography>
       </div>
     </>

@@ -14,7 +14,7 @@ jobs:
       - name: Sleep for 90 seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '90s'
+          time: "90s"
       - name: Azure Login
         uses: azure/login@v1
         with:
