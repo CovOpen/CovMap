@@ -41,7 +41,7 @@ export const Visual = memo(() => {
       }
     }
     return true;
-  }
+  };
   const loadMissingSets = () => {
     for (const mappingId of mappingIds) {
       const mapset = mappedSets[currentVisual] ? mappedSets[currentVisual][mappingId] : null;
@@ -49,11 +49,11 @@ export const Visual = memo(() => {
         dispatch(fetchMappedSet(currentVisual, mappingId, currentDate));
       }
     }
-  }
+  };
 
   useEffect(() => {
     loadMissingSets();
-  }, [])
+  }, []);
   useEffect(() => {
     loadMissingSets();
     if (allSetsAreLoaded()) {
