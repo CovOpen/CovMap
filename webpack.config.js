@@ -130,7 +130,7 @@ module.exports = function (env) {
         title: buildConfig.meta.title,
         url: buildConfig.meta.url,
         description: buildConfig.meta.description,
-        // favicon: "path/to/favicon",  // TODO you can set a favicon here
+        keywords: buildConfig.meta.keywords,
         variables: buildConfig,
         minify:
           env == "prod"
