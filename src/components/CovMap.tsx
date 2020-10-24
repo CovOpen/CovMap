@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import moment from "moment";
 import { useHistory, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { FeatureCollection } from "geojson";
 
 import { State } from "../state";
 import { AppApi } from "../state/app";
@@ -22,7 +23,6 @@ import { GLMap } from "./GLMap";
 import { Legend } from "./Legend";
 import { Settings } from "./Settings";
 import { config } from "app-config/index";
-import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
 import FixedSearch from "./FixedSearch";
 import { welcomeStepsConfig } from "./WelcomeStepsModal/welcomeStepsConfig";
 
@@ -72,6 +72,8 @@ async function loadFlyTo() {
   FlyToInterpolator = FlyTo;
 }
 
+let jumpedToLastFeatureOnce = false
+
 export const CovMap = () => {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
@@ -81,6 +83,8 @@ export const CovMap = () => {
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
   const currentFeature = useSelector((state: State) => state.app.currentFeature);
+  const currentFeaturePropId = useSelector((state: State) => state.app.currentFeaturePropId);
+  const mappedSets = useSelector((state: State) => state.app.mappedSets);
   const currentMappable = useSelector((state: State) => state.app.currentMappable);
   const currentDate = useSelector((state: State) => state.app.currentDate);
   const userPostalCode = useSelector((state: State) => state.app.userPostalCode);
@@ -178,7 +182,7 @@ export const CovMap = () => {
     const { features } = pointerEvent;
     if (features.length > 0) {
       /* handle multiple features. this happens when a street or text is clicked */
-      let countyFeatures;
+      let glFeature;
       if (features.length > 1) {
         // find out target features from index.ts
         const layers = config.visuals.covmap.layers;
@@ -187,21 +191,21 @@ export const CovMap = () => {
         const clickableLayer = layers.filter((layer) => layer.clickable); // get all clickable layers
         if (!clickableLayer.length) return;
 
-        countyFeatures = features.filter((feature) =>
+        glFeature = features.filter((feature) =>
           clickableLayer.some((layer) => feature.layer && feature.layer.id === layer.id),
         );
-        if (!countyFeatures.length) return;
+        if (!glFeature.length) return;
       } else {
-        countyFeatures = features;
+        glFeature = features;
       }
 
       if (mapRef.current) {
-        if (!mappingLayers.includes(countyFeatures[0].source)) {
+        if (!mappingLayers.includes(glFeature[0].source)) {
           return;
         }
       }
 
-      dispatch(AppApi.setCurrentFeature(countyFeatures[0], pointerEvent.lngLat));
+      dispatch(AppApi.setCurrentFeature(glFeature[0], pointerEvent.lngLat));
 
       if (stateViewport.zoom > 7) {
         const newViewport = {
@@ -216,17 +220,37 @@ export const CovMap = () => {
     }
   };
 
-  const flyToHome = () => {
-    // check for "valid" postal codes
-    if (!userPostalCode || isNaN(userPostalCode)) return;
-    dispatch(switchViewToPlace(String(userPostalCode)));
-  };
+  /**
+   * Takes the stored last select feature and sets it to current feature,
+   * to show the feature info last viewed after a reload.
+   */
+  useEffect(() => {
+    if (jumpedToLastFeatureOnce) {
+      return;
+    }
+    
+    if (mapRef.current && currentVisual && mappedSets[currentVisual] && currentFeaturePropId) {
+      const mapset = mappedSets[currentVisual][currentFeaturePropId.mappingId];
+      if (mapset) {
+        const featurePropKey = config.visuals[currentVisual].mappings[currentFeaturePropId.mappingId].featurePropKey;
+        const feature = (mapset.geo as FeatureCollection).features
+          .find(({ properties }) => (properties || {})[featurePropKey] === currentFeaturePropId.featurePropId);
+        const map = mapRef.current.getMap();
+        
+        map.once('idle', (evt) => {
+          dispatch(AppApi.setCurrentFeature({ 
+            ...feature,
+            id: currentFeaturePropId.featureId,
+            source: currentFeaturePropId.mappingId,
+          }, currentFeaturePropId.lngLat));
+        });
+        jumpedToLastFeatureOnce = true;
+      }
+    }
+  }, [currentVisual, mappedSets, mapRef])
 
   const handleMapLoaded = () => {
     setMapLoaded(true);
-    /* after map is completely loaded fly to useres home location after a short delay
-    tbh on most pcs this delay might as well be 0 */
-    setTimeout(flyToHome, 400);
   };
 
   return (

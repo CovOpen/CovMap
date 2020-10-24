@@ -126,6 +126,11 @@ export type FeatureInfoProps = {
 
 export type AppVisualMapping = {
   geoId: string;
+  /**
+   * The property key which identifies feature
+   * (To select a previously selected feature on reload)
+   */
+  featurePropKey: string;
   datasourceId: string;
   geoProperty: string;
   dataProperty: string;
