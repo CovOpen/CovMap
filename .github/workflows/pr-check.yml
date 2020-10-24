@@ -142,7 +142,7 @@ jobs:
 
     - name: Slack Notification
       run: |
-        curl -X POST -H 'Content-type: application/json' --data '{"text":"🚀 Try out the Preview for [PR-${{ github.event.pull_request.number }}](https://github.com/CovOpen/CovMapper/pull/${{ github.event.pull_request.number }} here: https://${{ env.STORAGE_NAME }}.z16.web.core.windows.net)"}' https://hooks.slack.com/services/${{ SECRETS.SLACK_WEBHOOK_SECRET }}
+        curl -X POST -H 'Content-type: application/json' --data '{"text":"🚀 Try out the Preview for [PR-${{ github.event.pull_request.number }}](https://github.com/CovOpen/CovMapper/pull/${{ github.event.pull_request.number }}) here: https://${{ env.STORAGE_NAME }}.z16.web.core.windows.net"}' https://hooks.slack.com/services/${{ SECRETS.SLACK_WEBHOOK_SECRET }}
 
 #    - name: Find Comment
 #      uses: peter-evans/find-comment@v1
