@@ -10,7 +10,7 @@ import { State } from "../state";
 export function WelcomeInfoButton() {
   const dispatch = useThunkDispatch();
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
-  
+
   const onInfoClick = () => {
     dispatch(AppApi.setInfoDialog(currentVisual, false));
   };
