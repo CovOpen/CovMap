@@ -34,16 +34,22 @@ export const WelcomeModalPostalCode: React.FC = () => {
   const dispatch = useThunkDispatch();
   const history = useHistory();
   const [postCode, setPostCode] = useState("");
-  const [validate, setValidate] = useState(false);
+  const [validatePostalCode, setValidatePostalCode] = useState(false);
+  const [validateCheckbox, setValidateCheckbox] = useState(false);
   const [checked, setChecked] = useState(false);
 
   function onSkip() {
-    dispatch(AppApi.setUserPostalCode(0));
-    history.push("/");
+    setValidateCheckbox(true);
+    setValidatePostalCode(false);
+    if (checked) {
+      dispatch(AppApi.setUserPostalCode(0));
+      history.push("/");
+    }
   }
 
   function submit() {
-    setValidate(true);
+    setValidatePostalCode(true);
+    setValidateCheckbox(true);
     if (isValidPostalCode(postCode) && checked) {
       dispatch(AppApi.setUserPostalCode(parseInt(postCode, 10)));
       history.push("/");
@@ -61,8 +67,8 @@ export const WelcomeModalPostalCode: React.FC = () => {
     setChecked(event.target.checked);
   }
 
-  const isCheckboxError = validate && !checked;
-  const isPostCodeError = validate && !isValidPostalCode(postCode);
+  const isCheckboxError = validateCheckbox && !checked;
+  const isPostCodeError = validatePostalCode && !isValidPostalCode(postCode);
 
   return (
     <>

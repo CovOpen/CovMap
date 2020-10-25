@@ -20,8 +20,6 @@ import { fetchMappedSet } from "../state/thunks/fetchMappedSet";
 import { formatUTCDate } from "../lib/formatUTCDate.js";
 import { config } from "app-config/index";
 
-const loadingSets = new Set();
-
 export const Visual = memo(() => {
   const dispatch = useThunkDispatch();
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
@@ -35,24 +33,32 @@ export const Visual = memo(() => {
   const filteredLayers = visual.layers.filter((layer) => currentLayerGroup.layers.includes(layer.id));
 
   const mappingIds = new Set(filteredLayers.map((layer) => layer.source));
-
-  for (const mappingId of mappingIds) {
-    const mapset = mappedSets[currentVisual] ? mappedSets[currentVisual][mappingId] : null;
-    if (!mapset || !mapset.timeKeys.includes(timeKey)) {
-      loadingSets.add(mappingId);
-      dispatch(fetchMappedSet(currentVisual, mappingId, currentDate));
-    } else {
-      loadingSets.delete(mappingId);
+  const allSetsAreLoaded = () => {
+    for (const mappingId of mappingIds) {
+      const mapset = mappedSets[currentVisual] ? mappedSets[currentVisual][mappingId] : null;
+      if (!mapset || !mapset.timeKeys.includes(timeKey)) {
+        return false;
+      }
     }
-  }
+    return true;
+  };
+  const loadMissingSets = () => {
+    for (const mappingId of mappingIds) {
+      const mapset = mappedSets[currentVisual] ? mappedSets[currentVisual][mappingId] : null;
+      if (!mapset || !mapset.timeKeys.includes(timeKey)) {
+        dispatch(fetchMappedSet(currentVisual, mappingId, currentDate));
+      }
+    }
+  };
 
   useEffect(() => {
-    if (loadingSets.size === 0) {
+    loadMissingSets();
+    if (allSetsAreLoaded()) {
       dispatch(AppApi.setDatasetFound(true));
     }
   }, [mappedSets, timeKey]);
 
-  if (loadingSets.size > 0) {
+  if (!allSetsAreLoaded()) {
     return null;
   }
 

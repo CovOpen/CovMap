@@ -37,6 +37,18 @@ module.exports = function (env) {
     env = "dev";
   }
 
+  const staticResources = [
+    { from: "static", to: "." },
+    { from: path.resolve(APP_CONFIG_PATH, "static"), to: "./" },
+  ];
+
+  if (env === "dev") {
+    staticResources.push({
+      from: path.resolve(__dirname, "dev/data"),
+      to: "./data",
+    });
+  }
+
   // common config
   const config = {
     devServer: {
@@ -130,7 +142,7 @@ module.exports = function (env) {
         title: buildConfig.meta.title,
         url: buildConfig.meta.url,
         description: buildConfig.meta.description,
-        // favicon: "path/to/favicon",  // TODO you can set a favicon here
+        keywords: buildConfig.meta.keywords,
         variables: buildConfig,
         minify:
           env == "prod"
@@ -147,11 +159,7 @@ module.exports = function (env) {
         },
       }),
 
-      new CopyWebpackPlugin([
-        { from: "static", to: "." },
-        { from: path.resolve(__dirname, "data"), to: "./data" },
-        { from: path.resolve(APP_CONFIG_PATH, "static"), to: "./" },
-      ]),
+      new CopyWebpackPlugin(staticResources),
       new BundleServiceWorkerPlugin({
         buildOptions: {
           swSrc: path.resolve(__dirname, "src/sw/sw.js"),

@@ -9,18 +9,23 @@ import { Link } from "react-router-dom";
 import { RiskScore } from "../../models";
 import { RiskTexts } from "../../static/texts/RiskTexts";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   teaser: {
-    border: 0,
-    background: "#2979ff",
-    color: "white",
-    textTransform: "none",
+    "border": 0,
+    "background": "#2979ff",
+    "color": "white",
+    "textTransform": "none",
+    "padding": theme.spacing(4, 2),
+    "&:last-child": {
+      paddingBottom: theme.spacing(4, 2), // make the cards symmetric by removing the huge padding bottom
+    },
   },
+
   centerIcon: {
     margin: "0 auto",
     display: "block",
   },
-});
+}));
 
 const Recommendation = ({ recommendation }: { recommendation: string }): JSX.Element => {
   const classes = useStyles();
@@ -28,16 +33,14 @@ const Recommendation = ({ recommendation }: { recommendation: string }): JSX.Ele
   return (
     <Link to="/risk-levels" style={{ textDecoration: "none" }} aria-label="go to explanation">
       <Card className={classes.teaser}>
-        <CardContent>
-          <Grid container direction="row" alignItems="center" spacing={2}>
-            <Grid item xs={10}>
-              <Typography variant="body2">{recommendation}</Typography>
-            </Grid>
-            <Grid item xs={2}>
-              <ArrowForwardIosIcon className={classes.centerIcon} fontSize="small" />
-            </Grid>
+        <Grid container direction="row" alignItems="center" spacing={2}>
+          <Grid item xs={10}>
+            <Typography variant="body2">{recommendation}</Typography>
           </Grid>
-        </CardContent>
+          <Grid item xs={2}>
+            <ArrowForwardIosIcon className={classes.centerIcon} fontSize="small" />
+          </Grid>
+        </Grid>
       </Card>
     </Link>
   );

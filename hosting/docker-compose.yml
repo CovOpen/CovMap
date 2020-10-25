@@ -1,6 +1,5 @@
 version: "3.0"
 services:
-
   nginx:
     # https://hub.docker.com/_/nginx
     image: nginx:1.19-alpine
@@ -30,4 +29,3 @@ services:
     volumes:
       - ./data/openmaptiles:/data
     restart: always
-

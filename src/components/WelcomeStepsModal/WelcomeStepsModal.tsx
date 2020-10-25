@@ -10,8 +10,8 @@ import { StepConfig, welcomeStepsConfig } from "./welcomeStepsConfig";
 import { MobileDotsStepper } from "./MobileDotsStepper";
 import { useCommonWelcomeModalStyles } from "./useCommonWelcomeModalStyles";
 
-function getStepConfig(stepName?: string): StepConfig {
-  return welcomeStepsConfig.find(({ name }) => name === stepName) ?? welcomeStepsConfig[0];
+function getStepConfig(stepName?: string): StepConfig | undefined {
+  return welcomeStepsConfig.find(({ name }) => name === stepName);
 }
 
 export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
@@ -24,8 +24,12 @@ export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
 
   const currentStepConfig = getStepConfig(props.subPage);
 
-  function renderNextButton() {
-    return currentStepConfig.next ? (
+  if (currentStepConfig === undefined) {
+    return null;
+  }
+
+  const renderNextButton = () =>
+    currentStepConfig.next ? (
       <Button
         className={`${classes.primaryButton} ${classes.largeText}`}
         variant="contained"
@@ -36,10 +40,9 @@ export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
         Weiter
       </Button>
     ) : null;
-  }
 
-  function renderSkipButton() {
-    return currentStepConfig.skip ? (
+  const renderSkipButton = () =>
+    currentStepConfig.skip ? (
       <Button
         className={`${classes.secondaryButton} ${classes.largeText}`}
         variant="contained"
@@ -49,13 +52,12 @@ export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
         Überspringen
       </Button>
     ) : null;
-  }
 
-  function onClose() {
+  const onClose = () => {
     if (currentStepConfig.closeable) {
       history.goBack();
     }
-  }
+  };
 
   return (
     <div>

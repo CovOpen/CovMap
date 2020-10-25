@@ -19,22 +19,23 @@
     },
     "openmaptiles:version": "3.x",
     "openmaptiles:mapbox:owner": "openmaptiles",
-    "openmaptiles:mapbox:source:url": "mapbox://openmaptiles.4qljc88t"
+    "openmaptiles:mapbox:source:url": "mapbox://openmaptiles.4qljc88t",
+    "maputnik:renderer": "mbgljs"
   },
   "sources": {
     "openmaptiles": {
       "type": "vector",
-      "url": "http://localhost/data/v3.json"
+      "url": "mapbox://data/v3.json"
     }
   },
-  "sprite": "http://localhost/styles/dark-matter/sprite",
-  "glyphs": "http://localhost/fonts/{fontstack}/{range}.pbf",
+  "sprite": "https://tiles.covmap.de/styles/dark-matter/sprite",
+  "glyphs": "mapbox://fonts/{fontstack}/{range}.pbf",
   "layers": [
     {
       "id": "background",
       "type": "background",
       "paint": {
-        "background-color": "rgb(12,12,12)"
+        "background-color": "hsl(55, 1%, 20%)"
       }
     },
     {
@@ -736,7 +737,7 @@
         "line-join": "round"
       },
       "paint": {
-        "line-color": "hsl(0, 0%, 23%)",
+        "line-color": "rgba(0, 0, 0, 1)",
         "line-width": {
           "base": 1.1,
           "stops": [
@@ -775,7 +776,7 @@
         "text-field": "{name:latin}\n{name:nonlatin}"
       },
       "paint": {
-        "text-color": "rgb(101,101,101)",
+        "text-color": "rgba(255, 255, 255, 0.8)",
         "text-halo-color": "rgba(0,0,0,0.7)",
         "text-halo-width": 1,
         "text-halo-blur": 1
@@ -872,7 +873,7 @@
         "text-field": "{name:latin}\n{name:nonlatin}"
       },
       "paint": {
-        "text-color": "rgba(255, 255, 255, 0.8)",
+        "text-color": "rgba(255, 255, 255, 0.9)",
         "text-halo-color": "rgba(0,0,0,0.7)",
         "text-halo-width": 1,
         "text-halo-blur": 1,
@@ -1024,7 +1025,8 @@
       },
       "source": "openmaptiles",
       "source-layer": "place",
-      "maxzoom": 8,
+      "minzoom": 24,
+      "maxzoom": 24,
       "filter": ["all", ["==", "$type", "Point"], ["==", "class", "country"], [">=", "rank", 2], ["has", "iso_a2"]],
       "layout": {
         "visibility": "visible",
@@ -1053,7 +1055,8 @@
       },
       "source": "openmaptiles",
       "source-layer": "place",
-      "maxzoom": 6,
+      "minzoom": 24,
+      "maxzoom": 24,
       "filter": ["all", ["==", "$type", "Point"], ["<=", "rank", 1], ["==", "class", "country"], ["has", "iso_a2"]],
       "layout": {
         "visibility": "visible",

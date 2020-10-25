@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link, RouteProps } from "react-router-dom";
-import { Button, Card, CardContent, Grid, IconButton, Typography } from "@material-ui/core";
+import { Link, useLocation } from "react-router-dom";
+import { Button, Card, CardContent, Grid, Typography } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { useSelector } from "react-redux";
@@ -253,7 +253,8 @@ function loadDistrictData(location): DistrictData {
   };
 }
 
-export const BasicRecommendations = ({ location }: RouteProps): JSX.Element => {
+export const BasicRecommendations = (): JSX.Element => {
+  const location = useLocation();
   const { county, howToBehaveUrl } = loadDistrictData(location);
 
   return (

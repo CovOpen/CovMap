@@ -51,6 +51,7 @@ export const FeatureInfo = memo(() => {
           display: "flex",
           justifyContent: "center",
           pointerEvents: "none",
+          zIndex: 1090,
         }}
       >
         <InfoComponent

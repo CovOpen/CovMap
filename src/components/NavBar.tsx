@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       // on mobile devices
       backgroundColor: "transparent",
+      pointerEvents: "none",
       boxShadow: "none",
       position: "fixed",
     },
@@ -67,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawer: {
     touchAction: "none",
+    pointerEvents: "auto",
   },
   drawerPaper: {
     width: "20rem",
@@ -82,11 +84,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export type NavBarProps = {
-  showSearch: boolean;
-};
-
-export const NavBar = ({ showSearch }: NavBarProps) => {
+export const NavBar = () => {
   const isMobile = useMediaQuery("(max-width:600px)"); // some wierd bug makes every logo disappear when one logo has a display: none style
   const dispatch = useThunkDispatch();
   const classes = useStyles();
@@ -219,6 +217,7 @@ const useIconStyles = makeStyles((theme) => ({
     zIndex: 1400, // put it on top of everything
     marginLeft: "auto",
     padding: theme.spacing(0.5),
+    pointerEvents: "auto",
     [theme.breakpoints.down("xs")]: {
       // on mobile devices
       "backgroundColor": theme.palette.background.default,
