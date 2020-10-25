@@ -122,7 +122,8 @@
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.ts?(x)",
-      "<rootDir>/src/**/?(*.)(spec|test).ts?(x)"
+      "<rootDir>/src/**/?(*.)(spec|test).ts?(x)",
+      "<rootDir>/apps/**/?(*.)(spec|test).ts?(x)"
     ],
     "testEnvironment": "node",
     "testURL": "http://localhost",

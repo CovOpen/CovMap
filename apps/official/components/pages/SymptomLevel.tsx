@@ -1,12 +1,12 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import { DetailPageNavigateBackHeader } from "app-config/components/DetailPageNavigateBackHeader";
+import { NavigationTitle } from "app-config/components/NavigationTitle";
 
 const SymptomLevel = () => {
   return (
     <main className="sections">
       <section>
-        <DetailPageNavigateBackHeader title="Symptomlast" />
+        <NavigationTitle title="Symptomlast" backToExpandedFeatureInfo={true} />
       </section>
 
       <section>

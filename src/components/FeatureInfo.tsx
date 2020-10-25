@@ -6,7 +6,6 @@ import { getFallbackComponent } from "./getFallback";
 import { AppApi } from "src/state/app";
 import { useThunkDispatch } from "src/useThunkDispatch";
 import { config } from "app-config/index";
-import { Popper } from "@material-ui/core";
 
 export const FeatureInfo = memo(() => {
   const dispatch = useThunkDispatch();
@@ -42,18 +41,7 @@ export const FeatureInfo = memo(() => {
 
   return (
     <Suspense fallback={getFallbackComponent()}>
-      <Popper
-        open={true}
-        style={{
-          top: "auto",
-          width: "100%",
-          bottom: "24px",
-          display: "flex",
-          justifyContent: "center",
-          pointerEvents: "none",
-          zIndex: 1090,
-        }}
-      >
+      <div style={{ position: "absolute", bottom: "24px" }}>
         <InfoComponent
           feature={currentFeature.feature}
           dataField={currentMappable.property}
@@ -61,7 +49,7 @@ export const FeatureInfo = memo(() => {
           rawData={rawData}
           onClose={onClose}
         />
-      </Popper>
+      </div>
     </Suspense>
   );
 });

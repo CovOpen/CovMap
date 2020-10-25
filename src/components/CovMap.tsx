@@ -25,6 +25,7 @@ import { config } from "app-config/index";
 import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
 import FixedSearch from "./FixedSearch";
 import { welcomeStepsConfig } from "./WelcomeStepsModal/welcomeStepsConfig";
+import { FeatureInfo } from "./FeatureInfo";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -33,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
     "position": "absolute",
     "display": "flex",
     "flex-direction": "column",
+    "justify-content": "center",
+    "align-items": "center",
+    "z-index": 0,
   },
   currentInfo: {
     "position": "absolute",
@@ -251,6 +255,7 @@ export const CovMap = () => {
       </TopLeftContainer>
       {visual.InfoComponent ? <WelcomeInfo /> : null}
       <GLMap mapRef={mapRef} onMapClick={handleMapClick} onViewportChange={onViewportChange} onLoad={handleMapLoaded} />
+      <FeatureInfo />
       {config.showTimeNavigation === false ? null : <TimeNav />}
       <Legend />
       <Dialog

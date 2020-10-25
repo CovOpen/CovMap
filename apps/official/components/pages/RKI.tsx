@@ -1,12 +1,12 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import { DetailPageNavigateBackHeader } from "app-config/components/DetailPageNavigateBackHeader";
+import { NavigationTitle } from "app-config/components/NavigationTitle";
 
 const RKI = () => {
   return (
     <main className="sections">
       <section>
-        <DetailPageNavigateBackHeader title="7-Tages-Inzidenz (RKI)" />
+        <NavigationTitle title="7-Tages-Inzidenz (RKI)" backToExpandedFeatureInfo={true} />
       </section>
 
       <section>
