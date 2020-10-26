@@ -17,7 +17,8 @@
     "test-ci": "testcafe chrome:headless testcafe/*.spec.ts --app \"cd ./dist && http-server -p 8080\"",
     "coverage": "jest --env=jsdom --coverage",
     "release": "semantic-release",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "percy": "percy exec -- testcafe chrome testcafe/*.spec.ts"
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
