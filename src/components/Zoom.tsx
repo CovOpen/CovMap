@@ -12,13 +12,13 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     bottom: theme.spacing(11),
     right: theme.spacing(2),
-    zIndex: 1100,
+    zIndex: 1090,
   },
   zoomOut: {
     position: "absolute",
     bottom: theme.spacing(5),
     right: theme.spacing(2),
-    zIndex: 1100,
+    zIndex: 1090,
   },
 }));
 

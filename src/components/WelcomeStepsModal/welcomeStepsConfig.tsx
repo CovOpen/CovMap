@@ -3,6 +3,7 @@ import { WelcomeModal1 } from "./WelcomeModal1";
 import { WelcomeModal2 } from "./WelcomeModal2";
 import { WelcomeModal3 } from "./WelcomeModal3";
 import { WelcomeModalPostalCode } from "./WelcomeModalPostalCode";
+import { WelcomeModalDataPrivacy } from "./WelcomeModalDataPrivacy";
 
 export type StepConfig = {
   name: WelcomeModalStep;
@@ -11,6 +12,7 @@ export type StepConfig = {
   previous?: WelcomeModalStep;
   skip?: WelcomeModalStep;
   dotProgressNumber?: number;
+  closeable?: boolean;
 };
 
 export const enum WelcomeModalStep {
@@ -18,6 +20,7 @@ export const enum WelcomeModalStep {
   Step2 = "welcome2",
   Step3 = "welcome3",
   StepPostalCode = "postalCode",
+  StepPostalCodeDataPrivacy = "postalCodeDataPrivacy",
 }
 
 export const welcomeStepsConfig: StepConfig[] = [
@@ -47,5 +50,11 @@ export const welcomeStepsConfig: StepConfig[] = [
   {
     name: WelcomeModalStep.StepPostalCode,
     Component: WelcomeModalPostalCode,
+  },
+  {
+    name: WelcomeModalStep.StepPostalCodeDataPrivacy,
+    Component: WelcomeModalDataPrivacy,
+    next: WelcomeModalStep.StepPostalCode,
+    closeable: true,
   },
 ];

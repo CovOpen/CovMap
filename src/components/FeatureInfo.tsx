@@ -1,18 +1,12 @@
 import React, { Suspense, memo } from "react";
 import { useSelector } from "react-redux";
-import { LazyError } from "./LazyError";
-const Popup = React.lazy(() =>
-  import(/* webpackChunkName: "mapgl" */ "react-map-gl/dist/es6/components/popup").catch(() => ({
-    default: LazyError,
-  })),
-);
-
 import { State } from "src/state";
 import { formatUTCDate } from "src/lib/formatUTCDate.js";
 import { getFallbackComponent } from "./getFallback";
 import { AppApi } from "src/state/app";
 import { useThunkDispatch } from "src/useThunkDispatch";
 import { config } from "app-config/index";
+import { Popper } from "@material-ui/core";
 
 export const FeatureInfo = memo(() => {
   const dispatch = useThunkDispatch();
@@ -29,8 +23,7 @@ export const FeatureInfo = memo(() => {
   }
 
   const visual = config.visuals[currentVisual];
-  // TODO: Select data correctly from a dataset for info here
-  const mappingId = Object.keys(visual.mappings)[0]; // <-
+  const mappingId = Object.keys(visual.mappings)[0];
   const activeMapping = visual.mappings[mappingId];
   const timeKey = formatUTCDate(currentDate);
   const currentDataSet = datasets.get(`${timeKey}-${activeMapping.datasourceId}`);
@@ -49,14 +42,17 @@ export const FeatureInfo = memo(() => {
 
   return (
     <Suspense fallback={getFallbackComponent()}>
-      <Popup
-        latitude={(currentFeature as any).lngLat[1]}
-        longitude={(currentFeature as any).lngLat[0]}
-        closeButton={false}
-        closeOnClick={false}
-        onClose={onClose}
-        anchor="top"
-        style={{ zIndex: 1100 }}
+      <Popper
+        open={true}
+        style={{
+          top: "auto",
+          width: "100%",
+          bottom: "24px",
+          display: "flex",
+          justifyContent: "center",
+          pointerEvents: "none",
+          zIndex: 1090,
+        }}
       >
         <InfoComponent
           feature={currentFeature.feature}
@@ -65,7 +61,7 @@ export const FeatureInfo = memo(() => {
           rawData={rawData}
           onClose={onClose}
         />
-      </Popup>
+      </Popper>
     </Suspense>
   );
 });

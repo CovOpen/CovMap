@@ -7,14 +7,15 @@ export const WelcomeModal2: React.FC = () => {
 
   return (
     <>
-      <Typography className={classes.title}>Alle Infos für Deine Risikoeinschätzung</Typography>
+      <Typography className={classes.title}>Was ist die CovMap?</Typography>
 
-      <img src={"/images/illustration.png"} alt="Welcome" width="100%" />
+      <img src={"/images/WelcomeModalImage2.svg"} alt="Welcome" width="100%" />
+      <img src={"/images/WelcomeModalImage2_sub.svg"} alt="Welcome" />
 
       <div className={classes.infoTextDiv}>
-        <Typography className={classes.smallText}>
-          Auf der Karte kannst du ganz einfach erkennen wie das momentane Infektionsgeschehen in Deutschland und Deiner
-          Region ist und was du aktiv tun kannst, um dies zu verbessern.
+        <Typography className={classes.largeText}>
+          Die CovMap möchte Risikogebiete so zeitnah wie möglich erkennen. Dazu ziehen wir die offiziellen Fallzahlen,
+          sowie ein von uns entwickeltes Vorhersagemodell basierend auf Kontakten und Symptomen heran.
         </Typography>
       </div>
     </>

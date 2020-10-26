@@ -1,10 +1,21 @@
 node_modules
+package-lock.json
 dist
 bundle-report.html
+bundle-stats.json
 *.generated*
 .now
+
+# VS Code stuff
 .vscode
+*.code-workspace
+
 .DS_Store
 
 # CovQuestions is automatically cloned in by the npm postinstall script
 CovQuestions/
+
+.env
+static/changelog.md
+package-lock.json
+hosting/data

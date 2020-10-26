@@ -1,0 +1,28 @@
+name: PR-Preview-TearDown
+on:
+  pull_request_target:
+    branches: [master]
+    types: [closed]
+env:
+  RESSOURCE_GROUP: covmapper
+  STORAGE_NAME: covmapperpr${{ github.event.pull_request.number }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sleep for 90 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: "90s"
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Azure CLI script
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.0.72
+          inlineScript: |
+            az storage account delete --name ${{ env.STORAGE_NAME }} --resource-group ${{ env.RESSOURCE_GROUP }} --subscription ${{ SECRETS.AZURE_SUBSCRIPTION_ID }} --yes

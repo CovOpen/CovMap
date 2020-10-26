@@ -1,15 +1,15 @@
 import "./app.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { hot } from "react-hot-loader";
 import { useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import { ThemeProvider } from "@material-ui/core/styles";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
-import * as moment from "moment";
-import "moment/locale/de";
+import Div100vh from "react-div-100vh";
+
 import { NavBar } from "src/components/NavBar";
 import { CovMap } from "./components/CovMap";
 import { State } from "./state";
@@ -18,14 +18,19 @@ import { ServiceWorker } from "./components/ServiceWorker";
 import { InstallPrompt } from "./components/InstallPrompt";
 import { useThunkDispatch } from "src/useThunkDispatch";
 import { AppApi } from "src/state/app";
+import { getFallbackComponent } from "./components/getFallback";
 
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+/**
+ * Note: For translations within the Base application we use a namespace called "common",
+ * so all shared translations will come from /static/locales/[lang]/common.json
+ * App specific translations will come from /apps/official/static/locales/[lang]/translation.json
+ */
+import "./i18n";
+
+import { HashRouter as Router, Route } from "react-router-dom";
 
 import { config } from "app-config/index";
 import { theme } from "./theme";
-import Div100vh from "react-div-100vh";
-
-moment.locale("de");
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -42,7 +47,18 @@ export const App = () => {
   }
 
   function renderRoute(page) {
-    return <Route path={page.route} key={page.id} render={() => <page.Component />} />;
+    return (
+      <Route
+        path={page.route}
+        key={page.id}
+        component={() => (
+          <div style={{ zIndex: 1095, backgroundColor: "white", width: "100%", minHeight: "100%", flexShrink: 0 }}>
+            <page.Component />
+          </div>
+        )}
+        style={{ flex: "1 1 auto", position: "absolute" }}
+      />
+    );
   }
 
   return (

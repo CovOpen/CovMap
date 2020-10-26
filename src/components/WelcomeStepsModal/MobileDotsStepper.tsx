@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
     width: "12px",
     height: "12px",
     backgroundColor: "#E0E0E0",
-    margin: "0 10px",
+    margin: "0 4px",
   },
   dotActive: {
     backgroundColor: "#2274E3",
@@ -23,7 +23,7 @@ export const MobileDotsStepper: React.FC<{ currentStepConfig: StepConfig }> = (p
   const classes = useStyles();
 
   if (props.currentStepConfig.dotProgressNumber === undefined) {
-    return null;
+    return <div style={{ height: "28px" }} />;
   }
 
   const numberOfStepsWithProgressDots = welcomeStepsConfig.filter(

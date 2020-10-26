@@ -11,6 +11,7 @@ import { State } from "../";
 import { FeatureCollection } from "geojson";
 
 const locationFound = (query, data, properties, searchOptions?) => {
+  if (query === "") return true; // just give them every item for preview if they search for an empty string
   const queryTransformed = searchOptions?.transformQuery ? searchOptions?.transformQuery(query) : query;
 
   return properties.some((propName) => {
@@ -18,7 +19,16 @@ const locationFound = (query, data, properties, searchOptions?) => {
       console.warn(`Property "${propName}" not found in dataset, check your app-config search settings`);
       return false;
     }
-    if (data.properties[propName].toLowerCase().includes(queryTransformed.toLowerCase())) {
+    const propVal: any = data.properties[propName];
+
+    // string constructor is pretty expensive as far as i know so forcing everything to be a string might be smart
+    if (Array.isArray(propVal)) {
+      // if its an array compare each item as string
+      return propVal.some((val) => String(val).toLowerCase().includes(queryTransformed.toLowerCase()));
+    }
+
+    // compare strings or numbers
+    if (String(propVal).toLowerCase().includes(queryTransformed.toLowerCase())) {
       return true;
     }
     return false;
@@ -29,6 +39,7 @@ export function getPossibleSearchResults() {
   return (dispatch: ReduxDispatch, getState: () => State) => {
     const state = getState();
     const { currentLayerGroup } = state.app;
+    // this should maybe not always be an empty string
     const result = defaultSearchMethod("", state, {
       ...currentLayerGroup.search,
       all: true,
@@ -58,7 +69,7 @@ function defaultSearchMethod(query: string, state: State, searchOptions?: Defaul
     for (let i = 0; i < features.length; i++) {
       if (locationFound(query, features[i], currentSet.properties, searchOptions)) {
         try {
-          const coordinates = currentSet.getCoordinates(features[i]);
+          const coordinates = features[i]?.properties?.geo_point_2d || [13.404954, 52.520008]; // if nothing found zoom to the source of all evil
           const props = features[i].properties || {};
           const name = props[searchOptions?.nameProp || "name"];
 
@@ -84,7 +95,7 @@ function defaultSearchMethod(query: string, state: State, searchOptions?: Defaul
   return { results: foundResults };
 }
 
-export function switchViewToPlace(query, onFoundCallback?, onErrorCallback?) {
+export function switchViewToPlace(query: string, onFoundCallback?, onErrorCallback?) {
   return async (dispatch: ReduxDispatch, getState: () => State) => {
     if (!query || query.length < 3) {
       return;

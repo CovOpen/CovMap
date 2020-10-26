@@ -1,12 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
-import { Button, Card, CardContent, CardHeader, Collapse, Grid, IconButton, Typography } from "@material-ui/core";
+import { Link as RouterLink, useHistory, useLocation } from "react-router-dom";
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  Chip,
+  Drawer,
+  Grid,
+  IconButton,
+  Theme,
+  Typography,
+  useTheme,
+} from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { RiskBadge } from "app-config/components/RiskBadge";
 import { makeStyles } from "@material-ui/core/styles";
 import { ContactScore, RawDataEntry, RiskScore } from "app-config/models";
+import { RiskRecommendation } from "./risk-recommendation/RiskRecommendation";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import ContactsLowIcon from "../static/images/contacts-low.svg";
+import ContactsMediumIcon from "../static/images/contacts-medium.svg";
+import SymptomsLowIcon from "../static/images/symptoms-low.svg";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
   action: {
     alignSelf: "auto",
     marginTop: 0,
@@ -27,7 +45,44 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     // TODO: Extract into theme
-    backgroundColor: "#FCFCFC",
+    "backgroundColor": "#FCFCFC",
+    "position": "relative",
+    "padding": theme.spacing(4, 2),
+    "overflow": "visible",
+    "&:last-child": {
+      paddingBottom: theme.spacing(4, 2), // make the cards symmetric by removing the huge padding bottom
+    },
+  },
+
+  drawerPaper: {
+    width: (props) => (props.fullScreen ? "100%" : "450px"),
+  },
+  drawerRoot: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  drawerPaperAnchorBottom: {
+    left: "auto",
+    right: "auto",
+  },
+  recommendationsLink: {
+    "textAlign": "center",
+    "& p": {
+      fontWeight: "bold",
+      margin: theme.spacing(1, 0),
+    },
+    "& a": {
+      padding: theme.spacing(1.4, 8),
+      borderRadius: theme.shape.borderRadius * 2,
+    },
+  },
+  centerIcon: {
+    margin: "0 auto",
+    display: "block",
+  },
+  chipTop: {
+    position: "absolute",
+    top: -12, // half hight of the badge
   },
 }));
 
@@ -37,104 +92,177 @@ const titleByRiskScore = {
   [RiskScore.High]: "Hohes Risiko",
 };
 
-const titleByContactScore = {
-  [ContactScore.Low]: "Reduziert",
-  [ContactScore.Medium]: "Zu hoch",
-};
-
-const descriptionByRiskScore = {
-  // TODO: Add missing descriptions
-  // TODO: Update description with shorter text
-  [RiskScore.Medium]:
-    "Ein mittleres Risiko kann bei mehreren Szenarien bestehen: Entweder ist die Zahl der Neuinfektionen über 20 Neuinfektionen pro 100.000 Einwohner oder das Kontaktverhalten der Bevölkerung oder die Symptomlast ist erhöht, so dass die Zahl der Neuinfektionen demnächst weiter ansteigen könnte. Bitte die AHA + L Regeln beachten. Wir empfehlen darüber hinaus, die Anzahl der Kontakte freiwillig weitestgehend zu reduzieren.",
-};
-
 export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProps) => {
-  const { action, card, container, expand, expandOpen } = useStyles();
-  const [expanded, setExpanded] = useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const {
+    recommendationsLink,
+    action,
+    card,
+    container,
+    expand,
+    expandOpen,
+    drawerPaper,
+    drawerRoot,
+    drawerPaperAnchorBottom,
+    centerIcon,
+    chipTop,
+  } = useStyles({
+    fullScreen,
+  });
+  const history = useHistory();
+  const location = useLocation();
+
+  const expanded: boolean = new URLSearchParams(location.search).get("expanded") === "true";
 
   function toggleExpand() {
-    setExpanded((expanded) => !expanded);
+    if (expanded) {
+      history.push({ search: "" });
+    } else {
+      history.push({ search: "?expanded=true" });
+    }
   }
 
-  const {
-    locationName,
-    IdDistrict: zipCode,
-    riskScore,
-    howToBehaveUrl,
-    contactScore,
-    incidence,
-  } = rawData as RawDataEntry;
+  const { locationName, IdDistrict: zipCode, riskScore, contactScore, incidence } = rawData as RawDataEntry;
   const title = titleByRiskScore[riskScore];
-  const riskDescription = descriptionByRiskScore[riskScore];
-  return (
-    <Card className={container}>
-      <CardHeader
-        avatar={<RiskBadge riskScore={riskScore} />}
-        action={
-          <IconButton
-            className={`${expand} ${expanded ? expandOpen : ""}`}
-            onClick={toggleExpand}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ArrowForwardIosIcon />
-          </IconButton>
-        }
-        classes={{ action }}
-        title={title}
-        titleTypographyProps={{ variant: "h1" }}
-        subheader={`${zipCode} ${locationName}`}
-      />
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Grid container direction="column" spacing={2}>
-            {/* TODO: Comment this back in once the risk descriptions are updated */}
-            {/*<Grid item>*/}
-            {/*  <Typography>{riskDescription}</Typography>*/}
-            {/*</Grid>*/}
-            <Grid item>
-              <Card variant="outlined" className={card}>
-                <CardHeader
-                  title="Kontaktverhalten der Bevölkerung"
-                  titleTypographyProps={{ variant: "h3" }}
-                  action={titleByContactScore[contactScore]}
-                  classes={{ action }}
-                />
-              </Card>
+
+  const cardHeader = (
+    <CardHeader
+      onClick={toggleExpand}
+      avatar={<RiskBadge riskScore={riskScore} />}
+      action={
+        <IconButton
+          className={`${expand} ${expanded ? expandOpen : ""}`}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ArrowForwardIosIcon />
+        </IconButton>
+      }
+      classes={{ action }}
+      title={title}
+      titleTypographyProps={{ variant: "h1" }}
+      subheader={locationName}
+    ></CardHeader>
+  );
+
+  const ContactsIcon = ({ score }: { score: ContactScore }) => {
+    switch (score) {
+      case ContactScore.Low:
+        return <ContactsLowIcon />;
+      case ContactScore.Medium:
+        return <ContactsMediumIcon />;
+      default:
+        return null;
+    }
+  };
+
+  const ContactBehaviorCategory = (): JSX.Element => (
+    <RouterLink to="/contact-behavior" style={{ textDecoration: "none" }} aria-label="go to contacts explanation">
+      <Card variant="outlined" className={card}>
+        <Chip size="small" label="beta" className={chipTop}></Chip>
+        <Grid container direction="row" alignItems="center" spacing={2}>
+          <Grid item xs={8}>
+            <Typography variant="h3">Kontaktverhalten der Bevölkerung</Typography>
+          </Grid>
+          <Grid item xs={2}>
+            <ContactsIcon score={contactScore} />
+          </Grid>
+          <Grid item xs={2}>
+            <ArrowForwardIosIcon className={centerIcon} color="action" fontSize="small" />
+          </Grid>
+        </Grid>
+      </Card>
+    </RouterLink>
+  );
+
+  const SymptomLoadCategory = (): JSX.Element => (
+    <RouterLink to="/symptom-level" style={{ textDecoration: "none" }} aria-label="go to symptoms explanation">
+      <Card variant="outlined" className={card}>
+        <Chip size="small" label="coming soon" className={chipTop}></Chip>
+        <Grid container direction="row" alignItems="center" spacing={2}>
+          <Grid item xs={8}>
+            <Typography variant="h3">Symptomlast der Bevölkerung</Typography>
+          </Grid>
+          <Grid item xs={2}>
+            <SymptomsLowIcon />
+          </Grid>
+          <Grid item xs={2}>
+            <ArrowForwardIosIcon className={centerIcon} color="action" fontSize="small" />
+          </Grid>
+        </Grid>
+      </Card>
+    </RouterLink>
+  );
+
+  const CaseNumbersCategory = (): JSX.Element => {
+    const format = new Intl.NumberFormat("de-de", { maximumFractionDigits: 1, minimumFractionDigits: 1 });
+
+    const incidenceDisplay = format.format(incidence);
+
+    return (
+      <RouterLink to="/rki" style={{ textDecoration: "none" }} aria-label="go to explanation">
+        <Card variant="outlined" className={card}>
+          <Grid container direction="row" alignItems="center" spacing={2}>
+            <Grid item xs={8}>
+              <Typography variant="h3">7-Tages-Inzidenz (RKI)</Typography>
             </Grid>
-            <Grid item>
-              <Card variant="outlined" className={card}>
-                <CardHeader
-                  title="Symptomlast der Bevölkerung"
-                  titleTypographyProps={{ variant: "h3" }}
-                  subheader="Bald verfügbar!"
-                  // TODO: Instead of subheader, show actual data
-                  // action={symptomIndex}
-                  // classes={{ action }}
-                />
-              </Card>
+            <Grid item xs={2}>
+              <Typography align="center">{incidenceDisplay}</Typography>
             </Grid>
-            <Grid item>
-              <Card variant="outlined" className={card}>
-                <CardHeader
-                  title="Fallzahlen RKI"
-                  titleTypographyProps={{ variant: "h3" }}
-                  action={new Intl.NumberFormat("de-de", { maximumFractionDigits: 1, minimumFractionDigits: 1 }).format(
-                    incidence,
-                  )}
-                  classes={{ action }}
-                />
-              </Card>
-            </Grid>
-            <Grid item>
-              <Button href={howToBehaveUrl} fullWidth variant="contained" color="secondary">
-                Wie sollte ich mich verhalten?
-              </Button>
+            <Grid item xs={2}>
+              <ArrowForwardIosIcon className={centerIcon} color="action" fontSize="small" />
             </Grid>
           </Grid>
-        </CardContent>
-      </Collapse>
-    </Card>
+        </Card>
+      </RouterLink>
+    );
+  };
+
+  const link = `/recommendations?IdDistrict=${zipCode}`;
+  const cardContent = (
+    <CardContent>
+      <Grid container direction="column" spacing={2}>
+        {/* TODO: Comment this back in once the risk descriptions are updated */}
+        {/*<Grid item>*/}
+        {/*  <Typography>{riskDescription}</Typography>*/}
+        {/*</Grid>*/}
+        <Grid item xs={12}>
+          {RiskRecommendation({ riskScore })}
+        </Grid>
+        <Grid item xs={12} alignContent="stretch">
+          <ContactBehaviorCategory />
+        </Grid>
+        <Grid item xs={12}>
+          <SymptomLoadCategory />
+        </Grid>
+        <Grid item xs={12}>
+          <CaseNumbersCategory />
+        </Grid>
+        <Grid item className={recommendationsLink}>
+          <Typography>Wie kann ich mich verhalten?</Typography>
+          <Button component={RouterLink} to={link} variant="contained" color="secondary">
+            Weiter
+          </Button>
+        </Grid>
+      </Grid>
+    </CardContent>
+  );
+
+  return (
+    <div style={{ pointerEvents: "auto" }}>
+      <Card className={container}>{cardHeader}</Card>
+
+      <Drawer
+        open={expanded}
+        variant="temporary"
+        anchor="bottom"
+        onClose={() => history.push({ search: "" })}
+        classes={{ paper: drawerPaper, root: drawerRoot, paperAnchorBottom: drawerPaperAnchorBottom }}
+      >
+        {cardHeader}
+        {cardContent}
+      </Drawer>
+    </div>
   );
 };

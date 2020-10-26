@@ -1,32 +1,49 @@
-import { AppConfig, LayerType } from "../../src/app-config.types";
+import {
+  AppConfig,
+  CustomSearchOptions,
+  DefaultSearchOptions,
+  LayerType,
+  SearchResultList,
+} from "../../src/app-config.types";
 import { AnimatedLogo } from "./components/AnimatedLogo";
 import buildJSON from "./build.json";
-import { About } from "./components/pages/About";
+import { Faq } from "./components/pages/Faq";
 import { Imprint } from "./components/pages/Imprint";
+import { Legal } from "./components/pages/Legal";
+import { Privacy } from "./components/pages/Privacy";
+import { Credits } from "./components/pages/Credits";
+import { Charts } from "./components/pages/Charts";
+import RKI from "./components/pages/RKI";
+import ContactBehavior from "./components/pages/ContactBehavior";
+import SymptomLevel from "./components/pages/SymptomLevel";
+import { BasicRecommendations } from "./components/basic-recommendations/BasicRecommendations";
 import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo";
+import { RiskLevelsPage } from "./components/risk-levels-page/RiskLevelsPage";
 // TODO: Integrate CovQuestions
 // import { Questions } from './components/pages/Questions'
 
 const CovMapMappables = [
   {
     property: "riskScore",
-    title: "Contact Index C",
+    title: (t) => t("translation:risk-score"),
     default: true,
   },
 ];
 
-const CovMapSearch = {
-  placeholder: "PLZ",
-  nameProp: "note",
+const CovMapSearch: DefaultSearchOptions | CustomSearchOptions = {
+  placeholder: (t) => t("translation:search-placeholder"),
+  nameProp: "name",
   inMappings: [
     {
       id: "CI-to-plz",
-      properties: ["note"],
+      properties: ["name", "zip_codes"],
       getCoordinates: (feature) => {
         //return feature.properties.geo_point_2d TODO
+        return [];
       },
     },
   ],
+
   notFoundMessage: "Leider keinen Landkreis gefunden.",
 };
 
@@ -39,23 +56,85 @@ export const config: AppConfig = {
   content: {
     pages: [
       {
-        id: "about-page",
-        title: "Info",
-        route: "/about",
-        Component: About,
+        id: "charts",
+        title: (t) => t("translation:pages.charts"),
+        route: "/charts",
+        Component: Charts,
+      },
+      {
+        id: "faq-page",
+        title: (t) => t("translation:pages.faq"),
+        route: "/faq",
+        Component: Faq,
+      },
+      {
+        id: "credits",
+        title: (t) => t("translation:pages.about"),
+        route: "/credits",
+        Component: Credits,
       },
       {
         id: "imprint-page",
-        title: "Impressum",
+        title: (t) => t("translation:pages.copyright"),
         route: "/imprint",
         Component: Imprint,
-      } /* {
-      id: 'questions-page',
-      title: 'Symptome erfassen',
-      route: '/questions',
-      Component: Questions
-    },*/,
+        menuDivider: true,
+      },
+      {
+        id: "legal-page",
+        title: (t) => t("translation:pages.legal"),
+        route: "/legal",
+        Component: Legal,
+      },
+      {
+        id: "privacy-page",
+        title: (t) => t("translation:pages.privacy-policy"),
+        route: "/privacy-statement",
+        Component: Privacy,
+      },
+      {
+        id: "basic-recommendations",
+        title: "Empfehlungen",
+        route: "/recommendations",
+        Component: BasicRecommendations,
+        hidden: true, // dont show this page in the navbar
+      },
+      {
+        id: "risk-levels-page",
+        title: "Risikostufen",
+        route: "/risk-levels",
+        Component: RiskLevelsPage,
+        hidden: true,
+      },
+      {
+        id: "rki-page",
+        title: "RKI",
+        route: "/rki",
+        Component: RKI,
+        hidden: true,
+      },
+      {
+        id: "contact-behavior",
+        title: "Kontaktverhalten",
+        route: "/contact-behavior",
+        Component: ContactBehavior,
+        hidden: true,
+      },
+      {
+        id: "symptom-level",
+        title: "Symptomlast",
+        route: "/symptom-level",
+        Component: SymptomLevel,
+        hidden: true,
+      },
+      /* {
+     id: 'questions-page',
+     title: 'Symptome erfassen',
+     route: '/questions',
+     Component: Questions
+   },*/
     ],
+    PrivacyComponent: Privacy,
   },
   buildJSON,
   mapSettings: {
@@ -63,18 +142,23 @@ export const config: AppConfig = {
       [56.47462805805594, 2.3730468750000004],
       [43.27103747280261, 17.885742187500004],
     ],
+    baseApiUrl: "https://tiles.covmap.de",
+    mapStyle: "https://tiles.covmap.de/styles/custom_dark_matter/style.json",
   },
   defaultVisual: "covmap",
   datasources: {
     "contact-index": {
-      url: (dateString) => `/data/districts_data_all.json`,
+      url: (dateString) =>
+        process.env.NODE_ENV === "production"
+          ? `https://data.covmap.de/data/map-${dateString}.json`
+          : `/data/districts_data_all.json`,
     },
   },
   visuals: {
     covmap: {
       name: "CovMap Fallzahlen",
       description: "Tagesaktuelle Zahlen des RKI - bis jetzt",
-      dateFormat: "dddd, Do MMMM YYYY",
+      dateFormat: (t, date) => t("translation:formats.date", date),
       mappings: {
         "CI-to-plz": {
           datasourceId: "contact-index",
@@ -100,6 +184,7 @@ export const config: AppConfig = {
         {
           id: "areas-fill",
           source: "CI-to-plz",
+          clickable: true,
           // showLegend: true,
           fn: (dataField, timeKey) => ({
             type: LayerType.FILL,
@@ -109,14 +194,15 @@ export const config: AppConfig = {
                 ["linear"],
                 ["get", dataField, ["get", timeKey]],
                 1,
-                "#00CC1A",
+                "#219653",
                 2,
-                "#FFA100",
+                "#EEC341",
                 3,
-                "#FF5100",
+                "#E84C4C",
               ],
-              "fill-opacity": 0.8,
+              "fill-opacity": 0.5,
             },
+            beforeId: "place_other",
           }),
         },
         {
