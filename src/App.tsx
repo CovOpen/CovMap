@@ -23,6 +23,7 @@ import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 import { config } from "app-config/index";
 import { theme } from "./theme";
+import Div100vh from "react-div-100vh";
 
 moment.locale("de");
 
