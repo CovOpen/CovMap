@@ -12,12 +12,17 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     "textAlign": "center",
-    "width": "140px",
+    "width": "100%",
+    "max-width": "140px",
     "height": "auto",
     "display": "block",
-    "margin": "auto",
+    "margin-top": "10px",
+    "margin-left": "auto",
     "margin-right": "auto",
+    "max-height": "90px",
+    "object-fit": "contain",
   },
+  logo_container: {},
   logo_small: {
     "textAlign": "center",
     "width": "80px",
@@ -54,15 +59,12 @@ export const Credits = () => {
               </Grid>
             </Grid>
           </div>
-          <Typography variant="h2">
-            <p>
-              CovMap ist ein Gemeinschaftsprojekt der Charité - Universitätsmedizin Berlin, des Hasso-Plattner-Instituts
-              (HPI) und der Firma NET CHECK.
-            </p>
-          </Typography>
           <Typography variant="body1">
-            Projektleitung: <br />
-            <br />
+            CovMap ist ein Gemeinschaftsprojekt der Charité - Universitätsmedizin Berlin, des Hasso-Plattner-Instituts
+            (HPI) und der Firma NET CHECK.
+          </Typography>
+          <Typography variant="h2">Projektleitung:</Typography>
+          <Typography variant="body1">
             Charité: Dr. med. Alexander H. Thieme, M. Sc. <br />
             Gesamtkonzept, CovMap, Datenanalyse Symptome
             <br />
@@ -74,49 +76,51 @@ export const Credits = () => {
             <br />
             NET CHECK: PD. Dr. Sten Rüdiger <br />
             Datenanalyse GPS-Daten, Kontakt-Index
-            <br />
           </Typography>
+          <Typography variant="h2">Wir danken den Unternehmen:</Typography>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={3} className={classes.logo_container}>
+              <img className={classes.logo} src="images/credits/portbluesky.png"></img>
+            </Grid>
+            <Grid item xs={12} sm={9}>
+              <Typography variant="body1">
+                <a href="https://www.portbluesky.com" target="_blank">
+                  Port Blue Sky:
+                </a>{" "}
+                für die technische Unterstüzung der App durch Ihre Mitarbeiter sowie das Organisieren von weiterer
+                Unterstützung aus der Node.js Community.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={3} className={classes.logo_container}>
+              <img className={classes.logo} src="images/credits/pwc.png"></img>
+            </Grid>
+            <Grid item xs={12} sm={9}>
+              <Typography variant="body1">
+                <a href="https://www.pwc.de" target="_blank">
+                  PWC:
+                </a>{" "}
+                für Lob, Kritik und Rat bei der Umsetzung der CovMap.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={3} className={classes.logo_container}>
+              <img className={classes.logo} src="images/credits/maptiler.png"></img>
+            </Grid>
+            <Grid item xs={12} sm={9}>
+              <Typography variant="body1">
+                <a href="https://www.maptiler.com" target="_blank">
+                  Maptiler:
+                </a>{" "}
+                für die Unterstützung in Form von Kartendaten.
+              </Typography>
+            </Grid>
+          </Grid>
         </section>
         <section>
-          <Typography variant="body1">
-            Die CovMap App wurde mit der Unterstützung von zahlreichen Personen und Unternehmen entwickelt. Wir möchten
-            an dieser Stelle unseren großen Dank aussprechen:
+          <Typography variant="h2">
+            Ganz besonders möchten wir folgenden Personen danken:
+            <br />
           </Typography>
-
-          <section>
-            <Typography variant="h2">Wir danken den Unternehmen:</Typography>
-            <Typography variant="body1">
-              <div className={classes.root}>
-                <Grid container spacing={3}>
-                  <Grid item xs={2} className={classes.centered}>
-                    <img className={classes.logo_small} src="images/credits/PortBlueSky.png"></img>
-                  </Grid>
-                  <Grid item xs={10}>
-                    Port Blue Sky, für die technische Unterstüzung der App durch Ihre Mitarbeiter sowie das Organisieren
-                    von weiterer Unterstützung aus der Node.js Community.
-                  </Grid>
-                  <Grid item xs={2} className={classes.centered}>
-                    <img className={classes.logo_small} src="images/credits/pwc.jpg"></img>
-                  </Grid>
-                  <Grid item xs={10}>
-                    PWC, für Lob, Kritik und Rat bei der Umsetzung der CovMap.
-                  </Grid>
-                  <Grid item xs={2} className={classes.centered}>
-                    <img className={classes.logo_small} src="images/credits/maptiler.png"></img>
-                  </Grid>
-                  <Grid item xs={10}>
-                    Maptiler, für die Unterstützung in Form von Kartendaten.
-                  </Grid>
-                </Grid>
-              </div>
-            </Typography>
-            <Typography variant="body1"></Typography>
-          </section>
-          <section>
-            <Typography variant="h2">
-              Ganz besonders möchten wir folgenden Personen danken:
-              <br />
-            </Typography>
+          <Typography variant="body1">
             {contributors.contributors.map((el, i) => (
               <p>
                 {" - "}
@@ -125,8 +129,7 @@ export const Credits = () => {
                 </a>
               </p>
             ))}
-          </section>
-          <Typography variant="body1"></Typography>
+          </Typography>
         </section>
       </main>
     </>

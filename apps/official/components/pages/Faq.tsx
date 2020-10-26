@@ -73,7 +73,7 @@ export const Faq: React.FC = () => {
                   <ul style={{ listStyle: "inside" }}>
                     <li>Wie hoch ist das regionale Risiko?</li>
                     <li>Wie kann ich mich schützen?</li>
-                    <li>Was sind die in meinem Landkreis aktuell geltenden Verhaltensregeln?</li>
+                    <li>Welche Verhaltensregeln gelten im Landkreis?</li>
                   </ul>
                 </div>
                 <div className={classes.textBlock}>
@@ -89,6 +89,10 @@ export const Faq: React.FC = () => {
           title="Wie kann ich die CovMap erreichen?"
           content="Die CovMap ist als WebApp über www.covmap.de und covmap.charite.de und als Android App über den Play Store
             (bald verfügbar) erreichbar."
+        />
+        <FaqAccordion
+          title="Was macht die CovMap besonders?"
+          content="Die CovMap wertet zur regionalen Risikobestimmung neben den offiziellen Fallzahlstatistiken des Robert-Koch-Institus große Datenmengen an GPS-Daten und an Symptomen aus. Diese Daten erlauben uns, mit Hilfe eines Modells einen Blick in die Zukunft des Infektionsgeschehens in Deutschland zu werfen und so Risikogebiete schnell zu identifizieren."
         />
 
         <FaqAccordion
