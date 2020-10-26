@@ -1,8 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Button, Card, CardContent, Grid, Typography } from "@material-ui/core";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { useSelector } from "react-redux";
 
@@ -15,6 +14,7 @@ import MaskIcon from "../../static/images/mask.svg";
 import VentilationIcon from "../../static/images/fresh-air.svg";
 import RegionalIcon from "../../static/images/checklist.svg";
 import { ActionTexts } from "../../static/texts/ActionTexts";
+import { NavigationTitle } from "app-config/components/NavigationTitle";
 
 const useStyles = makeStyles({
   teaser: {
@@ -36,21 +36,6 @@ const useStyles = makeStyles({
     fontWeight: "bold",
   },
 });
-
-const Header = (): JSX.Element => {
-  return (
-    <Link to="/" style={{ textDecoration: "none" }} aria-label="go back to map">
-      <Grid container direction="row">
-        <Grid item>
-          <ArrowBackIosIcon color="action" />
-        </Grid>
-        <Grid item>
-          <Typography variant="h1">{ActionTexts.TITLE}</Typography>
-        </Grid>
-      </Grid>
-    </Link>
-  );
-};
 
 const CountyTeaser = ({ county, url }: { county: string; url: string }): JSX.Element => {
   const classes = useStyles();
@@ -261,9 +246,11 @@ export const BasicRecommendations = (): JSX.Element => {
     <>
       <main className="sections">
         <section>
-          <Header />
+          <NavigationTitle title={ActionTexts.TITLE} backToExpandedFeatureInfo={true} />
         </section>
-        <section>{<CountyTeaser county={county} url={howToBehaveUrl} />}</section>
+        <section>
+          <CountyTeaser county={county} url={howToBehaveUrl} />
+        </section>
         <section>
           <Intro />
         </section>

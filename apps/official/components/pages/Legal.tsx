@@ -1,12 +1,13 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
+import { NavigationTitle } from "app-config/components/NavigationTitle";
 
 export const Legal = () => {
   return (
     <>
       <main className="sections">
         <section>
-          <Typography variant="h1">Rechtliches</Typography>
+          <NavigationTitle title={"Rechtliches"} />
         </section>
         <section>
           <Typography variant="h2">Rechtliche Hinweise</Typography>

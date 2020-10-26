@@ -1,12 +1,13 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
+import { NavigationTitle } from "app-config/components/NavigationTitle";
 
 export const Privacy = () => {
   return (
     <>
       <main className="sections">
         <section>
-          <Typography variant="h1">Datenschutzrechtliche Informationen gemäß Art. 13 DS-GVO </Typography>
+          <NavigationTitle title={"Datenschutzrechtliche Informationen gemäß Art. 13 DS-GVO "} />
         </section>
         <section>
           <Typography variant="h2">1. Datenschutzrechtliche Verantwortlichkeit</Typography>

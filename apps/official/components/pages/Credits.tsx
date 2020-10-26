@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { Grid, makeStyles } from "@material-ui/core";
-
+import { NavigationTitle } from "app-config/components/NavigationTitle";
 const contributors = require("json-loader!./../../../../.all-contributorsrc");
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +44,8 @@ export const Credits = () => {
     <>
       <main className="sections">
         <section>
-          <Typography variant="h1">Über die CovMap</Typography>
+          <NavigationTitle title={"Über die CovMap"} />
+
           <div className={(classes.root, classes.logobar)}>
             <Grid container spacing={3}>
               <Grid item xs={4} className={classes.centered}>

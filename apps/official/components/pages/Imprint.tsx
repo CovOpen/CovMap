@@ -1,12 +1,13 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
+import { NavigationTitle } from "app-config/components/NavigationTitle";
 
 export const Imprint = () => {
   return (
     <>
       <main className="sections">
         <section>
-          <Typography variant="h1">Impressum</Typography>
+          <NavigationTitle title={"Impressum"} />
         </section>
         <section>
           <Typography variant="h2">Anbieter</Typography>

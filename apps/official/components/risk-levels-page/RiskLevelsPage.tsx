@@ -5,7 +5,7 @@ import { RiskTexts } from "../../static/texts/RiskTexts";
 import RiskScoreNormalIcon from "../../static/images/risk-score-1.svg";
 import RiskScoreMediumIcon from "../../static/images/risk-score-2.svg";
 import RiskScoreHighIcon from "../../static/images/risk-score-3.svg";
-import { DetailPageNavigateBackHeader } from "app-config/components/DetailPageNavigateBackHeader";
+import { NavigationTitle } from "app-config/components/NavigationTitle";
 
 const useStyles = makeStyles({
   leftText: {
@@ -20,7 +20,7 @@ export const RiskLevelsPage = () => {
     <>
       <main className="sections">
         <section>
-          <DetailPageNavigateBackHeader title="Risikostufen" />
+          <NavigationTitle title="Risikostufen" backToExpandedFeatureInfo={true} />
         </section>
 
         <section>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { Visual } from "./Visual";
-import { FeatureInfo } from "./FeatureInfo";
 import { useSelector } from "react-redux";
 import { LazyError } from "./LazyError";
 import debounce from "debounce";
@@ -90,7 +89,6 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange, onLoad }: GLMapPro
       >
         <Visual />
       </ReactMapGL>
-      <FeatureInfo />
     </Suspense>
   );
 };

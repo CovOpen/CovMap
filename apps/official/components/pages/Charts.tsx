@@ -6,6 +6,7 @@ import { State } from "../../../../src/state";
 import { AppApi } from "../../../../src/state/app";
 
 import { formatUTCDate } from "../../../../src/lib/formatUTCDate";
+import { NavigationTitle } from "app-config/components/NavigationTitle";
 
 export const Charts = () => {
   const dispatch = useThunkDispatch();
@@ -32,8 +33,18 @@ export const Charts = () => {
   }
 
   return (
-    <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <div style={{ width: "100%", height: "calc(100vh - 100px)" }}>
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <NavigationTitle title={"Deutschlandweite Graphen"} />
+      <div style={{ width: "100%", height: "calc(100vh - 150px)" }}>
         <ResponsiveContainer>
           <LineChart
             data={data}

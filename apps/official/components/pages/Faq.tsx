@@ -4,6 +4,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Box } from "@material-ui
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { makeStyles } from "@material-ui/core/styles";
 import { RiskBadge } from "../RiskBadge";
+import { NavigationTitle } from "app-config/components/NavigationTitle";
 
 const useStyles = makeStyles(() => ({
   textBlock: {
@@ -53,7 +54,7 @@ export const Faq: React.FC = () => {
   return (
     <main className="sections">
       <section>
-        <Typography variant="h1">Fragen und Antworten zu CovMap!</Typography>
+        <NavigationTitle title={"Fragen und Antworten zu CovMap!"} />
       </section>
 
       <section>

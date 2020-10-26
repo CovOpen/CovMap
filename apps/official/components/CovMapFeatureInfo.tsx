@@ -1,6 +1,6 @@
 import React from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
-import { Link as RouterLink, useHistory, useLocation } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import {
   Button,
   Card,
@@ -23,6 +23,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import ContactsLowIcon from "../static/images/contacts-low.svg";
 import ContactsMediumIcon from "../static/images/contacts-medium.svg";
 import SymptomsLowIcon from "../static/images/symptoms-low.svg";
+import { usePathPreservingQueryChange } from "app-config/components/customHistoryHooks";
 
 const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
   action: {
@@ -82,7 +83,7 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
   },
   chipTop: {
     position: "absolute",
-    top: -12, // half hight of the badge
+    top: -12, // half height of the badge
   },
 }));
 
@@ -92,7 +93,7 @@ const titleByRiskScore = {
   [RiskScore.High]: "Hohes Risiko",
 };
 
-export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProps) => {
+export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const {
@@ -110,20 +111,12 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   } = useStyles({
     fullScreen,
   });
-  const history = useHistory();
+  const pushQueryChange = usePathPreservingQueryChange();
   const location = useLocation();
 
-  const expanded: boolean = new URLSearchParams(location.search).get("expanded") === "true";
+  const isExpanded: boolean = new URLSearchParams(location.search).has("expanded");
 
-  function toggleExpand() {
-    if (expanded) {
-      history.push({ search: "" });
-    } else {
-      history.push({ search: "?expanded=true" });
-    }
-  }
-
-  const { locationName, IdDistrict: zipCode, riskScore, contactScore, incidence } = rawData as RawDataEntry;
+  const { locationName, IdDistrict, riskScore, contactScore, incidence } = rawData as RawDataEntry;
   const title = titleByRiskScore[riskScore];
 
   const cardHeader = (
@@ -132,8 +125,8 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
       avatar={<RiskBadge riskScore={riskScore} />}
       action={
         <IconButton
-          className={`${expand} ${expanded ? expandOpen : ""}`}
-          aria-expanded={expanded}
+          className={`${expand} ${isExpanded ? expandOpen : ""}`}
+          aria-expanded={isExpanded}
           aria-label="show more"
         >
           <ArrowForwardIosIcon />
@@ -143,7 +136,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
       title={title}
       titleTypographyProps={{ variant: "h1" }}
       subheader={locationName}
-    ></CardHeader>
+    />
   );
 
   const ContactsIcon = ({ score }: { score: ContactScore }) => {
@@ -160,7 +153,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   const ContactBehaviorCategory = (): JSX.Element => (
     <RouterLink to="/contact-behavior" style={{ textDecoration: "none" }} aria-label="go to contacts explanation">
       <Card variant="outlined" className={card}>
-        <Chip size="small" label="beta" className={chipTop}></Chip>
+        <Chip size="small" label="beta" className={chipTop} />
         <Grid container direction="row" alignItems="center" spacing={2}>
           <Grid item xs={8}>
             <Typography variant="h3">Kontaktverhalten der Bevölkerung</Typography>
@@ -179,7 +172,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
   const SymptomLoadCategory = (): JSX.Element => (
     <RouterLink to="/symptom-level" style={{ textDecoration: "none" }} aria-label="go to symptoms explanation">
       <Card variant="outlined" className={card}>
-        <Chip size="small" label="coming soon" className={chipTop}></Chip>
+        <Chip size="small" label="coming soon" className={chipTop} />
         <Grid container direction="row" alignItems="center" spacing={2}>
           <Grid item xs={8}>
             <Typography variant="h3">Symptomlast der Bevölkerung</Typography>
@@ -219,7 +212,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     );
   };
 
-  const link = `/recommendations?IdDistrict=${zipCode}`;
+  const link = `/recommendations?IdDistrict=${IdDistrict}`;
   const cardContent = (
     <CardContent>
       <Grid container direction="column" spacing={2}>
@@ -249,20 +242,28 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     </CardContent>
   );
 
+  function toggleExpand() {
+    if (isExpanded) {
+      pushQueryChange({ expanded: undefined });
+    } else {
+      pushQueryChange({ expanded: "true" });
+    }
+  }
+
   return (
-    <div style={{ pointerEvents: "auto" }}>
+    <>
       <Card className={container}>{cardHeader}</Card>
 
       <Drawer
-        open={expanded}
+        open={isExpanded}
         variant="temporary"
         anchor="bottom"
-        onClose={() => history.push({ search: "" })}
+        onClose={() => pushQueryChange({ expanded: undefined })}
         classes={{ paper: drawerPaper, root: drawerRoot, paperAnchorBottom: drawerPaperAnchorBottom }}
       >
         {cardHeader}
         {cardContent}
       </Drawer>
-    </div>
+    </>
   );
 };
