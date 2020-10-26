@@ -52,6 +52,13 @@ export type SnackbarMessage = {
   duration?: number;
 };
 
+export type FeaturePropId = {
+  mappingId: string;
+  featureId: string;
+  featurePropId: string;
+  lngLat?: Array<number>;
+};
+
 export type MapSetHolder = Record<VisualId, Record<string, MapSet>>;
 
 export interface AppState {
@@ -73,6 +80,7 @@ export interface AppState {
   searchResult: boolean;
   snackbarMessage: SnackbarMessage;
   currentFeature: CurrentFeature;
+  currentFeaturePropId: FeaturePropId | null;
   isInstalled: boolean;
   installPrompt: Function | null;
   currentLayerGroup: LayerGroup;
@@ -107,6 +115,7 @@ export const defaultAppState: AppState = {
     done: true,
   },
   currentFeature: { feature: null },
+  currentFeaturePropId: null,
   isInstalled: false,
   installPrompt: null,
   currentLayerGroup: defaultLayerGroup,
@@ -194,6 +203,13 @@ class AppReducer extends Reducer<AppState> {
       feature,
       lngLat,
       previousFeature: this.state.currentFeature?.feature,
+    };
+    const featurePropKey = config.visuals[this.state.currentVisual].mappings[feature.source].featurePropKey;
+    this.state.currentFeaturePropId = {
+      mappingId: feature.source,
+      featureId: feature.id,
+      featurePropId: feature.properties[featurePropKey],
+      lngLat,
     };
   }
   public setIsInstalled(installed: boolean) {
