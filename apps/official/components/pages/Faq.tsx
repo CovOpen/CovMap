@@ -89,6 +89,10 @@ export const Faq: React.FC = () => {
           content="Die CovMap ist als WebApp über www.covmap.de und covmap.charite.de und als Android App über den Play Store
             (bald verfügbar) erreichbar."
         />
+        <FaqAccordion
+          title="Was macht die CovMap besonders?"
+          content="Die CovMap wertet zur regionalen Risikobestimmung neben den offiziellen Fallzahlstatistiken des Robert-Koch-Institus große Datenmengen an GPS-Daten und an Symptomen aus. Diese Daten erlauben uns, mit Hilfe eines Modells einen Blick in die Zukunft des Infektionsgeschehens in Deutschland zu werfen und so Risikogebiete schnell zu identifizieren."
+        />
 
         <FaqAccordion
           title="Handelt es sich um offizielle Risikoeinschätzungen?"
