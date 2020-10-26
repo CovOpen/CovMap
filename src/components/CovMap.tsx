@@ -23,7 +23,6 @@ import { GLMap } from "./GLMap";
 import { Legend } from "./Legend";
 import { Settings } from "./Settings";
 import { config } from "app-config/index";
-import FixedSearch from "./FixedSearch";
 import { welcomeStepsConfig } from "./WelcomeStepsModal/welcomeStepsConfig";
 import { FeatureInfo } from "./FeatureInfo";
 import { flyTo } from "../state/thunks/flyTo";
@@ -99,7 +98,6 @@ export const CovMap = () => {
   };
 
   const isCurrentPageWelcomeScreen = welcomeStepsConfig.find(({ name }) => name === urlParams.subPage) !== undefined;
-  const showSearch = !urlParams.subPage || isCurrentPageWelcomeScreen;
 
   useEffect(() => {
     if (userPostalCode === null && !isCurrentPageWelcomeScreen) {
@@ -256,7 +254,6 @@ export const CovMap = () => {
 
   return (
     <div className={classes.main}>
-      {showSearch && <FixedSearch />}
       <div className={classes.currentInfo}>
         {/*<Typography variant="h2" color="primary">{visual.name}</Typography>*/}
         <Typography variant="h2" color="primary">

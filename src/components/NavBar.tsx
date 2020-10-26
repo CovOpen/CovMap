@@ -20,6 +20,9 @@ import { config } from "app-config/index";
 import { Drawer, useMediaQuery } from "@material-ui/core";
 import { CloseRounded } from "@material-ui/icons";
 import { VERSION, HASH_LONG, HASH_SHORT } from "src/version";
+import FixedSearch from "./FixedSearch";
+import { useParams } from "react-router-dom";
+import { welcomeStepsConfig } from "./WelcomeStepsModal/welcomeStepsConfig";
 
 const Logo = config.ui?.Logo;
 
@@ -91,6 +94,7 @@ export const NavBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const { t } = useTranslation(["translation", "common"]);
+  const urlParams = useParams<{ subPage?: string }>();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -170,12 +174,16 @@ export const NavBar = () => {
     );
   };
 
+  const isCurrentPageWelcomeScreen = welcomeStepsConfig.find(({ name }) => name === urlParams.subPage) !== undefined;
+  const showSearch = !urlParams.subPage || isCurrentPageWelcomeScreen;
+
   return (
     <AppBar classes={{ root: classes.appBar }} style={{ height: 64, flex: "0 0 auto" }}>
       <Toolbar className={classes.fullHeightToolbar}>
         <Link to="/">
           {!isMobile && ((Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} />)}
         </Link>
+        {showSearch && <FixedSearch />}
         <MenuIconButton handleMenu={handleMenu} />
         <Drawer
           open={open}
@@ -201,7 +209,7 @@ export const NavBar = () => {
           )) || <img src={config.buildJSON.logoSrc} className={classes.logo} />}
           <div className={classes.version}>
             {"v" + VERSION} -{" "}
-            <a href={"https://github.com/CovOpen/CovMapper/commit/" + HASH_LONG} target="_blank" rel="noopener">
+            <a href={"https://github.com/CovOpen/CovMapper/commit/" + HASH_LONG} target="_blank" rel="noreferrer">
               {HASH_SHORT}
             </a>
           </div>

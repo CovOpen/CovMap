@@ -36,7 +36,6 @@ function Alert(props) {
 
 export const App = () => {
   const dispatch = useThunkDispatch();
-  const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
   const viewportEventsCount = useSelector((state: State) => state.app.viewPortEventsCount);
   const snackbarMessage = useSelector((state: State) => state.app.snackbarMessage);
   let showInstallPrompt = false;
@@ -70,7 +69,7 @@ export const App = () => {
           style={{ position: "absolute", height: "100%", display: "flex", flexDirection: "column" }}
         >
           <Suspense fallback={getFallbackComponent()}>
-            <NavBar />
+            <Route key="map" path="/:subPage?" component={NavBar} />
           </Suspense>
           <IntermediateProgress />
           {config.content?.pages.map((page) => renderRoute(page))}
