@@ -15,9 +15,6 @@ async function loadFlyTo() {
 export function flyTo(lng: number, lat: number) {
   loadFlyTo();
   return async (dispatch: ReduxDispatch, getState) => {
-    const { default: FlyToInterpolator } = await import(
-      /* webpackChunkName: "mapgl" */ "react-map-gl/dist/es6/utils/transition/viewport-fly-to-interpolator"
-    );
     const state = getState().app;
 
     const newViewport = {
