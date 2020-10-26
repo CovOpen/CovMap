@@ -8,8 +8,6 @@ import Container from "@material-ui/core/Container";
 import { ThemeProvider } from "@material-ui/core/styles";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
-import Div100vh from "react-div-100vh";
-
 import { NavBar } from "src/components/NavBar";
 import { CovMap } from "./components/CovMap";
 import { State } from "./state";
@@ -31,6 +29,7 @@ import { HashRouter as Router, Route } from "react-router-dom";
 
 import { config } from "app-config/index";
 import { theme } from "./theme";
+import Div100vh from "react-div-100vh";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -72,14 +71,14 @@ export const App = () => {
             maxWidth={false}
             style={{ position: "absolute", height: "100%", display: "flex", flexDirection: "column" }}
           >
-            <NavBar showSearch={!!currentLayerGroup.search} />
+            <Suspense fallback={getFallbackComponent()}>
+              <NavBar />
+            </Suspense>
             <IntermediateProgress />
-            <Container disableGutters maxWidth={false} style={{ flex: "1 1 auto", position: "relative" }}>
-              <Switch>
-                {config.content?.pages.map((page) => renderRoute(page))}
-                <Route key="map" path="/:subPage?" component={CovMap} />
-              </Switch>
-            </Container>
+            {config.content?.pages.map((page) => renderRoute(page))}
+            <Suspense fallback={getFallbackComponent()}>
+              <Route key="map" path="/:subPage?" component={CovMap} />
+            </Suspense>
           </Container>
         </Div100vh>
         <Snackbar
