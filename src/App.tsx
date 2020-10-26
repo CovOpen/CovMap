@@ -69,7 +69,7 @@ export const App = () => {
           style={{ position: "absolute", height: "100%", display: "flex", flexDirection: "column" }}
         >
           <Suspense fallback={getFallbackComponent()}>
-            <NavBar />
+            <Route key="map" path="/:subPage?" component={NavBar} />
           </Suspense>
           <IntermediateProgress />
           {config.content?.pages.map((page) => renderRoute(page))}
