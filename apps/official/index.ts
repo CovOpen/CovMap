@@ -137,7 +137,7 @@ export const config: AppConfig = {
       [43.27103747280261, 17.885742187500004],
     ],
     baseApiUrl: "https://tiles.covmap.de",
-    mapStyle: "https://tiles.covmap.de/styles/dark-matter/style.json",
+    mapStyle: "https://tiles.covmap.de/styles/custom_dark_matter/style.json",
   },
   defaultVisual: "covmap",
   datasources: {
@@ -178,23 +178,12 @@ export const config: AppConfig = {
           title: "Flächen",
           mappables: CovMapMappables,
           FeatureInfo: CovMapFeatureInfo,
-          layers: ["circles", "areas-fill", "hover"],
+          layers: ["icons", "areas-fill", "hover"],
           search: CovMapSearch,
           default: true,
         },
       ],
       layers: [
-        {
-          id: "circles",
-          source: "riskscore-to-district-point",
-          fn: (dataField, timeKey) => ({
-            type: LayerType.SYMBOL,
-            layout: {
-              "icon-image": "contacts-low",
-              "icon-size": 0.25,
-            },
-          }),
-        },
         {
           id: "areas-fill",
           source: "riskscore-to-district-area",
@@ -229,6 +218,17 @@ export const config: AppConfig = {
             },
           }),
         },
+        {
+          id: "icons",
+          source: "riskscore-to-district-point",
+          fn: (dataField, timeKey) => ({
+            type: LayerType.SYMBOL,
+            layout: {
+              "icon-image": ["match", ["get", dataField, ["get", timeKey]], 3, "group-contacts", ""],
+              "icon-size": 0.9,
+            },
+          }),
+        },
       ],
     },
   },
@@ -242,16 +242,8 @@ export const config: AppConfig = {
   },
   imageIcons: [
     {
-      id: "contacts-low",
-      url: "/images/no-contacts.png",
-    },
-    {
-      id: "contacts-medium",
-      url: "/images/contacts-low.png",
-    },
-    {
-      id: "contacts-high",
-      url: "/images/contacts-medium.png",
+      id: "group-contacts",
+      url: "/images/52px-group-contact.png",
     },
   ],
 };
