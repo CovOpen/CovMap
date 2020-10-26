@@ -57,7 +57,7 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
   drawerPaper: {
     width: (props) => (props.fullScreen ? "100%" : "450px"),
     maxHeight: "100%",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   drawerRoot: {
     display: "flex",
@@ -70,7 +70,7 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
   drawerScrollContainer: {
     height: "100%",
     width: "100%",
-    overflow: "auto"
+    overflow: "auto",
   },
   recommendationsLink: {
     "textAlign": "center",
@@ -238,7 +238,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
         <Grid item xs={12}>
           {RiskRecommendation({ riskScore })}
         </Grid>
-        <Grid item xs={12} >
+        <Grid item xs={12}>
           <ContactBehaviorCategory />
         </Grid>
         <Grid item xs={12}>
@@ -272,7 +272,6 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
           {cardHeader}
           {cardContent}
         </div>
-
       </Drawer>
     </div>
   );

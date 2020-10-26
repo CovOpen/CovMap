@@ -125,7 +125,8 @@ table {
   border-spacing: 0;
 }
 
-html, body{
+html,
+body {
   overflow: hidden;
 }
 
