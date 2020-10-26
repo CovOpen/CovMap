@@ -49,20 +49,22 @@ export const App = () => {
       <Router>
         <ServiceWorker />
         <InstallPrompt shouldShow={showInstallPrompt} />
-        <Container
-          disableGutters
-          maxWidth={false}
-          style={{ position: "absolute", height: "100%", display: "flex", flexDirection: "column" }}
-        >
-          <NavBar showSearch={!!currentLayerGroup.search} />
-          <IntermediateProgress />
-          <Container disableGutters maxWidth={false} style={{ flex: "1 1 auto", position: "relative" }}>
-            <Switch>
-              {config.content?.pages.map((page) => renderRoute(page))}
-              <Route key="map" path="/:subPage?" component={CovMap} />
-            </Switch>
+        <Div100vh>
+          <Container
+            disableGutters
+            maxWidth={false}
+            style={{ position: "absolute", height: "100%", display: "flex", flexDirection: "column" }}
+          >
+            <NavBar showSearch={!!currentLayerGroup.search} />
+            <IntermediateProgress />
+            <Container disableGutters maxWidth={false} style={{ flex: "1 1 auto", position: "relative" }}>
+              <Switch>
+                {config.content?.pages.map((page) => renderRoute(page))}
+                <Route key="map" path="/:subPage?" component={CovMap} />
+              </Switch>
+            </Container>
           </Container>
-        </Container>
+        </Div100vh>
         <Snackbar
           anchorOrigin={{
             vertical: "bottom",
