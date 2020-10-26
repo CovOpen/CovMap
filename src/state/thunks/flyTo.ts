@@ -4,14 +4,13 @@ import { AppApi } from "../app";
 let FlyToInterpolator = null;
 async function loadFlyTo() {
   if (FlyToInterpolator !== null) {
-    return
+    return;
   }
   const { default: FlyTo } = await import(
     /* webpackChunkName: "mapgl" */ "react-map-gl/dist/es6/utils/transition/viewport-fly-to-interpolator"
   );
   FlyToInterpolator = FlyTo;
-};
-
+}
 
 export function flyTo(lng: number, lat: number) {
   loadFlyTo();
