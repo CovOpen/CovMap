@@ -173,7 +173,9 @@ export const NavBar = () => {
   return (
     <AppBar classes={{ root: classes.appBar }} style={{ height: 64, flex: "0 0 auto" }}>
       <Toolbar className={classes.fullHeightToolbar}>
-        {!isMobile && ((Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} />)}
+        <Link to="/">
+          {!isMobile && ((Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} />)}
+        </Link>
         <MenuIconButton handleMenu={handleMenu} />
         <Drawer
           open={open}
