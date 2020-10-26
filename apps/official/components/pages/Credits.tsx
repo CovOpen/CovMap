@@ -82,7 +82,7 @@ export const Credits = () => {
           <Typography variant="h2">Wir danken den Unternehmen:</Typography>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={3} className={(classes.logo_container)}>
-              <img className={classes.logo} src="images/credits/PortBlueSky.png"></img>
+              <img className={classes.logo} src="images/credits/portbluesky.png"></img>
             </Grid>
             <Grid item xs={12} sm={9}>
               <Typography variant="body1">
@@ -91,7 +91,7 @@ export const Credits = () => {
               </Typography>
             </Grid>
             <Grid item xs={12} sm={3} className={(classes.logo_container)}>
-              <img className={classes.logo} src="images/credits/pwc.jpg"></img>
+              <img className={classes.logo} src="images/credits/pwc.png"></img>
             </Grid>
             <Grid item xs={12} sm={9}>
               <Typography variant="body1">
