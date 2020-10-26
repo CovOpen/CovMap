@@ -22,8 +22,7 @@ const useStyles = makeStyles((theme) => ({
     "max-height": "90px",
     "object-fit": "contain",
   },
-  logo_container: {
-  },
+  logo_container: {},
   logo_small: {
     "textAlign": "center",
     "width": "80px",
@@ -63,9 +62,7 @@ export const Credits = () => {
             CovMap ist ein Gemeinschaftsprojekt der Charité - Universitätsmedizin Berlin, des Hasso-Plattner-Instituts
             (HPI) und der Firma NET CHECK.
           </Typography>
-          <Typography variant="h2">
-            Projektleitung:
-          </Typography>
+          <Typography variant="h2">Projektleitung:</Typography>
           <Typography variant="body1">
             Charité: Dr. med. Alexander H. Thieme, M. Sc. <br />
             Gesamtkonzept, CovMap, Datenanalyse Symptome
@@ -81,29 +78,38 @@ export const Credits = () => {
           </Typography>
           <Typography variant="h2">Wir danken den Unternehmen:</Typography>
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={3} className={(classes.logo_container)}>
+            <Grid item xs={12} sm={3} className={classes.logo_container}>
               <img className={classes.logo} src="images/credits/portbluesky.png"></img>
             </Grid>
             <Grid item xs={12} sm={9}>
               <Typography variant="body1">
-                <a href="https://www.portbluesky.com" target="_blank">Port Blue Sky:</a> für die technische Unterstüzung der App durch Ihre Mitarbeiter sowie das Organisieren
-                von weiterer Unterstützung aus der Node.js Community.
+                <a href="https://www.portbluesky.com" target="_blank">
+                  Port Blue Sky:
+                </a>{" "}
+                für die technische Unterstüzung der App durch Ihre Mitarbeiter sowie das Organisieren von weiterer
+                Unterstützung aus der Node.js Community.
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={3} className={(classes.logo_container)}>
+            <Grid item xs={12} sm={3} className={classes.logo_container}>
               <img className={classes.logo} src="images/credits/pwc.png"></img>
             </Grid>
             <Grid item xs={12} sm={9}>
               <Typography variant="body1">
-              <a href="https://www.pwc.de" target="_blank">PWC:</a> für Lob, Kritik und Rat bei der Umsetzung der CovMap.
+                <a href="https://www.pwc.de" target="_blank">
+                  PWC:
+                </a>{" "}
+                für Lob, Kritik und Rat bei der Umsetzung der CovMap.
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={3} className={(classes.logo_container)}>
+            <Grid item xs={12} sm={3} className={classes.logo_container}>
               <img className={classes.logo} src="images/credits/maptiler.png"></img>
             </Grid>
             <Grid item xs={12} sm={9}>
               <Typography variant="body1">
-              <a href="https://www.maptiler.com" target="_blank">Maptiler:</a> für die Unterstützung in Form von Kartendaten.
+                <a href="https://www.maptiler.com" target="_blank">
+                  Maptiler:
+                </a>{" "}
+                für die Unterstützung in Form von Kartendaten.
               </Typography>
             </Grid>
           </Grid>
