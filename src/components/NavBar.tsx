@@ -95,7 +95,7 @@ export const NavBar = () => {
   const open = Boolean(anchorEl);
   const { t } = useTranslation(["translation", "common"]);
   const urlParams = useParams<{ subPage?: string }>();
-  
+
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
