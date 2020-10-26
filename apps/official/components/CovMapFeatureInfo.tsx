@@ -192,7 +192,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
           </Grid>
         </Grid>
       </Card>
-    </RouterLink >
+    </RouterLink>
   );
 
   const CaseNumbersCategory = (): JSX.Element => {
@@ -215,7 +215,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
             </Grid>
           </Grid>
         </Card>
-      </RouterLink >
+      </RouterLink>
     );
   };
 

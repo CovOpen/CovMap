@@ -41,7 +41,6 @@ const CovMapSearch: DefaultSearchOptions | CustomSearchOptions = {
         //return feature.properties.geo_point_2d TODO
         return [];
       },
-
     },
   ],
 
@@ -258,7 +257,3 @@ function calculateLegend(data, propertyName) {
 
   return legend;
 }
-
-
-
-
