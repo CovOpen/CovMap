@@ -26,6 +26,7 @@ import { config } from "app-config/index";
 import FixedSearch from "./FixedSearch";
 import { welcomeStepsConfig } from "./WelcomeStepsModal/welcomeStepsConfig";
 import { FeatureInfo } from "./FeatureInfo";
+import { flyTo } from "../state/thunks/flyTo";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -68,14 +69,6 @@ let viewPortEventCounter = 0;
 
 // Note: React hooks ref diffing workaround
 let previousMapRef = null;
-let FlyToInterpolator = null;
-async function loadFlyTo() {
-  const { default: FlyTo } = await import(
-    /* webpackChunkName: "mapgl" */ "react-map-gl/dist/es6/utils/transition/viewport-fly-to-interpolator"
-  );
-  FlyToInterpolator = FlyTo;
-}
-
 let jumpedToLastFeatureOnce = false;
 
 export const CovMap = () => {
@@ -115,7 +108,6 @@ export const CovMap = () => {
   }, [userPostalCode, urlParams]);
 
   useEffect(() => {
-    loadFlyTo();
     const interval = setInterval(() => {
       if (viewPortEventCounter > 1000) {
         clearInterval(interval);
@@ -212,14 +204,7 @@ export const CovMap = () => {
       dispatch(AppApi.setCurrentFeature(glFeature[0], pointerEvent.lngLat));
 
       if (stateViewport.zoom > 7) {
-        const newViewport = {
-          ...stateViewport,
-          latitude: pointerEvent.lngLat[1],
-          longitude: pointerEvent.lngLat[0],
-          transitionDuration: 400,
-          transitionInterpolator: FlyToInterpolator ? new (FlyToInterpolator as any)({ curve: 1 }) : null,
-        };
-        dispatch(AppApi.setViewport(newViewport));
+        dispatch(flyTo(pointerEvent.lngLat[0], pointerEvent.lngLat[1]));
       }
     }
   };
@@ -241,6 +226,7 @@ export const CovMap = () => {
           ({ properties }) => (properties || {})[featurePropKey] === currentFeaturePropId.featurePropId,
         );
         const map = mapRef.current.getMap();
+        const lngLat = currentFeaturePropId.lngLat;
 
         map.once("idle", (evt) => {
           dispatch(
@@ -250,10 +236,15 @@ export const CovMap = () => {
                 id: currentFeaturePropId.featureId,
                 source: currentFeaturePropId.mappingId,
               },
-              currentFeaturePropId.lngLat,
+              lngLat,
             ),
           );
+
+          if(lngLat) {
+            dispatch(flyTo(lngLat[0], lngLat[1]));
+          }
         });
+
         jumpedToLastFeatureOnce = true;
       }
     }
