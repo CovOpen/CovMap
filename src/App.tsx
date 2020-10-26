@@ -36,7 +36,6 @@ function Alert(props) {
 
 export const App = () => {
   const dispatch = useThunkDispatch();
-  const currentLayerGroup = useSelector((state: State) => state.app.currentLayerGroup);
   const viewportEventsCount = useSelector((state: State) => state.app.viewPortEventsCount);
   const snackbarMessage = useSelector((state: State) => state.app.snackbarMessage);
   let showInstallPrompt = false;
