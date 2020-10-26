@@ -163,9 +163,6 @@ class AppReducer extends Reducer<AppState> {
   public setCurrentDate(date: Date) {
     this.state.currentDate = date;
   }
-  public setCurrentFeaturePropId(date: Date) {
-    this.state.currentDate = date;
-  }
   public setCurrentMappable(mappable: Mappable) {
     this.state.currentMappable = mappable;
   }
