@@ -29,6 +29,7 @@ import { HashRouter as Router, Route } from "react-router-dom";
 
 import { config } from "app-config/index";
 import { theme } from "./theme";
+import Div100vh from "react-div-100vh";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -64,20 +65,22 @@ export const App = () => {
       <Router>
         <ServiceWorker />
         <InstallPrompt shouldShow={showInstallPrompt} />
-        <Container
-          disableGutters
-          maxWidth={false}
-          style={{ position: "absolute", height: "100%", display: "flex", flexDirection: "column" }}
-        >
-          <Suspense fallback={getFallbackComponent()}>
-            <NavBar />
-          </Suspense>
-          <IntermediateProgress />
-          {config.content?.pages.map((page) => renderRoute(page))}
-          <Suspense fallback={getFallbackComponent()}>
-            <Route key="map" path="/:subPage?" component={CovMap} />
-          </Suspense>
-        </Container>
+        <Div100vh>
+          <Container
+            disableGutters
+            maxWidth={false}
+            style={{ position: "absolute", height: "100%", display: "flex", flexDirection: "column" }}
+          >
+            <Suspense fallback={getFallbackComponent()}>
+              <NavBar />
+            </Suspense>
+            <IntermediateProgress />
+            {config.content?.pages.map((page) => renderRoute(page))}
+            <Suspense fallback={getFallbackComponent()}>
+              <Route key="map" path="/:subPage?" component={CovMap} />
+            </Suspense>
+          </Container>
+        </Div100vh>
         <Snackbar
           anchorOrigin={{
             vertical: "bottom",
