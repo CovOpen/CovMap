@@ -240,7 +240,7 @@ export const CovMap = () => {
             ),
           );
 
-          if(lngLat) {
+          if (lngLat) {
             dispatch(flyTo(lngLat[0], lngLat[1]));
           }
         });
