@@ -1,4 +1,10 @@
-import { AppConfig, CustomSearchOptions, DefaultSearchOptions, LayerType, SearchResultList } from "../../src/app-config.types";
+import {
+  AppConfig,
+  CustomSearchOptions,
+  DefaultSearchOptions,
+  LayerType,
+  SearchResultList,
+} from "../../src/app-config.types";
 import { AnimatedLogo } from "./components/AnimatedLogo";
 import buildJSON from "./build.json";
 import { Faq } from "./components/pages/Faq";
@@ -33,7 +39,7 @@ const CovMapSearch: DefaultSearchOptions | CustomSearchOptions = {
       properties: ["name", "zip_codes"],
       getCoordinates: (feature) => {
         //return feature.properties.geo_point_2d TODO
-        return []
+        return [];
       },
 
     },

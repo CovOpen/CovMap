@@ -19,7 +19,7 @@ const RKI = () => {
           mit 100.000 multipliziert. Die 7-Tages-Inzidenz stellt eine etablierte Größe dar, um aktuelle Hotspots der
           Coronavirus-Epidemie zu identifizieren. Man muss jedoch davon ausgehen, dass nicht alle Fälle gemeldet werden.
           Darüber hinaus gibt es einen Meldeverzug, da zwischen der Infektion und der Bestätigung durch einen Labortest
-          und Meldung des Ergebnisses an das RKI Zeit vergehen.
+          und Meldung des Ergebnisses an das Robert-Koch-Instituts Zeit vergeht.
         </Typography>
       </section>
     </main>

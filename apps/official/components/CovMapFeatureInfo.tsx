@@ -45,12 +45,12 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
   },
   card: {
     // TODO: Extract into theme
-    backgroundColor: "#FCFCFC",
-    position: "relative",
-    padding: theme.spacing(4, 2),
-    overflow: "visible",
+    "backgroundColor": "#FCFCFC",
+    "position": "relative",
+    "padding": theme.spacing(4, 2),
+    "overflow": "visible",
     "&:last-child": {
-      paddingBottom: theme.spacing(4, 2),  // make the cards symmetric by removing the huge padding bottom
+      paddingBottom: theme.spacing(4, 2), // make the cards symmetric by removing the huge padding bottom
     },
   },
 
@@ -82,8 +82,8 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
   },
   chipTop: {
     position: "absolute",
-    top: -12  // half hight of the badge
-  }
+    top: -12, // half hight of the badge
+  },
 }));
 
 const titleByRiskScore = {
@@ -106,7 +106,7 @@ export const CovMapFeatureInfo = ({ feature, onClose, rawData }: FeatureInfoProp
     drawerRoot,
     drawerPaperAnchorBottom,
     centerIcon,
-    chipTop
+    chipTop,
   } = useStyles({
     fullScreen,
   });

@@ -11,12 +11,12 @@ const SymptomLevel = () => {
 
       <section>
         <Typography>
-          Wenige Tage nach einer Coronavirusinfektion entwickelt ein Teil der Personen nach der Inkubationszeit Symptome
-          wie zum Beispiel Husten, Fieber, Verlust/Reduzierung des Geschmacks. Diese Symptome gehören zu den frühesten
-          beobachtbaren Ereignissen der Virusinfektion, sie sind jedoch nicht spezifisch für eine Coronavirusinfektion,
-          sondern treten beispielsweise auch bei einer harmlosen Erkältung auf. Falls man jedoch eine große
-          Menschenmenge nach diesen Symptomen befragt, so konnte bereits gezeigt werden, dass man Hotspots des
-          Coronavirus früher als durch die offiziellen Fallzahlstatistiken detektieren kann. Wir verwenden die Charité{" "}
+          Wenige Tage nach einer Coronavirusinfektion entwickelt ein Teil der Personen Symptome wie zum Beispiel Husten,
+          Fieber oder einen Verlust des Geschmacks. Diese Symptome gehören zu den frühesten beobachtbaren Ereignissen
+          einer Infektion, sind jedoch nicht spezifisch für das Coronavirus und können beispielsweise auch bei einer
+          harmlosen Erkältung auftreten. Falls man jedoch eine große Menschenmenge nach diesen Symptomen befragt, so
+          konnte bereits gezeigt werden, dass man Hotspots des Coronavirus früher als durch die offiziellen
+          Fallzahlstatistiken detektieren kann. Wir verwenden die Charité{" "}
           <a target="_blank" href="http://www.covapp.de" rel="noreferrer">
             CovApp
           </a>

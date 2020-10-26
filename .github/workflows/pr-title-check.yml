@@ -1,7 +1,7 @@
 name: Check PR title
 on:
   pull_request_target:
-    branches: [ master ]
+    branches: [master]
     types:
       - opened
       - reopened
@@ -21,14 +21,14 @@ jobs:
           preset: conventional-changelog-angular@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
+
       - name: Find Comment
         if: always()
         uses: peter-evans/find-comment@v1
         id: fc
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          comment-author: 'github-actions[bot]'
+          comment-author: "github-actions[bot]"
           body-includes: Please make sure that your Pull Request title and body does conform to this format
 
       - name: Create comment
