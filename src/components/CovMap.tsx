@@ -98,7 +98,7 @@ export const CovMap = () => {
   };
 
   const isCurrentPageWelcomeScreen = welcomeStepsConfig.find(({ name }) => name === urlParams.subPage) !== undefined;
-  
+
   useEffect(() => {
     if (userPostalCode === null && !isCurrentPageWelcomeScreen) {
       history.push(welcomeStepsConfig[0].name);
