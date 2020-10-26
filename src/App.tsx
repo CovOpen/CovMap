@@ -50,7 +50,16 @@ export const App = () => {
         path={page.route}
         key={page.id}
         component={() => (
-          <div style={{ zIndex: 1095, backgroundColor: "white", width: "100%", height: "100%", flexShrink: 0, overflow: "hidden" }}>
+          <div
+            style={{
+              zIndex: 1095,
+              backgroundColor: "white",
+              width: "100%",
+              height: "100%",
+              flexShrink: 0,
+              overflow: "hidden",
+            }}
+          >
             <div style={{ width: "100%", height: "100%", overflow: "auto" }}>
               <page.Component />
             </div>
