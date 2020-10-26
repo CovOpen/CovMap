@@ -72,7 +72,7 @@ export const Faq: React.FC = () => {
                   <ul style={{ listStyle: "inside" }}>
                     <li>Wie hoch ist das regionale Risiko?</li>
                     <li>Wie kann ich mich schützen?</li>
-                    <li>Was sind die in meinem Landkreis aktuell geltenden Verhaltensregeln?</li>
+                    <li>Welche Verhaltensregeln gelten im Landkreis?</li>
                   </ul>
                 </div>
                 <div className={classes.textBlock}>
