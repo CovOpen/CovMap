@@ -223,7 +223,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
         <Grid item xs={12}>
           {RiskRecommendation({ riskScore })}
         </Grid>
-        <Grid item xs={12} alignContent="stretch">
+        <Grid item xs={12}>
           <ContactBehaviorCategory />
         </Grid>
         <Grid item xs={12}>
