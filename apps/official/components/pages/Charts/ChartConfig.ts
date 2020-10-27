@@ -4,7 +4,7 @@ export type ChartConfig = {
 };
 
 export const chartConfigs: { [key: string]: ChartConfig } = {
-  "Both": { r: true, ci: true },
-  "Only R": { r: true },
-  "Only CI": { ci: true },
+  "Beide": { r: true, ci: true },
+  "Nur R": { r: true },
+  "Nur CI": { ci: true },
 };
