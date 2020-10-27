@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   logo_container: {},
   logo_small: {
     "textAlign": "center",
-    "width": "80px",
+    "width": "40px",
     "height": "auto",
     "display": "block",
     "margin": "auto",
@@ -80,38 +80,25 @@ export const Credits = () => {
           <Typography variant="h2">Wir danken den Unternehmen:</Typography>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={3} className={classes.logo_container}>
-              <img className={classes.logo} src="images/credits/portbluesky.png"></img>
+              <img className={classes.logo_small} src="images/credits/portbluesky.png"></img>
             </Grid>
             <Grid item xs={12} sm={9}>
               <Typography variant="body1">
-                <a href="https://www.portbluesky.com" target="_blank">
-                  Port Blue Sky:
-                </a>{" "}
-                für die technische Unterstüzung der App durch Ihre Mitarbeiter sowie das Organisieren von weiterer
-                Unterstützung aus der Node.js Community.
+                Port Blue Sky: für die technische Unterstüzung der App durch Ihre Mitarbeiter sowie das Organisieren von
+                weiterer Unterstützung aus der Node.js Community.
               </Typography>
             </Grid>
             <Grid item xs={12} sm={3} className={classes.logo_container}>
-              <img className={classes.logo} src="images/credits/pwc.png"></img>
+              <img className={classes.logo_small} src="images/credits/pwc.png"></img>
             </Grid>
             <Grid item xs={12} sm={9}>
-              <Typography variant="body1">
-                <a href="https://www.pwc.de" target="_blank">
-                  PWC:
-                </a>{" "}
-                für Lob, Kritik und Rat bei der Umsetzung der CovMap.
-              </Typography>
+              <Typography variant="body1">PWC: für Lob, Kritik und Rat bei der Umsetzung der CovMap.</Typography>
             </Grid>
             <Grid item xs={12} sm={3} className={classes.logo_container}>
-              <img className={classes.logo} src="images/credits/maptiler.png"></img>
+              <img className={classes.logo_small} src="images/credits/maptiler.png"></img>
             </Grid>
             <Grid item xs={12} sm={9}>
-              <Typography variant="body1">
-                <a href="https://www.maptiler.com" target="_blank">
-                  Maptiler:
-                </a>{" "}
-                für die Unterstützung in Form von Kartendaten.
-              </Typography>
+              <Typography variant="body1">Maptiler: für die Unterstützung in Form von Kartendaten.</Typography>
             </Grid>
           </Grid>
         </section>
