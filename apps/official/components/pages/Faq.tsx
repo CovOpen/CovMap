@@ -130,6 +130,10 @@ export const Faq: React.FC = () => {
           }
         />
         <FaqAccordion
+          title="Welche Konsequenzen ergeben sich aus der Risikoeinschätzung?"
+          content="Wir möchten mit diesem Projekt zu einer freiwilligen Reduktion von Kontakten aufrufen, insbesondere in Gebieten mit mittlerem und hohem Risiko. Falls sich Kontakte nicht vermeiden lassen, findest Du auf unserer Seite Informationen über allgemeine Schutzmaßnahmen, mit denen sich das Übertragungsrisiko verringern lässt. Zusätzlich verlinken wir zu den Webseiten der Landkreise, so dass Du Dich über die aktuellen und offiziellen Verhaltensregeln in Deiner Region informieren kannst."
+        />
+        <FaqAccordion
           title="Wie aktuell ist die CovMap?"
           content="Die CovMap wird einmal täglich aktualisiert. Der Datenstand ist in der Kartendarstellung oben rechts mit
             Datum erkenntlich."
