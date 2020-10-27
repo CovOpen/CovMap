@@ -58,7 +58,7 @@ export const App = () => {
               boxSizing: "border-box",
               flexShrink: 0,
               overflow: "hidden",
-              paddingTop: "64px"
+              paddingTop: "64px",
             }}
           >
             <div style={{ width: "100%", height: "100%", overflow: "auto" }}>
