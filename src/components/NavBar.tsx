@@ -52,8 +52,14 @@ const useStyles = makeStyles((theme) => ({
     touchAction: "none",
   },
   menuContent: {
-    marginBottom: theme.spacing(4),
     marginTop: "auto",
+    paddingBottom: theme.spacing(4),
+  },
+  drawerScrollContainer: {
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+    overflow: "auto"
   },
   logo: {
     height: "32px",
@@ -71,10 +77,13 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: "auto",
   },
   drawerPaper: {
+    height: "100%",
     width: "20rem",
     maxWidth: "70vw",
     display: "flex",
+    overflow: "hidden"
   },
+
   fullHeightToolbar: {
     minHeight: "64px",
   },
@@ -166,6 +175,7 @@ export const NavBar = () => {
         <MenuItem className={classes.menuItem} onClick={handleShare}>
           {t("common:pages.share")} <ShareIcon className={classes.menuIcon} />
         </MenuItem>
+
       </div>
     );
   };
@@ -191,17 +201,19 @@ export const NavBar = () => {
             {/* only here for the gutter feel free create your own gutter styles and remove this */}
             <MenuCloseButton handleClose={handleClose} />
           </Toolbar>
-          <NavMenuContent />
-          {(Logo && (
-            <div className={classes.drawerIcon}>
-              <Logo />
+          <div className={classes.drawerScrollContainer}>
+            <NavMenuContent />
+            {(Logo && (
+              <div className={classes.drawerIcon}>
+                <Logo />
+              </div>
+            )) || <img src={config.buildJSON.logoSrc} className={classes.logo} />}
+            <div className={classes.version}>
+              {"v" + VERSION} -{" "}
+              <a href={"https://github.com/CovOpen/CovMapper/commit/" + HASH_LONG} target="_blank" rel="noopener">
+                {HASH_SHORT}
+              </a>
             </div>
-          )) || <img src={config.buildJSON.logoSrc} className={classes.logo} />}
-          <div className={classes.version}>
-            {"v" + VERSION} -{" "}
-            <a href={"https://github.com/CovOpen/CovMapper/commit/" + HASH_LONG} target="_blank" rel="noopener">
-              {HASH_SHORT}
-            </a>
           </div>
         </Drawer>
       </Toolbar>
