@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     flex: 1,
-    overflow: "auto"
+    overflow: "auto",
   },
   logo: {
     height: "32px",
@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
     width: "20rem",
     maxWidth: "70vw",
     display: "flex",
-    overflow: "hidden"
+    overflow: "hidden",
   },
 
   fullHeightToolbar: {
@@ -171,7 +171,6 @@ export const NavBar = () => {
         <MenuItem className={classes.menuItem} onClick={handleShare}>
           {t("common:pages.share")} <ShareIcon className={classes.menuIcon} />
         </MenuItem>
-
       </div>
     );
   };
