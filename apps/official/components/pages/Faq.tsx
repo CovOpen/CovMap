@@ -109,7 +109,7 @@ export const Faq: React.FC = () => {
                             <RiskHeading risk={1} />
 
               <Typography>
-                Ein normales Risiko liegt vor, wenn die 7-Tages-Inzidenz geringer als 20 Neuinfektionen pro 100.000
+                Ein normales Risiko liegt vor, wenn die 7-Tages-Inzidenz des Robert-Koch-Instituts geringer als 20 Neuinfektionen pro 100.000
                 Einwohner ist und unser Vorhersagemodell keinen Anstieg vermuten lässt. Bitte beachte, dass das Virus
                 derzeit überall in Deutschland zirkuliert und daher eine Ansteckung auch in einer Region mit einem
                 normalen Risiko möglich ist.
@@ -124,7 +124,7 @@ export const Faq: React.FC = () => {
               </Typography>
                             <RiskHeading risk={3} />
               <Typography>
-                Ein hohes Risiko leiten wir von der etablierten 7-Tages-Inzidenz des Robert-Koch-Instituts ab, wenn die Schwelle von 50 Neuinfektionen pro 100.000 Einwohner überschritten wurde.
+                Ein hohes Risiko leiten wir von der 7-Tages-Inzidenz ab, wenn die Schwelle von 50 Neuinfektionen pro 100.000 Einwohner überschritten wurde.
               </Typography>
 
             </Box>
