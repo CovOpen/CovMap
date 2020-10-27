@@ -25,12 +25,11 @@ const Logo = config.ui?.Logo;
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    position: "sticky",
+    position: "fixed",
     [theme.breakpoints.down("xs")]: {
       // on mobile devices
       backgroundColor: "transparent",
       boxShadow: "none",
-      position: "fixed",
     },
   },
   title: {
