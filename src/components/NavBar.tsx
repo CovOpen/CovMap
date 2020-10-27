@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       // on mobile devices
       backgroundColor: "transparent",
-      pointerEvents: "none",
       boxShadow: "none",
       position: "fixed",
     },
@@ -38,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
     flexShrink: 1,
   },
   menuItem: {
-    touchAction: "none",
     paddingLeft: theme.spacing(4),
     paddingRight: theme.spacing(1),
   },
@@ -48,9 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
     margin: theme.spacing(0, 1),
   },
-  menu: {
-    touchAction: "none",
-  },
+
   menuContent: {
     marginTop: "auto",
     paddingBottom: theme.spacing(4),
@@ -73,8 +69,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 0,
   },
   drawer: {
-    touchAction: "none",
     pointerEvents: "auto",
+    height: "100%",
   },
   drawerPaper: {
     height: "100%",
