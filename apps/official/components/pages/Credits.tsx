@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   logo_container: {},
   logo_small: {
     "textAlign": "center",
-    "width": "40px",
+    "width": "80px",
     "height": "auto",
     "display": "block",
     "margin": "auto",
