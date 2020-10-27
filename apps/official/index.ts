@@ -224,7 +224,7 @@ export const config: AppConfig = {
           fn: (dataField, timeKey) => ({
             type: LayerType.SYMBOL,
             layout: {
-              "icon-image": ["match", ["get", dataField, ["get", timeKey]], 3, "group-contacts", ""],
+              "icon-image": ["match", ["get", "contactScore", ["get", timeKey]], 1, "group-contacts", ""],
               "icon-size": 0.9,
             },
           }),
