@@ -175,7 +175,7 @@ export type AppPage = {
   route: string;
   hidden?: boolean; // a way to exclude the page from the navbar
   menuDivider?: boolean; // Adds a menu divider before the page menu entry
-  Component: ComponentType;
+  Component?: ComponentType;
 };
 
 export type BuildJSON = {

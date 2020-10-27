@@ -6,7 +6,8 @@
     "about": "Über die CovMap",
     "legal": "Rechtliches",
     "copyright": "Impressum",
-    "privacy-policy": "Datenschutz"
+    "privacy-policy": "Datenschutz",
+    "intro": "Intro anzeigen"
   },
   "formats": {
     "date": "{{ date, dddd, Do MMMM YYYY}}"

@@ -44,6 +44,10 @@ export const App = () => {
   }
 
   function renderRoute(page) {
+    if (page.Component === undefined) {
+      return null;
+    }
+
     return (
       <Route
         path={page.route}

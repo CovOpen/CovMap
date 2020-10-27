@@ -56,6 +56,11 @@ export const config: AppConfig = {
         Component: Charts,
       },
       {
+        id: "intro",
+        title: (t) => t("translation:pages.intro"),
+        route: "/welcome1",
+      },
+      {
         id: "faq-page",
         title: (t) => t("translation:pages.faq"),
         route: "/faq",

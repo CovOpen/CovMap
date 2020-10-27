@@ -77,10 +77,11 @@ export const Credits = () => {
             NET CHECK: PD. Dr. Sten Rüdiger <br />
             Datenanalyse GPS-Daten, Kontakt-Index
           </Typography>
-            <Typography variant="h2"><br />
+          <Typography variant="h2">
+            <br />
             Die CovMap App wurde mit der Unterstützung von zahlreichen Personen und Unternehmen entwickelt. Wir möchten
             an dieser Stelle unseren großen Dank aussprechen.
-              <br />
+            <br />
           </Typography>
           <Typography variant="body1">Wir danken den Unternehmen:</Typography>
           <Grid container spacing={3}>
