@@ -231,7 +231,7 @@ export const config: AppConfig = {
         },
       ],
     },
-  }, 
+  },
   geos: {
     "district-details": {
       url: "/data/de_districts_all.geojson",
