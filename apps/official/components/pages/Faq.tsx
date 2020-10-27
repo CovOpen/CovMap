@@ -77,8 +77,8 @@ export const Faq: React.FC = () => {
                   </ul>
                 </div>
                 <div className={classes.textBlock}>
-                  Mit der CovMap möchten wir zu einer freiwilligen Reduzierung von Kontakten aufrufen und gleichermaßen
-                  aufzeigen, wo dies nach unserer Meinung besonders notwendig ist.
+                  Mit der CovMap möchten wir zu einer freiwilligen Reduzierung von Kontakten aufrufen und 
+                  aufzeigen, wo dies besonders notwendig ist.
                 </div>
               </div>
             </Typography>
@@ -92,7 +92,7 @@ export const Faq: React.FC = () => {
         />
         <FaqAccordion
           title="Was macht die CovMap besonders?"
-          content="Die CovMap wertet zur regionalen Risikobestimmung neben den offiziellen Fallzahlstatistiken des Robert-Koch-Institus große Datenmengen an GPS-Daten und an Symptomen aus. Diese Daten erlauben uns, mit Hilfe eines Modells einen Blick in die Zukunft des Infektionsgeschehens in Deutschland zu werfen und so Risikogebiete schnell zu identifizieren."
+          content="Die CovMap wertet zur regionalen Risikobestimmung neben den offiziellen Fallzahlstatistiken des Robert-Koch-Instituts große Mengen an GPS- und Symptom-Daten aus. Diese Daten erlauben uns, mit Hilfe eines Modells einen Blick in die Zukunft des Infektionsgeschehens in Deutschland zu werfen und so Risikogebiete schneller zu identifizieren."
         />
 
         <FaqAccordion
@@ -106,19 +106,7 @@ export const Faq: React.FC = () => {
           content={
             <Box display="flex" flexDirection="column">
               <Typography>Auf der Karte stellen wir ein normales, mittleres und hohes Risiko dar.</Typography>
-              <RiskHeading risk={3} />
-              <Typography>
-                Ein hohes Risiko leiten wir von der etablierten 7-Tages-Inzidenz des Robert-Koch-Instituts ab, wenn die
-                7-Tages-Inzidenz die Schwelle von 50 Neuinfektionen pro 100.000 Einwohner überschritten wurde.
-              </Typography>
-              <RiskHeading risk={2} />
-
-              <Typography>
-                Von einem mittleren Risiko gehen wir aus, wenn die 7-Tages-Inzidenz zwischen 20 und 50 Neuinfektionen
-                pro 100.000 Einwohnern liegt oder unser Vorhersagemodell auf einen Anstieg der Neuinfektionen hindeutet.
-                Eine Region mit mittlerem Risiko kann in Zukunft eine Region mit hohem Risiko werden.
-              </Typography>
-              <RiskHeading risk={1} />
+                            <RiskHeading risk={1} />
 
               <Typography>
                 Ein normales Risiko liegt vor, wenn die 7-Tages-Inzidenz geringer als 20 Neuinfektionen pro 100.000
@@ -126,6 +114,19 @@ export const Faq: React.FC = () => {
                 derzeit überall in Deutschland zirkuliert und daher eine Ansteckung auch in einer Region mit einem
                 normalen Risiko möglich ist.
               </Typography>
+
+              <RiskHeading risk={2} />
+
+              <Typography>
+                Von einem mittleren Risiko gehen wir aus, wenn die 7-Tages-Inzidenz zwischen 20 und 50 Neuinfektionen
+                pro 100.000 Einwohnern liegt oder unser Vorhersagemodell auf einen Anstieg der Neuinfektionen hindeutet.
+                Eine Region mit mittlerem Risiko kann in Zukunft eine Region mit hohem Risiko werden.
+              </Typography>
+                            <RiskHeading risk={3} />
+              <Typography>
+                Ein hohes Risiko leiten wir von der etablierten 7-Tages-Inzidenz des Robert-Koch-Instituts ab, wenn die Schwelle von 50 Neuinfektionen pro 100.000 Einwohner überschritten wurde.
+              </Typography>
+
             </Box>
           }
         />
