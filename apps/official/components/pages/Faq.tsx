@@ -4,6 +4,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Box } from "@material-ui
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { makeStyles } from "@material-ui/core/styles";
 import { RiskBadge } from "../RiskBadge";
+import { NavigationTitle } from "app-config/components/NavigationTitle";
 
 const useStyles = makeStyles(() => ({
   textBlock: {
@@ -53,7 +54,7 @@ export const Faq: React.FC = () => {
   return (
     <main className="sections">
       <section>
-        <Typography variant="h1">Fragen und Antworten zu CovMap!</Typography>
+        <NavigationTitle title={"Fragen und Antworten zu CovMap!"} />
       </section>
 
       <section>
@@ -127,6 +128,10 @@ export const Faq: React.FC = () => {
               </Typography>
             </Box>
           }
+        />
+        <FaqAccordion
+          title="Welche Konsequenzen ergeben sich aus der Risikoeinschätzung?"
+          content="Wir möchten mit diesem Projekt zu einer freiwilligen Reduktion von Kontakten aufrufen, insbesondere in Gebieten mit mittlerem und hohem Risiko. Falls sich Kontakte nicht vermeiden lassen, findest Du auf unserer Seite Informationen über allgemeine Schutzmaßnahmen, mit denen sich das Übertragungsrisiko verringern lässt. Zusätzlich verlinken wir zu den Webseiten der Landkreise, so dass Du Dich über die aktuellen und offiziellen Verhaltensregeln in Deiner Region informieren kannst."
         />
         <FaqAccordion
           title="Wie aktuell ist die CovMap?"

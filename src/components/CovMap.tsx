@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import moment from "moment";
 import { useHistory, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { FeatureCollection } from "geojson";
 
 import { State } from "../state";
 import { AppApi } from "../state/app";
@@ -22,9 +23,9 @@ import { GLMap } from "./GLMap";
 import { Legend } from "./Legend";
 import { Settings } from "./Settings";
 import { config } from "app-config/index";
-import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
-import FixedSearch from "./FixedSearch";
 import { welcomeStepsConfig } from "./WelcomeStepsModal/welcomeStepsConfig";
+import { FeatureInfo } from "./FeatureInfo";
+import { flyTo } from "../state/thunks/flyTo";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -33,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
     "position": "absolute",
     "display": "flex",
     "flex-direction": "column",
+    "justify-content": "center",
+    "align-items": "center",
+    "z-index": 0,
   },
   currentInfo: {
     "position": "absolute",
@@ -64,13 +68,7 @@ let viewPortEventCounter = 0;
 
 // Note: React hooks ref diffing workaround
 let previousMapRef = null;
-let FlyToInterpolator = null;
-async function loadFlyTo() {
-  const { default: FlyTo } = await import(
-    /* webpackChunkName: "mapgl" */ "react-map-gl/dist/es6/utils/transition/viewport-fly-to-interpolator"
-  );
-  FlyToInterpolator = FlyTo;
-}
+let jumpedToLastFeatureOnce = false;
 
 export const CovMap = () => {
   const classes = useStyles();
@@ -81,6 +79,8 @@ export const CovMap = () => {
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
   const currentFeature = useSelector((state: State) => state.app.currentFeature);
+  const currentFeaturePropId = useSelector((state: State) => state.app.currentFeaturePropId);
+  const mappedSets = useSelector((state: State) => state.app.mappedSets);
   const currentMappable = useSelector((state: State) => state.app.currentMappable);
   const currentDate = useSelector((state: State) => state.app.currentDate);
   const userPostalCode = useSelector((state: State) => state.app.userPostalCode);
@@ -98,7 +98,6 @@ export const CovMap = () => {
   };
 
   const isCurrentPageWelcomeScreen = welcomeStepsConfig.find(({ name }) => name === urlParams.subPage) !== undefined;
-  const showSearch = !urlParams.subPage || isCurrentPageWelcomeScreen;
 
   useEffect(() => {
     if (userPostalCode === null && !isCurrentPageWelcomeScreen) {
@@ -107,7 +106,6 @@ export const CovMap = () => {
   }, [userPostalCode, urlParams]);
 
   useEffect(() => {
-    loadFlyTo();
     const interval = setInterval(() => {
       if (viewPortEventCounter > 1000) {
         clearInterval(interval);
@@ -130,6 +128,14 @@ export const CovMap = () => {
         map.on("dataloading", handleMapBusy);
         map.on("idle", handleMapIdleOrRemoved);
         map.once("remove", handleMapIdleOrRemoved);
+        config.imageIcons?.map(({ id, url, pixelRatio, sdf }) => {
+          map.loadImage(url, (err, data) => {
+            if (err) {
+              throw err;
+            }
+            map.addImage(id, data, { pixelRatio, sdf });
+          });
+        });
       }
 
       return () => {
@@ -137,6 +143,9 @@ export const CovMap = () => {
           const map = mapRef.current.getMap();
           map.off("dataloading", handleMapBusy);
           map.off("idle", handleMapIdleOrRemoved);
+          config.imageIcons?.map(({ id }) => {
+            map.removeImage(id);
+          });
         }
       };
     },
@@ -178,7 +187,7 @@ export const CovMap = () => {
     const { features } = pointerEvent;
     if (features.length > 0) {
       /* handle multiple features. this happens when a street or text is clicked */
-      let countyFeatures;
+      let glFeature;
       if (features.length > 1) {
         // find out target features from index.ts
         const layers = config.visuals.covmap.layers;
@@ -187,51 +196,75 @@ export const CovMap = () => {
         const clickableLayer = layers.filter((layer) => layer.clickable); // get all clickable layers
         if (!clickableLayer.length) return;
 
-        countyFeatures = features.filter((feature) =>
+        glFeature = features.filter((feature) =>
           clickableLayer.some((layer) => feature.layer && feature.layer.id === layer.id),
         );
-        if (!countyFeatures.length) return;
+        if (!glFeature.length) return;
       } else {
-        countyFeatures = features;
+        glFeature = features;
       }
 
       if (mapRef.current) {
-        if (!mappingLayers.includes(countyFeatures[0].source)) {
+        if (!mappingLayers.includes(glFeature[0].source)) {
           return;
         }
       }
 
-      dispatch(AppApi.setCurrentFeature(countyFeatures[0], pointerEvent.lngLat));
+      dispatch(AppApi.setCurrentFeature(glFeature[0], pointerEvent.lngLat));
 
       if (stateViewport.zoom > 7) {
-        const newViewport = {
-          ...stateViewport,
-          latitude: pointerEvent.lngLat[1],
-          longitude: pointerEvent.lngLat[0],
-          transitionDuration: 400,
-          transitionInterpolator: FlyToInterpolator ? new (FlyToInterpolator as any)({ curve: 1 }) : null,
-        };
-        dispatch(AppApi.setViewport(newViewport));
+        dispatch(flyTo(pointerEvent.lngLat[0], pointerEvent.lngLat[1]));
       }
     }
   };
 
-  const flyToHome = () => {
-    // check for "valid" postal codes
-    if (!userPostalCode || isNaN(userPostalCode)) return;
-    dispatch(switchViewToPlace(String(userPostalCode)));
-  };
+  /**
+   * Takes the stored last select feature and sets it to current feature,
+   * to show the feature info last viewed after a reload.
+   */
+  useEffect(() => {
+    if (jumpedToLastFeatureOnce) {
+      return;
+    }
+
+    if (mapRef.current && currentVisual && mappedSets[currentVisual] && currentFeaturePropId) {
+      const mapset = mappedSets[currentVisual][currentFeaturePropId.mappingId];
+      if (mapset) {
+        const featurePropKey = config.visuals[currentVisual].mappings[currentFeaturePropId.mappingId].featurePropKey;
+        const feature = (mapset.geo as FeatureCollection).features.find(
+          ({ properties }) => (properties || {})[featurePropKey] === currentFeaturePropId.featurePropId,
+        );
+        const map = mapRef.current.getMap();
+        const lngLat = currentFeaturePropId.lngLat;
+
+        map.once("idle", (evt) => {
+          dispatch(
+            AppApi.setCurrentFeature(
+              {
+                ...feature,
+                id: currentFeaturePropId.featureId,
+                source: currentFeaturePropId.mappingId,
+              },
+              lngLat,
+            ),
+          );
+
+          if (lngLat) {
+            dispatch(flyTo(lngLat[0], lngLat[1]));
+          }
+        });
+
+        jumpedToLastFeatureOnce = true;
+      }
+    }
+  }, [currentVisual, mappedSets, mapRef]);
 
   const handleMapLoaded = () => {
     setMapLoaded(true);
-    /* after map is completely loaded fly to useres home location after a short delay
-    tbh on most pcs this delay might as well be 0 */
-    setTimeout(flyToHome, 400);
   };
 
   return (
     <div className={classes.main}>
-      {showSearch && <FixedSearch />}
       <div className={classes.currentInfo}>
         {/*<Typography variant="h2" color="primary">{visual.name}</Typography>*/}
         <Typography variant="h2" color="primary">
@@ -251,6 +284,7 @@ export const CovMap = () => {
       </TopLeftContainer>
       {visual.InfoComponent ? <WelcomeInfo /> : null}
       <GLMap mapRef={mapRef} onMapClick={handleMapClick} onViewportChange={onViewportChange} onLoad={handleMapLoaded} />
+      <FeatureInfo />
       {config.showTimeNavigation === false ? null : <TimeNav />}
       <Legend />
       <Dialog

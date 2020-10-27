@@ -1,10 +1,4 @@
-import {
-  AppConfig,
-  CustomSearchOptions,
-  DefaultSearchOptions,
-  LayerType,
-  SearchResultList,
-} from "../../src/app-config.types";
+import { AppConfig, CustomSearchOptions, DefaultSearchOptions, LayerType } from "../../src/app-config.types";
 import { AnimatedLogo } from "./components/AnimatedLogo";
 import buildJSON from "./build.json";
 import { Faq } from "./components/pages/Faq";
@@ -35,7 +29,7 @@ const CovMapSearch: DefaultSearchOptions | CustomSearchOptions = {
   nameProp: "name",
   inMappings: [
     {
-      id: "CI-to-plz",
+      id: "riskscore-to-district-area",
       properties: ["name", "zip_codes"],
       getCoordinates: (feature) => {
         //return feature.properties.geo_point_2d TODO
@@ -160,13 +154,22 @@ export const config: AppConfig = {
       description: "Tagesaktuelle Zahlen des RKI - bis jetzt",
       dateFormat: (t, date) => t("translation:formats.date", date),
       mappings: {
-        "CI-to-plz": {
+        "riskscore-to-district-area": {
           datasourceId: "contact-index",
-          geoId: "plz-details",
+          featurePropKey: "cca_2",
+          geoId: "district-details",
           geoProperty: "cca_2",
           dataProperty: "IdDistrict",
           transformData: transformData,
           calculateLegend: calculateLegend,
+        },
+        "riskscore-to-district-point": {
+          datasourceId: "contact-index",
+          geoId: "district-points",
+          featurePropKey: "cca_2",
+          geoProperty: "cca_2",
+          dataProperty: "IdDistrict",
+          transformData: transformData,
         },
       },
       layerGroups: [
@@ -175,7 +178,7 @@ export const config: AppConfig = {
           title: "Flächen",
           mappables: CovMapMappables,
           FeatureInfo: CovMapFeatureInfo,
-          layers: ["areas-fill", "hover"],
+          layers: ["icons", "areas-fill", "hover"],
           search: CovMapSearch,
           default: true,
         },
@@ -183,9 +186,8 @@ export const config: AppConfig = {
       layers: [
         {
           id: "areas-fill",
-          source: "CI-to-plz",
+          source: "riskscore-to-district-area",
           clickable: true,
-          // showLegend: true,
           fn: (dataField, timeKey) => ({
             type: LayerType.FILL,
             paint: {
@@ -207,7 +209,7 @@ export const config: AppConfig = {
         },
         {
           id: "hover",
-          source: "CI-to-plz",
+          source: "riskscore-to-district-area",
           fn: () => ({
             type: LayerType.LINE,
             paint: {
@@ -216,14 +218,34 @@ export const config: AppConfig = {
             },
           }),
         },
+        {
+          id: "icons",
+          source: "riskscore-to-district-point",
+          fn: (dataField, timeKey) => ({
+            type: LayerType.SYMBOL,
+            layout: {
+              "icon-image": ["match", ["get", dataField, ["get", timeKey]], 3, "group-contacts", ""],
+              "icon-size": 0.9,
+            },
+          }),
+        },
       ],
     },
   },
   geos: {
-    "plz-details": {
+    "district-details": {
       url: "/data/de_districts_all.geojson",
     },
+    "district-points": {
+      url: "/data/de_districts_all_points.geojson",
+    },
   },
+  imageIcons: [
+    {
+      id: "group-contacts",
+      url: "/images/52px-group-contact.png",
+    },
+  ],
 };
 
 function transformData(json) {

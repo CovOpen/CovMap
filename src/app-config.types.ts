@@ -13,6 +13,7 @@ export type AppConfig = {
   datasources: Record<DatasourceId, AppDatasource>;
   visuals: Record<VisualId, AppVisual>;
   geos: Record<GeoId, AppGeo>;
+  imageIcons?: MapImageIcon[];
 };
 
 export type DatasourceId = string;
@@ -20,6 +21,13 @@ export type VisualId = string;
 export type GeoId = string;
 export type MappingId = string;
 export type LayerId = string;
+
+export type MapImageIcon = {
+  id: string;
+  url: string;
+  pixelRatio?: number;
+  sdf?: boolean;
+};
 
 export type AppDatasource = {
   url: string | Function;
@@ -92,6 +100,7 @@ export type AppSearchWhere = {
 export enum LayerType {
   FILL = "fill",
   LINE = "line",
+  SYMBOL = "symbol",
   CIRCLE = "circle",
   FILL_EXTRUSION = "fill-extrusion",
 }
@@ -113,7 +122,8 @@ export type AppVisualLayer = {
   id?: LayerId;
   source?: MappingId;
   type: LayerType;
-  paint: Record<string, any>;
+  paint?: Record<string, any>;
+  layout?: Record<string, any>;
 };
 
 export type FeatureInfoProps = {
@@ -126,6 +136,11 @@ export type FeatureInfoProps = {
 
 export type AppVisualMapping = {
   geoId: string;
+  /**
+   * The property key which identifies feature
+   * (To select a previously selected feature on reload)
+   */
+  featurePropKey: string;
   datasourceId: string;
   geoProperty: string;
   dataProperty: string;
