@@ -1,13 +1,40 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, CardContent, Button, IconButton, Grid } from "@material-ui/core";
+import { Card, Grid } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 
-import { RiskScore } from "../../models";
-import { RiskTexts } from "../../static/texts/RiskTexts";
+import { ContactScore } from "../../models";
+
+function riscExplanation(contactScore: number, incidence: number): string {
+  if (incidence < 20 && contactScore <= 0) {
+    return "Die Zahl der Neuinfektionen ist niedrig und das Kontaktverhalten ist ausreichend reduziert. Ein normales Risiko bedeutet nicht, dass keine Neuinfektionen in der Region möglich sind.";
+  }
+
+  let explanation = "";
+
+  if (incidence >= 50) {
+    explanation = "Die Zahl der Neuinfektionen ist stark erhöht. ";
+    if (contactScore == 1) {
+      explanation +=
+        "Aufgrund eines erhöhten Kontaktverhalten gehen wir von einem weiteren Anstieg der Neuinfektionen aus. ";
+    }
+    explanation += "Wir rufen dazu auf, Kontakte freiwillig auf das Allernötigste zu reduzieren.";
+    return explanation;
+  }
+
+  if (incidence >= 20) {
+    explanation = "Die Zahl der Neuinfektionen ist mäßig erhöht. ";
+  }
+  if (contactScore == 1) {
+    explanation +=
+      "Aufgrund eines erhöhten Kontaktverhalten gehen wir von einem weiteren Anstieg der Neuinfektionen aus. ";
+  }
+  explanation += "Wir rufen dazu auf, Kontakte freiwillig zu reduzieren.";
+  return explanation;
+}
 
 const useStyles = makeStyles((theme) => ({
   teaser: {
@@ -27,7 +54,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Recommendation = ({ recommendation }: { recommendation: string }): JSX.Element => {
+export const RiskRecommendation: React.FC<{ contactScore: ContactScore; incidence: number }> = ({
+  contactScore,
+  incidence,
+}): JSX.Element => {
   const classes = useStyles();
 
   return (
@@ -35,7 +65,7 @@ const Recommendation = ({ recommendation }: { recommendation: string }): JSX.Ele
       <Card className={classes.teaser}>
         <Grid container direction="row" alignItems="center" spacing={2}>
           <Grid item xs={10}>
-            <Typography variant="body2">{recommendation}</Typography>
+            <Typography variant="body2">{riscExplanation(contactScore, incidence)}</Typography>
           </Grid>
           <Grid item xs={2}>
             <ArrowForwardIosIcon className={classes.centerIcon} fontSize="small" />
@@ -44,21 +74,4 @@ const Recommendation = ({ recommendation }: { recommendation: string }): JSX.Ele
       </Card>
     </Link>
   );
-};
-
-export const RiskRecommendation = ({ riskScore }: { riskScore: RiskScore }) => {
-  switch (riskScore) {
-    case RiskScore.Low:
-      return <Recommendation recommendation={RiskTexts.NORMAL} />;
-
-    case RiskScore.Medium:
-      return <Recommendation recommendation={RiskTexts.MEDIUM} />;
-
-    case RiskScore.High:
-      return <Recommendation recommendation={RiskTexts.HIGH} />;
-
-    default:
-      console.warn("cannot display risk score -- unrecognized score value");
-      return null;
-  }
 };
