@@ -84,25 +84,21 @@ export const Credits = () => {
             </Grid>
             <Grid item xs={12} sm={9}>
               <Typography variant="body1">
-                Port Blue Sky: für die technische Unterstüzung der App durch Ihre Mitarbeiter sowie das Organisieren von weiterer
-                Unterstützung aus der Node.js Community.
+                Port Blue Sky: für die technische Unterstüzung der App durch Ihre Mitarbeiter sowie das Organisieren von
+                weiterer Unterstützung aus der Node.js Community.
               </Typography>
             </Grid>
             <Grid item xs={12} sm={3} className={classes.logo_container}>
               <img className={classes.logo_small} src="images/credits/pwc.png"></img>
             </Grid>
             <Grid item xs={12} sm={9}>
-              <Typography variant="body1">
-                PWC: für Lob, Kritik und Rat bei der Umsetzung der CovMap.
-              </Typography>
+              <Typography variant="body1">PWC: für Lob, Kritik und Rat bei der Umsetzung der CovMap.</Typography>
             </Grid>
             <Grid item xs={12} sm={3} className={classes.logo_container}>
               <img className={classes.logo_small} src="images/credits/maptiler.png"></img>
             </Grid>
             <Grid item xs={12} sm={9}>
-              <Typography variant="body1">
-                Maptiler: für die Unterstützung in Form von Kartendaten.
-              </Typography>
+              <Typography variant="body1">Maptiler: für die Unterstützung in Form von Kartendaten.</Typography>
             </Grid>
           </Grid>
         </section>
