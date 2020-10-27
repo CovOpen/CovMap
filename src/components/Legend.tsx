@@ -57,7 +57,7 @@ export function Legend() {
   for (const layer of filteredLayers) {
     const l = layer.fn(currentMappable.property, timeKey);
     if (layer.showLegend) {
-      const paintExpression = Expression.parse(l.paint["fill-color"], "color");
+      const paintExpression = Expression.parse((l.paint || {})["fill-color"], "color");
 
       const legendStops = activeMapping.calculateLegend(currentDataSet.data, currentMappable.property);
 
