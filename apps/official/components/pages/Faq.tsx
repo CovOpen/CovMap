@@ -92,7 +92,7 @@ export const Faq: React.FC = () => {
         />
         <FaqAccordion
           title="Was macht die CovMap besonders?"
-          content="Die CovMap wertet zur regionalen Risikobestimmung neben den offiziellen Fallzahlstatistiken des Robert-Koch-Instituts große Mengen an GPS- und Symptom-Daten aus. Diese Daten erlauben uns, mit Hilfe eines Modells einen Blick in die Zukunft des Infektionsgeschehens in Deutschland zu werfen und so Risikogebiete schneller zu identifizieren."
+          content="Die CovMap wertet zur regionalen Risikobestimmung neben den offiziellen Fallzahlstatistiken des Robert-Koch-Instituts große Sätze an GPS- und Symptom-Daten aus. Dies erlaubt uns, mit Hilfe eines Modells einen Blick in die Zukunft des Infektionsgeschehens in Deutschland zu werfen und so Risikogebiete schneller zu identifizieren."
         />
 
         <FaqAccordion
@@ -185,8 +185,8 @@ export const Faq: React.FC = () => {
                 </div>
                 <div className={classes.textBlock}>
                   Der große Vorteil der Auswertung von Kontakten und Symptomen liegt darin, dass die Daten fast ohne
-                  Verzögerung analysiert werden können und daher ohne den Meldeverzug der offiziellen RKI Fallzahlen des
-                  Robert Koch-InstitutsDaten zur Verfügung stehen. Dadurch können wir die Bevölkerung schneller auf die
+                  Verzögerung analysiert werden können und daher ohne den Meldeverzug der offiziellen Fallzahlen des
+                  Robert Koch-Instituts zur Verfügung stehen. Dadurch können wir die Bevölkerung schneller auf die
                   Möglichkeit eines erhöhten regionalen Risikos hinweisen.
                 </div>
                 <div className={classes.textBlock}>
