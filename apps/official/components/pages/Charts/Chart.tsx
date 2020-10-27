@@ -17,13 +17,13 @@ export const Chart: React.FC<{ data: ChartData; chartConfig: ChartConfig }> = ({
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey={"datum"} interval={"preserveEnd"} angle={-8} />
-      <YAxis yAxisId="left" domain={[0, 650]} />
-      <YAxis yAxisId="right" domain={[0, 3.21]} orientation="right" />
       <Tooltip />
       <Legend />
+      {chartConfig.ci && <YAxis yAxisId="left" domain={[0, 650]} />}
       {chartConfig.ci && (
         <Line yAxisId="left" type="monotone" dataKey={"CI"} stroke="#8884d8" strokeWidth="4px" name="Kontaktindex C" />
       )}
+      {chartConfig.r && <YAxis yAxisId="right" domain={[0, 3.21]} orientation="right" />}
       {chartConfig.r && (
         <Line
           yAxisId="right"

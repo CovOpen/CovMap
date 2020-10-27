@@ -6,11 +6,22 @@ import { AppApi } from "../../../../../src/state/app";
 
 import { formatUTCDate } from "../../../../../src/lib/formatUTCDate";
 import { NavigationTitle } from "../../NavigationTitle";
-import { MenuItem, Select } from "@material-ui/core";
+import { Card, FormControl, InputLabel, MenuItem, Select, Typography } from "@material-ui/core";
 import { Chart, ChartData } from "app-config/components/pages/Charts/Chart";
 import { chartConfigs } from "app-config/components/pages/Charts/ChartConfig";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(() => ({
+  teaser: {
+    border: 0,
+    background: "#2979ff",
+    color: "white",
+    textTransform: "none",
+  },
+}));
 
 export const ChartsPage: React.FC = () => {
+  const classes = useStyles();
   const dispatch = useThunkDispatch();
   const currentDate = useSelector((state: State) => state.app.currentDate);
   const dateKey = formatUTCDate(currentDate);
@@ -41,13 +52,25 @@ export const ChartsPage: React.FC = () => {
         <NavigationTitle title={"Deutschlandweite Graphen"} />
       </section>
       <section>
-        <Select value={chartConfigKey} onChange={(event) => setChartConfigKey(event.target.value as string)}>
-          {Object.keys(chartConfigs).map((key) => (
-            <MenuItem key={key} value={key}>
-              {key}
-            </MenuItem>
-          ))}
-        </Select>
+        <Card className={classes.teaser}>
+          <Typography style={{ margin: "8px" }}>Hier steht ein netter Text um die Graphen zu erklären</Typography>
+        </Card>
+      </section>
+      <section>
+        <FormControl style={{ minWidth: "300px" }}>
+          <InputLabel id="chart-select-label">Welche Graphen soll angezeigt werden?</InputLabel>
+          <Select
+            labelId="chart-select-label"
+            value={chartConfigKey}
+            onChange={(event) => setChartConfigKey(event.target.value as string)}
+          >
+            {Object.keys(chartConfigs).map((key) => (
+              <MenuItem key={key} value={key}>
+                {key}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </section>
       <section>
         <div style={{ position: "relative", width: "100%", height: "auto", padding: "62% 0 0 0" }}>
