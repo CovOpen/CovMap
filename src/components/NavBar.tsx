@@ -6,7 +6,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ShareIcon from "@material-ui/icons/Share";
 import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppApi } from "src/state/app";
 import { useThunkDispatch } from "src/useThunkDispatch";
@@ -21,27 +21,23 @@ import { Drawer, useMediaQuery } from "@material-ui/core";
 import { CloseRounded } from "@material-ui/icons";
 import { VERSION, HASH_LONG, HASH_SHORT } from "src/version";
 import FixedSearch from "./FixedSearch";
-import { useParams } from "react-router-dom";
 import { welcomeStepsConfig } from "./WelcomeStepsModal/welcomeStepsConfig";
 
 const Logo = config.ui?.Logo;
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    position: "sticky",
+    position: "fixed",
     [theme.breakpoints.down("xs")]: {
       // on mobile devices
       backgroundColor: "transparent",
-      pointerEvents: "none",
       boxShadow: "none",
-      position: "fixed",
     },
   },
   title: {
     flexShrink: 1,
   },
   menuItem: {
-    touchAction: "none",
     paddingLeft: theme.spacing(4),
     paddingRight: theme.spacing(1),
   },
@@ -51,12 +47,16 @@ const useStyles = makeStyles((theme) => ({
 
     margin: theme.spacing(0, 1),
   },
-  menu: {
-    touchAction: "none",
-  },
+
   menuContent: {
-    marginBottom: theme.spacing(4),
     marginTop: "auto",
+    paddingBottom: theme.spacing(4),
+  },
+  drawerScrollContainer: {
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+    overflow: "auto",
   },
   logo: {
     height: "32px",
@@ -70,14 +70,17 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 0,
   },
   drawer: {
-    touchAction: "none",
     pointerEvents: "auto",
+    height: "100%",
   },
   drawerPaper: {
+    height: "100%",
     width: "20rem",
     maxWidth: "70vw",
     display: "flex",
+    overflow: "hidden",
   },
+
   fullHeightToolbar: {
     minHeight: "64px",
   },
@@ -201,17 +204,19 @@ export const NavBar = () => {
             {/* only here for the gutter feel free create your own gutter styles and remove this */}
             <MenuCloseButton handleClose={handleClose} />
           </Toolbar>
-          <NavMenuContent />
-          {(Logo && (
-            <div className={classes.drawerIcon}>
-              <Logo />
+          <div className={classes.drawerScrollContainer}>
+            <NavMenuContent />
+            {(Logo && (
+              <div className={classes.drawerIcon}>
+                <Logo />
+              </div>
+            )) || <img src={config.buildJSON.logoSrc} className={classes.logo} />}
+            <div className={classes.version}>
+              {"v" + VERSION} -{" "}
+              <a href={"https://github.com/CovOpen/CovMapper/commit/" + HASH_LONG} target="_blank" rel="noopener">
+                {HASH_SHORT}
+              </a>
             </div>
-          )) || <img src={config.buildJSON.logoSrc} className={classes.logo} />}
-          <div className={classes.version}>
-            {"v" + VERSION} -{" "}
-            <a href={"https://github.com/CovOpen/CovMapper/commit/" + HASH_LONG} target="_blank" rel="noreferrer">
-              {HASH_SHORT}
-            </a>
           </div>
         </Drawer>
       </Toolbar>

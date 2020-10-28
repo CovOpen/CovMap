@@ -57,6 +57,8 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
 
   drawerPaper: {
     width: (props) => (props.fullScreen ? "100%" : "450px"),
+    maxHeight: "100%",
+    overflow: "hidden",
   },
   drawerRoot: {
     display: "flex",
@@ -65,6 +67,11 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
   drawerPaperAnchorBottom: {
     left: "auto",
     right: "auto",
+  },
+  drawerScrollContainer: {
+    height: "100%",
+    width: "100%",
+    overflow: "auto",
   },
   recommendationsLink: {
     "textAlign": "center",
@@ -106,6 +113,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
     drawerPaper,
     drawerRoot,
     drawerPaperAnchorBottom,
+    drawerScrollContainer,
     centerIcon,
     chipTop,
   } = useStyles({
@@ -261,8 +269,10 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
         onClose={() => pushQueryChange({ expanded: undefined })}
         classes={{ paper: drawerPaper, root: drawerRoot, paperAnchorBottom: drawerPaperAnchorBottom }}
       >
-        {cardHeader}
-        {cardContent}
+        <div className={drawerScrollContainer}>
+          {cardHeader}
+          {cardContent}
+        </div>
       </Drawer>
     </>
   );
