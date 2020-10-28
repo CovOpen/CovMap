@@ -1,6 +1,6 @@
 <div align="center" >
   <a href="https://covmap.de">
-    <img style="height: 200px; width: auto;" src="https://github.com/alexanderthieme/CovMapper/raw/master/static/logo.png" alt="CovMap Logo">
+    <img style="height: 200px; width: auto;" src="https://github.com/alexanderthieme/CovMapper/raw/master/static/images/logo.png" alt="CovMap Logo">
   </a>
 </div>
 
