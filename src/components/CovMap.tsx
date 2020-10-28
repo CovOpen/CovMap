@@ -129,6 +129,9 @@ export const CovMap = () => {
         map.on("idle", handleMapIdleOrRemoved);
         map.once("remove", handleMapIdleOrRemoved);
         config.imageIcons?.map(({ id, url, pixelRatio, sdf }) => {
+          if (map.hasImage(id)) {
+            return;
+          }
           map.loadImage(url, (err, data) => {
             if (err) {
               throw err;

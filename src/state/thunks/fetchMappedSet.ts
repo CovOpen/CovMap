@@ -1,8 +1,8 @@
-import { GeoJSON, FeatureCollection } from "geojson";
+import type { GeoJSON, FeatureCollection } from "geojson";
 
 import { ReduxDispatch } from "../../useThunkDispatch";
 import { AppApi, VisualId, MapSet } from "../app";
-import { State } from "../";
+import type { State } from "../";
 
 import { formatUTCDate } from "../../lib/formatUTCDate";
 import { config } from "app-config/index";
