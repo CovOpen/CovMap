@@ -1,7 +1,7 @@
 const { program } = require("commander");
 const path = require("path");
 const { writeFileSync, readFileSync } = require("fs");
-const { formatNowMinusDays } = require("../src/lib/formatUTCDate.js");
+const { formatNowMinusDays } = require("../src/lib/formatUTCDate");
 
 program
   .version("0.1.0")

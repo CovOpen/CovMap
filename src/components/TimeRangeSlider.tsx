@@ -7,7 +7,7 @@ import moment from "moment";
 import { useTranslation } from "react-i18next";
 
 import { useThunkDispatch } from "../useThunkDispatch";
-import { formatNowMinusDays, plusDays } from "../lib/formatUTCDate.js";
+import { formatNowMinusDays, plusDays } from "../lib/formatUTCDate";
 import { State } from "../state";
 import { AppApi } from "../state/app";
 import { config } from "app-config/index";

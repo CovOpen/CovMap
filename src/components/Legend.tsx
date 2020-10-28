@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Box } from "@material-ui/core";
 
 import { State } from "../state";
-import { formatUTCDate } from "../lib/formatUTCDate.js";
+import { formatUTCDate } from "../lib/formatUTCDate";
 import { config } from "app-config/index";
 import { Expression } from "../lib/expression";
 

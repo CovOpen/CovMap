@@ -6,7 +6,7 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 
 import { useThunkDispatch } from "../useThunkDispatch";
-import { plusDays } from "../lib/formatUTCDate.js";
+import { plusDays } from "../lib/formatUTCDate";
 import { State } from "../state";
 import { AppApi } from "../state/app";
 import { TimeRangeSlider } from "./TimeRangeSlider";
