@@ -2,6 +2,7 @@ import React from "react";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useCommonWelcomeModalStyles } from "./useCommonWelcomeModalStyles";
+import { FullWidthFixedAspectImage } from "./FullWidthFixedAspectImage";
 
 const useStyles = makeStyles(() => ({
   listItemDiv: {
@@ -29,7 +30,7 @@ export const WelcomeModal1: React.FC = () => {
     <>
       <Typography className={classes.title}>Willkommen bei der CovMap</Typography>
 
-      <img src={"/images/WelcomeModalImage1.svg"} alt="Welcome" width="100%" />
+      <FullWidthFixedAspectImage aspect={62.1} src="/images/WelcomeModalImage1.svg" alt="Welcome" />
 
       <div className={classes.infoTextDiv}>
         <div className={classes.listItemDiv}>
