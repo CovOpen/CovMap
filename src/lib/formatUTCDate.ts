@@ -1,13 +1,11 @@
 import { config } from "app-config/index";
-import moment from "moment";
+import moment, { Moment } from "moment";
 
-export function formatUTCDate(date) {
+export function formatUTCDate(date: Moment) {
   const shiftedDate = moment(date).add((config.dateOffset || 0), 'hours');
   
   return shiftedDate.format('YYYY-MM-DD')
 }
 
-const oneDay = 1000 * 60 * 60 * 24;
-
 export const formatNowMinusDays = (days) => formatUTCDate(plusDays(days));
-export const plusDays = (days) => new Date(Date.now() + oneDay * days);
+export const plusDays = (days) => moment.utc().add(days, 'days');

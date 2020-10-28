@@ -275,7 +275,7 @@ export const CovMap = () => {
         </Typography>
         <Typography variant="subtitle1" color="primary">
           {typeof visual.dateFormat === "function"
-            ? visual.dateFormat(t, { date: currentDate })
+            ? visual.dateFormat(t, { date: currentDate.toDate() })
             : moment(currentDate).format(visual.dateFormat)}
         </Typography>
       </div>

@@ -44,7 +44,7 @@ export const config: AppConfig = {
   ui: {
     Logo: AnimatedLogo,
   },
-  dateOffset: -(5 * 60 * 60 * 1000), // 5 hours
+  dateOffset: -5, // hours
   showSettings: false,
   showTimeNavigation: false,
   content: {
