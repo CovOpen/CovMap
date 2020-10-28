@@ -152,8 +152,6 @@ export const NavBar = () => {
     );
   };
 
-
-
   const NavMenuContent = () => {
     return (
       <div className={classes.menuContent}>
