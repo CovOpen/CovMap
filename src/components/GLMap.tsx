@@ -67,6 +67,8 @@ export const GLMap = ({ mapRef, onMapClick, onViewportChange, onLoad }: GLMapPro
       baseApiUrl: config.mapSettings?.baseApiUrl,
       mapStyle: config.mapSettings?.mapStyle,
       mapboxApiAccessToken: config.mapSettings?.mapboxApiAccessToken,
+      // TODO: This should be turned off for end users because it is only needed for visual testing.
+      preserveDrawingBuffer: true,
     });
   }
 

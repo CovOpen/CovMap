@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "esModuleInterop": true
+  }
+}
