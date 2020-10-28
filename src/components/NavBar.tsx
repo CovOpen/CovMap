@@ -6,7 +6,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ShareIcon from "@material-ui/icons/Share";
 import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppApi } from "src/state/app";
 import { useThunkDispatch } from "src/useThunkDispatch";
@@ -20,6 +20,8 @@ import { config } from "app-config/index";
 import { Drawer, useMediaQuery } from "@material-ui/core";
 import { CloseRounded } from "@material-ui/icons";
 import { VERSION, HASH_LONG, HASH_SHORT } from "src/version";
+import FixedSearch from "./FixedSearch";
+import { welcomeStepsConfig } from "./WelcomeStepsModal/welcomeStepsConfig";
 
 const Logo = config.ui?.Logo;
 
@@ -95,6 +97,7 @@ export const NavBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const { t } = useTranslation(["translation", "common"]);
+  const urlParams = useParams<{ subPage?: string }>();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -149,6 +152,8 @@ export const NavBar = () => {
     );
   };
 
+
+
   const NavMenuContent = () => {
     return (
       <div className={classes.menuContent}>
@@ -174,10 +179,16 @@ export const NavBar = () => {
     );
   };
 
+  const isCurrentPageWelcomeScreen = welcomeStepsConfig.find(({ name }) => name === urlParams.subPage) !== undefined;
+  const showSearch = !urlParams.subPage || isCurrentPageWelcomeScreen;
+
   return (
     <AppBar classes={{ root: classes.appBar }} style={{ height: 64, flex: "0 0 auto" }}>
       <Toolbar className={classes.fullHeightToolbar}>
-        {!isMobile && ((Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} />)}
+        <Link to="/">
+          {!isMobile && ((Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} />)}
+        </Link>
+        {showSearch && <FixedSearch />}
         <MenuIconButton handleMenu={handleMenu} />
         <Drawer
           open={open}
