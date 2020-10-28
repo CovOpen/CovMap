@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useLocation } from "react-router-dom";
-import { Button, Card, CardContent, Grid, Typography } from "@material-ui/core";
+import { Button, Card, CardContent, CircularProgress, Grid, Typography } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { useSelector } from "react-redux";
 
@@ -223,7 +223,7 @@ interface DistrictData {
   howToBehaveUrl: string;
 }
 
-function loadDistrictData(location): DistrictData {
+function loadDistrictData(location): DistrictData | undefined {
   const id = new URLSearchParams(location?.search).get("IdDistrict");
   const dataSets = useSelector((state: State) => state.app.datasets);
   const currentDate = useSelector((state: State) => state.app.currentDate);
@@ -231,6 +231,10 @@ function loadDistrictData(location): DistrictData {
   const dateKey = formatUTCDate(currentDate);
   const set = dataSets.get(`${dateKey}-contact-index`);
   const current = set?.data[id as string];
+
+  if (current === undefined) {
+    return undefined;
+  }
 
   return {
     county: `${current.locationName}`,
@@ -240,7 +244,7 @@ function loadDistrictData(location): DistrictData {
 
 export const BasicRecommendations = (): JSX.Element => {
   const location = useLocation();
-  const { county, howToBehaveUrl } = loadDistrictData(location);
+  const districtData = loadDistrictData(location);
 
   return (
     <>
@@ -249,7 +253,13 @@ export const BasicRecommendations = (): JSX.Element => {
           <NavigationTitle title={ActionTexts.TITLE} backToExpandedFeatureInfo={true} />
         </section>
         <section>
-          <CountyTeaser county={county} url={howToBehaveUrl} />
+          {districtData !== undefined ? (
+            <CountyTeaser county={districtData.county} url={districtData.howToBehaveUrl} />
+          ) : (
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <CircularProgress />
+            </div>
+          )}
         </section>
         <section>
           <Intro />
