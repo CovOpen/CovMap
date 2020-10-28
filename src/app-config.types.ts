@@ -14,6 +14,7 @@ export type AppConfig = {
   visuals: Record<VisualId, AppVisual>;
   geos: Record<GeoId, AppGeo>;
   imageIcons?: MapImageIcon[];
+  RedirectComponent?: ComponentType;
 };
 
 export type DatasourceId = string;
@@ -165,7 +166,7 @@ export type AppGeo = {
 
 export type AppContent = {
   pages: Array<AppPage>;
-  PrivacyComponent: ComponentType;
+  WelcomeStepsModal: ComponentType<{ subPage?: string }>;
 };
 
 export type AppPageTitleFunction = (t: Function) => string;

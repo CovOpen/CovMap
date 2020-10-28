@@ -13,6 +13,8 @@ import SymptomLevel from "./components/pages/SymptomLevel";
 import { BasicRecommendations } from "./components/basic-recommendations/BasicRecommendations";
 import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo";
 import { RiskLevelsPage } from "./components/risk-levels-page/RiskLevelsPage";
+import { InitialRedirect } from "app-config/components/InitialRedirect";
+import { WelcomeStepsModal } from "app-config/components/WelcomeStepsModal/WelcomeStepsModal";
 // TODO: Integrate CovQuestions
 // import { Questions } from './components/pages/Questions'
 
@@ -128,7 +130,7 @@ export const config: AppConfig = {
      Component: Questions
    },*/
     ],
-    PrivacyComponent: Privacy,
+    WelcomeStepsModal,
   },
   buildJSON,
   mapSettings: {
@@ -246,6 +248,7 @@ export const config: AppConfig = {
       url: "/images/52px-group-contact.png",
     },
   ],
+  RedirectComponent: InitialRedirect,
 };
 
 function transformData(json) {

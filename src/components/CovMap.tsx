@@ -5,7 +5,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 import moment from "moment";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FeatureCollection } from "geojson";
 
@@ -16,14 +16,12 @@ import { Zoom } from "./Zoom";
 import { OfflineIndicator } from "./OfflineIndicator";
 import { TopLeftContainer } from "./TopLeftContainer";
 import { TimeNav } from "./TimeNav";
-import { WelcomeStepsModal } from "./WelcomeStepsModal/WelcomeStepsModal";
 import { WelcomeInfo } from "./WelcomeInfo";
 import { WelcomeInfoButton } from "./WelcomeInfoButton";
 import { GLMap } from "./GLMap";
 import { Legend } from "./Legend";
 import { Settings } from "./Settings";
 import { config } from "app-config/index";
-import { welcomeStepsConfig } from "./WelcomeStepsModal/welcomeStepsConfig";
 import { FeatureInfo } from "./FeatureInfo";
 import { flyTo } from "../state/thunks/flyTo";
 
@@ -74,7 +72,6 @@ export const CovMap = () => {
   const classes = useStyles();
   const dispatch = useThunkDispatch();
   const urlParams = useParams<{ subPage?: string }>();
-  const history = useHistory();
   // const position = useSelector((state: State) => state.app.currentPosition); // TODO
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
@@ -83,7 +80,6 @@ export const CovMap = () => {
   const mappedSets = useSelector((state: State) => state.app.mappedSets);
   const currentMappable = useSelector((state: State) => state.app.currentMappable);
   const currentDate = useSelector((state: State) => state.app.currentDate);
-  const userPostalCode = useSelector((state: State) => state.app.userPostalCode);
   const [mapLoaded, setMapLoaded] = useState<boolean>(false);
   const mapRef = createRef<any>();
   const visual = config.visuals[currentVisual];
@@ -96,14 +92,6 @@ export const CovMap = () => {
   const handleMapIdleOrRemoved = () => {
     dispatch(AppApi.popLoading("map-busy"));
   };
-
-  const isCurrentPageWelcomeScreen = welcomeStepsConfig.find(({ name }) => name === urlParams.subPage) !== undefined;
-
-  useEffect(() => {
-    if (userPostalCode === null && !isCurrentPageWelcomeScreen) {
-      history.push(welcomeStepsConfig[0].name);
-    }
-  }, [userPostalCode, urlParams]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -304,7 +292,7 @@ export const CovMap = () => {
           {t("no data for selected timeframe")}
         </DialogTitle>
       </Dialog>
-      <WelcomeStepsModal subPage={urlParams.subPage} />
+      <config.content.WelcomeStepsModal subPage={urlParams.subPage} />
     </div>
   );
 };

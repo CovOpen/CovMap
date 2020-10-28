@@ -81,8 +81,11 @@ export const App = () => {
           maxWidth={false}
           style={{ position: "absolute", height: "100%", display: "flex", flexDirection: "column" }}
         >
+          {config.RedirectComponent && (
+            <Route key="redirect-component" path="/:subPage?" component={config.RedirectComponent} />
+          )}
           <Suspense fallback={getFallbackComponent()}>
-            <Route key="map" path="/:subPage?" component={NavBar} />
+            <Route key="navbar" path="/:subPage?" component={NavBar} />
           </Suspense>
           <IntermediateProgress />
           {config.content?.pages.map((page) => renderRoute(page))}

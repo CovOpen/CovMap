@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
-import { State } from "../../state";
+import { State } from "src/state";
 import { StepConfig, welcomeStepsConfig } from "./welcomeStepsConfig";
 import { MobileDotsStepper } from "./MobileDotsStepper";
 import { useCommonWelcomeModalStyles } from "./useCommonWelcomeModalStyles";

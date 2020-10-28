@@ -21,7 +21,6 @@ import { Drawer, useMediaQuery } from "@material-ui/core";
 import { CloseRounded } from "@material-ui/icons";
 import { VERSION, HASH_LONG, HASH_SHORT } from "src/version";
 import FixedSearch from "./FixedSearch";
-import { welcomeStepsConfig } from "./WelcomeStepsModal/welcomeStepsConfig";
 
 const Logo = config.ui?.Logo;
 
@@ -177,8 +176,7 @@ export const NavBar = () => {
     );
   };
 
-  const isCurrentPageWelcomeScreen = welcomeStepsConfig.find(({ name }) => name === urlParams.subPage) !== undefined;
-  const showSearch = !urlParams.subPage || isCurrentPageWelcomeScreen;
+  const showSearch = !config.content.pages.some(({ route }) => route === `/${urlParams.subPage}`);
 
   return (
     <AppBar classes={{ root: classes.appBar }} style={{ height: 64, flex: "0 0 auto" }}>

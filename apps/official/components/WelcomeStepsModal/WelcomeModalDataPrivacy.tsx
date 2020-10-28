@@ -1,5 +1,5 @@
 import React from "react";
-import { config } from "app-config/index";
+import { Privacy } from "../pages/Privacy";
 import { CancelOutlined } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -22,7 +22,7 @@ export const WelcomeModalDataPrivacy: React.FC = () => {
       <div className={classes.iconDiv}>
         <CancelOutlined classes={{ root: classes.icon }} onClick={history.goBack} />
       </div>
-      <config.content.PrivacyComponent />
+      <Privacy />
     </div>
   );
 };

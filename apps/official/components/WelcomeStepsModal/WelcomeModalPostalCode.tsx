@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useThunkDispatch } from "../../useThunkDispatch";
+import { useThunkDispatch } from "src/useThunkDispatch";
 import { Checkbox, TextField, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import { AppApi } from "../../state/app";
+import { AppApi } from "src/state/app";
 import { useCommonWelcomeModalStyles } from "./useCommonWelcomeModalStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
