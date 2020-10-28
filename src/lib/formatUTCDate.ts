@@ -8,4 +8,6 @@ export function formatUTCDate(date: Moment) {
 }
 
 export const formatNowMinusDays = (days) => formatUTCDate(plusDays(days));
-export const plusDays = (days) => moment.utc().add(days, 'days');
+export const plusDays = (days) => moment.utc()
+  .add((config.dateOffset || 0), 'hours')
+  .add(days, 'days');
