@@ -18,7 +18,7 @@
     "coverage": "jest --env=jsdom --coverage",
     "release": "semantic-release",
     "format": "prettier --write .",
-    "percy": "percy exec -- testcafe chrome testcafe/*.spec.ts"
+    "percy": "percy exec -- testcafe chrome testcafe/*.spec.ts --ts-config-path ./tsconfig.e2e.json"
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
@@ -54,7 +54,7 @@
     "@babel/preset-react": "^7.9.1",
     "@material-ui/lab": "^4.0.0-alpha.49",
     "@percy/cli": "^1.0.0-beta.20",
-    "@percy/testcafe": "^1.0.0-beta.1",
+    "@percy/testcafe": "^0.2.1",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/exec": "^5.0.0",
