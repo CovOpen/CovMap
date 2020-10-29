@@ -4,16 +4,16 @@ import { Provider } from "react-redux";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 
-import App from "./App";
+import EmbedApp from "./EmbedApp";
 import { store } from "./state";
 
-const root = document.getElementById("app");
+const root = document.getElementById("embed");
 const persistor = persistStore(store);
-console.log('mountinfg app')
+
 render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}></PersistGate>
-    <App />
+    <EmbedApp />
   </Provider>,
   root,
 );
