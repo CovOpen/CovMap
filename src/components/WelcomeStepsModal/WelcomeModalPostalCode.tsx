@@ -98,23 +98,27 @@ export const WelcomeModalPostalCode: React.FC = () => {
         </Typography>
       </div>
 
-      <Button
-        className={`${classes.primaryButton} ${classes.largeText}`}
-        variant="contained"
-        color="primary"
-        onClick={submit}
-      >
-        Jetzt starten
-      </Button>
+      <div>
+        <Button
+          className={`${classes.primaryButton} ${classes.largeText}`}
+          variant="contained"
+          color="primary"
+          onClick={submit}
+        >
+          Jetzt starten
+        </Button>
+      </div>
 
-      <Button
-        className={`${classes.secondaryButton} ${classes.largeText}`}
-        style={{ width: "240px" }}
-        variant="contained"
-        onClick={onSkip}
-      >
-        Ohne Postleitzahl weiter
-      </Button>
+      <div>
+        <Button
+          className={`${classes.secondaryButton} ${classes.largeText}`}
+          style={{ width: "240px" }}
+          variant="contained"
+          onClick={onSkip}
+        >
+          Ohne Postleitzahl weiter
+        </Button>
+      </div>
     </>
   );
 };
