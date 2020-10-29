@@ -57,17 +57,16 @@ export const App = () => {
     }
 
     waitForNewDay(newDate);
-  }
+  };
 
   const waitForNewDay = (from: Moment) => {
     startDate = moment(from).add(config.dateOffset || 0, "hours");
-    const diff = startDate
-      .diff(moment(from).endOf("day"));
+    const diff = startDate.diff(moment(from).endOf("day"));
     dayChangeTimeout = setTimeout(setNewDay, Math.abs(diff));
-  }
+  };
 
   useEffect(() => {
-    if(!dayChangeTimeout) {
+    if (!dayChangeTimeout) {
       waitForNewDay(currentDate);
     }
   }, []);
