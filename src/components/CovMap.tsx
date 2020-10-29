@@ -9,7 +9,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FeatureCollection } from "geojson";
 import { useMediaQuery } from "@material-ui/core";
-  
+
 import { State } from "../state";
 import { AppApi } from "../state/app";
 import { useThunkDispatch } from "../useThunkDispatch";
@@ -279,7 +279,7 @@ export const CovMap = () => {
         </Typography>
       </div>
       {config.showSettings === false ? null : <Settings />}
-      {!isMobile && <Zoom /> }
+      {!isMobile && <Zoom />}
       <TopLeftContainer>
         {visual.InfoComponent ? <WelcomeInfoButton /> : null}
         <OfflineIndicator />
