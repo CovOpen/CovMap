@@ -32,7 +32,6 @@ const CovMapSearch: DefaultSearchOptions | CustomSearchOptions = {
       id: "riskscore-to-district-area",
       properties: ["name", "zip_codes"],
       getCoordinates: (feature) => {
-        //return feature.properties.geo_point_2d TODO
         return [];
       },
     },
@@ -45,6 +44,7 @@ export const config: AppConfig = {
   ui: {
     Logo: AnimatedLogo,
   },
+  dateOffset: -5, // hours
   showSettings: false,
   showTimeNavigation: false,
   content: {

@@ -1,7 +1,7 @@
 import React, { Suspense, memo } from "react";
 import { useSelector } from "react-redux";
 import { State } from "src/state";
-import { formatUTCDate } from "src/lib/formatUTCDate.js";
+import { formatUTCDate } from "src/lib/formatUTCDate";
 import { getFallbackComponent } from "./getFallback";
 import { AppApi } from "src/state/app";
 import { useThunkDispatch } from "src/useThunkDispatch";

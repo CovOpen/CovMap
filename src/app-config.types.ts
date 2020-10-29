@@ -5,6 +5,8 @@ import { State } from "./state";
 export type AppConfig = {
   ui: AppUI;
   content: AppContent;
+  // To offset when a new day will start
+  dateOffset?: number;
   buildJSON: BuildJSON;
   mapSettings?: MapSettings;
   defaultVisual: string;

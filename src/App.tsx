@@ -17,6 +17,7 @@ import { InstallPrompt } from "./components/InstallPrompt";
 import { useThunkDispatch } from "src/useThunkDispatch";
 import { AppApi } from "src/state/app";
 import { getFallbackComponent } from "./components/getFallback";
+import { AutoProgressDate } from "./components/AutoProgressDate";
 
 /**
  * Note: For translations within the Base application we use a namespace called "common",
@@ -74,6 +75,7 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Router>
+        <AutoProgressDate />
         <ServiceWorker />
         <InstallPrompt shouldShow={showInstallPrompt} />
         <Container

@@ -4,9 +4,10 @@ import { useSelector } from "react-redux";
 import Fab from "@material-ui/core/Fab";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import moment from "moment";
 
 import { useThunkDispatch } from "../useThunkDispatch";
-import { plusDays } from "../lib/formatUTCDate.js";
+import { plusDays } from "../lib/formatUTCDate";
 import { State } from "../state";
 import { AppApi } from "../state/app";
 import { TimeRangeSlider } from "./TimeRangeSlider";
@@ -53,7 +54,7 @@ export function TimeNav() {
   const dispatch = useThunkDispatch();
   const currentDate = useSelector((state: State) => state.app.currentDate);
   const [value, setValue] = useState<number>(() => {
-    const today = new Date();
+    const today = moment.utc();
     const diff = diffDays(today, currentDate);
 
     return Math.min(diff, 0);
