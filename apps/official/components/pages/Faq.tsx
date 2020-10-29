@@ -163,7 +163,7 @@ export const Faq: React.FC = () => {
           title="Welche Daten verwendet die CovMap?"
           content="Die CovMap greift auf drei Datenquellen zurück, um die regionalen Risikobewertung durchzuführen: 1.)
             Fallzahlstatistiken vom Robert-Koch-Institut, 2.) ein geschätztes Kontaktverhalten, ermittelt aus GPS Daten
-            von der Firma NETCHECK, 3.) Symptomdaten von der Chartié CovApp."
+            von der Firma NET CHECK, 3.) Symptomdaten von der Chartié CovApp."
         />
 
         <FaqAccordion
@@ -214,6 +214,23 @@ export const Faq: React.FC = () => {
               </div>
             </Typography>
           }
+        />
+
+        <FaqAccordion
+          title="Wie funktioniert die Vorhersage, ob in einer Region mit vermehrten Neuinfektionen zu rechnen ist?"
+          content="Unsere Arbeiten beruhen auf einem etablierten theoretischen Modell für die Vorhersage der Reproduktionszahl (R-Wert). Der R-Wert gibt an, wie viele Personen sich innerhalb eines bestimmten Zeitraumes typischerweise an einer erkrankten Person anstecken. Diese Ansteckungen hängen unter anderem von der Zahl der Kontakte pro Person ab und ein mathematischer Zusammenhang kann für die Bestimmung genutzt werden. Der Kontakt zwischen zwei Personen kann zu einer Übertragung des Coronavirus führen. Bei unserer Methode müssen wir nicht wissen, ob eine Person tatsächlich infiziert ist und können dennoch eine Vorhersage darüber treffen, wie sich die Zahl der Neuinfektionen entwickeln wird. Da ein Kontakt und die potentielle Virusübertragung das früheste Ereignis einer Infektion mit dem Coronavirus darstellt, gewinnen wir einen Zeitvorteil von bis zu 3 Wochen gegen über den offiziellen Fallzahlstatistiken mit bestätigten Infektionen. Statistisch gesehen ist übrigens nicht die Zahl der Kontakte pro Person entscheidend, sondern eine spezielle Metrik, welche die Verteilung der Anzahl der Kontakte berücksichtigt. Diese Metrik wurde von uns unter dem Namen Kontakt-Index berechnet und wird für die Prognose verwendet, ob es zu einem Anstieg von Neuinfektionen kommen kann. "
+        />
+
+        <FaqAccordion
+          title="Was ist der Kontakt-Index?"
+          content="Der Kontakt-Index wurde von unserer Gruppe entwickelt und in einer wissenschaftlichen Arbeit beschrieben. Grundlegend ist die Beobachtung, dass nicht jede Person die gleiche Zahl von Kontakten pro Tag hat sondern dass es dabei eine sehr breite Verteilung gibt. Da Personen mit sehr vielen Kontakten („Superkontakter“) eine höhere Wahrscheinlichkeit haben, das Coronavirus weiterzugeben, spielt diese Beobachtung eine Rolle für die Ausbreitung (Freundschaftsparadox). Anders gesagt, ist nicht nur die reine Zahl an Kontakten für den R-Wert entscheidend, sondern auch die Heterogenität der Kontaktzahlen. Der Kontakt-Index zeigt nun sowohl die Gesamtzahl der Kontakte als auch die Heterogenität an. Wir konnten zeigen, dass tatsächlich der Kontakt-Index maßgebend für die Ausbreitung des Coronavirus in Deutschland ist."
+        />
+
+        <FaqAccordion
+          title="Was ist das Freundschaftsparadox?"
+          content="Der Kontakt-Index ist anschaulich mit dem sogenannten Freundschaftsparadox verbunden (https://de.wikipedia.org/wiki/Freundschaftsparadox). Danach gilt für die meisten Menschen - z.B. in Facebook - dass ihre Freunde im Durchschnitt mehr Freunde haben als sie selbst. Das wiederum liegt daran, dass Personen mit vielen Freunden eine höhere Wahrscheinlichkeit haben, mit einer beliebigen Person X verbunden zu sein, als Personen, die wenige Freunde haben. Daher sind vereinfacht gesagt viele Freunde oder Kontakte von X Superkontakter.
+ 
+Diese Beobachtung macht sich auch in der Ausbreitung von Infektionskrankheiten bemerkbar. D.h. wenn ich jemanden anstecke, wird diese Person wahrscheinlich jemand mit vielen Kontakten sein. Also wird im Mittel nicht die mittlere Zahl der Kontakte angesteckt, sondern mehr als diese Zahl. Der Kontakt-Index übernimmt diese Abweichung."
         />
       </section>
     </main>
