@@ -29,14 +29,12 @@ module.exports = class HtmlPwaPlugin {
 
   apply(compiler) {
     compiler.hooks.compilation.tap(ID, (compilation) => {
-      console.log(Object.keys(htmlWebpackPlugin.getHooks(compilation))) 
       let beforeProcessingHook = compilation.hooks.htmlWebpackPluginBeforeHtmlProcessing;
       if (!beforeProcessingHook) {
-        beforeProcessingHook = htmlWebpackPlugin.getHooks(compilation).beforeAssetTagGeneration;
+        beforeProcessingHook = htmlWebpackPlugin.getHooks(compilation).beforeEmit;
       }
 
       beforeProcessingHook.tapAsync(ID, (data, cb) => {
-        console.log('DATA', JSON.stringify(data, null, 2))
         // wrap favicon in the base template with IE only comment
         data.html = data.html.replace(/<link rel="icon"[^>]+>/, "<!--[if IE]>$&<![endif]-->");
         cb(null, data);
@@ -44,7 +42,7 @@ module.exports = class HtmlPwaPlugin {
 
       let alterAssetHook = compilation.hooks.htmlWebpackPluginAlterAssetTags;
       if (!alterAssetHook) {
-        alterAssetHook = htmlWebpackPlugin.getHooks(compilation).alterAssetTags
+        alterAssetHook = htmlWebpackPlugin.getHooks(compilation).alterAssetTagGroups
       }
 
       alterAssetHook.tapAsync(ID, (data, cb) => {
@@ -59,10 +57,9 @@ module.exports = class HtmlPwaPlugin {
           iconPaths,
         } = this.options;
         const { publicPath } = compiler.options.output;
-
         const assetsVersionStr = assetsVersion ? `?v=${assetsVersion}` : "";
 
-        data.head.push(
+        data.headTags.push(
           // Favicons
           makeTag("link", {
             rel: "icon",
