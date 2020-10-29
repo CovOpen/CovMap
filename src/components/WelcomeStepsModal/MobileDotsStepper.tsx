@@ -31,18 +31,20 @@ export const MobileDotsStepper: React.FC<{ currentStepConfig: StepConfig }> = (p
   ).length;
 
   return (
-    <MobileStepper
-      classes={{
-        root: classes.dotsRoot,
-        dot: classes.dot,
-        dotActive: classes.dotActive,
-      }}
-      variant="dots"
-      steps={numberOfStepsWithProgressDots}
-      activeStep={props.currentStepConfig.dotProgressNumber}
-      position="static"
-      backButton={null}
-      nextButton={null}
-    />
+    <div>
+      <MobileStepper
+        classes={{
+          root: classes.dotsRoot,
+          dot: classes.dot,
+          dotActive: classes.dotActive,
+        }}
+        variant="dots"
+        steps={numberOfStepsWithProgressDots}
+        activeStep={props.currentStepConfig.dotProgressNumber}
+        position="static"
+        backButton={null}
+        nextButton={null}
+      />
+    </div>
   );
 };
