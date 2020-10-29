@@ -1,6 +1,7 @@
 import { Reducer } from "./reduxHelper";
 import { GeoJSON } from "geojson";
 import { Mappable, LayerGroup } from "../app-config.types";
+import moment, { Moment } from "moment";
 
 import { config } from "app-config/index";
 
@@ -70,7 +71,7 @@ export interface AppState {
   geos: Map<string, GeoJSON>;
   datasets: Map<string, MapData>;
   mappedSets: MapSetHolder;
-  currentDate: Date;
+  currentDate: Moment;
   currentMappable: Mappable;
   datasetFound: boolean;
   currentVisual: VisualId; // TODO: Rename to currentVisual (when moving to app-config driven build)
@@ -101,7 +102,7 @@ export const defaultAppState: AppState = {
   geos: new Map<string, GeoJSON>(),
   datasets: new Map<string, MapData>(),
   mappedSets: {},
-  currentDate: new Date(),
+  currentDate: moment.utc(),
   currentMappable: defaultMappable,
   datasetFound: true,
   currentVisual: config.defaultVisual,
@@ -160,7 +161,7 @@ class AppReducer extends Reducer<AppState> {
       [mappingId]: data,
     };
   }
-  public setCurrentDate(date: Date) {
+  public setCurrentDate(date: Moment) {
     this.state.currentDate = date;
   }
   public setCurrentMappable(mappable: Mappable) {

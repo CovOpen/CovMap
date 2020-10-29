@@ -17,7 +17,7 @@ import { State } from "../state";
 import { getFallbackComponent } from "./getFallback";
 import { useThunkDispatch } from "../useThunkDispatch";
 import { fetchMappedSet } from "../state/thunks/fetchMappedSet";
-import { formatUTCDate } from "../lib/formatUTCDate.js";
+import { formatUTCDate } from "../lib/formatUTCDate";
 import { config } from "app-config/index";
 
 export const Visual = memo(() => {

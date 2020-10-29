@@ -7,7 +7,7 @@ import moment from "moment";
 import { useTranslation } from "react-i18next";
 
 import { useThunkDispatch } from "../useThunkDispatch";
-import { formatNowMinusDays, plusDays } from "../lib/formatUTCDate.js";
+import { formatNowMinusDays, plusDays } from "../lib/formatUTCDate";
 import { State } from "../state";
 import { AppApi } from "../state/app";
 import { config } from "app-config/index";
@@ -51,7 +51,7 @@ export function TimeRangeSlider({ onChange = () => {} }: Props) {
   const dispatch = useThunkDispatch();
   const currentDate = useSelector((state: State) => state.app.currentDate);
   const [value, setValue] = useState<number>(() => {
-    const today = new Date();
+    const today = moment.utc();
     const diff = diffDays(today, currentDate);
 
     return Math.min(diff, MAX_SLIDER_VALUE);
@@ -119,10 +119,10 @@ const SliderLabelTooltip = withStyles({
 function ValueLabelComponent({ children, open, value }: ValueLabelComponentProps) {
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const visual = config.visuals[currentVisual];
-  const t = useTranslation(["translation"]);
+  const { t } = useTranslation(["translation"]);
   const dateValue =
     typeof visual.dateFormat === "function"
-      ? visual.dateFormat(t, plusDays(value))
+      ? visual.dateFormat(t, { date: plusDays(value).toDate() })
       : moment(plusDays(value)).format(visual.dateFormat);
 
   return (

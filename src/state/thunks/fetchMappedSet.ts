@@ -1,16 +1,17 @@
-import { GeoJSON, FeatureCollection } from "geojson";
+import type { GeoJSON, FeatureCollection } from "geojson";
 
 import { ReduxDispatch } from "../../useThunkDispatch";
 import { AppApi, VisualId, MapSet } from "../app";
-import { State } from "../";
+import type { State } from "../";
 
-import { formatUTCDate } from "../../lib/formatUTCDate.js";
+import { formatUTCDate } from "../../lib/formatUTCDate";
 import { config } from "app-config/index";
+import { Moment } from "moment";
 
 const fetchAndTransform = async (
   url: string | Function,
   formattedDate: string,
-  date: Date,
+  date: Moment,
   property: string,
   transform?: Function,
 ) => {
@@ -34,7 +35,7 @@ const fetchAndTransform = async (
   return null;
 };
 
-export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Date) {
+export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Moment) {
   return async (dispatch: ReduxDispatch, getState: () => State) => {
     const timeKey = formatUTCDate(date);
     const loadingKey = `loading-${mappingId}-${timeKey}`;
