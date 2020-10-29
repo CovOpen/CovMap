@@ -53,14 +53,18 @@ jobs:
         with:
           ref: "${{github.event.pull_request.head.ref}}"
           repository: "${{github.event.pull_request.head.repo.full_name}}"
-      - name: remove unneeded files
-        run: rm package.json
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install
       - name: Download base artifact
         uses: actions/download-artifact@v1
         with:
           name: dist
-      - name: install testcafe
-        run: yarn add http-server testcafe
       - name: test
         run: yarn run testcafe chrome:headless testcafe/*.spec.ts --app "cd ./dist && http-server -p 8080"
 
@@ -71,8 +75,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: '${{github.event.pull_request.head.ref}}'
-        repository: '${{github.event.pull_request.head.repo.full_name}}'
+        ref: "${{github.event.pull_request.head.ref}}"
+        repository: "${{github.event.pull_request.head.repo.full_name}}"
     - uses: actions/cache@v2
       id: yarn-cache
       with:
@@ -81,8 +85,6 @@ jobs:
     - name: Install dependencies
       if: steps.yarn-cache.outputs.cache-hit != 'true'
       run: yarn install
-    - name: install testcafe & browserstack
-      run: yarn add http-server testcafe testcafe-browser-provider-browserstack
     - name: Download base artifact
       uses: actions/download-artifact@v1
       with:
