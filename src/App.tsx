@@ -1,14 +1,13 @@
 import "./app.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense } from "react";
 import { hot } from "react-hot-loader";
 import { useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import { ThemeProvider } from "@material-ui/core/styles";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
-import moment, { Moment } from "moment";
 import { NavBar } from "src/components/NavBar";
 import { CovMap } from "./components/CovMap";
 import { State } from "./state";
@@ -18,6 +17,7 @@ import { InstallPrompt } from "./components/InstallPrompt";
 import { useThunkDispatch } from "src/useThunkDispatch";
 import { AppApi } from "src/state/app";
 import { getFallbackComponent } from "./components/getFallback";
+import { AutoProgressDate } from "./components/AutoProgressDate";
 
 /**
  * Note: For translations within the Base application we use a namespace called "common",
@@ -35,41 +35,14 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-let dayChangeTimeout;
-let startDate: Moment;
-
 export const App = () => {
   const dispatch = useThunkDispatch();
   const viewportEventsCount = useSelector((state: State) => state.app.viewPortEventsCount);
   const snackbarMessage = useSelector((state: State) => state.app.snackbarMessage);
-  const currentDate = useSelector((state: State) => state.app.currentDate);
   let showInstallPrompt = false;
   if (viewportEventsCount > 1000) {
     showInstallPrompt = true;
   }
-
-  const setNewDay = () => {
-    const newDate = moment().add(1, "minute");
-    const offsetCurrent = moment(currentDate).add(config.dateOffset || 0, "hours");
-
-    if (startDate.dayOfYear() === offsetCurrent.dayOfYear()) {
-      dispatch(AppApi.setCurrentDate(newDate));
-    }
-
-    waitForNewDay(newDate);
-  };
-
-  const waitForNewDay = (from: Moment) => {
-    startDate = moment(from).add(config.dateOffset || 0, "hours");
-    const diff = startDate.diff(moment(from).endOf("day"));
-    dayChangeTimeout = setTimeout(setNewDay, Math.abs(diff));
-  };
-
-  useEffect(() => {
-    if (!dayChangeTimeout) {
-      waitForNewDay(currentDate);
-    }
-  }, []);
 
   function renderRoute(page) {
     return (
@@ -102,6 +75,7 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Router>
+        <AutoProgressDate />
         <ServiceWorker />
         <InstallPrompt shouldShow={showInstallPrompt} />
         <Container
