@@ -6,6 +6,7 @@ import RiskScoreNormalIcon from "../../static/images/risk-score-1.svg";
 import RiskScoreMediumIcon from "../../static/images/risk-score-2.svg";
 import RiskScoreHighIcon from "../../static/images/risk-score-3.svg";
 import { NavigationTitle } from "app-config/components/NavigationTitle";
+import ContactsMediumIcon from "../../static/images/contacts-medium.svg";
 
 const useStyles = makeStyles({
   leftText: {
@@ -68,6 +69,23 @@ export const RiskLevelsPage = () => {
           </Grid>
           <Typography variant="body1" className={classes.leftText}>
             {RiskTexts.HIGH}
+          </Typography>
+        </section>
+
+        <section>
+          <Grid container direction="row">
+            <Grid item xs={9}>
+              <Typography variant="h2" className={classes.leftText}>
+                Erhöhter Kontaktindex
+              </Typography>
+            </Grid>
+            <Grid item xs={3}>
+              <ContactsMediumIcon />
+            </Grid>
+          </Grid>
+          <Typography variant="body1" className={classes.leftText}>
+            Unsere Vorhersage sagt hier vermehrten Kontakt in der Bevölkerung voraus. Dies kann dazu führen, dass sich
+            bald die Fallzahlen erhöhen.
           </Typography>
         </section>
       </main>
