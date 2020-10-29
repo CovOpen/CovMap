@@ -5,7 +5,7 @@ import React, { Suspense } from "react";
 import { hot } from "react-hot-loader";
 import { useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import { ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import { NavBar } from "src/components/NavBar";
@@ -35,7 +35,30 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
+const useStyles = makeStyles((theme) => ({
+  outerPageDiv: {
+    zIndex: 1095,
+    backgroundColor: "white",
+    width: "100%",
+    height: "100%",
+    boxSizing: "border-box",
+    flexShrink: 0,
+    overflow: "hidden",
+    paddingTop: "64px",
+    [theme.breakpoints.down("xs")]: {
+      // on mobile devices
+      paddingTop: "0 !important",
+    },
+  },
+  innerPageDiv: {
+    width: "100%",
+    height: "100%",
+    overflow: "auto",
+  },
+}));
+
 export const App = () => {
+  const classes = useStyles();
   const dispatch = useThunkDispatch();
   const viewportEventsCount = useSelector((state: State) => state.app.viewPortEventsCount);
   const snackbarMessage = useSelector((state: State) => state.app.snackbarMessage);
@@ -50,19 +73,8 @@ export const App = () => {
         path={page.route}
         key={page.id}
         component={() => (
-          <div
-            style={{
-              zIndex: 1095,
-              backgroundColor: "white",
-              width: "100%",
-              height: "100%",
-              boxSizing: "border-box",
-              flexShrink: 0,
-              overflow: "hidden",
-              paddingTop: "64px",
-            }}
-          >
-            <div style={{ width: "100%", height: "100%", overflow: "auto" }}>
+          <div className={classes.outerPageDiv}>
+            <div className={classes.innerPageDiv}>
               <page.Component />
             </div>
           </div>
