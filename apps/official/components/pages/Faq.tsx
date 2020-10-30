@@ -21,9 +21,7 @@ const FaqAccordion: React.FC<{ title: string }> = (props) => {
           {props.title}
         </Typography>
       </AccordionSummary>
-      <AccordionDetails>
-        { props.children }
-      </AccordionDetails>
+      <AccordionDetails>{props.children}</AccordionDetails>
     </Accordion>
   );
 };
@@ -88,18 +86,18 @@ export const Faq: React.FC = () => {
 
         <FaqAccordion title="Was macht die CovMap besonders?">
           <Typography style={{ width: "100%" }}>
-            Die CovMap wertet zur regionalen Risikobestimmung neben den offiziellen Fallzahlstatistiken des Robert-Koch-Instituts 
-            große Sätze an GPS- und Symptom-Daten aus. Dies erlaubt uns, 
-            mit Hilfe eines Modells einen Blick in die Zukunft des Infektionsgeschehens in 
-            Deutschland zu werfen und so Risikogebiete schneller zu identifizieren.
+            Die CovMap wertet zur regionalen Risikobestimmung neben den offiziellen Fallzahlstatistiken des
+            Robert-Koch-Instituts große Sätze an GPS- und Symptom-Daten aus. Dies erlaubt uns, mit Hilfe eines Modells
+            einen Blick in die Zukunft des Infektionsgeschehens in Deutschland zu werfen und so Risikogebiete schneller
+            zu identifizieren.
           </Typography>
         </FaqAccordion>
 
         <FaqAccordion title="Handelt es sich um offizielle Risikoeinschätzungen?">
           <Typography style={{ width: "100%" }}>
             Nein, bei der CovMap Risikoeinschätzung handelt es sich nicht um eine offizielle Risikoeinschätzung einer
-            nationalen Behörde oder Institution. Die CovMap Risikoeinschätzung wurde von Forschenden der
-            Charité, des Hasso-Plattner-Instituts und Datenspezialisten der Firma NETCHECK entwickelt.
+            nationalen Behörde oder Institution. Die CovMap Risikoeinschätzung wurde von Forschenden der Charité, des
+            Hasso-Plattner-Instituts und Datenspezialisten der Firma NETCHECK entwickelt.
           </Typography>
         </FaqAccordion>
 
@@ -111,16 +109,16 @@ export const Faq: React.FC = () => {
             <Typography>
               Ein normales Risiko liegt vor, wenn die 7-Tages-Inzidenz des Robert-Koch-Instituts geringer als 20
               Neuinfektionen pro 100.000 Einwohner ist und unser Vorhersagemodell keinen Anstieg vermuten lässt. Bitte
-              beachte, dass das Virus derzeit überall in Deutschland zirkuliert und daher eine Ansteckung auch in
-              einer Region mit einem normalen Risiko möglich ist.
+              beachte, dass das Virus derzeit überall in Deutschland zirkuliert und daher eine Ansteckung auch in einer
+              Region mit einem normalen Risiko möglich ist.
             </Typography>
 
             <RiskHeading risk={2} />
 
             <Typography>
-              Von einem mittleren Risiko gehen wir aus, wenn die 7-Tages-Inzidenz zwischen 20 und 50 Neuinfektionen
-              pro 100.000 Einwohnern liegt oder unser Vorhersagemodell auf einen Anstieg der Neuinfektionen hindeutet.
-              Eine Region mit mittlerem Risiko kann in Zukunft eine Region mit hohem Risiko werden.
+              Von einem mittleren Risiko gehen wir aus, wenn die 7-Tages-Inzidenz zwischen 20 und 50 Neuinfektionen pro
+              100.000 Einwohnern liegt oder unser Vorhersagemodell auf einen Anstieg der Neuinfektionen hindeutet. Eine
+              Region mit mittlerem Risiko kann in Zukunft eine Region mit hohem Risiko werden.
             </Typography>
             <RiskHeading risk={3} />
             <Typography>
@@ -150,13 +148,11 @@ export const Faq: React.FC = () => {
 
         <FaqAccordion title="Welche Konsequenzen ergeben sich aus der Risikoeinschätzung?">
           <Typography style={{ width: "100%" }}>
-            Wir möchten mit diesem Projekt zu einer freiwilligen Reduktion von Kontakten aufrufen, 
-            insbesondere in Gebieten mit mittlerem und hohem Risiko. Falls sich Kontakte nicht 
-            vermeiden lassen, findest Du auf unserer Seite Informationen über allgemeine 
-            Schutzmaßnahmen, mit denen sich das Übertragungsrisiko verringern lässt. 
-            Zusätzlich verlinken wir zu den Webseiten der Landkreise, 
-            so dass Du Dich über die aktuellen und offiziellen Verhaltensregeln in 
-            Deiner Region informieren kannst.
+            Wir möchten mit diesem Projekt zu einer freiwilligen Reduktion von Kontakten aufrufen, insbesondere in
+            Gebieten mit mittlerem und hohem Risiko. Falls sich Kontakte nicht vermeiden lassen, findest Du auf unserer
+            Seite Informationen über allgemeine Schutzmaßnahmen, mit denen sich das Übertragungsrisiko verringern lässt.
+            Zusätzlich verlinken wir zu den Webseiten der Landkreise, so dass Du Dich über die aktuellen und offiziellen
+            Verhaltensregeln in Deiner Region informieren kannst.
           </Typography>
         </FaqAccordion>
 
@@ -192,11 +188,11 @@ export const Faq: React.FC = () => {
               </div>
               <div className={classes.textBlock}>
                 Die vom Robert Koch-Institut gemeldete 7-Tages-Inzidenz spiegelt das Infektionsgeschehen wider, das
-                bereits vor einiger Zeit stattgefunden hat, und ist deshalb ein Blick in die Vergangenheit. Der von
-                uns entwickelte Kontakt-Index ist ein Maß für die Anzahl der Kontakte pro Person und Region und kann
+                bereits vor einiger Zeit stattgefunden hat, und ist deshalb ein Blick in die Vergangenheit. Der von uns
+                entwickelte Kontakt-Index ist ein Maß für die Anzahl der Kontakte pro Person und Region und kann
                 schneller ausgewertet werden. In{" "}
-                <a href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2">ersten Analysen</a> konnten
-                wir zeigen, dass ein hoher Kontakt-Index mit einem vermehrten Infektionsgeschehen korreliert. Der
+                <a href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2">ersten Analysen</a> konnten wir
+                zeigen, dass ein hoher Kontakt-Index mit einem vermehrten Infektionsgeschehen korreliert. Der
                 Kontakt-Index erlaubt insofern einen vorsichtigen Blick in die Zukunft und kann als eine Art
                 Frühwarnsystem angesehen werden. Wichtig ist, dass es sich bei dem hinterlegten Algorithmus um ein
                 rechnerisches Modell handelt. Das tatsächliche Infektionsgeschehen kann deshalb von der Vorhersage auf
@@ -224,21 +220,45 @@ export const Faq: React.FC = () => {
 
         <FaqAccordion title="Wie funktioniert die Vorhersage, ob in einer Region mit vermehrten Neuinfektionen zu rechnen ist?">
           <Typography style={{ width: "100%" }}>
-            Unsere Arbeiten beruhen auf einem etablierten theoretischen Modell für die Vorhersage der Reproduktionszahl (R-Wert). Der R-Wert gibt an, wie viele Personen sich innerhalb eines bestimmten Zeitraumes typischerweise an einer erkrankten Person anstecken. Diese Ansteckungen hängen unter anderem von der Zahl der Kontakte pro Person ab und ein mathematischer Zusammenhang kann für die Bestimmung genutzt werden. Der Kontakt zwischen zwei Personen kann zu einer Übertragung des Coronavirus führen. Bei unserer Methode müssen wir nicht wissen, ob eine Person tatsächlich infiziert ist und können dennoch eine Vorhersage darüber treffen, wie sich die Zahl der Neuinfektionen entwickeln wird. Da ein Kontakt und die potentielle Virusübertragung das früheste Ereignis einer Infektion mit dem Coronavirus darstellt, gewinnen wir einen Zeitvorteil von bis zu 3 Wochen gegen über den offiziellen Fallzahlstatistiken mit bestätigten Infektionen. Statistisch gesehen ist übrigens nicht die Zahl der Kontakte pro Person entscheidend, sondern eine spezielle Metrik, welche die Verteilung der Anzahl der Kontakte berücksichtigt. Diese Metrik wurde von uns unter dem Namen Kontakt-Index berechnet und wird für die Prognose verwendet, ob es zu einem Anstieg von Neuinfektionen kommen kann. 
+            Unsere Arbeiten beruhen auf einem etablierten theoretischen Modell für die Vorhersage der Reproduktionszahl
+            (R-Wert). Der R-Wert gibt an, wie viele Personen sich innerhalb eines bestimmten Zeitraumes typischerweise
+            an einer erkrankten Person anstecken. Diese Ansteckungen hängen unter anderem von der Zahl der Kontakte pro
+            Person ab und ein mathematischer Zusammenhang kann für die Bestimmung genutzt werden. Der Kontakt zwischen
+            zwei Personen kann zu einer Übertragung des Coronavirus führen. Bei unserer Methode müssen wir nicht wissen,
+            ob eine Person tatsächlich infiziert ist und können dennoch eine Vorhersage darüber treffen, wie sich die
+            Zahl der Neuinfektionen entwickeln wird. Da ein Kontakt und die potentielle Virusübertragung das früheste
+            Ereignis einer Infektion mit dem Coronavirus darstellt, gewinnen wir einen Zeitvorteil von bis zu 3 Wochen
+            gegen über den offiziellen Fallzahlstatistiken mit bestätigten Infektionen. Statistisch gesehen ist übrigens
+            nicht die Zahl der Kontakte pro Person entscheidend, sondern eine spezielle Metrik, welche die Verteilung
+            der Anzahl der Kontakte berücksichtigt. Diese Metrik wurde von uns unter dem Namen Kontakt-Index berechnet
+            und wird für die Prognose verwendet, ob es zu einem Anstieg von Neuinfektionen kommen kann.
           </Typography>
         </FaqAccordion>
 
         <FaqAccordion title="Was ist der Kontakt-Index?">
           <Typography style={{ width: "100%" }}>
-            Der Kontakt-Index wurde von unserer Gruppe entwickelt und in einer wissenschaftlichen Arbeit beschrieben. Grundlegend ist die Beobachtung, dass nicht jede Person die gleiche Zahl von Kontakten pro Tag hat sondern dass es dabei eine sehr breite Verteilung gibt. Da Personen mit sehr vielen Kontakten („Superkontakter“) eine höhere Wahrscheinlichkeit haben, das Coronavirus weiterzugeben, spielt diese Beobachtung eine Rolle für die Ausbreitung (Freundschaftsparadox). Anders gesagt, ist nicht nur die reine Zahl an Kontakten für den R-Wert entscheidend, sondern auch die Heterogenität der Kontaktzahlen. Der Kontakt-Index zeigt nun sowohl die Gesamtzahl der Kontakte als auch die Heterogenität an. Wir konnten zeigen, dass tatsächlich der Kontakt-Index maßgebend für die Ausbreitung des Coronavirus in Deutschland ist.
+            Der Kontakt-Index wurde von unserer Gruppe entwickelt und in einer wissenschaftlichen Arbeit beschrieben.
+            Grundlegend ist die Beobachtung, dass nicht jede Person die gleiche Zahl von Kontakten pro Tag hat sondern
+            dass es dabei eine sehr breite Verteilung gibt. Da Personen mit sehr vielen Kontakten („Superkontakter“)
+            eine höhere Wahrscheinlichkeit haben, das Coronavirus weiterzugeben, spielt diese Beobachtung eine Rolle für
+            die Ausbreitung (Freundschaftsparadox). Anders gesagt, ist nicht nur die reine Zahl an Kontakten für den
+            R-Wert entscheidend, sondern auch die Heterogenität der Kontaktzahlen. Der Kontakt-Index zeigt nun sowohl
+            die Gesamtzahl der Kontakte als auch die Heterogenität an. Wir konnten zeigen, dass tatsächlich der
+            Kontakt-Index maßgebend für die Ausbreitung des Coronavirus in Deutschland ist.
           </Typography>
         </FaqAccordion>
 
         <FaqAccordion title="Was ist das Freundschaftsparadox?">
           <Typography style={{ width: "100%" }}>
-            Der Kontakt-Index ist anschaulich mit dem sogenannten Freundschaftsparadox verbunden (https://de.wikipedia.org/wiki/Freundschaftsparadox). Danach gilt für die meisten Menschen - z.B. in Facebook - dass ihre Freunde im Durchschnitt mehr Freunde haben als sie selbst. Das wiederum liegt daran, dass Personen mit vielen Freunden eine höhere Wahrscheinlichkeit haben, mit einer beliebigen Person X verbunden zu sein, als Personen, die wenige Freunde haben. Daher sind vereinfacht gesagt viele Freunde oder Kontakte von X Superkontakter.
- 
-            Diese Beobachtung macht sich auch in der Ausbreitung von Infektionskrankheiten bemerkbar. D.h. wenn ich jemanden anstecke, wird diese Person wahrscheinlich jemand mit vielen Kontakten sein. Also wird im Mittel nicht die mittlere Zahl der Kontakte angesteckt, sondern mehr als diese Zahl. Der Kontakt-Index übernimmt diese Abweichung.
+            Der Kontakt-Index ist anschaulich mit dem sogenannten Freundschaftsparadox verbunden
+            (https://de.wikipedia.org/wiki/Freundschaftsparadox). Danach gilt für die meisten Menschen - z.B. in
+            Facebook - dass ihre Freunde im Durchschnitt mehr Freunde haben als sie selbst. Das wiederum liegt daran,
+            dass Personen mit vielen Freunden eine höhere Wahrscheinlichkeit haben, mit einer beliebigen Person X
+            verbunden zu sein, als Personen, die wenige Freunde haben. Daher sind vereinfacht gesagt viele Freunde oder
+            Kontakte von X Superkontakter. Diese Beobachtung macht sich auch in der Ausbreitung von
+            Infektionskrankheiten bemerkbar. D.h. wenn ich jemanden anstecke, wird diese Person wahrscheinlich jemand
+            mit vielen Kontakten sein. Also wird im Mittel nicht die mittlere Zahl der Kontakte angesteckt, sondern mehr
+            als diese Zahl. Der Kontakt-Index übernimmt diese Abweichung.
           </Typography>
         </FaqAccordion>
       </section>
