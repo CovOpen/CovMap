@@ -143,7 +143,8 @@ export const Faq: React.FC = () => {
                 </Typography>
               </div>
               <Typography>
-                In dieser Region registrieren wir viele Kontakte, weshalb sich das Virus leichter ausbreiten kann. Unser Modell sagt einen beschleunigten Anstieg der Neuinfektionen voraus.
+                In dieser Region registrieren wir viele Kontakte, weshalb sich das Virus leichter ausbreiten kann. Unser
+                Modell sagt einen beschleunigten Anstieg der Neuinfektionen voraus.
               </Typography>
             </Box>
           }
