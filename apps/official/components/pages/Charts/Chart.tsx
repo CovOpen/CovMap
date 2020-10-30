@@ -1,6 +1,14 @@
 import React from "react";
-import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { ChartConfig } from "app-config/components/pages/Charts/ChartConfig";
+
+import CartesianGrid from "recharts/es6/cartesian/CartesianGrid";
+import Legend from "recharts/es6/component/Legend";
+import Line from "recharts/es6/cartesian/Line";
+import LineChart from "recharts/es6/chart/LineChart";
+import ResponsiveContainer from "recharts/es6/component/ResponsiveContainer";
+import Tooltip from "recharts/es6/component/Tooltip";
+import XAxis from "recharts/es6/cartesian/XAxis";
+import YAxis from "recharts/es6/cartesian/YAxis";
 
 export type ChartData = Array<{ datum: string } & { [key: string]: number | null }>;
 
