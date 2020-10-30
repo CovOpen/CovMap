@@ -13,7 +13,7 @@ fixture`Search field test`.page`${Config.baseTestCovmapUrl}`
         await t.expect(websiteText).contains(titleForIntro1).click(nextButton);
         await t.expect(websiteText).contains(titleForIntro2).click(nextButton);
         await t.expect(websiteText).contains(titleForIntro3).click(nextButton);
-        await t.expect(websiteText).contains(titleTextForPostalCode).pressKey("1 2 3 4 5 tab space tab tab enter");
+        await t.expect(websiteText).contains(titleTextForPostalCode).pressKey("1 0 1 1 5 tab space tab tab enter");
         await t.expect(websiteText).notContains(titleTextForPostalCode);
     })
     .afterEach( async t => {
@@ -21,11 +21,8 @@ fixture`Search field test`.page`${Config.baseTestCovmapUrl}`
     });
 
 test("find search field", async (t) => {
-    // .expect(locate.with({visibilityCheck : true}).exists)
-    await t.expect({ placeholder: 'PLZ oder Landkreis', visibilityCheck: true })
-        .contains({ placeholder: 'PLZ oder Landkreis', visibilityCheck: true }, 'textfield for search not found')
-        .pressKey("5 4 3 2 1 enter");
+    var searchField = Selector('#autocomplete').withAttribute("placeholder", "PLZ oder Landkreis")
+    await t.expect(searchField.exists).ok();
+    await t.click(searchField).typeText(searchField, "Stuttgart").pressKey("enter");
     await t.wait(5000);
-
-    
 });
