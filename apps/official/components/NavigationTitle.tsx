@@ -12,11 +12,11 @@ export const NavigationTitle: React.FC<{ title: string; backToExpandedFeatureInf
       style={{ textDecoration: "none", cursor: "pointer" }}
       aria-label="go back to map"
     >
-      <Grid container direction="row" alignItems="center">
-        <Grid item>
+      <Grid container direction="row" alignItems="center" style={{ marginTop: "8px" }}>
+        <Grid item xs={1}>
           <ArrowBackIosIcon color="action" />
         </Grid>
-        <Grid item>
+        <Grid item xs={11}>
           <Typography variant="h1">{props.title}</Typography>
         </Grid>
       </Grid>
