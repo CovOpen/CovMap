@@ -55,7 +55,7 @@ export const Faq: React.FC = () => {
   return (
     <main className="sections">
       <section>
-        <NavigationTitle title={"Fragen und Antworten zu CovMap!"} />
+        <NavigationTitle title={"Fragen und Antworten zur CovMap!"} />
       </section>
 
       <section>
