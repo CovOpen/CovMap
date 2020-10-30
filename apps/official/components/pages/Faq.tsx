@@ -143,8 +143,7 @@ export const Faq: React.FC = () => {
                 </Typography>
               </div>
               <Typography>
-                Unsere Vorhersage sagt hier vermehrten Kontakt in der Bevölkerung voraus. Dies kann dazu führen, dass
-                sich bald die Fallzahlen erhöhen.
+                In dieser Region registrieren wir viele Kontakte, weshalb sich das Virus leichter ausbreiten kann. Unser Modell sagt einen beschleunigten Anstieg der Neuinfektionen voraus.
               </Typography>
             </Box>
           }
