@@ -88,6 +88,11 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
     margin: "0 auto",
     display: "block",
   },
+  center: {
+    "display": "flex",
+    "flex-flow": "column",
+    "align-items": "center",
+  },
   chipTop: {
     position: "absolute",
     top: -12, // half height of the badge
@@ -116,6 +121,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
     drawerScrollContainer,
     centerIcon,
     chipTop,
+    center,
   } = useStyles({
     fullScreen,
   });
@@ -150,9 +156,19 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
   const ContactsIcon = ({ score }: { score: ContactScore }) => {
     switch (score) {
       case ContactScore.Low:
-        return <ContactsLowIcon />;
+        return (
+          <div className={center}>
+            <ContactsLowIcon />
+            <Typography variant="body2">reduziert</Typography>
+          </div>
+        );
       case ContactScore.Medium:
-        return <ContactsMediumIcon />;
+        return (
+          <div className={center}>
+            <ContactsMediumIcon />
+            <Typography variant="body2">erhöht</Typography>
+          </div>
+        );
       default:
         return null;
     }
@@ -186,7 +202,10 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
             <Typography variant="h3">Symptomlast der Bevölkerung</Typography>
           </Grid>
           <Grid item xs={2}>
-            <SymptomsLowIcon />
+            <div className={center}>
+              <SymptomsLowIcon />
+              <Typography variant="body2">normal</Typography>
+            </div>
           </Grid>
           <Grid item xs={2}>
             <ArrowForwardIosIcon className={centerIcon} color="action" fontSize="small" />

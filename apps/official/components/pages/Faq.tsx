@@ -5,6 +5,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { makeStyles } from "@material-ui/core/styles";
 import { RiskBadge } from "../RiskBadge";
 import { NavigationTitle } from "app-config/components/NavigationTitle";
+import ContactsMediumBackgroundIcon from "../../static/images/contacts-medium-background.svg";
 
 const useStyles = makeStyles(() => ({
   textBlock: {
@@ -54,7 +55,7 @@ export const Faq: React.FC = () => {
   return (
     <main className="sections">
       <section>
-        <NavigationTitle title={"Fragen und Antworten zu CovMap!"} />
+        <NavigationTitle title={"Fragen und Antworten zur CovMap!"} />
       </section>
 
       <section>
@@ -77,8 +78,8 @@ export const Faq: React.FC = () => {
                   </ul>
                 </div>
                 <div className={classes.textBlock}>
-                  Mit der CovMap möchten wir zu einer freiwilligen Reduzierung von Kontakten aufrufen und 
-                  aufzeigen, wo dies besonders notwendig ist.
+                  Mit der CovMap möchten wir zu einer freiwilligen Reduzierung von Kontakten aufrufen und aufzeigen, wo
+                  dies besonders notwendig ist.
                 </div>
               </div>
             </Typography>
@@ -106,13 +107,13 @@ export const Faq: React.FC = () => {
           content={
             <Box display="flex" flexDirection="column">
               <Typography>Auf der Karte stellen wir ein normales, mittleres und hohes Risiko dar.</Typography>
-                            <RiskHeading risk={1} />
+              <RiskHeading risk={1} />
 
               <Typography>
-                Ein normales Risiko liegt vor, wenn die 7-Tages-Inzidenz des Robert-Koch-Instituts geringer als 20 Neuinfektionen pro 100.000
-                Einwohner ist und unser Vorhersagemodell keinen Anstieg vermuten lässt. Bitte beachte, dass das Virus
-                derzeit überall in Deutschland zirkuliert und daher eine Ansteckung auch in einer Region mit einem
-                normalen Risiko möglich ist.
+                Ein normales Risiko liegt vor, wenn die 7-Tages-Inzidenz des Robert-Koch-Instituts geringer als 20
+                Neuinfektionen pro 100.000 Einwohner ist und unser Vorhersagemodell keinen Anstieg vermuten lässt. Bitte
+                beachte, dass das Virus derzeit überall in Deutschland zirkuliert und daher eine Ansteckung auch in
+                einer Region mit einem normalen Risiko möglich ist.
               </Typography>
 
               <RiskHeading risk={2} />
@@ -122,11 +123,29 @@ export const Faq: React.FC = () => {
                 pro 100.000 Einwohnern liegt oder unser Vorhersagemodell auf einen Anstieg der Neuinfektionen hindeutet.
                 Eine Region mit mittlerem Risiko kann in Zukunft eine Region mit hohem Risiko werden.
               </Typography>
-                            <RiskHeading risk={3} />
+              <RiskHeading risk={3} />
               <Typography>
-                Ein hohes Risiko leiten wir von der 7-Tages-Inzidenz ab, wenn die Schwelle von 50 Neuinfektionen pro 100.000 Einwohner überschritten wurde.
+                Ein hohes Risiko leiten wir von der 7-Tages-Inzidenz ab, wenn die Schwelle von 50 Neuinfektionen pro
+                100.000 Einwohner überschritten wurde.
               </Typography>
 
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <div>
+                  <ContactsMediumBackgroundIcon />
+                </div>
+                <Typography variant="h3" style={{ margin: "0 1rem" }}>
+                  Erhöhtes Kontaktverhalten in der Bevölkerung
+                </Typography>
+              </div>
+              <Typography>
+                In dieser Region registrieren wir viele Kontakte, weshalb sich das Virus leichter ausbreiten kann. Unser
+                Modell sagt einen beschleunigten Anstieg der Neuinfektionen voraus.
+              </Typography>
             </Box>
           }
         />
@@ -144,7 +163,7 @@ export const Faq: React.FC = () => {
           title="Welche Daten verwendet die CovMap?"
           content="Die CovMap greift auf drei Datenquellen zurück, um die regionalen Risikobewertung durchzuführen: 1.)
             Fallzahlstatistiken vom Robert-Koch-Institut, 2.) ein geschätztes Kontaktverhalten, ermittelt aus GPS Daten
-            von der Firma NETCHECK, 3.) Symptomdaten von der Chartié CovApp."
+            von der Firma NET CHECK, 3.) Symptomdaten von der Chartié CovApp."
         />
 
         <FaqAccordion
@@ -195,6 +214,23 @@ export const Faq: React.FC = () => {
               </div>
             </Typography>
           }
+        />
+
+        <FaqAccordion
+          title="Wie funktioniert die Vorhersage, ob in einer Region mit vermehrten Neuinfektionen zu rechnen ist?"
+          content="Unsere Arbeiten beruhen auf einem etablierten theoretischen Modell für die Vorhersage der Reproduktionszahl (R-Wert). Der R-Wert gibt an, wie viele Personen sich innerhalb eines bestimmten Zeitraumes typischerweise an einer erkrankten Person anstecken. Diese Ansteckungen hängen unter anderem von der Zahl der Kontakte pro Person ab und ein mathematischer Zusammenhang kann für die Bestimmung genutzt werden. Der Kontakt zwischen zwei Personen kann zu einer Übertragung des Coronavirus führen. Bei unserer Methode müssen wir nicht wissen, ob eine Person tatsächlich infiziert ist und können dennoch eine Vorhersage darüber treffen, wie sich die Zahl der Neuinfektionen entwickeln wird. Da ein Kontakt und die potentielle Virusübertragung das früheste Ereignis einer Infektion mit dem Coronavirus darstellt, gewinnen wir einen Zeitvorteil von bis zu 3 Wochen gegen über den offiziellen Fallzahlstatistiken mit bestätigten Infektionen. Statistisch gesehen ist übrigens nicht die Zahl der Kontakte pro Person entscheidend, sondern eine spezielle Metrik, welche die Verteilung der Anzahl der Kontakte berücksichtigt. Diese Metrik wurde von uns unter dem Namen Kontakt-Index berechnet und wird für die Prognose verwendet, ob es zu einem Anstieg von Neuinfektionen kommen kann. "
+        />
+
+        <FaqAccordion
+          title="Was ist der Kontakt-Index?"
+          content="Der Kontakt-Index wurde von unserer Gruppe entwickelt und in einer wissenschaftlichen Arbeit beschrieben. Grundlegend ist die Beobachtung, dass nicht jede Person die gleiche Zahl von Kontakten pro Tag hat sondern dass es dabei eine sehr breite Verteilung gibt. Da Personen mit sehr vielen Kontakten („Superkontakter“) eine höhere Wahrscheinlichkeit haben, das Coronavirus weiterzugeben, spielt diese Beobachtung eine Rolle für die Ausbreitung (Freundschaftsparadox). Anders gesagt, ist nicht nur die reine Zahl an Kontakten für den R-Wert entscheidend, sondern auch die Heterogenität der Kontaktzahlen. Der Kontakt-Index zeigt nun sowohl die Gesamtzahl der Kontakte als auch die Heterogenität an. Wir konnten zeigen, dass tatsächlich der Kontakt-Index maßgebend für die Ausbreitung des Coronavirus in Deutschland ist."
+        />
+
+        <FaqAccordion
+          title="Was ist das Freundschaftsparadox?"
+          content="Der Kontakt-Index ist anschaulich mit dem sogenannten Freundschaftsparadox verbunden (https://de.wikipedia.org/wiki/Freundschaftsparadox). Danach gilt für die meisten Menschen - z.B. in Facebook - dass ihre Freunde im Durchschnitt mehr Freunde haben als sie selbst. Das wiederum liegt daran, dass Personen mit vielen Freunden eine höhere Wahrscheinlichkeit haben, mit einer beliebigen Person X verbunden zu sein, als Personen, die wenige Freunde haben. Daher sind vereinfacht gesagt viele Freunde oder Kontakte von X Superkontakter.
+ 
+Diese Beobachtung macht sich auch in der Ausbreitung von Infektionskrankheiten bemerkbar. D.h. wenn ich jemanden anstecke, wird diese Person wahrscheinlich jemand mit vielen Kontakten sein. Also wird im Mittel nicht die mittlere Zahl der Kontakte angesteckt, sondern mehr als diese Zahl. Der Kontakt-Index übernimmt diese Abweichung."
         />
       </section>
     </main>
