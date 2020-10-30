@@ -65,6 +65,7 @@ module.exports = function (env) {
     cache: true,
     entry: {
       app: "./src/index.tsx",
+      embed: "./src/embed.tsx",
     },
     output: {
       path: outputDir,
@@ -139,6 +140,9 @@ module.exports = function (env) {
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "src/index.ejs"),
+        chunks: ["app"],
+        filename: "index.html",
+        // inject: true,
         title: buildConfig.meta.title,
         url: buildConfig.meta.url,
         description: buildConfig.meta.description,
@@ -158,7 +162,30 @@ module.exports = function (env) {
           viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
         },
       }),
-
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, "src/embed.ejs"),
+        chunks: ["embed"],
+        filename: "embed.html",
+        // inject: true,
+        title: buildConfig.meta.title,
+        url: buildConfig.meta.url,
+        description: buildConfig.meta.description,
+        keywords: buildConfig.meta.keywords,
+        variables: buildConfig,
+        minify:
+          env == "prod"
+            ? {
+                collapseWhitespace: true,
+                removeComments: true,
+                minifyCSS: true,
+                minifyURLs: true,
+              }
+            : false,
+        meta: {
+          // TODO: double trouble - is in the template index.ejs and here
+          viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
+        },
+      }),
       new CopyWebpackPlugin(staticResources),
       new BundleServiceWorkerPlugin({
         buildOptions: {
