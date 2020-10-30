@@ -1,7 +1,18 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useLocation } from "react-router-dom";
-import { Button, Card, CardContent, CircularProgress, Grid, Typography } from "@material-ui/core";
+import { 
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Button, 
+  Card, 
+  CardContent, 
+  CircularProgress, 
+  Grid, 
+  Typography,
+} from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { useSelector } from "react-redux";
 
@@ -17,6 +28,9 @@ import { ActionTexts } from "../../static/texts/ActionTexts";
 import { NavigationTitle } from "app-config/components/NavigationTitle";
 
 const useStyles = makeStyles({
+  measurePanel: {
+
+  },
   teaser: {
     border: 0,
     background: "#2979ff",
@@ -39,7 +53,9 @@ const useStyles = makeStyles({
 
 const CountyTeaser = ({ county, url }: { county: string; url: string }): JSX.Element => {
   const classes = useStyles();
-  const teaser = `${ActionTexts.COUNTY_TEASER_1}${county}${ActionTexts.COUNTY_TEASER_2}`;
+  
+  const COUNTY_TEASER = "Informiere Dich hier über aktuelle Verhaltensregeln für ";  
+  const teaser = `${COUNTY_TEASER}${county}`;
 
   return (
     <Button href={url} target="_blank" disableRipple>
@@ -76,18 +92,14 @@ const FinalTeaser = (): JSX.Element => {
 
 const Intro = (): JSX.Element => {
   const classes = useStyles();
+
+  const INTRO_TEASER_2 = "In den letzten Monaten konnte immer wieder gezeigt werden, dass ganz einfache Maßnahmen, die von jedem umgesetzt werden können, sehr viel Wirkung haben. ";
+
   return (
-    <Grid container direction="column" spacing={4}>
-      <Grid item>
-        <Typography variant="body1" className={classes.leftText}>
-          {ActionTexts.INTRO_TEASER_1}
-        </Typography>
-      </Grid>
-      <Grid item>
-        <Typography variant="body1" className={classes.subHeader}>
-          {ActionTexts.INTRO_TEASER_2}
-        </Typography>
-      </Grid>
+    <Grid item>
+      <Typography variant="h2" className={classes.subHeader}>
+        {INTRO_TEASER_2}
+      </Typography>
     </Grid>
   );
 };
@@ -245,12 +257,14 @@ function loadDistrictData(location): DistrictData | undefined {
 export const BasicRecommendations = (): JSX.Element => {
   const location = useLocation();
   const districtData = loadDistrictData(location);
+  
+  const TITLE = "Wie kann ich mich verhalten?";
 
   return (
     <>
       <main className="sections">
         <section>
-          <NavigationTitle title={ActionTexts.TITLE} backToExpandedFeatureInfo={true} />
+          <NavigationTitle title={TITLE} backToExpandedFeatureInfo={true} />
         </section>
         <section>
           {districtData !== undefined ? (

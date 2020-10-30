@@ -10,7 +10,7 @@ import { Charts } from "./components/pages/Charts";
 import RKI from "./components/pages/RKI";
 import ContactBehavior from "./components/pages/ContactBehavior";
 import SymptomLevel from "./components/pages/SymptomLevel";
-import { BasicRecommendations } from "./components/basic-recommendations/BasicRecommendations";
+import { WhatCanIDoPage } from "./components/basic-recommendations/WhatCanIDoPage";
 import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo";
 import { RiskLevelsPage } from "./components/risk-levels-page/RiskLevelsPage";
 // TODO: Integrate CovQuestions
@@ -90,7 +90,7 @@ export const config: AppConfig = {
         id: "basic-recommendations",
         title: "Empfehlungen",
         route: "/recommendations",
-        Component: BasicRecommendations,
+        Component: WhatCanIDoPage,
         hidden: true, // dont show this page in the navbar
       },
       {
