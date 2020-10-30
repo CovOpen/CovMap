@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const RenderPageRoute = ({ page }: { page: AppPage }) => {
   const classes = useStyles();
-  
+
   return (
     <Route
       path={page.route}
@@ -43,4 +43,4 @@ export const RenderPageRoute = ({ page }: { page: AppPage }) => {
       style={{ flex: "1 1 auto", position: "absolute" }}
     />
   );
-}
+};

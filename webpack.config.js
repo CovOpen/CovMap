@@ -140,8 +140,8 @@ module.exports = function (env) {
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "src/index.ejs"),
-        chunks: ['app'],
-        filename: 'index.html',
+        chunks: ["app"],
+        filename: "index.html",
         // inject: true,
         title: buildConfig.meta.title,
         url: buildConfig.meta.url,
@@ -164,8 +164,8 @@ module.exports = function (env) {
       }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "src/embed.ejs"),
-        chunks: ['embed'],
-        filename: 'embed.html',
+        chunks: ["embed"],
+        filename: "embed.html",
         // inject: true,
         title: buildConfig.meta.title,
         url: buildConfig.meta.url,

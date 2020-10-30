@@ -14,7 +14,7 @@ function Alert(props) {
 export const GlobalSnackbar = () => {
   const dispatch = useThunkDispatch();
   const snackbarMessage = useSelector((state: State) => state.app.snackbarMessage);
-  
+
   return (
     <Snackbar
       anchorOrigin={{
@@ -34,5 +34,5 @@ export const GlobalSnackbar = () => {
     >
       <Alert severity={snackbarMessage.type}>{snackbarMessage.text}</Alert>
     </Snackbar>
-  )
-}
+  );
+};
