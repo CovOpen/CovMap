@@ -24,5 +24,19 @@ test("find search field", async (t) => {
     var searchField = Selector('#autocomplete').withAttribute("placeholder", "PLZ oder Landkreis")
     await t.expect(searchField.exists).ok();
     await t.click(searchField).typeText(searchField, "Stuttgart").pressKey("enter");
-    await t.wait(5000);
+
+    // open panel for risk description
+    var riskButton = Selector('button').withAttribute("aria-label", "show more").withAttribute("aria-expanded","false")
+    await t.expect(riskButton.exists).ok();
+    const websiteText = Selector("html").textContent;
+    await t.click(riskButton).expect(websiteText).contains("Kontaktverhalten der Bevölkerung");
+
+    // close panel for risk description
+    var closeRiskButton = Selector('button').withAttribute("aria-label", "show more").withAttribute("aria-expanded","true")
+    // console.log("close button"+(await closeRiskButton.textContent) + " " + closeRiskButton.count);
+    await t.expect(closeRiskButton.exists).ok();
+    // need to access the second element for closing.
+    await t.click(closeRiskButton.nth(1)).expect(websiteText).notContains("Kontaktverhalten der Bevölkerung");;
+
+    await t.wait(1000);
 });
