@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
       // on mobile devices
       backgroundColor: "transparent",
       boxShadow: "none",
+      pointerEvents: "none",
     },
   },
   title: {
@@ -183,7 +184,7 @@ export const NavBar = () => {
   return (
     <AppBar classes={{ root: classes.appBar }} style={{ height: 64, flex: "0 0 auto" }}>
       <Toolbar className={classes.fullHeightToolbar}>
-        <Link to="/">
+        <Link to="/" style={{ pointerEvents: "auto" }}>
           {!isMobile && ((Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} />)}
         </Link>
         {showSearch && <FixedSearch />}
