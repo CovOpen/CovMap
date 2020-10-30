@@ -72,10 +72,12 @@ export const ChartsPage: React.FC = () => {
           </Select>
         </FormControl>
       </section>
-      <section>
-        <div style={{ position: "relative", width: "100%", height: "auto", padding: "62% 0 0 0" }}>
-          <div style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}>
-            <Chart data={data} chartConfig={chartConfigs[chartConfigKey]} />
+      <section style={{ overflowX: "auto" }}>
+        <div style={{ minWidth: "450px" }}>
+          <div style={{ position: "relative", width: "100%", height: "auto", padding: "62% 0 0 0" }}>
+            <div style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}>
+              <Chart data={data} chartConfig={chartConfigs[chartConfigKey]} />
+            </div>
           </div>
         </div>
       </section>

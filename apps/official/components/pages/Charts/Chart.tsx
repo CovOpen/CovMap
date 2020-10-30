@@ -29,7 +29,15 @@ export const Chart: React.FC<{ data: ChartData; chartConfig: ChartConfig }> = ({
       <Legend />
       {chartConfig.ci && <YAxis yAxisId="left" domain={[0, 650]} />}
       {chartConfig.ci && (
-        <Line yAxisId="left" type="monotone" dataKey={"CI"} stroke="#8884d8" strokeWidth="4px" name="Kontaktindex C" />
+        <Line
+          yAxisId="left"
+          type="monotone"
+          dataKey={"CI"}
+          stroke="#8884d8"
+          strokeWidth="4px"
+          name="Kontaktindex C"
+          dot={null}
+        />
       )}
       {chartConfig.r && <YAxis yAxisId="right" domain={[0, 3.21]} orientation="right" />}
       {chartConfig.r && (
@@ -40,6 +48,7 @@ export const Chart: React.FC<{ data: ChartData; chartConfig: ChartConfig }> = ({
           stroke="#f01a8d"
           strokeWidth="4px"
           name="Reproduktionszahl R"
+          dot={null}
         />
       )}
     </LineChart>
