@@ -1,3 +1,5 @@
+const htmlWebpackPlugin = require("html-webpack-plugin");
+
 const ID = "pwa-html-plugin";
 
 const defaults = {
@@ -27,13 +29,23 @@ module.exports = class HtmlPwaPlugin {
 
   apply(compiler) {
     compiler.hooks.compilation.tap(ID, (compilation) => {
-      compilation.hooks.htmlWebpackPluginBeforeHtmlProcessing.tapAsync(ID, (data, cb) => {
+      let beforeProcessingHook = compilation.hooks.htmlWebpackPluginBeforeHtmlProcessing;
+      if (!beforeProcessingHook) {
+        beforeProcessingHook = htmlWebpackPlugin.getHooks(compilation).beforeEmit;
+      }
+
+      beforeProcessingHook.tapAsync(ID, (data, cb) => {
         // wrap favicon in the base template with IE only comment
         data.html = data.html.replace(/<link rel="icon"[^>]+>/, "<!--[if IE]>$&<![endif]-->");
         cb(null, data);
       });
 
-      compilation.hooks.htmlWebpackPluginAlterAssetTags.tapAsync(ID, (data, cb) => {
+      let alterAssetHook = compilation.hooks.htmlWebpackPluginAlterAssetTags;
+      if (!alterAssetHook) {
+        alterAssetHook = htmlWebpackPlugin.getHooks(compilation).alterAssetTagGroups;
+      }
+
+      alterAssetHook.tapAsync(ID, (data, cb) => {
         const {
           name,
           themeColor,
@@ -45,10 +57,9 @@ module.exports = class HtmlPwaPlugin {
           iconPaths,
         } = this.options;
         const { publicPath } = compiler.options.output;
-
         const assetsVersionStr = assetsVersion ? `?v=${assetsVersion}` : "";
 
-        data.head.push(
+        data.headTags.push(
           // Favicons
           makeTag("link", {
             rel: "icon",

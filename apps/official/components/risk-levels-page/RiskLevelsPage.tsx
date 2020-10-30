@@ -6,6 +6,7 @@ import RiskScoreNormalIcon from "../../static/images/risk-score-1.svg";
 import RiskScoreMediumIcon from "../../static/images/risk-score-2.svg";
 import RiskScoreHighIcon from "../../static/images/risk-score-3.svg";
 import { NavigationTitle } from "app-config/components/NavigationTitle";
+import ContactsMediumBackgroundIcon from "../../static/images/contacts-medium-background.svg";
 
 const useStyles = makeStyles({
   leftText: {
