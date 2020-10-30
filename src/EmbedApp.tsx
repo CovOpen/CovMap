@@ -38,7 +38,9 @@ export const EmbedApp = () => {
           style={{ position: "absolute", height: "100%", display: "flex", flexDirection: "column" }}
         >
           <IntermediateProgress />
-          {config.content?.pages.map((page, id) => <RenderPageRoute key={id} page={page} />)}
+          {config.content?.pages.map((page, id) => (
+            <RenderPageRoute key={id} page={page} />
+          ))}
           <Suspense fallback={getFallbackComponent()}>
             <Route key="map" path="/:subPage?" component={CovMap} />
           </Suspense>

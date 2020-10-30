@@ -51,7 +51,9 @@ export const App = () => {
             <Route key="map" path="/:subPage?" component={NavBar} />
           </Suspense>
           <IntermediateProgress />
-          {config.content?.pages.map((page, id) => <RenderPageRoute key={id} page={page} />)}
+          {config.content?.pages.map((page, id) => (
+            <RenderPageRoute key={id} page={page} />
+          ))}
           <Suspense fallback={getFallbackComponent()}>
             <Route key="map" path="/:subPage?" component={CovMap} />
           </Suspense>

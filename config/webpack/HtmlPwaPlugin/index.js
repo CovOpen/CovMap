@@ -1,4 +1,4 @@
-const htmlWebpackPlugin = require('html-webpack-plugin');
+const htmlWebpackPlugin = require("html-webpack-plugin");
 
 const ID = "pwa-html-plugin";
 
@@ -42,7 +42,7 @@ module.exports = class HtmlPwaPlugin {
 
       let alterAssetHook = compilation.hooks.htmlWebpackPluginAlterAssetTags;
       if (!alterAssetHook) {
-        alterAssetHook = htmlWebpackPlugin.getHooks(compilation).alterAssetTagGroups
+        alterAssetHook = htmlWebpackPlugin.getHooks(compilation).alterAssetTagGroups;
       }
 
       alterAssetHook.tapAsync(ID, (data, cb) => {
