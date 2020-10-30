@@ -9,7 +9,7 @@ import { store } from "./state";
 
 const root = document.getElementById("app");
 const persistor = persistStore(store);
-console.log('mountinfg app')
+
 render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}></PersistGate>
