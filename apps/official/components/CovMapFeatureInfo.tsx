@@ -51,10 +51,10 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
     padding: theme.spacing(2, 2),
     overflow: "visible",
   },
-  teaser: {
+  bluePaper: {
     backgroundColor: "#2979ff",
     color: "white",
-    padding: theme.spacing(4, 2),
+    padding: theme.spacing(2),
   },
   drawerPaper: {
     width: (props) => (props.fullScreen ? "100%" : "450px"),
@@ -111,7 +111,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
     centerIcon,
     chipTop,
     center,
-    teaser,
+    bluePaper,
   } = useStyles({
     fullScreen,
   });
@@ -186,7 +186,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
   const link = `/recommendations?IdDistrict=${IdDistrict}`;
   const HowShouldIBehave = (): JSX.Element => (
     <RouterLink to={link} style={{ textDecoration: "none" }} aria-label="go to recommendations">
-      <Paper elevation={1} className={teaser}>
+      <Paper elevation={1} className={bluePaper}>
         <Grid container direction="row" spacing={2}>
           <Grid item xs={10}>
             <Typography variant="h3">Wie kann ich mich verhalten?</Typography>
@@ -248,7 +248,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
     <CardContent>
       <Grid container direction="column" spacing={2}>
         <Grid item xs={12}>
-          <RiskRecommendation contactScore={contactScore} incidence={incidence} riskScore={riskScore} />
+          <RiskRecommendation contactScore={contactScore} incidence={incidence} />
         </Grid>
         <Grid item xs={12}>
           <HowShouldIBehave />

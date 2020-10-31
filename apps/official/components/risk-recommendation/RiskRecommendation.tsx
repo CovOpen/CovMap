@@ -1,12 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Accordion, AccordionDetails, AccordionSummary } from "@material-ui/core";
-
+import { Paper } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-
-import { ContactScore, RiskScore } from "../../models";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { titleByRiskScore } from "app-config/components/CovMapFeatureInfo";
+import { ContactScore } from "../../models";
 
 function riscExplanation(contactScore: number, incidence: number): string {
   if (incidence < 20 && contactScore <= 0) {
@@ -37,37 +33,21 @@ function riscExplanation(contactScore: number, incidence: number): string {
 }
 
 const useStyles = makeStyles((theme) => ({
-  accordion: {
+  paper: {
     background: "#F2F2F2",
-    padding: theme.spacing(1),
-  },
-  summary: {
-    padding: theme.spacing(1),
-  },
-  expandIcon: {
-    margin: "0 auto",
-    display: "block",
+    padding: theme.spacing(2),
   },
 }));
 
-export const RiskRecommendation: React.FC<{ contactScore: ContactScore; incidence: number; riskScore: RiskScore }> = ({
+export const RiskRecommendation: React.FC<{ contactScore: ContactScore; incidence: number }> = ({
   contactScore,
   incidence,
-  riskScore,
 }): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <Accordion className={classes.accordion}>
-      <AccordionSummary
-        classes={{ expandIcon: classes.expandIcon, root: classes.summary }}
-        expandIcon={<ExpandMoreIcon />}
-      >
-        <Typography variant="h3">Was bedeutet {titleByRiskScore[riskScore]}?</Typography>
-      </AccordionSummary>
-      <AccordionDetails>
-        <Typography>{riscExplanation(contactScore, incidence)}</Typography>
-      </AccordionDetails>
-    </Accordion>
+    <Paper className={classes.paper}>
+      <Typography>{riscExplanation(contactScore, incidence)}</Typography>
+    </Paper>
   );
 };
