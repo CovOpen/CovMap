@@ -210,7 +210,6 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
           <Grid item xs={2}>
             <div className={center}>
               <SymptomsLowIcon />
-              <Typography variant="body2">normal</Typography>
             </div>
           </Grid>
           <Grid item xs={2}>
