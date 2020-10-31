@@ -54,10 +54,14 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
       paddingBottom: theme.spacing(4, 2), // make the cards symmetric by removing the huge padding bottom
     },
   },
-
+  teaser: {
+    backgroundColor: "#2979ff",
+    color: "white",
+    padding: theme.spacing(2),
+  },
   drawerPaper: {
     width: (props) => (props.fullScreen ? "100%" : "450px"),
-    maxHeight: "100%",
+    maxHeight: "calc(100% - 100px)",
     overflow: "hidden",
   },
   drawerRoot: {
@@ -72,17 +76,6 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
     height: "100%",
     width: "100%",
     overflow: "auto",
-  },
-  recommendationsLink: {
-    "textAlign": "center",
-    "& p": {
-      fontWeight: "bold",
-      margin: theme.spacing(1, 0),
-    },
-    "& a": {
-      padding: theme.spacing(1.4, 8),
-      borderRadius: theme.shape.borderRadius * 2,
-    },
   },
   centerIcon: {
     margin: "0 auto",
@@ -99,7 +92,7 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
   },
 }));
 
-const titleByRiskScore = {
+export const titleByRiskScore = {
   [RiskScore.Low]: "Normales Risiko",
   [RiskScore.Medium]: "Mittleres Risiko",
   [RiskScore.High]: "Hohes Risiko",
@@ -109,7 +102,6 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const {
-    recommendationsLink,
     action,
     card,
     container,
@@ -122,6 +114,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
     centerIcon,
     chipTop,
     center,
+    teaser,
   } = useStyles({
     fullScreen,
   });
@@ -193,11 +186,27 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
     </RouterLink>
   );
 
+  const link = `/recommendations?IdDistrict=${IdDistrict}`;
+  const HowShouldIBehave = (): JSX.Element => (
+    <RouterLink to={link} style={{ textDecoration: "none" }} aria-label="go to recommendations">
+      <Card variant="outlined" className={teaser}>
+        <Grid container direction="row" spacing={2}>
+          <Grid item xs={10}>
+            <Typography variant="h3">Wie kann ich mich verhalten?</Typography>
+          </Grid>
+          <Grid item xs={2}>
+            <ArrowForwardIosIcon className={centerIcon} fontSize="small" />
+          </Grid>
+        </Grid>
+      </Card>
+    </RouterLink>
+  );
+
   const SymptomLoadCategory = (): JSX.Element => (
     <RouterLink to="/symptom-level" style={{ textDecoration: "none" }} aria-label="go to symptoms explanation">
       <Card variant="outlined" className={card}>
-        <Chip size="small" label="coming soon" className={chipTop} />
-        <Grid container direction="row" alignItems="center" spacing={2}>
+        <Chip size="small" label="bald verfügbar" className={chipTop} />
+        <Grid container direction="row" alignItems="center" spacing={2} style={{ color: "#828282" }}>
           <Grid item xs={8}>
             <Typography variant="h3">Symptomlast der Bevölkerung</Typography>
           </Grid>
@@ -239,16 +248,14 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
     );
   };
 
-  const link = `/recommendations?IdDistrict=${IdDistrict}`;
   const cardContent = (
     <CardContent>
       <Grid container direction="column" spacing={2}>
-        {/* TODO: Comment this back in once the risk descriptions are updated */}
-        {/*<Grid item>*/}
-        {/*  <Typography>{riskDescription}</Typography>*/}
-        {/*</Grid>*/}
         <Grid item xs={12}>
-          <RiskRecommendation contactScore={contactScore} incidence={incidence} />
+          <RiskRecommendation contactScore={contactScore} incidence={incidence} riskScore={riskScore} />
+        </Grid>
+        <Grid item xs={12}>
+          <HowShouldIBehave />
         </Grid>
         <Grid item xs={12}>
           <ContactBehaviorCategory />
@@ -258,12 +265,6 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
         </Grid>
         <Grid item xs={12}>
           <CaseNumbersCategory />
-        </Grid>
-        <Grid item className={recommendationsLink}>
-          <Typography>Wie kann ich mich verhalten?</Typography>
-          <Button component={RouterLink} to={link} variant="contained" color="secondary">
-            Weiter
-          </Button>
         </Grid>
       </Grid>
     </CardContent>

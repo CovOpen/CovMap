@@ -1,12 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, Grid } from "@material-ui/core";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import { Accordion, AccordionDetails, AccordionSummary } from "@material-ui/core";
 
 import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
 
-import { ContactScore } from "../../models";
+import { ContactScore, RiskScore } from "../../models";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { titleByRiskScore } from "app-config/components/CovMapFeatureInfo";
 
 function riscExplanation(contactScore: number, incidence: number): string {
   if (incidence < 20 && contactScore <= 0) {
@@ -38,40 +38,26 @@ function riscExplanation(contactScore: number, incidence: number): string {
 
 const useStyles = makeStyles((theme) => ({
   teaser: {
-    "border": 0,
-    "background": "#2979ff",
-    "color": "white",
-    "textTransform": "none",
-    "padding": theme.spacing(4, 2),
-    "&:last-child": {
-      paddingBottom: theme.spacing(4, 2), // make the cards symmetric by removing the huge padding bottom
-    },
-  },
-
-  centerIcon: {
-    margin: "0 auto",
-    display: "block",
+    background: "#F2F2F2",
+    padding: theme.spacing(1),
   },
 }));
 
-export const RiskRecommendation: React.FC<{ contactScore: ContactScore; incidence: number }> = ({
+export const RiskRecommendation: React.FC<{ contactScore: ContactScore; incidence: number; riskScore: RiskScore }> = ({
   contactScore,
   incidence,
+  riskScore,
 }): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <Link to="/risk-levels" style={{ textDecoration: "none" }} aria-label="go to explanation">
-      <Card className={classes.teaser}>
-        <Grid container direction="row" alignItems="center" spacing={2}>
-          <Grid item xs={10}>
-            <Typography variant="body2">{riscExplanation(contactScore, incidence)}</Typography>
-          </Grid>
-          <Grid item xs={2}>
-            <ArrowForwardIosIcon className={classes.centerIcon} fontSize="small" />
-          </Grid>
-        </Grid>
-      </Card>
-    </Link>
+    <Accordion className={classes.teaser}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <Typography variant="h3">Was bedeutet {titleByRiskScore[riskScore]}?</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Typography>{riscExplanation(contactScore, incidence)}</Typography>
+      </AccordionDetails>
+    </Accordion>
   );
 };
