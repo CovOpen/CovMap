@@ -37,9 +37,16 @@ function riscExplanation(contactScore: number, incidence: number): string {
 }
 
 const useStyles = makeStyles((theme) => ({
-  teaser: {
+  accordion: {
     background: "#F2F2F2",
     padding: theme.spacing(1),
+  },
+  summary: {
+    padding: theme.spacing(1),
+  },
+  expandIcon: {
+    margin: "0 auto",
+    display: "block",
   },
 }));
 
@@ -51,8 +58,11 @@ export const RiskRecommendation: React.FC<{ contactScore: ContactScore; incidenc
   const classes = useStyles();
 
   return (
-    <Accordion className={classes.teaser}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+    <Accordion className={classes.accordion}>
+      <AccordionSummary
+        classes={{ expandIcon: classes.expandIcon, root: classes.summary }}
+        expandIcon={<ExpandMoreIcon />}
+      >
         <Typography variant="h3">Was bedeutet {titleByRiskScore[riskScore]}?</Typography>
       </AccordionSummary>
       <AccordionDetails>

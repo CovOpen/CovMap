@@ -2,7 +2,6 @@ import React from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import {
-  Button,
   Card,
   CardContent,
   CardHeader,
@@ -10,6 +9,7 @@ import {
   Drawer,
   Grid,
   IconButton,
+  Paper,
   Theme,
   Typography,
   useTheme,
@@ -189,7 +189,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
   const link = `/recommendations?IdDistrict=${IdDistrict}`;
   const HowShouldIBehave = (): JSX.Element => (
     <RouterLink to={link} style={{ textDecoration: "none" }} aria-label="go to recommendations">
-      <Card variant="outlined" className={teaser}>
+      <Paper elevation={1} className={teaser}>
         <Grid container direction="row" spacing={2}>
           <Grid item xs={10}>
             <Typography variant="h3">Wie kann ich mich verhalten?</Typography>
@@ -198,7 +198,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
             <ArrowForwardIosIcon className={centerIcon} fontSize="small" />
           </Grid>
         </Grid>
-      </Card>
+      </Paper>
     </RouterLink>
   );
 
