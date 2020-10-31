@@ -57,7 +57,7 @@ export const Faq: React.FC = () => {
           <Typography style={{ width: "100%" }}>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div className={classes.textBlock}>
-                Die CovMap visualisiert eine regionale Risikoeinschätzung auf einer Deutschlandkarte. Die Risikoeinschäzung beruht
+                Die CovMap visualisiert eine regionale Risikoeinschätzung auf einer Deutschlandkarte. Die Risikoeinschätzung beruht
                 auf täglich aktualisierten Fallzahlstatistiken des Robert-Koch-Instituts und
                 Vorhersagen von selbst entwickelten Modellen basierend auf dem Kontaktverhalten und berichteten
                 Symptomen der Bevölkerung. Mit der CovMap möchten wir folgende Fragen zum Coronavirus adressieren:
