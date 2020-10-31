@@ -48,16 +48,13 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
     // TODO: Extract into theme
     "backgroundColor": "#FCFCFC",
     "position": "relative",
-    "padding": theme.spacing(4, 2),
+    "padding": theme.spacing(2, 2),
     "overflow": "visible",
-    "&:last-child": {
-      paddingBottom: theme.spacing(4, 2), // make the cards symmetric by removing the huge padding bottom
-    },
   },
   teaser: {
     backgroundColor: "#2979ff",
     color: "white",
-    padding: theme.spacing(2),
+    padding: theme.spacing(4, 2),
   },
   drawerPaper: {
     width: (props) => (props.fullScreen ? "100%" : "450px"),
