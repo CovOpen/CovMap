@@ -88,7 +88,7 @@ export const Faq: React.FC = () => {
           <Typography style={{ width: "100%" }}>
             Die CovMap wertet zur regionalen Risikobestimmung neben den offiziellen Fallzahlstatistiken des
             Robert-Koch-Instituts große Sätze an GPS- und Symptom-Daten aus. Diese Daten entstammen aus anderen Apps,
-            wo die Nutzer der Auswertung ihrer GPS Daten zugestimmt haben. Diese Daten sind die Basis für ein von uns
+            bei denen die Nutzer der Auswertung ihrer GPS Daten zugestimmt haben. Diese Daten sind die Basis für ein von uns
             entwickeltes Modell, welches den Kontaktindex berechnet. Zudem werden aktuelle Symptome abgefragt, ausgewertet 
             und fließen zusätzlich in die Risikoeinschätzung mit ein (bald verfügbar). Der Kontaktindex und die 
             Symptome spiegeln frühzeitig das Infektionsgeschehen wider und ermöglichen so eine zeitnahe Anpassung von
