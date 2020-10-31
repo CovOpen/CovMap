@@ -35,6 +35,7 @@ const fetchAndTransform = async (
   return null;
 };
 
+const currentlyFetchingMapping = new Set();
 const currentlyFetchingData = new Map();
 const currentlyFetchingGeo = new Map();
 
@@ -43,6 +44,11 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Mome
     const timeKey = formatUTCDate(date);
     const loadingKey = `loading-${mappingId}-${timeKey}`;
     
+    if (currentlyFetchingMapping.has(loadingKey)) {
+      return;
+    }
+    currentlyFetchingMapping.add(loadingKey);
+
     dispatch(AppApi.pushLoading(loadingKey));
     
     try {
@@ -138,6 +144,7 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Mome
       console.error(err);
     } finally {
       dispatch(AppApi.popLoading(loadingKey));
+      currentlyFetchingMapping.delete(loadingKey);
     }
   };
 }
