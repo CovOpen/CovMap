@@ -39,6 +39,58 @@ const currentlyFetchingMapping = new Set();
 const currentlyFetchingData = new Map();
 const currentlyFetchingGeo = new Map();
 
+async function fetchDataset(datasource, date, mapping, datasets, dispatch) {
+  const timeKey = formatUTCDate(date);
+  const { datasourceId, transformData, dataProperty } = mapping;
+  const datasetKey = `${timeKey}-${datasourceId}`;
+
+  if (currentlyFetchingData.has(datasetKey)) {
+    return currentlyFetchingData.get(datasetKey);
+  }
+
+  const datasetPromise = (async () => {
+    if (datasets.has(datasetKey)) {
+      return datasets.get(datasetKey);
+    }
+    const dataset = await fetchAndTransform(datasource.url, timeKey, date, dataProperty, transformData);
+    dispatch(AppApi.addDataset(datasetKey, dataset));
+
+    currentlyFetchingData.delete(datasetKey);
+
+    return dataset;
+  })();
+
+  currentlyFetchingData.set(datasetKey, datasetPromise);
+
+  return datasetPromise;
+}
+
+async function fetchGeo(geo, date, mapping, geos, dispatch): Promise<GeoJSON | undefined> {
+  const timeKey = formatUTCDate(date);
+  const { geoId, transformGeo, geoProperty } = mapping;
+
+  if (currentlyFetchingGeo.has(geoId)) {
+    return currentlyFetchingGeo.get(geoId);
+  }
+
+  const geoPromise = (async () => {
+    const geoKey = `${geoId}`;
+    if (geos.has(geoKey)) {
+      return geos.get(geoKey);
+    }
+    const geoset = await fetchAndTransform(geo.url, timeKey, date, geoProperty, transformGeo);
+    dispatch(AppApi.addGeo(geoKey, geoset));
+
+    currentlyFetchingGeo.delete(geoId);
+
+    return geoset;
+  })();
+
+  currentlyFetchingGeo.set(geoId, geoPromise);
+
+  return geoPromise;
+}
+
 export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Moment) {
   return async (dispatch: ReduxDispatch, getState: () => State) => {
     const timeKey = formatUTCDate(date);
@@ -53,59 +105,14 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Mome
 
     try {
       const mapping = config.visuals[visualId].mappings[mappingId];
-      const { datasourceId, geoId, transformData, transformGeo, geoProperty, dataProperty } = mapping;
+      const { datasourceId, geoId, geoProperty } = mapping;
       const { datasets, geos, mappedSets } = getState().app;
       const datasource = config.datasources[datasourceId];
       const geo = config.geos[geoId];
 
       const [data, geojson] = await Promise.all([
-        Promise.resolve().then(async () => {
-          const datasetKey = `${formatUTCDate(date)}-${datasourceId}`;
-
-          if (currentlyFetchingData.has(datasetKey)) {
-            return currentlyFetchingData.get(datasetKey);
-          }
-
-          const datasetPromise = (async () => {
-            if (datasets.has(datasetKey)) {
-              return datasets.get(datasetKey);
-            }
-            const dataset = await fetchAndTransform(datasource.url, timeKey, date, dataProperty, transformData);
-            dispatch(AppApi.addDataset(datasetKey, dataset));
-
-            currentlyFetchingData.delete(datasetKey);
-
-            return dataset;
-          })();
-
-          currentlyFetchingData.set(datasetKey, datasetPromise);
-
-          return datasetPromise;
-        }),
-        Promise.resolve().then(
-          async (): Promise<GeoJSON | undefined> => {
-            if (currentlyFetchingGeo.has(geoId)) {
-              return currentlyFetchingGeo.get(geoId);
-            }
-
-            const geoPromise = (async () => {
-              const geoKey = `${geoId}`;
-              if (geos.has(geoKey)) {
-                return geos.get(geoKey);
-              }
-              const geoset = await fetchAndTransform(geo.url, timeKey, date, geoProperty, transformGeo);
-              dispatch(AppApi.addGeo(geoKey, geoset));
-
-              currentlyFetchingGeo.delete(geoId);
-
-              return geoset;
-            })();
-
-            currentlyFetchingGeo.set(geoId, geoPromise);
-
-            return geoPromise;
-          },
-        ),
+        fetchDataset(datasource, date, mapping, datasets, dispatch),
+        fetchGeo(geo, date, mapping, geos, dispatch),
       ]);
 
       if (!data || !geojson) {
