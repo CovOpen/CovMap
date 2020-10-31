@@ -46,10 +46,10 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
   },
   card: {
     // TODO: Extract into theme
-    "backgroundColor": "#FCFCFC",
-    "position": "relative",
-    "padding": theme.spacing(2, 2),
-    "overflow": "visible",
+    backgroundColor: "#FCFCFC",
+    position: "relative",
+    padding: theme.spacing(2, 2),
+    overflow: "visible",
   },
   teaser: {
     backgroundColor: "#2979ff",
