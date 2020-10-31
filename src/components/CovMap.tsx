@@ -269,7 +269,7 @@ export const CovMap = () => {
   };
 
   return (
-    <div className={classes.main}>
+    <div id="mapParentDiv" className={classes.main}>
       <div className={classes.currentInfo}>
         {/*<Typography variant="h2" color="primary">{visual.name}</Typography>*/}
         <Typography variant="h2" color="primary">
@@ -298,7 +298,10 @@ export const CovMap = () => {
         style={{
           zIndex: 1190,
           touchAction: "none",
+          position: "absolute",
         }}
+        container={() => document.getElementById("mapParentDiv")}
+        BackdropProps={{ style: { position: "absolute" } }}
       >
         <DialogTitle
           id="simple-dialog-title"
