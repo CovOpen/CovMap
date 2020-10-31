@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     height: "64px",
     display: "inline-flex",
     alignItems: "center",
+    pointerEvents: "auto",
     [theme.breakpoints.down("xs")]: {
       left: "0px",
       right: "48px", // right on the edge of the hamburger menu button
