@@ -57,7 +57,7 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
 
   drawerPaper: {
     width: (props) => (props.fullScreen ? "100%" : "450px"),
-    maxHeight: "100%",
+    maxHeight: "calc(100% - 100px)",
     overflow: "hidden",
   },
   drawerRoot: {
@@ -68,12 +68,9 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
     left: "auto",
     right: "auto",
   },
-  drawerScrollContainer: {
-    height: "100%",
-    width: "100%",
-    overflow: "auto",
-  },
   recommendationsLink: {
+    "padding": theme.spacing(2),
+    "boxShadow": "0px -2px 10px rgba(0, 0, 0, 0.1)",
     "textAlign": "center",
     "& p": {
       fontWeight: "bold",
@@ -118,7 +115,6 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
     drawerPaper,
     drawerRoot,
     drawerPaperAnchorBottom,
-    drawerScrollContainer,
     centerIcon,
     chipTop,
     center,
@@ -240,13 +236,18 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
   };
 
   const link = `/recommendations?IdDistrict=${IdDistrict}`;
+  const recommendationLinkComponent = (
+    <div className={recommendationsLink}>
+      <Typography>Wie kann ich mich verhalten?</Typography>
+      <Button component={RouterLink} to={link} variant="contained" color="secondary">
+        Weiter
+      </Button>
+    </div>
+  );
+
   const cardContent = (
-    <CardContent>
+    <CardContent style={{ flex: 2, overflow: "auto" }}>
       <Grid container direction="column" spacing={2}>
-        {/* TODO: Comment this back in once the risk descriptions are updated */}
-        {/*<Grid item>*/}
-        {/*  <Typography>{riskDescription}</Typography>*/}
-        {/*</Grid>*/}
         <Grid item xs={12}>
           <RiskRecommendation contactScore={contactScore} incidence={incidence} />
         </Grid>
@@ -258,12 +259,6 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
         </Grid>
         <Grid item xs={12}>
           <CaseNumbersCategory />
-        </Grid>
-        <Grid item className={recommendationsLink}>
-          <Typography>Wie kann ich mich verhalten?</Typography>
-          <Button component={RouterLink} to={link} variant="contained" color="secondary">
-            Weiter
-          </Button>
         </Grid>
       </Grid>
     </CardContent>
@@ -288,9 +283,18 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
         onClose={() => pushQueryChange({ expanded: undefined })}
         classes={{ paper: drawerPaper, root: drawerRoot, paperAnchorBottom: drawerPaperAnchorBottom }}
       >
-        <div className={drawerScrollContainer}>
+        <div
+          style={{
+            height: "100%",
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            overflow: "hidden",
+          }}
+        >
           {cardHeader}
           {cardContent}
+          {recommendationLinkComponent}
         </div>
       </Drawer>
     </>

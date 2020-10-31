@@ -39,8 +39,7 @@ function riscExplanation(contactScore: number, incidence: number): string {
 const useStyles = makeStyles((theme) => ({
   teaser: {
     "border": 0,
-    "background": "#2979ff",
-    "color": "white",
+    "background": "#F2F2F2",
     "textTransform": "none",
     "padding": theme.spacing(4, 2),
     "&:last-child": {
