@@ -22,10 +22,10 @@ import { CloseRounded } from "@material-ui/icons";
 import { VERSION, HASH_LONG, HASH_SHORT } from "src/version";
 import FixedSearch from "./FixedSearch";
 import { welcomeStepsConfig } from "./WelcomeStepsModal/welcomeStepsConfig";
-import GithubIcon from 'src/../static/images/social-github.svg';
-import TwitterIcon from 'src/../static/images/social-twitter.svg';
-import InstagramIcon from 'src/../static/images/social-instagram.svg'
-import FacebookIcon from 'src/../static/images/social-facebook.svg'
+import GithubIcon from "src/../static/images/social-github.svg";
+import TwitterIcon from "src/../static/images/social-twitter.svg";
+import InstagramIcon from "src/../static/images/social-instagram.svg";
+import FacebookIcon from "src/../static/images/social-facebook.svg";
 
 const Logo = config.ui?.Logo;
 
@@ -91,9 +91,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "auto",
   },
   drawerIcon: {
-    margin: theme.spacing(4, "auto"),
+    "margin": theme.spacing(4, "auto"),
     "& > svg": {
-      height: "50px"
+      height: "50px",
     },
   },
 }));
