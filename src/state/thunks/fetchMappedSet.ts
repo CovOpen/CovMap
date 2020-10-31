@@ -43,14 +43,14 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Mome
   return async (dispatch: ReduxDispatch, getState: () => State) => {
     const timeKey = formatUTCDate(date);
     const loadingKey = `loading-${mappingId}-${timeKey}`;
-    
+
     if (currentlyFetchingMapping.has(loadingKey)) {
       return;
     }
     currentlyFetchingMapping.add(loadingKey);
 
     dispatch(AppApi.pushLoading(loadingKey));
-    
+
     try {
       const mapping = config.visuals[visualId].mappings[mappingId];
       const { datasourceId, geoId, transformData, transformGeo, geoProperty, dataProperty } = mapping;
@@ -61,7 +61,7 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Mome
       const [data, geojson] = await Promise.all([
         Promise.resolve().then(async () => {
           const datasetKey = `${formatUTCDate(date)}-${datasourceId}`;
-          
+
           if (currentlyFetchingData.has(datasetKey)) {
             return currentlyFetchingData.get(datasetKey);
           }
@@ -87,7 +87,7 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Mome
             if (currentlyFetchingGeo.has(geoId)) {
               return currentlyFetchingGeo.get(geoId);
             }
-  
+
             const geoPromise = (async () => {
               const geoKey = `${geoId}`;
               if (geos.has(geoKey)) {
