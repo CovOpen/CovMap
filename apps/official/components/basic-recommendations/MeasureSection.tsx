@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { 
     Accordion,
     AccordionSummary,
@@ -9,37 +10,59 @@ import {
     Typography,
   } from "@material-ui/core";
 
+const useStyles = makeStyles({
+    summaryCard: {
+        width: "100%",
+    },
+    summaryContent: {        
+        color: "white",        
+        fontWeight: "bold",        
+        marginLeft: "8px",
+    },
+    summaryText: {
+        textAlign: "left",
+    },
+    detailsStyle: {
+        width: "100%",
+    },
+});
 
 interface MeasureSectionProps {
     title: string,
     description: string,
-    color: string,
+    backgroundColor: string,
+    frontColor?: string,
     icon: any,  // this really should be the TS signature of the JS function created by svgr (TO DO)
 }
 export const MeasureSection: React.FC<MeasureSectionProps> = 
-    ({title, description, color, icon}: MeasureSectionProps) => {
+    ({title, description, backgroundColor, frontColor, icon}: MeasureSectionProps) => {
 
-    const summaryStyle = {
-        backgroundColor: color,
-        color: "white",
-        width: "100%",
-    };
+    const classes = useStyles();
+    
+    initProps();
 
-    const detailsStyle = {
-        width: "100%",
-    };
+    const colorStyle = {
+        background: backgroundColor,
+        color: frontColor
+    }
+
+    function initProps() {
+        if(frontColor == undefined) {
+            frontColor = "#FFFFFF";  // white
+        }        
+    }
 
     return (
         <Accordion>
             <AccordionSummary>
-                <Card style={summaryStyle}> 
-                    <CardContent >
-                        <Grid container direction="row">
-                            <Grid item>
+                <Card className={classes.summaryCard} style={colorStyle}> 
+                    <CardContent className={classes.summaryContent} >
+                        <Grid container direction="row" alignItems="center">
+                            <Grid item alignContent="center" xs={3}>
                                 {icon()}
                             </Grid>
-                            <Grid item>
-                                <Typography variant="body1">
+                            <Grid item xs={9}>
+                                <Typography variant="h3" align="left">
                                     {title}
                                 </Typography>
                             </Grid>
@@ -48,7 +71,7 @@ export const MeasureSection: React.FC<MeasureSectionProps> =
                 </Card>
             </AccordionSummary>
             <AccordionDetails>
-                <Typography variant="body1" style={detailsStyle}>
+                <Typography variant="body1" align="justify">
                     {description}
                 </Typography>
             </AccordionDetails>
