@@ -122,7 +122,7 @@ export const WhatCanIDoPage: React.FC<{}> = () => {
     const classes = useStyles();
     const location = useLocation();
     const districtData = loadDistrictData(location);
-
+    
     return (
         <>
         <main className="sections">

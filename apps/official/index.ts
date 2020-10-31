@@ -11,6 +11,7 @@ import RKI from "./components/pages/RKI";
 import ContactBehavior from "./components/pages/ContactBehavior";
 import SymptomLevel from "./components/pages/SymptomLevel";
 import { WhatCanIDoPage } from "./components/basic-recommendations/WhatCanIDoPage";
+//import { BasicRecommendations } from "./components/basic-recommendations/BasicRecommendations";
 import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo";
 // TODO: Integrate CovQuestions
 // import { Questions } from './components/pages/Questions'
