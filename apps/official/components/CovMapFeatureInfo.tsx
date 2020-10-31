@@ -2,7 +2,6 @@ import React from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import {
-  Button,
   Card,
   CardContent,
   CardHeader,
@@ -73,17 +72,6 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
     width: "100%",
     overflow: "auto",
   },
-  recommendationsLink: {
-    "textAlign": "center",
-    "& p": {
-      fontWeight: "bold",
-      margin: theme.spacing(1, 0),
-    },
-    "& a": {
-      padding: theme.spacing(1.4, 8),
-      borderRadius: theme.shape.borderRadius * 2,
-    },
-  },
   centerIcon: {
     margin: "0 auto",
     display: "block",
@@ -109,7 +97,6 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const {
-    recommendationsLink,
     action,
     card,
     container,
@@ -243,12 +230,8 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
   const cardContent = (
     <CardContent>
       <Grid container direction="column" spacing={2}>
-        {/* TODO: Comment this back in once the risk descriptions are updated */}
-        {/*<Grid item>*/}
-        {/*  <Typography>{riskDescription}</Typography>*/}
-        {/*</Grid>*/}
         <Grid item xs={12}>
-          <RiskRecommendation contactScore={contactScore} incidence={incidence} />
+          <RiskRecommendation contactScore={contactScore} incidence={incidence} link={link} />
         </Grid>
         <Grid item xs={12}>
           <ContactBehaviorCategory />
@@ -258,12 +241,6 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
         </Grid>
         <Grid item xs={12}>
           <CaseNumbersCategory />
-        </Grid>
-        <Grid item className={recommendationsLink}>
-          <Typography>Wie kann ich mich verhalten?</Typography>
-          <Button component={RouterLink} to={link} variant="contained" color="secondary">
-            Weiter
-          </Button>
         </Grid>
       </Grid>
     </CardContent>

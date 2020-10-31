@@ -54,14 +54,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const RiskRecommendation: React.FC<{ contactScore: ContactScore; incidence: number }> = ({
+export const RiskRecommendation: React.FC<{ contactScore: ContactScore; incidence: number; link: string }> = ({
   contactScore,
   incidence,
+  link,
 }): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <Link to="/risk-levels" style={{ textDecoration: "none" }} aria-label="go to explanation">
+    <Link to={link} style={{ textDecoration: "none" }} aria-label="go to explanation">
       <Card className={classes.teaser}>
         <Grid container direction="row" alignItems="center" spacing={2}>
           <Grid item xs={10}>

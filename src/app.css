@@ -82,8 +82,9 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   font: inherit;
+  font-family: Inter, sans-serif;
+  font-size: 100%;
   vertical-align: baseline;
   color: inherit;
 }
@@ -132,7 +133,7 @@ body {
 
 /* Variables */
 body {
-  font-family: "Dosis, sans-serif";
+  font-family: Inter, sans-serif;
   --blue: #003f97;
   --red: #fc423f;
   --light-red: #ff7875;
