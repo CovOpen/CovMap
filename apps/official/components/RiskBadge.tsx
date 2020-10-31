@@ -21,8 +21,6 @@ const useStyles = makeStyles<Theme, Props, string>((theme) => {
       borderRadius: "2px",
       height: "46px",
       width: "27px",
-      fontSize: "17px",
-      lineHeight: "20px",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -37,10 +35,10 @@ export interface Props {
 }
 
 export const RiskBadge: FunctionComponent<Props> = ({ riskScore }) => {
-  const { box, medium } = useStyles({ riskScore });
+  const classes = useStyles({ riskScore });
   return (
-    <div className={`${box} ${medium}`}>
-      <Typography>{riskNumberByRiskScore[riskScore]}</Typography>
+    <div className={classes.box}>
+      <Typography variant="h3">{riskNumberByRiskScore[riskScore]}</Typography>
     </div>
   );
 };
