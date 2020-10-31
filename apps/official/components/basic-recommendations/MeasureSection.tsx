@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { 
     Accordion,
@@ -14,8 +14,7 @@ const useStyles = makeStyles({
     summaryCard: {
         width: "100%",
     },
-    summaryContent: {        
-        color: "white",        
+    summaryContent: {                
         fontWeight: "bold",        
         marginLeft: "8px",
     },
