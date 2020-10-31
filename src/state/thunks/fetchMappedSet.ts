@@ -60,24 +60,25 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Mome
 
       const [data, geojson] = await Promise.all([
         Promise.resolve().then(async () => {
-          if (currentlyFetchingData.has(datasourceId)) {
-            return currentlyFetchingData.get(datasourceId);
+          const datasetKey = `${formatUTCDate(date)}-${datasourceId}`;
+          
+          if (currentlyFetchingData.has(datasetKey)) {
+            return currentlyFetchingData.get(datasetKey);
           }
 
           const datasetPromise = (async () => {
-            const datasetKey = `${formatUTCDate(date)}-${datasourceId}`;
             if (datasets.has(datasetKey)) {
               return datasets.get(datasetKey);
             }
             const dataset = await fetchAndTransform(datasource.url, timeKey, date, dataProperty, transformData);
             dispatch(AppApi.addDataset(datasetKey, dataset));
 
-            currentlyFetchingData.delete(datasourceId);
+            currentlyFetchingData.delete(datasetKey);
 
             return dataset;
           })();
 
-          currentlyFetchingData.set(datasourceId, datasetPromise);
+          currentlyFetchingData.set(datasetKey, datasetPromise);
 
           return datasetPromise;
         }),
