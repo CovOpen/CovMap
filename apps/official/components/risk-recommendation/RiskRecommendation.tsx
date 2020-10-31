@@ -1,11 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, Grid } from "@material-ui/core";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-
+import { Paper } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
-
 import { ContactScore } from "../../models";
 
 function riscExplanation(contactScore: number, incidence: number): string {
@@ -37,20 +33,9 @@ function riscExplanation(contactScore: number, incidence: number): string {
 }
 
 const useStyles = makeStyles((theme) => ({
-  teaser: {
-    "border": 0,
-    "background": "#2979ff",
-    "color": "white",
-    "textTransform": "none",
-    "padding": theme.spacing(4, 2),
-    "&:last-child": {
-      paddingBottom: theme.spacing(4, 2), // make the cards symmetric by removing the huge padding bottom
-    },
-  },
-
-  centerIcon: {
-    margin: "0 auto",
-    display: "block",
+  paper: {
+    background: "#F2F2F2",
+    padding: theme.spacing(2),
   },
 }));
 
@@ -61,17 +46,8 @@ export const RiskRecommendation: React.FC<{ contactScore: ContactScore; incidenc
   const classes = useStyles();
 
   return (
-    <Link to="/risk-levels" style={{ textDecoration: "none" }} aria-label="go to explanation">
-      <Card className={classes.teaser}>
-        <Grid container direction="row" alignItems="center" spacing={2}>
-          <Grid item xs={10}>
-            <Typography variant="body2">{riscExplanation(contactScore, incidence)}</Typography>
-          </Grid>
-          <Grid item xs={2}>
-            <ArrowForwardIosIcon className={classes.centerIcon} fontSize="small" />
-          </Grid>
-        </Grid>
-      </Card>
-    </Link>
+    <Paper className={classes.paper} elevation={0}>
+      <Typography>{riscExplanation(contactScore, incidence)}</Typography>
+    </Paper>
   );
 };
