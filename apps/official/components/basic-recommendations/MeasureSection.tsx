@@ -9,21 +9,23 @@ import {
     Grid,
     Typography,
   } from "@material-ui/core";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 const useStyles = makeStyles({
+    accordion: {
+        background: "#B0C4DE"//"#2F4F4F"
+    },
     summaryCard: {
         width: "100%",
+        borderRadius: "12px",
     },
     summaryContent: {                
         fontWeight: "bold",        
-        marginLeft: "8px",
+        marginLeft: "8px",        
     },
     summaryText: {
         textAlign: "left",
-    },
-    detailsStyle: {
-        width: "100%",
-    },
+    },    
 });
 
 interface MeasureSectionProps {
@@ -52,18 +54,21 @@ export const MeasureSection: React.FC<MeasureSectionProps> =
     }
 
     return (
-        <Accordion>
+        <Accordion className={classes.accordion}>
             <AccordionSummary>
                 <Card className={classes.summaryCard} style={colorStyle}> 
                     <CardContent className={classes.summaryContent} >
                         <Grid container direction="row" alignItems="center">
-                            <Grid item alignContent="center" xs={3}>
+                            <Grid item xs={3}>
                                 {icon()}
                             </Grid>
-                            <Grid item xs={9}>
+                            <Grid item xs={7}>
                                 <Typography variant="h3" align="left">
                                     {title}
                                 </Typography>
+                            </Grid>
+                            <Grid item xs={2}>
+                                <ArrowForwardIosIcon />
                             </Grid>
                         </Grid>
                     </CardContent>
