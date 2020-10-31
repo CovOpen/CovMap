@@ -1,6 +1,6 @@
 export enum ActionTexts {
   
-  INTRO_TEASER_1 = "Die Pandemie ist noch nicht vorbei und wir alle haben das Ziel die Pandemie soweit es geht einzudämmen und natürlich Risikogruppen zu schützen. Besonders die bevorstehende kalte Jahreszeit, in der wir uns überwiegend in geschlossen Räumen aufhalten, stellt eine Herausforderung dar. Es kommt jetzt auf Dich, auf uns, auf jeden Einzelnen an!",
+
   CONTACT_HEADLINE = "Kontakte reduzieren",
   CONTACT_TEXT = "Kontakte reduzieren ist eine der wirkungsvollsten Maßnahmen.\n Das Virus wird von Mensch-zu-Mensch übertragen. Wenn man sich nicht trifft, kann das Virus also nicht übertragen werden. Greife zum Telefonhörer, halte eine Videokonferenz und arbeite von zu Hause, wann immer dies möglich ist. So schwer es auch fällt, Kontakte minimieren schützt und hilft uns allen, vor allem in Risikogebieten. Seid dabei und helft mit!",
   DISTANCE_HEADLINE = "Abstand halten",
