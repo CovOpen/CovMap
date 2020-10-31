@@ -46,7 +46,7 @@ export const RiskRecommendation: React.FC<{ contactScore: ContactScore; incidenc
   const classes = useStyles();
 
   return (
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} elevation={0}>
       <Typography>{riscExplanation(contactScore, incidence)}</Typography>
     </Paper>
   );

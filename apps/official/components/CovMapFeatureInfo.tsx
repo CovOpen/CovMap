@@ -87,6 +87,9 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
     position: "absolute",
     top: -12, // half height of the badge
   },
+  chipLabel: {
+    overflow: "visible",
+  },
 }));
 
 export const titleByRiskScore = {
@@ -110,6 +113,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
     drawerScrollContainer,
     centerIcon,
     chipTop,
+    chipLabel,
     center,
     bluePaper,
   } = useStyles({
@@ -167,7 +171,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
   const ContactBehaviorCategory = (): JSX.Element => (
     <RouterLink to="/contact-behavior" style={{ textDecoration: "none" }} aria-label="go to contacts explanation">
       <Card variant="outlined" className={card}>
-        <Chip size="small" label="beta" className={chipTop} />
+        <Chip size="small" label="beta" classes={{ root: chipTop, label: chipLabel }} />
         <Grid container direction="row" alignItems="center" spacing={2}>
           <Grid item xs={8}>
             <Typography variant="h3">Kontaktverhalten der Bevölkerung</Typography>
@@ -202,7 +206,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
   const SymptomLoadCategory = (): JSX.Element => (
     <RouterLink to="/symptom-level" style={{ textDecoration: "none" }} aria-label="go to symptoms explanation">
       <Card variant="outlined" className={card}>
-        <Chip size="small" label="bald verfügbar" className={chipTop} />
+        <Chip size="small" label="bald verfügbar" classes={{ root: chipTop, label: chipLabel }} />
         <Grid container direction="row" alignItems="center" spacing={2} style={{ color: "#828282" }}>
           <Grid item xs={8}>
             <Typography variant="h3">Symptomlast der Bevölkerung</Typography>
