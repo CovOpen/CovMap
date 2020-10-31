@@ -35,13 +35,16 @@ const fetchAndTransform = async (
   return null;
 };
 
+const currentlyFetchingData = new Map();
+const currentlyFetchingGeo = new Map();
+
 export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Moment) {
   return async (dispatch: ReduxDispatch, getState: () => State) => {
     const timeKey = formatUTCDate(date);
     const loadingKey = `loading-${mappingId}-${timeKey}`;
-
+    
     dispatch(AppApi.pushLoading(loadingKey));
-
+    
     try {
       const mapping = config.visuals[visualId].mappings[mappingId];
       const { datasourceId, geoId, transformData, transformGeo, geoProperty, dataProperty } = mapping;
@@ -51,23 +54,49 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Mome
 
       const [data, geojson] = await Promise.all([
         Promise.resolve().then(async () => {
-          const datasetKey = `${formatUTCDate(date)}-${datasourceId}`;
-          if (datasets.has(datasetKey)) {
-            return datasets.get(datasetKey);
+          if (currentlyFetchingData.has(datasourceId)) {
+            return currentlyFetchingData.get(datasourceId);
           }
-          const dataset = await fetchAndTransform(datasource.url, timeKey, date, dataProperty, transformData);
-          dispatch(AppApi.addDataset(datasetKey, dataset));
-          return dataset;
+
+          const datasetPromise = (async () => {
+            const datasetKey = `${formatUTCDate(date)}-${datasourceId}`;
+            if (datasets.has(datasetKey)) {
+              return datasets.get(datasetKey);
+            }
+            const dataset = await fetchAndTransform(datasource.url, timeKey, date, dataProperty, transformData);
+            dispatch(AppApi.addDataset(datasetKey, dataset));
+
+            currentlyFetchingData.delete(datasourceId);
+
+            return dataset;
+          })();
+
+          currentlyFetchingData.set(datasourceId, datasetPromise);
+
+          return datasetPromise;
         }),
         Promise.resolve().then(
           async (): Promise<GeoJSON | undefined> => {
-            const geoKey = `${geoId}`;
-            if (geos.has(geoKey)) {
-              return geos.get(geoKey);
+            if (currentlyFetchingGeo.has(geoId)) {
+              return currentlyFetchingGeo.get(geoId);
             }
-            const geoset = await fetchAndTransform(geo.url, timeKey, date, geoProperty, transformGeo);
-            dispatch(AppApi.addGeo(geoKey, geoset));
-            return geoset;
+  
+            const geoPromise = (async () => {
+              const geoKey = `${geoId}`;
+              if (geos.has(geoKey)) {
+                return geos.get(geoKey);
+              }
+              const geoset = await fetchAndTransform(geo.url, timeKey, date, geoProperty, transformGeo);
+              dispatch(AppApi.addGeo(geoKey, geoset));
+
+              currentlyFetchingGeo.delete(geoId);
+
+              return geoset;
+            })();
+
+            currentlyFetchingGeo.set(geoId, geoPromise);
+
+            return geoPromise;
           },
         ),
       ]);
