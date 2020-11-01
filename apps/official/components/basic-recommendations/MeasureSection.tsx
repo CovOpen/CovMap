@@ -9,7 +9,8 @@ import {
     Grid,
     Typography,
   } from "@material-ui/core";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 const useStyles = makeStyles({
     accordion: {
@@ -39,6 +40,12 @@ export const MeasureSection: React.FC<MeasureSectionProps> =
     ({title, description, backgroundColor, frontColor, icon}: MeasureSectionProps) => {
 
     const classes = useStyles();
+
+    // to allow controlling of arrow icons...
+    const [expanded, setExpanded] = React.useState(false);
+    const toggleExpansion = () => (event, isExpanded) => {
+        setExpanded(isExpanded);
+    };
     
     initProps();
 
@@ -53,8 +60,18 @@ export const MeasureSection: React.FC<MeasureSectionProps> =
         }        
     }
 
+    var navIndicator;
+    if(expanded) {
+        navIndicator = <ExpandLessIcon/>
+    } else {
+        navIndicator = <ExpandMoreIcon/>
+    }
+
     return (
-        <Accordion className={classes.accordion}>
+        <Accordion 
+            expanded={expanded} 
+            onChange={toggleExpansion()}
+            className={classes.accordion}>
             <AccordionSummary>
                 <Card className={classes.summaryCard} style={colorStyle}> 
                     <CardContent className={classes.summaryContent} >
@@ -68,16 +85,20 @@ export const MeasureSection: React.FC<MeasureSectionProps> =
                                 </Typography>
                             </Grid>
                             <Grid item xs={2}>
-                                <ArrowForwardIosIcon />
+                                {navIndicator}
                             </Grid>
                         </Grid>
                     </CardContent>
                 </Card>
             </AccordionSummary>
             <AccordionDetails>
-                <Typography variant="body1" align="justify">
-                    {description}
-                </Typography>
+                <Card className={classes.summaryCard} style={colorStyle}> 
+                    <CardContent className={classes.summaryContent} >
+                        <Typography variant="body1" align="justify">
+                            {description}
+                        </Typography>
+                    </CardContent>
+                </Card>
             </AccordionDetails>
         </Accordion>
     );

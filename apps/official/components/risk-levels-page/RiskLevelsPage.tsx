@@ -1,12 +1,16 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Typography } from "@material-ui/core";
-import { RiskTexts } from "../../static/texts/RiskTexts";
 import RiskScoreNormalIcon from "../../static/images/risk-score-1.svg";
 import RiskScoreMediumIcon from "../../static/images/risk-score-2.svg";
 import RiskScoreHighIcon from "../../static/images/risk-score-3.svg";
 import { NavigationTitle } from "app-config/components/NavigationTitle";
-import ContactsMediumBackgroundIcon from "../../static/images/contacts-medium-background.svg";
+
+// FOR TRANSLATION -->
+const NORMAL = "Die Zahl der Neuinfektionen ist niedrig, das Kontaktverhalten ist ausreichend reduziert und die Symptomlast ist normal. Ein normales Risiko bedeutet allerdings nicht, dass gar keine Infektionen in der Region möglich sind";
+const MEDIUM = "Die Zahl der Neuinfektionen oder das Kontaktverhalten bzw. die Symptomlast der Bevölkerung ist erhöht, so dass die Zahl der Neuinfektionen demnächst weiter ansteigen könnte. Wir rufen dazu auf, die Anzahl der Kontakte freiwillig zu reduzieren.";
+const HIGH = "Die Zahl der Neuinfektionen ist stark erhöht. Wir rufen dazu auf, die Anzahl der Kontakte freiwillig weitestgehend zu reduzieren.";
+// <-- FOR TRANSLATION
 
 const useStyles = makeStyles({
   leftText: {
@@ -36,7 +40,7 @@ export const RiskLevelsPage = () => {
             </Grid>
           </Grid>
           <Typography variant="body1" className={classes.leftText}>
-            {RiskTexts.NORMAL}
+            {NORMAL}
           </Typography>
         </section>
 
@@ -52,7 +56,7 @@ export const RiskLevelsPage = () => {
             </Grid>
           </Grid>
           <Typography variant="body1" className={classes.leftText}>
-            {RiskTexts.MEDIUM}
+            {MEDIUM}
           </Typography>
         </section>
 
@@ -68,7 +72,7 @@ export const RiskLevelsPage = () => {
             </Grid>
           </Grid>
           <Typography variant="body1" className={classes.leftText}>
-            {RiskTexts.HIGH}
+            {HIGH}
           </Typography>
         </section>
       </main>
