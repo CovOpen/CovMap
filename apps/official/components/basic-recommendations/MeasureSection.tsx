@@ -14,7 +14,7 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 const useStyles = makeStyles({
     accordion: {
-        background: "#B0C4DE"//"#2F4F4F"
+        //background: "#B0C4DE"//"#2F4F4F"
     },
     summaryCard: {
         width: "100%",
