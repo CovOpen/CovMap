@@ -15,7 +15,7 @@ function riscExplanation(contactScore: number, incidence: number): string {
     explanation = "Die Zahl der Neuinfektionen ist stark erhöht. ";
     if (contactScore == 1) {
       explanation +=
-        "Aufgrund eines erhöhten Kontaktverhalten gehen wir von einem weiteren Anstieg der Neuinfektionen aus. ";
+        "Aufgrund eines erhöhten Kontaktverhalten kann sich das Coronavirus leicht weiter verbreiten und unser Modell sagt einen weiteren Anstieg der Neuinfektionen voraus. ";
     }
     explanation += "Wir rufen dazu auf, Kontakte freiwillig auf das Allernötigste zu reduzieren.";
     return explanation;
@@ -26,7 +26,7 @@ function riscExplanation(contactScore: number, incidence: number): string {
   }
   if (contactScore == 1) {
     explanation +=
-      "Aufgrund eines erhöhten Kontaktverhalten gehen wir von einem weiteren Anstieg der Neuinfektionen aus. ";
+      "Aufgrund eines erhöhten Kontaktverhalten kann sich das Coronavirus leicht weiter verbreiten und unser Modell sagt einen weiteren Anstieg der Neuinfektionen voraus. ";
   }
   explanation += "Wir rufen dazu auf, Kontakte freiwillig zu reduzieren.";
   return explanation;
