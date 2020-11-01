@@ -4,5 +4,13 @@
     "share": "Teilen",
     "install": "App Installieren"
   },
+  "error": {
+    "title": "Whoops! Die App ist abgestürzt.",
+    "reload-button": "Seite neu laden",
+    "share-description": "Oder teile uns mit was passiert ist, um die App besser zu machen!",
+    "share-button-github": "Auf Github teilen",
+    "share-button-twitter": "Auf Twitter teilen",
+    "share-description-error-details": "Klicke hier für Fehlerdetails"
+  },
   "no data for selected timeframe": "Keine Daten für den ausgewählten Zeitraum."
 }
