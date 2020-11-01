@@ -32,6 +32,10 @@ const fetchAndTransform = async (
     return json;
   }
 
+  if (res.status === 404) {
+    return undefined;
+  }
+
   return null;
 };
 
@@ -91,6 +95,8 @@ async function fetchGeo(geo, date, mapping, geos, dispatch): Promise<GeoJSON | u
   return geoPromise;
 }
 
+const dateResets = new Map();
+
 export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Moment) {
   return async (dispatch: ReduxDispatch, getState: () => State) => {
     const timeKey = formatUTCDate(date);
@@ -117,6 +123,27 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Mome
 
       if (!data || !geojson) {
         dispatch(AppApi.popLoading("mappedSet"));
+
+        if (data === undefined) {
+          const resetKey = `${visualId}-${mappingId}`;
+
+          if (!dateResets.has(resetKey)) {
+            dateResets.set(resetKey, 1);
+          } else {
+            dateResets.set(resetKey, dateResets.get(resetKey) + 1);
+          }
+
+          if (dateResets.get(resetKey) > 3) {
+            dispatch(AppApi.setDatasetFound(false));
+            return;
+          }
+
+          const newDate = date.clone().subtract(1, "days");
+
+          dispatch(AppApi.setCurrentDate(newDate));
+          return;
+        }
+
         dispatch(AppApi.setDatasetFound(false));
         return;
       }
