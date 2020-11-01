@@ -107,7 +107,7 @@ export const Search = ({ className = "" }: { className?: string }) => {
     onChange: (event, value) => {
       dispatch(switchViewToPlace(value));
     },
-    blurOnSelect: true
+    blurOnSelect: true,
   });
 
   const handleSearch = (event) => {
