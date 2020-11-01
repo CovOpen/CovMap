@@ -6,7 +6,7 @@
 
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
 
@@ -71,6 +71,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/baskle"><img src="https://avatars1.githubusercontent.com/u/53707554?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Bastian Klenow</b></sub></a><br /><a href="#design-baskle" title="Design">🎨</a></td>
     <td align="center"><a href="https://github.com/sheraben"><img src="https://avatars3.githubusercontent.com/u/62461103?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Sheherazade</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=sheraben" title="Code">💻</a></td>
+    <td align="center"><a href="https://japhilko.github.io/mywebsite/"><img src="https://avatars1.githubusercontent.com/u/7593396?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Jan-Philipp Kolb</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=Japhilko" title="Code">💻</a></td>
   </tr>
 </table>
 

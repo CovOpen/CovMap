@@ -155,6 +155,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Japhilko",
+      "name": "Jan-Philipp Kolb",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/7593396?v=4",
+      "profile": "https://japhilko.github.io/mywebsite/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
