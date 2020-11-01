@@ -41,7 +41,6 @@ const VENTILATION_HEADLINE = "Regelmäßig lüften";
 const VENTILATION_TEXT = "Das Virus kann über die Luft übertragen werden. Wenn Du Dich mit anderen Personen triffst, dann tue dies am besten an der frischen Luft.\nFalls Du Dich doch in einen geschlossenen Raum begeben musst, dann sorge für eine gute Luftzirkulation, indem Du Fenster öffnest und gut lüftest.";
 const HYGIENE_HEADLINE = "Hygienemaßnahmen";
 const HYGIENE_TEXT = "Hygienemaßnahmen können Infektionen verringern. Das Verwenden von Desinfektionsmitteln und das Händewaschen können dazu beitragen, Infektionen zu verhindern, wenn Du Dinge angefasst hast, die potentiell mit dem Virus kontaminiert sind.";
-
 // <-- FOR TRANSLATION
 
 const CONTACT_COLOR = "#cc66ff";
@@ -123,7 +122,7 @@ export const WhatCanIDoPage: React.FC<{}> = () => {
     const classes = useStyles();
     const location = useLocation();
     const districtData = loadDistrictData(location);
-    
+
     return (
         <>
         <main className="sections">
