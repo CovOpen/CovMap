@@ -2,7 +2,7 @@ import { Console } from "console";
 import { Selector } from "testcafe";
 import { Config } from "./testcafe.config";
 
-fixture`Search field test`.page`${Config.baseTestCovmapUrl}`
+fixture`Search field test`.page`${Config.baseUrl}`
     .beforeEach( async t => {
         const nextButton = Selector("a").withAttribute("role", "button").child().withText("Weiter");
         const websiteText = Selector("html").textContent;
