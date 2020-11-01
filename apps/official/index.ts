@@ -6,7 +6,7 @@ import { Imprint } from "./components/pages/Imprint";
 import { Legal } from "./components/pages/Legal";
 import { Privacy } from "./components/pages/Privacy";
 import { Credits } from "./components/pages/Credits";
-import { Charts } from "./components/pages/Charts";
+import { ChartsPage } from "./components/pages/Charts/ChartsPage";
 import RKI from "./components/pages/RKI";
 import ContactBehavior from "./components/pages/ContactBehavior";
 import SymptomLevel from "./components/pages/SymptomLevel";
@@ -52,7 +52,7 @@ export const config: AppConfig = {
         id: "charts",
         title: (t) => t("translation:pages.charts"),
         route: "/charts",
-        Component: Charts,
+        Component: ChartsPage,
       },
       {
         id: "faq-page",
