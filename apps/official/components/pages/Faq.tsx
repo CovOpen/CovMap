@@ -79,7 +79,7 @@ export const Faq: React.FC = () => {
 
         <FaqAccordion title="Wie kann ich die CovMap erreichen?">
           <Typography style={{ width: "100%" }}>
-            Die CovMap ist als WebApp über www.covmap.de und covmap.charite.de und als Android App über den Play Store
+            Die CovMap ist als WebApp über <a href="www.covmap.de">www.covmap.de</a> und <a href="covmap.charite.de">covmap.charite.de</a> und als Android App über den Play Store
             (bald verfügbar) erreichbar.
           </Typography>
         </FaqAccordion>
@@ -103,8 +103,8 @@ export const Faq: React.FC = () => {
           <Typography style={{ width: "100%" }}>
             Nein, bei der CovMap Risikoeinschätzung handelt es sich nicht um eine offizielle Risikoeinschätzung einer
             nationalen Behörde oder Institution. Die CovMap Risikoeinschätzung wurde von Forschenden der Charité, des
-            Hasso-Plattner-Instituts und Datenspezialisten der Firma NETCHECK entwickelt. Das von uns entwickelte Modell 
-            zur Risikoeinschätzung wurde erst kürzlich entwickelt und deswegen laufend evaluiert. 
+            Hasso-Plattner-Instituts und Datenspezialisten der Firma NET CHECK entwickelt. Das von uns entwickelte Modell 
+            zur Risikoeinschätzung wurde erst kürzlich entwickelt und wird deswegen laufend evaluiert. 
             </Typography>
         </FaqAccordion>
 
@@ -148,7 +148,7 @@ export const Faq: React.FC = () => {
             </div>
             <Typography>
               In dieser Region registrieren wir viele Kontakte, weshalb sich das Virus leichter ausbreiten kann. Unser
-              Modell sagt einen beschleunigten Anstieg der Neuinfektionen voraus.
+              Vorhersagemodell sagt einen Anstieg der 7-Tages-Inzidenz voraus.
             </Typography>
           </Box>
         </FaqAccordion>
@@ -174,7 +174,7 @@ export const Faq: React.FC = () => {
           <Typography style={{ width: "100%" }}>
             Die CovMap greift auf drei Datenquellen zurück, um die regionalen Risikobewertung durchzuführen: 1.)
             Fallzahlstatistiken vom Robert-Koch-Institut, 2.) ein geschätztes Kontaktverhalten (Kontakt-Index), 
-            ermittelt aus GPS Daten von der Firma NET CHECK, 3.) Symptomdaten von der Chartié CovApp (https://covapp.charite.de)
+            ermittelt aus GPS Daten von der Firma NET CHECK, 3.) Symptomdaten von der Chartié CovApp (<a href="https://covapp.charite.de">https://covapp.charite.de</a>)
           </Typography>
         </FaqAccordion>
 
