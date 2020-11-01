@@ -70,9 +70,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/baskle"><img src="https://avatars1.githubusercontent.com/u/53707554?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Bastian Klenow</b></sub></a><br /><a href="#design-baskle" title="Design">🎨</a></td>
-    <td align="center"><a href="https://github.com/sheraben"><img src="https://avatars3.githubusercontent.com/u/62461103?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Sheherazade</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=sheraben" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/sheraben"><img src="https://avatars3.githubusercontent.com/u/62461103?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Shéhérazade Benzerga</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=sheraben" title="Code">💻</a></td>
     <td align="center"><a href="https://japhilko.github.io/mywebsite/"><img src="https://avatars1.githubusercontent.com/u/7593396?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Jan-Philipp Kolb</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=Japhilko" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/undheitergehts"><img src="https://avatars3.githubusercontent.com/u/73689859?v=4?s=50" width="50px;" alt=""/><br /><sub><b>undheitergehts</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=undheitergehts" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/undheitergehts"><img src="https://avatars3.githubusercontent.com/u/73689859?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Felix Zimmermann</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=undheitergehts" title="Code">💻</a></td>
   </tr>
 </table>
 
