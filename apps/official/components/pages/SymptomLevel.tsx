@@ -15,8 +15,7 @@ const SymptomLevel = () => {
           Fieber oder einen Verlust des Geschmacks. Diese Symptome gehören zu den frühesten beobachtbaren Ereignissen
           einer Infektion, sind jedoch nicht spezifisch für das Coronavirus und können beispielsweise auch bei einer
           harmlosen Erkältung auftreten. Falls man jedoch eine große Menschenmenge nach Symptomen befragt, kann man
-          Hotspots des Coronavirus früher als durch die offiziellen Fallzahlstatistiken detektieren. Wir verwenden die
-          Charité{" "}
+          Hotspots des Coronavirus früher detektieren. Wir verwenden die Charité{" "}
           <a target="_blank" href="http://www.covapp.de" rel="noreferrer">
             CovApp
           </a>
