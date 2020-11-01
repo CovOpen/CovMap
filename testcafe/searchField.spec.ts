@@ -64,15 +64,17 @@ test("Hamburger menu", async (t) => {
            .expect(openHamburgerMenu.visible).ok();
     // close panel is not visible
     await t.expect(closeHamburgerMenu.exists).ok()
-           .expect(closeHamburgerMenu.visible).notOk();
+           .expect(closeHamburgerMenu.visible).notOk()
+           .takeScreenshot();
     // open panel and check is close button is visible, hamburger menu should be invisible
     await t.expect(closeHamburgerMenu.visible).notOk()
-           .click(openHamburgerMenu)
+           .takeScreenshot()
            .expect(websiteText).contains("Über die CovMap")
            .expect(closeHamburgerMenu.visible).ok();
-           // the hamburger menu will not be made invisible when the panel is visible.
+           // the hamburger menu will not be made invisible when the panel is visible, so the assertion do not works.
            // .expect(openHamburgerMenu.visible).notOk();
-    await t.wait(1000);
+
+    await t.takeScreenshot();
 
     // console.log("websiteText "+ (await closeHamburgerMenu.textContent)+" "+(await closeHamburgerMenu.visible));
 
@@ -82,6 +84,5 @@ test("Hamburger menu", async (t) => {
            .expect(closeHamburgerMenu.visible).notOk()
            .expect(openHamburgerMenu.visible).ok();
 
-
-    await t.wait(1000);
+    await t.takeScreenshot();
 });
