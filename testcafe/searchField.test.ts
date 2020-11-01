@@ -1,3 +1,4 @@
+import { Console } from "console";
 import { Selector } from "testcafe";
 import { Config } from "./testcafe.config";
 
@@ -24,6 +25,8 @@ test("find search field", async (t) => {
     var searchField = Selector('#autocomplete').withAttribute("placeholder", "PLZ oder Landkreis")
     await t.expect(searchField.exists).ok();
     await t.click(searchField).typeText(searchField, "Stuttgart").pressKey("enter");
+    // wait until the map has scrolled.
+    await t.wait(1000);
 
     // open panel for risk description
     var riskButton = Selector('button').withAttribute("aria-label", "show more").withAttribute("aria-expanded","false")
@@ -37,6 +40,42 @@ test("find search field", async (t) => {
     await t.expect(closeRiskButton.exists).ok();
     // need to access the second element for closing.
     await t.click(closeRiskButton.nth(1)).expect(websiteText).notContains("Kontaktverhalten der Bevölkerung");;
+
+    await t.wait(1000);
+});
+
+test("Hamburger menu", async (t) => {
+
+    const websiteText = Selector("html").textContent;
+    // open menu panel
+    var openHamburgerMenu = Selector('button').withAttribute("aria-label", "Main Menu").withAttribute("aria-controls","menu-appbar")
+    var closeHamburgerMenu = Selector('button').withAttribute("aria-label", "Close Main Menu").withAttribute("aria-controls","menu-appbar")
+
+    console.log("websiteText "+ (await closeHamburgerMenu.textContent)+" "+(await closeHamburgerMenu.visible));
+
+    
+    // hanburger menu is visible
+    await t.expect(openHamburgerMenu.exists).ok()
+           .expect(openHamburgerMenu.visible).ok();
+    // close panel is not visible
+    await t.expect(closeHamburgerMenu.exists).ok()
+           .expect(closeHamburgerMenu.visible).notOk();
+    // open panel and check is close button is visible, hamburger menu should be invisible
+    await t.expect(closeHamburgerMenu.visible).notOk().click(openHamburgerMenu)
+           .expect(websiteText).contains("Über die CovMap")
+           .expect(closeHamburgerMenu.visible).ok();
+           // the hamburger menu will not be made invisible when the panel is visible.
+           // .expect(openHamburgerMenu.visible).notOk();
+    await t.wait(1000);
+
+    // console.log("websiteText "+ (await closeHamburgerMenu.textContent)+" "+(await closeHamburgerMenu.visible));
+
+    // close menu panel and check if hamburger menu is visible
+    await t.expect(closeHamburgerMenu.exists).ok()
+           .click(closeHamburgerMenu)
+           .expect(closeHamburgerMenu.visible).notOk()
+           .expect(openHamburgerMenu.visible).ok();
+
 
     await t.wait(1000);
 });
