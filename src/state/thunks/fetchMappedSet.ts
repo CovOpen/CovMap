@@ -130,7 +130,7 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Mome
           if (!dateResets.has(resetKey)) {
             dateResets.set(resetKey, 1);
           } else {
-            dateResets.set(resetKey, dateResets.get(resetKey) + 1)
+            dateResets.set(resetKey, dateResets.get(resetKey) + 1);
           }
 
           if (dateResets.get(resetKey) > 3) {
@@ -138,7 +138,7 @@ export function fetchMappedSet(visualId: VisualId, mappingId: string, date: Mome
             return;
           }
 
-          const newDate = date.clone().subtract(1, 'days');
+          const newDate = date.clone().subtract(1, "days");
 
           dispatch(AppApi.setCurrentDate(newDate));
           return;
