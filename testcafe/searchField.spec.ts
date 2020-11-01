@@ -11,10 +11,14 @@ fixture`Search field test`.page`${Config.baseUrl}`
         const titleForIntro3 = "Was zeigt mir die CovMap an?";
         const titleTextForPostalCode = "Für Dein regionales Risiko brauchen wir noch die Postleitzahl Deines Wohnortes";
         
-        await t.expect(websiteText).contains(titleForIntro1).click(nextButton);
-        await t.expect(websiteText).contains(titleForIntro2).click(nextButton);
-        await t.expect(websiteText).contains(titleForIntro3).click(nextButton);
-        await t.expect(websiteText).contains(titleTextForPostalCode).pressKey("1 0 1 1 5 tab space tab tab enter");
+        await t.expect(websiteText).contains(titleForIntro1)
+               .click(nextButton);
+        await t.expect(websiteText).contains(titleForIntro2)
+               .click(nextButton);
+        await t.expect(websiteText).contains(titleForIntro3)
+               .click(nextButton);
+        await t.expect(websiteText).contains(titleTextForPostalCode)
+               .pressKey("1 0 1 1 5 tab space tab tab enter");
         await t.expect(websiteText).notContains(titleTextForPostalCode);
     })
     .afterEach( async t => {
@@ -32,16 +36,17 @@ test("find search field", async (t) => {
     var riskButton = Selector('button').withAttribute("aria-label", "show more").withAttribute("aria-expanded","false")
     await t.expect(riskButton.exists).ok();
     const websiteText = Selector("html").textContent;
-    await t.click(riskButton).expect(websiteText).contains("Kontaktverhalten der Bevölkerung");
+    await t.click(riskButton)
+           .expect(websiteText).contains("Kontaktverhalten der Bevölkerung");
 
     // close panel for risk description
     var closeRiskButton = Selector('button').withAttribute("aria-label", "show more").withAttribute("aria-expanded","true")
     // console.log("close button"+(await closeRiskButton.textContent) + " " + closeRiskButton.count);
     await t.expect(closeRiskButton.exists).ok();
     // need to access the second element for closing.
-    await t.click(closeRiskButton.nth(1)).expect(websiteText).notContains("Kontaktverhalten der Bevölkerung");;
-
-    await t.wait(1000);
+    await t.click(closeRiskButton.nth(1))
+           .expect(websiteText).notContains("Kontaktverhalten der Bevölkerung")
+           .takeScreenshot();
 });
 
 test("Hamburger menu", async (t) => {
@@ -51,10 +56,10 @@ test("Hamburger menu", async (t) => {
     var openHamburgerMenu = Selector('button').withAttribute("aria-label", "Main Menu").withAttribute("aria-controls","menu-appbar")
     var closeHamburgerMenu = Selector('button').withAttribute("aria-label", "Close Main Menu").withAttribute("aria-controls","menu-appbar")
 
-    console.log("websiteText "+ (await closeHamburgerMenu.textContent)+" "+(await closeHamburgerMenu.visible));
+    // console.log("websiteText "+ (await closeHamburgerMenu.textContent)+" "+(await closeHamburgerMenu.visible));
 
     
-    // hanburger menu is visible
+    // hamburger menu is visible
     await t.expect(openHamburgerMenu.exists).ok()
            .expect(openHamburgerMenu.visible).ok();
     // close panel is not visible
