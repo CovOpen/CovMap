@@ -79,7 +79,7 @@ export const Faq: React.FC = () => {
 
         <FaqAccordion title="Wie kann ich die CovMap erreichen?">
           <Typography style={{ width: "100%" }}>
-            Die CovMap ist als WebApp über <a href="www.covmap.de">www.covmap.de</a> und <a href="covmap.charite.de">covmap.charite.de</a> und als Android App über den Play Store
+            Die CovMap ist als WebApp über <a href="https://www.covmap.de">www.covmap.de</a> und <a href="https://covmap.charite.de">covmap.charite.de</a> und als Android App über den Play Store
             (bald verfügbar) erreichbar.
           </Typography>
         </FaqAccordion>
