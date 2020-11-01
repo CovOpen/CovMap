@@ -282,7 +282,7 @@ export const Faq: React.FC = () => {
             </a>{" "}
             fast die wichtigsten Infektionsschutzmaßnahmen zusammen: Abstand halten, Hygiene beachten (Händewaschen, in
             die Ellenbeuge niesen), Alltagsmaske (Mund-Nasen-Bedeckung) tragen und regelmäßiges Lüften sind sehr
-            wichtig. Das weitere A steht für die 
+            wichtig. Das weitere A steht für die
             <a href="https://www.bundesregierung.de/breg-de/themen/corona-warn-app">Corona-Warn-App</a>, welche
             Nutzerinnen und Nutzer der App über Kontakte zu infizierten Personen informiert.
           </Typography>
