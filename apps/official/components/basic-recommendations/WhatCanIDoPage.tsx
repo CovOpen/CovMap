@@ -47,7 +47,8 @@ const CONTACT_COLOR = "#cc66ff";
 const DISTANCE_COLOR = "#ff9966";
 const MASK_COLOR = "#33ccff";
 const VENTILATION_COLOR = "#ffd480";
-const HYGIENE_COLOR = "#00BFFF";
+const HYGIENE_COLOR = "#2E8B57";
+const BLACK = "#000000";
 
 const useStyles = makeStyles({
     subHeader: {
@@ -74,13 +75,14 @@ const MaskSection: React.FC<{}> = () => <MeasureSection
     title={MASK_HEADLINE}
     description={MASK_TEXT}
     backgroundColor={MASK_COLOR}
+    frontColor={BLACK}
     icon={MaskIcon}
 />;
 
 const HygieneSection: React.FC<{}> = () => <MeasureSection
     title={HYGIENE_HEADLINE}
     description={HYGIENE_TEXT}
-    backgroundColor={HYGIENE_COLOR}
+    backgroundColor={HYGIENE_COLOR}    
     icon={HygieneIcon}
 />;
 
@@ -89,7 +91,7 @@ const VentilationSection: React.FC<{}> = () => <MeasureSection
     title={VENTILATION_HEADLINE}
     description={VENTILATION_TEXT}
     backgroundColor={VENTILATION_COLOR}
-    frontColor="#000000"
+    frontColor={BLACK}
     icon={VentilationIcon}
 />;
 
@@ -149,6 +151,9 @@ export const WhatCanIDoPage: React.FC<{}> = () => {
                     </Grid>
                     <Grid item>
                         <MaskSection/>
+                    </Grid>
+                    <Grid>
+                        <HygieneSection/>
                     </Grid>
                     <Grid item>
                         <VentilationSection/>
