@@ -22,7 +22,7 @@ import { CountyTeaser } from "./CountyTeaser";
 
 // FOR TRANSLATION -->
 const TITLE = "Wie kann ich mich verhalten?";
-const SUBTITLE_MEASURES = "4 Massnahmen mit großer Wirkung";
+const SUBTITLE_MEASURES = "Fünf Massnahmen mit großer Wirkung";
 const SUBTITLE_FINALTEASER = "Gemeinsam weiter";
 const TEASER_1 =
   "In den letzten Monaten konnte immer wieder gezeigt werden, dass ganz einfache Maßnahmen, die von jedem umgesetzt werden können, sehr viel Wirkung haben. ";
