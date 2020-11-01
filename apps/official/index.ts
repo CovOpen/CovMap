@@ -12,7 +12,6 @@ import ContactBehavior from "./components/pages/ContactBehavior";
 import SymptomLevel from "./components/pages/SymptomLevel";
 import { BasicRecommendations } from "./components/basic-recommendations/BasicRecommendations";
 import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo";
-import { RiskLevelsPage } from "./components/risk-levels-page/RiskLevelsPage";
 // TODO: Integrate CovQuestions
 // import { Questions } from './components/pages/Questions'
 
@@ -92,13 +91,6 @@ export const config: AppConfig = {
         route: "/recommendations",
         Component: BasicRecommendations,
         hidden: true, // dont show this page in the navbar
-      },
-      {
-        id: "risk-levels-page",
-        title: "Risikostufen",
-        route: "/risk-levels",
-        Component: RiskLevelsPage,
-        hidden: true,
       },
       {
         id: "rki-page",

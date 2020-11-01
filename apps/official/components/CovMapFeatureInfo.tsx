@@ -2,7 +2,6 @@ import React from "react";
 import { FeatureInfoProps } from "../../../src/app-config.types";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import {
-  Button,
   Card,
   CardContent,
   CardHeader,
@@ -10,6 +9,7 @@ import {
   Drawer,
   Grid,
   IconButton,
+  Paper,
   Theme,
   Typography,
   useTheme,
@@ -46,18 +46,19 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
   },
   card: {
     // TODO: Extract into theme
-    "backgroundColor": "#FCFCFC",
-    "position": "relative",
-    "padding": theme.spacing(4, 2),
-    "overflow": "visible",
-    "&:last-child": {
-      paddingBottom: theme.spacing(4, 2), // make the cards symmetric by removing the huge padding bottom
-    },
+    backgroundColor: "#FCFCFC",
+    position: "relative",
+    padding: theme.spacing(2, 2),
+    overflow: "visible",
   },
-
+  bluePaper: {
+    backgroundColor: "#2979ff",
+    color: "white",
+    padding: theme.spacing(2),
+  },
   drawerPaper: {
     width: (props) => (props.fullScreen ? "100%" : "450px"),
-    maxHeight: "100%",
+    maxHeight: "calc(100% - 100px)",
     overflow: "hidden",
   },
   drawerRoot: {
@@ -73,17 +74,6 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
     width: "100%",
     overflow: "auto",
   },
-  recommendationsLink: {
-    "textAlign": "center",
-    "& p": {
-      fontWeight: "bold",
-      margin: theme.spacing(1, 0),
-    },
-    "& a": {
-      padding: theme.spacing(1.4, 8),
-      borderRadius: theme.shape.borderRadius * 2,
-    },
-  },
   centerIcon: {
     margin: "0 auto",
     display: "block",
@@ -97,9 +87,12 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
     position: "absolute",
     top: -12, // half height of the badge
   },
+  chipLabel: {
+    overflow: "visible",
+  },
 }));
 
-const titleByRiskScore = {
+export const titleByRiskScore = {
   [RiskScore.Low]: "Normales Risiko",
   [RiskScore.Medium]: "Mittleres Risiko",
   [RiskScore.High]: "Hohes Risiko",
@@ -109,7 +102,6 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const {
-    recommendationsLink,
     action,
     card,
     container,
@@ -121,7 +113,9 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
     drawerScrollContainer,
     centerIcon,
     chipTop,
+    chipLabel,
     center,
+    bluePaper,
   } = useStyles({
     fullScreen,
   });
@@ -177,7 +171,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
   const ContactBehaviorCategory = (): JSX.Element => (
     <RouterLink to="/contact-behavior" style={{ textDecoration: "none" }} aria-label="go to contacts explanation">
       <Card variant="outlined" className={card}>
-        <Chip size="small" label="beta" className={chipTop} />
+        <Chip size="small" label="beta" classes={{ root: chipTop, label: chipLabel }} />
         <Grid container direction="row" alignItems="center" spacing={2}>
           <Grid item xs={8}>
             <Typography variant="h3">Kontaktverhalten der Bevölkerung</Typography>
@@ -193,18 +187,33 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
     </RouterLink>
   );
 
+  const link = `/recommendations?IdDistrict=${IdDistrict}`;
+  const HowShouldIBehave = (): JSX.Element => (
+    <RouterLink to={link} style={{ textDecoration: "none" }} aria-label="go to recommendations">
+      <Paper elevation={1} className={bluePaper}>
+        <Grid container direction="row" spacing={2}>
+          <Grid item xs={10}>
+            <Typography variant="h3">Wie kann ich mich verhalten?</Typography>
+          </Grid>
+          <Grid item xs={2}>
+            <ArrowForwardIosIcon className={centerIcon} fontSize="small" />
+          </Grid>
+        </Grid>
+      </Paper>
+    </RouterLink>
+  );
+
   const SymptomLoadCategory = (): JSX.Element => (
     <RouterLink to="/symptom-level" style={{ textDecoration: "none" }} aria-label="go to symptoms explanation">
       <Card variant="outlined" className={card}>
-        <Chip size="small" label="coming soon" className={chipTop} />
-        <Grid container direction="row" alignItems="center" spacing={2}>
+        <Chip size="small" label="bald verfügbar" classes={{ root: chipTop, label: chipLabel }} />
+        <Grid container direction="row" alignItems="center" spacing={2} style={{ color: "#828282" }}>
           <Grid item xs={8}>
             <Typography variant="h3">Symptomlast der Bevölkerung</Typography>
           </Grid>
           <Grid item xs={2}>
             <div className={center}>
               <SymptomsLowIcon />
-              <Typography variant="body2">normal</Typography>
             </div>
           </Grid>
           <Grid item xs={2}>
@@ -239,16 +248,14 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
     );
   };
 
-  const link = `/recommendations?IdDistrict=${IdDistrict}`;
   const cardContent = (
     <CardContent>
       <Grid container direction="column" spacing={2}>
-        {/* TODO: Comment this back in once the risk descriptions are updated */}
-        {/*<Grid item>*/}
-        {/*  <Typography>{riskDescription}</Typography>*/}
-        {/*</Grid>*/}
         <Grid item xs={12}>
           <RiskRecommendation contactScore={contactScore} incidence={incidence} />
+        </Grid>
+        <Grid item xs={12}>
+          <HowShouldIBehave />
         </Grid>
         <Grid item xs={12}>
           <ContactBehaviorCategory />
@@ -258,12 +265,6 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
         </Grid>
         <Grid item xs={12}>
           <CaseNumbersCategory />
-        </Grid>
-        <Grid item className={recommendationsLink}>
-          <Typography>Wie kann ich mich verhalten?</Typography>
-          <Button component={RouterLink} to={link} variant="contained" color="secondary">
-            Weiter
-          </Button>
         </Grid>
       </Grid>
     </CardContent>
