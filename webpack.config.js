@@ -16,6 +16,7 @@ const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
 
 const APP_CONFIG_PATH = process.env.APP_CONFIG_PATH || path.resolve(__dirname, "apps/official");
 const buildConfig = require(path.resolve(APP_CONFIG_PATH, "build.json"));
+const browserlistRegExp = require("browserslist-useragent-regexp");
 
 const babelLoader = {
   loader: "babel-loader",
@@ -147,7 +148,10 @@ module.exports = function (env) {
         url: buildConfig.meta.url,
         description: buildConfig.meta.description,
         keywords: buildConfig.meta.keywords,
-        variables: buildConfig,
+        variables: {
+          ...buildConfig,
+          browserlistRegExp: browserlistRegExp.getUserAgentRegExp({ allowHigherVersions: true }),
+        },
         minify:
           env == "prod"
             ? {
@@ -171,7 +175,10 @@ module.exports = function (env) {
         url: buildConfig.meta.url,
         description: buildConfig.meta.description,
         keywords: buildConfig.meta.keywords,
-        variables: buildConfig,
+        variables: {
+          ...buildConfig,
+          browserlistRegExp: browserlistRegExp.getUserAgentRegExp({ allowHigherVersions: true }),
+        },
         minify:
           env == "prod"
             ? {
