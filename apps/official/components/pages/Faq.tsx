@@ -57,10 +57,10 @@ export const Faq: React.FC = () => {
           <Typography style={{ width: "100%" }}>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div className={classes.textBlock}>
-                Die CovMap visualisiert eine regionale Risikoeinschätzung auf einer Deutschlandkarte. Unsere
-                Einschätzung beruhen auf täglich aktualisierten Fallzahlstatistiken des Robert-Koch-Instituts und
+                Die CovMap visualisiert eine regionale Risikoeinschätzung auf einer Deutschlandkarte. Die Risikoeinschätzung beruht
+                auf täglich aktualisierten Fallzahlstatistiken des Robert-Koch-Instituts und
                 Vorhersagen von selbst entwickelten Modellen basierend auf dem Kontaktverhalten und berichteten
-                Symptomen der Bevölkerung. Mit der CovMap möchten wir folgende Fragen zum Coronavirus adressieren :
+                Symptomen der Bevölkerung. Mit der CovMap möchten wir folgende Fragen zum Coronavirus adressieren:
               </div>
               <div className={classes.textBlock}>
                 <ul style={{ listStyle: "inside" }}>
@@ -87,18 +87,25 @@ export const Faq: React.FC = () => {
         <FaqAccordion title="Was macht die CovMap besonders?">
           <Typography style={{ width: "100%" }}>
             Die CovMap wertet zur regionalen Risikobestimmung neben den offiziellen Fallzahlstatistiken des
-            Robert-Koch-Instituts große Sätze an GPS- und Symptom-Daten aus. Dies erlaubt uns, mit Hilfe eines Modells
-            einen Blick in die Zukunft des Infektionsgeschehens in Deutschland zu werfen und so Risikogebiete schneller
-            zu identifizieren.
-          </Typography>
-        </FaqAccordion>
+            Robert-Koch-Instituts große Sätze an GPS- und Symptom-Daten aus. Diese Daten entstammen aus anderen Apps,
+            bei denen die Nutzer der Auswertung ihrer GPS Daten zugestimmt haben. Diese Daten sind die Basis für ein von uns
+            entwickeltes Modell, welches den Kontaktindex berechnet. Zudem werden aktuelle Symptome abgefragt, ausgewertet 
+            und fließen zusätzlich in die Risikoeinschätzung mit ein (bald verfügbar). Der Kontaktindex und die 
+            Symptome spiegeln frühzeitig das Infektionsgeschehen wider und ermöglichen so eine zeitnahe Anpassung von
+            Maßnahmen. Im Gegensatz dazu sind die Zahlen der Neuinfektionen, die vom Robert-Koch-Institut veröffentlicht 
+            werden, der Stand der Neuinfektionen von vor circa einer Woche. Dieser Verzug kommt dadurch Zustande, dass
+            eine Person, die neu mit dem Virus infiziert wurde, nach wenigen Tagen Symptome entwickelt (es gibt auch 
+            symptomlose Verläufe), sich erst dann testen lässt, der Test Zeit benötigt und auch die Meldung an das 
+            Gesundeitsamt Zeit in Ansrpuch nimmt. 
+        
 
         <FaqAccordion title="Handelt es sich um offizielle Risikoeinschätzungen?">
           <Typography style={{ width: "100%" }}>
             Nein, bei der CovMap Risikoeinschätzung handelt es sich nicht um eine offizielle Risikoeinschätzung einer
             nationalen Behörde oder Institution. Die CovMap Risikoeinschätzung wurde von Forschenden der Charité, des
-            Hasso-Plattner-Instituts und Datenspezialisten der Firma NETCHECK entwickelt.
-          </Typography>
+            Hasso-Plattner-Instituts und Datenspezialisten der Firma NETCHECK entwickelt. Das von uns entwickelte Modell 
+            zur Risikoeinschätzung wurde erst kürzlich entwickelt und deswegen laufend evaluiert. 
+            </Typography>
         </FaqAccordion>
 
         <FaqAccordion title="Welche Risikostufen gibt es?">
@@ -166,8 +173,8 @@ export const Faq: React.FC = () => {
         <FaqAccordion title="Welche Daten verwendet die CovMap?">
           <Typography style={{ width: "100%" }}>
             Die CovMap greift auf drei Datenquellen zurück, um die regionalen Risikobewertung durchzuführen: 1.)
-            Fallzahlstatistiken vom Robert-Koch-Institut, 2.) ein geschätztes Kontaktverhalten, ermittelt aus GPS Daten
-            von der Firma NET CHECK, 3.) Symptomdaten von der Chartié CovApp.
+            Fallzahlstatistiken vom Robert-Koch-Institut, 2.) ein geschätztes Kontaktverhalten (Kontakt-Index), 
+            ermittelt aus GPS Daten von der Firma NET CHECK, 3.) Symptomdaten von der Chartié CovApp (https://covapp.charite.de)
           </Typography>
         </FaqAccordion>
 
@@ -181,10 +188,11 @@ export const Faq: React.FC = () => {
                 CovMap an.
               </div>
               <div className={classes.textBlock}>
-                Wir charakterisieren aus anonymisierten Smartphone-Daten das Kontaktverhalten. Zusätzlich werten wir
+                Wir charakterisieren aus anonymisierten GPS-Daten das Kontaktverhalten. Zusätzlich werten wir
                 selbstberichtete Symptome aus. Naturlich führt nicht jeder Kontakt zu einer Virusübertragung und
                 Symptome allein beweisen keine Infektion mit dem Coronavirus. Wertet man jedoch die Daten von vielen
-                Personen aus, dann kann eine Prognose der zukünftigen Fallzahlen erstellt werden.
+                Personen aus, dann kann eine Prognose der zukünftigen Fallzahlen erstellt werden. Wir haben dieses 
+                Modell erst kürzlich entwickelt und evaulieren und verbessern es kontinuierlich. 
               </div>
               <div className={classes.textBlock}>
                 Die vom Robert Koch-Institut gemeldete 7-Tages-Inzidenz spiegelt das Infektionsgeschehen wider, das
@@ -247,8 +255,29 @@ export const Faq: React.FC = () => {
             Kontakt-Index maßgebend für die Ausbreitung des Coronavirus in Deutschland ist.
           </Typography>
         </FaqAccordion>
-
-        <FaqAccordion title="Was ist das Freundschaftsparadox?">
+            
+               <FaqAccordion title="Warum hilft es Kontakte zu reduzieren?">
+          <Typography style={{ width: "100%" }}>
+            Das Coronaviurs überträgt sich von Mensch zu Mensch. Es wird hauptsächlich über die sogenannte Tröpfcheninfektion
+            und über Aerosole übertragen. Je weniger Kontakte jemand hat, desto schwerer ist es für das Virus sich weiter zu 
+            verbreiten.
+            https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Steckbrief.html
+          </Typography>
+        </FaqAccordion>
+                            
+                  <FaqAccordion title="Was kann ich konkret tun, um die Ausbreitung des Coronavirus zu verringern?">
+          <Typography style={{ width: "100%" }}>
+            Das Coronaviurs überträgt sich von Mensch zu Mensch, deswegen ist es notwendig, dass wir uns alle an 
+            Infektionsschutzmaßnahmen halten und diese umzusetzen. Die AHA + L + A Formel fast die wichtigsten 
+            Maßnahmen zusammen: Abstand halten, Hygiene beachten (Händewaschen, in die Ellenbeuge niesen), Alltagsmaske
+            (Mund-Nasen-Bedeckung) tragen und regelmäßiges Lüften sind sehr wichtig. Das weitere A steht für die 
+            Corona-Warn-App, welche Nutzerinnen und Nutzer der APP über Kontakte zu infizierten Personen informiert. 
+            https://www.bundesregierung.de/breg-de/themen/corona-warn-app
+            https://www.infektionsschutz.de/coronavirus/alltag-in-zeiten-von-corona.html
+            </Typography>
+        </FaqAccordion>
+            
+                  <FaqAccordion title="Was ist das Freundschaftsparadox?">
           <Typography style={{ width: "100%" }}>
             Der Kontakt-Index ist anschaulich mit dem sogenannten Freundschaftsparadox verbunden
             (https://de.wikipedia.org/wiki/Freundschaftsparadox). Danach gilt für die meisten Menschen - z.B. in
