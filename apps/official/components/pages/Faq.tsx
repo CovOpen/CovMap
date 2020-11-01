@@ -263,34 +263,40 @@ export const Faq: React.FC = () => {
           <Typography style={{ width: "100%" }}>
             Das Coronaviurs überträgt sich von Mensch zu Mensch. Es wird hauptsächlich über die sogenannte
             Tröpfcheninfektion und über Aerosole übertragen. Je weniger Kontakte jemand hat, desto schwerer ist es für
-            das Virus sich weiter zu verbreiten.
-            https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Steckbrief.html
+            das Virus, sich weiter zu verbreiten. Weitere Informationen zum Coronavirus findest Du auf der{" "}
+            <a href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Steckbrief.html">
+              Webpage des Robert-Koch-Instituts
+            </a>
+            .
           </Typography>
         </FaqAccordion>
 
         <FaqAccordion title="Was kann ich konkret tun, um die Ausbreitung des Coronavirus zu verringern?">
           <Typography style={{ width: "100%" }}>
             Das Coronaviurs überträgt sich von Mensch zu Mensch, deswegen ist es notwendig, dass wir uns alle an
-            Infektionsschutzmaßnahmen halten und diese umzusetzen. Die AHA + L + A Formel fast die wichtigsten Maßnahmen
-            zusammen: Abstand halten, Hygiene beachten (Händewaschen, in die Ellenbeuge niesen), Alltagsmaske
-            (Mund-Nasen-Bedeckung) tragen und regelmäßiges Lüften sind sehr wichtig. Das weitere A steht für die
-            Corona-Warn-App, welche Nutzerinnen und Nutzer der APP über Kontakte zu infizierten Personen informiert.
-            https://www.bundesregierung.de/breg-de/themen/corona-warn-app
-            https://www.infektionsschutz.de/coronavirus/alltag-in-zeiten-von-corona.html
+            Infektionsschutzmaßnahmen halten und diese umzusetzen. Die{" "}
+            <a href="https://www.infektionsschutz.de/coronavirus/alltag-in-zeiten-von-corona.html">
+              AHA + L + A Formel
+            </a>{" "}
+            fast die wichtigsten Maßnahmen zusammen: Abstand halten, Hygiene beachten (Händewaschen, in die Ellenbeuge
+            niesen), Alltagsmaske (Mund-Nasen-Bedeckung) tragen und regelmäßiges Lüften sind sehr wichtig. Das weitere A
+            steht für die
+            <a href="https://www.bundesregierung.de/breg-de/themen/corona-warn-app">Corona-Warn-App</a>, welche
+            Nutzerinnen und Nutzer der APP über Kontakte zu infizierten Personen informiert.
           </Typography>
         </FaqAccordion>
 
         <FaqAccordion title="Was ist das Freundschaftsparadox?">
           <Typography style={{ width: "100%" }}>
-            Der Kontakt-Index ist anschaulich mit dem sogenannten Freundschaftsparadox verbunden
-            (https://de.wikipedia.org/wiki/Freundschaftsparadox). Danach gilt für die meisten Menschen - z.B. in
-            Facebook - dass ihre Freunde im Durchschnitt mehr Freunde haben als sie selbst. Das wiederum liegt daran,
-            dass Personen mit vielen Freunden eine höhere Wahrscheinlichkeit haben, mit einer beliebigen Person X
-            verbunden zu sein, als Personen, die wenige Freunde haben. Daher sind vereinfacht gesagt viele Freunde oder
-            Kontakte von X Superkontakter. Diese Beobachtung macht sich auch in der Ausbreitung von
-            Infektionskrankheiten bemerkbar. D.h. wenn ich jemanden anstecke, wird diese Person wahrscheinlich jemand
-            mit vielen Kontakten sein. Also wird im Mittel nicht die mittlere Zahl der Kontakte angesteckt, sondern mehr
-            als diese Zahl. Der Kontakt-Index übernimmt diese Abweichung.
+            Der Kontakt-Index ist anschaulich mit dem sogenannten{" "}
+            <a href="https://de.wikipedia.org/wiki/Freundschaftsparadox">Freundschaftsparadox</a> verbunden. Danach gilt
+            für die meisten Menschen - z.B. in Facebook - dass ihre Freunde im Durchschnitt mehr Freunde haben als sie
+            selbst. Das wiederum liegt daran, dass Personen mit vielen Freunden eine höhere Wahrscheinlichkeit haben,
+            mit einer beliebigen Person X verbunden zu sein, als Personen, die wenige Freunde haben. Daher sind
+            vereinfacht gesagt viele Freunde oder Kontakte von X Superkontakter. Diese Beobachtung macht sich auch in
+            der Ausbreitung von Infektionskrankheiten bemerkbar. D.h. wenn ich jemanden anstecke, wird diese Person
+            wahrscheinlich jemand mit vielen Kontakten sein. Also wird im Mittel nicht die mittlere Zahl der Kontakte
+            angesteckt, sondern mehr als diese Zahl. Der Kontakt-Index übernimmt diese Abweichung.
           </Typography>
         </FaqAccordion>
       </section>
