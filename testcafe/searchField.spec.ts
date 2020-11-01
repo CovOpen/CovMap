@@ -67,7 +67,7 @@ test("Hamburger menu", async (t) => {
     await t.expect(closeHamburgerMenu.exists).ok()
            .expect(closeHamburgerMenu.visible).notOk()
            .takeScreenshot();
-    // open panel and check is close button is visible, hamburger menu should be invisible
+    // open panel and check if close button is visible, hamburger menu should be invisible
     await t.expect(closeHamburgerMenu.visible).notOk()
            .takeScreenshot()
            .expect(websiteText).contains("Über die CovMap")
