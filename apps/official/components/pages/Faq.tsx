@@ -96,8 +96,9 @@ export const Faq: React.FC = () => {
             werden, der Stand der Neuinfektionen von vor circa einer Woche. Dieser Verzug kommt dadurch Zustande, dass
             eine Person, die neu mit dem Virus infiziert wurde, nach wenigen Tagen Symptome entwickelt (es gibt auch 
             symptomlose Verläufe), sich erst dann testen lässt, der Test Zeit benötigt und auch die Meldung an das 
-            Gesundeitsamt Zeit in Ansrpuch nimmt. 
-        
+            Gesundeitsamt Zeit in Anspruch nimmt. 
+           </Typography>
+        </FaqAccordion>       
 
         <FaqAccordion title="Handelt es sich um offizielle Risikoeinschätzungen?">
           <Typography style={{ width: "100%" }}>
