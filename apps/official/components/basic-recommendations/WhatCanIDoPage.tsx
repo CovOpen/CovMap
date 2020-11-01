@@ -142,20 +142,20 @@ export const WhatCanIDoPage: React.FC<{}> = () => {
                 </Typography>                
             </section>
             <section>                
-                <Grid container direction="column">                    
-                    <Grid item>
+                <Grid container direction="column" spacing={2}>                    
+                    <Grid item xs={12}>
                         <ContactSection/>
                     </Grid>
-                    <Grid item>
+                    <Grid item xs={12}>
                         <DistanceSection/>
                     </Grid>
-                    <Grid item>
+                    <Grid item xs={12}>
                         <MaskSection/>
                     </Grid>
-                    <Grid>
+                    <Grid item >
                         <HygieneSection/>
                     </Grid>
-                    <Grid item>
+                    <Grid item xs={12}>
                         <VentilationSection/>
                     </Grid>
                 </Grid>

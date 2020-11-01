@@ -14,6 +14,7 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 const useStyles = makeStyles({
     accordion: {
+        borderRadius: "12px",
         //background: "#B0C4DE"//"#2F4F4F"
     },
     summaryCard: {
@@ -68,38 +69,64 @@ export const MeasureSection: React.FC<MeasureSectionProps> =
     }
 
     return (
-        <Accordion 
+        <Accordion             
             expanded={expanded} 
             onChange={toggleExpansion()}
-            className={classes.accordion}>
-            <AccordionSummary>
-                <Card className={classes.summaryCard} style={colorStyle}> 
-                    <CardContent className={classes.summaryContent} >
-                        <Grid container direction="row" alignItems="center">
-                            <Grid item xs={3}>
-                                {icon()}
-                            </Grid>
-                            <Grid item xs={7}>
-                                <Typography variant="h3" align="left">
-                                    {title}
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={2}>
-                                {navIndicator}
-                            </Grid>
+            className={classes.accordion}
+            style={colorStyle}>
+                <AccordionSummary>                            
+                    <Grid container direction="row" alignItems="center">
+                        <Grid item xs={3}>
+                            {icon()}
                         </Grid>
-                    </CardContent>
-                </Card>
-            </AccordionSummary>
-            <AccordionDetails>
-                <Card className={classes.summaryCard} style={colorStyle}> 
-                    <CardContent className={classes.summaryContent} >
-                        <Typography variant="body1" align="justify">
-                            {description}
-                        </Typography>
-                    </CardContent>
-                </Card>
-            </AccordionDetails>
+                        <Grid item xs={7}>
+                            <Typography variant="h3" align="left">
+                                {title}
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={2}>
+                            {navIndicator}
+                        </Grid>
+                    </Grid>
+                </AccordionSummary>
+                <AccordionDetails>                                    
+                    <Typography variant="body1" align="justify">
+                        {description}
+                    </Typography>
+                </AccordionDetails>
         </Accordion>
     );
 }
+
+/*
+<Card className={classes.summaryCard} style={colorStyle}>
+            <CardContent className={classes.summaryContent} >
+                <Accordion 
+                    expanded={expanded} 
+                    onChange={toggleExpansion()}
+                    className={classes.accordion}
+                    style={colorStyle}>
+                        <AccordionSummary>                            
+                            <Grid container direction="row" alignItems="center">
+                                <Grid item xs={3}>
+                                    {icon()}
+                                </Grid>
+                                <Grid item xs={7}>
+                                    <Typography variant="h3" align="left">
+                                        {title}
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={2}>
+                                    {navIndicator}
+                                </Grid>
+                            </Grid>
+                        </AccordionSummary>
+                        <AccordionDetails>                                    
+                            <Typography variant="body1" align="justify">
+                                {description}
+                            </Typography>
+                        </AccordionDetails>
+                </Accordion>
+            </CardContent>
+        </Card>
+*/
