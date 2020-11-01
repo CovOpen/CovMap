@@ -1,0 +1,116 @@
+name: Nightly-Test
+
+on:
+  schedule:
+   - cron: '0 3 * * *'
+
+jobs:
+  build-head:
+    name: "Build head"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: "master"
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install
+      - name: Build
+        run: yarn build
+      - name: Upload dist
+        uses: actions/upload-artifact@v1
+        with:
+          name: dist
+          path: ./dist
+
+  e2e-test:
+    name: "E2E Tests"
+    runs-on: ubuntu-latest
+    needs: [build-head]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: "${{github.event.pull_request.head.ref}}"
+          repository: "${{github.event.pull_request.head.repo.full_name}}"
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install
+      - name: Download base artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: dist
+      - name: test
+        run: yarn run testcafe chrome:headless testcafe/*.spec.ts --app "cd ./dist && http-server -p 8080"
+
+  e2e-test-browserstack:
+    name: "E2E Tests BrowserStack"
+    runs-on: ubuntu-latest
+    needs: [build-head]
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: "${{github.event.pull_request.head.ref}}"
+        repository: "${{github.event.pull_request.head.repo.full_name}}"
+    - uses: actions/cache@v2
+      id: yarn-cache
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+    - name: Install dependencies
+      if: steps.yarn-cache.outputs.cache-hit != 'true'
+      run: yarn install
+    - name: Download base artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: dist
+    - name: 'BrowserStack Env Setup'
+      uses: 'browserstack/github-actions/setup-env@master'
+      with:
+        username:  ${{ secrets.BROWSERSTACK_USERNAME }}
+        access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        build-name: 'covmapperpr${{ github.event.pull_request.number }}'
+        project-name: 'CovMap'
+    - name: 'BrowserStackLocal Setup'
+      uses: 'browserstack/github-actions/setup-local@master'
+      with:
+        local-testing: start
+        local-identifier: random
+    # https://markus.oberlehner.net/blog/dealing-with-the-browserstack-parallel-test-limit-when-using-testcafe/ http-server
+    # https://github.com/DevExpress/testcafe/issues/1330 Browser List
+    # https://www.npmjs.com/package/testcafe-browser-provider-browserstack testcafe doc
+    - name: test chrome
+      run: |
+        export BROWSERSTACK_USE_AUTOMATE="1"
+        export BROWSERSTACK_DISPLAY_RESOLUTION="1024x768"
+        yarn run http-server dist/ -p 8080 -s &
+        sleep 5
+        yarn run testcafe -c 1 "browserstack:Samsung Galaxy S8" testcafe/*.spec.ts
+        yarn run testcafe -c 1 "browserstack:chrome:Windows 10" testcafe/*.spec.ts
+        yarn run testcafe -c 1 "browserstack:firefox:Windows 10" testcafe/*.spec.ts
+        yarn run testcafe -c 1 "browserstack:edge:Windows 10" testcafe/*.spec.ts
+        yarn run testcafe -c 1 "browserstack:opera:Windows 10" testcafe/*.spec.ts
+        yarn run testcafe -c 1 "browserstack:IE:Windows 10" testcafe/*.spec.ts
+        yarn run testcafe -c 1 "browserstack:safari:OS X Catalina" testcafe/*.spec.ts --skip-js-errors
+        yarn run testcafe -c 1 "browserstack:Pixel 4" testcafe/*.spec.ts
+        yarn run testcafe -c 1 "browserstack:Redmi Note 8" testcafe/*.spec.ts
+        yarn run testcafe -c 1 "browserstack:Moto G7 Play" testcafe/*.spec.ts
+        yarn run testcafe -c 1 "browserstack:iPhone XS" testcafe/*.spec.ts
+        yarn run testcafe -c 1 "browserstack:iPad Pro 12.9 2020" testcafe/*.spec.ts
+    - name: 'BrowserStackLocal Stop'
+      uses: 'browserstack/github-actions/setup-local@master'
+      with:
+        local-testing: stop
