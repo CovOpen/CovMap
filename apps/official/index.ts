@@ -89,7 +89,7 @@ export const config: AppConfig = {
         id: "basic-recommendations",
         title: "Empfehlungen",
         route: "/recommendations",
-        Component: WhatCanIDoPage,        
+        Component: WhatCanIDoPage,
         hidden: true, // dont show this page in the navbar
       },
       {
