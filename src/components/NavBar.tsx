@@ -17,11 +17,15 @@ import * as clipboard from "clipboard-polyfill";
 import { useTranslation } from "react-i18next";
 
 import { config } from "app-config/index";
-import { Drawer, useMediaQuery } from "@material-ui/core";
+import { Drawer, useMediaQuery, Typography } from "@material-ui/core";
 import { CloseRounded } from "@material-ui/icons";
 import { VERSION, HASH_LONG, HASH_SHORT } from "src/version";
 import FixedSearch from "./FixedSearch";
 import { welcomeStepsConfig } from "./WelcomeStepsModal/welcomeStepsConfig";
+import GithubIcon from "src/../static/images/social-github.svg";
+import TwitterIcon from "src/../static/images/social-twitter.svg";
+import InstagramIcon from "src/../static/images/social-instagram.svg";
+import FacebookIcon from "src/../static/images/social-facebook.svg";
 
 const Logo = config.ui?.Logo;
 
@@ -45,12 +49,10 @@ const useStyles = makeStyles((theme) => ({
   menuIcon: {
     // share icon
     padding: 0,
-
     margin: theme.spacing(0, 1),
   },
 
   menuContent: {
-    marginTop: "auto",
     paddingBottom: theme.spacing(4),
   },
   drawerScrollContainer: {
@@ -62,7 +64,6 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     height: "32px",
     width: "auto",
-    marginTop: "9px",
   },
   version: {
     fontSize: "12px",
@@ -85,9 +86,15 @@ const useStyles = makeStyles((theme) => ({
   fullHeightToolbar: {
     minHeight: "64px",
   },
-
+  socialIcons: {
+    margin: "0 auto",
+    marginTop: "auto",
+  },
   drawerIcon: {
-    margin: theme.spacing(4, "auto"),
+    "margin": theme.spacing(4, "auto"),
+    "& > svg": {
+      height: "50px",
+    },
   },
 }));
 
@@ -207,17 +214,31 @@ export const NavBar = () => {
           </Toolbar>
           <div className={classes.drawerScrollContainer}>
             <NavMenuContent />
+            <div className={classes.socialIcons}>
+              <IconButton size="small" href="https://github.com/CovOpen/CovMapper" target="_blank" rel="noopener">
+                <GithubIcon />
+              </IconButton>
+              <IconButton size="small" href="https://twitter.com/CovMap" target="_blank" rel="noopener">
+                <TwitterIcon />
+              </IconButton>
+              {/* <IconButton size="small" href="https://www.instagram.com/covmap/" target="_blank" rel="noopener">
+                <InstagramIcon />
+              </IconButton>
+              <IconButton size="small" href="https://www.facebook.com/covmap" target="_blank" rel="noopener">
+                <FacebookIcon />
+              </IconButton> */}
+            </div>
             {(Logo && (
               <div className={classes.drawerIcon}>
                 <Logo />
               </div>
             )) || <img src={config.buildJSON.logoSrc} className={classes.logo} />}
-            <div className={classes.version}>
+            <Typography className={classes.version}>
               {"v" + VERSION} -{" "}
               <a href={"https://github.com/CovOpen/CovMapper/commit/" + HASH_LONG} target="_blank" rel="noopener">
                 {HASH_SHORT}
               </a>
-            </div>
+            </Typography>
           </div>
         </Drawer>
       </Toolbar>
