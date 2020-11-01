@@ -34,7 +34,8 @@ test("find search field", async (t) => {
 
     // open panel for risk description
     var riskButton = Selector('button').withAttribute("aria-label", "show more").withAttribute("aria-expanded","false")
-    await t.expect(riskButton.exists).ok();
+    await t.expect(riskButton.exists).ok()
+           .takeScreenshot();
     const websiteText = Selector("html").textContent;
     await t.click(riskButton)
            .expect(websiteText).contains("Kontaktverhalten der Bevölkerung");
