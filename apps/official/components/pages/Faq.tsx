@@ -258,6 +258,7 @@ export const Faq: React.FC = () => {
             Kontaktzahlen (Heterogenität). Der Kontakt-Index zeigt nun sowohl die Gesamtzahl der Kontakte als auch die
             Heterogenität an. Wir konnten zeigen, dass der Kontakt-Index sehr gut mit der Ausbreitung des Coronavirus in
             Deutschland korrelierte.
+            <img style={{ width: "100%", paddingTop: 16 }} src="/images/example-diagram-contact-index.png"></img>
           </Typography>
         </FaqAccordion>
 
