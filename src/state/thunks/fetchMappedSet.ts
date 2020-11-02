@@ -21,7 +21,7 @@ const fetchAndTransform = async (
   }
 
   const res = await fetch(dataUrl as string);
-
+  console.log(dataUrl, res);
   if (res.status === 200) {
     let json = await res.json();
 
