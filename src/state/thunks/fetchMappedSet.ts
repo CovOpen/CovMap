@@ -27,6 +27,10 @@ const fetchAndTransform = async (
       mode: "no-cors",
     });
   } catch(err) {
+    if (res.status === 404) {
+      return undefined;
+    }
+
     return null;
   }
 
@@ -38,10 +42,6 @@ const fetchAndTransform = async (
     }
 
     return json;
-  }
-
-  if (res.status === 404) {
-    return undefined;
   }
 
   return null;
