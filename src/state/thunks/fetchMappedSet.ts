@@ -26,10 +26,7 @@ const fetchAndTransform = async (
     res = await fetch(dataUrl as string, {
       mode: "no-cors",
     });
-    console.log('success', res)
-    console.log('headers', Array.from(res.headers.entries()))
   } catch(err) {
-    console.log('err', err, res)
     return null;
   }
 
