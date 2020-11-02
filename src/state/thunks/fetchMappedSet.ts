@@ -23,10 +23,10 @@ const fetchAndTransform = async (
   }
 
   try {
-    res = await fetch(dataUrl as string);
-    console.log(dataUrl, res);
+    res = await fetch(dataUrl as string, {
+      mode: "no-cors",
+    });
   } catch(err) {
-    console.log(err);
     return null;
   }
 
