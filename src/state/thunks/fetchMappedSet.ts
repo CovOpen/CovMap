@@ -27,6 +27,7 @@ const fetchAndTransform = async (
       mode: "no-cors",
     });
     console.log('success', res)
+    console.log('headers', res.headers.entries())
   } catch(err) {
     console.log('err', err, res)
     return null;
