@@ -37,10 +37,8 @@ export const WelcomeModalPostalCode: React.FC = () => {
   const history = useHistory();
   const postCode = useSelector((state: State) => state.app.intro.postCode);
   const checked = useSelector((state: State) => state.app.intro.isPrivacyChecked);
-  // const [postCode, setPostCode] = useState("");
   const [validatePostalCode, setValidatePostalCode] = useState(false);
   const [validateCheckbox, setValidateCheckbox] = useState(false);
-  // const [checked, setChecked] = useState(false);
 
   function onSkip() {
     setValidateCheckbox(true);
