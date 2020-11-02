@@ -16,12 +16,20 @@ const fetchAndTransform = async (
   transform?: Function,
 ) => {
   let dataUrl = url;
+  let res;
+
   if (typeof dataUrl === "function") {
     dataUrl = dataUrl(formattedDate, date);
   }
 
-  const res = await fetch(dataUrl as string);
-  console.log(dataUrl, res);
+  try {
+    res = await fetch(dataUrl as string);
+    console.log(dataUrl, res);
+  } catch(err) {
+    console.log(err);
+    return null;
+  }
+
   if (res.status === 200) {
     let json = await res.json();
 
