@@ -1,79 +1,55 @@
-import { Console } from "console";
-import { Selector } from "testcafe";
 import { Config } from "./testcafe.config";
+import { finishIntroScreens } from "./pages/Intro";
+import {
+  closeHamburgerMenu,
+  expandInfoBoxIcon,
+  openHamburgerMenu,
+  searchField,
+  shrinkInfoBoxIcon,
+} from "./pages/MainMap";
+import { textExists } from "./elements/muiTypography";
 
 fixture`Search field test`.page`${Config.baseUrl}`
-    .beforeEach( async t => {
-        const nextButton = Selector("a").withAttribute("role", "button").child().withText("Weiter");
-        const websiteText = Selector("html").textContent;
-        const titleForIntro1 = "Willkommen bei der CovMap";
-        const titleForIntro2 = "Was ist die CovMap?";
-        const titleForIntro3 = "Was zeigt mir die CovMap an?";
-        const titleTextForPostalCode = "Für Dein regionales Risiko brauchen wir noch die Postleitzahl Deines Wohnortes";
-        
-        await t.expect(websiteText).contains(titleForIntro1)
-               .click(nextButton);
-        await t.expect(websiteText).contains(titleForIntro2)
-               .click(nextButton);
-        await t.expect(websiteText).contains(titleForIntro3)
-               .click(nextButton);
-        await t.expect(websiteText).contains(titleTextForPostalCode)
-               .pressKey("1 0 1 1 5 tab space tab tab enter");
-        await t.expect(websiteText).notContains(titleTextForPostalCode);
-    })
-    .afterEach( async t => {
-        // place holder
-    });
+  .beforeEach(async () => {
+    await finishIntroScreens();
+  })
+  .afterEach(async () => {
+    // place holder
+  });
 
 test("find search field", async (t) => {
-    var searchField = Selector('#autocomplete').withAttribute("placeholder", "PLZ oder Landkreis")
-    await t.click(searchField)
-           .typeText(searchField, "Stuttgart").pressKey("enter");
-    // wait until the map has scrolled.
-    await t.wait(1000);
+  await t.click(searchField).typeText(searchField, "Stuttgart").pressKey("enter");
 
-    // open panel for risk description
-    var riskButton = Selector('button').withAttribute("aria-label", "show more").withAttribute("aria-expanded","false")
-    const websiteText = Selector("html").textContent;
-    await t.takeScreenshot()
-           .click(riskButton)
-           .expect(websiteText).contains("Kontaktverhalten der Bevölkerung");
+  // wait until the map has scrolled.
+  await t.wait(1000);
+  await t.takeScreenshot();
 
-    // close panel for risk description
-    var closeRiskButton = Selector('button').withAttribute("aria-label", "show more").withAttribute("aria-expanded","true")
-    // console.log("close button"+(await closeRiskButton.textContent) + " " + closeRiskButton.count);
-    await t.expect(closeRiskButton.nth(1).exists).ok("can not find closing button for risk panel");
-    // need to access the second element for closing.
-    await t.click(closeRiskButton.nth(1))
-           .expect(websiteText).notContains("Kontaktverhalten der Bevölkerung")
-           .takeScreenshot();
+  // open panel for risk description
+  await t.click(expandInfoBoxIcon).expect(textExists("Kontaktverhalten der Bevölkerung")).ok();
+
+  // close panel for risk description
+  await t.click(shrinkInfoBoxIcon).expect(textExists("Kontaktverhalten der Bevölkerung")).notOk();
+  await t.takeScreenshot();
 });
 
 test("Hamburger menu", async (t) => {
+  // open panel and check if close button is visible, hamburger menu should be invisible
+  await t
+    .expect(closeHamburgerMenu.visible)
+    .notOk()
+    .takeScreenshot()
+    .click(openHamburgerMenu)
+    .expect(textExists("Über die CovMap"))
+    .ok();
+  // the hamburger menu will not be made invisible when the panel is visible, so the assertion do not works.
+  // .expect(openHamburgerMenu.visible).notOk();
 
-    const websiteText = Selector("html").textContent;
-    // open menu panel
-    var openHamburgerMenu = Selector('button').withAttribute("aria-label", "Main Menu").withAttribute("aria-controls","menu-appbar")
-    var closeHamburgerMenu = Selector('button').withAttribute("aria-label", "Close Main Menu").withAttribute("aria-controls","menu-appbar")
+  await t.takeScreenshot();
 
-    // console.log("websiteText "+ (await closeHamburgerMenu.textContent)+" "+(await closeHamburgerMenu.visible));
-    
-    // open panel and check if close button is visible, hamburger menu should be invisible
-    await t.expect(closeHamburgerMenu.visible).notOk()
-           .takeScreenshot()
-           .click(openHamburgerMenu)
-           .expect(websiteText).contains("Über die CovMap");
-           // the hamburger menu will not be made invisible when the panel is visible, so the assertion do not works.
-           // .expect(openHamburgerMenu.visible).notOk();
+  // console.log("websiteText "+ (await closeHamburgerMenu.textContent)+" "+(await closeHamburgerMenu.visible));
 
-    await t.takeScreenshot();
+  // close menu panel and check if hamburger menu is visible
+  await t.click(closeHamburgerMenu).expect(closeHamburgerMenu.visible).notOk().expect(openHamburgerMenu.visible).ok();
 
-    // console.log("websiteText "+ (await closeHamburgerMenu.textContent)+" "+(await closeHamburgerMenu.visible));
-
-    // close menu panel and check if hamburger menu is visible
-    await t.click(closeHamburgerMenu)
-           .expect(closeHamburgerMenu.visible).notOk()
-           .expect(openHamburgerMenu.visible).ok();
-
-    await t.takeScreenshot();
+  await t.takeScreenshot();
 });
