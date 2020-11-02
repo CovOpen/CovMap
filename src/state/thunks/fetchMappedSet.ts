@@ -26,12 +26,14 @@ const fetchAndTransform = async (
     res = await fetch(dataUrl as string, {
       mode: "no-cors",
     });
+    console.log('success', res)
   } catch(err) {
-    if (res.status === 404) {
-      return undefined;
-    }
-
+    console.log('err', err, res)
     return null;
+  }
+
+  if (res.status === 404) {
+    return undefined;
   }
 
   if (res.status === 200) {
