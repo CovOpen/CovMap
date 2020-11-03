@@ -294,7 +294,7 @@ export const CovMap = () => {
       <Legend />
       <Dialog
         aria-labelledby="simple-dialog-title"
-        open={!datasetFound || true}
+        open={!datasetFound}
         style={{
           zIndex: 1190,
           touchAction: "none",
