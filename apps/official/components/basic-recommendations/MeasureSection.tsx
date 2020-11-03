@@ -5,9 +5,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 
 const useStyles = makeStyles({
-  accordion: {
-    background: "#B0C4DE", //"#2F4F4F"
-  },
+    accordionDetails: {
+        borderTop: "1px solid rgba(0, 0, 0, .125)",        
+        },
   summaryCard: {
     width: "100%",
     borderRadius: "12px",
@@ -66,8 +66,7 @@ export const MeasureSection: React.FC<MeasureSectionProps> = ({
     return (
         <Accordion             
             expanded={expanded} 
-            onChange={toggleExpansion()}
-            className={classes.accordion}
+            onChange={toggleExpansion()}            
             style={colorStyle}>
                 <AccordionSummary>                            
                     <Grid container direction="row" alignItems="center">
@@ -84,7 +83,7 @@ export const MeasureSection: React.FC<MeasureSectionProps> = ({
                         </Grid>
                     </Grid>
                 </AccordionSummary>
-                <AccordionDetails>                                    
+                <AccordionDetails className={classes.accordionDetails}>                                    
                     <Typography variant="body1" align="justify">
                         {description}
                     </Typography>
