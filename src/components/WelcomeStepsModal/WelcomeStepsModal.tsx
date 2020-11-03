@@ -65,9 +65,10 @@ export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
 
   return (
     <div>
-      <Dialog open={userPostalCode === null} fullScreen={fullScreen} onClose={onClose}>
+      <Dialog style={{ overflow: "hidden" }} open={userPostalCode === null} fullScreen={fullScreen} onClose={onClose}>
         <div
           style={{
+            overflow: "auto",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",

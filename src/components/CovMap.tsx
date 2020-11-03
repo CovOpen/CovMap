@@ -300,6 +300,7 @@ export const CovMap = () => {
           touchAction: "none",
           position: "absolute",
         }}
+        disableEnforceFocus
         container={() => document.getElementById("mapParentDiv")}
         BackdropProps={{ style: { position: "absolute" } }}
       >
