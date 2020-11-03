@@ -8,6 +8,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { switchViewToPlace } from "src/state/thunks/handleSearchQuery";
 import { Link, useHistory } from "react-router-dom";
 import { WelcomeModalStep } from "./welcomeStepsConfig";
+import { useSelector } from "react-redux";
+import { State } from "src/state";
 
 function isValidPostalCode(text: string) {
   return /^[0-9]{5}$/.test(text);
@@ -33,10 +35,10 @@ export const WelcomeModalPostalCode: React.FC = () => {
   const classes = { ...useCommonWelcomeModalStyles(), ...useStyles() };
   const dispatch = useThunkDispatch();
   const history = useHistory();
-  const [postCode, setPostCode] = useState("");
+  const postCode = useSelector((state: State) => state.app.intro.postCode);
+  const checked = useSelector((state: State) => state.app.intro.isPrivacyChecked);
   const [validatePostalCode, setValidatePostalCode] = useState(false);
   const [validateCheckbox, setValidateCheckbox] = useState(false);
-  const [checked, setChecked] = useState(false);
 
   function onSkip() {
     setValidateCheckbox(true);
@@ -64,7 +66,7 @@ export const WelcomeModalPostalCode: React.FC = () => {
   }
 
   function handleCheckedChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setChecked(event.target.checked);
+    dispatch(AppApi.setIntroValues({ isPrivacyChecked: event.target.checked }));
   }
 
   const isCheckboxError = validateCheckbox && !checked;
@@ -83,15 +85,16 @@ export const WelcomeModalPostalCode: React.FC = () => {
         helperText={isPostCodeError ? "Bitte valide PLZ eingeben" : null}
         variant="outlined"
         type="number"
+        value={postCode}
         onChange={(event) => {
-          setPostCode(event.target.value);
+          dispatch(AppApi.setIntroValues({ postCode: event.target.value }));
         }}
         onKeyPress={onKeyPress}
         style={{ margin: "50px 0 30px 0", width: "180px", height: "80px" }}
       />
 
       <div style={{ display: "flex", flexDirection: "row", alignItems: "center", marginBottom: "10px" }}>
-        <Checkbox value={checked} onChange={handleCheckedChange} />
+        <Checkbox value={checked} checked={checked} onChange={handleCheckedChange} />
         <Typography className={classes.smallText} style={isCheckboxError ? { color: "red" } : {}}>
           Ja, ich habe die <Link to={WelcomeModalStep.StepPostalCodeDataPrivacy}>Datenschutzerklärung</Link> zur
           Kenntnis genommen und willige ein.

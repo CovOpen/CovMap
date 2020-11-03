@@ -62,6 +62,11 @@ export type FeaturePropId = {
 
 export type MapSetHolder = Record<VisualId, Record<string, MapSet>>;
 
+export type Intro = {
+  postCode: string;
+  isPrivacyChecked: boolean;
+};
+
 export interface AppState {
   viewport: Viewport;
   currentPosition: Array<number> | null;
@@ -87,6 +92,7 @@ export interface AppState {
   currentLayerGroup: LayerGroup;
   infoDialogs: Record<string, boolean>;
   userPostalCode: number | null;
+  intro: Intro;
 }
 
 export const defaultAppState: AppState = {
@@ -122,6 +128,10 @@ export const defaultAppState: AppState = {
   currentLayerGroup: defaultLayerGroup,
   infoDialogs: {},
   userPostalCode: null,
+  intro: {
+    postCode: "",
+    isPrivacyChecked: false,
+  },
 };
 
 class AppReducer extends Reducer<AppState> {
@@ -227,6 +237,9 @@ class AppReducer extends Reducer<AppState> {
   }
   public setUserPostalCode(postalCode: number) {
     this.state.userPostalCode = postalCode;
+  }
+  public setIntroValues(values: Partial<Intro>) {
+    this.state.intro = { ...this.state.intro, ...values };
   }
 }
 
