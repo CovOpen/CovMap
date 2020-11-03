@@ -16,11 +16,23 @@ const fetchAndTransform = async (
   transform?: Function,
 ) => {
   let dataUrl = url;
+  let res;
+
   if (typeof dataUrl === "function") {
     dataUrl = dataUrl(formattedDate, date);
   }
 
-  const res = await fetch(dataUrl as string);
+  try {
+    res = await fetch(dataUrl as string, {
+      mode: "no-cors",
+    });
+  } catch (err) {
+    return null;
+  }
+
+  if (res.status === 404) {
+    return undefined;
+  }
 
   if (res.status === 200) {
     let json = await res.json();
@@ -30,10 +42,6 @@ const fetchAndTransform = async (
     }
 
     return json;
-  }
-
-  if (res.status === 404) {
-    return undefined;
   }
 
   return null;

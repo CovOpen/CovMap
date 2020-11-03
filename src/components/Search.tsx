@@ -104,9 +104,10 @@ export const Search = ({ className = "" }: { className?: string }) => {
     id: "autocomplete",
     options: possibilities.results.map((result) => result.name),
     getOptionLabel: (option) => option,
-    onChange: (evt, value) => {
+    onChange: (event, value) => {
       dispatch(switchViewToPlace(value));
     },
+    blurOnSelect: true,
   });
 
   const handleSearch = (event) => {
