@@ -5,9 +5,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 
 const useStyles = makeStyles({
-    accordionDetails: {
-        borderTop: "1px solid rgba(0, 0, 0, .125)",        
-        },
+  accordionDetails: {
+    borderTop: "1px solid rgba(0, 0, 0, .125)",
+  },
   summaryCard: {
     width: "100%",
     borderRadius: "12px",
@@ -63,32 +63,28 @@ export const MeasureSection: React.FC<MeasureSectionProps> = ({
     navIndicator = <ExpandMoreIcon />;
   }
 
-    return (
-        <Accordion             
-            expanded={expanded} 
-            onChange={toggleExpansion()}            
-            style={colorStyle}>
-                <AccordionSummary>                            
-                    <Grid container direction="row" alignItems="center">                        
-                        <Grid item xs={7}>
-                            <Typography variant="h3" align="left">
-                                {title}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={3}>
-                            {icon()}
-                        </Grid>
-                        <Grid item xs={2}>
-                            {navIndicator}
-                        </Grid>
-                    </Grid>
-                </AccordionSummary>
-                <AccordionDetails className={classes.accordionDetails}>                                    
-                    <Typography variant="body1" align="justify">
-                        {description}
-                    </Typography>
-                </AccordionDetails>
-        </Accordion>
-    );
+  return (
+    <Accordion expanded={expanded} onChange={toggleExpansion()} style={colorStyle}>
+      <AccordionSummary>
+        <Grid container direction="row" alignItems="center">
+          <Grid item xs={7}>
+            <Typography variant="h3" align="left">
+              {title}
+            </Typography>
+          </Grid>
+          <Grid item xs={3}>
+            {icon()}
+          </Grid>
+          <Grid item xs={2}>
+            {navIndicator}
+          </Grid>
+        </Grid>
+      </AccordionSummary>
+      <AccordionDetails className={classes.accordionDetails}>
+        <Typography variant="body1" align="justify">
+          {description}
+        </Typography>
+      </AccordionDetails>
+    </Accordion>
+  );
 };
-

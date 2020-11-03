@@ -47,7 +47,7 @@ const HYGIENE_TEXT =
   "Hygienemaßnahmen können Infektionen verringern. Das Verwenden von Desinfektionsmitteln und das Händewaschen können dazu beitragen, Infektionen zu verhindern, wenn Du Dinge angefasst hast, die potentiell mit dem Virus kontaminiert sind.";
 // <-- FOR TRANSLATION
 
-const DEFAULT_COLOR = "#DCDCDC" // Azure
+const DEFAULT_COLOR = "#DCDCDC"; // Azure
 const CONTACT_COLOR = "#cc66ff";
 const DISTANCE_COLOR = "#ff9966";
 const MASK_COLOR = "#33ccff";
@@ -82,13 +82,15 @@ const DistanceSection: React.FC<{}> = () => (
   />
 );
 
-const MaskSection: React.FC<{}> = () => <MeasureSection
+const MaskSection: React.FC<{}> = () => (
+  <MeasureSection
     title={MASK_HEADLINE}
     description={MASK_TEXT}
     backgroundColor={DEFAULT_COLOR}
     frontColor={BLACK}
     icon={MaskIcon}
-/>;
+  />
+);
 
 const HygieneSection: React.FC<{}> = () => (
   <MeasureSection
@@ -139,70 +141,62 @@ export const WhatCanIDoPage: React.FC<{}> = () => {
   const location = useLocation();
   const districtData = loadDistrictData(location);
 
-    return (
-        <>
-        <main className="sections">
-            <section>
-                <NavigationTitle title={TITLE} backToExpandedFeatureInfo={true} />
-            </section>
-            <section>
-                <Typography variant="h3" className={classes.subHeader}>
-                    {TEASER_1}
-                </Typography>
-            </section>
-            <section>
-                <Typography variant="h2">
-                    {SUBTITLE_MEASURES}
-                </Typography>                
-            </section>
-            <section>                
-                <Grid container direction="column" spacing={2}>                    
-                    <Grid item xs={12}>
-                        <ContactSection/>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <DistanceSection/>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <MaskSection/>
-                    </Grid>
-                    <Grid item >
-                        <HygieneSection/>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <VentilationSection/>
-                    </Grid>
-                </Grid>
-            </section>
-            <section>
-                <Grid container direction="column">                    
-                    <Grid item>
-                        <Typography variant="h2">
-                            { SUBTITLE_FINALTEASER }
-                        </Typography>
-                    </Grid>
-                    <Grid item>
-                        <Typography variant="body1">
-                            { TEASER_2 }
-                        </Typography>
-                    </Grid>
-                    <Grid item>
-                        <Typography variant="body1">
-                            { TEASER_3 }
-                        </Typography>
-                    </Grid>
-                </Grid>
-            </section>
-            <section>
-                {districtData !== undefined ? (
-                    <CountyTeaser county={districtData.county} url={districtData.howToBehaveUrl} />
-                ) : (
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                    <CircularProgress />
-                    </div>
-                )}
-            </section>
-        </main>
-        </>
-    )
+  return (
+    <>
+      <main className="sections">
+        <section>
+          <NavigationTitle title={TITLE} backToExpandedFeatureInfo={true} />
+        </section>
+        <section>
+          <Typography variant="h3" className={classes.subHeader}>
+            {TEASER_1}
+          </Typography>
+        </section>
+        <section>
+          <Typography variant="h2">{SUBTITLE_MEASURES}</Typography>
+        </section>
+        <section>
+          <Grid container direction="column" spacing={2}>
+            <Grid item xs={12}>
+              <ContactSection />
+            </Grid>
+            <Grid item xs={12}>
+              <DistanceSection />
+            </Grid>
+            <Grid item xs={12}>
+              <MaskSection />
+            </Grid>
+            <Grid item>
+              <HygieneSection />
+            </Grid>
+            <Grid item xs={12}>
+              <VentilationSection />
+            </Grid>
+          </Grid>
+        </section>
+        <section>
+          <Grid container direction="column">
+            <Grid item>
+              <Typography variant="h2">{SUBTITLE_FINALTEASER}</Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="body1">{TEASER_2}</Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="body1">{TEASER_3}</Typography>
+            </Grid>
+          </Grid>
+        </section>
+        <section>
+          {districtData !== undefined ? (
+            <CountyTeaser county={districtData.county} url={districtData.howToBehaveUrl} />
+          ) : (
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <CircularProgress />
+            </div>
+          )}
+        </section>
+      </main>
+    </>
+  );
 };
