@@ -294,12 +294,13 @@ export const CovMap = () => {
       <Legend />
       <Dialog
         aria-labelledby="simple-dialog-title"
-        open={!datasetFound}
+        open={!datasetFound || true}
         style={{
           zIndex: 1190,
           touchAction: "none",
           position: "absolute",
         }}
+        disableEnforceFocus
         container={() => document.getElementById("mapParentDiv")}
         BackdropProps={{ style: { position: "absolute" } }}
       >
