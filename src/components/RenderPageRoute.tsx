@@ -26,17 +26,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const RenderPageRoute = ({ page }: { page: AppPage }) => {
+export const RenderPageRoute = ({ page: { id, route, Component } }: { page: AppPage }) => {
   const classes = useStyles();
+
+  if (Component === undefined) {
+    return null;
+  }
 
   return (
     <Route
-      path={page.route}
-      key={page.id}
+      path={route}
+      key={id}
       component={() => (
         <div className={classes.outerPageDiv}>
           <div className={classes.innerPageDiv}>
-            <page.Component />
+            <Component />
           </div>
         </div>
       )}
