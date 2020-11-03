@@ -69,14 +69,14 @@ export const MeasureSection: React.FC<MeasureSectionProps> = ({
             onChange={toggleExpansion()}            
             style={colorStyle}>
                 <AccordionSummary>                            
-                    <Grid container direction="row" alignItems="center">
-                        <Grid item xs={3}>
-                            {icon()}
-                        </Grid>
+                    <Grid container direction="row" alignItems="center">                        
                         <Grid item xs={7}>
                             <Typography variant="h3" align="left">
                                 {title}
                             </Typography>
+                        </Grid>
+                        <Grid item xs={3}>
+                            {icon()}
                         </Grid>
                         <Grid item xs={2}>
                             {navIndicator}

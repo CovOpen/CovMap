@@ -47,6 +47,7 @@ const HYGIENE_TEXT =
   "Hygienemaßnahmen können Infektionen verringern. Das Verwenden von Desinfektionsmitteln und das Händewaschen können dazu beitragen, Infektionen zu verhindern, wenn Du Dinge angefasst hast, die potentiell mit dem Virus kontaminiert sind.";
 // <-- FOR TRANSLATION
 
+const DEFAULT_COLOR = "#DCDCDC" // Azure
 const CONTACT_COLOR = "#cc66ff";
 const DISTANCE_COLOR = "#ff9966";
 const MASK_COLOR = "#33ccff";
@@ -65,7 +66,8 @@ const ContactSection: React.FC<{}> = () => (
   <MeasureSection
     title={CONTACT_HEADLINE}
     description={CONTACT_TEXT}
-    backgroundColor={CONTACT_COLOR}
+    backgroundColor={DEFAULT_COLOR}
+    frontColor={BLACK}
     icon={NoContactsIcon}
   />
 );
@@ -74,7 +76,8 @@ const DistanceSection: React.FC<{}> = () => (
   <MeasureSection
     title={DISTANCE_HEADLINE}
     description={DISTANCE_TEXT}
-    backgroundColor={DISTANCE_COLOR}
+    backgroundColor={DEFAULT_COLOR}
+    frontColor={BLACK}
     icon={DistanceIcon}
   />
 );
@@ -82,7 +85,7 @@ const DistanceSection: React.FC<{}> = () => (
 const MaskSection: React.FC<{}> = () => <MeasureSection
     title={MASK_HEADLINE}
     description={MASK_TEXT}
-    backgroundColor={MASK_COLOR}
+    backgroundColor={DEFAULT_COLOR}
     frontColor={BLACK}
     icon={MaskIcon}
 />;
@@ -91,7 +94,8 @@ const HygieneSection: React.FC<{}> = () => (
   <MeasureSection
     title={HYGIENE_HEADLINE}
     description={HYGIENE_TEXT}
-    backgroundColor={HYGIENE_COLOR}    
+    backgroundColor={DEFAULT_COLOR}
+    frontColor={BLACK}
     icon={HygieneIcon}
   />
 );
@@ -100,7 +104,7 @@ const VentilationSection: React.FC<{}> = () => (
   <MeasureSection
     title={VENTILATION_HEADLINE}
     description={VENTILATION_TEXT}
-    backgroundColor={VENTILATION_COLOR}
+    backgroundColor={DEFAULT_COLOR}
     frontColor={BLACK}
     icon={VentilationIcon}
   />
