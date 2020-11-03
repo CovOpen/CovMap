@@ -1,6 +1,6 @@
 import { t } from "testcafe";
 
-import { textExists } from "../elements/muiTypography";
+import { textExists } from "../elements/textElement";
 import { buttonWithText } from "../elements/muiButton";
 
 export async function finishIntroScreens() {

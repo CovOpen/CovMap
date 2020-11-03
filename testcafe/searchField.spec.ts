@@ -7,7 +7,7 @@ import {
   searchField,
   shrinkInfoBoxIcon,
 } from "./pages/MainMap";
-import { textExists } from "./elements/muiTypography";
+import { textExists } from "./elements/textElement";
 
 fixture`Search field test`.page`${Config.baseUrl}`
   .beforeEach(async () => {
