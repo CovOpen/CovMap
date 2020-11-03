@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Accordion, AccordionSummary, AccordionDetails, Card, CardContent, Grid, Typography } from "@material-ui/core";
+import { Accordion, AccordionSummary, AccordionDetails, Grid, Typography } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 
