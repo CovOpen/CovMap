@@ -1,15 +1,18 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
+import { useSelector } from "react-redux";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
-import { StepConfig, welcomeStepsConfig } from "./welcomeStepsConfig";
+import { State } from "../../state";
+import { reopenWelcomeStepsConfig, StepConfig, welcomeStepsConfig } from "./welcomeStepsConfig";
 import { MobileDotsStepper } from "./MobileDotsStepper";
 import { useCommonWelcomeModalStyles } from "./useCommonWelcomeModalStyles";
 
-function getStepConfig(stepName?: string): StepConfig | undefined {
-  return welcomeStepsConfig.find(({ name }) => name === stepName);
+function getStepConfig(userPostalCode: number | null, stepName?: string): StepConfig | undefined {
+  const config = userPostalCode === null ? welcomeStepsConfig : reopenWelcomeStepsConfig;
+  return config.find(({ name }) => name === stepName);
 }
 
 export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
@@ -18,7 +21,9 @@ export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const history = useHistory();
 
-  const currentStepConfig = getStepConfig(props.subPage);
+  const userPostalCode = useSelector((state: State) => state.app.userPostalCode);
+
+  const currentStepConfig = getStepConfig(userPostalCode, props.subPage);
 
   if (currentStepConfig === undefined) {
     return null;
@@ -54,8 +59,8 @@ export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
     ) : null;
 
   const onClose = () => {
-    if (currentStepConfig.closeable) {
-      history.goBack();
+    if (currentStepConfig.close !== undefined) {
+      history.push(currentStepConfig.close);
     }
   };
 
