@@ -26,7 +26,7 @@ const fetchAndTransform = async (
     res = await fetch(dataUrl as string, {
       mode: "no-cors",
     });
-  } catch(err) {
+  } catch (err) {
     return null;
   }
 
