@@ -59,7 +59,7 @@ export const Privacy = () => {
         <section>
           <Typography variant="h2">3. Personenbezogene Daten, Art. 4 Nr. 1 DS-GVO</Typography>
           <Typography variant="body1">
-            Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder identifizier-bare
+            Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder identifizierbare
             natürliche Person beziehen. Als identifizierbar wird eine natürliche Person angesehen, die direkt oder
             indirekt identifiziert werden kann - insbesondere mittels Zuordnung zu einer Kennung wie einem Namen, zu
             einer Kennnummer, zu Standortdaten oder zu einer Online-Kennung (IP-Adresse).
@@ -135,7 +135,7 @@ export const Privacy = () => {
             <br />
             c. Eingabe der Postleitzahl
             <br />
-            Bei Aufruf der App besteht die Möglichkeit, dass Sie die Postleitzahl Ihrer Heimatadresse einge-ben. Sofern
+            Bei Aufruf der App besteht die Möglichkeit, dass Sie die Postleitzahl Ihrer Heimatadresse eingeben. Sofern
             Sie Ihre Postleitzahl eingeben, wird Ihnen bei der anschließenden Darstellung der Deutschlandkarte auf den
             ersten Blick der Bereich Ihrer Heimatadresse und der unmittelbaren Umgebung angezeigt. Geben Sie keine
             Postleitzahl ein, können Sie den Fokus auf den Sie interessierenden Kartenabschnitt selbstständig manuell
@@ -150,7 +150,7 @@ export const Privacy = () => {
         <section>
           <Typography variant="h2">6. Empfänger von personenbezogenen Daten</Typography>
           <Typography variant="body1">
-            Die Verarbeitung der IP-Adresse der Nutzerinnen und Nutzer der CovMap erfolgt mit den entspre-chend
+            Die Verarbeitung der IP-Adresse der Nutzerinnen und Nutzer der CovMap erfolgt mit den entsprechend
             vereinbarten Sicherheitsanforderungen im Rahmen einer Auftragsverarbeitung nach Art. 28 Abs. 3 DS-GVO durch
             den Technologiedienstleister proinity LLC, Rümikerstrasse 60, 8409 Winterthur, Schweiz ("KeyCDN").
             Verantwortlich für die Datenverarbeitung bleiben wir.

@@ -12,7 +12,6 @@ import ContactBehavior from "./components/pages/ContactBehavior";
 import SymptomLevel from "./components/pages/SymptomLevel";
 import { BasicRecommendations } from "./components/basic-recommendations/BasicRecommendations";
 import { CovMapFeatureInfo } from "./components/CovMapFeatureInfo";
-import { RiskLevelsPage } from "./components/risk-levels-page/RiskLevelsPage";
 // TODO: Integrate CovQuestions
 // import { Questions } from './components/pages/Questions'
 
@@ -32,7 +31,6 @@ const CovMapSearch: DefaultSearchOptions | CustomSearchOptions = {
       id: "riskscore-to-district-area",
       properties: ["name", "zip_codes"],
       getCoordinates: (feature) => {
-        //return feature.properties.geo_point_2d TODO
         return [];
       },
     },
@@ -45,6 +43,7 @@ export const config: AppConfig = {
   ui: {
     Logo: AnimatedLogo,
   },
+  dateOffset: -5, // hours
   showSettings: false,
   showTimeNavigation: false,
   content: {
@@ -97,13 +96,6 @@ export const config: AppConfig = {
         route: "/recommendations",
         Component: BasicRecommendations,
         hidden: true, // dont show this page in the navbar
-      },
-      {
-        id: "risk-levels-page",
-        title: "Risikostufen",
-        route: "/risk-levels",
-        Component: RiskLevelsPage,
-        hidden: true,
       },
       {
         id: "rki-page",

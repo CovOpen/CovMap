@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -6,7 +6,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ShareIcon from "@material-ui/icons/Share";
 import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppApi } from "src/state/app";
 import { useThunkDispatch } from "src/useThunkDispatch";
@@ -17,51 +17,54 @@ import * as clipboard from "clipboard-polyfill";
 import { useTranslation } from "react-i18next";
 
 import { config } from "app-config/index";
-import { Drawer, useMediaQuery } from "@material-ui/core";
+import { Drawer, useMediaQuery, Typography } from "@material-ui/core";
 import { CloseRounded } from "@material-ui/icons";
 import { VERSION, HASH_LONG, HASH_SHORT } from "src/version";
 import FixedSearch from "./FixedSearch";
-import { useParams } from "react-router-dom";
 import { welcomeStepsConfig } from "./WelcomeStepsModal/welcomeStepsConfig";
+import GithubIcon from "src/../static/images/social-github.svg";
+import TwitterIcon from "src/../static/images/social-twitter.svg";
+// import InstagramIcon from "src/../static/images/social-instagram.svg";
+// import FacebookIcon from "src/../static/images/social-facebook.svg";
+import { usePathPreservingQueryChange } from "app-config/components/customHistoryHooks";
 
 const Logo = config.ui?.Logo;
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    position: "sticky",
+    position: "fixed",
     [theme.breakpoints.down("xs")]: {
       // on mobile devices
       backgroundColor: "transparent",
-      pointerEvents: "none",
       boxShadow: "none",
-      position: "fixed",
+      pointerEvents: "none",
     },
   },
   title: {
     flexShrink: 1,
   },
   menuItem: {
-    touchAction: "none",
     paddingLeft: theme.spacing(4),
     paddingRight: theme.spacing(1),
   },
   menuIcon: {
     // share icon
     padding: 0,
-
     margin: theme.spacing(0, 1),
   },
-  menu: {
-    touchAction: "none",
-  },
+
   menuContent: {
-    marginBottom: theme.spacing(4),
-    marginTop: "auto",
+    paddingBottom: theme.spacing(4),
+  },
+  drawerScrollContainer: {
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+    overflow: "auto",
   },
   logo: {
     height: "32px",
     width: "auto",
-    marginTop: "9px",
   },
   version: {
     fontSize: "12px",
@@ -70,20 +73,29 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 0,
   },
   drawer: {
-    touchAction: "none",
     pointerEvents: "auto",
+    height: "100%",
   },
   drawerPaper: {
+    height: "100%",
     width: "20rem",
     maxWidth: "70vw",
     display: "flex",
+    overflow: "hidden",
   },
+
   fullHeightToolbar: {
     minHeight: "64px",
   },
-
+  socialIcons: {
+    margin: "0 auto",
+    marginTop: "auto",
+  },
   drawerIcon: {
-    margin: theme.spacing(4, "auto"),
+    "margin": theme.spacing(4, "auto"),
+    "& > svg": {
+      height: "50px",
+    },
   },
 }));
 
@@ -91,26 +103,37 @@ export const NavBar = () => {
   const isMobile = useMediaQuery("(max-width:600px)"); // some wierd bug makes every logo disappear when one logo has a display: none style
   const dispatch = useThunkDispatch();
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
   const { t } = useTranslation(["translation", "common"]);
   const urlParams = useParams<{ subPage?: string }>();
+  const location = useLocation();
+  const history = useHistory();
+  const pushQueryChange = usePathPreservingQueryChange();
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+  const isMenuOpen: boolean = new URLSearchParams(location.search).has("isMenuOpen");
+
+  const handleOpenMenu = () => {
+    pushQueryChange({ isMenuOpen: "true" });
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleCloseMenu = () => {
+    if (history.length > 1) {
+      history.goBack();
+    } else {
+      pushQueryChange({ isMenuOpen: undefined });
+    }
+  };
+
+  const handlePageEntryClick = (link: string) => {
+    history.replace(link);
   };
 
   const handleInstall = () => {
-    handleClose();
+    handleCloseMenu();
     dispatch(triggerInstallPrompt());
   };
 
   const handleShare = async () => {
-    handleClose();
+    handleCloseMenu();
     try {
       await (window.navigator as any).share({
         title: "CovMap",
@@ -122,7 +145,7 @@ export const NavBar = () => {
     }
   };
 
-  const MenuEntries = (props) => {
+  const MenuEntries: React.FC = () => {
     if (!config.content?.pages) {
       return null;
     }
@@ -137,11 +160,9 @@ export const NavBar = () => {
           return (
             <div key={page.id}>
               {page.menuDivider ? <Divider /> : null}
-              <Link style={{ textDecoration: "none" }} to={page.route}>
-                <MenuItem className={classes.menuItem} onClick={props.handleClose}>
-                  {typeof page.title === "function" ? page.title(t) : page.title}
-                </MenuItem>
-              </Link>
+              <MenuItem className={classes.menuItem} onClick={() => handlePageEntryClick(page.route)}>
+                {typeof page.title === "function" ? page.title(t) : page.title}
+              </MenuItem>
             </div>
           );
         })}
@@ -152,12 +173,10 @@ export const NavBar = () => {
   const NavMenuContent = () => {
     return (
       <div className={classes.menuContent}>
-        <Link key="map" style={{ textDecoration: "none" }} to="/">
-          <MenuItem className={classes.menuItem} onClick={handleClose}>
-            {t("common:pages.map")}
-          </MenuItem>
-        </Link>
-        <MenuEntries handleClose={handleClose} />
+        <MenuItem className={classes.menuItem} onClick={() => handlePageEntryClick("/")}>
+          {t("common:pages.map")}
+        </MenuItem>
+        <MenuEntries />
         {useSelector((state: State) => state.app.installPrompt) && (
           <div>
             <Divider />
@@ -180,17 +199,17 @@ export const NavBar = () => {
   return (
     <AppBar classes={{ root: classes.appBar }} style={{ height: 64, flex: "0 0 auto" }}>
       <Toolbar className={classes.fullHeightToolbar}>
-        <Link to="/">
+        <Link to="/" style={{ pointerEvents: "auto" }}>
           {!isMobile && ((Logo && <Logo />) || <img src={config.buildJSON.logoSrc} className={classes.logo} />)}
         </Link>
         {showSearch && <FixedSearch />}
-        <MenuIconButton handleMenu={handleMenu} />
+        <MenuIconButton handleMenu={handleOpenMenu} />
         <Drawer
-          open={open}
+          open={isMenuOpen}
           anchor="right"
           id="menu-appbar"
           keepMounted
-          onClose={handleClose}
+          onClose={handleCloseMenu}
           className={classes.drawer}
           classes={{
             paper: classes.drawerPaper,
@@ -199,19 +218,39 @@ export const NavBar = () => {
           <Toolbar className={classes.fullHeightToolbar}>
             {" "}
             {/* only here for the gutter feel free create your own gutter styles and remove this */}
-            <MenuCloseButton handleClose={handleClose} />
+            <MenuCloseButton handleClose={handleCloseMenu} />
           </Toolbar>
-          <NavMenuContent />
-          {(Logo && (
-            <div className={classes.drawerIcon}>
-              <Logo />
+          <div className={classes.drawerScrollContainer}>
+            <NavMenuContent />
+            <div className={classes.socialIcons}>
+              <IconButton size="small" href="https://github.com/CovOpen/CovMapper" target="_blank" rel="noopener">
+                <GithubIcon />
+              </IconButton>
+              <IconButton size="small" href="https://twitter.com/CovMap" target="_blank" rel="noopener">
+                <TwitterIcon />
+              </IconButton>
+              {/* <IconButton size="small" href="https://www.instagram.com/covmap/" target="_blank" rel="noopener">
+                <InstagramIcon />
+              </IconButton>
+              <IconButton size="small" href="https://www.facebook.com/covmap" target="_blank" rel="noopener">
+                <FacebookIcon />
+              </IconButton> */}
             </div>
-          )) || <img src={config.buildJSON.logoSrc} className={classes.logo} />}
-          <div className={classes.version}>
-            {"v" + VERSION} -{" "}
-            <a href={"https://github.com/CovOpen/CovMapper/commit/" + HASH_LONG} target="_blank" rel="noreferrer">
-              {HASH_SHORT}
-            </a>
+            {(Logo && (
+              <div className={classes.drawerIcon}>
+                <Logo />
+              </div>
+            )) || <img src={config.buildJSON.logoSrc} className={classes.logo} />}
+            <Typography className={classes.version}>
+              {"v" + VERSION} -{" "}
+              <a
+                href={"https://github.com/CovOpen/CovMapper/commit/" + HASH_LONG}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {HASH_SHORT}
+              </a>
+            </Typography>
           </div>
         </Drawer>
       </Toolbar>

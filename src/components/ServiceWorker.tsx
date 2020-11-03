@@ -6,14 +6,18 @@ export type ServiceWorkerProps = {
   prefix?: string;
 };
 
+let client;
+
 export const ServiceWorker = ({ swPath = "/sw.js", prefix = "react-plugin-clerk" }: ServiceWorkerProps) => {
   useEffect(() => {
-    const client = createClient({
-      swPath,
-      prefix,
-    });
-    client.on("waiting", (updateNow) => updateNow());
-    client.registerServiceWorker();
+    if (!client) {
+      client = createClient({
+        swPath,
+        prefix,
+      });
+      client.on("waiting", (updateNow) => updateNow());
+      client.registerServiceWorker();
+    }
   }, []);
   return null;
 };

@@ -1,6 +1,7 @@
 import { Reducer } from "./reduxHelper";
 import { GeoJSON } from "geojson";
 import { Mappable, LayerGroup } from "../app-config.types";
+import moment, { Moment } from "moment";
 
 import { config } from "app-config/index";
 
@@ -61,6 +62,11 @@ export type FeaturePropId = {
 
 export type MapSetHolder = Record<VisualId, Record<string, MapSet>>;
 
+export type Intro = {
+  postCode: string;
+  isPrivacyChecked: boolean;
+};
+
 export interface AppState {
   viewport: Viewport;
   currentPosition: Array<number> | null;
@@ -70,7 +76,7 @@ export interface AppState {
   geos: Map<string, GeoJSON>;
   datasets: Map<string, MapData>;
   mappedSets: MapSetHolder;
-  currentDate: Date;
+  currentDate: Moment;
   currentMappable: Mappable;
   datasetFound: boolean;
   currentVisual: VisualId; // TODO: Rename to currentVisual (when moving to app-config driven build)
@@ -86,6 +92,7 @@ export interface AppState {
   currentLayerGroup: LayerGroup;
   infoDialogs: Record<string, boolean>;
   userPostalCode: number | null;
+  intro: Intro;
 }
 
 export const defaultAppState: AppState = {
@@ -101,7 +108,7 @@ export const defaultAppState: AppState = {
   geos: new Map<string, GeoJSON>(),
   datasets: new Map<string, MapData>(),
   mappedSets: {},
-  currentDate: new Date(),
+  currentDate: moment.utc(),
   currentMappable: defaultMappable,
   datasetFound: true,
   currentVisual: config.defaultVisual,
@@ -121,6 +128,10 @@ export const defaultAppState: AppState = {
   currentLayerGroup: defaultLayerGroup,
   infoDialogs: {},
   userPostalCode: null,
+  intro: {
+    postCode: "",
+    isPrivacyChecked: false,
+  },
 };
 
 class AppReducer extends Reducer<AppState> {
@@ -160,7 +171,7 @@ class AppReducer extends Reducer<AppState> {
       [mappingId]: data,
     };
   }
-  public setCurrentDate(date: Date) {
+  public setCurrentDate(date: Moment) {
     this.state.currentDate = date;
   }
   public setCurrentMappable(mappable: Mappable) {
@@ -226,6 +237,9 @@ class AppReducer extends Reducer<AppState> {
   }
   public setUserPostalCode(postalCode: number) {
     this.state.userPostalCode = postalCode;
+  }
+  public setIntroValues(values: Partial<Intro>) {
+    this.state.intro = { ...this.state.intro, ...values };
   }
 }
 

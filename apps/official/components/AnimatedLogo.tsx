@@ -7,9 +7,10 @@ import Logo from "../static/images/logo.svg";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
-    /* flexGrow: 1, */
-    height: "38px",
-    width: "auto",
+    "& > *": {
+      height: "38px",
+      width: "auto",
+    },
   },
   paused: {
     "& > *": {

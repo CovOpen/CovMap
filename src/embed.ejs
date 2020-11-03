@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= htmlWebpackPlugin.options.title %> - Embedded</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="icon" type="image/png" href="/images/icons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" sizes="16x16" />
+    <link rel="preload" href="/Dosis-SemiBold.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="/Dosis-Light.ttf" as="font" crossorigin="anonymous" />
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#E3E9F3">
+    <meta name="description" content="<%= htmlWebpackPlugin.options.description %>" />
+    <meta name="keywords" content="<%= htmlWebpackPlugin.options.keywords %>">
+    <meta property="og:type" content="embed">
+    <meta property="og:title" content="<%= htmlWebpackPlugin.options.title %>" />
+    <meta property="og:image" content="<%= htmlWebpackPlugin.options.url %>/images/icons/icon-192x192.png" />
+    <meta property="og:description" content="<%= htmlWebpackPlugin.options.description %>" />
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="CovMap">
+    <meta property="twitter:description" content="<%= htmlWebpackPlugin.options.description %>">
+    <meta property="twitter:image" content="<%= htmlWebpackPlugin.options.url %>/images/icons/icon-192x192.png">
+
+    <link rel="apple-touch-icon" sizes="192x192" href="/images/icons/icon-192x192.png">
+    <script>
+      setTimeout(() => {
+        const slowCaption = document.getElementById('slow-connection-caption')
+        if (slowCaption) {
+          slowCaption.style.opacity = 1;
+        }
+      }, 2500)
+    </script>
+    <style>
+      body {
+        margin: 0;
+      }
+
+      @font-face {
+        font-family: 'Dosis';
+        font-weight: 600;
+        src: url('/Dosis-SemiBold.ttf') format('truetype');
+      }
+
+      @font-face {
+        font-family: 'Dosis';
+        font-weight: 300;
+        src: url('/Dosis-Light.ttf') format('truetype');
+      }
+    </style>
+  </head>
+  <body>
+    <div id="embed">
+      <div style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; background-color: #E3E9F3;">
+        <img src="<%= htmlWebpackPlugin.options.variables.logoSrc %>" alt="<%= htmlWebpackPlugin.options.title %>" style="height: 5rem;">
+        <div id="slow-connection-caption" style="opacity: 0; margin-top: 1rem; font-family: Dosis, sans-serif; color: #002E62;">Lade Daten - das kann einen Moment dauern.</div>
+        <noscript style="display: flex;  justify-content: center; align-items: center; flex-direction: column;">
+          <div id="noscript-caption" style="font-family: Dosis, sans-serif; font-weight: 600; color: #FEAE00;">CovMap funktioniert nicht ohne Javascript.</div>
+        </noscript>
+      </div>
+    </div>
+  </body>
+</html>

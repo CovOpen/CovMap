@@ -1,6 +1,7 @@
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import React, { FunctionComponent } from "react";
 import { RiskScore } from "app-config/models";
+import { Typography } from "@material-ui/core";
 
 const boxColorsByRiskScore = (theme: Theme) => ({
   [RiskScore.Low]: theme.palette.lowRisk.main,
@@ -20,8 +21,6 @@ const useStyles = makeStyles<Theme, Props, string>((theme) => {
       borderRadius: "2px",
       height: "46px",
       width: "27px",
-      fontSize: "17px",
-      lineHeight: "20px",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -36,6 +35,10 @@ export interface Props {
 }
 
 export const RiskBadge: FunctionComponent<Props> = ({ riskScore }) => {
-  const { box, medium } = useStyles({ riskScore });
-  return <div className={`${box} ${medium}`}>{riskNumberByRiskScore[riskScore]}</div>;
+  const classes = useStyles({ riskScore });
+  return (
+    <div className={classes.box}>
+      <Typography variant="h3">{riskNumberByRiskScore[riskScore]}</Typography>
+    </div>
+  );
 };

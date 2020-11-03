@@ -26,27 +26,31 @@ export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
 
   const renderNextButton = () =>
     currentStepConfig.next ? (
-      <Button
-        className={`${classes.primaryButton} ${classes.largeText}`}
-        variant="contained"
-        color="primary"
-        component={Link}
-        to={currentStepConfig.next}
-      >
-        Weiter
-      </Button>
+      <div>
+        <Button
+          className={`${classes.primaryButton} ${classes.largeText}`}
+          variant="contained"
+          color="primary"
+          component={Link}
+          to={currentStepConfig.next}
+        >
+          Weiter
+        </Button>
+      </div>
     ) : null;
 
   const renderSkipButton = () =>
     currentStepConfig.skip ? (
-      <Button
-        className={`${classes.secondaryButton} ${classes.largeText}`}
-        variant="contained"
-        component={Link}
-        to={currentStepConfig.skip}
-      >
-        Überspringen
-      </Button>
+      <div>
+        <Button
+          className={`${classes.secondaryButton} ${classes.largeText}`}
+          variant="contained"
+          component={Link}
+          to={currentStepConfig.skip}
+        >
+          Überspringen
+        </Button>
+      </div>
     ) : null;
 
   const onClose = () => {
@@ -57,16 +61,19 @@ export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
 
   return (
     <div>
-      <Dialog open={true} fullScreen={fullScreen} onClose={onClose}>
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: "100%" }}>
-          <div style={{ alignItems: "center", display: "flex", flexDirection: "column" }}>
-            <currentStepConfig.Component />
-          </div>
-          <div style={{ alignItems: "center", display: "flex", flexDirection: "column" }}>
-            {renderNextButton()}
-            {renderSkipButton()}
-            <MobileDotsStepper currentStepConfig={currentStepConfig} />
-          </div>
+      <Dialog style={{ overflow: "hidden" }} open={true} fullScreen={fullScreen} onClose={onClose}>
+        <div
+          style={{
+            overflow: "auto",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <currentStepConfig.Component />
+          {renderNextButton()}
+          {renderSkipButton()}
+          <MobileDotsStepper currentStepConfig={currentStepConfig} />
         </div>
       </Dialog>
     </div>

@@ -8,6 +8,7 @@ import moment from "moment";
 import { useHistory, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FeatureCollection } from "geojson";
+import { useMediaQuery } from "@material-ui/core";
 
 import { State } from "../state";
 import { AppApi } from "../state/app";
@@ -75,6 +76,7 @@ export const CovMap = () => {
   const dispatch = useThunkDispatch();
   const urlParams = useParams<{ subPage?: string }>();
   const history = useHistory();
+  const isMobile = useMediaQuery("(max-width:600px)");
   // const position = useSelector((state: State) => state.app.currentPosition); // TODO
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const datasetFound = useSelector((state: State) => state.app.datasetFound);
@@ -129,6 +131,9 @@ export const CovMap = () => {
         map.on("idle", handleMapIdleOrRemoved);
         map.once("remove", handleMapIdleOrRemoved);
         config.imageIcons?.map(({ id, url, pixelRatio, sdf }) => {
+          if (map.hasImage(id)) {
+            return;
+          }
           map.loadImage(url, (err, data) => {
             if (err) {
               throw err;
@@ -264,7 +269,7 @@ export const CovMap = () => {
   };
 
   return (
-    <div className={classes.main}>
+    <div id="mapParentDiv" className={classes.main}>
       <div className={classes.currentInfo}>
         {/*<Typography variant="h2" color="primary">{visual.name}</Typography>*/}
         <Typography variant="h2" color="primary">
@@ -272,12 +277,12 @@ export const CovMap = () => {
         </Typography>
         <Typography variant="subtitle1" color="primary">
           {typeof visual.dateFormat === "function"
-            ? visual.dateFormat(t, { date: currentDate })
+            ? visual.dateFormat(t, { date: currentDate.toDate() })
             : moment(currentDate).format(visual.dateFormat)}
         </Typography>
       </div>
       {config.showSettings === false ? null : <Settings />}
-      <Zoom />
+      {!isMobile && <Zoom />}
       <TopLeftContainer>
         {visual.InfoComponent ? <WelcomeInfoButton /> : null}
         <OfflineIndicator />
@@ -293,7 +298,11 @@ export const CovMap = () => {
         style={{
           zIndex: 1190,
           touchAction: "none",
+          position: "absolute",
         }}
+        disableEnforceFocus
+        container={() => document.getElementById("mapParentDiv")}
+        BackdropProps={{ style: { position: "absolute" } }}
       >
         <DialogTitle
           id="simple-dialog-title"

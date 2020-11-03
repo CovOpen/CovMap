@@ -1,6 +1,7 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
 import { useCommonWelcomeModalStyles } from "./useCommonWelcomeModalStyles";
+import { FullWidthFixedAspectImage } from "./FullWidthFixedAspectImage";
 
 export const WelcomeModal3: React.FC = () => {
   const classes = useCommonWelcomeModalStyles();
@@ -9,9 +10,10 @@ export const WelcomeModal3: React.FC = () => {
     <>
       <Typography className={classes.title}>Was zeigt mir die CovMap an?</Typography>
 
-      <img src={"/images/WelcomeModalImage3.svg"} alt="Welcome" width="100%" />
-      <img src={"/images/WelcomeModalImage3_sub.svg"} alt="Welcome" />
-
+      <FullWidthFixedAspectImage aspect={62.1} src="/images/WelcomeModalImage3.svg" alt="Welcome" />
+      <div>
+        <img src={"/images/WelcomeModalImage3_sub.svg"} alt="Welcome" width="113px" height="46px" />
+      </div>
       <div className={classes.infoTextDiv}>
         <Typography className={classes.largeText}>
           Auf der Karte kannst du ganz einfach erkennen, wo sich momentane Risikogebiete in Deutschland und in Deiner

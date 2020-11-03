@@ -24,12 +24,23 @@
 
     <link rel="apple-touch-icon" sizes="192x192" href="/images/icons/icon-192x192.png">
     <script>
-      setTimeout(() => {
-        const slowCaption = document.getElementById('slow-connection-caption')
+      const timer = setTimeout(function () {
+        const slowCaption = document.getElementById("slow-connection-caption");
         if (slowCaption) {
           slowCaption.style.opacity = 1;
         }
-      }, 2500)
+      }, 2500);
+      setTimeout(function () {
+        // Use Timer as the Element we want to find is not rendered yet
+        let supportedBrowsers = <%= htmlWebpackPlugin.options.variables.browserlistRegExp %>
+        if (!supportedBrowsers.test(navigator.userAgent)) {
+          const notSupportedCaption = document.getElementById("no-compatible-browser");
+          clearTimeout(timer);
+          if (notSupportedCaption) {
+            notSupportedCaption.style.opacity = 1;
+          }
+        }
+      }, 10);
     </script>
     <style>
       body {
@@ -37,25 +48,54 @@
       }
 
       @font-face {
-        font-family: 'Dosis';
+        font-family: "Dosis";
         font-weight: 600;
-        src: url('/Dosis-SemiBold.ttf') format('truetype');
+        src: url("/Dosis-SemiBold.ttf") format("truetype");
       }
 
       @font-face {
-        font-family: 'Dosis';
+        font-family: "Dosis";
         font-weight: 300;
-        src: url('/Dosis-Light.ttf') format('truetype');
+        src: url("/Dosis-Light.ttf") format("truetype");
       }
     </style>
   </head>
   <body>
     <div id="app">
-      <div style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; background-color: #E3E9F3;">
-        <img src="<%= htmlWebpackPlugin.options.variables.logoSrc %>" alt="<%= htmlWebpackPlugin.options.title %>" style="height: 5rem;">
-        <div id="slow-connection-caption" style="opacity: 0; margin-top: 1rem; font-family: Dosis, sans-serif; color: #002E62;">Lade Daten - das kann einen Moment dauern.</div>
-        <noscript style="display: flex;  justify-content: center; align-items: center; flex-direction: column;">
-          <div id="noscript-caption" style="font-family: Dosis, sans-serif; font-weight: 600; color: #FEAE00;">CovMap funktioniert nicht ohne Javascript.</div>
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          flex-direction: column;
+          background-color: #e3e9f3;
+        "
+      >
+        <img
+          src="<%= htmlWebpackPlugin.options.variables.logoSrc %>"
+          alt="<%= htmlWebpackPlugin.options.title %>"
+          style="height: 5rem"
+        />
+        <div
+          id="slow-connection-caption"
+          style="opacity: 0; margin-top: 1rem; font-family: Dosis, sans-serif; color: #002e62"
+        >
+          Lade Daten - das kann einen Moment dauern.
+        </div>
+        <div
+          id="no-compatible-browser"
+          style="opacity: 0; margin-top: 1rem; font-family: Dosis, sans-serif; color: red"
+        >
+          Dieser Browser wird nicht unterstützt, bitte nutze einen anderen (z.B.
+          <a target="_blank" rel="noopener" href="https://www.google.com/chrome/">Chrome</a>,
+          <a target="_blank" rel="noopener" href="https://www.microsoft.com/edge">Edge</a>,
+          <a target="_blank" rel="noopener" href="https://www.mozilla.org/firefox/">Firefox</a>).
+        </div>
+        <noscript style="display: flex; justify-content: center; align-items: center; flex-direction: column">
+          <div id="noscript-caption" style="font-family: Dosis, sans-serif; font-weight: 600; color: #feae00">
+            CovMap funktioniert nicht ohne Javascript.
+          </div>
         </noscript>
       </div>
     </div>

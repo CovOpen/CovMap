@@ -125,6 +125,11 @@ table {
   border-spacing: 0;
 }
 
+html,
+body {
+  overflow: hidden;
+}
+
 /* Variables */
 body {
   font-family: "Dosis, sans-serif";
