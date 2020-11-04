@@ -15,7 +15,6 @@ import VentilationIcon from "../../static/images/fresh-air.svg";
 import RegionalIcon from "../../static/images/checklist.svg";
 import { NavigationTitle } from "app-config/components/NavigationTitle";
 import { useTranslation } from "react-i18next";
-import { MultiLineText } from "../../../../src/components/MultiLineText";
 
 const useStyles = makeStyles({
   teaser: {
@@ -35,6 +34,9 @@ const useStyles = makeStyles({
   subHeader: {
     textAlign: "left",
     fontWeight: "bold",
+  },
+  multiLineText: {
+    whiteSpace: "break-spaces",
   },
 });
 
@@ -69,8 +71,8 @@ const FinalTeaser = (): JSX.Element => {
   return (
     <Card className={classes.teaser}>
       <CardContent>
-        <Typography variant="body1" className={classes.leftText}>
-          <MultiLineText value={t("basic-recommendations.final-teaser")} />
+        <Typography variant="body1" className={`${classes.leftText} ${classes.multiLineText}`}>
+          {t("basic-recommendations.final-teaser")}
         </Typography>
       </CardContent>
     </Card>
@@ -113,8 +115,8 @@ const ContactSection = (): JSX.Element => {
           </Typography>
         </Grid>
       </Grid>
-      <Typography variant="body1" className={classes.leftText}>
-        <MultiLineText value={t("basic-recommendations.contact.text")} />
+      <Typography variant="body1" className={`${classes.leftText} ${classes.multiLineText}`}>
+        {t("basic-recommendations.contact.text")}
       </Typography>
     </div>
   );
@@ -136,8 +138,8 @@ const DistanceSection = (): JSX.Element => {
           </Typography>
         </Grid>
       </Grid>
-      <Typography variant="body1" className={classes.leftText}>
-        <MultiLineText value={t("basic-recommendations.distance.text")} />
+      <Typography variant="body1" className={`${classes.leftText} ${classes.multiLineText}`}>
+        {t("basic-recommendations.distance.text")}
       </Typography>
     </div>
   );
@@ -159,8 +161,8 @@ const MaskSection = (): JSX.Element => {
           </Typography>
         </Grid>
       </Grid>
-      <Typography variant="body1" className={classes.leftText}>
-        <MultiLineText value={t("basic-recommendations.mask.text")} />
+      <Typography variant="body1" className={`${classes.leftText} ${classes.multiLineText}`}>
+        {t("basic-recommendations.mask.text")}
       </Typography>
     </div>
   );
@@ -182,8 +184,8 @@ const VentilationSection = (): JSX.Element => {
           </Typography>
         </Grid>
       </Grid>
-      <Typography variant="body1" className={classes.leftText}>
-        <MultiLineText value={t("basic-recommendations.ventilation.text")} />
+      <Typography variant="body1" className={`${classes.leftText} ${classes.multiLineText}`}>
+        {t("basic-recommendations.ventilation.text")}
       </Typography>
     </div>
   );
@@ -205,8 +207,8 @@ const HygieneSection = (): JSX.Element => {
           </Typography>
         </Grid>
       </Grid>
-      <Typography variant="body1" className={classes.leftText}>
-        <MultiLineText value={t("basic-recommendations.hygiene.text")} />
+      <Typography variant="body1" className={`${classes.leftText} ${classes.multiLineText}`}>
+        {t("basic-recommendations.hygiene.text")}
       </Typography>
     </div>
   );
@@ -227,8 +229,8 @@ const RegionalSection = (): JSX.Element => {
           </Typography>
         </Grid>
       </Grid>
-      <Typography variant="body1" className={classes.leftText}>
-        <MultiLineText value={t("basic-recommendations.regional.text")} />
+      <Typography variant="body1" className={`${classes.leftText} ${classes.multiLineText}`}>
+        {t("basic-recommendations.regional.text")}
       </Typography>
     </div>
   );
