@@ -12,5 +12,36 @@
     "date": "{{ date, dddd, Do MMMM YYYY}}"
   },
   "risk-score": "Risikoeinschätzung",
-  "search-placeholder": "PLZ oder Landkreis"
+  "search-placeholder": "PLZ oder Landkreis",
+  "basic-recommendations": {
+    "title": "Wie kann ich mich verhalten?",
+    "county-teaser": "Informiere Dich über aktuelle Verhaltensregeln für {{county}} hier.",
+    "intro-teaser-1": "Die Pandemie ist noch nicht vorbei und wir alle haben das Ziel die Pandemie soweit es geht einzudämmen und natürlich Risikogruppen zu schützen. Besonders die bevorstehende kalte Jahreszeit, in der wir uns überwiegend in geschlossen Räumen aufhalten, stellt eine Herausforderung dar. Es kommt jetzt auf Dich, auf uns, auf jeden Einzelnen an!",
+    "intro-teaser-2": "In den letzten Monaten konnte immer wieder gezeigt werden, dass ganz einfache Maßnahmen, die von jedem umgesetzt werden können, sehr viel Wirkung haben.",
+    "contact": {
+      "headline": "Kontakte reduzieren",
+      "text": "Kontakte reduzieren ist eine der wirkungsvollsten Maßnahmen.\n Das Virus wird von Mensch-zu-Mensch übertragen. Wenn man sich nicht trifft, kann das Virus also nicht übertragen werden. Greife zum Telefonhörer, halte eine Videokonferenz und arbeite von zu Hause, wann immer dies möglich ist. So schwer es auch fällt, Kontakte minimieren schützt und hilft uns allen, vor allem in Risikogebieten. Seid dabei und helft mit!"
+    },
+    "distance": {
+      "headline": "Abstand halten",
+      "text": "Falls Du Kontakt zu einer Person hast, dann halte einen Abstand von mindestens 1.5 Metern. Je mehr Abstand, umso besser."
+    },
+    "mask": {
+      "headline": "Maske tragen",
+      "text": "Wenn Du infiziert bist und Du eine Alltagsmaske trägst, verringert sich das Risiko, dass Du andere Personen ansteckst. Sind Kontakte nicht vermeidbar, kann das Tragen einer Maske also sowohl Dich, als auch Dein Gegenüber schützen."
+    },
+    "ventilation": {
+      "headline": "Regelmäßig lüften",
+      "text": "Das Virus kann über die Luft übertragen werden.\nWenn Du Dich mit anderen Personen triffst, dann tue dies am besten an der frischen Luft.\nFalls Du Dich doch in einen geschlossenen Raum begeben musst, dann sorge für eine gute Luftzirkulation, indem Du Fenster öffnest und gut lüftest."
+    },
+    "hygiene": {
+      "headline": "Hygienemaßnahmen",
+      "text": "Hygienemaßnahmen können Infektionen verringern.\nDas Verwenden von Desinfektionsmitteln und das Händewaschen können dazu beitragen, Infektionen zu verhindern, wenn Du Dinge angefasst hast, die potentiell mit dem Virus kontaminiert sind."
+    },
+    "regional": {
+      "headline": "Lokale Regeln",
+      "text": "Informiere Dich über lokale Regeln und Maßnahmen in Deiner Region."
+    },
+    "final-teaser": "Zusammen können wir es schaffen!\nGegenseitige Rücksichtnahme, Verständnis und Geduld sind die Gebote dieser Stunde."
+  }
 }
