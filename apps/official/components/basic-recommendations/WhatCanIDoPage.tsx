@@ -21,13 +21,13 @@ import { MeasureSection } from "./MeasureSection";
 import { CountyTeaser } from "./CountyTeaser";
 
 // FOR TRANSLATION -->
-const TITLE = "Wie kann ich mich verhalten?";
-const SUBTITLE_MEASURES = "Fünf Massnahmen mit großer Wirkung";
+const TITLE = "Wie sollte ich mich verhalten?";
+const SUBTITLE_MEASURES = "Fünf Maßnahmen mit großer Wirkung";
 const SUBTITLE_FINALTEASER = "Gemeinsam weiter";
 const TEASER_1 =
-  "In den letzten Monaten konnte immer wieder gezeigt werden, dass ganz einfache Maßnahmen, die von jedem umgesetzt werden können, sehr viel Wirkung haben. ";
+  "In den letzten Monaten konnte immer wieder gezeigt werden, dass einfache Maßnahmen, die von jedem umgesetzt werden können, sehr viel Wirkung haben. ";
 const TEASER_2 =
-  "Die Pandemie ist noch nicht vorbei und wir alle haben das Ziel die Pandemie soweit es geht einzudämmen und natürlich Risikogruppen zu schützen.";
+  "Die Pandemie ist noch nicht vorbei und wir alle haben das Ziel die Pandemie soweit es geht einzudämmen und Risikogruppen zu schützen.";
 const TEASER_3 =
   "Besonders die bevorstehende kalte Jahreszeit, in der wir uns überwiegend in geschlossen Räumen aufhalten, stellt eine Herausforderung dar. Es kommt jetzt auf Dich, auf uns, auf jeden Einzelnen an!";
 const CONTACT_HEADLINE = "Kontakte reduzieren";
