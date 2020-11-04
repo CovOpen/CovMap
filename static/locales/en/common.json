@@ -4,5 +4,13 @@
     "share": "Share",
     "install": "Install App"
   },
+  "error": {
+    "title": "Whoops! Our app crashed.",
+    "reload-button": "Reload this page",
+    "share-description": "Or share what happend with us, in order to make the app better!",
+    "share-button-github": "Share on Github",
+    "share-button-twitter": "Share on Twitter",
+    "share-description-error-details": "Click for error details"
+  },
   "no data for selected timeframe": "No data available for the selected date."
 }
