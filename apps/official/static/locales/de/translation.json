@@ -233,5 +233,10 @@
       "title": "Ihre Rechte",
       "text": "Sie haben grundsätzlich folgende Rechte hinsichtlich der Sie betreffenden personenbezogenen Daten:\n- Recht auf Auskunft (Art. 15 DS-GVO)\n- Recht auf Berichtigung (Art. 16 DS-GVO)\n- Recht auf Löschung (Art. 17 DS-GVO; “Recht auf Vergessenwerden”)\n- Recht auf Einschränkung der Verarbeitung (Art. 18 DS-GVO)\n- Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DS-GVO)\n- Recht auf Datenübertragbarkeit (Art. 20 DS-GVO)\nSoweit Sie uns eine Einwilligung in die Verarbeitung Ihrer Daten erteilt haben, können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen. Die Rechtmäßigkeit der Verarbeitung Ihrer Daten bis zum Widerruf bleibt hiervon unberührt. Sie haben zudem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde in dem Mitgliedstaat Ihres Aufenthaltsorts, Ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes über die Verarbeitung Ihrer personenbezogenen Daten durch uns zu beschweren, wenn Sie der Ansicht sind, dass die Verarbeitung der Sie betreffenden personenbezogenen Daten rechtswidrig erfolgt.\n"
     }
+  },
+  "rki": {
+    "title": "7-Tages-Inzidenz (RKI)",
+    "intro": "Wie berechnet sich die 7-Tages-Inzidenz (Anzahl der Neuinfektionen pro 100.000 Einwohner der letzten 7 Tage)?",
+    "text": "Es werden alle gemeldeten Neuinfektionen der jeweils zurückliegenden sieben Tage innerhalb eines Landkreises addiert. Diese Summe wird durch die Einwohnerzahl des jeweiligen Landkreises geteilt. Danach wird dieser Wert mit 100.000 multipliziert. Die 7-Tages-Inzidenz stellt eine etablierte Größe dar, um aktuelle Hotspots der Coronavirus-Epidemie zu identifizieren. Man muss jedoch davon ausgehen, dass nicht alle Fälle gemeldet werden. Darüber hinaus gibt es einen Meldeverzug, da zwischen der Infektion und der Bestätigung durch einen Labortest und Meldung des Ergebnisses an das Robert-Koch-Instituts Zeit vergeht."
   }
 }
