@@ -57,5 +57,20 @@
     "text-4": "Unsere Gruppe hat ein <1>Modell für das Kontaktverhalten auf Basis von GPS Daten</1> entwickelt. Über die Berechnung eines sogenannten Kontakt-Index können wir den R-Wert vorhersagen. Der Vorteil vom Kontakt-Index ist nun, dass er fast ohne Verzögerung berechnet werden kann.",
     "text-5": "Von einem erhöhten Kontaktverhalten sprechen wir, wenn unser Modell voraussagt, dass in einer Region so viele Kontakte vorhanden sind, dass sich das Virus leicht ausbreiten kann und wir davon ausgehen, dass der R-Wert über 1 liegen wird.",
     "external-explanation-reproduction-rate": "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Projekte_RKI/R-Wert-Erlaeuterung.pdf?__blob=publicationFile"
+  },
+  "credits": {
+    "project-description": "CovMap ist ein Gemeinschaftsprojekt der Charité - Universitätsmedizin Berlin, des Hasso-Plattner-Instituts (HPI) und der Firma NET CHECK.",
+    "project-management": {
+      "title": "Projektleitung",
+      "text": "Charité: Dr. med. Alexander H. Thieme, M. Sc.\nGesamtkonzept, CovMap, Datenanalyse Symptome\n\nHPI: Prof. Dr. Christoph Lippert\nDatenanalyse, Modellerstellung, Prognosen\n\nNET CHECK: PD. Dr. Sten Rüdiger\nDatenanalyse GPS-Daten, Kontakt-Index"
+    },
+    "appreciation": {
+      "title": "Die CovMap App wurde mit der Unterstützung von zahlreichen Personen und Unternehmen entwickelt. Wir möchten an dieser Stelle unseren großen Dank aussprechen.",
+      "intro": "Wir danken den Unternehmen",
+      "port-blue-sky": "Port Blue Sky: für die technische Unterstüzung der App durch Ihre Mitarbeiter sowie das Organisieren von weiterer Unterstützung aus der Node.js Community.",
+      "pwc": "PWC: für Lob, Kritik und Rat bei der Umsetzung der CovMap.",
+      "maptiler": "Maptiler: für die Unterstützung in Form von Kartendaten.",
+      "contributors-intro": "Ganz besonders möchten wir folgenden Personen danken"
+    }
   }
 }
