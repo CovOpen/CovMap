@@ -43,5 +43,9 @@
       "text": "Informiere Dich über lokale Regeln und Maßnahmen in Deiner Region."
     },
     "final-teaser": "Zusammen können wir es schaffen!\nGegenseitige Rücksichtnahme, Verständnis und Geduld sind die Gebote dieser Stunde."
+  },
+  "charts": {
+    "contact-index": "Kontaktindex C",
+    "reproduction-rate": "Reproduktionszahl R"
   }
 }
