@@ -254,5 +254,9 @@
       "outro": "Wir rufen dazu auf, Kontakte freiwillig auf das Allernötigste zu reduzieren."
     },
     "contact-score-info": "Aufgrund eines erhöhten Kontaktverhalten kann sich das Coronavirus leicht weiter verbreiten und unser Modell sagt einen weiteren Anstieg der Neuinfektionen voraus. "
+  },
+  "contacts-indicator": {
+    "reduced": "reduziert",
+    "increased": "erhöht"
   }
 }
