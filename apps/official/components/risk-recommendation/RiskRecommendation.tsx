@@ -3,32 +3,32 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import { ContactScore } from "../../models";
+import { useTranslation } from "react-i18next";
+import { TFunction } from "i18next";
 
-function riscExplanation(contactScore: number, incidence: number): string {
+function riscExplanation(t: TFunction, contactScore: number, incidence: number): string {
   if (incidence < 20 && contactScore <= 0) {
-    return "Die Zahl der Neuinfektionen ist niedrig und das Kontaktverhalten ist ausreichend reduziert. Ein normales Risiko bedeutet nicht, dass keine Neuinfektionen in der Region möglich sind.";
+    return t("risk-recommendation.low");
   }
 
   let explanation = "";
 
   if (incidence >= 50) {
-    explanation = "Die Zahl der Neuinfektionen ist stark erhöht. ";
+    explanation = t("risk-recommendation.high.intro");
     if (contactScore == 1) {
-      explanation +=
-        "Aufgrund eines erhöhten Kontaktverhalten kann sich das Coronavirus leicht weiter verbreiten und unser Modell sagt einen weiteren Anstieg der Neuinfektionen voraus. ";
+      explanation += t("risk-recommendation.contact-score-info");
     }
-    explanation += "Wir rufen dazu auf, Kontakte freiwillig auf das Allernötigste zu reduzieren.";
+    explanation += t("risk-recommendation.high.outro");
     return explanation;
   }
 
   if (incidence >= 20) {
-    explanation = "Die Zahl der Neuinfektionen ist mäßig erhöht. ";
+    explanation = t("risk-recommendation.medium.intro");
   }
   if (contactScore == 1) {
-    explanation +=
-      "Aufgrund eines erhöhten Kontaktverhalten kann sich das Coronavirus leicht weiter verbreiten und unser Modell sagt einen weiteren Anstieg der Neuinfektionen voraus. ";
+    explanation += t("risk-recommendation.contact-score-info");
   }
-  explanation += "Wir rufen dazu auf, Kontakte freiwillig zu reduzieren.";
+  explanation += t("risk-recommendation.high.outro");
   return explanation;
 }
 
@@ -44,10 +44,11 @@ export const RiskRecommendation: React.FC<{ contactScore: ContactScore; incidenc
   incidence,
 }): JSX.Element => {
   const classes = useStyles();
+  const { t } = useTranslation("translation");
 
   return (
     <Paper className={classes.paper} elevation={0}>
-      <Typography>{riscExplanation(contactScore, incidence)}</Typography>
+      <Typography>{riscExplanation(t, contactScore, incidence)}</Typography>
     </Paper>
   );
 };
