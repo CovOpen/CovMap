@@ -74,7 +74,14 @@ export const Faq: React.FC = () => {
         <FaqAccordion title={t("faq.how-to-access.title")}>
           <Typography style={{ width: "100%" }}>
             <Trans i18nKey="faq.how-to-access.text">
-              part-0 <a href="https://www.covmap.de">part-1</a> part-2 <a href="https://covmap.charite.de">part-3</a>{" "}
+              part-0
+              <a href="https://www.covmap.de" target="_blank" rel="noopener">
+                part-1
+              </a>
+              part-2
+              <a href="https://covmap.charite.de" target="_blank" rel="noopener">
+                part-3
+              </a>
               part-4
             </Trans>
           </Typography>
@@ -129,7 +136,11 @@ export const Faq: React.FC = () => {
         <FaqAccordion title={t("faq.which-data.title")}>
           <Typography style={{ width: "100%", whiteSpace: "break-spaces" }}>
             <Trans i18nKey="faq.which-data.text">
-              part-0 <a href="https://covapp.charite.de">part-1</a> part-2
+              part-0
+              <a href="https://covapp.charite.de" target="_blank" rel="noopener">
+                part-1
+              </a>
+              part-2
             </Trans>
           </Typography>
         </FaqAccordion>
@@ -141,7 +152,15 @@ export const Faq: React.FC = () => {
               <div className={classes.textBlock}>{t("faq.advantages.text-2")}</div>
               <div className={classes.textBlock}>
                 <Trans i18nKey="faq.advantages.text-3">
-                  part-0 <a href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2">part-1</a> part-2
+                  part-0
+                  <a
+                    href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    part-1
+                  </a>
+                  part-2
                 </Trans>
               </div>
               <div className={classes.textBlock}>{t("faq.advantages.text-4")}</div>
@@ -158,7 +177,11 @@ export const Faq: React.FC = () => {
         <FaqAccordion title={t("faq.what-is-contact-index.title")}>
           <Typography style={{ width: "100%" }}>
             <Trans i18nKey="faq.what-is-contact-index.text">
-              part-0 <a href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2">part-1</a> part-2
+              part-0
+              <a href="https://www.medrxiv.org/content/10.1101/2020.10.02.20188136v2" target="_blank" rel="noopener">
+                part-1
+              </a>
+              part-2
             </Trans>
           </Typography>
         </FaqAccordion>
@@ -166,7 +189,14 @@ export const Faq: React.FC = () => {
         <FaqAccordion title={t("faq.why-reduce-contacts.title")}>
           <Typography style={{ width: "100%" }}>
             <Trans i18nKey="faq.why-reduce-contacts.text">
-              part-0 <a href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Steckbrief.html">part-1</a>{" "}
+              part-0
+              <a
+                href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Steckbrief.html"
+                target="_blank"
+                rel="noopener"
+              >
+                part-1
+              </a>
               part-2
             </Trans>
           </Typography>
@@ -175,8 +205,19 @@ export const Faq: React.FC = () => {
         <FaqAccordion title={t("faq.what-can-i-do.title")}>
           <Typography style={{ width: "100%" }}>
             <Trans i18nKey="faq.what-can-i-do.text">
-              part-0 <a href="https://www.infektionsschutz.de/coronavirus/alltag-in-zeiten-von-corona.html">part-1</a>
-              part-2 <a href="https://www.bundesregierung.de/breg-de/themen/corona-warn-app">part-3</a> part-4
+              part-0
+              <a
+                href="https://www.infektionsschutz.de/coronavirus/alltag-in-zeiten-von-corona.html"
+                target="_blank"
+                rel="noopener"
+              >
+                part-1
+              </a>
+              part-2
+              <a href="https://www.bundesregierung.de/breg-de/themen/corona-warn-app" target="_blank" rel="noopener">
+                part-3
+              </a>
+              part-4
             </Trans>
           </Typography>
         </FaqAccordion>
@@ -184,7 +225,11 @@ export const Faq: React.FC = () => {
         <FaqAccordion title={t("faq.friendship-paradoxon.title")}>
           <Typography style={{ width: "100%" }}>
             <Trans i18nKey="faq.friendship-paradoxon.text">
-              part-0 <a href="https://de.wikipedia.org/wiki/Freundschaftsparadox">part-1</a> part-2
+              part-0
+              <a href="https://de.wikipedia.org/wiki/Freundschaftsparadox" target="_blank" rel="noopener">
+                part-1
+              </a>
+              part-2
             </Trans>
           </Typography>
         </FaqAccordion>
