@@ -238,5 +238,9 @@
     "title": "7-Tages-Inzidenz (RKI)",
     "intro": "Wie berechnet sich die 7-Tages-Inzidenz (Anzahl der Neuinfektionen pro 100.000 Einwohner der letzten 7 Tage)?",
     "text": "Es werden alle gemeldeten Neuinfektionen der jeweils zurückliegenden sieben Tage innerhalb eines Landkreises addiert. Diese Summe wird durch die Einwohnerzahl des jeweiligen Landkreises geteilt. Danach wird dieser Wert mit 100.000 multipliziert. Die 7-Tages-Inzidenz stellt eine etablierte Größe dar, um aktuelle Hotspots der Coronavirus-Epidemie zu identifizieren. Man muss jedoch davon ausgehen, dass nicht alle Fälle gemeldet werden. Darüber hinaus gibt es einen Meldeverzug, da zwischen der Infektion und der Bestätigung durch einen Labortest und Meldung des Ergebnisses an das Robert-Koch-Instituts Zeit vergeht."
+  },
+  "symptom-level": {
+    "title": "Symptomlast",
+    "text": "Wenige Tage nach einer Coronavirusinfektion entwickelt ein Teil der Personen Symptome wie zum Beispiel Husten, Fieber oder einen Verlust des Geschmacks. Diese Symptome gehören zu den frühesten beobachtbaren Ereignissen einer Infektion, sind jedoch nicht spezifisch für das Coronavirus und können beispielsweise auch bei einer harmlosen Erkältung auftreten. Falls man jedoch eine große Menschenmenge nach Symptomen befragt, kann man Hotspots des Coronavirus früher detektieren. Wir verwenden die Charité <1>CovApp</1>, um die Antworten nach Symptomen von einer großen Anzahl von Menschen auszuwerten, und können daher indirekt auf eine Aktivität des Coronavirus in einer Region Rückschlüsse ziehen.\n\nWir bereiten diese Funktion gerade vor und werden sie Dir bald zur Verfügung stellen können."
   }
 }
