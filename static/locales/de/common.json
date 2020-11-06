@@ -45,5 +45,6 @@
     "text-2": "Tappe den Button unten um dich zu entscheiden!",
     "confirm": "Alles klar!",
     "cancel": "Nee danke."
-  }
+  },
+  "lazy-error": "Überprüfe Deine Netzwerkverbindung und aktualisiere die App."
 }
