@@ -41,7 +41,9 @@ export const App = () => {
       <Router>
         <AutoProgressDate />
         <ServiceWorker />
-        <InstallPrompt shouldShow={showInstallPrompt} />
+        <Suspense fallback={getFallbackComponent()}>
+          <InstallPrompt shouldShow={showInstallPrompt} />
+        </Suspense>
         <Container
           disableGutters
           maxWidth={false}
