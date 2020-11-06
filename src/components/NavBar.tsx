@@ -141,7 +141,7 @@ export const NavBar = () => {
       });
     } catch (err) {
       clipboard.writeText("https://" + window.location.hostname);
-      dispatch(AppApi.setSnackbarMessage({ text: "Link in Zwischenablage kopiert", type: "info" }));
+      dispatch(AppApi.setSnackbarMessage({ text: t("common:copied-to-clipboard"), type: "info" }));
     }
   };
 
