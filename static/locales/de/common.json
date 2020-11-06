@@ -39,5 +39,11 @@
     },
     "continue": "Weiter",
     "skip": "Überspringen"
+  },
+  "install-promt": {
+    "text-1": "Diese App kann auf deinem Geraet installiert werden.",
+    "text-2": "Tappe den Button unten um dich zu entscheiden!",
+    "confirm": "Alles klar!",
+    "cancel": "Nee danke."
   }
 }
