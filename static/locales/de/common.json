@@ -47,5 +47,6 @@
     "cancel": "Nee danke."
   },
   "lazy-error": "Überprüfe Deine Netzwerkverbindung und aktualisiere die App.",
-  "copied-to-clipboard": "Link in Zwischenablage kopiert"
+  "copied-to-clipboard": "Link in Zwischenablage kopiert",
+  "close": "Schließen"
 }
