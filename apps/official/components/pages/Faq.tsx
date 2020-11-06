@@ -54,7 +54,7 @@ export const Faq: React.FC = () => {
 
       <section>
         <FaqAccordion title="Was ist die CovMap?">
-          <Typography style={{ width: "100%" }}>
+          <Typography component="div" style={{ width: "100%" }}>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div className={classes.textBlock}>
                 Die CovMap visualisiert eine regionale Risikoeinschätzung auf einer Deutschlandkarte. Die
@@ -182,7 +182,7 @@ export const Faq: React.FC = () => {
         </FaqAccordion>
 
         <FaqAccordion title="Welche Vorteile ergeben sich durch die Auswertung von Kontakten und Symptomen der Bevölkerung?">
-          <Typography style={{ width: "100%" }}>
+          <Typography component="div" style={{ width: "100%" }}>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div className={classes.textBlock}>
                 Damit das Virus übertragen werden kann, müssen sich Menschen begegnen. Wenige Tage nach der Infektion
