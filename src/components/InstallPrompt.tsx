@@ -6,6 +6,7 @@ import { useThunkDispatch } from "src/useThunkDispatch";
 import { useSelector } from "react-redux";
 import { State } from "../state";
 import { triggerInstallPrompt } from "../state/thunks/triggerInstallPrompt";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +33,7 @@ type NoThanksState = boolean;
 
 export const InstallPrompt = ({ shouldShow }: InstallPromptProps) => {
   const dispatch = useThunkDispatch();
+  const { t } = useTranslation("common");
   const prompt = useSelector((state: State) => state.app.installPrompt);
   const installed = useSelector((state: State) => state.app.isInstalled);
   const [noThanks, setNoThanks] = useState<NoThanksState>(() => false);
@@ -59,18 +61,18 @@ export const InstallPrompt = ({ shouldShow }: InstallPromptProps) => {
 
   const dialog = (
     <div className={classes.root}>
-      <p className={classes.item}>Diese App kann auf deinem Geraet installiert werden.</p>
-      <p>Tappe den Button unten um dich zu entscheiden!</p>
+      <p className={classes.item}>{t("install-promt.text-1")}</p>
+      <p>{t("install-promt.text-2")}</p>
       <Button
         className={classes.item}
         variant="contained"
         color="primary"
         onClick={() => dispatch(triggerInstallPrompt(handleResult))}
       >
-        Alles klar!
+        {t("install-promt.confirm")}
       </Button>
       <Button className={classes.item} variant="contained" color="primary" onClick={cancelInstallPrompt}>
-        Nee danke.
+        {t("install-promt.cancel")}
       </Button>
     </div>
   );

@@ -10,6 +10,7 @@ import { Link, useHistory } from "react-router-dom";
 import { WelcomeModalStep } from "./welcomeStepsConfig";
 import { useSelector } from "react-redux";
 import { State } from "src/state";
+import { Trans, useTranslation } from "react-i18next";
 
 function isValidPostalCode(text: string) {
   return /^[0-9]{5}$/.test(text);
@@ -33,6 +34,7 @@ const useStyles = makeStyles(() => ({
 
 export const WelcomeModalPostalCode: React.FC = () => {
   const classes = { ...useCommonWelcomeModalStyles(), ...useStyles() };
+  const { t } = useTranslation("common");
   const dispatch = useThunkDispatch();
   const history = useHistory();
   const postCode = useSelector((state: State) => state.app.intro.postCode);
@@ -74,15 +76,13 @@ export const WelcomeModalPostalCode: React.FC = () => {
 
   return (
     <>
-      <Typography className={classes.title}>
-        Für Dein regionales Risiko brauchen wir noch die Postleitzahl Deines Wohnortes
-      </Typography>
+      <Typography className={classes.title}>{t("welcome.regional-risk.title")}</Typography>
 
       <TextField
         className={classes.input}
         autoFocus
         error={isPostCodeError}
-        helperText={isPostCodeError ? "Bitte valide PLZ eingeben" : null}
+        helperText={isPostCodeError ? t("welcome.regional-risk.invalid-post-code") : null}
         variant="outlined"
         type="number"
         value={postCode}
@@ -96,8 +96,9 @@ export const WelcomeModalPostalCode: React.FC = () => {
       <div style={{ display: "flex", flexDirection: "row", alignItems: "center", marginBottom: "10px" }}>
         <Checkbox value={checked} checked={checked} onChange={handleCheckedChange} />
         <Typography className={classes.smallText} style={isCheckboxError ? { color: "red" } : {}}>
-          Ja, ich habe die <Link to={WelcomeModalStep.StepPostalCodeDataPrivacy}>Datenschutzerklärung</Link> zur
-          Kenntnis genommen und willige ein.
+          <Trans t={t} i18nKey="welcome.regional-risk.accept-privacy">
+            part-0 <Link to={WelcomeModalStep.StepPostalCodeDataPrivacy}>part-1</Link> part-2
+          </Trans>
         </Typography>
       </div>
 
@@ -108,7 +109,7 @@ export const WelcomeModalPostalCode: React.FC = () => {
           color="primary"
           onClick={submit}
         >
-          Jetzt starten
+          {t("welcome.regional-risk.start")}
         </Button>
       </div>
 
@@ -119,7 +120,7 @@ export const WelcomeModalPostalCode: React.FC = () => {
           variant="contained"
           onClick={onSkip}
         >
-          Ohne Postleitzahl weiter
+          {t("welcome.regional-risk.continue-without-post-code")}
         </Button>
       </div>
     </>

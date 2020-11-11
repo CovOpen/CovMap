@@ -9,6 +9,7 @@ import { State } from "../../state";
 import { StepConfig, welcomeStepsConfig } from "./welcomeStepsConfig";
 import { MobileDotsStepper } from "./MobileDotsStepper";
 import { useCommonWelcomeModalStyles } from "./useCommonWelcomeModalStyles";
+import { useTranslation } from "react-i18next";
 
 function getStepConfig(stepName?: string): StepConfig | undefined {
   return welcomeStepsConfig.find(({ name }) => name === stepName);
@@ -19,6 +20,7 @@ export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const history = useHistory();
+  const { t } = useTranslation("common");
 
   const userPostalCode = useSelector((state: State) => state.app.userPostalCode);
 
@@ -38,7 +40,7 @@ export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
           component={Link}
           to={currentStepConfig.next}
         >
-          Weiter
+          {t("welcome.continue")}
         </Button>
       </div>
     ) : null;
@@ -52,7 +54,7 @@ export const WelcomeStepsModal: React.FC<{ subPage?: string }> = (props) => {
           component={Link}
           to={currentStepConfig.skip}
         >
-          Überspringen
+          {t("welcome.skip")}
         </Button>
       </div>
     ) : null;

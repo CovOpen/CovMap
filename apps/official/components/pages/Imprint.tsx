@@ -1,70 +1,70 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { NavigationTitle } from "app-config/components/NavigationTitle";
+import { Trans, useTranslation } from "react-i18next";
 
 export const Imprint = () => {
+  const { t } = useTranslation("translation");
+
   return (
     <>
       <main className="sections">
         <section>
-          <NavigationTitle title={"Impressum"} />
+          <NavigationTitle title={t("pages.copyright")} />
         </section>
         <section>
-          <Typography variant="h2">Anbieter</Typography>
-          <Typography variant="body1">Charité – Universitätsmedizin Berlin</Typography>
-          <Typography variant="body1">Zentrale Postanschrift: Charitéplatz 1, 10117 Berlin</Typography>
-          <Typography variant="body1">
-            Die Charité – Universitätsmedizin Berlin ist eine Körperschaft des Öffentlichen Rechts. Sie wird durch den
-            Vorstandsvorsitzenden gesetzlich vertreten.
-          </Typography>
+          <Typography variant="h2">{t("copyright.provider.title")}</Typography>
+          <Typography variant="body1">{t("copyright.provider.text-1")}</Typography>
+          <Typography variant="body1">{t("copyright.provider.text-2")}</Typography>
+          <Typography variant="body1">{t("copyright.provider.text-3")}</Typography>
         </section>
         <section>
-          <Typography variant="h2">Kontakt</Typography>
+          <Typography variant="h2">{t("copyright.contact.title")}</Typography>
           <Typography variant="body1">
-            Für Hinweise, Lob und Kritik schreiben Sie uns bitte eine E-Mail an:{" "}
-            <a href="mailto:covmap@charite.de">covmap@charite.de</a>
+            <Trans i18nKey="copyright.contact.text-1">
+              part-0<a href="mailto:covmap@charite.de">part-1</a>
+            </Trans>
           </Typography>
           <Typography variant="body1">
-            Internet:{" "}
-            <a href="https://www.charite.de" target="_blank" rel="noreferrer">
-              https://www.charite.de
-            </a>
-          </Typography>
-        </section>
-
-        <section>
-          <Typography variant="h2">Verantwortlicher im Sinne des Medienrechts</Typography>
-          <Typography variant="body1">
-            Prof. Dr. Heyo K. Kroemer, der Vorstandsvorsitzende der Charité – Universitätsmedizin Berlin
-          </Typography>
-          <Typography variant="body1">Verantwortlich für Inhalte:</Typography>
-          <Typography variant="body1">Projektleitung CovMap: Dr. med. Alexander H. Thieme, M.Sc.</Typography>
-          <Typography variant="body1">Das gesamte Team:</Typography>
-          <Typography variant="body1">
-            Dr. Thieme (Charité), Dr. Mittermaier (Charité), Dr. Gertler (Charité), Prof. Dr. Lippert (HPI), Dr.
-            Konigorski (HPI), Dr. Edelmann (HPI), PD. Dr. Rüdiger (NET CHECK), Hr. Zernick (NET CHECK)
+            <Trans i18nKey="copyright.contact.text-2">
+              part-0
+              <a href="https://www.charite.de" target="_blank" rel="noreferrer">
+                part-1
+              </a>
+            </Trans>
           </Typography>
         </section>
 
         <section>
-          <Typography variant="h2">Zuständige Aufsichtsbehörde</Typography>
+          <Typography variant="h2">{t("copyright.responsible-media-law.title")}</Typography>
+          <Typography variant="body1">{t("copyright.responsible-media-law.text-1")}</Typography>
+          <Typography variant="body1">{t("copyright.responsible-media-law.text-2")}</Typography>
+          <Typography variant="body1">{t("copyright.responsible-media-law.text-3")}</Typography>
+          <Typography variant="body1">{t("copyright.responsible-media-law.text-4")}</Typography>
+          <Typography variant="body1">{t("copyright.responsible-media-law.text-5")}</Typography>
+        </section>
+
+        <section>
+          <Typography variant="h2">{t("copyright.competent-supervisory-authority.title")}</Typography>
+          <Typography variant="body1">{t("copyright.competent-supervisory-authority.text-1")}</Typography>
           <Typography variant="body1">
-            Der Regierende Bürgermeister von Berlin – inkl. Wissenschaft und Forschung
+            <Trans i18nKey="copyright.competent-supervisory-authority.text-2">
+              part-0
+              <a href="https://www.berlin.de/rbmskzl/" target="_blank" rel="noreferrer">
+                part-1
+              </a>
+            </Trans>
           </Typography>
+          <Typography variant="body1">{t("copyright.competent-supervisory-authority.text-3")}</Typography>
           <Typography variant="body1">
-            Kontakt:{" "}
-            <a href="https://www.berlin.de/rbmskzl/" target="_blank" rel="noreferrer">
-              https://www.berlin.de/rbmskzl/
-            </a>
+            <Trans i18nKey="copyright.competent-supervisory-authority.text-4">
+              part-0
+              <a href="https://www.berlin.de/sen/gpg/" target="_blank" rel="noreferrer">
+                part-1
+              </a>
+            </Trans>
           </Typography>
-          <Typography variant="body1">Senatsverwaltung für Gesundheit, Pflege und Gleichstellung</Typography>
-          <Typography variant="body1">
-            Kontakt:{" "}
-            <a href="https://www.berlin.de/sen/gpg/" target="_blank" rel="noreferrer">
-              https://www.berlin.de/sen/gpg/
-            </a>
-          </Typography>
-          <Typography variant="body1">Umsatzsteuer-Identifikationsnummer: DE 228847810</Typography>
+          <Typography variant="body1">{t("copyright.competent-supervisory-authority.text-5")}</Typography>
         </section>
       </main>
     </>

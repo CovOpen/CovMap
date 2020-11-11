@@ -3,6 +3,7 @@ import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useCommonWelcomeModalStyles } from "./useCommonWelcomeModalStyles";
 import { FullWidthFixedAspectImage } from "./FullWidthFixedAspectImage";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles(() => ({
   listItemDiv: {
@@ -17,6 +18,7 @@ export const WelcomeModal1: React.FC = () => {
     ...useCommonWelcomeModalStyles(),
     ...useStyles(),
   };
+  const { t } = useTranslation("common");
 
   const listIcon = (
     <img
@@ -28,30 +30,28 @@ export const WelcomeModal1: React.FC = () => {
 
   return (
     <>
-      <Typography className={classes.title}>Willkommen bei der CovMap</Typography>
+      <Typography className={classes.title}>{t("welcome.title")}</Typography>
 
       <FullWidthFixedAspectImage aspect={62.1} src="/images/WelcomeModalImage1.svg" alt="Welcome" />
 
       <div className={classes.infoTextDiv}>
         <div className={classes.listItemDiv}>
           {listIcon}
-          <Typography className={classes.largeText}>
-            Entwickelt von Ärzten der Charité - Universitätsmedizin Berlin
-          </Typography>
+          <Typography className={classes.largeText}>{t("welcome.info-1")}</Typography>
         </div>
         <div className={classes.listItemDiv}>
           {listIcon}
-          <Typography className={classes.largeText}>Regionale Risikoeinschätzung zum Coronavirus</Typography>
+          <Typography className={classes.largeText}>{t("welcome.info-2")}</Typography>
         </div>
 
         <div className={classes.listItemDiv}>
           {listIcon}
-          <Typography className={classes.largeText}>Informationen zu allgemeinen Schutzmaßnahmen</Typography>
+          <Typography className={classes.largeText}>{t("welcome.info-3")}</Typography>
         </div>
 
         <div className={classes.listItemDiv}>
           {listIcon}
-          <Typography className={classes.largeText}>Links zu aktuellen Verhaltensregeln aller Landkreise</Typography>
+          <Typography className={classes.largeText}>{t("welcome.info-4")}</Typography>
         </div>
       </div>
       <img src={"/images/Logo_Charite.svg"} alt="Charité Berlin" width="100" style={{ marginBottom: "24px" }} />

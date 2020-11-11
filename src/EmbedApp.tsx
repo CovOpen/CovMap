@@ -39,7 +39,9 @@ export const EmbedApp = () => {
         >
           <IntermediateProgress />
           {config.content?.pages.map((page, id) => (
-            <RenderPageRoute key={id} page={page} />
+            <Suspense fallback={getFallbackComponent()}>
+              <RenderPageRoute key={id} page={page} />
+            </Suspense>
           ))}
           <Suspense fallback={getFallbackComponent()}>
             <Route key="map" path="/:subPage?" component={CovMap} />

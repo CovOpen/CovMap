@@ -24,6 +24,7 @@ import ContactsLowIcon from "../static/images/contacts-low.svg";
 import ContactsMediumIcon from "../static/images/contacts-medium.svg";
 import SymptomsLowIcon from "../static/images/symptoms-low.svg";
 import { usePathPreservingQueryChange } from "app-config/components/customHistoryHooks";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
   action: {
@@ -148,19 +149,21 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
   );
 
   const ContactsIcon = ({ score }: { score: ContactScore }) => {
+    const { t } = useTranslation("translation");
+
     switch (score) {
       case ContactScore.Low:
         return (
           <div className={center}>
             <ContactsLowIcon />
-            <Typography variant="body2">reduziert</Typography>
+            <Typography variant="body2">{t("contacts-indicator.reduced")}</Typography>
           </div>
         );
       case ContactScore.Medium:
         return (
           <div className={center}>
             <ContactsMediumIcon />
-            <Typography variant="body2">erhöht</Typography>
+            <Typography variant="body2">{t("contacts-indicator.increased")}</Typography>
           </div>
         );
       default:
