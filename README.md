@@ -1,12 +1,12 @@
 <div align="center" >
   <a href="https://covmap.de">
-    <img style="height: 200px; width: auto;" src="https://github.com/alexanderthieme/CovMapper/raw/master/static/images/logo.png" alt="CovMap Logo">
+    <img style="height: 200px; width: auto;" src="https://github.com/CovOpen/CovMapper/raw/master/static/images/logo.png" alt="CovMap Logo">
   </a>
 </div>
 
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
 
@@ -52,25 +52,28 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/kommander"><img src="https://avatars2.githubusercontent.com/u/335157?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Sebastian Herrlinger</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=kommander" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/alexanderthieme"><img src="https://avatars1.githubusercontent.com/u/61984544?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Alexander Thieme</b></sub></a><br /><a href="#business-alexanderthieme" title="Business development">💼</a></td>
     <td align="center"><a href="https://github.com/ChristianRomberg"><img src="https://avatars0.githubusercontent.com/u/25772118?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Christian Romberg</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=ChristianRomberg" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/m-pa"><img src="https://avatars0.githubusercontent.com/u/790655?v=4?s=50" width="50px;" alt=""/><br /><sub><b>m-pa</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=m-pa" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/m-pa"><img src="https://avatars0.githubusercontent.com/u/790655?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Patrick Matheis</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=m-pa" title="Code">💻</a></td>
     <td align="center"><a href="https://kantimam.org/"><img src="https://avatars2.githubusercontent.com/u/24353308?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Kantemir Imamov</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=kantimam" title="Code">💻</a></td>
     <td align="center"><a href="https://startup-cto.net/"><img src="https://avatars2.githubusercontent.com/u/3396992?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Daniel Bartholomae</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=dbartholomae" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/ChristophWersal"><img src="https://avatars0.githubusercontent.com/u/45358216?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Christoph Wersal</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=ChristophWersal" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/weltenwort"><img src="https://avatars3.githubusercontent.com/u/973741?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Felix Stürmer</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=weltenwort" title="Code">💻</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/weltenwort"><img src="https://avatars3.githubusercontent.com/u/973741?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Felix Stürmer</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=weltenwort" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/ttobollik"><img src="https://avatars3.githubusercontent.com/u/6298068?v=4?s=50" width="50px;" alt=""/><br /><sub><b>ttobollik</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=ttobollik" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/ttobollik"><img src="https://avatars3.githubusercontent.com/u/6298068?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Theresa Tobollik</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=ttobollik" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/onouv"><img src="https://avatars2.githubusercontent.com/u/30532561?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Olaf Nouvortne</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=onouv" title="Code">💻</a></td>
     <td align="center"><a href="https://danielhabenicht.github.io/"><img src="https://avatars3.githubusercontent.com/u/13590797?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Daniel Habenicht</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=DanielHabenicht" title="Code">💻</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/mgrupp/"><img src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairDreads02&accessoriesType=Blank&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=CollarSweater&clotheColor=Black&eyeType=Default&eyebrowType=Default&mouthType=Twinkle&skinColor=Light?s=50" width="50px;" alt=""/><br /><sub><b>Michael Grupp</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=" title="Code">💻</a></td>
-    <td align="center"><img src="https://avataaars.io/?avatarStyle=Circle&topType=WinterHat3&accessoriesType=Round&hatColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=Heather&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Twinkle&skinColor=Light?s=50" width="50px;" alt=""/><br /><sub><b>Cornelia Furkert</b></sub><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=" title="Code">💻</a></td>
+    <td align="center"><a href="mailto:cornelia.furkert@googlemail.com"><img src="https://avatars3.githubusercontent.com/u/73227216?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Cornelia Furkert</b></sub></a><br /><a href="#design-zwischenmoment" title="Design">🎨</a> <a href="#userTesting-zwischenmoment" title="User Testing">📓</a> <a href="#mentoring-zwischenmoment" title="Mentoring">🧑‍🏫</a></td>
     <td align="center"><a href="https://www.louvard.de/CommitNRun/"><img src="https://avatars2.githubusercontent.com/u/9567496?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Éric Louvard</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=cnrun" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.manuel-blechschmidt.de/"><img src="https://avatars3.githubusercontent.com/u/457641?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Manuel Blechschmidt</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=ManuelB" title="Code">💻</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="http://www.manuel-blechschmidt.de/"><img src="https://avatars3.githubusercontent.com/u/457641?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Manuel Blechschmidt</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=ManuelB" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/baskle"><img src="https://avatars1.githubusercontent.com/u/53707554?v=4?s=50" width="50px;" alt=""/><br /><sub><b>baskle</b></sub></a><br /><a href="#design-baskle" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/baskle"><img src="https://avatars1.githubusercontent.com/u/53707554?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Bastian Klenow</b></sub></a><br /><a href="#design-baskle" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/sheraben"><img src="https://avatars3.githubusercontent.com/u/62461103?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Shéhérazade Benzerga</b></sub></a><br /><a href="#business-sheraben" title="Business development">💼</a></td>
+    <td align="center"><a href="https://japhilko.github.io/mywebsite/"><img src="https://avatars1.githubusercontent.com/u/7593396?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Jan-Philipp Kolb</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=Japhilko" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/undheitergehts"><img src="https://avatars3.githubusercontent.com/u/73689859?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Felix Zimmermann</b></sub></a><br /><a href="#design-undheitergehts" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/jnnwnk"><img src="https://avatars2.githubusercontent.com/u/10629407?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Janna Wieneke</b></sub></a><br /><a href="https://github.com/CovOpen/CovMapper/commits?author=jnnwnk" title="Code">💻</a></td>
   </tr>
 </table>
 
