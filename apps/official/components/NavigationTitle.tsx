@@ -10,7 +10,8 @@ export const NavigationTitle: React.FC<{ title: string; backToExpandedFeatureInf
     <Box display="flex" flex={1} alignItems="center" style={{ marginTop: "8px", width: "100%" }}>
       <ArrowBackIosIcon
         style={{ textDecoration: "none", cursor: "pointer", padding: "8px" }}
-        aria-label="go back to map" onClick={() => customHistoryPush("/", { expanded: props.backToExpandedFeatureInfo ? "true" : undefined })}
+        aria-label="go back to map"
+        onClick={() => customHistoryPush("/", { expanded: props.backToExpandedFeatureInfo ? "true" : undefined })}
         color="action"
       />
       <Typography variant="h1">{props.title}</Typography>
