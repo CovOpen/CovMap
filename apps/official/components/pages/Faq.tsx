@@ -56,7 +56,7 @@ export const Faq: React.FC = () => {
 
       <section>
         <FaqAccordion title={t("faq.what-is-covmap.title")}>
-          <Typography style={{ width: "100%" }}>
+          <Typography style={{ width: "100%" }} component="div">
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div className={classes.textBlock}>{t("faq.what-is-covmap.text")}</div>
               <div className={classes.textBlock}>
@@ -146,7 +146,7 @@ export const Faq: React.FC = () => {
         </FaqAccordion>
 
         <FaqAccordion title={t("faq.advantages.title")}>
-          <Typography style={{ width: "100%" }}>
+          <Typography style={{ width: "100%" }} component="div">
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div className={classes.textBlock}>{t("faq.advantages.text-1")}</div>
               <div className={classes.textBlock}>{t("faq.advantages.text-2")}</div>
