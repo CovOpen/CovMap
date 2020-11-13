@@ -7,9 +7,11 @@ import { AppApi } from "../../../../src/state/app";
 
 import { formatUTCDate } from "../../../../src/lib/formatUTCDate";
 import { NavigationTitle } from "app-config/components/NavigationTitle";
+import { useTranslation } from "react-i18next";
 
 export const Charts = () => {
   const dispatch = useThunkDispatch();
+  const { t } = useTranslation("translation");
   const currentDate = useSelector((state: State) => state.app.currentDate);
   const dateKey = formatUTCDate(currentDate);
   const dataUrl =
@@ -43,7 +45,7 @@ export const Charts = () => {
         justifyContent: "center",
       }}
     >
-      <NavigationTitle title={"Deutschlandweite Graphen"} />
+      <NavigationTitle title={t("pages.charts")} />
       <div style={{ width: "100%", height: "calc(100vh - 150px)" }}>
         <ResponsiveContainer>
           <LineChart
@@ -67,7 +69,7 @@ export const Charts = () => {
               dataKey={"CI"}
               stroke="#8884d8"
               strokeWidth="4px"
-              name="Kontaktindex C"
+              name={t("charts.contact-index") as string}
             />
             <Line
               yAxisId="right"
@@ -75,7 +77,7 @@ export const Charts = () => {
               dataKey={"R"}
               stroke="#f01a8d"
               strokeWidth="4px"
-              name="Reproduktionszahl R"
+              name={t("charts.reproduction-rate") as string}
             />
           </LineChart>
         </ResponsiveContainer>

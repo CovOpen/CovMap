@@ -6,11 +6,257 @@
     "about": "Über die CovMap",
     "legal": "Rechtliches",
     "copyright": "Impressum",
-    "privacy-policy": "Datenschutz"
+    "privacy-policy": "Datenschutz",
+    "contact-behavior": "Kontaktverhalten"
   },
   "formats": {
     "date": "{{ date, dddd, Do MMMM YYYY}}"
   },
   "risk-score": "Risikoeinschätzung",
-  "search-placeholder": "PLZ oder Landkreis"
+  "search-placeholder": "PLZ oder Landkreis",
+  "basic-recommendations": {
+    "title": "Wie kann ich mich verhalten?",
+    "county-teaser": "Informiere Dich über aktuelle Verhaltensregeln für {{county}} hier.",
+    "intro-teaser-1": "Die Pandemie ist noch nicht vorbei und wir alle haben das Ziel die Pandemie soweit es geht einzudämmen und natürlich Risikogruppen zu schützen. Besonders die bevorstehende kalte Jahreszeit, in der wir uns überwiegend in geschlossen Räumen aufhalten, stellt eine Herausforderung dar. Es kommt jetzt auf Dich, auf uns, auf jeden Einzelnen an!",
+    "intro-teaser-2": "In den letzten Monaten konnte immer wieder gezeigt werden, dass ganz einfache Maßnahmen, die von jedem umgesetzt werden können, sehr viel Wirkung haben.",
+    "contact": {
+      "headline": "Kontakte reduzieren",
+      "text": "Kontakte reduzieren ist eine der wirkungsvollsten Maßnahmen.\nDas Virus wird von Mensch-zu-Mensch übertragen. Wenn man sich nicht trifft, kann das Virus also nicht übertragen werden. Greife zum Telefonhörer, halte eine Videokonferenz und arbeite von zu Hause, wann immer dies möglich ist. So schwer es auch fällt, Kontakte minimieren schützt und hilft uns allen, vor allem in Risikogebieten. Seid dabei und helft mit!"
+    },
+    "distance": {
+      "headline": "Abstand halten",
+      "text": "Falls Du Kontakt zu einer Person hast, dann halte einen Abstand von mindestens 1.5 Metern. Je mehr Abstand, umso besser."
+    },
+    "mask": {
+      "headline": "Maske tragen",
+      "text": "Wenn Du infiziert bist und Du eine Alltagsmaske trägst, verringert sich das Risiko, dass Du andere Personen ansteckst. Sind Kontakte nicht vermeidbar, kann das Tragen einer Maske also sowohl Dich, als auch Dein Gegenüber schützen."
+    },
+    "ventilation": {
+      "headline": "Regelmäßig lüften",
+      "text": "Das Virus kann über die Luft übertragen werden.\nWenn Du Dich mit anderen Personen triffst, dann tue dies am besten an der frischen Luft.\nFalls Du Dich doch in einen geschlossenen Raum begeben musst, dann sorge für eine gute Luftzirkulation, indem Du Fenster öffnest und gut lüftest."
+    },
+    "hygiene": {
+      "headline": "Hygienemaßnahmen",
+      "text": "Hygienemaßnahmen können Infektionen verringern.\nDas Verwenden von Desinfektionsmitteln und das Händewaschen können dazu beitragen, Infektionen zu verhindern, wenn Du Dinge angefasst hast, die potentiell mit dem Virus kontaminiert sind."
+    },
+    "regional": {
+      "headline": "Lokale Regeln",
+      "text": "Informiere Dich über lokale Regeln und Maßnahmen in Deiner Region."
+    },
+    "final-teaser": "Zusammen können wir es schaffen!\nGegenseitige Rücksichtnahme, Verständnis und Geduld sind die Gebote dieser Stunde."
+  },
+  "charts": {
+    "contact-index": "Kontaktindex C",
+    "reproduction-rate": "Reproduktionszahl R"
+  },
+  "contact-behavior": {
+    "intro": "Was ist das Kontaktverhalten und warum ist es wichtig?",
+    "text-1": "Das Virus wird von Mensch zu Mensch übertragen. Indem wir Kontakte reduzieren, können wir es dem Virus erschweren, sich in der Bevölkerung zu verbreiten. Dabei ist der <1>R-Wert</1> ist eine wichtige Maßzahl, mit der wir beurteilen können, ob wir es dem Virus schwer genug gemacht haben.",
+    "text-2": "Der R-Wert besagt, wie viele Personen von einer infizierten Person im Durchschnitt angesteckt werden. Wenn der R-Wert 1 beträgt, bedeutet dies, dass eine infizierte Person im Schnitt nur eine weitere ansteckt. Ziel ist es, durch Maßnahmen einen R Wert unter 1 zu erreichen, d.h., dass eine infizierte Person im Durchschnitt weniger als eine weitere Person ansteckt. Ein R-Wert oberhalb von 1 führt dagegen zu einer Kettenreaktion mit einem unkontrollierten Anstieg der Fallzahlen. Der R-Wert hängt einerseits von der Biologie des Virus ab (\"wie ansteckungsfähig ist das Virus?\"), andererseits von unserem Kontaktverhalten (\"auf wie viele Personen treffe ich?\"). Während wir die Biologie des Virus nicht ändern können, können wir durch unser Kontaktverhalten einen großen Einfluss auf das Infektionsgeschehen nehmen. Indem wir unsere Kontakte reduzieren, können wir es auch einem hoch ansteckenden Virus so schwer machen, eine weitere Person zu infizieren, dass der R-Wert unter 1 sinkt.",
+    "text-3": "Das Problem des R-Werts ist es, dass er das Infektionsgeschehen mit mehreren Tage Verzögerung abbildet, da er aus der Zahl der bestätigten Infektionen berechnet wird. Dies erscheint auch logisch, wenn man bedenkt, dass man nach einer Ansteckung mit dem Coronavirus nicht sofort Symptome entwickelt und auch das Ergebnis eines Labortests mit mehreren Tagen Verzögerung dem Robert-Koch-Institut mitgeteilt wird. Der R-Wert ist somit immer ein Blick in die Vergangenheit.",
+    "text-4": "Unsere Gruppe hat ein <1>Modell für das Kontaktverhalten auf Basis von GPS Daten</1> entwickelt. Über die Berechnung eines sogenannten Kontakt-Index können wir den R-Wert vorhersagen. Der Vorteil vom Kontakt-Index ist nun, dass er fast ohne Verzögerung berechnet werden kann.",
+    "text-5": "Von einem erhöhten Kontaktverhalten sprechen wir, wenn unser Modell voraussagt, dass in einer Region so viele Kontakte vorhanden sind, dass sich das Virus leicht ausbreiten kann und wir davon ausgehen, dass der R-Wert über 1 liegen wird.",
+    "external-explanation-reproduction-rate": "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Projekte_RKI/R-Wert-Erlaeuterung.pdf?__blob=publicationFile"
+  },
+  "credits": {
+    "project-description": "CovMap ist ein Gemeinschaftsprojekt der Charité - Universitätsmedizin Berlin, des Hasso-Plattner-Instituts (HPI) und der Firma NET CHECK.",
+    "project-management": {
+      "title": "Projektleitung",
+      "text": "Charité: Dr. med. Alexander H. Thieme, M. Sc.\nGesamtkonzept, CovMap, Datenanalyse Symptome\n\nHPI: Prof. Dr. Christoph Lippert\nDatenanalyse, Modellerstellung, Prognosen\n\nNET CHECK: PD. Dr. Sten Rüdiger\nDatenanalyse GPS-Daten, Kontakt-Index"
+    },
+    "appreciation": {
+      "title": "Die CovMap App wurde mit der Unterstützung von zahlreichen Personen und Unternehmen entwickelt. Wir möchten an dieser Stelle unseren großen Dank aussprechen.",
+      "intro": "Wir danken den Unternehmen",
+      "port-blue-sky": "Port Blue Sky: für die technische Unterstüzung der App durch Ihre Mitarbeiter sowie das Organisieren von weiterer Unterstützung aus der Node.js Community.",
+      "pwc": "PWC: für Lob, Kritik und Rat bei der Umsetzung der CovMap.",
+      "maptiler": "Maptiler: für die Unterstützung in Form von Kartendaten.",
+      "contributors-intro": "Ganz besonders möchten wir folgenden Personen danken"
+    }
+  },
+  "faq": {
+    "title": "Fragen und Antworten zur CovMap!",
+    "what-is-covmap": {
+      "title": "Was ist die CovMap?",
+      "text": "Die CovMap visualisiert eine regionale Risikoeinschätzung auf einer Deutschlandkarte. Die Risikoeinschätzung beruht auf täglich aktualisierten Fallzahlstatistiken des Robert-Koch-Instituts und Vorhersagen von selbst entwickelten Modellen basierend auf dem Kontaktverhalten und berichteten Symptomen der Bevölkerung. Mit der CovMap möchten wir folgende Fragen zum Coronavirus adressieren:",
+      "regional-risk": "Wie hoch ist das regionale Risiko?",
+      "how-to-protect": "Wie kann ich mich schützen?",
+      "current-rules-in-county": "Welche Verhaltensregeln gelten im Landkreis?",
+      "outro": "Mit der CovMap möchten wir zu einer freiwilligen Reduzierung von Kontakten aufrufen und aufzeigen, wo dies besonders notwendig ist."
+    },
+    "how-to-access": {
+      "title": "Wie kann ich die CovMap erreichen?",
+      "text": "Die CovMap ist als WebApp über <1>www.covmap.de</1> und <3>covmap.charite.de</3> und als Android App über den Play Store (bald verfügbar) erreichbar."
+    },
+    "what-is-special": {
+      "title": "Was macht die CovMap besonders?",
+      "text": "Die CovMap wertet zur regionalen Risikobestimmung neben den offiziellen Fallzahlstatistiken des Robert-Koch-Instituts große Sätze an GPS- und Symptom-Daten aus. Diese Daten entstammen aus anderen Apps, bei denen die Nutzer der Auswertung ihrer GPS Daten zugestimmt haben. Diese Daten sind die Basis für ein von uns entwickeltes Modell, welches den Kontakt-Index berechnet. Zudem werden aktuelle Symptome abgefragt, ausgewertet und fließen zusätzlich in die Risikoeinschätzung mit ein (bald verfügbar). Der Kontakt-Index und die Symptome spiegeln frühzeitig das Infektionsgeschehen wider und ermöglichen so eine zeitnahe Anpassung. Im Gegensatz dazu sind die Zahlen der Neuinfektionen, die vom Robert-Koch-Institut veröffentlicht werden, der Stand der Neuinfektionen von vor circa einer Woche. Dieser Verzug kommt dadurch Zustande, dass eine Person, die neu mit dem Virus infiziert wurde, nach wenigen Tagen Symptome entwickelt (es gibt auch symptomlose Verläufe), sich erst dann testen lässt, der Test Zeit benötigt und auch die Meldung an das Gesundeitsamt Zeit in Anspruch nimmt."
+    },
+    "is-it-official": {
+      "title": "Handelt es sich um offizielle Risikoeinschätzungen?",
+      "text": "Nein, bei der CovMap Risikoeinschätzung handelt es sich nicht um eine offizielle Risikoeinschätzung einer nationalen Behörde oder Institution. Die CovMap Risikoeinschätzung wurde von Forschenden der Charité, des Hasso-Plattner-Instituts und Datenspezialisten der Firma NET CHECK entwickelt. Das von uns entwickelte Modell zur Risikoeinschätzung wurde erst kürzlich entwickelt und wird deswegen laufend evaluiert."
+    },
+    "which-risk-levels": {
+      "title": "Welche Risikostufen gibt es?",
+      "intro": "Auf der Karte stellen wir ein normales, mittleres und hohes Risiko dar.",
+      "level-1": "Ein normales Risiko liegt vor, wenn die 7-Tages-Inzidenz des Robert-Koch-Instituts geringer als 20 Neuinfektionen pro 100.000 Einwohner ist und unser Vorhersagemodell keinen Anstieg vermuten lässt. Bitte beachte, dass das Virus derzeit überall in Deutschland zirkuliert und daher eine Ansteckung auch in einer Region mit einem normalen Risiko möglich ist.",
+      "level-2": "Von einem mittleren Risiko gehen wir aus, wenn die 7-Tages-Inzidenz zwischen 20 und 50 Neuinfektionen pro 100.000 Einwohnern liegt oder unser Vorhersagemodell auf einen Anstieg der Neuinfektionen hindeutet. Eine Region mit mittlerem Risiko kann in Zukunft eine Region mit hohem Risiko werden.",
+      "level-3": "Ein hohes Risiko leiten wir von der 7-Tages-Inzidenz ab, wenn die Schwelle von 50 Neuinfektionen pro 100.000 Einwohner überschritten wurde.",
+      "increased-contact-behavior": {
+        "title": "Erhöhtes Kontaktverhalten in der Bevölkerung",
+        "text": "In dieser Region registrieren wir viele Kontakte, weshalb sich das Virus leichter ausbreiten kann. Unser Vorhersagemodell sagt einen Anstieg der 7-Tages-Inzidenz voraus."
+      }
+    },
+    "consequences-of-risk-evaluation": {
+      "title": "Welche Konsequenzen ergeben sich aus der Risikoeinschätzung?",
+      "text": "Wir möchten mit diesem Projekt zu einer freiwilligen Reduktion von Kontakten aufrufen, insbesondere in Gebieten mit mittlerem und hohem Risiko. Falls sich Kontakte nicht vermeiden lassen, findest Du auf unserer Seite Informationen über allgemeine Schutzmaßnahmen, mit denen sich das Übertragungsrisiko verringern lässt. Zusätzlich verlinken wir zu den Webseiten der Landkreise, so dass Du Dich über die aktuellen und offiziellen Verhaltensregeln in Deiner Region informieren kannst."
+    },
+    "how-up-to-date": {
+      "title": "Wie aktuell ist die CovMap?",
+      "text": "Die CovMap wird einmal täglich aktualisiert. Der Datenstand ist in der Kartendarstellung oben rechts mit Datum erkenntlich."
+    },
+    "which-data": {
+      "title": "Welche Daten verwendet die CovMap?",
+      "text": "Die CovMap greift auf drei Datenquellen zurück, um die regionalen Risikobewertung durchzuführen:\n1.) Fallzahlstatistiken vom Robert-Koch-Institut,\n2.) ein geschätztes Kontaktverhalten (Kontakt-Index), ermittelt aus GPS Daten von der Firma NET CHECK,\n3.) Symptomdaten von der Chartié CovApp (<1>https://covapp.charite.de</1>)"
+    },
+    "advantages": {
+      "title": "Welche Vorteile ergeben sich durch die Auswertung von Kontakten und Symptomen der Bevölkerung?",
+      "text-1": "Damit das Virus übertragen werden kann, müssen sich Menschen begegnen. Wenige Tage nach der Infektion berichten viele infizierte Personen über Symptome. Damit stellen der Kontakt zwischen Menschen und das Bemerken von Symptomen die zwei frühesten beobachtbaren Ereignisse einer Infektion dar. Hier setzt die CovMap an.",
+      "text-2": "Wir charakterisieren aus anonymisierten GPS-Daten das Kontaktverhalten. Zusätzlich werten wir selbstberichtete Symptome aus. Naturlich führt nicht jeder Kontakt zu einer Virusübertragung und Symptome allein beweisen keine Infektion mit dem Coronavirus. Wertet man jedoch die Daten von vielen Personen aus, dann kann eine Prognose der zukünftigen Fallzahlen erstellt werden. Wir haben dieses Modell erst kürzlich entwickelt und evaulieren und verbessern es kontinuierlich.",
+      "text-3": "Die vom Robert Koch-Institut gemeldete 7-Tages-Inzidenz spiegelt das Infektionsgeschehen wider, das bereits vor einiger Zeit stattgefunden hat, und ist deshalb ein Blick in die Vergangenheit. Der von uns entwickelte Kontakt-Index ist ein Maß für die Anzahl der Kontakte pro Person und Region und kann schneller ausgewertet werden. In <1>ersten Analysen</1> konnten wir zeigen, dass ein hoher Kontakt-Index mit einem vermehrten Infektionsgeschehen korreliert. Der Kontakt-Index erlaubt insofern einen vorsichtigen Blick in die Zukunft und kann als eine Art Frühwarnsystem angesehen werden. Wichtig ist, dass es sich bei dem hinterlegten Algorithmus um ein rechnerisches Modell handelt. Das tatsächliche Infektionsgeschehen kann deshalb von der Vorhersage auf Basis des Kontakt-Index abweichen.",
+      "text-4": "Man weiß inzwischen, dass die Auswertung von Symptomen zur Vorhersage von lokalen Ausbrüchen verwendet werden kann. Zeitlich ist die Symptomlast als Variable für die Vorhersage des Infektionsgeschehens zwischen Kontakt-Index und 7-Tages-Inzidenz einzuordnen. Über die CovApp der Charité geben viele Nutzerinnen und Nutzern ihre Symptome an. Wir planen, diese Angaben anonymisiert in ein verbessertes Modell einfließen zu lassen.",
+      "text-5": "Der große Vorteil der Auswertung von Kontakten und Symptomen liegt darin, dass die Daten fast ohne Verzögerung analysiert werden können und daher ohne den Meldeverzug der offiziellen Fallzahlen des Robert Koch-Instituts zur Verfügung stehen. Dadurch können wir die Bevölkerung schneller auf die Möglichkeit eines erhöhten regionalen Risikos hinweisen.",
+      "text-6": "Das CovMap Projekt wird zurzeit aktiv weiterentwickelt und verbessert."
+    },
+    "how-does-it-work": {
+      "title": "Wie funktioniert die Vorhersage, ob in einer Region mit vermehrten Neuinfektionen zu rechnen ist?",
+      "text": "Unsere Arbeiten beruhen auf einem etablierten theoretischen Modell für die Vorhersage der Reproduktionszahl (R-Wert). Der R-Wert gibt an, wie viele Personen sich innerhalb eines bestimmten Zeitraumes typischerweise an einer erkrankten Person anstecken. Diese Ansteckungen hängen unter anderem von der Zahl der Kontakte pro Person ab und ein mathematischer Zusammenhang kann für die Bestimmung genutzt werden. Der Kontakt zwischen zwei Personen kann zu einer Übertragung des Coronavirus führen. Bei unserer Methode müssen wir nicht wissen, ob eine Person tatsächlich infiziert ist und können dennoch eine Vorhersage darüber treffen, wie sich die Zahl der Neuinfektionen entwickeln wird. Da ein Kontakt und die potentielle Virusübertragung das früheste Ereignis einer Infektion mit dem Coronavirus darstellt, gewinnen wir einen Zeitvorteil von bis zu 3 Wochen gegen über den offiziellen Fallzahlstatistiken mit bestätigten Infektionen. Statistisch gesehen ist übrigens nicht die Zahl der Kontakte pro Person entscheidend, sondern eine spezielle Metrik, welche die Verteilung der Anzahl der Kontakte berücksichtigt. Diese Metrik wurde von uns unter dem Namen Kontakt-Index berechnet und wird für die Prognose verwendet, ob es zu einem Anstieg von Neuinfektionen kommen kann."
+    },
+    "what-is-contact-index": {
+      "title": "Was ist der Kontakt-Index?",
+      "text": "Der Kontakt-Index wurde von unserer Gruppe entwickelt und in einer wissenschaftlichen Arbeit (<1>Preprint</1>) beschrieben. Grundlegend ist die Beobachtung, dass nicht jede Person die gleiche Zahl von Kontakten pro Tag hat, sondern es dabei sehr große Unterschiede gibt. Da Personen mit sehr vielen Kontakten („Superkontakter“) eine höhere Wahrscheinlichkeit haben, das Coronavirus weiterzugeben, spielt diese Beobachtung eine wichtige Rolle für die Ausbreitung des Coronavirus (siehe auch Freundschaftsparadox). Anders gesagt, ist nicht nur die reine Zahl an Kontakten für die Virusausbreitung entscheidend, sondern auch die Unterschiedlichkeit der Kontaktzahlen (Heterogenität). Der Kontakt-Index zeigt nun sowohl die Gesamtzahl der Kontakte als auch die Heterogenität an. Wir konnten zeigen, dass der Kontakt-Index sehr gut mit der Ausbreitung des Coronavirus in Deutschland korrelierte."
+    },
+    "why-reduce-contacts": {
+      "title": "Warum hilft es Kontakte zu reduzieren?",
+      "text": "Das Coronaviurs überträgt sich von Mensch zu Mensch. Es wird hauptsächlich über die sogenannte Tröpfcheninfektion und über Aerosole übertragen. Je weniger Kontakte jemand hat, desto schwerer ist es für das Virus, sich weiter zu verbreiten. Weitere Informationen zum Coronavirus findest Du auf der <1>Webpage des Robert-Koch-Instituts</1>."
+    },
+    "what-can-i-do": {
+      "title": "Was kann ich konkret tun, um die Ausbreitung des Coronavirus zu verringern?",
+      "text": "Das Coronaviurs überträgt sich von Mensch zu Mensch, deswegen ist es wichtig, dass wir Kontakte reduzieren und uns zusätzlich an Infektionsschutzmaßnahmen halten und diese umzusetzen. Die <1>AHA + L + A Formel</1> fast die wichtigsten Infektionsschutzmaßnahmen zusammen: Abstand halten, Hygiene beachten (Händewaschen, in die Ellenbeuge niesen), Alltagsmaske (Mund-Nasen-Bedeckung) tragen und regelmäßiges Lüften sind sehr wichtig. Das weitere A steht für die <3>Corona-Warn-App</3>, welche Nutzerinnen und Nutzer der App über Kontakte zu infizierten Personen informiert."
+    },
+    "friendship-paradoxon": {
+      "title": "Was ist das Freundschaftsparadox?",
+      "text": "Der Kontakt-Index ist anschaulich mit dem sogenannten <1>Freundschaftsparadox</1> verbunden. Danach gilt für die meisten Menschen - z.B. in Facebook - dass ihre Freunde im Durchschnitt mehr Freunde haben als sie selbst. Das wiederum liegt daran, dass Personen mit vielen Freunden eine höhere Wahrscheinlichkeit haben, mit einer beliebigen Person X verbunden zu sein, als Personen, die wenige Freunde haben. Daher sind vereinfacht gesagt viele Freunde oder Kontakte von X Superkontakter. Diese Beobachtung macht sich auch in der Ausbreitung von Infektionskrankheiten bemerkbar. D.h. wenn ich jemanden anstecke, wird diese Person wahrscheinlich jemand mit vielen Kontakten sein. Also wird im Mittel nicht die mittlere Zahl der Kontakte angesteckt, sondern mehr als diese Zahl. Der Kontakt-Index übernimmt diese Abweichung."
+    }
+  },
+  "copyright": {
+    "provider": {
+      "title": "Anbieter",
+      "text-1": "Charité – Universitätsmedizin Berlin",
+      "text-2": "Zentrale Postanschrift: Charitéplatz 1, 10117 Berlin",
+      "text-3": "Die Charité – Universitätsmedizin Berlin ist eine Körperschaft des Öffentlichen Rechts. Sie wird durch den Vorstandsvorsitzenden gesetzlich vertreten."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "text-1": "Für Hinweise, Lob und Kritik schreiben Sie uns bitte eine E-Mail an: <1>covmap@charite.de</1>",
+      "text-2": "Internet: <1>https://www.charite.de</1>"
+    },
+    "responsible-media-law": {
+      "title": "Verantwortlicher im Sinne des Medienrechts",
+      "text-1": "Prof. Dr. Heyo K. Kroemer, der Vorstandsvorsitzende der Charité – Universitätsmedizin Berlin",
+      "text-2": "Verantwortlich für Inhalte:",
+      "text-3": "Projektleitung CovMap: Dr. med. Alexander H. Thieme, M.Sc.",
+      "text-4": "Das gesamte Team:",
+      "text-5": "Dr. Thieme (Charité), Dr. Mittermaier (Charité), Dr. Gertler (Charité), Prof. Dr. Lippert (HPI), Dr. Konigorski (HPI), Dr. Edelmann (HPI), PD. Dr. Rüdiger (NET CHECK), Hr. Zernick (NET CHECK)"
+    },
+    "competent-supervisory-authority": {
+      "title": "Zuständige Aufsichtsbehörde",
+      "text-1": "Der Regierende Bürgermeister von Berlin – inkl. Wissenschaft und Forschung",
+      "text-2": "Kontakt: <1>https://www.berlin.de/rbmskzl/</1>",
+      "text-3": "Senatsverwaltung für Gesundheit, Pflege und Gleichstellung",
+      "text-4": "Kontakt: <1>https://www.berlin.de/sen/gpg/</1>",
+      "text-5": "Umsatzsteuer-Identifikationsnummer: DE 228847810"
+    }
+  },
+  "legal": {
+    "legal-info": {
+      "title": "Rechtliche Hinweise",
+      "text": "Haftungsausschluss (Disclaimer)"
+    },
+    "general-info": {
+      "title": "Allgemeiner Hinweis",
+      "text": "Die Nutzung dieser App ersetzt keine ärztliche Behandlung. Wenn Sie sich aktuell schwer krank fühlen, suchen Sie bitte umgehend medizinische Hilfe."
+    },
+    "liability-for-contents": {
+      "title": "Haftung für Inhalte",
+      "text": "Als Dienstanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Dienstanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt."
+    },
+    "liability-for-links": {
+      "title": "Haftung für Links",
+      "text": "Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich."
+    },
+    "copyright": {
+      "title": "Urheberrecht",
+      "text": "Die durch den Dienstanbieter erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen."
+    }
+  },
+  "privacy": {
+    "title": "Datenschutzrechtliche Informationen gemäß Art. 13 DS-GVO",
+    "responsible": {
+      "title": "Datenschutzrechtliche Verantwortlichkeit",
+      "text": "<0>Die CovMap ist ein Projekt der Charité – Universitätsmedizin Berlin, die für die Verarbeitungpersonenbezogener Daten auf dieser Website verantwortlich ist. Die Kontaktdaten lauten wie folgt:</0><1>Charité – Universitätsmedizin Berlin Charitéplatz 1\n10117 Berlin\nDeutschland</1><2>Tel: +49 (0) 30 450 50\nWebsite: <1>www.charite.de</1></2><4>Für die Datenverarbeitung auf Ihrem Endgerät, auf das Sie die CovMap laden, sind Sie selbst verantwortlich. Das gilt auch für die Eingabe der Postleitzahl (siehe unter 5 c)).</4><5>Grundlage der für den Nutzer der Website visualisierten Darstellung sind Daten, die von der Firma NET CHECK GmbH zusammengestellt und verarbeitet werden. Die Charité übernimmt mit diesem Webangebot die reine Visualisierung in Form einer Deutschlandkarte der insoweit von der NET CHECK GmbH zur Verfügung gestellten Information. Die Charité haftet nur für eigene Inhalte; als Diensteanbieter ist die Charité nicht verpflichtet, übermittelte fremde Informationen zu prüfen oder zu überwachen.</5>"
+    },
+    "data-protection-officer": {
+      "title": "Datenschutzbeauftragte",
+      "text": "Bei Fragen zur Verarbeitung Ihrer personenbezogenen Daten sowie zu Ihren Rechten rund um den Datenschutz,die sich auf die Charité beziehen, wenden Sie sich bitte an unsere Datenschutzbeauftragte:\n\nt: +49 30 450 580 016\nE-Mail: datenschutz(at)charite.de"
+    },
+    "personal-data": {
+      "title": "Personenbezogene Daten, Art. 4 Nr. 1 DS-GVO",
+      "text": "Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder identifizierbare natürliche Person beziehen. Als identifizierbar wird eine natürliche Person angesehen, die direkt oder indirekt identifiziert werden kann - insbesondere mittels Zuordnung zu einer Kennung wie einem Namen, zu einer Kennnummer, zu Standortdaten oder zu einer Online-Kennung (IP-Adresse)."
+    },
+    "installation": {
+      "title": "Installation der CovMap",
+      "text": "Bei der CovMap handelt es sich sowohl um eine Web-App als auch um eine App, die über eine von Dritten betriebene Vertriebsplattform erhältlich ist, sogenannter App-Store (hier Google Play). Ihr Download setzt gegebenenfalls eine vorherige Registrierung beim jeweiligen App-Store und die Installation der App-Store-Software voraus. Wir haben keinen Einfluss auf die Verarbeitung von personenbezogenen Daten im Zusammenhang mit Ihrer Registrierung und der Bereitstellung von Downloads in dem jeweiligen App-Store und der App-Store-Software. Verantwortliche Stelle ist insoweit allein der Betreiber des jeweiligen App-Stores."
+    },
+    "calling-covmap": {
+      "title": "Aufruf der CovMap",
+      "text": "a. Log-Dateien (sog. Log Files)\nBei jedem Zugriff auf die CovMap werden Daten über diesen Vorgang vorübergehend in einer Protokolldatei verarbeitet. Im Einzelnen werden folgende Daten gespeichert:\n• das Datum und die Uhrzeit des Aufrufs der CovMap\n• verwendete Webbrowser und verwendetes Betriebssystem\n• die vollständige IP-Adresse des anfordernden Endgeräts \n• der Name und die URL der abgerufenen Datei\n• im Fall des Aufrufs der Web-App auch die Webseite, von der aus der Zugriff erfolgt\n\nDiese Datenverarbeitung durch unser System dient dem Zweck und unserem Interesse, die Auslieferung der CovMap an das Endgerät des Nutzers/der Nutzerin zu ermöglichen. Hierfür muss die IP-Adresse der Nutzenden für die Dauer der Sitzung gespeichert bleiben. Ihre IP-Adresse löschen wir nach Ablauf von 20 Tagen. Wir speichern sie 20 Tage lang, damit wir im Fall von Datensicherheitsmängeln oder Problemen von Eingriffen der Nutzenden Rechtsverstöße verfolgen können. Nach Ende der Aufbewahrung werden die IP-Adressen unverzüglich gelöscht. Im Übrigen werden die Daten in unserem System gelöscht, wenn die jeweilige Sitzung beendet ist.\nDie Erfassung der Daten zur Bereitstellung CovMap ist für den Betrieb der Applikation zwingend erforderlich. Rechtsgrundlage hierfür ist Art. 6 Abs. 1 S. 1 lit. f DS-GVO.\n\nb. Session-Cookies\nBeim Aufruf der CovMap erheben wir während einer laufenden Verbindung über Ihren Internet-browser und mit Hilfe von technisch notwendigen sog. Session-Cookies Daten. Diese Daten beziehen sich lediglich auf Ihre IP-Adresse (siehe nachstehende Bullet Points). Session-Cookies ermöglichen die Funktionalität dieser Anwendungen. Sie verfallen nach 24 Stunden. Die meisten Browser sind so eingestellt, dass sie Cookies automatisch akzeptieren. Sie können das Speichern von Cookies jedoch deaktivieren oder Ihren Browser so einstellen, dass er Sie benachrichtigt, sobald Cookies gesendet werden. Durch den Einsatz von Cookies fließen der Stelle, die den Cookie setzt (hier der durch uns eingesetzte Auftragsverarbeiter KeyCDN, siehe dazu unter 6.) folgende Informationen zu:\n• Datum und Uhrzeit des Aufrufs der Website\n• verwendete Webbrowser und verwendetes Betriebssystem\n• vollständige IP-Adresse des anfordernden Endgeräts\n• übertragene Datenmenge\n• Name des verwendeten Internet-Providers.\nDie Verarbeitung erfolgt ebenfalls auf der Rechtsgrundlage des Art. 6 Abs. 1 lit. f DS-GVO. Unser berechtigtes Interesse bei der Verwendung von technischen Cookies liegt in der Ermöglichung der Nutzung und Bereitstellung der CovMap. Bei den Cookies handelt es sich um für die Nutzung von CovMap technisch zwingend notwendige Cookies. \n\nc. Eingabe der Postleitzahl\nBei Aufruf der App besteht die Möglichkeit, dass Sie die Postleitzahl Ihrer Heimatadresse eingeben. Sofern Sie Ihre Postleitzahl eingeben, wird Ihnen bei der anschließenden Darstellung der Deutschlandkarte auf den ersten Blick der Bereich Ihrer Heimatadresse und der unmittelbaren Umgebung angezeigt. Geben Sie keine Postleitzahl ein, können Sie den Fokus auf den Sie interessierenden Kartenabschnitt selbstständig manuell einstellen. \nDies ist eine freiwillige Option und keine Voraussetzung zur Nutzung der CovMap. Die Eingabe der Postleitzahl findet ausschließlich auf Ihrem lokalen Endgerät statt. Es erfolgt keine Verknüpfung mit personenbezogenen Daten durch uns. Bei der Postleitzahl handelt es sich insoweit nicht um ein personenbezogenes Datum."
+    },
+    "recipient-of-personal-data": {
+      "title": "Empfänger von personenbezogenen Daten",
+      "text": "Die Verarbeitung der IP-Adresse der Nutzerinnen und Nutzer der CovMap erfolgt mit den entsprechend vereinbarten Sicherheitsanforderungen im Rahmen einer Auftragsverarbeitung nach Art. 28 Abs. 3 DS-GVO durch den Technologiedienstleister proinity LLC, Rümikerstrasse 60, 8409 Winterthur, Schweiz (\"KeyCDN\"). Verantwortlich für die Datenverarbeitung bleiben wir.\nMit oder ohne Eingabe Ihrer Postleitzahl zeigt Ihnen die CovMap im Anschluss an den Aufruf der Seite bzw. App eine Karte an, auf der tagesaktuell visualisiert wird, in welchen Gebieten ein lokaler Ausbruch von Covid-19 zu erwarten ist. Zur Darstellung der Karte setzen wir ebenfalls den Dienst von KeyCDN ein. Die IP-Adresse wird nicht gespeichert.\nAnsonsten werden im Rahmen der Nutzung der CovMap keine personenbezogenen Daten von Ihnen an Dritteübermittelt, es sei denn, wir sind von Gesetzes wegen dazu verpflichtet oder Sie haben Ihre Einwilligung erklärt.\n"
+    },
+    "no-obligation-to-provide": {
+      "title": "Keine Pflicht zur Bereitstellung; keine automatisierte Entscheidungsfindung einschl. Profiling",
+      "text": "Eine Pflicht zur Bereitstellung der personenbezogenen Daten besteht nicht. Eine automatisierte Entscheidungsfindung findet nicht statt."
+    },
+    "your-rights": {
+      "title": "Ihre Rechte",
+      "text": "Sie haben grundsätzlich folgende Rechte hinsichtlich der Sie betreffenden personenbezogenen Daten:\n- Recht auf Auskunft (Art. 15 DS-GVO)\n- Recht auf Berichtigung (Art. 16 DS-GVO)\n- Recht auf Löschung (Art. 17 DS-GVO; “Recht auf Vergessenwerden”)\n- Recht auf Einschränkung der Verarbeitung (Art. 18 DS-GVO)\n- Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DS-GVO)\n- Recht auf Datenübertragbarkeit (Art. 20 DS-GVO)\nSoweit Sie uns eine Einwilligung in die Verarbeitung Ihrer Daten erteilt haben, können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen. Die Rechtmäßigkeit der Verarbeitung Ihrer Daten bis zum Widerruf bleibt hiervon unberührt. Sie haben zudem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde in dem Mitgliedstaat Ihres Aufenthaltsorts, Ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes über die Verarbeitung Ihrer personenbezogenen Daten durch uns zu beschweren, wenn Sie der Ansicht sind, dass die Verarbeitung der Sie betreffenden personenbezogenen Daten rechtswidrig erfolgt.\n"
+    }
+  },
+  "rki": {
+    "title": "7-Tages-Inzidenz (RKI)",
+    "intro": "Wie berechnet sich die 7-Tages-Inzidenz (Anzahl der Neuinfektionen pro 100.000 Einwohner der letzten 7 Tage)?",
+    "text": "Es werden alle gemeldeten Neuinfektionen der jeweils zurückliegenden sieben Tage innerhalb eines Landkreises addiert. Diese Summe wird durch die Einwohnerzahl des jeweiligen Landkreises geteilt. Danach wird dieser Wert mit 100.000 multipliziert. Die 7-Tages-Inzidenz stellt eine etablierte Größe dar, um aktuelle Hotspots der Coronavirus-Epidemie zu identifizieren. Man muss jedoch davon ausgehen, dass nicht alle Fälle gemeldet werden. Darüber hinaus gibt es einen Meldeverzug, da zwischen der Infektion und der Bestätigung durch einen Labortest und Meldung des Ergebnisses an das Robert-Koch-Instituts Zeit vergeht."
+  },
+  "symptom-level": {
+    "title": "Symptomlast",
+    "text": "Wenige Tage nach einer Coronavirusinfektion entwickelt ein Teil der Personen Symptome wie zum Beispiel Husten, Fieber oder einen Verlust des Geschmacks. Diese Symptome gehören zu den frühesten beobachtbaren Ereignissen einer Infektion, sind jedoch nicht spezifisch für das Coronavirus und können beispielsweise auch bei einer harmlosen Erkältung auftreten. Falls man jedoch eine große Menschenmenge nach Symptomen befragt, kann man Hotspots des Coronavirus früher detektieren. Wir verwenden die Charité <1>CovApp</1>, um die Antworten nach Symptomen von einer großen Anzahl von Menschen auszuwerten, und können daher indirekt auf eine Aktivität des Coronavirus in einer Region Rückschlüsse ziehen.\n\nWir bereiten diese Funktion gerade vor und werden sie Dir bald zur Verfügung stellen können."
+  },
+  "risk-recommendation": {
+    "low": "Die Zahl der Neuinfektionen ist niedrig und das Kontaktverhalten ist ausreichend reduziert. Ein normales Risiko bedeutet nicht, dass keine Neuinfektionen in der Region möglich sind.",
+    "medium": {
+      "intro": "Die Zahl der Neuinfektionen ist mäßig erhöht. ",
+      "outro": "Wir rufen dazu auf, Kontakte freiwillig zu reduzieren."
+    },
+    "high": {
+      "intro": "Die Zahl der Neuinfektionen ist stark erhöht. ",
+      "outro": "Wir rufen dazu auf, Kontakte freiwillig auf das Allernötigste zu reduzieren."
+    },
+    "contact-score-info": "Aufgrund eines erhöhten Kontaktverhalten kann sich das Coronavirus leicht weiter verbreiten und unser Modell sagt einen weiteren Anstieg der Neuinfektionen voraus. "
+  },
+  "contacts-indicator": {
+    "reduced": "reduziert",
+    "increased": "erhöht"
+  }
 }

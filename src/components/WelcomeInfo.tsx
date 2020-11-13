@@ -8,9 +8,11 @@ import { AppApi } from "../state/app";
 import { State } from "../state";
 import { useThunkDispatch } from "../useThunkDispatch";
 import { config } from "app-config/index";
+import { useTranslation } from "react-i18next";
 
 export const WelcomeInfo = () => {
   const dispatch = useThunkDispatch();
+  const { t } = useTranslation("common");
   const currentVisual = useSelector((state: State) => state.app.currentVisual);
   const infoDialogs = useSelector((state: State) => state.app.infoDialogs);
   const InfoComponent = config.visuals[currentVisual].InfoComponent;
@@ -32,7 +34,7 @@ export const WelcomeInfo = () => {
         {InfoComponent && <InfoComponent />}
         <DialogActions>
           <Button onClick={handleClose} color="secondary">
-            Schließen.
+            {t("close")}
           </Button>
         </DialogActions>
       </Dialog>

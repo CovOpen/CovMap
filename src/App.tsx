@@ -41,7 +41,9 @@ export const App = () => {
       <Router>
         <AutoProgressDate />
         <ServiceWorker />
-        <InstallPrompt shouldShow={showInstallPrompt} />
+        <Suspense fallback={getFallbackComponent()}>
+          <InstallPrompt shouldShow={showInstallPrompt} />
+        </Suspense>
         <Container
           disableGutters
           maxWidth={false}
@@ -52,7 +54,9 @@ export const App = () => {
           </Suspense>
           <IntermediateProgress />
           {config.content?.pages.map((page, id) => (
-            <RenderPageRoute key={id} page={page} />
+            <Suspense key={id} fallback={getFallbackComponent()}>
+              <RenderPageRoute page={page} />
+            </Suspense>
           ))}
           <Suspense fallback={getFallbackComponent()}>
             <Route key="map" path="/:subPage?" component={CovMap} />

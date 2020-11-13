@@ -12,5 +12,41 @@
     "share-button-twitter": "Auf Twitter teilen",
     "share-description-error-details": "Klicke hier für Fehlerdetails"
   },
-  "no data for selected timeframe": "Keine Daten für den ausgewählten Zeitraum."
+  "no data for selected timeframe": "Keine Daten für den ausgewählten Zeitraum.",
+  "welcome": {
+    "title": "Willkommen bei der CovMap",
+    "info-1": "Entwickelt von Ärzten der Charité - Universitätsmedizin Berlin",
+    "info-2": "Regionale Risikoeinschätzung zum Coronavirus",
+    "info-3": "Informationen zu allgemeinen Schutzmaßnahmen",
+    "info-4": "Links zu aktuellen Verhaltensregeln aller Landkreise",
+    "what-is-it": {
+      "title": "Was ist die CovMap?",
+      "text": "Die CovMap möchte Risikogebiete so zeitnah wie möglich erkennen. Dazu ziehen wir die offiziellen Fallzahlen, sowie ein von uns entwickeltes Vorhersagemodell basierend auf Kontakten und Symptomen heran."
+    },
+    "what-does-it-show": {
+      "title": "Was zeigt mir die CovMap an?",
+      "text": "Auf der Karte kannst du ganz einfach erkennen, wo sich momentane Risikogebiete in Deutschland und in Deiner Region befinden.",
+      "normal-risk": "Grün = normales Risiko",
+      "medium-risk": "Orange = mittleres Risiko",
+      "high-risk": "Rot = hohes Risiko"
+    },
+    "regional-risk": {
+      "title": "Für Dein regionales Risiko brauchen wir noch die Postleitzahl Deines Wohnortes",
+      "invalid-post-code": "Bitte valide PLZ eingeben",
+      "accept-privacy": "Ja, ich habe die <1>Datenschutzerklärung</1> zur Kenntnis genommen und willige ein.",
+      "start": "Jetzt starten",
+      "continue-without-post-code": "Ohne Postleitzahl weiter"
+    },
+    "continue": "Weiter",
+    "skip": "Überspringen"
+  },
+  "install-promt": {
+    "text-1": "Diese App kann auf deinem Geraet installiert werden.",
+    "text-2": "Tappe den Button unten um dich zu entscheiden!",
+    "confirm": "Alles klar!",
+    "cancel": "Nee danke."
+  },
+  "lazy-error": "Überprüfe Deine Netzwerkverbindung und aktualisiere die App.",
+  "copied-to-clipboard": "Link in Zwischenablage kopiert",
+  "close": "Schließen"
 }

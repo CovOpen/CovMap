@@ -13,8 +13,8 @@ import HygieneIcon from "../../static/images/hand-washing.svg";
 import MaskIcon from "../../static/images/mask.svg";
 import VentilationIcon from "../../static/images/fresh-air.svg";
 import RegionalIcon from "../../static/images/checklist.svg";
-import { ActionTexts } from "../../static/texts/ActionTexts";
 import { NavigationTitle } from "app-config/components/NavigationTitle";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles({
   teaser: {
@@ -35,11 +35,14 @@ const useStyles = makeStyles({
     textAlign: "left",
     fontWeight: "bold",
   },
+  multiLineText: {
+    whiteSpace: "break-spaces",
+  },
 });
 
 const CountyTeaser = ({ county, url }: { county: string; url: string }): JSX.Element => {
   const classes = useStyles();
-  const teaser = `${ActionTexts.COUNTY_TEASER_1}${county}${ActionTexts.COUNTY_TEASER_2}`;
+  const { t } = useTranslation("translation");
 
   return (
     <Button href={url} target="_blank" disableRipple>
@@ -48,7 +51,7 @@ const CountyTeaser = ({ county, url }: { county: string; url: string }): JSX.Ele
           <Grid container direction="row" alignItems="center" spacing={2}>
             <Grid item xs={10}>
               <Typography variant="body1" className={classes.leftText}>
-                {teaser}
+                {t("basic-recommendations.county-teaser", { county })}
               </Typography>
             </Grid>
             <Grid item xs={2}>
@@ -63,11 +66,13 @@ const CountyTeaser = ({ county, url }: { county: string; url: string }): JSX.Ele
 
 const FinalTeaser = (): JSX.Element => {
   const classes = useStyles();
+  const { t } = useTranslation("translation");
+
   return (
     <Card className={classes.teaser}>
       <CardContent>
-        <Typography variant="body1" className={classes.leftText}>
-          {ActionTexts.FINAL_TEASER}
+        <Typography variant="body1" className={`${classes.leftText} ${classes.multiLineText}`}>
+          {t("basic-recommendations.final-teaser")}
         </Typography>
       </CardContent>
     </Card>
@@ -76,16 +81,18 @@ const FinalTeaser = (): JSX.Element => {
 
 const Intro = (): JSX.Element => {
   const classes = useStyles();
+  const { t } = useTranslation("translation");
+
   return (
     <Grid container direction="column" spacing={4}>
       <Grid item>
         <Typography variant="body1" className={classes.leftText}>
-          {ActionTexts.INTRO_TEASER_1}
+          {t("basic-recommendations.intro-teaser-1")}
         </Typography>
       </Grid>
       <Grid item>
         <Typography variant="body1" className={classes.subHeader}>
-          {ActionTexts.INTRO_TEASER_2}
+          {t("basic-recommendations.intro-teaser-2")}
         </Typography>
       </Grid>
     </Grid>
@@ -94,6 +101,8 @@ const Intro = (): JSX.Element => {
 
 const ContactSection = (): JSX.Element => {
   const classes = useStyles();
+  const { t } = useTranslation("translation");
+
   return (
     <div>
       <Grid container direction="row">
@@ -102,12 +111,12 @@ const ContactSection = (): JSX.Element => {
         </Grid>
         <Grid item xs={9}>
           <Typography variant="h1" className={classes.leftText}>
-            {ActionTexts.CONTACT_HEADLINE}
+            {t("basic-recommendations.contact.headline")}
           </Typography>
         </Grid>
       </Grid>
-      <Typography variant="body1" className={classes.leftText}>
-        {ActionTexts.CONTACT_TEXT}
+      <Typography variant="body1" className={`${classes.leftText} ${classes.multiLineText}`}>
+        {t("basic-recommendations.contact.text")}
       </Typography>
     </div>
   );
@@ -115,6 +124,8 @@ const ContactSection = (): JSX.Element => {
 
 const DistanceSection = (): JSX.Element => {
   const classes = useStyles();
+  const { t } = useTranslation("translation");
+
   return (
     <div>
       <Grid container direction="row">
@@ -123,12 +134,12 @@ const DistanceSection = (): JSX.Element => {
         </Grid>
         <Grid item xs={9}>
           <Typography variant="h1" className={classes.leftText}>
-            {ActionTexts.DISTANCE_HEADLINE}
+            {t("basic-recommendations.distance.headline")}
           </Typography>
         </Grid>
       </Grid>
-      <Typography variant="body1" className={classes.leftText}>
-        {ActionTexts.DISTANCE_TEXT}
+      <Typography variant="body1" className={`${classes.leftText} ${classes.multiLineText}`}>
+        {t("basic-recommendations.distance.text")}
       </Typography>
     </div>
   );
@@ -136,6 +147,8 @@ const DistanceSection = (): JSX.Element => {
 
 const MaskSection = (): JSX.Element => {
   const classes = useStyles();
+  const { t } = useTranslation("translation");
+
   return (
     <div>
       <Grid container direction="row">
@@ -144,12 +157,12 @@ const MaskSection = (): JSX.Element => {
         </Grid>
         <Grid item xs={9}>
           <Typography variant="h1" className={classes.leftText}>
-            {ActionTexts.MASK_HEADLINE}
+            {t("basic-recommendations.mask.headline")}
           </Typography>
         </Grid>
       </Grid>
-      <Typography variant="body1" className={classes.leftText}>
-        {ActionTexts.MASK_TEXT}
+      <Typography variant="body1" className={`${classes.leftText} ${classes.multiLineText}`}>
+        {t("basic-recommendations.mask.text")}
       </Typography>
     </div>
   );
@@ -157,6 +170,8 @@ const MaskSection = (): JSX.Element => {
 
 const VentilationSection = (): JSX.Element => {
   const classes = useStyles();
+  const { t } = useTranslation();
+
   return (
     <div>
       <Grid container direction="row">
@@ -165,12 +180,12 @@ const VentilationSection = (): JSX.Element => {
         </Grid>
         <Grid item xs={9}>
           <Typography variant="h1" className={classes.leftText}>
-            {ActionTexts.VENTILATION_HEADLINE}
+            {t("basic-recommendations.ventilation.headline")}
           </Typography>
         </Grid>
       </Grid>
-      <Typography variant="body1" className={classes.leftText}>
-        {ActionTexts.VENTILATION_TEXT}
+      <Typography variant="body1" className={`${classes.leftText} ${classes.multiLineText}`}>
+        {t("basic-recommendations.ventilation.text")}
       </Typography>
     </div>
   );
@@ -178,6 +193,8 @@ const VentilationSection = (): JSX.Element => {
 
 const HygieneSection = (): JSX.Element => {
   const classes = useStyles();
+  const { t } = useTranslation();
+
   return (
     <div>
       <Grid container direction="row">
@@ -186,12 +203,12 @@ const HygieneSection = (): JSX.Element => {
         </Grid>
         <Grid item xs={9}>
           <Typography variant="h1" className={classes.leftText}>
-            {ActionTexts.HYGIENE_HEADLINE}
+            {t("basic-recommendations.hygiene.headline")}
           </Typography>
         </Grid>
       </Grid>
-      <Typography variant="body1" className={classes.leftText}>
-        {ActionTexts.HYGIENE_TEXT}
+      <Typography variant="body1" className={`${classes.leftText} ${classes.multiLineText}`}>
+        {t("basic-recommendations.hygiene.text")}
       </Typography>
     </div>
   );
@@ -199,6 +216,7 @@ const HygieneSection = (): JSX.Element => {
 
 const RegionalSection = (): JSX.Element => {
   const classes = useStyles();
+  const { t } = useTranslation();
   return (
     <div>
       <Grid container direction="row">
@@ -207,12 +225,12 @@ const RegionalSection = (): JSX.Element => {
         </Grid>
         <Grid item xs={9}>
           <Typography variant="h1" className={classes.leftText}>
-            {ActionTexts.REGIONAL_HEADLINE}
+            {t("basic-recommendations.regional.headline")}
           </Typography>
         </Grid>
       </Grid>
-      <Typography variant="body1" className={classes.leftText}>
-        {ActionTexts.REGIONAL_TEXT}
+      <Typography variant="body1" className={`${classes.leftText} ${classes.multiLineText}`}>
+        {t("basic-recommendations.regional.text")}
       </Typography>
     </div>
   );
@@ -245,12 +263,13 @@ function loadDistrictData(location): DistrictData | undefined {
 export const BasicRecommendations = (): JSX.Element => {
   const location = useLocation();
   const districtData = loadDistrictData(location);
+  const { t } = useTranslation("translation");
 
   return (
     <>
       <main className="sections">
         <section>
-          <NavigationTitle title={ActionTexts.TITLE} backToExpandedFeatureInfo={true} />
+          <NavigationTitle title={t("basic-recommendations.title")} backToExpandedFeatureInfo={true} />
         </section>
         <section>
           {districtData !== undefined ? (

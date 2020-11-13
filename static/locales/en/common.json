@@ -12,5 +12,6 @@
     "share-button-twitter": "Share on Twitter",
     "share-description-error-details": "Click for error details"
   },
-  "no data for selected timeframe": "No data available for the selected date."
+  "no data for selected timeframe": "No data available for the selected date.",
+  "lazy-error": "Check you network connection and refresh the app/page."
 }

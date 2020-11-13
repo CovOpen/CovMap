@@ -146,6 +146,42 @@
       "contributions": [
         "design"
       ]
+    },
+    {
+      "login": "sheraben",
+      "name": "Shéhérazade Benzerga",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/62461103?v=4",
+      "profile": "https://github.com/sheraben",
+      "contributions": [
+        "business"
+      ]
+    },
+    {
+      "login": "Japhilko",
+      "name": "Jan-Philipp Kolb",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/7593396?v=4",
+      "profile": "https://japhilko.github.io/mywebsite/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "undheitergehts",
+      "name": "Felix Zimmermann",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/73689859?v=4",
+      "profile": "https://github.com/undheitergehts",
+      "contributions": [
+        "design"
+      ]
+    },
+    {
+      "login": "jnnwnk",
+      "name": "Janna Wieneke",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/10629407?v=4",
+      "profile": "https://github.com/jnnwnk",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
