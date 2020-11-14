@@ -7,8 +7,8 @@ import { RiskBadge } from "../RiskBadge";
 import { NavigationTitle } from "app-config/components/NavigationTitle";
 import ContactsMediumBackgroundIcon from "../../static/images/contacts-medium-background.svg";
 import { Trans, useTranslation } from "react-i18next";
-import 'video-react/dist/video-react.css';
-import { Player } from 'video-react';
+import "video-react/dist/video-react.css";
+import { Player } from "video-react";
 
 const useStyles = makeStyles(() => ({
   textBlock: {
@@ -74,7 +74,7 @@ export const Faq: React.FC = () => {
         </FaqAccordion>
 
         <FaqAccordion title={t("faq.how-does-it-work-basic.title")}>
-          <Typography style={{width: "100%"}} component="div">
+          <Typography style={{ width: "100%" }} component="div">
             <Typography>{t("faq.how-does-it-work-basic.text")}</Typography>
             <Player>
               <source src="/videos/explanatory-movie.mp4"></source>
