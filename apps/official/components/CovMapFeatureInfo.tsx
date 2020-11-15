@@ -97,6 +97,7 @@ export const titleByRiskScore = {
   [RiskScore.Low]: "Normales Risiko",
   [RiskScore.Medium]: "Mittleres Risiko",
   [RiskScore.High]: "Hohes Risiko",
+  [RiskScore.Higher]: "Hohes Risiko",
 };
 
 export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
