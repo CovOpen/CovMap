@@ -194,7 +194,7 @@ export const config: AppConfig = {
                 3,
                 "#E84C4C",
                 4,
-                "#B51717"
+                "#B51717",
               ],
               "fill-opacity": 0.5,
             },

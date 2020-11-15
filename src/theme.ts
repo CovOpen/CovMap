@@ -50,8 +50,8 @@ export const theme = createMuiTheme({
       main: "#E84C4C",
     },
     higherRisk: {
-      main: "#B51717"
-    }
+      main: "#B51717",
+    },
   },
   typography: {
     fontFamily: "Inter, sans-serif",
