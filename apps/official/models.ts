@@ -2,6 +2,7 @@ export enum RiskScore {
   Low = 1,
   Medium = 2,
   High = 3,
+  Higher = 4,
 }
 
 export enum ContactScore {
