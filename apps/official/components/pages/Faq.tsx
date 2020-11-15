@@ -28,7 +28,8 @@ const FaqAccordion: React.FC<{ title: string }> = (props) => {
 };
 
 const RiskHeading: React.FC<{ risk: 1 | 2 | 3 }> = ({ risk = 1 }) => {
-  const riskText = ["Normales", "Mittleres", "Hohes"];
+  const { t } = useTranslation("translation");
+  const riskText = ["risk-score-result.low", "risk-score-result.medium", "risk-score-result.high"];
   return (
     <div
       style={{
@@ -38,7 +39,7 @@ const RiskHeading: React.FC<{ risk: 1 | 2 | 3 }> = ({ risk = 1 }) => {
     >
       <RiskBadge riskScore={risk} />
       <Typography variant="h3" style={{ margin: "0 1rem" }}>
-        {`${riskText[risk - 1] || "Normales"} Risiko`}
+        {t(`${riskText[risk - 1] || "risk-score-result.low"}`)}
       </Typography>
     </div>
   );
