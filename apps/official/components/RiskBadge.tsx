@@ -7,12 +7,14 @@ const boxColorsByRiskScore = (theme: Theme) => ({
   [RiskScore.Low]: theme.palette.lowRisk.main,
   [RiskScore.Medium]: theme.palette.mediumRisk.main,
   [RiskScore.High]: theme.palette.highRisk.main,
+  [RiskScore.Higher]: theme.palette.higherRisk.main,
 });
 
 const riskNumberByRiskScore = {
   [RiskScore.Low]: 1,
   [RiskScore.Medium]: 2,
   [RiskScore.High]: 3,
+  [RiskScore.Higher]: 3,
 };
 
 const useStyles = makeStyles<Theme, Props, string>((theme) => {
