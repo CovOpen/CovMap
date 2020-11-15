@@ -5,11 +5,13 @@ declare module "@material-ui/core/styles/createPalette" {
     lowRisk: Palette["primary"];
     mediumRisk: Palette["primary"];
     highRisk: Palette["primary"];
+    higherRisk: Palette["primary"];
   }
   interface PaletteOptions {
     lowRisk: PaletteOptions["primary"];
     mediumRisk: PaletteOptions["primary"];
     highRisk: PaletteOptions["primary"];
+    higherRisk: PaletteOptions["primary"];
   }
 }
 
@@ -47,6 +49,9 @@ export const theme = createMuiTheme({
     highRisk: {
       main: "#E84C4C",
     },
+    higherRisk: {
+      main: "#B51717"
+    }
   },
   typography: {
     fontFamily: "Inter, sans-serif",
