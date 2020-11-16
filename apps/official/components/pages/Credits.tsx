@@ -98,16 +98,16 @@ export const Credits = () => {
             {t("credits.appreciation.contributors-intro")}:
             <br />
           </Typography>
-          <Typography variant="body1">
+          <div>
             {contributors.contributors.map((el, i) => (
-              <p>
+              <Typography key={el.profile}>
                 {" - "}
                 <a href={el.profile} target="_blank" rel="noopener">
                   {el.name + (i == contributors.contributors.length - 1 ? "" : " ")}
                 </a>
-              </p>
+              </Typography>
             ))}
-          </Typography>
+          </div>
         </section>
       </main>
     </>

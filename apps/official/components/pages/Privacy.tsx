@@ -14,7 +14,7 @@ export const Privacy = () => {
         </section>
         <section>
           <Typography variant="h2">1. {t("privacy.responsible.title")}</Typography>
-          <Typography variant="body1" style={{ whiteSpace: "break-spaces" }}>
+          <Typography variant="body1" style={{ whiteSpace: "break-spaces" }} component="div">
             <Trans i18nKey="privacy.responsible.text">
               <p>part-0</p>
               <p>part-1</p>
