@@ -83,9 +83,8 @@
       "current-rules-in-county": "Welche Verhaltensregeln gelten im Landkreis?",
       "outro": "Mit der CovMap möchten wir zu einer freiwilligen Reduzierung von Kontakten aufrufen und aufzeigen, wo dies besonders notwendig ist."
     },
-    "how-does-it-work-basic": {
-      "title": "Wie funktioniert die CovMap?",
-      "text": "Schau Dir unser kurzes Erklär-Video an, um zu erfahren wie die CovMap funktioniert."
+    "explanatory-movie": {
+      "intro": "Schau Dir unser kurzes Erklär-Video an, um zu erfahren wie die CovMap funktioniert."
     },
     "how-to-access": {
       "title": "Wie kann ich die CovMap erreichen?",

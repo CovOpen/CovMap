@@ -58,6 +58,15 @@ export const Faq: React.FC = () => {
       </section>
 
       <section>
+        <Typography>{t("faq.explanatory-movie.intro")}</Typography>
+        <Typography component="div" style={{ border: "1px solid rgba(0, 0, 0, 0.2)", borderRadius: "4px" }}>
+          <Player poster="/images/explanatory-movie-poster.png">
+            <source src="/videos/explanatory-movie.mp4"></source>
+          </Player>
+        </Typography>
+      </section>
+
+      <section>
         <FaqAccordion title={t("faq.what-is-covmap.title")}>
           <Typography style={{ width: "100%" }} component="div">
             <div style={{ display: "flex", flexDirection: "column" }}>
@@ -71,15 +80,6 @@ export const Faq: React.FC = () => {
               </div>
               <div className={classes.textBlock}>{t("faq.what-is-covmap.outro")}</div>
             </div>
-          </Typography>
-        </FaqAccordion>
-
-        <FaqAccordion title={t("faq.how-does-it-work-basic.title")}>
-          <Typography style={{ width: "100%" }} component="div">
-            <Typography>{t("faq.how-does-it-work-basic.text")}</Typography>
-            <Player>
-              <source src="/videos/explanatory-movie.mp4"></source>
-            </Player>
           </Typography>
         </FaqAccordion>
 
