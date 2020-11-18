@@ -94,13 +94,14 @@ const useStyles = makeStyles<Theme, { fullScreen: boolean }>((theme) => ({
 }));
 
 export const titleByRiskScore = {
-  [RiskScore.Low]: "Normales Risiko",
-  [RiskScore.Medium]: "Mittleres Risiko",
-  [RiskScore.High]: "Hohes Risiko",
+  [RiskScore.Low]: "risk-score-result.low",
+  [RiskScore.Medium]: "risk-score-result.medium",
+  [RiskScore.High]: "risk-score-result.high",
 };
 
 export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
   const theme = useTheme();
+  const { t } = useTranslation("translation");
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const {
     action,
@@ -126,7 +127,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
   const isExpanded: boolean = new URLSearchParams(location.search).has("expanded");
 
   const { locationName, IdDistrict, riskScore, contactScore, incidence } = rawData as RawDataEntry;
-  const title = titleByRiskScore[riskScore];
+  const title = t(titleByRiskScore[riskScore]);
 
   const cardHeader = (
     <CardHeader
@@ -156,14 +157,14 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
         return (
           <div className={center}>
             <ContactsLowIcon />
-            <Typography variant="body2">{t("contacts-indicator.reduced")}</Typography>
+            <Typography variant="body2">{t("feature-info.contacts-indicator.reduced")}</Typography>
           </div>
         );
       case ContactScore.Medium:
         return (
           <div className={center}>
             <ContactsMediumIcon />
-            <Typography variant="body2">{t("contacts-indicator.increased")}</Typography>
+            <Typography variant="body2">{t("feature-info.contacts-indicator.increased")}</Typography>
           </div>
         );
       default:
@@ -177,7 +178,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
         <Chip size="small" label="beta" classes={{ root: chipTop, label: chipLabel }} />
         <Grid container direction="row" alignItems="center" spacing={2}>
           <Grid item xs={8}>
-            <Typography variant="h3">Kontaktverhalten der Bevölkerung</Typography>
+            <Typography variant="h3">{t("feature-info.contact-behavior")}</Typography>
           </Grid>
           <Grid item xs={2}>
             <ContactsIcon score={contactScore} />
@@ -196,7 +197,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
       <Paper elevation={1} className={bluePaper}>
         <Grid container direction="row" spacing={2}>
           <Grid item xs={10}>
-            <Typography variant="h3">Wie kann ich mich verhalten?</Typography>
+            <Typography variant="h3">{t("feature-info.how-should-i-behave")}</Typography>
           </Grid>
           <Grid item xs={2}>
             <ArrowForwardIosIcon className={centerIcon} fontSize="small" />
@@ -209,10 +210,10 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
   const SymptomLoadCategory = (): JSX.Element => (
     <RouterLink to="/symptom-level" style={{ textDecoration: "none" }} aria-label="go to symptoms explanation">
       <Card variant="outlined" className={card}>
-        <Chip size="small" label="bald verfügbar" classes={{ root: chipTop, label: chipLabel }} />
+        <Chip size="small" label={t("common:comming-soon")} classes={{ root: chipTop, label: chipLabel }} />
         <Grid container direction="row" alignItems="center" spacing={2} style={{ color: "#828282" }}>
           <Grid item xs={8}>
-            <Typography variant="h3">Symptomlast der Bevölkerung</Typography>
+            <Typography variant="h3">{t("feature-info.symptom-load")}</Typography>
           </Grid>
           <Grid item xs={2}>
             <div className={center}>
@@ -237,7 +238,7 @@ export const CovMapFeatureInfo = ({ rawData }: FeatureInfoProps) => {
         <Card variant="outlined" className={card}>
           <Grid container direction="row" alignItems="center" spacing={2}>
             <Grid item xs={8}>
-              <Typography variant="h3">7-Tages-Inzidenz (RKI)</Typography>
+              <Typography variant="h3">{t("feature-info.seven-days-incidence")}</Typography>
             </Grid>
             <Grid item xs={2}>
               <Typography align="center">{incidenceDisplay}</Typography>
