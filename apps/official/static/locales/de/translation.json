@@ -255,8 +255,19 @@
     },
     "contact-score-info": "Aufgrund eines erhöhten Kontaktverhalten kann sich das Coronavirus leicht weiter verbreiten und unser Modell sagt einen weiteren Anstieg der Neuinfektionen voraus. "
   },
-  "contacts-indicator": {
-    "reduced": "reduziert",
-    "increased": "erhöht"
+  "feature-info": {
+    "contacts-indicator": {
+      "reduced": "reduziert",
+      "increased": "erhöht"
+    },
+    "contact-behavior": "Kontaktverhalten der Bevölkerung",
+    "how-should-i-behave": "Wie kann ich mich verhalten?",
+    "symptom-load": "Symptomlast der Bevölkerung",
+    "seven-days-incidence": "7-Tages-Inzidenz (RKI)"
+  },
+  "risk-score-result": {
+    "low": "Normales Risiko",
+    "medium": "Mittleres Risiko",
+    "high": "Hohes Risiko"
   }
 }
