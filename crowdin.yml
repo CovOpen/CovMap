@@ -1,0 +1,38 @@
+#
+# Your Crowdin credentials
+#
+"project_id" : "24"
+"base_path" : "."
+"base_url" : "https://wevsvirushack.crowdin.com"
+
+"commit_message": "fix(translation): new translations %original_file_name% from crowdin"
+"append_commit_message": false
+#
+# Choose file structure in Crowdin
+# e.g. true or false
+#
+"preserve_hierarchy": true
+
+# https://support.crowdin.com/pseudolocalization/
+pseudo_localization: {
+  length_correction: 25,
+  prefix: "",
+  suffix: "",
+  character_transformation: "cyrillic"
+}
+
+#
+# Files configuration
+#
+files: [
+  {
+    "source": "/static/locales/de/*.json",                                       #source files filter
+    "translation": "static/locales/%two_letters_code%/%original_file_name%",      #where translations are stored
+    "update_option": "update_as_unapproved"
+  },
+  {
+    "source": "/apps/official/static/locales/de/*.json",
+    "translation": "/apps/official/static/locales/%two_letters_code%/%original_file_name%",
+    "update_option": "update_as_unapproved"
+  }
+]
