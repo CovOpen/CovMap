@@ -11,7 +11,6 @@
 [![Crowdin](https://badges.crowdin.net/e/16ae8d16b81da30a3d782733464f3da2/localized.svg)](https://wevsvirushack.crowdin.com/covmap)
 <!-- prettier-ignore-end -->
 
-
 # CovMapper
 
 A webapp to display large-scale epidemiological data and forecasts of the SARS-CoV-2 pandemic.
