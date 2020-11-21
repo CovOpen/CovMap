@@ -42,6 +42,15 @@ node dev/generate-random-data-for-geojson --help
 
 We use a shared `master` branch, with short lived feature branches. Create a branch, add your changes locally, use `git add X && git commit`, then create a Pull Request.
 
+### How to help translate? 
+
+For editing the source language please edit those files: 
+ - https://github.com/CovOpen/CovMapper/blob/master/static/locales/de/common.json
+ - https://github.com/CovOpen/CovMapper/blob/master/apps/official/static/locales/de/translation.json
+ 
+If you want to help translate: 
+
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
