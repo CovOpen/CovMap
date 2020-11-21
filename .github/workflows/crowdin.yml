@@ -53,5 +53,6 @@ jobs:
         # A personal access token, not to be confused with Crowdin API v1 "API key"
         # See https://crowdin.com/settings#api-key to generate a token
         token: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+        project_id: ${{ secrets.CROWDIN_PROJECT_ID }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
