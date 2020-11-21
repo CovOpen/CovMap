@@ -44,12 +44,11 @@ We use a shared `master` branch, with short lived feature branches. Create a bra
 
 ### How to help translate? 
 
-For editing the source language please edit those files: 
- - https://github.com/CovOpen/CovMapper/blob/master/static/locales/de/common.json
- - https://github.com/CovOpen/CovMapper/blob/master/apps/official/static/locales/de/translation.json
- 
-If you want to help translate: 
+If you want to translate the CovMap into a different language [you can help us without knowing anything about programming, just click here](https://wevsvirushack.crowdin.com/covmap).
 
+Please note that there is only one single source for the tranlsations - the german files in this repository, if you want to change them, edit the files below:
+ - [Common Texts](https://github.com/CovOpen/CovMapper/blob/master/static/locales/de/common.json)
+ - [Official App Texts](https://github.com/CovOpen/CovMapper/blob/master/apps/official/static/locales/de/translation.json)
 
 ## Contributors ✨
 
