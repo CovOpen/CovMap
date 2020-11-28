@@ -6,9 +6,11 @@
 
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+[![Crowdin](https://badges.crowdin.net/e/16ae8d16b81da30a3d782733464f3da2/localized.svg)](https://wevsvirushack.crowdin.com/covmap)
 <!-- prettier-ignore-end -->
+
 
 # CovMapper
 
@@ -41,6 +43,15 @@ node dev/generate-random-data-for-geojson --help
 ## Contributing
 
 We use a shared `master` branch, with short lived feature branches. Create a branch, add your changes locally, use `git add X && git commit`, then create a Pull Request.
+
+### How to help translate?
+
+If you want to translate the CovMap into a different language [you can help us without knowing anything about programming, just click here](https://wevsvirushack.crowdin.com/covmap).
+
+Please note that there is only one single source for the tranlsations - the german files in this repository, if you want to change them, edit the files below:
+
+- [Common Texts](https://github.com/CovOpen/CovMapper/blob/master/static/locales/de/common.json)
+- [Official App Texts](https://github.com/CovOpen/CovMapper/blob/master/apps/official/static/locales/de/translation.json)
 
 ## Contributors ✨
 
