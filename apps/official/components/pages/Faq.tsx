@@ -7,6 +7,8 @@ import { RiskBadge } from "../RiskBadge";
 import { NavigationTitle } from "app-config/components/NavigationTitle";
 import ContactsMediumBackgroundIcon from "../../static/images/contacts-medium-background.svg";
 import { Trans, useTranslation } from "react-i18next";
+import "video-react/dist/video-react.css";
+import { Player } from "video-react";
 
 const useStyles = makeStyles(() => ({
   textBlock: {
@@ -53,6 +55,15 @@ export const Faq: React.FC = () => {
     <main className="sections">
       <section>
         <NavigationTitle title={t("faq.title")} />
+      </section>
+
+      <section>
+        <Typography>{t("faq.explanatory-movie.intro")}</Typography>
+        <Typography component="div" style={{ border: "1px solid rgba(0, 0, 0, 0.2)", borderRadius: "4px" }}>
+          <Player poster="/images/explanatory-movie-poster.png">
+            <source src="/videos/explanatory-movie.mp4"></source>
+          </Player>
+        </Typography>
       </section>
 
       <section>
