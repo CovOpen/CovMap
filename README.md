@@ -16,7 +16,7 @@
 
 A webapp to display large-scale epidemiological data and forecasts of the SARS-CoV-2 pandemic.
 
-## Development
+## Development [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/CovOpen/CovMapper)
 
 We use Docker currently only to develop on different operating systems.
 It is not necessarily needed, on unix like systems you can use _yarn_ scripts directly, like `yarn dev`.
