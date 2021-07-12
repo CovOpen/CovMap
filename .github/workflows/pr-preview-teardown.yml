@@ -1,6 +1,6 @@
 name: PR-Preview-TearDown
 on:
-  pull_request_target:
+  pull_request:
     branches: [master]
     types: [closed]
 env:
