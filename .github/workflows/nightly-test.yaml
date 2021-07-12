@@ -57,9 +57,12 @@ jobs:
         run: yarn run testcafe chrome:headless testcafe/*.spec.ts --app "cd ./dist && http-server -p 8080"
 
   e2e-test-browserstack:
-    name: "E2E Tests BrowserStack"
+    name: "E2E Tests BrowserStack ${{ matrix.device }}"
     runs-on: ubuntu-latest
     needs: [build-head]
+    strategy:
+      matrix:
+        device: ["browserstack:Samsung Galaxy S8", "browserstack:chrome:Windows 10", "browserstack:firefox:Windows 10", "browserstack:edge:Windows 10", "browserstack:opera:Windows 10", "browserstack:IE:Windows 10", "browserstack:safari:OS X Catalina", "browserstack:Pixel 4", "browserstack:Redmi Note 8", "browserstack:Moto G7 Play", "browserstack:iPhone XS", "browserstack:iPad Pro 12.9 2020"]
     steps:
     - uses: actions/checkout@v2
       with:
@@ -98,18 +101,7 @@ jobs:
         export BROWSERSTACK_DISPLAY_RESOLUTION="1024x768"
         yarn run http-server dist/ -p 8080 -s &
         sleep 5
-        yarn run testcafe -c 1 "browserstack:Samsung Galaxy S8" testcafe/*.spec.ts
-        yarn run testcafe -c 1 "browserstack:chrome:Windows 10" testcafe/*.spec.ts
-        yarn run testcafe -c 1 "browserstack:firefox:Windows 10" testcafe/*.spec.ts
-        yarn run testcafe -c 1 "browserstack:edge:Windows 10" testcafe/*.spec.ts
-        yarn run testcafe -c 1 "browserstack:opera:Windows 10" testcafe/*.spec.ts
-        yarn run testcafe -c 1 "browserstack:IE:Windows 10" testcafe/*.spec.ts
-        yarn run testcafe -c 1 "browserstack:safari:OS X Catalina" testcafe/*.spec.ts --skip-js-errors
-        yarn run testcafe -c 1 "browserstack:Pixel 4" testcafe/*.spec.ts
-        yarn run testcafe -c 1 "browserstack:Redmi Note 8" testcafe/*.spec.ts
-        yarn run testcafe -c 1 "browserstack:Moto G7 Play" testcafe/*.spec.ts
-        yarn run testcafe -c 1 "browserstack:iPhone XS" testcafe/*.spec.ts
-        yarn run testcafe -c 1 "browserstack:iPad Pro 12.9 2020" testcafe/*.spec.ts
+        yarn run testcafe -c 1 "${{ matrix.device }}" testcafe/*.spec.ts
     - name: 'BrowserStackLocal Stop'
       uses: 'browserstack/github-actions/setup-local@master'
       with:
