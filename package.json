@@ -90,7 +90,7 @@
     "http-server": "^0.12.3",
     "jest": "^25.1.0",
     "json-loader": "^0.5.7",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "moment-locales-webpack-plugin": "^1.2.0",
     "prettier": "2.1.2",
     "react-hot-loader": "^4.12.20",
